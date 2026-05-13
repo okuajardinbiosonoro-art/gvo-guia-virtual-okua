@@ -40,6 +40,16 @@ Estado: repositorio base técnico.
 - El siguiente trabajo funcional será TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
 - La próxima rama funcional será feature/001-carga-inicial.
 
+## Ticket 001: Carga inicial
+
+- Estado: BLOQUEADO.
+- Código de bloqueo: BLOCKED_REFERENCE_INPUTS_MISSING.
+- Motivo: faltan el TXT de especificación y el PNG de referencia visual de la pantalla de carga inicial pre-portada.
+- Rutas revisadas: `docs/source_specs/` y `assets/reference/screens/`.
+- Pantalla de carga inicial estática: no implementada.
+- Portada, estaciones, transición y final siguen no implementados.
+- Rama funcional creada: feature/001-carga-inicial.
+
 ## Próximo ticket recomendado
 
 TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
