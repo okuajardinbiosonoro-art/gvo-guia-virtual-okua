@@ -25,6 +25,14 @@ Estado: repositorio base técnico.
 - Scanner interno con cámara.
 - Assets finales del recorrido.
 
+## Estado Git/GitHub
+
+- Rama base estable esperada: main.
+- Rama del Ticket 000: feature/000-repo-base.
+- Commit base aprobado: 4f6fa03.
+- Próximo trabajo funcional: TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
+- Recomendación: mantener el repositorio privado durante desarrollo.
+
 ## Próximo ticket recomendado
 
 TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
