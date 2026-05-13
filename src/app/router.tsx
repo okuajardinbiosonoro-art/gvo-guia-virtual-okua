@@ -4,7 +4,7 @@ import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
 import { flowSteps } from "../data/flow";
 import { CoverPlaceholder } from "../screens/Cover/CoverPlaceholder";
 import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
-import { LoadingInitialPlaceholder } from "../screens/LoadingInitial/LoadingInitialPlaceholder";
+import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 
 function QrRoute() {
@@ -15,11 +15,11 @@ function QrRoute() {
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoadingInitialPlaceholder flowSteps={flowSteps} />,
+    element: <LoadingInitialScreen />,
   },
   {
     path: "/carga",
-    element: <LoadingInitialPlaceholder flowSteps={flowSteps} />,
+    element: <LoadingInitialScreen />,
   },
   {
     path: "/portada",

@@ -62,4 +62,4 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio base técnico. Existen rutas placeholder, documentación inicial, capa mínima de progreso local y configuración base de PWA/pruebas. No se ha implementado la pantalla real de carga, la portada real ni estaciones reales.
+Repositorio base técnico con primera pantalla funcional. La carga inicial pre-portada está disponible en `/` y `/carga`; portada, estaciones, transición y final siguen pendientes de tickets propios.

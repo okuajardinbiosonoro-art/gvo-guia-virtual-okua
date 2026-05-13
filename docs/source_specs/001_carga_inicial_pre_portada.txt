@@ -1,0 +1,688 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+VENTANA DE CARGA INICIAL PREVIA A PORTADA
+Versión: V1
+Estado: Definición visual y funcional base
+Uso previsto: referencia de diseño, animación e implementación posterior
+
+================================================================================
+1. PROPÓSITO DE ESTA PANTALLA
+================================================================================
+
+Esta pantalla aparece inmediatamente después de que el visitante escanea el primer QR
+de acceso a GVO — Guía Visual OKÚA, y antes de mostrar la portada principal
+“Archivo Vivo de OKÚA”.
+
+No es una transición entre estaciones.
+No es una estación del recorrido.
+No es una pantalla interactiva.
+No es una portada.
+
+Su función es crear una antesala breve, amable y visualmente coherente donde el
+sistema comunica que el recorrido se está preparando.
+
+La metáfora visual central es:
+
+    Lía cuida una pequeña planta para despertar el recorrido.
+
+La pantalla debe sugerir que el viaje por OKÚA empieza desde una acción de cuidado,
+no desde una máquina fría ni desde una carga técnica genérica.
+
+Debe reforzar tres sensaciones:
+
+1. Inicio.
+2. Cuidado.
+3. Expectativa serena.
+
+No debe transmitir urgencia, error, carga técnica pesada, videojuego agresivo ni
+pantalla comercial genérica.
+
+
+================================================================================
+2. MOMENTO EXACTO EN EL FLUJO
+================================================================================
+
+Ubicación dentro del recorrido:
+
+    Escaneo de QR
+    → Ventana de carga inicial
+    → Portada / Intro: El Archivo Vivo de OKÚA
+    → Diálogos introductorios de Lía
+    → Portal I
+    → Estación I
+
+Esta pantalla se muestra solo al inicio de la experiencia, antes de la portada.
+
+No debe repetirse en cada cambio de estación.
+Para los cambios de estación se usa otra ventana: transición entre mundos.
+
+
+================================================================================
+3. DIFERENCIA CON LA TRANSICIÓN ENTRE MUNDOS
+================================================================================
+
+La transición entre mundos comunica:
+
+    “Estamos abriendo una estación específica.”
+
+Ejemplo:
+
+    Abriendo Mundo I: Raíz...
+
+La carga inicial comunica:
+
+    “Estamos preparando el recorrido completo.”
+
+Por eso esta pantalla debe sentirse más íntima y orgánica.
+
+Carga inicial:
+- aparece después del QR;
+- prepara la experiencia;
+- usa la metáfora de Lía cuidando una planta;
+- transmite nacimiento del recorrido.
+
+Transición entre mundos:
+- aparece entre estaciones;
+- usa portal;
+- muestra el nombre del mundo que se abre;
+- comunica desplazamiento entre capítulos.
+
+
+================================================================================
+4. CONCEPTO VISUAL GENERAL
+================================================================================
+
+La escena debe representar una maceta pequeña con una planta joven.
+Lía, en versión pixelart, aparece regando esa planta.
+
+La planta aún no está grande.
+Debe verse como un brote inicial o una plantita pequeña con pocas hojas.
+
+Lía no debe aparecer haciendo varias acciones a la vez.
+La referencia visual actual corresponde a un solo instante de la futura animación:
+
+    Lía regando una maceta pequeña.
+
+La imagen debe servir como referencia para un frame o estado dentro de una animación
+posterior de 10 a 15 segundos.
+
+La animación futura puede incluir varias acciones, pero esta imagen base representa
+solo una:
+
+    regar.
+
+
+================================================================================
+5. COMPOSICIÓN GENERAL
+================================================================================
+
+Formato:
+
+    Vertical 9:16
+    Pensado para móvil
+
+Composición sugerida:
+
+    Zona superior:
+        espacio limpio, aire visual, sin texto pesado.
+
+    Zona central:
+        Lía flotando junto a una maceta pequeña.
+        Lía riega una plantita joven.
+
+    Zona inferior media:
+        texto principal:
+            Preparando el recorrido
+
+        subtítulo:
+            Cuidando el inicio...
+
+    Zona inferior:
+        barra de carga horizontal, fina y minimalista.
+
+El centro visual debe ser:
+
+    Lía + maceta + planta pequeña
+
+No debe haber portales grandes.
+No debe haber muchas decoraciones.
+No debe haber múltiples Lías.
+No debe haber múltiples escenas.
+
+
+================================================================================
+6. LÍA EN ESTA PANTALLA
+================================================================================
+
+Lía debe aparecer como una versión pixelart real del personaje oficial.
+
+Características obligatorias:
+
+- pequeña entidad floral biomimética;
+- flotante;
+- amable;
+- delicada;
+- útil;
+- visualmente tierna;
+- integrada al pixelart;
+- no pegada como render 3D.
+
+Elementos de identidad que deben mantenerse:
+
+1. Cabeza / visor
+   - forma redondeada;
+   - aspecto perlado o luminoso;
+   - ojos simples, brillantes y amables;
+   - ojos en tono lila suave o blanco-lila;
+   - sin boca;
+   - sin nariz;
+   - sin cejas humanas.
+
+2. Pétalos
+   - cinco pétalos principales;
+   - color marfil o crema;
+   - puntas lila/lavanda/rosado suave;
+   - pétalos simplificados en pixelart;
+   - silueta reconocible.
+
+3. Collar / unión luminosa
+   - pequeño aro ámbar o dorado cálido;
+   - debe verse como punto de identidad.
+
+4. Cuerpo
+   - pequeño cuerpo inferior tipo semilla, gota o bulbo;
+   - no cuerpo humano;
+   - no piernas;
+   - no pies.
+
+5. Acción
+   - Lía riega la planta con una regadera pequeña;
+   - el gesto debe sentirse tierno y cuidadoso;
+   - la acción debe verse clara.
+
+Cosas prohibidas para Lía:
+
+- no hada genérica;
+- no flor genérica;
+- no insecto;
+- no mariposa;
+- no personaje humanoide;
+- no anime genérico;
+- no render 3D pegado encima;
+- no varias Lías;
+- no secuencia de poses en la misma imagen;
+- no múltiples acciones simultáneas.
+
+
+================================================================================
+7. MACETA Y PLANTA
+================================================================================
+
+La maceta debe ser pequeña, sencilla y legible.
+
+Características:
+
+- maceta de color lavanda claro, beige o crema-lila;
+- estilo pixelart;
+- forma simple;
+- sin ornamentos excesivos;
+- puede tener un pequeño símbolo floral mínimo;
+- tierra visible.
+
+La planta debe estar en etapa inicial.
+
+Características:
+
+- brote joven;
+- 2 a 4 hojas pequeñas;
+- verde suave;
+- no debe verse como planta adulta;
+- no debe estar completamente florecida;
+- debe sugerir inicio y crecimiento potencial.
+
+La planta representa:
+
+    el recorrido que está despertando.
+
+No representa una estación específica todavía.
+
+
+================================================================================
+8. TEXTO EN PANTALLA
+================================================================================
+
+Texto principal obligatorio:
+
+    Preparando el recorrido
+
+Subtítulo obligatorio:
+
+    Cuidando el inicio...
+
+Reglas de texto:
+
+- tipografía pixelart legible;
+- color lavanda, morado suave o tono compatible con la escena;
+- no usar mayúsculas excesivas si afecta legibilidad;
+- mantener el texto centrado;
+- no añadir más frases;
+- no agregar explicación técnica;
+- no agregar diálogo de Lía;
+- no poner botones.
+
+Jerarquía:
+
+    Texto principal: más grande.
+    Subtítulo: más pequeño y suave.
+    Barra: debajo del subtítulo.
+
+
+================================================================================
+9. BARRA DE CARGA
+================================================================================
+
+La barra de carga debe ser:
+
+- horizontal;
+- fina;
+- minimalista;
+- pixelart;
+- centrada;
+- sin porcentaje;
+- sin números;
+- sin texto adicional.
+
+Estados visuales esperados:
+
+1. Inicio:
+   - barra vacía o casi vacía.
+
+2. Progreso:
+   - una sección en tono ámbar/lavanda avanza.
+
+3. Final:
+   - barra completa o con destello final.
+
+La barra no debe verse como una UI técnica pesada.
+Debe sentirse como una línea de energía tranquila.
+
+
+================================================================================
+10. FONDO
+================================================================================
+
+El fondo debe ser limpio y muy suave.
+
+Características:
+
+- crema;
+- beige claro;
+- lavanda pálido;
+- degradado muy suave;
+- mucho aire visual;
+- sin escenario complejo;
+- sin portal;
+- sin paisaje;
+- sin jardín lleno de detalles;
+- sin decoraciones excesivas.
+
+Puede incluir:
+
+- pocos destellos pixelados;
+- sombras suaves;
+- una pequeña base o círculo tenue bajo la maceta;
+- detalles mínimos.
+
+No debe incluir:
+
+- muchos árboles;
+- muchos iconos;
+- muchas flores;
+- varios cuadros;
+- portales;
+- montañas;
+- menú;
+- logos;
+- texto adicional;
+- personajes secundarios.
+
+
+================================================================================
+11. ANIMACIÓN FUTURA ESPERADA
+================================================================================
+
+Aunque este documento describe una imagen base, la pantalla se piensa para una
+animación posterior de 10 a 15 segundos.
+
+Duración total ideal:
+
+    10 a 12 segundos
+
+Duración máxima:
+
+    15 segundos
+
+Secuencia sugerida:
+
+1. Inicio de carga
+   - fondo aparece con fade suave;
+   - maceta aparece;
+   - planta está pequeña;
+   - barra inicia en 0 %.
+
+2. Entrada de Lía
+   - Lía aparece flotando desde un lado;
+   - se acerca a la maceta;
+   - mantiene movimiento suave.
+
+3. Acción de regar
+   - Lía inclina la regadera;
+   - cae agua pixelart en gotas simples;
+   - la planta responde con pequeño brillo.
+
+4. Crecimiento inicial
+   - la planta crece muy poco;
+   - aparecen una o dos hojas más;
+   - la barra avanza.
+
+5. Cuidado / observación
+   - Lía se detiene y observa;
+   - sus ojos brillan suavemente;
+   - la barra sigue avanzando.
+
+6. Final de carga
+   - planta se ve más sana;
+   - Lía hace pequeño gesto de satisfacción;
+   - barra completa;
+   - pantalla hace fade hacia la portada.
+
+No deben representarse todas estas acciones en una sola imagen.
+Cada frame debe generarse o diseñarse por separado.
+
+
+================================================================================
+12. ANIMACIÓN DE LÍA
+================================================================================
+
+Movimientos permitidos:
+
+- flotación vertical suave;
+- inclinación hacia la maceta;
+- mover la regadera;
+- pequeño gesto de satisfacción;
+- parpadeo simple;
+- pequeño brillo del collar.
+
+Movimientos prohibidos:
+
+- saltos bruscos;
+- vuelos exagerados;
+- rotaciones grandes;
+- múltiples poses duplicadas en pantalla;
+- animaciones con muchas partículas;
+- gestos humanos complejos.
+
+Lía debe moverse como una guía delicada, no como un personaje de acción.
+
+
+================================================================================
+13. ANIMACIÓN DE LA PLANTA Y EL AGUA
+================================================================================
+
+La planta debe crecer de forma sutil.
+
+Estados sugeridos:
+
+1. Semilla / brote mínimo.
+2. Brote con dos hojas.
+3. Plantita pequeña con más fuerza.
+4. Plantita sana, lista para pasar a la portada.
+
+No debe llegar a ser un árbol o planta adulta.
+La pantalla de carga representa el inicio, no el final del crecimiento.
+
+El agua debe ser simple:
+
+- 3 a 6 gotas pixelart;
+- línea punteada suave;
+- color azul lavanda muy claro;
+- caída corta desde regadera a maceta.
+
+No debe haber chorro realista.
+No debe parecer lluvia intensa.
+No debe llenar la pantalla.
+
+
+================================================================================
+14. ESTILO PIXELART
+================================================================================
+
+El estilo debe ser pixelart real y consistente.
+
+Reglas:
+
+- bordes pixelados legibles;
+- contorno suave;
+- paleta limitada;
+- pocos degradados;
+- pocos detalles internos;
+- sin exceso de textura;
+- sin look 3D pegado.
+
+Debe sentirse como una pantalla diseñada para animarse dentro de una app.
+
+No debe parecer:
+
+- ilustración 3D rasterizada;
+- pintura digital reducida;
+- sticker pegado;
+- videojuego saturado;
+- escena ornamental.
+
+
+================================================================================
+15. INTERACCIÓN DEL USUARIO
+================================================================================
+
+Durante esta pantalla no hay interacción.
+
+El usuario no debe tocar nada.
+
+La pantalla debe:
+
+- bloquear taps repetidos;
+- no mostrar botones;
+- no permitir navegación;
+- no permitir saltos;
+- avanzar automáticamente a portada al terminar carga.
+
+Estados funcionales:
+
+    loading_initial_enter
+    lia_watering
+    plant_growth
+    loading_complete
+    transition_to_intro
+
+
+================================================================================
+16. TEXTOS POR ESTADO
+================================================================================
+
+Texto estable durante toda la carga:
+
+    Preparando el recorrido
+    Cuidando el inicio...
+
+No cambiar texto a mitad de la animación.
+
+No agregar diálogos de Lía.
+
+No agregar mensajes técnicos como:
+
+- “cargando assets”;
+- “verificando servidor”;
+- “sincronizando sesión”;
+- “conectando”.
+
+La pantalla debe ser poética, no técnica.
+
+
+================================================================================
+17. REDUCED MOTION
+================================================================================
+
+Si el usuario tiene reduced-motion activo:
+
+- no animar desplazamiento amplio de Lía;
+- no usar crecimiento progresivo muy notorio;
+- no usar muchas gotas;
+- no usar brillo pulsante;
+- mostrar escena estática;
+- barra puede avanzar de forma simple o aparecer progresivamente;
+- transición final con fade simple.
+
+Duración reducida sugerida:
+
+    1.0 a 1.5 segundos
+
+
+================================================================================
+18. ACCESIBILIDAD
+================================================================================
+
+Aunque sea una pantalla visual, debe tener descripción accesible.
+
+Texto accesible sugerido:
+
+    Preparando el recorrido. Lía cuida una planta joven mientras se carga la experiencia.
+
+La barra de carga puede declararse como progreso indeterminado si no mide carga real.
+
+No usar información solo por color.
+
+
+================================================================================
+19. REGLAS DE IMPLEMENTACIÓN FUTURA
+================================================================================
+
+Idealmente implementar como:
+
+- React component;
+- sprite de Lía;
+- sprite de maceta/planta;
+- CSS o GSAP para animación;
+- barra de progreso controlada;
+- transición automática hacia portada.
+
+No se recomienda implementarlo como un video pesado si puede resolverse con sprites.
+
+Elementos separables:
+
+1. Fondo.
+2. Maceta.
+3. Planta por estados.
+4. Lía sprite.
+5. Regadera / gotas.
+6. Texto.
+7. Barra.
+8. Fade final.
+
+
+================================================================================
+20. VARIANTES DE FRAME SUGERIDAS
+================================================================================
+
+Para generar los frames de referencia uno por uno:
+
+Frame 1:
+    maceta con brote pequeño, Lía aún no riega.
+
+Frame 2:
+    Lía llega con regadera.
+
+Frame 3:
+    Lía riega la planta pequeña.
+
+Frame 4:
+    planta crece un poco.
+
+Frame 5:
+    Lía observa la planta sana.
+
+Frame 6:
+    barra completa, transición hacia portada.
+
+Cada frame debe mantener:
+
+- una sola Lía;
+- una sola acción;
+- misma composición;
+- misma escala;
+- misma paleta;
+- mismo estilo.
+
+
+================================================================================
+21. LO QUE NO DEBE APARECER
+================================================================================
+
+Prohibido:
+
+- varias Lías;
+- varias acciones al mismo tiempo;
+- secuencia completa dentro de una sola imagen;
+- portal;
+- menú;
+- botones;
+- logo grande;
+- muchos textos;
+- muchos iconos;
+- varias macetas;
+- planta adulta desde el inicio;
+- paisaje complejo;
+- escena saturada;
+- brillo excesivo;
+- partículas excesivas;
+- Lía 3D pegada sobre pixelart;
+- personajes humanos;
+- animales;
+- audio;
+- referencia a AR o scanner interno.
+
+
+================================================================================
+22. CRITERIOS DE ACEPTACIÓN VISUAL
+================================================================================
+
+La pantalla se considera correcta si:
+
+□ Se entiende que es una carga inicial.
+□ Se entiende que Lía cuida una planta.
+□ Solo aparece una Lía.
+□ Solo aparece una maceta.
+□ Solo ocurre una acción principal.
+□ La planta es pequeña.
+□ El pixelart es coherente.
+□ Lía parece parte del mundo pixelart.
+□ El texto es legible.
+□ La barra de carga es mínima.
+□ La escena es sobria.
+□ No hay saturación visual.
+□ No parece una transición entre estaciones.
+□ No parece una portada.
+□ Es fácil imaginar la animación posterior.
+
+
+================================================================================
+23. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Pantalla de carga inicial previa a portada. Representa a Lía en pixelart cuidando
+una maceta con una planta joven mientras el recorrido se prepara. La escena usa
+un fondo limpio, texto mínimo y una barra de carga sencilla. Su función es
+transmitir inicio, cuidado y expectativa antes de mostrar el Archivo Vivo de OKÚA.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================
