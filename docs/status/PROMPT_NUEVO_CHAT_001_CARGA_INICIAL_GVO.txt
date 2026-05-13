@@ -1,0 +1,90 @@
+Prompt para nuevo chat — GVO / Ticket 001 Carga inicial
+
+Hola, vamos a continuar el proyecto GVO — Guía Virtual OKÚA.
+
+Contexto mínimo:
+
+GVO — Guía Virtual OKÚA es una aplicación web local, mobile-first e insonora para guiar el recorrido OKÚA mediante QR físicos dentro de una red MikroTik sin Internet. El visitante abre la experiencia desde el navegador móvil, sin instalar nada.
+
+GVO no es una app decorativa. Su objetivo es guiar visualmente el recorrido y evitar que el visitante interprete erróneamente que las plantas "hacen música" por sí solas. La explicación correcta es: planta viva -> señales bioeléctricas -> captura/acondicionamiento -> interpretación técnica/artística -> resultado sonoro mediado en el espacio. La app no produce sonido.
+
+Reglas no negociables:
+- Sin Internet.
+- Sin instalación para visitante.
+- Mobile-first.
+- Sin audio.
+- Sin recursos externos en runtime.
+- Sin CDN.
+- Sin fuentes remotas.
+- Sin APIs externas.
+- Flujo por QR físicos.
+- Navegación secuencial.
+- Lía es la única guía.
+- Lía tiene exactamente 5 pétalos.
+- Trabajo por tickets pequeños, cerrables, documentados y probados.
+
+Identidad de Lía:
+- Avatar único de GVO.
+- Robótica blanda + flor andina/orquídea + guía visual de aprendizaje.
+- No humana, no hada, no animal, no mascota.
+- Exactamente cinco pétalos.
+- Cabeza cristal opalescente.
+- Ojos en media luna cerrada.
+- Sin boca, nariz, cejas, brazos, manos, piernas ni pies.
+- Collar ámbar.
+- Bulbo inferior segmentado.
+- Flota.
+- Función: guiar, ordenar, activar, explicar y corregir interpretaciones equivocadas.
+
+Estado técnico actual:
+- Existe repo base Vite + React + TypeScript.
+- Existe React Router con rutas placeholder.
+- Existe Motion for React.
+- Existe @zxing/browser instalado para estrategia QR/cámara futura.
+- Existe vite-plugin-pwa con PWA mínima.
+- Existe Vitest.
+- Existe Playwright.
+- Existe ESLint.
+- Existe Prettier.
+- Existe capa mínima de progreso secuencial con localStorage.
+- Existe auditoría de assets para bloquear recursos externos/CDN/audio.
+- Existe documentación base, AGENTS.md, README.md, LICENSE.md, ADRs iniciales y templates de GitHub.
+- No existe todavía pantalla real de carga, portada real ni estaciones reales.
+
+Repositorio:
+https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git
+
+Estado Git:
+- main es la rama estable/base.
+- feature/000-repo-base fue la rama histórica del repo base.
+- Ticket 000 quedó aprobado.
+- Ticket 000A normalizó main.
+- Ticket 000B creó este handoff.
+- El repositorio se mantiene público por decisión operativa del usuario para permitir revisión desde ChatGPT.
+
+Siguiente trabajo:
+Necesito que revises el estado actual del repo y me generes el TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL para Codex.
+
+Reglas para el Ticket 001:
+- Crear rama feature/001-carga-inicial desde main.
+- Trabajar solo la pantalla de carga inicial pre-portada.
+- Usar como referencia el TXT y PNG de carga inicial que están o estarán en docs/source_specs y assets/reference/screens.
+- No implementar portada.
+- No implementar estaciones.
+- No implementar transición todavía.
+- No implementar audio.
+- No usar recursos externos.
+- No usar CDN.
+- No alterar identidad de Lía.
+- Hacer primero base visual estática y estructura clara.
+- Preparar la pantalla para animaciones futuras, pero no sobrecargar el primer ticket.
+- Incluir pruebas mínimas.
+- Actualizar documentación.
+- Commit y push a origin/feature/001-carga-inicial.
+
+Lo que espero del asistente:
+1. Revisar el repositorio de GitHub.
+2. Confirmar si main está listo.
+3. Generar un ticket detallado para Codex.
+4. No avanzar sin mi retroalimentación.
+5. Mantener metodología estricta por tickets.

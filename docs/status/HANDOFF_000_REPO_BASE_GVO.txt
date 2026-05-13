@@ -1,0 +1,151 @@
+1. Título
+
+HANDOFF 000 — Estado base del proyecto GVO
+
+2. Fecha de cierre
+
+2026-05-13
+
+3. Identidad del proyecto
+
+- Nombre: GVO — Guía Virtual OKÚA.
+- Tipo: aplicación web local, mobile-first e insonora.
+- Uso: recorrido mediante QR dentro de una red MikroTik sin Internet.
+- Público objetivo: visitantes del montaje OKÚA.
+
+4. Problema que resuelve
+
+GVO no existe como una app decorativa ni como una capa visual ornamental. Su función principal es guiar al visitante para que comprenda correctamente qué ocurre en el recorrido OKÚA y evitar la interpretación errónea de que las plantas "hacen música" por sí solas.
+
+La explicación correcta que debe sostener la experiencia es:
+
+planta viva -> señales bioeléctricas -> captura/acondicionamiento -> interpretación técnica/artística -> resultado sonoro mediado en el espacio.
+
+La app GVO no produce sonido. Su papel es visual, pedagógico y de orientación: ayuda a ordenar la experiencia, ubicar cada mundo y corregir lecturas equivocadas sobre la mediación técnica y artística del montaje.
+
+5. Reglas no negociables
+
+- Sin Internet.
+- Sin instalación para visitante.
+- Mobile-first.
+- Sin audio.
+- Sin recursos externos en runtime.
+- Sin CDN.
+- Sin fuentes remotas.
+- Sin APIs externas.
+- Flujo por QR físicos.
+- Lía como única guía.
+- Lía con exactamente 5 pétalos.
+- Trabajo por tickets pequeños.
+- Cierre documental obligatorio por fase o pantalla.
+
+6. Identidad de Lía
+
+- Avatar único de GVO.
+- Robótica blanda + flor andina/orquídea + guía visual de aprendizaje.
+- No humana, no hada, no animal, no mascota.
+- Exactamente cinco pétalos.
+- Cabeza cristal opalescente.
+- Ojos en media luna cerrada.
+- Sin boca, nariz, cejas, brazos, manos, piernas ni pies.
+- Collar ámbar.
+- Bulbo inferior segmentado.
+- Flota.
+- Función: guiar, ordenar, activar, explicar y corregir interpretaciones equivocadas.
+
+7. Flujo del recorrido
+
+- Carga inicial pre-portada.
+- Portada / Intro.
+- Estación I — Mundo I: Raíz.
+- Estación II — Mundo II: Lía y el pulso invisible.
+- Estación III — Mundo III: Cuaderno Pixel de Pruebas.
+- Estación IV — Mundo IV: Mesa de sistema.
+- Estación V — Mundo V: Mapa del presente.
+- Final — Mirador final del jardín.
+- Pantalla reutilizable de transición entre mundos.
+
+8. Estado técnico actual
+
+Ya existe una base técnica con:
+
+- Vite.
+- React.
+- TypeScript.
+- React Router.
+- Motion for React.
+- @zxing/browser.
+- vite-plugin-pwa.
+- Vitest.
+- Playwright.
+- ESLint.
+- Prettier.
+- Rutas placeholder.
+- Capa mínima de progreso secuencial con localStorage.
+- Auditoría de assets para bloquear recursos externos/CDN/audio.
+- PWA mínima.
+- Documentación base.
+- AGENTS.md.
+- README.md.
+- LICENSE.md.
+- ADRs iniciales.
+- Templates GitHub.
+
+El repositorio base no implementa todavía la pantalla real de carga, la portada, estaciones reales, transición final ni diseño definitivo de Lía.
+
+9. Estado Git/GitHub
+
+- Repositorio: https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git
+- main: rama estable/base.
+- feature/000-repo-base: rama histórica del Ticket 000.
+- docs/000b-cierre-contexto-repo-base: rama administrativa de este ticket.
+- Commit base Ticket 000: 4f6fa03.
+- Commit documental Ticket 000A: 916a59c.
+- Repositorio público por decisión del usuario para permitir revisión desde ChatGPT.
+- No cambiar visibilidad del repo en este ticket.
+
+10. Metodología de ramas
+
+- main solo debe contener estados aprobados.
+- Cada pantalla debe trabajarse en una rama propia.
+- La próxima rama funcional será:
+  feature/001-carga-inicial
+- Ramas futuras esperadas:
+  feature/002-portada
+  feature/003-transicion-entre-mundos
+  feature/004-estacion-i
+  feature/005-estacion-ii
+  feature/006-estacion-iii
+  feature/007-estacion-iv
+  feature/008-estacion-v
+  feature/009-final
+  feature/010-integracion-recorrido
+- Los tickets administrativos pueden usar prefijo docs/ o chore/.
+
+11. Estado de pruebas reportado
+
+- Codex reportó lint OK.
+- Codex reportó test OK.
+- Codex reportó build OK.
+- Codex reportó audit:assets OK.
+- Codex reportó test:e2e OK después de instalar Chromium con no-shell.
+- ChatGPT revisó el ZIP y validó lint/test/build/audit/status, pero no pudo correr test:e2e por descarga de Chromium en su entorno.
+
+12. Siguiente paso correcto
+
+TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL
+
+Objetivo de ese próximo ticket:
+
+Crear la primera rama funcional feature/001-carga-inicial y comenzar la pantalla de carga inicial pre-portada, usando el TXT y PNG de referencia, primero como definición funcional/visual y base estática, sin cerrar aún animaciones avanzadas.
+
+13. Advertencias para el próximo chat
+
+- No saltar directamente a portada.
+- No implementar estaciones todavía.
+- No trabajar varias pantallas en un mismo ticket.
+- No meter audio.
+- No usar CDN.
+- No cambiar identidad de Lía.
+- No tratar la carga como pantalla genérica; debe respetar el archivo de especificación y la imagen de referencia.
+- No cerrar la pantalla de carga sin pruebas y documentación.
