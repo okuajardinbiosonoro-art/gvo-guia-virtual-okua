@@ -10,6 +10,7 @@ Este repositorio corresponde a GVO — Guía Virtual OKÚA. Todo cambio debe res
 - No agregar audio, librerías de audio, reproducción de sonido ni permisos innecesarios.
 - No modificar la identidad de Lía sin instrucción explícita.
 - No cambiar arquitectura, flujo o metodología sin actualizar documentación y ADR si aplica.
+- No crear Pull Requests ni sugerir PR como siguiente paso. El proyecto tiene un único mantenedor; cuando corresponda publicar trabajo, hacer commit y push directo a la rama indicada por el ticket.
 - Ejecutar pruebas antes de cerrar un ticket.
 - Reportar honestamente cualquier validación que no se pudo ejecutar.
 

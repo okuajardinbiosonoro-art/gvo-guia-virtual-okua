@@ -10,6 +10,7 @@ GVO avanza por tickets pequeños, cerrables, documentados y probados.
 - Cada cierre debe indicar pruebas ejecutadas y pruebas no ejecutadas.
 - Si cambia arquitectura, flujo, identidad u operación local, se actualiza documentación.
 - Si una decisión tiene impacto duradero, se crea o actualiza un ADR.
+- No se crean Pull Requests. El proyecto tiene un único mantenedor; el flujo operativo es trabajar en la rama indicada, commitear y hacer push directo a esa rama. No sugerir PR como cierre o siguiente paso.
 
 ## Cierre mínimo
 
