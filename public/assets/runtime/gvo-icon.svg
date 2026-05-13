@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="GVO OKUA">
+  <rect width="128" height="128" rx="18" fill="#20362f" />
+  <circle cx="64" cy="64" r="38" fill="#f5f1e7" />
+  <path d="M64 26c10 18 10 58 0 76-10-18-10-58 0-76Z" fill="#bf7e30" />
+  <path d="M26 64c18-10 58-10 76 0-18 10-58 10-76 0Z" fill="#2f6f5e" />
+</svg>

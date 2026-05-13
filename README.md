@@ -1,0 +1,65 @@
+# GVO — Guía Virtual OKÚA
+
+GVO es la Guía Virtual OKÚA: una aplicación web local, mobile-first e insonora para acompañar el recorrido OKÚA mediante QR físicos dentro de una red MikroTik sin Internet.
+
+## Qué problema resuelve
+
+El visitante debe poder abrir una guía visual desde el navegador de su celular sin instalar nada. La experiencia ocurre en sitio, dentro de una red local controlada. Por eso GVO no puede depender de CDN, APIs externas, fuentes remotas, imágenes remotas ni servicios en línea.
+
+## Reglas de operación local sin Internet
+
+- La app debe funcionar servida desde una máquina local dentro de la red MikroTik.
+- El visitante accede con QR físicos que abren URLs locales.
+- No se deben cargar recursos externos en runtime.
+- No se debe pedir instalación al visitante.
+- No se debe reproducir sonido.
+- La experiencia debe priorizar pantallas móviles.
+
+## Flujo general
+
+1. Carga inicial
+2. Portada
+3. Estación I — Mundo I: Raíz
+4. Estación II — Mundo II: Lía y el pulso invisible
+5. Estación III — Mundo III: Cuaderno Pixel de Pruebas
+6. Estación IV — Mundo IV: Mesa de sistema
+7. Estación V — Mundo V: Mapa del presente
+8. Final — Mirador final del jardín
+
+También existe una pantalla reutilizable de transición entre mundos, pendiente de diseño e implementación en ticket propio.
+
+## Stack técnico
+
+- Vite
+- React
+- TypeScript
+- React Router
+- Motion for React
+- @zxing/browser
+- vite-plugin-pwa
+- Vitest
+- Playwright
+- ESLint
+- Prettier
+
+## Comandos
+
+```powershell
+npm install
+npm run dev
+npm run build
+npm run test
+npm run check
+```
+
+Comandos auxiliares:
+
+```powershell
+npm run status
+npm run audit:assets
+npm run test:e2e
+```
+
+## Estado actual
+
+Repositorio base técnico. Existen rutas placeholder, documentación inicial, capa mínima de progreso local y configuración base de PWA/pruebas. No se ha implementado la pantalla real de carga, la portada real ni estaciones reales.
