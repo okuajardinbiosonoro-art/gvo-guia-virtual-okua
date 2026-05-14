@@ -62,4 +62,16 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio base técnico con primera pantalla funcional. La carga inicial pre-portada está disponible en `/` y `/carga`; portada, estaciones, transición y final siguen pendientes de tickets propios.
+Repositorio base técnico con primera base visual de carga inicial. La carga inicial pre-portada está disponible en `/` y `/carga`, pero sigue en iteración visual y no está cerrada como pantalla final aprobada.
+
+## Metodología de avance por pantalla
+
+GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base técnica o visual integrada en `main` sin estar cerrada como experiencia final. No se puede avanzar a la siguiente pantalla hasta que la pantalla actual esté marcada como `CERRADA_APROBADA` y cuente con aprobación explícita del usuario.
+
+Estado actual:
+
+- Carga inicial: BASE_VISUAL / EN_ITERACION_VISUAL
+- Portada: NO_INICIADA / BLOQUEADA
+- Estaciones: NO_INICIADAS / BLOQUEADAS
+- Transición: NO_INICIADA / BLOQUEADA
+- Final: NO_INICIADA / BLOQUEADO

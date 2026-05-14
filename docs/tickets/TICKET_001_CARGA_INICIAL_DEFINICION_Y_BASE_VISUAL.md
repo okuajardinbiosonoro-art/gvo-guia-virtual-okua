@@ -92,14 +92,23 @@ No se redirige automáticamente a `/portada`.
 - `npm run audit:assets`: OK. Sin URLs externas, CDN ni uso de audio.
 - `npm run test:e2e`: OK. 2 smoke tests en mobile-chromium.
 
-## Limitaciones pendientes para tickets futuros
+## Limitaciones pendientes para iteraciones de carga inicial
 
 - Animación completa de 10 a 15 segundos.
 - Secuencia por estados: entrada de Lía, riego, crecimiento sutil, final de carga.
-- Transición automática hacia portada.
-- Integración con portada cuando exista el Ticket 002.
+- Textos esperados definitivos.
+- Forma, encuadre y composición final.
+- Validación fina de Lía.
+- Validación visual mobile-first.
+- Criterios explícitos de aprobación por parte del usuario.
+- Cierre documental como pantalla completa, no solo como base.
+- Transición hacia portada solo cuando portada esté autorizada en una fase posterior.
 - Posible sprite separado de Lía/maceta/planta si se decide no usar la imagen de referencia como runtime final.
 
 ## Estado de cierre
 
-COMPLETADO.
+BASE VISUAL INTEGRADA — NO CERRADA COMO PANTALLA FINAL
+
+Este ticket dejó una primera base visual estable de la carga inicial, integrada en `main`, con pruebas correctas. Sin embargo, la pantalla no se considera cerrada funcional, visual ni narrativamente. Quedan pendientes iteraciones de composición, textos, animación, validación visual de Lía, validación mobile-first y aprobación explícita del usuario.
+
+La integración de esta base en `main` no autoriza avanzar a portada. TICKET_002_PORTADA_DEFINICION_Y_BASE_VISUAL queda bloqueado hasta que la carga inicial alcance estado CERRADA_APROBADA.
