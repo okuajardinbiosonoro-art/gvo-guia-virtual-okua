@@ -57,29 +57,6 @@ export function LoadingInitialScreen() {
             ))}
           </span>
           <span
-            className="loading-initial__water-field"
-            data-testid="loading-initial-water-field"
-          >
-            {loadingInitialWaterStreams.map((stream) => (
-              <span
-                key={stream.id}
-                className={`loading-initial__water-stream ${stream.className}`}
-                data-water-stream={stream.id}
-                data-runtime-asset={loadingInitialAssets.water.src}
-                style={
-                  {
-                    "--water-stream-delay": `${stream.delayMs}ms`,
-                    "--water-offset-x": stream.offsetX,
-                    "--water-offset-y": stream.offsetY,
-                    "--water-rotate": `${stream.rotateDeg}deg`,
-                    "--water-scale": stream.scale,
-                    "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
-                  } as CSSProperties
-                }
-              />
-            ))}
-          </span>
-          <span
             className="loading-initial__lia-track"
             data-testid="loading-initial-lia-track"
             data-entry-state="lateral-offscreen-to-plant"
@@ -89,6 +66,31 @@ export function LoadingInitialScreen() {
                 className="loading-initial__lia"
                 data-runtime-asset={loadingInitialAssets.lia.src}
               />
+              <span
+                className="loading-initial__water-field"
+                data-testid="loading-initial-water-field"
+                data-water-anchor="lia-nozzle"
+                data-water-target="plant"
+              >
+                {loadingInitialWaterStreams.map((stream) => (
+                  <span
+                    key={stream.id}
+                    className={`loading-initial__water-stream ${stream.className}`}
+                    data-water-stream={stream.id}
+                    data-runtime-asset={loadingInitialAssets.water.src}
+                    style={
+                      {
+                        "--water-stream-delay": `${stream.delayMs}ms`,
+                        "--water-offset-x": stream.offsetX,
+                        "--water-offset-y": stream.offsetY,
+                        "--water-rotate": `${stream.rotateDeg}deg`,
+                        "--water-scale": stream.scale,
+                        "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
+              </span>
             </span>
           </span>
           {loadingInitialSparkleSlots.map((slot) => {

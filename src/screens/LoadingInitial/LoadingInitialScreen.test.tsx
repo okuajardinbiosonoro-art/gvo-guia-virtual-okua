@@ -66,7 +66,7 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V3 de animacion normal y reduced motion", () => {
+  it("expone duraciones V4 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
@@ -87,6 +87,14 @@ describe("LoadingInitialScreen", () => {
     expect(screen.getByTestId("loading-initial-lia-track")).toHaveAttribute(
       "data-entry-state",
       "lateral-offscreen-to-plant",
+    );
+    expect(screen.getByTestId("loading-initial-water-field")).toHaveAttribute(
+      "data-water-anchor",
+      "lia-nozzle",
+    );
+    expect(screen.getByTestId("loading-initial-water-field")).toHaveAttribute(
+      "data-water-target",
+      "plant",
     );
     expect(container.querySelectorAll("[data-water-stream]")).toHaveLength(
       loadingInitialWaterStreams.length,

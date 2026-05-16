@@ -27,20 +27,22 @@
 }
 
 .loading-initial__scene {
-  --loading-plant-x: 46%;
-  --loading-plant-bottom: 20px;
+  --loading-plant-x: 42%;
+  --loading-plant-bottom: 8px;
   --loading-halo-x: var(--loading-plant-x);
-  --loading-halo-bottom: 16px;
+  --loading-halo-bottom: 2px;
   --loading-lia-start-x: 126%;
   --loading-lia-start-bottom: 232px;
   --loading-lia-enter-x: 86%;
   --loading-lia-enter-bottom: 208px;
-  --loading-lia-final-x: 65%;
-  --loading-lia-final-bottom: 178px;
-  --loading-water-x: 49%;
-  --loading-water-bottom: 146px;
-  --loading-water-width: clamp(194px, 57%, 252px);
-  --loading-water-rotate: -7deg;
+  --loading-lia-final-x: 70%;
+  --loading-lia-final-bottom: 170px;
+  --loading-water-origin-x: -5%;
+  --loading-water-origin-y: 79%;
+  --loading-water-target-x: -14%;
+  --loading-water-target-y: 78%;
+  --loading-water-width: clamp(116px, 42%, 138px);
+  --loading-water-rotate: -10deg;
   position: relative;
   width: 100%;
   min-height: 348px;
@@ -132,6 +134,8 @@
 }
 
 .loading-initial__lia {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
@@ -144,15 +148,15 @@
 }
 
 .loading-initial__water-field {
-  z-index: 6;
-  left: var(--loading-water-x);
-  bottom: var(--loading-water-bottom);
+  z-index: 2;
+  left: var(--loading-water-origin-x);
+  top: var(--loading-water-origin-y);
   width: var(--loading-water-width);
   aspect-ratio: 4 / 3;
   opacity: 0;
-  transform: translateX(-50%) rotate(var(--loading-water-rotate));
-  transform-origin: 27% 22%;
-  filter: drop-shadow(0 0 4px rgb(96 76 158 / 78%));
+  transform: translate(-24%, -16%) rotate(var(--loading-water-rotate));
+  transform-origin: 18% 18%;
+  filter: drop-shadow(0 0 5px rgb(96 76 158 / 84%)) saturate(1.16);
   animation: loading-water-window var(--loading-duration) linear both;
 }
 
@@ -172,15 +176,15 @@
 }
 
 .loading-initial__water-stream--a {
-  opacity: 0.88;
+  opacity: 0.96;
 }
 
 .loading-initial__water-stream--b {
-  opacity: 0.64;
+  opacity: 0.8;
 }
 
 .loading-initial__water-stream--c {
-  opacity: 0.52;
+  opacity: 0.72;
 }
 
 .loading-initial__sparkle {
@@ -197,20 +201,20 @@
 }
 
 .loading-initial__sparkle--upper-center,
-.loading-initial__sparkle--halo-low {
+.loading-initial__sparkle--halo-micro-low {
   width: 12px;
   height: 12px;
 }
 
-.loading-initial__sparkle--middle-right,
-.loading-initial__sparkle--near-lia,
-.loading-initial__sparkle--lower-right {
+.loading-initial__sparkle--middle-far-right,
+.loading-initial__sparkle--lower-right,
+.loading-initial__sparkle--bottom-right {
   width: 22px;
   height: 22px;
 }
 
-.loading-initial__sparkle--middle-left,
-.loading-initial__sparkle--near-plant {
+.loading-initial__sparkle--middle-far-left,
+.loading-initial__sparkle--bottom-left {
   width: 12px;
   height: 12px;
 }
@@ -301,14 +305,14 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 45%;
-    --loading-plant-bottom: 16px;
-    --loading-halo-bottom: 12px;
-    --loading-lia-final-x: 66%;
-    --loading-lia-final-bottom: 162px;
-    --loading-water-x: 50%;
-    --loading-water-bottom: 124px;
-    --loading-water-width: 206px;
+    --loading-plant-x: 41%;
+    --loading-plant-bottom: 6px;
+    --loading-halo-bottom: 0;
+    --loading-lia-final-x: 71%;
+    --loading-lia-final-bottom: 156px;
+    --loading-water-origin-x: -5%;
+    --loading-water-origin-y: 80%;
+    --loading-water-width: 112px;
     min-height: 300px;
     height: min(54svh, 430px);
   }
@@ -338,11 +342,14 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-bottom: 12px;
-    --loading-halo-bottom: 8px;
-    --loading-lia-final-bottom: 152px;
-    --loading-water-bottom: 108px;
-    --loading-water-width: 206px;
+    --loading-plant-x: 42%;
+    --loading-plant-bottom: 4px;
+    --loading-halo-bottom: 0;
+    --loading-lia-final-x: 70%;
+    --loading-lia-final-bottom: 146px;
+    --loading-water-origin-x: -5%;
+    --loading-water-origin-y: 80%;
+    --loading-water-width: 108px;
     min-height: 286px;
     height: 50svh;
   }
@@ -414,11 +421,12 @@
     opacity: 0.18;
   }
 
-  .loading-initial__sparkle--middle-right,
-  .loading-initial__sparkle--near-lia,
+  .loading-initial__sparkle--middle-far-right,
   .loading-initial__sparkle--lower-left,
   .loading-initial__sparkle--lower-right,
-  .loading-initial__sparkle--halo-low {
+  .loading-initial__sparkle--bottom-left,
+  .loading-initial__sparkle--bottom-right,
+  .loading-initial__sparkle--halo-micro-low {
     display: none;
   }
 }
@@ -676,8 +684,35 @@
   }
 
   38.333%,
+  45.833% {
+    opacity: 0.92;
+    visibility: visible;
+  }
+
+  46.667% {
+    opacity: 0.12;
+    visibility: visible;
+  }
+
+  48.333%,
+  56.667% {
+    opacity: 0.88;
+    visibility: visible;
+  }
+
+  57.5% {
+    opacity: 0.12;
+    visibility: visible;
+  }
+
+  59.167%,
+  69.4% {
+    opacity: 0.96;
+    visibility: visible;
+  }
+
   69.7% {
-    opacity: 1;
+    opacity: 0.18;
     visibility: visible;
   }
 
