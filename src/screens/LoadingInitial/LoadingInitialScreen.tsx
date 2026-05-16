@@ -27,6 +27,7 @@ export function LoadingInitialScreen() {
     >
       <section
         className="loading-initial__stage"
+        data-loading-layout-version="v5"
         data-duration-ms={loadingInitialTimeline.durationMs}
         data-reduced-motion-duration-ms={
           loadingInitialTimeline.reducedMotionDurationMs

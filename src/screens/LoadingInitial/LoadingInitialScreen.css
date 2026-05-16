@@ -27,19 +27,25 @@
 }
 
 .loading-initial__scene {
-  --loading-plant-x: 42%;
-  --loading-plant-bottom: 8px;
-  --loading-halo-x: var(--loading-plant-x);
-  --loading-halo-bottom: 2px;
+  --loading-plant-x: 38%;
+  --loading-plant-bottom: -4px;
+  --loading-halo-x: 50%;
+  --loading-halo-bottom: -6px;
+  --loading-halo-width: min(104%, 430px);
+  --loading-halo-scale-x: 1.14;
+  --loading-halo-scale-x-min: 1.12;
+  --loading-halo-scale-x-max: 1.16;
+  --loading-halo-scale-y-min: 0.98;
+  --loading-halo-scale-y-max: 1.02;
   --loading-lia-start-x: 126%;
   --loading-lia-start-bottom: 232px;
   --loading-lia-enter-x: 86%;
   --loading-lia-enter-bottom: 208px;
-  --loading-lia-final-x: 70%;
-  --loading-lia-final-bottom: 170px;
+  --loading-lia-final-x: 65%;
+  --loading-lia-final-bottom: 168px;
   --loading-water-origin-x: -5%;
-  --loading-water-origin-y: 79%;
-  --loading-water-target-x: -14%;
+  --loading-water-origin-y: 80%;
+  --loading-water-target-x: -15%;
   --loading-water-target-y: 78%;
   --loading-water-width: clamp(116px, 42%, 138px);
   --loading-water-rotate: -10deg;
@@ -68,10 +74,10 @@
   z-index: 0;
   left: var(--loading-halo-x);
   bottom: var(--loading-halo-bottom);
-  width: min(88%, 370px);
+  width: var(--loading-halo-width);
   height: auto;
   opacity: 0;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scaleX(var(--loading-halo-scale-x));
   animation:
     loading-halo-visibility var(--loading-duration) ease both,
     loading-halo-breathe 6s ease-in-out infinite;
@@ -305,13 +311,17 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 41%;
-    --loading-plant-bottom: 6px;
-    --loading-halo-bottom: 0;
-    --loading-lia-final-x: 71%;
+    --loading-plant-x: 37%;
+    --loading-plant-bottom: -6px;
+    --loading-halo-x: 50%;
+    --loading-halo-bottom: -8px;
+    --loading-halo-width: min(108%, 398px);
+    --loading-halo-scale-x: 1.12;
+    --loading-lia-final-x: 65%;
     --loading-lia-final-bottom: 156px;
-    --loading-water-origin-x: -5%;
-    --loading-water-origin-y: 80%;
+    --loading-water-origin-x: -6%;
+    --loading-water-origin-y: 81%;
+    --loading-water-target-x: -16%;
     --loading-water-width: 112px;
     min-height: 300px;
     height: min(54svh, 430px);
@@ -342,13 +352,17 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 42%;
-    --loading-plant-bottom: 4px;
-    --loading-halo-bottom: 0;
-    --loading-lia-final-x: 70%;
+    --loading-plant-x: 38%;
+    --loading-plant-bottom: -8px;
+    --loading-halo-x: 50%;
+    --loading-halo-bottom: -10px;
+    --loading-halo-width: min(106%, 408px);
+    --loading-halo-scale-x: 1.12;
+    --loading-lia-final-x: 65%;
     --loading-lia-final-bottom: 146px;
-    --loading-water-origin-x: -5%;
-    --loading-water-origin-y: 80%;
+    --loading-water-origin-x: -6%;
+    --loading-water-origin-y: 81%;
+    --loading-water-target-x: -16%;
     --loading-water-width: 108px;
     min-height: 286px;
     height: 50svh;
@@ -456,11 +470,13 @@
 @keyframes loading-halo-breathe {
   0%,
   100% {
-    transform: translateX(-50%) scale(0.98);
+    transform: translateX(-50%) scaleX(var(--loading-halo-scale-x-min))
+      scaleY(var(--loading-halo-scale-y-min));
   }
 
   50% {
-    transform: translateX(-50%) scale(1.02);
+    transform: translateX(-50%) scaleX(var(--loading-halo-scale-x-max))
+      scaleY(var(--loading-halo-scale-y-max));
   }
 }
 

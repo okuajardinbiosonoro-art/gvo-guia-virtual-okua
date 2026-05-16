@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V4 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V5 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -33,7 +33,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const waterField = document.querySelector(".loading-initial__water-field");
 
     if (!progressFill || !liaTrack || !scene || !stage || !waterField) {
-      throw new Error("Faltan elementos de carga inicial V4.");
+      throw new Error("Faltan elementos de carga inicial V5.");
     }
 
     const sceneStyles = getComputedStyle(scene);
@@ -42,10 +42,16 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       progressDuration: getComputedStyle(progressFill).animationDuration,
       liaAnimationName: getComputedStyle(liaTrack).animationName,
       stageDuration: stage.getAttribute("data-duration-ms"),
+      layoutVersion: stage.getAttribute("data-loading-layout-version"),
       entryState: liaTrack.getAttribute("data-entry-state"),
       plantX: sceneStyles.getPropertyValue("--loading-plant-x").trim(),
       plantBottom: sceneStyles
         .getPropertyValue("--loading-plant-bottom")
+        .trim(),
+      haloX: sceneStyles.getPropertyValue("--loading-halo-x").trim(),
+      haloWidth: sceneStyles.getPropertyValue("--loading-halo-width").trim(),
+      haloScaleX: sceneStyles
+        .getPropertyValue("--loading-halo-scale-x")
         .trim(),
       haloBottom: sceneStyles.getPropertyValue("--loading-halo-bottom").trim(),
       liaFinalX: sceneStyles.getPropertyValue("--loading-lia-final-x").trim(),
@@ -55,6 +61,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       waterOriginX: sceneStyles
         .getPropertyValue("--loading-water-origin-x")
         .trim(),
+      waterTargetX: sceneStyles
+        .getPropertyValue("--loading-water-target-x")
+        .trim(),
       waterAnchor: waterField.getAttribute("data-water-anchor"),
       waterTarget: waterField.getAttribute("data-water-target"),
     };
@@ -62,14 +71,19 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
+  expect(durations.layoutVersion).toBe("v5");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
-  expect(durations.plantX).toBe("42%");
-  expect(durations.plantBottom).toBe("8px");
-  expect(durations.haloBottom).toBe("2px");
-  expect(durations.liaFinalX).toBe("70%");
-  expect(durations.liaFinalBottom).toBe("170px");
+  expect(durations.plantX).toBe("38%");
+  expect(durations.plantBottom).toBe("-4px");
+  expect(durations.haloX).toBe("50%");
+  expect(durations.haloWidth).toBe("min(104%, 430px)");
+  expect(durations.haloScaleX).toBe("1.14");
+  expect(durations.haloBottom).toBe("-6px");
+  expect(durations.liaFinalX).toBe("65%");
+  expect(durations.liaFinalBottom).toBe("168px");
   expect(durations.waterOriginX).toBe("-5%");
+  expect(durations.waterTargetX).toBe("-15%");
   expect(durations.waterAnchor).toBe("lia-nozzle");
   expect(durations.waterTarget).toBe("plant");
 });
