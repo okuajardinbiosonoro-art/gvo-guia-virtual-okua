@@ -47,6 +47,8 @@ También existe una pantalla reutilizable de transición entre mundos, pendiente
 ```powershell
 npm install
 npm run dev
+npm run assets:normalize:loading
+npm run assets:validate:loading
 npm run build
 npm run test
 npm run check
@@ -62,7 +64,7 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio base técnico con primera base visual de carga inicial. La carga inicial pre-portada está disponible en `/` y `/carga`, pero sigue en iteración visual y no está cerrada como pantalla final aprobada.
+Repositorio con carga inicial animada V1. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
 
 ## Metodología de avance por pantalla
 
@@ -70,7 +72,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base 
 
 Estado actual:
 
-- Carga inicial: BASE_VISUAL / EN_ITERACION_VISUAL
+- Carga inicial: ANIMACION_V1_IMPLEMENTADA / EN_REVISION_VISUAL
 - Portada: NO_INICIADA / BLOQUEADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA

@@ -14,7 +14,9 @@
     "format": "prettier . --write",
     "check": "npm run lint && npm run test && npm run build",
     "status": "node tools/print_project_status.mjs",
-    "audit:assets": "node tools/audit_assets.mjs"
+    "audit:assets": "node tools/audit_assets.mjs",
+    "assets:normalize:loading": "node tools/normalize_loading_initial_assets.mjs",
+    "assets:validate:loading": "node tools/validate_loading_initial_assets.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -27,6 +29,7 @@
     "eslint": "^10.3.0",
     "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
+    "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.3",
     "vite": "^8.0.12",

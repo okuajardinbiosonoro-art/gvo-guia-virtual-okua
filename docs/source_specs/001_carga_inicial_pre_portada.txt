@@ -555,7 +555,7 @@ Aunque sea una pantalla visual, debe tener descripción accesible.
 
 Texto accesible sugerido:
 
-    Preparando el recorrido. Lía cuida una planta joven mientras se carga la experiencia.
+    Corrección 001B: no usar texto largo. Usar el título "Preparando el recorrido" y el subtítulo "Cuidando el inicio...".
 
 La barra de carga puede declararse como progreso indeterminado si no mide carga real.
 

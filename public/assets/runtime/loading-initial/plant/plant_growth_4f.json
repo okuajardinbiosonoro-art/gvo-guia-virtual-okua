@@ -1,0 +1,20 @@
+{
+  "asset_id": "plant_growth_4f",
+  "columns": 4,
+  "rows": 1,
+  "frame_width": 768,
+  "frame_height": 768,
+  "total_frames": 4,
+  "frame_order": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "source_files": [
+    "02_aprobadas/plant/plant_state_01_brote_minimo.png",
+    "02_aprobadas/plant/plant_state_02_dos_hojas.png",
+    "02_aprobadas/plant/plant_state_03_crecimiento_sutil.png",
+    "02_aprobadas/plant/plant_state_04_plantita_sana.png"
+  ]
+}

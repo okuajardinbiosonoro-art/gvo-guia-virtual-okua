@@ -1,0 +1,22 @@
+{
+  "asset_id": "water_flow_5f",
+  "columns": 5,
+  "rows": 1,
+  "frame_width": 1024,
+  "frame_height": 768,
+  "total_frames": 5,
+  "frame_order": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "source_files": [
+    "02_aprobadas/water/water_flow_01_start.png",
+    "02_aprobadas/water/water_flow_02_soft_arc.png",
+    "02_aprobadas/water/water_flow_03_medium_arc.png",
+    "02_aprobadas/water/water_flow_04_full_arc.png",
+    "02_aprobadas/water/water_flow_05_taper_end.png"
+  ]
+}
