@@ -69,6 +69,11 @@ export function LoadingInitialScreen() {
                 style={
                   {
                     "--water-stream-delay": `${stream.delayMs}ms`,
+                    "--water-offset-x": stream.offsetX,
+                    "--water-offset-y": stream.offsetY,
+                    "--water-rotate": `${stream.rotateDeg}deg`,
+                    "--water-scale": stream.scale,
+                    "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
                   } as CSSProperties
                 }
               />

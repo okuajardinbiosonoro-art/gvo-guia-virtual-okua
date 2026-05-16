@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V2 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V3 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -10,7 +10,7 @@ test("carga inicial V2 conserva rutas, textos y ausencia de portada", async ({
   ).toBeVisible();
   await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
-  await expect(page.locator("[data-sparkle-slot]")).toHaveCount(6);
+  await expect(page.locator("[data-sparkle-slot]")).toHaveCount(10);
   await expect(page.locator("[data-water-stream]")).toHaveCount(3);
 
   await page.waitForTimeout(12500);
@@ -28,17 +28,23 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       ".loading-initial__progress-fill",
     );
     const liaTrack = document.querySelector(".loading-initial__lia-track");
+    const scene = document.querySelector(".loading-initial__scene");
     const stage = document.querySelector(".loading-initial__stage");
 
-    if (!progressFill || !liaTrack || !stage) {
-      throw new Error("Faltan elementos de carga inicial V2.");
+    if (!progressFill || !liaTrack || !scene || !stage) {
+      throw new Error("Faltan elementos de carga inicial V3.");
     }
+
+    const sceneStyles = getComputedStyle(scene);
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
       liaAnimationName: getComputedStyle(liaTrack).animationName,
       stageDuration: stage.getAttribute("data-duration-ms"),
       entryState: liaTrack.getAttribute("data-entry-state"),
+      plantX: sceneStyles.getPropertyValue("--loading-plant-x").trim(),
+      liaFinalX: sceneStyles.getPropertyValue("--loading-lia-final-x").trim(),
+      waterX: sceneStyles.getPropertyValue("--loading-water-x").trim(),
     };
   });
 
@@ -46,6 +52,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   expect(durations.stageDuration).toBe("12000");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
+  expect(durations.plantX).toBe("46%");
+  expect(durations.liaFinalX).toBe("65%");
+  expect(durations.waterX).toBe("49%");
 });
 
 test("reduced motion reduce duracion y evita riego multi-stream animado", async ({

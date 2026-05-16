@@ -27,6 +27,20 @@
 }
 
 .loading-initial__scene {
+  --loading-plant-x: 46%;
+  --loading-plant-bottom: 20px;
+  --loading-halo-x: var(--loading-plant-x);
+  --loading-halo-bottom: 16px;
+  --loading-lia-start-x: 126%;
+  --loading-lia-start-bottom: 232px;
+  --loading-lia-enter-x: 86%;
+  --loading-lia-enter-bottom: 208px;
+  --loading-lia-final-x: 65%;
+  --loading-lia-final-bottom: 178px;
+  --loading-water-x: 49%;
+  --loading-water-bottom: 146px;
+  --loading-water-width: clamp(194px, 57%, 252px);
+  --loading-water-rotate: -7deg;
   position: relative;
   width: 100%;
   min-height: 348px;
@@ -50,8 +64,8 @@
 
 .loading-initial__halo {
   z-index: 0;
-  left: 50%;
-  bottom: 24px;
+  left: var(--loading-halo-x);
+  bottom: var(--loading-halo-bottom);
   width: min(88%, 370px);
   height: auto;
   opacity: 0;
@@ -63,8 +77,8 @@
 
 .loading-initial__plant {
   z-index: 4;
-  left: 50%;
-  bottom: 28px;
+  left: var(--loading-plant-x);
+  bottom: var(--loading-plant-bottom);
   width: clamp(220px, 100%, 276px);
   aspect-ratio: 1;
   transform: translateX(-50%);
@@ -102,8 +116,8 @@
 
 .loading-initial__lia-track {
   z-index: 5;
-  left: 122%;
-  bottom: 196px;
+  left: var(--loading-lia-start-x);
+  bottom: var(--loading-lia-start-bottom);
   width: clamp(270px, 78%, 338px);
   aspect-ratio: 1;
   opacity: 0;
@@ -131,13 +145,14 @@
 
 .loading-initial__water-field {
   z-index: 6;
-  left: 44%;
-  bottom: 156px;
-  width: clamp(206px, 60%, 270px);
+  left: var(--loading-water-x);
+  bottom: var(--loading-water-bottom);
+  width: var(--loading-water-width);
   aspect-ratio: 4 / 3;
   opacity: 0;
-  transform: translateX(-50%) rotate(-5deg);
-  filter: drop-shadow(0 0 2px rgb(96 76 158 / 55%));
+  transform: translateX(-50%) rotate(var(--loading-water-rotate));
+  transform-origin: 27% 22%;
+  filter: drop-shadow(0 0 4px rgb(96 76 158 / 78%));
   animation: loading-water-window var(--loading-duration) linear both;
 }
 
@@ -148,22 +163,24 @@
   background-repeat: no-repeat;
   background-size: 500% 100%;
   background-position: 0 0;
-  animation: loading-water-frame-cycle 1266ms steps(1, end) infinite;
-  animation-delay: var(--water-stream-delay);
+  transform: translate(var(--water-offset-x), var(--water-offset-y))
+    rotate(var(--water-rotate)) scale(var(--water-scale));
+  transform-origin: 25% 26%;
+  animation: loading-water-frame-cycle var(--water-cycle-duration)
+    steps(1, end) infinite;
+  animation-delay: calc(4600ms + var(--water-stream-delay));
 }
 
 .loading-initial__water-stream--a {
-  opacity: 0.48;
+  opacity: 0.88;
 }
 
 .loading-initial__water-stream--b {
-  opacity: 0.34;
-  transform: translate(-4px, 1px) rotate(-1.8deg);
+  opacity: 0.64;
 }
 
 .loading-initial__water-stream--c {
-  opacity: 0.28;
-  transform: translate(5px, 5px) rotate(1.6deg);
+  opacity: 0.52;
 }
 
 .loading-initial__sparkle {
@@ -179,13 +196,21 @@
   animation-delay: var(--sparkle-delay);
 }
 
+.loading-initial__sparkle--upper-center,
+.loading-initial__sparkle--halo-low {
+  width: 12px;
+  height: 12px;
+}
+
 .loading-initial__sparkle--middle-right,
+.loading-initial__sparkle--near-lia,
 .loading-initial__sparkle--lower-right {
   width: 22px;
   height: 22px;
 }
 
-.loading-initial__sparkle--middle-left {
+.loading-initial__sparkle--middle-left,
+.loading-initial__sparkle--near-plant {
   width: 12px;
   height: 12px;
 }
@@ -276,13 +301,20 @@
   }
 
   .loading-initial__scene {
+    --loading-plant-x: 45%;
+    --loading-plant-bottom: 16px;
+    --loading-halo-bottom: 12px;
+    --loading-lia-final-x: 66%;
+    --loading-lia-final-bottom: 162px;
+    --loading-water-x: 50%;
+    --loading-water-bottom: 124px;
+    --loading-water-width: 206px;
     min-height: 300px;
     height: min(54svh, 430px);
   }
 
   .loading-initial__plant {
     width: 218px;
-    bottom: 20px;
   }
 
   .loading-initial__lia-track {
@@ -306,22 +338,21 @@
   }
 
   .loading-initial__scene {
+    --loading-plant-bottom: 12px;
+    --loading-halo-bottom: 8px;
+    --loading-lia-final-bottom: 152px;
+    --loading-water-bottom: 108px;
+    --loading-water-width: 206px;
     min-height: 286px;
     height: 50svh;
   }
 
   .loading-initial__plant {
     width: 210px;
-    bottom: 14px;
   }
 
   .loading-initial__lia-track {
     width: 250px;
-  }
-
-  .loading-initial__water-field {
-    width: 214px;
-    bottom: 112px;
   }
 
   .loading-initial h1 {
@@ -349,8 +380,8 @@
   }
 
   .loading-initial__lia-track {
-    left: 60%;
-    bottom: 182px;
+    left: var(--loading-lia-final-x);
+    bottom: var(--loading-lia-final-bottom);
     opacity: 1;
     transform: translateX(-50%);
     animation: none;
@@ -383,7 +414,11 @@
     opacity: 0.18;
   }
 
-  .loading-initial__sparkle:nth-of-type(n + 5) {
+  .loading-initial__sparkle--middle-right,
+  .loading-initial__sparkle--near-lia,
+  .loading-initial__sparkle--lower-left,
+  .loading-initial__sparkle--lower-right,
+  .loading-initial__sparkle--halo-low {
     display: none;
   }
 }
@@ -424,29 +459,29 @@
 @keyframes loading-lia-entry-path {
   0%,
   6.5% {
-    left: 122%;
-    bottom: 230px;
+    left: var(--loading-lia-start-x);
+    bottom: var(--loading-lia-start-bottom);
     opacity: 0;
     transform: translateX(-50%) scale(0.96);
   }
 
   6.667% {
     left: 116%;
-    bottom: 226px;
+    bottom: calc(var(--loading-lia-start-bottom) - 6px);
     opacity: 1;
     transform: translateX(-50%) scale(0.98);
   }
 
   18% {
-    left: 82%;
-    bottom: 206px;
+    left: var(--loading-lia-enter-x);
+    bottom: var(--loading-lia-enter-bottom);
     opacity: 1;
   }
 
   26.667%,
   100% {
-    left: 60%;
-    bottom: 182px;
+    left: var(--loading-lia-final-x);
+    bottom: var(--loading-lia-final-bottom);
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
@@ -655,28 +690,23 @@
 
 @keyframes loading-water-frame-cycle {
   0%,
-  18% {
-    background-position: 0 0;
-  }
-
-  18.1%,
-  36% {
+  20% {
     background-position: 25% 0;
   }
 
-  36.1%,
-  54% {
+  20.1%,
+  45% {
     background-position: 50% 0;
   }
 
-  54.1%,
-  72% {
+  45.1%,
+  70% {
     background-position: 75% 0;
   }
 
-  72.1%,
+  70.1%,
   100% {
-    background-position: 100% 0;
+    background-position: 50% 0;
   }
 }
 

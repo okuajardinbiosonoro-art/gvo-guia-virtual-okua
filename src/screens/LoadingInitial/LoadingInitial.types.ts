@@ -16,6 +16,11 @@ export interface LoadingInitialWaterStream {
   id: "waterStreamA" | "waterStreamB" | "waterStreamC";
   className: string;
   delayMs: number;
+  offsetX: string;
+  offsetY: string;
+  rotateDeg: number;
+  scale: number;
+  cycleDurationMs: number;
 }
 
 export interface LoadingInitialSparkleSlot {

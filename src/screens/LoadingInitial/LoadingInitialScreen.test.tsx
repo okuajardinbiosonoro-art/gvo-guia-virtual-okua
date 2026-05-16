@@ -66,7 +66,7 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V2 de animacion normal y reduced motion", () => {
+  it("expone duraciones V3 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
@@ -92,10 +92,15 @@ describe("LoadingInitialScreen", () => {
       loadingInitialWaterStreams.length,
     );
     expect(loadingInitialWaterStreams).toHaveLength(3);
+    for (const stream of loadingInitialWaterStreams) {
+      expect(stream.offsetX).toMatch(/px$/);
+      expect(stream.offsetY).toMatch(/px$/);
+      expect(stream.cycleDurationMs).toBeGreaterThanOrEqual(1200);
+    }
     expect(container.querySelectorAll("[data-sparkle-slot]")).toHaveLength(
       loadingInitialSparkleSlots.length,
     );
-    expect(loadingInitialSparkleSlots).toHaveLength(6);
+    expect(loadingInitialSparkleSlots).toHaveLength(10);
     expect(
       new Set(loadingInitialSparkleSlots.map((slot) => slot.assetIndex)).size,
     ).toBe(4);
