@@ -27,8 +27,8 @@
 }
 
 .loading-initial__scene {
-  --loading-plant-x: 38%;
-  --loading-plant-bottom: -4px;
+  --loading-plant-x: 35%;
+  --loading-plant-bottom: -12px;
   --loading-halo-x: 50%;
   --loading-halo-bottom: -6px;
   --loading-halo-width: min(104%, 430px);
@@ -311,8 +311,8 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 37%;
-    --loading-plant-bottom: -6px;
+    --loading-plant-x: 34%;
+    --loading-plant-bottom: -12px;
     --loading-halo-x: 50%;
     --loading-halo-bottom: -8px;
     --loading-halo-width: min(108%, 398px);
@@ -352,8 +352,8 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 38%;
-    --loading-plant-bottom: -8px;
+    --loading-plant-x: 35%;
+    --loading-plant-bottom: -14px;
     --loading-halo-x: 50%;
     --loading-halo-bottom: -10px;
     --loading-halo-width: min(106%, 408px);

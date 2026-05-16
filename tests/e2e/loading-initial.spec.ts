@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V5 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V6 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -33,7 +33,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const waterField = document.querySelector(".loading-initial__water-field");
 
     if (!progressFill || !liaTrack || !scene || !stage || !waterField) {
-      throw new Error("Faltan elementos de carga inicial V5.");
+      throw new Error("Faltan elementos de carga inicial V6.");
     }
 
     const sceneStyles = getComputedStyle(scene);
@@ -61,8 +61,14 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       waterOriginX: sceneStyles
         .getPropertyValue("--loading-water-origin-x")
         .trim(),
+      waterOriginY: sceneStyles
+        .getPropertyValue("--loading-water-origin-y")
+        .trim(),
       waterTargetX: sceneStyles
         .getPropertyValue("--loading-water-target-x")
+        .trim(),
+      waterTargetY: sceneStyles
+        .getPropertyValue("--loading-water-target-y")
         .trim(),
       waterAnchor: waterField.getAttribute("data-water-anchor"),
       waterTarget: waterField.getAttribute("data-water-target"),
@@ -71,11 +77,11 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v5");
+  expect(durations.layoutVersion).toBe("v6");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
-  expect(durations.plantX).toBe("38%");
-  expect(durations.plantBottom).toBe("-4px");
+  expect(durations.plantX).toBe("35%");
+  expect(durations.plantBottom).toBe("-12px");
   expect(durations.haloX).toBe("50%");
   expect(durations.haloWidth).toBe("min(104%, 430px)");
   expect(durations.haloScaleX).toBe("1.14");
@@ -83,7 +89,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   expect(durations.liaFinalX).toBe("65%");
   expect(durations.liaFinalBottom).toBe("168px");
   expect(durations.waterOriginX).toBe("-5%");
+  expect(durations.waterOriginY).toBe("80%");
   expect(durations.waterTargetX).toBe("-15%");
+  expect(durations.waterTargetY).toBe("78%");
   expect(durations.waterAnchor).toBe("lia-nozzle");
   expect(durations.waterTarget).toBe("plant");
 });
