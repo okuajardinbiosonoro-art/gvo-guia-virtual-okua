@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V7 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V8 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -33,7 +33,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const waterField = document.querySelector(".loading-initial__water-field");
 
     if (!progressFill || !liaTrack || !scene || !stage || !waterField) {
-      throw new Error("Faltan elementos de carga inicial V7.");
+      throw new Error("Faltan elementos de carga inicial V8.");
     }
 
     const sceneStyles = getComputedStyle(scene);
@@ -77,10 +77,10 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v7");
+  expect(durations.layoutVersion).toBe("v8");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
-  expect(durations.plantX).toBe("32%");
+  expect(durations.plantX).toBe("30%");
   expect(durations.plantBottom).toBe("-12px");
   expect(durations.haloX).toBe("50%");
   expect(durations.haloWidth).toBe("min(104%, 430px)");
