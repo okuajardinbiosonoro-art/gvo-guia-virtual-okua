@@ -64,7 +64,7 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio con carga inicial animada V6. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
+Repositorio con carga inicial animada V7. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
 
 ## Metodología de avance por pantalla
 
@@ -72,7 +72,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base 
 
 Estado actual:
 
-- Carga inicial: ANIMACION_V6_IMPLEMENTADA / EN_REVISION_VISUAL
+- Carga inicial: ANIMACION_V7_IMPLEMENTADA / EN_REVISION_VISUAL
 - Portada: NO_INICIADA / BLOQUEADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA

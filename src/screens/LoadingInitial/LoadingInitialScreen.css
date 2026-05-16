@@ -27,7 +27,7 @@
 }
 
 .loading-initial__scene {
-  --loading-plant-x: 35%;
+  --loading-plant-x: 32%;
   --loading-plant-bottom: -12px;
   --loading-halo-x: 50%;
   --loading-halo-bottom: -6px;
@@ -311,7 +311,7 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 34%;
+    --loading-plant-x: 32%;
     --loading-plant-bottom: -12px;
     --loading-halo-x: 50%;
     --loading-halo-bottom: -8px;
@@ -352,7 +352,7 @@
   }
 
   .loading-initial__scene {
-    --loading-plant-x: 35%;
+    --loading-plant-x: 32%;
     --loading-plant-bottom: -14px;
     --loading-halo-x: 50%;
     --loading-halo-bottom: -10px;
