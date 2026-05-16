@@ -4,12 +4,18 @@ import type { CSSProperties } from "react";
 
 import { loadingInitialAssets } from "./loadingInitialAssets";
 import { loadingInitialCopy } from "./loadingInitialCopy";
+import {
+  loadingInitialSparkleSlots,
+  loadingInitialWaterStreams,
+} from "./loadingInitialScene";
 import { loadingInitialTimeline } from "./loadingInitialTimeline";
 
 const sceneAssetStyle = {
   "--loading-lia-sprite": `url("${loadingInitialAssets.lia.src}")`,
   "--loading-plant-sprite": `url("${loadingInitialAssets.plant.src}")`,
   "--loading-water-sprite": `url("${loadingInitialAssets.water.src}")`,
+  "--loading-duration": `${loadingInitialTimeline.durationMs}ms`,
+  "--loading-reduced-duration": `${loadingInitialTimeline.reducedMotionDurationMs}ms`,
 } as CSSProperties;
 
 export function LoadingInitialScreen() {
@@ -21,7 +27,10 @@ export function LoadingInitialScreen() {
     >
       <section
         className="loading-initial__stage"
-        data-duration-seconds={loadingInitialTimeline.durationSeconds}
+        data-duration-ms={loadingInitialTimeline.durationMs}
+        data-reduced-motion-duration-ms={
+          loadingInitialTimeline.reducedMotionDurationMs
+        }
       >
         <div
           className="loading-initial__scene"
@@ -37,30 +46,69 @@ export function LoadingInitialScreen() {
           />
           <span
             className="loading-initial__plant"
+            data-testid="loading-initial-plant"
             data-runtime-asset={loadingInitialAssets.plant.src}
-          />
-          <span
-            className="loading-initial__water"
-            data-runtime-asset={loadingInitialAssets.water.src}
-          />
-          <span className="loading-initial__lia-shell">
-            <span
-              className="loading-initial__lia"
-              data-runtime-asset={loadingInitialAssets.lia.src}
-            />
+          >
+            {[1, 2, 3, 4].map((frame) => (
+              <span
+                key={frame}
+                className={`loading-initial__plant-frame loading-initial__plant-frame--${frame}`}
+              />
+            ))}
           </span>
-          {loadingInitialAssets.sparkles.map((sparkle, index) => (
-            <img
-              key={sparkle.assetId}
-              className={`loading-initial__sparkle loading-initial__sparkle--${
-                index + 1
-              }`}
-              src={sparkle.src}
-              alt=""
-              draggable="false"
-              data-runtime-asset={sparkle.src}
-            />
-          ))}
+          <span
+            className="loading-initial__water-field"
+            data-testid="loading-initial-water-field"
+          >
+            {loadingInitialWaterStreams.map((stream) => (
+              <span
+                key={stream.id}
+                className={`loading-initial__water-stream ${stream.className}`}
+                data-water-stream={stream.id}
+                data-runtime-asset={loadingInitialAssets.water.src}
+                style={
+                  {
+                    "--water-stream-delay": `${stream.delayMs}ms`,
+                  } as CSSProperties
+                }
+              />
+            ))}
+          </span>
+          <span
+            className="loading-initial__lia-track"
+            data-testid="loading-initial-lia-track"
+            data-entry-state="lateral-offscreen-to-plant"
+          >
+            <span className="loading-initial__lia-bob">
+              <span
+                className="loading-initial__lia"
+                data-runtime-asset={loadingInitialAssets.lia.src}
+              />
+            </span>
+          </span>
+          {loadingInitialSparkleSlots.map((slot) => {
+            const sparkle = loadingInitialAssets.sparkles[slot.assetIndex];
+
+            return (
+              <img
+                key={slot.id}
+                className={`loading-initial__sparkle ${slot.className}`}
+                src={sparkle.src}
+                alt=""
+                draggable="false"
+                data-sparkle-slot={slot.id}
+                data-runtime-asset={sparkle.src}
+                style={
+                  {
+                    "--sparkle-x": slot.x,
+                    "--sparkle-y": slot.y,
+                    "--sparkle-delay": `${slot.delayMs}ms`,
+                    "--sparkle-duration": `${slot.durationMs}ms`,
+                  } as CSSProperties
+                }
+              />
+            );
+          })}
         </div>
 
         <div className="loading-initial__copy">

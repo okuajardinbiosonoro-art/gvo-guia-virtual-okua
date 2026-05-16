@@ -11,3 +11,19 @@ export interface LoadingInitialRuntimeAsset {
   assetId: string;
   src: string;
 }
+
+export interface LoadingInitialWaterStream {
+  id: "waterStreamA" | "waterStreamB" | "waterStreamC";
+  className: string;
+  delayMs: number;
+}
+
+export interface LoadingInitialSparkleSlot {
+  id: string;
+  assetIndex: number;
+  className: string;
+  x: string;
+  y: string;
+  delayMs: number;
+  durationMs: number;
+}

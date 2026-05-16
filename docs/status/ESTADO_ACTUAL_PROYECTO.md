@@ -2,13 +2,13 @@
 
 Fecha: 2026-05-16
 
-Estado: carga inicial animada V1 implementada y pendiente de revisión visual.
+Estado: carga inicial animada V2 implementada y pendiente de revisión visual.
 
 ## Implementado
 
 - App Vite + React + TypeScript.
 - Router con rutas placeholder del recorrido.
-- Pantalla de carga inicial animada V1 en `/` y `/carga`.
+- Pantalla de carga inicial animada V2 en `/` y `/carga`.
 - Assets runtime normalizados de carga inicial en `public/assets/runtime/loading-initial/`.
 - Capa mínima de progreso secuencial con `localStorage`.
 - PWA mínima sin push notifications.
@@ -33,7 +33,7 @@ Estado: carga inicial animada V1 implementada y pendiente de revisión visual.
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: revisión visual de la animación V1 de carga inicial y refinamiento si el usuario lo solicita.
+- Próximo trabajo funcional: revisión visual de la animación V2 de carga inicial y refinamiento si el usuario lo solicita.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -43,23 +43,24 @@ Estado: carga inicial animada V1 implementada y pendiente de revisión visual.
 - El siguiente trabajo funcional preparado en ese cierre fue TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
 - La rama funcional preparada en ese cierre fue feature/001-carga-inicial.
 
-## Ticket 001 / 001B: Carga inicial
+## Ticket 001 / 001B / 001C: Carga inicial
 
-- Estado: ANIMACION_V1_IMPLEMENTADA / EN_REVISION_VISUAL.
+- Estado: ANIMACION_V2_IMPLEMENTADA / EN_REVISION_VISUAL.
 - Insumos usados: `docs/source_specs/001_carga_inicial_pre_portada.txt` y `assets/reference/screens/001_carga_inicial_pre_portada.png`.
 - Insumos 001B usados: `C:\Users\JOSE DAVID\Desktop\OKÚA\Aplicaciones\GVO_archivos_iniciales\carga_inicial_v2`.
-- Pantalla de carga inicial animada V1: integrada en `/` y `/carga` para revisión visual.
+- Pantalla de carga inicial animada V2: integrada en `/` y `/carga` para revisión visual.
+- Refinamiento 001C: duración real de 12s, entrada lateral de Lía, composición centrada, riego multi-stream, sparkles determinísticos y reduced motion de 1300ms.
 - Cierre final: pendiente. No está marcada como CERRADA_APROBADA.
 - Pendientes: revisión visual mobile-first por el usuario, refinamientos si aplican y aprobación explícita.
 - La pantalla usa assets locales normalizados en `public/assets/runtime/loading-initial/`.
 - Portada, estaciones, transición y final siguen no implementados.
-- Rama funcional actual: feature/001B-carga-inicial-animacion-v1.
+- Rama funcional actual: feature/001C-carga-inicial-timeline-y-composicion-v2.
 
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                              | Bloqueo / avance permitido                     |
 | ------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| Carga inicial pre-portada | ANIMACION_V1_IMPLEMENTADA / EN_REVISION_VISUAL | Revisión visual del usuario                    |
+| Carga inicial pre-portada | ANIMACION_V2_IMPLEMENTADA / EN_REVISION_VISUAL | Revisión visual del usuario                    |
 | Portada / Intro           | NO_INICIADA                                    | BLOQUEADA hasta carga inicial CERRADA_APROBADA |
 | Transición entre mundos   | NO_INICIADA                                    | BLOQUEADA hasta autorización posterior         |
 | Estación I                | NO_INICIADA                                    | BLOQUEADA                                      |
@@ -75,4 +76,4 @@ No se puede iniciar TICKET_002_PORTADA_DEFINICION_Y_BASE_VISUAL ni crear `featur
 
 ## Próximo ticket recomendado
 
-Revisar visualmente la carga inicial animada V1 en navegador móvil. Si el usuario aprueba, documentar cierre; si pide ajustes, crear una iteración acotada de refinamiento de carga inicial.
+Revisar visualmente la carga inicial animada V2 en navegador móvil. Si el usuario aprueba, documentar cierre; si pide ajustes, crear una iteración acotada de refinamiento de carga inicial.

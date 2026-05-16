@@ -4,6 +4,15 @@ import { afterEach, describe, expect, it } from "vitest";
 import { LoadingInitialScreen } from "./LoadingInitialScreen";
 import { loadingInitialAssets } from "./loadingInitialAssets";
 import { loadingInitialCopy } from "./loadingInitialCopy";
+import {
+  loadingInitialSparkleSlots,
+  loadingInitialWaterStreams,
+} from "./loadingInitialScene";
+import {
+  REDUCED_MOTION_DURATION_MS,
+  TOTAL_DURATION_MS,
+  loadingInitialTimeline,
+} from "./loadingInitialTimeline";
 
 describe("LoadingInitialScreen", () => {
   afterEach(() => {
@@ -55,6 +64,41 @@ describe("LoadingInitialScreen", () => {
       expect(asset).toMatch(/^\/assets\/runtime\/loading-initial\//);
       expect(asset).not.toMatch(/^https?:\/\//);
     }
+  });
+
+  it("expone duraciones V2 de animacion normal y reduced motion", () => {
+    render(<LoadingInitialScreen />);
+
+    const stage = screen.getByTestId(
+      "loading-initial-animated-scene",
+    ).parentElement;
+
+    expect(TOTAL_DURATION_MS).toBeGreaterThanOrEqual(12000);
+    expect(REDUCED_MOTION_DURATION_MS).toBeGreaterThanOrEqual(1000);
+    expect(REDUCED_MOTION_DURATION_MS).toBeLessThanOrEqual(1500);
+    expect(loadingInitialTimeline.durationMs).toBe(12000);
+    expect(stage).toHaveAttribute("data-duration-ms", "12000");
+    expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1300");
+  });
+
+  it("renderiza entrada lateral, streams de agua y sparkles determinísticos", () => {
+    const { container } = render(<LoadingInitialScreen />);
+
+    expect(screen.getByTestId("loading-initial-lia-track")).toHaveAttribute(
+      "data-entry-state",
+      "lateral-offscreen-to-plant",
+    );
+    expect(container.querySelectorAll("[data-water-stream]")).toHaveLength(
+      loadingInitialWaterStreams.length,
+    );
+    expect(loadingInitialWaterStreams).toHaveLength(3);
+    expect(container.querySelectorAll("[data-sparkle-slot]")).toHaveLength(
+      loadingInitialSparkleSlots.length,
+    );
+    expect(loadingInitialSparkleSlots).toHaveLength(6);
+    expect(
+      new Set(loadingInitialSparkleSlots.map((slot) => slot.assetIndex)).size,
+    ).toBe(4);
   });
 
   it("no renderiza texto largo rechazado ni controles fuera de alcance", () => {
