@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro en preproducción documental, sin implementación visual.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro en preproducción desbloqueada, sin implementación visual.
 
 ## Implementado
 
@@ -21,6 +21,9 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Metodología de avance por umbral visual.
 - Handoff documental de carga inicial V13 como base de avance.
 - Preproducción documental inicial de Portada / Intro.
+- Especificación fuente de Portada / Intro copiada a `docs/source_specs/002_portada_intro_archivo_vivo_v1.txt`.
+- Referencia visual de Portada / Intro copiada a `assets/reference/screens/002_portada_intro_archivo_vivo_reference.png`.
+- Asset plan, prompt pack y checklist visual de Portada / Intro.
 
 ## No implementado todavía
 
@@ -36,7 +39,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: preproducción de Portada / Intro antes de cualquier implementación runtime.
+- Próximo trabajo funcional: producción/selección de assets de Portada / Intro antes de cualquier implementación runtime.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -76,12 +79,17 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Ticket 002A: Portada / Intro handoff y preproducción
 
-- Estado: PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION.
+- Estado: PREPRODUCCION_DESBLOQUEADA / NO_IMPLEMENTADA.
 - Rama documental: feature/002A-portada-intro-handoff-preproduccion.
 - Se crea handoff de carga inicial V13 como base de avance.
 - Se crea metodología de avance por umbral visual.
+- Se copia la especificación fuente de Portada / Intro.
+- Se copia la referencia visual `portada.png` como referencia no runtime.
 - Se crea prompt autocontenido para nuevo chat de Portada / Intro.
 - Se crea plantilla de preproducción de Portada / Intro.
+- Se crea asset plan de Portada / Intro.
+- Se crea prompt pack para ChatGPT Images.
+- Se crea checklist visual de Portada / Intro.
 - No se implementa portada.
 - No se crea ruta nueva.
 - No se toca la carga inicial funcional.
@@ -89,22 +97,22 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido               |
-| ------------------------- | ------------------------------------------------------------ | ---------------------------------------- |
-| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global  |
-| Portada / Intro           | PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION       | No implementar runtime sin preproducción |
-| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior   |
-| Estación I                | NO_INICIADA                                                  | BLOQUEADA                                |
-| Estación II               | NO_INICIADA                                                  | BLOQUEADA                                |
-| Estación III              | NO_INICIADA                                                  | BLOQUEADA                                |
-| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                                |
-| Estación V                | NO_INICIADA                                                  | BLOQUEADA                                |
-| Final                     | NO_INICIADA                                                  | BLOQUEADO                                |
+| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido              |
+| ------------------------- | ------------------------------------------------------------ | --------------------------------------- |
+| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global |
+| Portada / Intro           | PREPRODUCCION_DESBLOQUEADA / NO_IMPLEMENTADA                 | No implementar runtime sin assets       |
+| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior  |
+| Estación I                | NO_INICIADA                                                  | BLOQUEADA                               |
+| Estación II               | NO_INICIADA                                                  | BLOQUEADA                               |
+| Estación III              | NO_INICIADA                                                  | BLOQUEADA                               |
+| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                               |
+| Estación V                | NO_INICIADA                                                  | BLOQUEADA                               |
+| Final                     | NO_INICIADA                                                  | BLOQUEADO                               |
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. La siguiente fase puede trabajar Portada / Intro solo desde preproducción documental y tickets aprobados. No se debe implementar portada runtime sin definición previa de assets, narrativa, referencias visuales y criterios de listo.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. La siguiente fase puede trabajar Portada / Intro solo desde preproducción y tickets aprobados. No se debe implementar portada runtime sin definición previa de assets, narrativa, referencias visuales y criterios de listo.
 
 ## Próximo ticket recomendado
 
-Preparar la preproducción visual y narrativa de Portada / Intro antes de abrir un ticket funcional de implementación.
+Producir y seleccionar assets de Portada / Intro en la estructura `portada_intro_v1` antes de abrir un ticket funcional de implementación.

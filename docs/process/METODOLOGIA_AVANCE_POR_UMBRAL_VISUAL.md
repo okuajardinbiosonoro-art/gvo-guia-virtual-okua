@@ -4,7 +4,7 @@ Fecha: 2026-05-17
 
 Esta metodología permite avanzar entre pantallas cuando una pantalla alcanza una base visual suficientemente estable, aunque conserve deuda de pulido para una etapa final.
 
-El aprobador visual explícito del proyecto es el usuario Ing. José David.
+El aprobador visual explícito del proyecto es el usuario Ing. José David. Ninguna pantalla nueva debe avanzar sin autorización explícita del usuario, aunque una pantalla anterior haya superado el umbral mínimo.
 
 ## Estados
 
@@ -13,14 +13,15 @@ El aprobador visual explícito del proyecto es el usuario Ing. José David.
 Una pantalla puede quedar en `APROBADA_PARA_AVANZAR` cuando cumple todos estos criterios:
 
 - Calificación visual del usuario igual o superior a 7/10.
+- Aprobación explícita del usuario Ing. José David.
 - Estabilidad técnica comprobada.
 - Respeto de las reglas no negociables del proyecto.
 - Sin dependencias externas no permitidas.
 - Sin audio ni video runtime, salvo ticket futuro que lo autorice explícitamente.
-- Deuda visual conocida documentada.
+- Deuda visual conocida y documentada.
 - Pruebas ejecutadas o bloqueos reportados honestamente.
 
-Este estado permite avanzar a la siguiente pantalla, siempre mediante ticket aprobado y sin borrar la deuda visual pendiente.
+Este estado permite avanzar a la siguiente pantalla, siempre mediante ticket aprobado y sin borrar la deuda visual pendiente. `main` puede contener una pantalla en estado `APROBADA_PARA_AVANZAR`; eso no significa que la pantalla sea final ni que esté lista para entrega 9/10.
 
 ### CERRADA_APROBADA_FINAL
 
@@ -32,7 +33,11 @@ Una pantalla puede quedar en `CERRADA_APROBADA_FINAL` cuando cumple estos criter
 - Documentación y pruebas completas.
 - Lista para pulido final de conjunto o entrega.
 
-Este estado no es obligatorio para iniciar la siguiente pantalla si ya existe `APROBADA_PARA_AVANZAR`, pero sí debe buscarse antes de cierre global del proyecto.
+Este estado no es obligatorio para iniciar la siguiente pantalla si ya existe `APROBADA_PARA_AVANZAR`, pero sí debe buscarse antes del cierre global del proyecto.
+
+## Deuda visual y pulido global
+
+La deuda visual documentada no debe ocultarse ni renombrarse como cierre final. Cuando una pantalla queda en `APROBADA_PARA_AVANZAR`, la deuda se conserva para una fase posterior de pulido global, donde se decidirá si se invierten nuevos assets, microframes, edición frame-by-frame o ajustes de dirección de arte.
 
 ## Aplicación a la carga inicial
 
@@ -54,3 +59,5 @@ Antes de iniciar una pantalla nueva, verificar que la pantalla anterior esté en
 - `CERRADA_APROBADA_FINAL`
 
 Si no está en ninguno de esos estados, detener el avance de fase y continuar la iteración de la pantalla actual.
+
+Si sí está en alguno de esos estados, la siguiente pantalla puede avanzar solo hasta el alcance explícitamente autorizado por el ticket activo. Para Portada / Intro, el alcance actual es preproducción documental, no implementación funcional.

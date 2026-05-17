@@ -111,4 +111,4 @@ BASE VISUAL INTEGRADA — NO CERRADA COMO PANTALLA FINAL
 
 Este ticket dejó una primera base visual estable de la carga inicial, integrada en `main`, con pruebas correctas. Sin embargo, la pantalla no se considera cerrada funcional, visual ni narrativamente. Quedan pendientes iteraciones de composición, textos, animación, validación visual de Lía, validación mobile-first y aprobación explícita del usuario.
 
-La integración de esta base en `main` no autoriza avanzar a portada. TICKET_002_PORTADA_DEFINICION_Y_BASE_VISUAL queda bloqueado hasta que la carga inicial alcance estado CERRADA_APROBADA.
+Nota 002A: esta condición histórica fue reemplazada por la metodología de avance por umbral visual. La carga inicial V13 quedó consolidada en `main` como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`, lo que permite avanzar a Portada / Intro solo en preproducción, sin marcar `CERRADA_APROBADA_FINAL`.

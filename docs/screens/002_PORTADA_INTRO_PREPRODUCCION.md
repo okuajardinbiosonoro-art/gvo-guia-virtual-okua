@@ -1,87 +1,236 @@
 # Portada / Intro - Preproducción
 
-Estado: `PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION`
+Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
+
+Estado: `PREPRODUCCION_DESBLOQUEADA / NO_IMPLEMENTADA`
 
 Fecha: 2026-05-17
 
-## Objetivo de la portada
+## Insumos usados
 
-Definir la primera pantalla narrativa posterior a la carga inicial. La portada debe presentar la experiencia OKÚA con claridad, belleza y calma, sin convertirse todavía en una estación.
+- Especificación copiada al repo: `docs/source_specs/002_portada_intro_archivo_vivo_v1.txt`
+- Referencia visual copiada al repo: `assets/reference/screens/002_portada_intro_archivo_vivo_reference.png`
+- Fuente local original: `C:\Users\JOSE DAVID\Desktop\OKÚA\Aplicaciones\GVO_archivos_iniciales\GVO_PORTADA_ARCHIVO_VIVO_ESPECIFICACION_V1.txt`
+- Referencia local original: `C:\Users\JOSE DAVID\Desktop\OKÚA\Aplicaciones\GVO_archivos_iniciales\portada.png`
 
-## Función narrativa
+## Propósito de la portada
 
-- Dar la bienvenida al visitante.
-- Situar el recorrido como una experiencia local, sensible y guiada.
-- Presentar a Lía sin alterar su identidad.
-- Preparar el paso hacia la primera estación.
+La portada debe funcionar como entrada narrativa al recorrido. Debe presentar el Archivo Vivo de OKÚA, mostrar los cinco mundos como portales y situar a Lía como guía antes de permitir el ingreso a Mundo I.
 
-## Qué debe explicar
+No es una estación, no es transición, no es pantalla de carga, no es menú libre completo en primera pasada y no debe reemplazar la pedagogía inicial de Lía.
 
-- Qué es la Guía Virtual OKÚA.
-- Cómo inicia el recorrido.
-- Qué rol cumple Lía como guía visual.
-- Qué acción debe realizar el visitante para continuar, si aplica en el futuro.
+## Estilo visual recomendado
 
-## Qué NO debe incluir
+Dirección recomendada:
 
-- Audio.
-- Video runtime.
-- Recursos externos.
-- CDN.
-- Texto técnico.
-- Scanner QR funcional.
-- Estaciones.
-- Transición entre mundos.
-- Cierre final de carga inicial.
-- Cambios de identidad de Lía.
+`híbrido editorial orgánico + acentos pixelart`
 
-## Assets necesarios
+La portada no debe convertirse en pixelart retro puro. Debe conservar una sensación orgánica, luminosa y editorial, con UI final construida en DOM/CSS y acentos pixelart controlados.
 
-Pendiente de definición antes de implementación:
+Reglas:
 
-- Fondo o escena base de portada.
-- Versión de Lía para portada, si no se reutiliza la actual.
-- Elementos de identidad visual OKÚA.
-- Posible botón o indicador de inicio.
-- Referencias de composición mobile-first.
+- Textos finales como DOM/CSS, no incrustados en imagen.
+- Botones como DOM/CSS.
+- Diálogos como DOM/CSS accesible.
+- Logo OKÚA controlado localmente, no generado como texto distorsionado por IA.
+- Portales y fondo pueden partir de ChatGPT Images, pero deben limpiarse y revisarse.
+- Lía debe validarse estrictamente contra identidad.
+- Portal I habilitado; portales II-V bloqueados.
+- No saturar partículas.
+- No incluir cadena técnica de 8 nodos.
+- No incluir audio ni video runtime.
 
-## Referencias visuales requeridas
+## Lectura crítica de `portada.png`
 
-Antes de pasar a Codex funcional se deben reunir o aprobar:
+La referencia `portada.png` aporta una composición 9:16 aproximada con:
 
-- Referencia de composición general.
-- Referencia de paleta.
-- Referencia de presencia de Lía.
-- Referencia de estilo pixelart/UI.
-- Criterio de movimiento o estado estático.
+- Marca superior OKÚA / Guía Visual.
+- Lía grande, luminosa, activa y amable.
+- Cinco portales centrales.
+- Pedestal o base inferior.
+- Texto `EL ARCHIVO VIVO DE OKÚA`.
+- Botón `Comenzar recorrido`.
+- Ambiente cálido, orgánico y biomimético.
 
-## Posibles animaciones
+Riesgos detectados en la referencia:
 
-Hipótesis para discutir, no implementar todavía:
+- Textos incrustados podrían quedar deformados si se regeneran con IA.
+- La presencia de Lía puede competir con portales si no se controla escala.
+- Los portales pueden saturar la pantalla móvil si todos tienen igual protagonismo.
+- La UI puede parecer imagen fija si botones y diálogos no se implementan como DOM.
 
-- Aparición suave de título.
-- Respiración discreta de fondo.
-- Entrada o presencia serena de Lía.
-- Indicador de inicio sin porcentaje ni carga técnica.
-- Microanimación de transición hacia la primera estación.
+## Textos fijos
 
-## Riesgos
+Textos visibles principales:
 
-- Implementar portada antes de definir assets.
-- Convertir la portada en una landing genérica.
-- Agregar demasiado texto.
-- Romper el carácter local sin Internet.
-- Desalinear a Lía de su identidad aprobada.
-- Empezar estaciones antes de cerrar la función narrativa de portada.
+- `OKÚA`
+- `GUÍA VISUAL`
+- `EL ARCHIVO VIVO DE OKÚA`
+- `Comenzar recorrido`
+- `I`
+- `II`
+- `III`
+- `IV`
+- `V`
 
-## Definición de listo para pasar a Codex funcional
+Los nombres completos de mundos pueden mostrarse al tocar/enfocar, no necesariamente siempre visibles.
 
-La portada estará lista para implementación funcional cuando existan:
+## Diálogos introductorios obligatorios de Lía
 
-- Ticket funcional aprobado.
-- Assets o referencias visuales aprobadas.
-- Copy visible aprobado.
-- Criterio de navegación definido.
-- Alcance técnico claro.
-- Reglas de validación y capturas definidas.
-- Confirmación de que no requiere audio, video runtime, CDN ni recursos externos.
+La primera pasada debe incluir diálogos breves, uno a la vez:
+
+1. `Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.`
+2. `Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.`
+3. `Lo que vas a recorrer es una mediación: una señal viva, una captura técnica y una interpretación.`
+4. `Primero seguiremos el orden de los mundos. Al final podrás volver libremente a cualquier estación.`
+5. `Empecemos por la raíz: el origen y el propósito de OKÚA.`
+
+Ideas que no deben perderse:
+
+- Lía se presenta.
+- Las plantas no hacen música por sí solas.
+- La experiencia requiere mediación.
+- La primera pasada es secuencial.
+- Al final habrá revisión libre.
+- El primer mundo es Raíz.
+
+## Portales y estados
+
+Portal I:
+
+- Estación I - Mundo I: Raíz.
+- Estado inicial: habilitado.
+- Tocar Portal I inicia diálogos si es primera pasada.
+- No abre directamente antes de completar diálogos.
+
+Portales II-V:
+
+- Estado inicial: bloqueado.
+- Deben ser visibles, pero con menor protagonismo.
+- Deben comunicar bloqueo con candado o indicador equivalente.
+- Deben responder al toque sin navegar.
+
+Estados funcionales previstos:
+
+- `portada_idle`
+- `intro_dialogue_started`
+- `intro_dialogue_active`
+- `intro_dialogue_completed`
+- `portal_1_ready`
+- `portal_1_opening`
+- `transition_to_station_1`
+- `free_review_mode`
+
+## Acciones disponibles
+
+Primera pasada:
+
+- Tocar `Comenzar recorrido`.
+- Tocar Portal I.
+- Tocar portales bloqueados para feedback breve.
+- Avanzar diálogos de Lía.
+- Confirmar entrada al Portal I después de los diálogos.
+
+No debe permitirse:
+
+- Saltar a Portal II-V.
+- Entrar a Estación I sin diálogos introductorios.
+- Abrir dos diálogos a la vez.
+- Mostrar transición antes de completar la introducción.
+
+## Bloqueos de primera pasada
+
+Durante estas fases se deben bloquear taps repetidos:
+
+- `intro_dialogue_started`
+- Cambio entre diálogos.
+- `portal_1_opening`
+- `transition_to_station_1`
+
+Si el usuario toca varias veces `Comenzar recorrido`, no se reinicia el diálogo. Si toca portales durante diálogo, no se navega.
+
+## Reduced motion
+
+Con `prefers-reduced-motion` activo:
+
+- No hacer zoom fuerte al portal.
+- No desplazar a Lía en recorridos amplios.
+- No usar partículas animadas densas.
+- No usar pulso continuo.
+- Usar cambios de opacidad y estado.
+- Mantener la secuencia pedagógica.
+
+## Accesibilidad
+
+Requisitos:
+
+- Botón `Comenzar recorrido` con label claro.
+- Portales bloqueados con estado comunicado.
+- Portal I como disponible.
+- Diálogos de Lía con `aria-live` o equivalente.
+- Foco lógico en ventana de diálogo.
+- Navegación táctil clara.
+- No depender solo del color para bloqueo.
+
+Textos accesibles sugeridos:
+
+- Portal I: `Estación I, Mundo Raíz, disponible.`
+- Portal II: `Estación II, bloqueada hasta completar Mundo I.`
+- Botón: `Comenzar recorrido.`
+- Diálogo: `Lía dice: [texto actual].`
+
+## Límites visuales
+
+- No usar varias Lías.
+- No usar a Lía solo como decoración.
+- No saturar con partículas.
+- No usar diálogos largos.
+- No mostrar la cadena técnica de 8 nodos en portada.
+- No mostrar créditos.
+- No mezclar función de portada con pantalla final.
+- No generar textos dentro de imágenes.
+
+## Criterios de 7/10
+
+La primera implementación funcional puede considerarse `APROBADA_PARA_AVANZAR` si:
+
+- Se lee claramente como El Archivo Vivo de OKÚA.
+- Lía guía la experiencia.
+- Hay cinco portales visibles.
+- Portal I está habilitado.
+- Portales II-V están bloqueados.
+- `Comenzar recorrido` inicia diálogos.
+- Portal I no abre antes de diálogos.
+- La pantalla es mobile-first y legible.
+- No hay audio, video runtime, CDN ni recursos externos.
+
+## Criterios de 9/10 y deuda futura
+
+Para `CERRADA_APROBADA_FINAL` se espera:
+
+- Dirección de arte refinada.
+- Lía perfectamente consistente.
+- Portales con identidad visual clara.
+- Animación y microinteracciones fluidas.
+- Diálogos integrados sin rigidez.
+- Accesibilidad revisada.
+- Reduced motion verificado.
+- Sin deuda visual importante.
+
+## Riesgos aprendidos de carga inicial
+
+- No invertir demasiado tiempo en un único detalle antes de tener flujo completo.
+- Separar `APROBADA_PARA_AVANZAR` de cierre final.
+- No depender de PNG completos para resolver toda la animación.
+- Documentar deuda visual sin esconderla.
+- Validar mobile-first con capturas.
+- Mantener assets, prompts y límites antes de que Codex implemente.
+
+## Secuencia de tickets recomendada
+
+1. `002B`: generación y selección de assets de Portada / Intro.
+2. `002C`: normalización/export runtime de assets aprobados.
+3. `002D`: implementación funcional base de Portada / Intro.
+4. `002E`: diálogos de Lía y gating de Portal I.
+5. `002F`: polish visual/motion/reduced motion.
+6. `002G`: validación mobile y handoff a transición/Mundo I si alcanza umbral.

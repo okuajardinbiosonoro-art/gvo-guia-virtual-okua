@@ -2,7 +2,9 @@
 
 ## Regla principal
 
-GVO avanza de forma secuencial por pantallas. No se puede iniciar una pantalla posterior si la pantalla actual no está completamente cerrada.
+GVO avanza de forma secuencial por pantallas. Esta metodología define el cierre final de una pantalla.
+
+Desde TICKET_002A, el avance operativo también contempla la metodología de umbral visual documentada en `docs/process/METODOLOGIA_AVANCE_POR_UMBRAL_VISUAL.md`. Una pantalla puede permitir avance si está `APROBADA_PARA_AVANZAR` con deuda visual documentada, aunque todavía no esté en cierre final.
 
 ## Definición de pantalla cerrada
 
@@ -69,22 +71,20 @@ Una base parcial puede integrarse a main si es estable, no rompe pruebas y sirve
 
 ## Bloqueo de avance
 
-Mientras la pantalla actual no esté en CERRADA_APROBADA:
+Para cierre final, mientras la pantalla actual no esté en CERRADA_APROBADA:
 
-- no se crea rama de la siguiente pantalla;
 - no se implementa la siguiente pantalla;
 - no se agregan rutas reales de la siguiente pantalla;
-- no se avanza a portada, estaciones, transición o final.
+- no se avanza a estaciones, transición o final como runtime funcional.
 
-## Caso actual: carga inicial
+Para preproducción o avance controlado, usar `APROBADA_PARA_AVANZAR` según la metodología de umbral visual.
 
-La carga inicial pre-portada está actualmente en estado BASE_VISUAL / EN_ITERACION_VISUAL.
+## Caso actual histórico: carga inicial
 
-No se puede iniciar portada hasta que carga inicial tenga:
+La carga inicial pre-portada estuvo inicialmente en estado BASE_VISUAL / EN_ITERACION_VISUAL.
 
-- composición final aprobada;
-- textos finales aprobados;
-- animación final aprobada;
-- validación mobile-first;
-- documentación actualizada;
-- estado CERRADA_APROBADA.
+Desde el checkpoint V13, la carga inicial queda:
+
+- `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`
+
+Esto desbloquea Portada / Intro solo para preproducción. No equivale a `CERRADA_APROBADA_FINAL`.
