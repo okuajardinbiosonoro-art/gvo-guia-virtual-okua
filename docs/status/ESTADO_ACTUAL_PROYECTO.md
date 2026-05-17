@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial animada V13 con frame registration de Lía y timeline de motion dirigido; pendiente de revisión visual.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro en preproducción documental, sin implementación visual.
 
 ## Implementado
 
@@ -18,10 +18,13 @@ Estado: carga inicial animada V13 con frame registration de Lía y timeline de m
 - Estrategia QR/cámara documentada.
 - Metodología de tickets.
 - Metodología de cierre por pantalla.
+- Metodología de avance por umbral visual.
+- Handoff documental de carga inicial V13 como base de avance.
+- Preproducción documental inicial de Portada / Intro.
 
 ## No implementado todavía
 
-- Portada real.
+- Portada real runtime.
 - Estaciones reales.
 - Final real.
 - Scanner interno con cámara.
@@ -33,7 +36,7 @@ Estado: carga inicial animada V13 con frame registration de Lía y timeline de m
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: revisión visual de la animación V13 de carga inicial y refinamiento si el usuario lo solicita.
+- Próximo trabajo funcional: preproducción de Portada / Intro antes de cualquier implementación runtime.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -45,7 +48,9 @@ Estado: carga inicial animada V13 con frame registration de Lía y timeline de m
 
 ## Ticket 001 / 001B / 001C / 001D / 001E / 001F / 001G / 001H / 001I / 001J / 001K / 001L / 001M / 001N: Carga inicial
 
-- Estado: ANIMACION_V13_FRAME_REGISTRATION / EN_REVISION_VISUAL.
+- Estado: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA.
+- Commit consolidado en `main`: `87e048b feat: register initial loading frames timeline`.
+- Tag checkpoint: `checkpoint/carga-inicial-v13-7p2`.
 - Insumos usados: `docs/source_specs/001_carga_inicial_pre_portada.txt` y `assets/reference/screens/001_carga_inicial_pre_portada.png`.
 - Insumos 001B usados: `C:\Users\JOSE DAVID\Desktop\OKÚA\Aplicaciones\GVO_archivos_iniciales\carga_inicial_v2`.
 - Pantalla de carga inicial animada V13: integrada en `/` y `/carga` para revisión visual.
@@ -61,30 +66,45 @@ Estado: carga inicial animada V13 con frame registration de Lía y timeline de m
 - Refinamiento 001L: reduce escala visual del escenario a 0.90, separa caps/track/fill/marker de la barra, suaviza bob/pose/agua/planta/sparkles y conserva textos, rutas, assets, timeline normal de 12000ms y reduced motion de 1300ms.
 - Refinamiento 001M: ajuste puntual de barra; caps y marker usan bloques CSS de 3px para formar rombos pixelart, el track empieza despues del cap izquierdo para evitar superposicion, se conserva altura fina de 2px, sin porcentaje ni numeros.
 - Refinamiento 001N: agrega frame registration V13 para los 16 frames de Lía con ancla visor/collar, timeline dirigido por fases, holds de preparación/riego/observación, agua retrasada después de la inclinación y crecimiento de planta después de los pulsos.
-- Cierre final: pendiente. No está marcada como CERRADA_APROBADA.
-- Pendientes: revisión visual mobile-first por el usuario, refinamientos si aplican y aprobación explícita.
+- Cierre final: pendiente. No está marcada como CERRADA_APROBADA_FINAL.
+- Deuda visual conocida: la animación de Lía todavía se siente algo brusca; para 9/10 o 10/10 se requerirán nuevos microframes o edición frame-by-frame.
+- Motivo de avance: el usuario Ing. José David aprobó avanzar con umbral visual aproximado 7.2/10 para evitar bloqueo excesivo en una sola pantalla.
+- Pendientes: conservar deuda visual para pulido global y no declarar cierre final hasta aprobación explícita.
 - La pantalla usa assets locales normalizados en `public/assets/runtime/loading-initial/`.
-- Portada, estaciones, transición y final siguen no implementados.
-- Rama funcional actual: feature/001N-carga-inicial-frame-registration-timeline-v13.
+- Portada, estaciones, transición y final siguen no implementados en runtime.
+- Rama consolidada: main.
+
+## Ticket 002A: Portada / Intro handoff y preproducción
+
+- Estado: PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION.
+- Rama documental: feature/002A-portada-intro-handoff-preproduccion.
+- Se crea handoff de carga inicial V13 como base de avance.
+- Se crea metodología de avance por umbral visual.
+- Se crea prompt autocontenido para nuevo chat de Portada / Intro.
+- Se crea plantilla de preproducción de Portada / Intro.
+- No se implementa portada.
+- No se crea ruta nueva.
+- No se toca la carga inicial funcional.
+- No se tocan assets runtime.
 
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                                     | Bloqueo / avance permitido                     |
-| ------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| Carga inicial pre-portada | ANIMACION_V13_FRAME_REGISTRATION / EN_REVISION_VISUAL | Revisión visual del usuario                    |
-| Portada / Intro           | NO_INICIADA                                           | BLOQUEADA hasta carga inicial CERRADA_APROBADA |
-| Transición entre mundos   | NO_INICIADA                                           | BLOQUEADA hasta autorización posterior         |
-| Estación I                | NO_INICIADA                                           | BLOQUEADA                                      |
-| Estación II               | NO_INICIADA                                           | BLOQUEADA                                      |
-| Estación III              | NO_INICIADA                                           | BLOQUEADA                                      |
-| Estación IV               | NO_INICIADA                                           | BLOQUEADA                                      |
-| Estación V                | NO_INICIADA                                           | BLOQUEADA                                      |
-| Final                     | NO_INICIADA                                           | BLOQUEADO                                      |
+| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido               |
+| ------------------------- | ------------------------------------------------------------ | ---------------------------------------- |
+| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global  |
+| Portada / Intro           | PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION       | No implementar runtime sin preproducción |
+| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior   |
+| Estación I                | NO_INICIADA                                                  | BLOQUEADA                                |
+| Estación II               | NO_INICIADA                                                  | BLOQUEADA                                |
+| Estación III              | NO_INICIADA                                                  | BLOQUEADA                                |
+| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                                |
+| Estación V                | NO_INICIADA                                                  | BLOQUEADA                                |
+| Final                     | NO_INICIADA                                                  | BLOQUEADO                                |
 
-## Bloqueo de avance
+## Regla de avance
 
-No se puede iniciar TICKET_002_PORTADA_DEFINICION_Y_BASE_VISUAL ni crear `feature/002-portada` hasta que la carga inicial esté documentada como CERRADA_APROBADA y aprobada explícitamente por el usuario.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. La siguiente fase puede trabajar Portada / Intro solo desde preproducción documental y tickets aprobados. No se debe implementar portada runtime sin definición previa de assets, narrativa, referencias visuales y criterios de listo.
 
 ## Próximo ticket recomendado
 
-Revisar visualmente la carga inicial animada V13 en navegador móvil. Si el usuario aprueba, documentar cierre; si pide ajustes, crear una iteración acotada de refinamiento de carga inicial.
+Preparar la preproducción visual y narrativa de Portada / Intro antes de abrir un ticket funcional de implementación.

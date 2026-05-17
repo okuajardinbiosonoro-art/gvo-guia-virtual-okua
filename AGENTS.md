@@ -11,7 +11,7 @@ Este repositorio corresponde a GVO — Guía Virtual OKÚA. Todo cambio debe res
 - No modificar la identidad de Lía sin instrucción explícita.
 - No cambiar arquitectura, flujo o metodología sin actualizar documentación y ADR si aplica.
 - No crear Pull Requests ni sugerir PR como siguiente paso. El proyecto tiene un único mantenedor; cuando corresponda publicar trabajo, hacer commit y push directo a la rama indicada por el ticket.
-- Antes de proponer o crear una rama para la siguiente pantalla, verificar que la pantalla actual esté documentada como `CERRADA_APROBADA`. Si no lo está, detener el avance de fase y continuar la iteración de la pantalla actual.
+- Antes de proponer o crear una rama para la siguiente pantalla, verificar que la pantalla actual esté documentada como `APROBADA_PARA_AVANZAR` o `CERRADA_APROBADA_FINAL` según `docs/process/METODOLOGIA_AVANCE_POR_UMBRAL_VISUAL.md`. Si no lo está, detener el avance de fase y continuar la iteración de la pantalla actual.
 - Ejecutar pruebas antes de cerrar un ticket.
 - Reportar honestamente cualquier validación que no se pudo ejecutar.
 

@@ -64,16 +64,23 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio con carga inicial animada V13 con frame registration de Lía y timeline de motion dirigido. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
+Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como pantalla final 9/10.
+
+La Portada / Intro está en preproducción documental. Todavía no existe implementación visual ni ruta funcional de portada.
 
 ## Metodología de avance por pantalla
 
-GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base técnica o visual integrada en `main` sin estar cerrada como experiencia final. No se puede avanzar a la siguiente pantalla hasta que la pantalla actual esté marcada como `CERRADA_APROBADA` y cuente con aprobación explícita del usuario.
+GVO se desarrolla por pantallas secuenciales. Una pantalla puede avanzar bajo dos estados documentados:
+
+- `APROBADA_PARA_AVANZAR`: calificación visual del usuario igual o superior a 7/10, estabilidad técnica, reglas no negociables cumplidas y deuda visual documentada.
+- `CERRADA_APROBADA_FINAL`: calificación objetivo igual o superior a 9/10 y sin deuda visual importante.
+
+El aprobador visual explícito es el usuario Ing. José David. La metodología completa está en `docs/process/METODOLOGIA_AVANCE_POR_UMBRAL_VISUAL.md`.
 
 Estado actual:
 
-- Carga inicial: ANIMACION_V13_FRAME_REGISTRATION / EN_REVISION_VISUAL
-- Portada: NO_INICIADA / BLOQUEADA
+- Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
+- Portada: PREPRODUCCION_DOCUMENTAL_INICIADA / SIN_IMPLEMENTACION
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA
 - Final: NO_INICIADA / BLOQUEADO
