@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V11 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V12 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -28,6 +28,12 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const progressFill = document.querySelector(
       ".loading-initial__progress-fill",
     );
+    const progressRail = document.querySelector(
+      ".loading-initial__progress-track",
+    );
+    const progressMarker = document.querySelector(
+      ".loading-initial__progress-marker",
+    );
     const liaTrack = document.querySelector(".loading-initial__lia-track");
     const scene = document.querySelector(".loading-initial__scene");
     const stage = document.querySelector(".loading-initial__stage");
@@ -37,6 +43,8 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
     if (
       !progressFill ||
+      !progressRail ||
+      !progressMarker ||
       !liaTrack ||
       !scene ||
       !stage ||
@@ -44,15 +52,23 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       !progressTrack ||
       !title
     ) {
-      throw new Error("Faltan elementos de carga inicial V11.");
+      throw new Error("Faltan elementos de carga inicial V12.");
     }
 
     const sceneStyles = getComputedStyle(scene);
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
+      progressMarkerDuration:
+        getComputedStyle(progressMarker).animationDuration,
       progressTrackHeight: getComputedStyle(progressTrack)
         .getPropertyValue("--loading-progress-track-height")
+        .trim(),
+      progressCapSize: getComputedStyle(progressTrack)
+        .getPropertyValue("--loading-progress-cap-size")
+        .trim(),
+      progressMarkerSize: getComputedStyle(progressTrack)
+        .getPropertyValue("--loading-progress-marker-size")
         .trim(),
       liaAnimationName: getComputedStyle(liaTrack).animationName,
       titleFontFamily: getComputedStyle(title).fontFamily,
@@ -68,9 +84,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
         .trim(),
       haloX: sceneStyles.getPropertyValue("--loading-halo-x").trim(),
       haloWidth: sceneStyles.getPropertyValue("--loading-halo-width").trim(),
-      haloScaleX: sceneStyles
-        .getPropertyValue("--loading-halo-scale-x")
-        .trim(),
+      haloScaleX: sceneStyles.getPropertyValue("--loading-halo-scale-x").trim(),
       haloBottom: sceneStyles.getPropertyValue("--loading-halo-bottom").trim(),
       liaFinalX: sceneStyles.getPropertyValue("--loading-lia-final-x").trim(),
       liaFinalBottom: sceneStyles
@@ -94,10 +108,13 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   });
 
   expect(durations.progressDuration).toBe("12s");
+  expect(durations.progressMarkerDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v11");
+  expect(durations.layoutVersion).toBe("v12");
   expect(durations.visualScale).toBe("0.9");
   expect(durations.progressTrackHeight).toBe("2px");
+  expect(durations.progressCapSize).toBe("9px");
+  expect(durations.progressMarkerSize).toBe("9px");
   expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
@@ -127,14 +144,19 @@ test("reduced motion reduce duracion y evita riego multi-stream animado", async 
     const progressFill = document.querySelector(
       ".loading-initial__progress-fill",
     );
+    const progressMarker = document.querySelector(
+      ".loading-initial__progress-marker",
+    );
     const waterField = document.querySelector(".loading-initial__water-field");
 
-    if (!progressFill || !waterField) {
+    if (!progressFill || !progressMarker || !waterField) {
       throw new Error("Faltan elementos para reduced motion.");
     }
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
+      progressMarkerDuration:
+        getComputedStyle(progressMarker).animationDuration,
       waterDisplay: getComputedStyle(waterField).display,
       overflowHorizontal:
         document.documentElement.scrollWidth > window.innerWidth,
@@ -142,6 +164,7 @@ test("reduced motion reduce duracion y evita riego multi-stream animado", async 
   });
 
   expect(reduced.progressDuration).toBe("1.3s");
+  expect(reduced.progressMarkerDuration).toBe("1.3s");
   expect(reduced.waterDisplay).toBe("none");
   expect(reduced.overflowHorizontal).toBe(false);
 });

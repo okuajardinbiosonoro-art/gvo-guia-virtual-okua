@@ -2,13 +2,13 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial animada V11 con escala visual contenida, barra refinada y motion suavizado; pendiente de revisión visual.
+Estado: carga inicial animada V12 con barra de progreso pixelart refinada; pendiente de revisión visual.
 
 ## Implementado
 
 - App Vite + React + TypeScript.
 - Router con rutas placeholder del recorrido.
-- Pantalla de carga inicial animada V11 en `/` y `/carga`.
+- Pantalla de carga inicial animada V12 en `/` y `/carga`.
 - Assets runtime normalizados de carga inicial en `public/assets/runtime/loading-initial/`.
 - Capa mínima de progreso secuencial con `localStorage`.
 - PWA mínima sin push notifications.
@@ -33,7 +33,7 @@ Estado: carga inicial animada V11 con escala visual contenida, barra refinada y 
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: revisión visual de la animación V11 de carga inicial y refinamiento si el usuario lo solicita.
+- Próximo trabajo funcional: revisión visual de la animación V12 de carga inicial y refinamiento si el usuario lo solicita.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -43,12 +43,12 @@ Estado: carga inicial animada V11 con escala visual contenida, barra refinada y 
 - El siguiente trabajo funcional preparado en ese cierre fue TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
 - La rama funcional preparada en ese cierre fue feature/001-carga-inicial.
 
-## Ticket 001 / 001B / 001C / 001D / 001E / 001F / 001G / 001H / 001I / 001J / 001K / 001L: Carga inicial
+## Ticket 001 / 001B / 001C / 001D / 001E / 001F / 001G / 001H / 001I / 001J / 001K / 001L / 001M: Carga inicial
 
-- Estado: ANIMACION_V11_ESCALA_UI_MOTION_SMOOTH / EN_REVISION_VISUAL.
+- Estado: ANIMACION_V12_PROGRESS_BAR_PIXELART / EN_REVISION_VISUAL.
 - Insumos usados: `docs/source_specs/001_carga_inicial_pre_portada.txt` y `assets/reference/screens/001_carga_inicial_pre_portada.png`.
 - Insumos 001B usados: `C:\Users\JOSE DAVID\Desktop\OKÚA\Aplicaciones\GVO_archivos_iniciales\carga_inicial_v2`.
-- Pantalla de carga inicial animada V11: integrada en `/` y `/carga` para revisión visual.
+- Pantalla de carga inicial animada V12: integrada en `/` y `/carga` para revisión visual.
 - Refinamiento 001C: duración real de 12s, entrada lateral de Lía, composición centrada, riego multi-stream, sparkles determinísticos y reduced motion de 1300ms.
 - Refinamiento 001D: maceta/halo ligeramente a la izquierda, Lía mas a la derecha, agua alineada a la boquilla, riego sostenido y 10 sparkles determinísticos.
 - Refinamiento 001E: maceta/planta mas baja y mas a la izquierda, Lía mas a la derecha, agua anclada al wrapper de Lía con origen en boquilla y destino planta/tierra, sparkles fuera de zonas principales.
@@ -59,25 +59,26 @@ Estado: carga inicial animada V11 con escala visual contenida, barra refinada y 
 - Refinamiento 001J: polish de motion/UI sin mover la composición aprobada; mejora easing de entrada de Lía, flotación, crossfade de planta, pulsos de agua, respiración de sparkles, texto y barra, conservando timeline normal de 12000ms y reduced motion de 1300ms.
 - Refinamiento 001K: integra Pixelify Sans local mediante Fontsource, afina barra pixelart, agrega capa de pose para micro-inclinación de Lía, reordena staging de riego/planta/sparkles y conserva layout base, timeline normal de 12000ms y reduced motion de 1300ms.
 - Refinamiento 001L: reduce escala visual del escenario a 0.90, separa caps/track/fill/marker de la barra, suaviza bob/pose/agua/planta/sparkles y conserva textos, rutas, assets, timeline normal de 12000ms y reduced motion de 1300ms.
+- Refinamiento 001M: ajuste puntual de barra; caps y marker usan bloques CSS de 3px para formar rombos pixelart, el track empieza despues del cap izquierdo para evitar superposicion, se conserva altura fina de 2px, sin porcentaje ni numeros.
 - Cierre final: pendiente. No está marcada como CERRADA_APROBADA.
 - Pendientes: revisión visual mobile-first por el usuario, refinamientos si aplican y aprobación explícita.
 - La pantalla usa assets locales normalizados en `public/assets/runtime/loading-initial/`.
 - Portada, estaciones, transición y final siguen no implementados.
-- Rama funcional actual: feature/001L-carga-inicial-escala-ui-motion-smooth-v11.
+- Rama funcional actual: feature/001M-carga-inicial-barra-pixelart-v12.
 
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                              | Bloqueo / avance permitido                     |
-| ------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| Carga inicial pre-portada | ANIMACION_V11_ESCALA_UI_MOTION_SMOOTH / EN_REVISION_VISUAL | Revisión visual del usuario                    |
-| Portada / Intro           | NO_INICIADA                                    | BLOQUEADA hasta carga inicial CERRADA_APROBADA |
-| Transición entre mundos   | NO_INICIADA                                    | BLOQUEADA hasta autorización posterior         |
-| Estación I                | NO_INICIADA                                    | BLOQUEADA                                      |
-| Estación II               | NO_INICIADA                                    | BLOQUEADA                                      |
-| Estación III              | NO_INICIADA                                    | BLOQUEADA                                      |
-| Estación IV               | NO_INICIADA                                    | BLOQUEADA                                      |
-| Estación V                | NO_INICIADA                                    | BLOQUEADA                                      |
-| Final                     | NO_INICIADA                                    | BLOQUEADO                                      |
+| Pantalla                  | Estado de madurez                                        | Bloqueo / avance permitido                     |
+| ------------------------- | -------------------------------------------------------- | ---------------------------------------------- |
+| Carga inicial pre-portada | ANIMACION_V12_PROGRESS_BAR_PIXELART / EN_REVISION_VISUAL | Revisión visual del usuario                    |
+| Portada / Intro           | NO_INICIADA                                              | BLOQUEADA hasta carga inicial CERRADA_APROBADA |
+| Transición entre mundos   | NO_INICIADA                                              | BLOQUEADA hasta autorización posterior         |
+| Estación I                | NO_INICIADA                                              | BLOQUEADA                                      |
+| Estación II               | NO_INICIADA                                              | BLOQUEADA                                      |
+| Estación III              | NO_INICIADA                                              | BLOQUEADA                                      |
+| Estación IV               | NO_INICIADA                                              | BLOQUEADA                                      |
+| Estación V                | NO_INICIADA                                              | BLOQUEADA                                      |
+| Final                     | NO_INICIADA                                              | BLOQUEADO                                      |
 
 ## Bloqueo de avance
 
@@ -85,4 +86,4 @@ No se puede iniciar TICKET_002_PORTADA_DEFINICION_Y_BASE_VISUAL ni crear `featur
 
 ## Próximo ticket recomendado
 
-Revisar visualmente la carga inicial animada V11 en navegador móvil. Si el usuario aprueba, documentar cierre; si pide ajustes, crear una iteración acotada de refinamiento de carga inicial.
+Revisar visualmente la carga inicial animada V12 en navegador móvil. Si el usuario aprueba, documentar cierre; si pide ajustes, crear una iteración acotada de refinamiento de carga inicial.

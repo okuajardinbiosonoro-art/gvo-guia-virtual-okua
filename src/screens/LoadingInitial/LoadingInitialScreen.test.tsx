@@ -66,7 +66,7 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V11 de animacion normal y reduced motion", () => {
+  it("expone duraciones V12 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
@@ -77,7 +77,7 @@ describe("LoadingInitialScreen", () => {
     expect(REDUCED_MOTION_DURATION_MS).toBeGreaterThanOrEqual(1000);
     expect(REDUCED_MOTION_DURATION_MS).toBeLessThanOrEqual(1500);
     expect(loadingInitialTimeline.durationMs).toBe(12000);
-    expect(stage).toHaveAttribute("data-loading-layout-version", "v11");
+    expect(stage).toHaveAttribute("data-loading-layout-version", "v12");
     expect(stage).toHaveAttribute("data-duration-ms", "12000");
     expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1300");
   });
@@ -135,6 +135,23 @@ describe("LoadingInitialScreen", () => {
     expect(container.querySelector("button")).not.toBeInTheDocument();
     expect(container.querySelector("audio")).not.toBeInTheDocument();
     expect(container.querySelector("video")).not.toBeInTheDocument();
+  });
+
+  it("renderiza barra pixelart separada en track, fill y marker sin texto numerico", () => {
+    const { container } = render(<LoadingInitialScreen />);
+    const progress = screen.getByRole("progressbar");
+
+    expect(
+      container.querySelector(".loading-initial__progress-track"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(".loading-initial__progress-fill"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(".loading-initial__progress-marker"),
+    ).toBeInTheDocument();
+    expect(progress).not.toHaveTextContent(/[\d%]/);
+    expect(progress.textContent).toBe("");
   });
 
   it("conecta aria-labelledby y aria-describedby a los textos aprobados", () => {

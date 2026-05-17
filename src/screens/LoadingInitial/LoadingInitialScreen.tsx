@@ -27,7 +27,7 @@ export function LoadingInitialScreen() {
     >
       <section
         className="loading-initial__stage"
-        data-loading-layout-version="v11"
+        data-loading-layout-version="v12"
         data-duration-ms={loadingInitialTimeline.durationMs}
         data-reduced-motion-duration-ms={
           loadingInitialTimeline.reducedMotionDurationMs
@@ -134,7 +134,10 @@ export function LoadingInitialScreen() {
           aria-valuemin={0}
           aria-valuemax={100}
         >
-          <span className="loading-initial__progress-fill" />
+          <span className="loading-initial__progress-track" aria-hidden="true">
+            <span className="loading-initial__progress-fill" />
+            <span className="loading-initial__progress-marker" />
+          </span>
         </div>
       </section>
     </main>

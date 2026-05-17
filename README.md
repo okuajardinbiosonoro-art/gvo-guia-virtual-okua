@@ -64,7 +64,7 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio con carga inicial animada V11 con escala visual más contenida, barra pixelart refinada y motion suavizado. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
+Repositorio con carga inicial animada V12 con barra de carga pixelart refinada en caps, track, fill y marker. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
 
 ## Metodología de avance por pantalla
 
@@ -72,7 +72,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base 
 
 Estado actual:
 
-- Carga inicial: ANIMACION_V11_ESCALA_UI_MOTION_SMOOTH / EN_REVISION_VISUAL
+- Carga inicial: ANIMACION_V12_PROGRESS_BAR_PIXELART / EN_REVISION_VISUAL
 - Portada: NO_INICIADA / BLOQUEADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA
