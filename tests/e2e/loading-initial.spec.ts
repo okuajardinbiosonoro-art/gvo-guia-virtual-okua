@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V10 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V11 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -44,19 +44,24 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       !progressTrack ||
       !title
     ) {
-      throw new Error("Faltan elementos de carga inicial V10.");
+      throw new Error("Faltan elementos de carga inicial V11.");
     }
 
     const sceneStyles = getComputedStyle(scene);
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
-      progressHeight: getComputedStyle(progressTrack).height,
+      progressTrackHeight: getComputedStyle(progressTrack)
+        .getPropertyValue("--loading-progress-track-height")
+        .trim(),
       liaAnimationName: getComputedStyle(liaTrack).animationName,
       titleFontFamily: getComputedStyle(title).fontFamily,
       stageDuration: stage.getAttribute("data-duration-ms"),
       layoutVersion: stage.getAttribute("data-loading-layout-version"),
       entryState: liaTrack.getAttribute("data-entry-state"),
+      visualScale: sceneStyles
+        .getPropertyValue("--loading-visual-scale")
+        .trim(),
       plantX: sceneStyles.getPropertyValue("--loading-plant-x").trim(),
       plantBottom: sceneStyles
         .getPropertyValue("--loading-plant-bottom")
@@ -90,8 +95,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v10");
-  expect(Number.parseFloat(durations.progressHeight)).toBeLessThanOrEqual(5);
+  expect(durations.layoutVersion).toBe("v11");
+  expect(durations.visualScale).toBe("0.9");
+  expect(durations.progressTrackHeight).toBe("2px");
   expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
