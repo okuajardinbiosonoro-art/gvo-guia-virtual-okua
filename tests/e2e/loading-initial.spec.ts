@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V12 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V13 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -34,6 +34,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const progressMarker = document.querySelector(
       ".loading-initial__progress-marker",
     );
+    const liaRegistration = document.querySelector(
+      ".loading-initial__lia-registration",
+    );
     const liaTrack = document.querySelector(".loading-initial__lia-track");
     const scene = document.querySelector(".loading-initial__scene");
     const stage = document.querySelector(".loading-initial__stage");
@@ -45,6 +48,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       !progressFill ||
       !progressRail ||
       !progressMarker ||
+      !liaRegistration ||
       !liaTrack ||
       !scene ||
       !stage ||
@@ -52,7 +56,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
       !progressTrack ||
       !title
     ) {
-      throw new Error("Faltan elementos de carga inicial V12.");
+      throw new Error("Faltan elementos de carga inicial V13.");
     }
 
     const sceneStyles = getComputedStyle(scene);
@@ -71,9 +75,19 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
         .getPropertyValue("--loading-progress-marker-size")
         .trim(),
       liaAnimationName: getComputedStyle(liaTrack).animationName,
+      liaRegistrationAnimationName:
+        getComputedStyle(liaRegistration).animationName,
       titleFontFamily: getComputedStyle(title).fontFamily,
       stageDuration: stage.getAttribute("data-duration-ms"),
       layoutVersion: stage.getAttribute("data-loading-layout-version"),
+      motionTimelineVersion: stage.getAttribute("data-motion-timeline-version"),
+      frameRegistration: liaRegistration.getAttribute(
+        "data-lia-frame-registration",
+      ),
+      frameRegistrationAnchor: liaRegistration.getAttribute(
+        "data-lia-frame-registration-anchor",
+      ),
+      frameCount: liaRegistration.getAttribute("data-lia-frame-count"),
       entryState: liaTrack.getAttribute("data-entry-state"),
       visualScale: sceneStyles
         .getPropertyValue("--loading-visual-scale")
@@ -110,13 +124,20 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   expect(durations.progressDuration).toBe("12s");
   expect(durations.progressMarkerDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v12");
+  expect(durations.layoutVersion).toBe("v13");
+  expect(durations.motionTimelineVersion).toBe("v13");
+  expect(durations.frameRegistration).toBe("v13");
+  expect(durations.frameRegistrationAnchor).toBe("visor-collar");
+  expect(durations.frameCount).toBe("16");
   expect(durations.visualScale).toBe("0.9");
   expect(durations.progressTrackHeight).toBe("2px");
   expect(durations.progressCapSize).toBe("9px");
   expect(durations.progressMarkerSize).toBe("9px");
   expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
+  expect(durations.liaRegistrationAnimationName).toContain(
+    "loading-lia-frame-registration-v13",
+  );
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
   expect(durations.plantX).toBe("30%");
   expect(durations.plantBottom).toBe("-12px");

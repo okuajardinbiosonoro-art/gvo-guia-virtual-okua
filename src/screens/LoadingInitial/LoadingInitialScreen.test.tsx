@@ -8,11 +8,17 @@ import {
   loadingInitialSparkleSlots,
   loadingInitialWaterStreams,
 } from "./loadingInitialScene";
+import { loadingInitialMotionTimeline } from "./loadingInitialMotionTimeline";
 import {
   REDUCED_MOTION_DURATION_MS,
   TOTAL_DURATION_MS,
   loadingInitialTimeline,
 } from "./loadingInitialTimeline";
+import {
+  LIA_FRAME_REGISTRATION,
+  LIA_FRAME_REGISTRATION_ANCHOR,
+  LIA_FRAME_REGISTRATION_VERSION,
+} from "./liaFrameRegistration";
 
 describe("LoadingInitialScreen", () => {
   afterEach(() => {
@@ -66,7 +72,7 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V12 de animacion normal y reduced motion", () => {
+  it("expone duraciones V13 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
@@ -77,7 +83,8 @@ describe("LoadingInitialScreen", () => {
     expect(REDUCED_MOTION_DURATION_MS).toBeGreaterThanOrEqual(1000);
     expect(REDUCED_MOTION_DURATION_MS).toBeLessThanOrEqual(1500);
     expect(loadingInitialTimeline.durationMs).toBe(12000);
-    expect(stage).toHaveAttribute("data-loading-layout-version", "v12");
+    expect(stage).toHaveAttribute("data-loading-layout-version", "v13");
+    expect(stage).toHaveAttribute("data-motion-timeline-version", "v13");
     expect(stage).toHaveAttribute("data-duration-ms", "12000");
     expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1300");
   });
@@ -92,6 +99,24 @@ describe("LoadingInitialScreen", () => {
     expect(
       container.querySelector(".loading-initial__lia-pose"),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector(".loading-initial__lia-registration"),
+    ).toHaveAttribute(
+      "data-lia-frame-registration",
+      LIA_FRAME_REGISTRATION_VERSION,
+    );
+    expect(
+      container.querySelector(".loading-initial__lia-registration"),
+    ).toHaveAttribute(
+      "data-lia-frame-registration-anchor",
+      LIA_FRAME_REGISTRATION_ANCHOR,
+    );
+    expect(
+      container.querySelector(".loading-initial__lia-registration"),
+    ).toHaveAttribute(
+      "data-lia-frame-count",
+      LIA_FRAME_REGISTRATION.length.toString(),
+    );
     expect(screen.getByTestId("loading-initial-water-field")).toHaveAttribute(
       "data-water-anchor",
       "lia-nozzle",
@@ -152,6 +177,43 @@ describe("LoadingInitialScreen", () => {
     ).toBeInTheDocument();
     expect(progress).not.toHaveTextContent(/[\d%]/);
     expect(progress.textContent).toBe("");
+  });
+
+  it("expone metadata V13 de frame registration y timeline dirigido", () => {
+    expect(LIA_FRAME_REGISTRATION).toHaveLength(16);
+    expect(LIA_FRAME_REGISTRATION[0]).toMatchObject({
+      frame: 1,
+      phase: "idle",
+    });
+    expect(LIA_FRAME_REGISTRATION[15]).toMatchObject({
+      frame: 16,
+      phase: "observe",
+    });
+    for (const frame of LIA_FRAME_REGISTRATION) {
+      expect(Math.abs(frame.xPx)).toBeLessThanOrEqual(2);
+      expect(Math.abs(frame.yPx)).toBeLessThanOrEqual(1);
+      expect(frame.scale).toBeGreaterThanOrEqual(0.998);
+      expect(frame.scale).toBeLessThanOrEqual(1.002);
+      expect(Math.abs(frame.rotateDeg)).toBeLessThanOrEqual(0.28);
+    }
+    expect(loadingInitialMotionTimeline.version).toBe("v13");
+    expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
+    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1300);
+    expect(
+      loadingInitialMotionTimeline.phases.map((phase) => phase.id),
+    ).toEqual([
+      "initial_enter",
+      "lia_entry_idle",
+      "lia_settle_hold",
+      "lia_prepare_watering",
+      "lia_watering",
+      "observe_settle",
+      "final_hold",
+    ]);
+    for (const pulse of loadingInitialMotionTimeline.waterPulses) {
+      expect(pulse.waterStartMs).toBeGreaterThan(pulse.gestureStartMs);
+      expect(pulse.plantSettlesAfterMs).toBeGreaterThan(pulse.waterEndMs);
+    }
   });
 
   it("conecta aria-labelledby y aria-describedby a los textos aprobados", () => {
