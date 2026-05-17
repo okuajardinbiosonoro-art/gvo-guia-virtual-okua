@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V8 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V9 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -10,6 +10,7 @@ test("carga inicial V8 conserva rutas, textos y ausencia de portada", async ({
   ).toBeVisible();
   await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
+  await expect(page.getByRole("progressbar")).not.toContainText(/[\d%]/);
   await expect(page.locator("[data-sparkle-slot]")).toHaveCount(10);
   await expect(page.locator("[data-water-stream]")).toHaveCount(3);
 
@@ -33,7 +34,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const waterField = document.querySelector(".loading-initial__water-field");
 
     if (!progressFill || !liaTrack || !scene || !stage || !waterField) {
-      throw new Error("Faltan elementos de carga inicial V8.");
+      throw new Error("Faltan elementos de carga inicial V9.");
     }
 
     const sceneStyles = getComputedStyle(scene);
@@ -77,7 +78,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v8");
+  expect(durations.layoutVersion).toBe("v9");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
   expect(durations.plantX).toBe("30%");
