@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("carga inicial V9 conserva rutas, textos y ausencia de portada", async ({
+test("carga inicial V10 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
   await page.goto("/carga");
@@ -32,16 +32,28 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const scene = document.querySelector(".loading-initial__scene");
     const stage = document.querySelector(".loading-initial__stage");
     const waterField = document.querySelector(".loading-initial__water-field");
+    const progressTrack = document.querySelector(".loading-initial__progress");
+    const title = document.querySelector(".loading-initial h1");
 
-    if (!progressFill || !liaTrack || !scene || !stage || !waterField) {
-      throw new Error("Faltan elementos de carga inicial V9.");
+    if (
+      !progressFill ||
+      !liaTrack ||
+      !scene ||
+      !stage ||
+      !waterField ||
+      !progressTrack ||
+      !title
+    ) {
+      throw new Error("Faltan elementos de carga inicial V10.");
     }
 
     const sceneStyles = getComputedStyle(scene);
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
+      progressHeight: getComputedStyle(progressTrack).height,
       liaAnimationName: getComputedStyle(liaTrack).animationName,
+      titleFontFamily: getComputedStyle(title).fontFamily,
       stageDuration: stage.getAttribute("data-duration-ms"),
       layoutVersion: stage.getAttribute("data-loading-layout-version"),
       entryState: liaTrack.getAttribute("data-entry-state"),
@@ -78,7 +90,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
   expect(durations.progressDuration).toBe("12s");
   expect(durations.stageDuration).toBe("12000");
-  expect(durations.layoutVersion).toBe("v9");
+  expect(durations.layoutVersion).toBe("v10");
+  expect(Number.parseFloat(durations.progressHeight)).toBeLessThanOrEqual(5);
+  expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.entryState).toBe("lateral-offscreen-to-plant");
   expect(durations.plantX).toBe("30%");

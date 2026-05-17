@@ -66,7 +66,7 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V9 de animacion normal y reduced motion", () => {
+  it("expone duraciones V10 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
@@ -77,7 +77,7 @@ describe("LoadingInitialScreen", () => {
     expect(REDUCED_MOTION_DURATION_MS).toBeGreaterThanOrEqual(1000);
     expect(REDUCED_MOTION_DURATION_MS).toBeLessThanOrEqual(1500);
     expect(loadingInitialTimeline.durationMs).toBe(12000);
-    expect(stage).toHaveAttribute("data-loading-layout-version", "v9");
+    expect(stage).toHaveAttribute("data-loading-layout-version", "v10");
     expect(stage).toHaveAttribute("data-duration-ms", "12000");
     expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1300");
   });
@@ -89,6 +89,9 @@ describe("LoadingInitialScreen", () => {
       "data-entry-state",
       "lateral-offscreen-to-plant",
     );
+    expect(
+      container.querySelector(".loading-initial__lia-pose"),
+    ).toBeInTheDocument();
     expect(screen.getByTestId("loading-initial-water-field")).toHaveAttribute(
       "data-water-anchor",
       "lia-nozzle",
@@ -124,6 +127,10 @@ describe("LoadingInitialScreen", () => {
         rejectedCopyParts.every((part) => content.includes(part)),
       ),
     ).not.toBeInTheDocument();
+    expect(screen.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuetext",
+      loadingInitialCopy.title,
+    );
     expect(screen.getByRole("progressbar").textContent).toBe("");
     expect(container.querySelector("button")).not.toBeInTheDocument();
     expect(container.querySelector("audio")).not.toBeInTheDocument();

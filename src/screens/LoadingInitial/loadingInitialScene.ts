@@ -17,22 +17,22 @@ export const loadingInitialWaterStreams = [
   {
     id: "waterStreamB",
     className: "loading-initial__water-stream--b",
-    delayMs: 180,
+    delayMs: 120,
     offsetX: "-5px",
     offsetY: "3px",
     rotateDeg: -2.2,
     scale: 0.98,
-    cycleDurationMs: 1360,
+    cycleDurationMs: 1340,
   },
   {
     id: "waterStreamC",
     className: "loading-initial__water-stream--c",
-    delayMs: 340,
+    delayMs: 220,
     offsetX: "6px",
     offsetY: "5px",
     rotateDeg: 1.8,
-    scale: 0.96,
-    cycleDurationMs: 1400,
+    scale: 1.02,
+    cycleDurationMs: 1420,
   },
 ] satisfies LoadingInitialWaterStream[];
 

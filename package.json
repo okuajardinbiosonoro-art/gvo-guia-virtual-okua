@@ -36,6 +36,7 @@
     "vitest": "^4.1.6"
   },
   "dependencies": {
+    "@fontsource-variable/pixelify-sans": "^5.2.7",
     "@zxing/browser": "^0.1.5",
     "motion": "^12.38.0",
     "react": "^19.2.6",

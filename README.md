@@ -64,7 +64,7 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio con carga inicial animada V9 con polish de motion/UI. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
+Repositorio con carga inicial animada V10 con tipografía pixelart local y dirección de motion/UI. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda pendiente de revisión visual del usuario. No está cerrada como pantalla final aprobada.
 
 ## Metodología de avance por pantalla
 
@@ -72,7 +72,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede tener una base 
 
 Estado actual:
 
-- Carga inicial: ANIMACION_V9_POLISH_UI_MOTION / EN_REVISION_VISUAL
+- Carga inicial: ANIMACION_V10_PIXEL_UI_MOTION_DIRECTOR / EN_REVISION_VISUAL
 - Portada: NO_INICIADA / BLOQUEADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA

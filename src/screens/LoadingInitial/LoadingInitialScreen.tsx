@@ -27,7 +27,7 @@ export function LoadingInitialScreen() {
     >
       <section
         className="loading-initial__stage"
-        data-loading-layout-version="v9"
+        data-loading-layout-version="v10"
         data-duration-ms={loadingInitialTimeline.durationMs}
         data-reduced-motion-duration-ms={
           loadingInitialTimeline.reducedMotionDurationMs
@@ -63,34 +63,36 @@ export function LoadingInitialScreen() {
             data-entry-state="lateral-offscreen-to-plant"
           >
             <span className="loading-initial__lia-bob">
-              <span
-                className="loading-initial__lia"
-                data-runtime-asset={loadingInitialAssets.lia.src}
-              />
-              <span
-                className="loading-initial__water-field"
-                data-testid="loading-initial-water-field"
-                data-water-anchor="lia-nozzle"
-                data-water-target="plant"
-              >
-                {loadingInitialWaterStreams.map((stream) => (
-                  <span
-                    key={stream.id}
-                    className={`loading-initial__water-stream ${stream.className}`}
-                    data-water-stream={stream.id}
-                    data-runtime-asset={loadingInitialAssets.water.src}
-                    style={
-                      {
-                        "--water-stream-delay": `${stream.delayMs}ms`,
-                        "--water-offset-x": stream.offsetX,
-                        "--water-offset-y": stream.offsetY,
-                        "--water-rotate": `${stream.rotateDeg}deg`,
-                        "--water-scale": stream.scale,
-                        "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
-                      } as CSSProperties
-                    }
-                  />
-                ))}
+              <span className="loading-initial__lia-pose">
+                <span
+                  className="loading-initial__lia"
+                  data-runtime-asset={loadingInitialAssets.lia.src}
+                />
+                <span
+                  className="loading-initial__water-field"
+                  data-testid="loading-initial-water-field"
+                  data-water-anchor="lia-nozzle"
+                  data-water-target="plant"
+                >
+                  {loadingInitialWaterStreams.map((stream) => (
+                    <span
+                      key={stream.id}
+                      className={`loading-initial__water-stream ${stream.className}`}
+                      data-water-stream={stream.id}
+                      data-runtime-asset={loadingInitialAssets.water.src}
+                      style={
+                        {
+                          "--water-stream-delay": `${stream.delayMs}ms`,
+                          "--water-offset-x": stream.offsetX,
+                          "--water-offset-y": stream.offsetY,
+                          "--water-rotate": `${stream.rotateDeg}deg`,
+                          "--water-scale": stream.scale,
+                          "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
+                        } as CSSProperties
+                      }
+                    />
+                  ))}
+                </span>
               </span>
             </span>
           </span>
@@ -128,6 +130,7 @@ export function LoadingInitialScreen() {
           className="loading-initial__progress"
           role="progressbar"
           aria-labelledby="loading-initial-title"
+          aria-valuetext={loadingInitialCopy.title}
           aria-valuemin={0}
           aria-valuemax={100}
         >
