@@ -16,7 +16,8 @@
     "status": "node tools/print_project_status.mjs",
     "audit:assets": "node tools/audit_assets.mjs",
     "assets:normalize:loading": "node tools/normalize_loading_initial_assets.mjs",
-    "assets:validate:loading": "node tools/validate_loading_initial_assets.mjs"
+    "assets:validate:loading": "node tools/validate_loading_initial_assets.mjs",
+    "validate:cover-intro-assets": "node tools/validate_cover_intro_assets.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

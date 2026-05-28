@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro en preproducción desbloqueada, sin implementación visual.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con assets aprobados en staging runtime, sin implementación visual funcional.
 
 ## Implementado
 
@@ -24,10 +24,13 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Especificación fuente de Portada / Intro copiada a `docs/source_specs/002_portada_intro_archivo_vivo_v1.txt`.
 - Referencia visual de Portada / Intro copiada a `assets/reference/screens/002_portada_intro_archivo_vivo_reference.png`.
 - Asset plan, prompt pack y checklist visual de Portada / Intro.
+- Assets runtime staged de Portada / Intro en `public/assets/runtime/cover-intro/`.
+- Manifest de assets de Portada / Intro en `public/assets/runtime/cover-intro/manifest.json`.
+- Validador de assets de Portada / Intro en `tools/validate_cover_intro_assets.mjs`.
 
 ## No implementado todavía
 
-- Portada real runtime.
+- Portada real runtime funcional.
 - Estaciones reales.
 - Final real.
 - Scanner interno con cámara.
@@ -39,7 +42,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: producción/selección de assets de Portada / Intro antes de cualquier implementación runtime.
+- Próximo trabajo funcional: implementación funcional base de Portada / Intro con los assets staged.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -95,12 +98,26 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se toca la carga inicial funcional.
 - No se tocan assets runtime.
 
+## Ticket 002C: Portada / Intro asset staging y normalización
+
+- Estado: ASSETS_STAGED / NO_IMPLEMENTADA.
+- Rama técnica: feature/002C-portada-intro-asset-staging.
+- Se crea `public/assets/runtime/cover-intro/`.
+- Se copian assets aprobados desde `portada_intro_v1/02_aprobadas`.
+- Se crea manifest runtime de assets.
+- Se crea script `tools/validate_cover_intro_assets.mjs`.
+- Se agrega comando `npm run validate:cover-intro-assets`.
+- Se documenta el paquete de assets aprobado.
+- No se implementa portada funcional.
+- No se crea ruta nueva.
+- No se toca la carga inicial funcional.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido              |
 | ------------------------- | ------------------------------------------------------------ | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global |
-| Portada / Intro           | PREPRODUCCION_DESBLOQUEADA / NO_IMPLEMENTADA                 | No implementar runtime sin assets       |
+| Portada / Intro           | ASSETS_STAGED / NO_IMPLEMENTADA                              | Lista para implementación base 002D     |
 | Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                  | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                  | BLOQUEADA                               |
@@ -111,8 +128,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. La siguiente fase puede trabajar Portada / Intro solo desde preproducción y tickets aprobados. No se debe implementar portada runtime sin definición previa de assets, narrativa, referencias visuales y criterios de listo.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya cuenta con assets staged y manifest runtime. La implementación funcional debe ocurrir únicamente en ticket 002D o posterior.
 
 ## Próximo ticket recomendado
 
-Producir y seleccionar assets de Portada / Intro en la estructura `portada_intro_v1` antes de abrir un ticket funcional de implementación.
+Abrir `TICKET_002D_PORTADA_INTRO_IMPLEMENTACION_BASE.md` para montar la Portada / Intro con los assets staged, sin reabrir selección visual salvo bloqueo documentado.

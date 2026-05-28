@@ -234,3 +234,48 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 4. `002E`: diálogos de Lía y gating de Portal I.
 5. `002F`: polish visual/motion/reduced motion.
 6. `002G`: validación mobile y handoff a transición/Mundo I si alcanza umbral.
+
+## Asset staging V1
+
+Estado:
+
+`ASSETS_STAGED / NO_IMPLEMENTADA`
+
+Ruta runtime:
+
+`public/assets/runtime/cover-intro/`
+
+Manifest:
+
+`public/assets/runtime/cover-intro/manifest.json`
+
+Validador:
+
+`tools/validate_cover_intro_assets.mjs`
+
+Comando:
+
+```powershell
+npm run validate:cover-intro-assets
+```
+
+Decisiones de staging:
+
+- Fondo base staged como `background/cover_bg_archivo_vivo_base_v1.png`.
+- Lía staged con cinco poses completas.
+- Referencia maestra de Lía staged como referencia runtime.
+- Rig idle V1 de Lía staged para futura animación por capas.
+- `lia_rig_shadow_soft_v1.png` queda copiado pero opcional.
+- Portal I staged con frame enabled y glow enabled.
+- Portales II-V usarán `portals/shared/frame/portal_locked_frame_base_v1.png`.
+- Candado staged como `locks/lock_soft_gold_v1.png`.
+- Interiores de portales quedan diferidos en manifest.
+- Textos, números, botón y diálogos siguen definidos como HTML/CSS.
+
+Restricciones:
+
+- No se modificaron visualmente PNGs.
+- No se recortó, reencuadró, escaló ni recomprimió.
+- No se implementó componente React.
+- No se creó ruta funcional de portada.
+- No se modificó carga inicial.
