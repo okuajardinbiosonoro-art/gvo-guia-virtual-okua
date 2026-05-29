@@ -21,7 +21,7 @@ describe("CoverIntroScreen", () => {
   });
 
   it("renderiza textos DOM principales y botón de inicio", () => {
-    render(<CoverIntroScreen />);
+    const { container } = render(<CoverIntroScreen />);
 
     expect(screen.getByText(coverIntroText.logo)).toBeInTheDocument();
     expect(screen.getByText(coverIntroText.subtitle)).toBeInTheDocument();
@@ -32,6 +32,9 @@ describe("CoverIntroScreen", () => {
       screen.getByRole("button", { name: coverIntroText.cta }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(
+      container.querySelector("[data-cover-intro-version='002F']"),
+    ).toBeInTheDocument();
   });
 
   it("renderiza cinco portales con Portal I disponible y II-V bloqueados", () => {
@@ -80,7 +83,7 @@ describe("CoverIntroScreen", () => {
   });
 
   it("inicia diálogos desde Comenzar recorrido y muestra un diálogo a la vez", () => {
-    render(<CoverIntroScreen />);
+    const { container } = render(<CoverIntroScreen />);
 
     fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
 
@@ -92,6 +95,9 @@ describe("CoverIntroScreen", () => {
     );
     expect(
       screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-state='greeting']"),
     ).toBeInTheDocument();
   });
 
@@ -181,9 +187,24 @@ describe("CoverIntroScreen", () => {
       fireEvent.click(screen.getByRole("button", { name: portal?.ariaLabel }));
 
       expect(screen.getByText(message)).toBeInTheDocument();
+      expect(
+        container.querySelector(`[data-portal-id="${portalId}"]`),
+      ).toHaveClass("cover-intro__portal--blocked-feedback");
       expect(container.querySelector("a")).not.toBeInTheDocument();
     },
   );
+
+  it("mantiene labels accesibles en controles principales", () => {
+    render(<CoverIntroScreen />);
+
+    expect(
+      screen.getByRole("button", { name: coverIntroText.cta }),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
+    expect(
+      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+    ).toBeInTheDocument();
+  });
 
   it("renderiza números romanos como contenido DOM", () => {
     render(<CoverIntroScreen />);

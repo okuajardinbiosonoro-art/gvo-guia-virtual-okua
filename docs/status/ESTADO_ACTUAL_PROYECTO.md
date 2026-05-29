@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con diálogos base y gating de Portal I implementados en `/portada`, sin transición real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con motion polish base, diálogos y gating de Portal I implementados en `/portada`, sin transición real.
 
 ## Implementado
 
@@ -29,6 +29,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Validador de assets de Portada / Intro en `tools/validate_cover_intro_assets.mjs`.
 - Base visual de Portada / Intro en `/portada`.
 - Diálogos introductorios de Lía y gating narrativo base de Portal I en `/portada`.
+- Motion polish base de Portada / Intro con reduced motion robusto.
 
 ## No implementado todavía
 
@@ -44,7 +45,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: motion polish, reduced motion robusto y preparación visual de transición sin abrir Mundo I.
+- Próximo trabajo funcional: placeholder/handoff de transición controlada hacia Mundo I, sin implementar Estación I completa.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -143,12 +144,27 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se modifican assets staged.
 - No se toca `/` ni `/carga`.
 
+## Ticket 002F: Portada / Intro motion polish y reduced motion
+
+- Estado: MOTION_POLISH_BASE / DIALOGOS_BASE_IMPLEMENTADOS / SIN_TRANSICION_REAL / NO_CERRADA.
+- Rama funcional: feature/002F-portada-intro-motion-polish.
+- Se separa flotación de Lía y transición de pose mediante wrapper CSS.
+- Se suaviza el cambio entre poses completas con fade/settle breve.
+- Portal I mantiene pulso bajo en idle, mayor claridad en `portal_1_ready` y glow controlado en `portal_1_opening_placeholder`.
+- Portales II-V conservan bloqueo y agregan feedback visual sutil de candado/portal al toque.
+- Tarjeta de diálogo y mensajes de estado usan entrada suave por opacidad y desplazamiento mínimo.
+- Botón principal y controles de diálogo agregan transiciones de pressed/focus sin rebote.
+- Reduced motion desactiva animaciones continuas y conserva diálogos/gating por estado.
+- No se implementa transición real a Mundo I.
+- No se modifican assets staged.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA | Lista para 002F                         |
+| Portada / Intro           | MOTION_POLISH_BASE / DIALOGOS_BASE_IMPLEMENTADOS / SIN_TRANSICION_REAL / NO_CERRADA | Lista para 002G                         |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -159,8 +175,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios y gating narrativo de Portal I en `/portada`, pero la transición real a Mundo I queda pendiente.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo de Portal I y motion polish base en `/portada`, pero la transición real a Mundo I queda pendiente.
 
 ## Próximo ticket recomendado
 
-Abrir `TICKET_002F_PORTADA_INTRO_MOTION_POLISH_Y_REDUCED_MOTION.md` para refinar motion de Lía, pulso de Portal I, aparición de diálogos y reduced motion sin implementar todavía la transición real.
+Abrir `TICKET_002G_PORTADA_INTRO_TRANSICION_PLACEHOLDER_Y_HANDOFF_MUNDO_I.md` para conectar el estado opening placeholder con una transición controlada/handoff, sin implementar todavía Estación I completa salvo placeholder autorizado.

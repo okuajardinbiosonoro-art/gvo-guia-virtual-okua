@@ -362,3 +362,41 @@ Notas para 002F:
 - Robustecer reduced motion.
 - Mantener `/` y `/carga` intactas.
 - No implementar todavía la transición real.
+
+## Motion polish 002F
+
+Estado:
+
+`MOTION_POLISH_BASE / DIALOGOS_BASE_IMPLEMENTADOS / SIN_TRANSICION_REAL / NO_CERRADA`
+
+Ruta activa:
+
+`/portada`
+
+Mejoras aplicadas:
+
+- Lía conserva poses completas staged, pero su flotación queda separada del cambio de pose.
+- La flotación de Lía usa desplazamiento vertical leve y rotación mínima.
+- Cada cambio de pose usa un fade/settle breve para reducir salto visual.
+- Portal I tiene pulso bajo en estado inicial.
+- Portal I en `portal_1_ready` gana presencia sin parecer abierto.
+- Portal I en `portal_1_opening_placeholder` muestra glow controlado y texto `Abriendo Mundo I: Raíz...`.
+- Portales II-V conservan bloqueo y agregan feedback visual sutil cuando se tocan.
+- La tarjeta de diálogo aparece con opacidad y desplazamiento mínimo, sin typing effect ni scroll.
+- Botón principal y botón de diálogo tienen feedback pressed/focus claro.
+- Reduced motion corta animaciones continuas y mantiene la narrativa funcional.
+
+No implementado:
+
+- Transición real hacia Mundo I.
+- Navegación a Estación I.
+- Interiores de portales.
+- Desbloqueo de Portales II-V.
+- Nuevos assets.
+- Edición de assets staged.
+
+Notas para 002G:
+
+- Conectar `portal_1_opening_placeholder` con una transición controlada o handoff hacia Mundo I.
+- Mantener Estación I completa fuera de alcance salvo ticket autorizado.
+- Conservar las reglas de reduced motion y no introducir audio, video runtime ni recursos externos.

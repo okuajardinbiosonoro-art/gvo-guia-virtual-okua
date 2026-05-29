@@ -116,6 +116,7 @@ export function CoverIntroScreen() {
           ...current,
           phase: "portal_1_ready",
           blockedPortalMessage: null,
+          blockedPortalId: null,
         };
       }
 
@@ -123,6 +124,7 @@ export function CoverIntroScreen() {
         phase: "intro_dialogue_started",
         activeDialogueIndex: 0,
         blockedPortalMessage: null,
+        blockedPortalId: null,
         introCompleted: false,
       };
     });
@@ -144,6 +146,7 @@ export function CoverIntroScreen() {
           phase: "portal_1_ready",
           activeDialogueIndex: coverIntroDialogues.length - 1,
           blockedPortalMessage: null,
+          blockedPortalId: null,
           introCompleted: true,
         };
       }
@@ -153,6 +156,7 @@ export function CoverIntroScreen() {
         phase: "intro_dialogue_active",
         activeDialogueIndex: current.activeDialogueIndex + 1,
         blockedPortalMessage: null,
+        blockedPortalId: null,
       };
     });
   }
@@ -167,6 +171,7 @@ export function CoverIntroScreen() {
         ...current,
         phase: "portal_1_opening_placeholder",
         blockedPortalMessage: null,
+        blockedPortalId: null,
       };
     });
   }
@@ -199,12 +204,14 @@ export function CoverIntroScreen() {
     setCoverState((current) => ({
       ...current,
       blockedPortalMessage: lockedPortalMessages[portalId],
+      blockedPortalId: portalId,
     }));
 
     blockedMessageTimeoutRef.current = window.setTimeout(() => {
       setCoverState((current) => ({
         ...current,
         blockedPortalMessage: null,
+        blockedPortalId: null,
       }));
       blockedMessageTimeoutRef.current = null;
     }, 1800);
@@ -232,20 +239,26 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
     >
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002E">
+      <div className="cover-intro__stage" data-cover-intro-version="002F">
         <header className="cover-intro__header">
           <p className="cover-intro__brand">{coverIntroText.logo}</p>
           <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
         </header>
 
         <section className="cover-intro__scene" aria-label="Archivo Vivo OKÚA">
-          <img
-            className="cover-intro__lia"
-            src={activeLiaPose}
-            alt="Lía, guía visual de OKÚA."
-            data-runtime-asset={activeLiaPose}
-            data-lia-pose={activeDialogue?.liaPose ?? coverState.phase}
-          />
+          <div
+            className="cover-intro__lia-wrap"
+            data-lia-state={activeDialogue?.liaPose ?? coverState.phase}
+          >
+            <img
+              key={activeLiaPose}
+              className="cover-intro__lia"
+              src={activeLiaPose}
+              alt="Lía, guía visual de OKÚA."
+              data-runtime-asset={activeLiaPose}
+              data-lia-pose={activeDialogue?.liaPose ?? coverState.phase}
+            />
+          </div>
 
           {activeDialogue ? (
             <div
@@ -295,6 +308,9 @@ export function CoverIntroScreen() {
                 portal.id === "portal-1" &&
                 coverState.phase === "portal_1_opening_placeholder"
                   ? "cover-intro__portal--opening"
+                  : "",
+                portal.id === coverState.blockedPortalId
+                  ? "cover-intro__portal--blocked-feedback"
                   : "",
               ]
                 .filter(Boolean)

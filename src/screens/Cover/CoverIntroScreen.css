@@ -78,29 +78,42 @@
   min-height: 0;
 }
 
-.cover-intro__lia {
+.cover-intro__lia-wrap {
   position: absolute;
   z-index: 3;
   top: clamp(0px, 2svh, 16px);
   right: clamp(-38px, -6vw, -18px);
   width: clamp(168px, 54vw, 260px);
+  pointer-events: none;
+  transform-origin: 54% 48%;
+  animation: cover-lia-float 4.8s ease-in-out infinite;
+}
+
+.cover-intro__lia {
+  display: block;
+  width: 100%;
   height: auto;
   pointer-events: none;
   filter: drop-shadow(0 14px 20px rgb(38 21 45 / 32%));
-  animation: cover-lia-float 5.6s ease-in-out infinite;
+  animation: cover-lia-pose-settle 240ms ease-out both;
   transition:
-    opacity 180ms ease-out,
-    filter 180ms ease-out,
-    transform 180ms ease-out;
+    opacity 220ms ease-out,
+    filter 220ms ease-out,
+    transform 220ms ease-out;
 }
 
 .cover-intro--intro_dialogue_started .cover-intro__lia,
-.cover-intro--intro_dialogue_active .cover-intro__lia,
+.cover-intro--intro_dialogue_active .cover-intro__lia {
+  filter:
+    drop-shadow(0 13px 18px rgb(38 21 45 / 30%))
+    drop-shadow(0 0 10px rgb(242 212 138 / 18%));
+}
+
 .cover-intro--portal_1_ready .cover-intro__lia,
 .cover-intro--portal_1_opening_placeholder .cover-intro__lia {
   filter:
-    drop-shadow(0 14px 20px rgb(38 21 45 / 30%))
-    drop-shadow(0 0 14px rgb(242 212 138 / 20%));
+    drop-shadow(0 13px 19px rgb(38 21 45 / 28%))
+    drop-shadow(0 0 16px rgb(242 212 138 / 24%));
 }
 
 .cover-intro__dialogue {
@@ -121,6 +134,7 @@
     0 3px 0 rgb(33 20 40 / 62%),
     0 12px 18px rgb(25 15 32 / 24%);
   text-align: left;
+  animation: cover-dialogue-enter 220ms ease-out both;
 }
 
 .cover-intro__dialogue::after {
@@ -162,6 +176,10 @@
   font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    filter 160ms ease-out;
 }
 
 .cover-intro__portals {
@@ -187,12 +205,17 @@
   cursor: default;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
+  transform-origin: 50% 80%;
+  transition:
+    filter 180ms ease-out,
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
 }
 
 .cover-intro__portal--available {
   cursor: pointer;
   transform: translateY(-5px);
-  animation: cover-portal-ready 3.8s ease-in-out infinite;
+  animation: cover-portal-idle 4.6s ease-in-out infinite;
 }
 
 .cover-intro__portal--locked {
@@ -201,15 +224,27 @@
 
 .cover-intro__portal--ready {
   transform: translateY(-8px);
+  animation: cover-portal-ready 3.5s ease-in-out infinite;
 }
 
 .cover-intro__portal--ready .cover-intro__portal-glow {
-  opacity: 1;
+  opacity: 0.72;
 }
 
 .cover-intro__portal--opening .cover-intro__portal-glow {
-  animation: cover-portal-opening 1.2s ease-in-out infinite;
-  opacity: 1;
+  opacity: 0.95;
+}
+
+.cover-intro__portal--opening {
+  animation: cover-portal-opening 1.45s ease-in-out infinite;
+}
+
+.cover-intro__portal--blocked-feedback {
+  animation: cover-portal-soft-deny 240ms ease-out 1;
+}
+
+.cover-intro__portal--blocked-feedback .cover-intro__portal-lock {
+  animation: cover-lock-soft-pulse 240ms ease-out 1;
 }
 
 .cover-intro__portal-frame,
@@ -223,8 +258,11 @@
 }
 
 .cover-intro__portal-glow {
-  opacity: 0.9;
+  opacity: 0.34;
   mix-blend-mode: screen;
+  transition:
+    opacity 220ms ease-out,
+    filter 220ms ease-out;
 }
 
 .cover-intro__portal--locked .cover-intro__portal-frame {
@@ -260,6 +298,7 @@
   height: auto;
   transform: translateX(-50%);
   filter: drop-shadow(0 4px 5px rgb(45 28 49 / 26%));
+  transform-origin: 50% 70%;
 }
 
 .cover-intro__portal-title {
@@ -292,6 +331,7 @@
   font-size: clamp(0.76rem, 3.4vw, 0.95rem);
   line-height: 1.04;
   text-shadow: 0 1px 0 rgb(31 21 38 / 58%);
+  animation: cover-status-enter 190ms ease-out both;
 }
 
 .cover-intro__opening {
@@ -331,6 +371,10 @@
   font-weight: 700;
   letter-spacing: 0;
   cursor: pointer;
+  transition:
+    transform 160ms ease-out,
+    filter 180ms ease-out,
+    box-shadow 180ms ease-out;
 }
 
 .cover-intro__portal--available:focus-visible,
@@ -339,46 +383,124 @@
 .cover-intro__dialogue-button:focus-visible {
   outline: 3px solid var(--cover-cream-soft);
   outline-offset: 3px;
+  filter: drop-shadow(0 0 8px rgb(242 212 138 / 45%));
 }
 
 .cover-intro__portal--available:active,
 .cover-intro__cta:active,
 .cover-intro__dialogue-button:active {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.98);
 }
 
 @keyframes cover-lia-float {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(-0.4deg);
+    transform: translate3d(0, 0, 0) rotate(-0.35deg);
   }
 
   50% {
-    transform: translate3d(0, -6px, 0) rotate(0.5deg);
+    transform: translate3d(0, -4px, 0) rotate(0.45deg);
+  }
+}
+
+@keyframes cover-lia-pose-settle {
+  0% {
+    opacity: 0.58;
+    transform: translate3d(0, 3px, 0) scale(0.992);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes cover-dialogue-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cover-status-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cover-portal-idle {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgb(242 212 138 / 22%));
+    transform: translateY(-5px);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 8px rgb(242 212 138 / 34%));
+    transform: translateY(-6px);
   }
 }
 
 @keyframes cover-portal-ready {
   0%,
   100% {
-    filter: drop-shadow(0 0 5px rgb(242 212 138 / 32%));
+    filter: drop-shadow(0 0 8px rgb(242 212 138 / 34%));
+    transform: translateY(-8px);
   }
 
   50% {
-    filter: drop-shadow(0 0 13px rgb(242 212 138 / 55%));
+    filter: drop-shadow(0 0 14px rgb(242 212 138 / 52%));
+    transform: translateY(-9px);
   }
 }
 
 @keyframes cover-portal-opening {
   0%,
   100% {
-    transform: scale(1);
-    filter: saturate(1);
+    filter: drop-shadow(0 0 10px rgb(242 212 138 / 44%)) saturate(1);
+    transform: translateY(-8px) scale(1);
   }
 
   50% {
-    transform: scale(1.04);
-    filter: saturate(1.12);
+    filter: drop-shadow(0 0 18px rgb(242 212 138 / 62%)) saturate(1.08);
+    transform: translateY(-10px) scale(1.025);
+  }
+}
+
+@keyframes cover-portal-soft-deny {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  35% {
+    transform: translateX(-2px);
+  }
+
+  70% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes cover-lock-soft-pulse {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.08);
   }
 }
 
@@ -388,7 +510,7 @@
     padding-bottom: 16px;
   }
 
-  .cover-intro__lia {
+  .cover-intro__lia-wrap {
     top: 4px;
     right: -42px;
     width: 170px;
@@ -420,7 +542,7 @@
     font-size: clamp(2rem, 12vw, 3.2rem);
   }
 
-  .cover-intro__lia {
+  .cover-intro__lia-wrap {
     width: clamp(140px, 48vw, 210px);
   }
 

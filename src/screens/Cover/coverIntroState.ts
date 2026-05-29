@@ -10,6 +10,7 @@ export type CoverIntroState = {
   phase: CoverIntroPhase;
   activeDialogueIndex: number;
   blockedPortalMessage: string | null;
+  blockedPortalId: string | null;
   introCompleted: boolean;
 };
 
@@ -19,6 +20,7 @@ export const COVER_INTRO_INITIAL_STATE: CoverIntroState = {
   phase: "portada_idle",
   activeDialogueIndex: 0,
   blockedPortalMessage: null,
+  blockedPortalId: null,
   introCompleted: false,
 };
 
