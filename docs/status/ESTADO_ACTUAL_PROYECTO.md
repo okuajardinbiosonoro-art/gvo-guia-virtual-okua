@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con transición placeholder y handoff a Mundo I preparados, sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con QA visual 002H generado y decisión de aprobación pendiente del usuario, sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -31,6 +31,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Diálogos introductorios de Lía y gating narrativo base de Portal I en `/portada`.
 - Motion polish base de Portada / Intro con reduced motion robusto.
 - Transición placeholder de Portada / Intro hacia Mundo I en `/portada`.
+- QA visual documental 002H de Portada / Intro con ocho capturas 390x844.
 
 ## No implementado todavía
 
@@ -46,7 +47,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: QA visual de Portada / Intro antes de avanzar a transición real o Mundo I.
+- Próximo trabajo recomendado: revisión visual del usuario sobre QA 002H para decidir `APROBADA_PARA_AVANZAR` o microticket de ajustes.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -175,12 +176,26 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se modifican assets staged.
 - No se toca `/` ni `/carga`.
 
+## Ticket 002H: Portada / Intro QA visual y aprobación para avanzar
+
+- Estado: QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA.
+- Rama técnica: feature/002H-portada-intro-qa-visual.
+- Se crea `tests/e2e/cover-intro-qa.spec.ts` para recorrer estados clave de `/portada`.
+- Se generan ocho capturas documentales en `docs/visual/cover-intro/qa/002H/`.
+- Se documenta matriz QA visual con criterios OK/OBSERVACIÓN/AJUSTE_REQUERIDO/NO_APLICA.
+- Se valida idle, diálogos, aclaración de mediación, Portal I listo, opening placeholder, transition placeholder, portal bloqueado y reduced motion.
+- La decisión visual queda pendiente del usuario Ing. José David.
+- No se implementa Estación I real.
+- No se implementa transición pixelart final.
+- No se modifican PNG staged.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA | Lista para QA visual 002H               |
+| Portada / Intro           | QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA               | Espera decisión visual del usuario      |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -191,8 +206,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish y transición placeholder hacia Mundo I en `/portada`, pero la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I y QA visual 002H en `/portada`, pero la aprobación visual del usuario, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Abrir `TICKET_002H_PORTADA_INTRO_QA_VISUAL_Y_APROBACION_PARA_AVANZAR.md` para revisión visual mobile, textos, diálogos, motion/reduced motion y decisión de avanzar o ajustar.
+Revisar las capturas de `docs/visual/cover-intro/qa/002H/` y decidir si Portada / Intro queda `APROBADA_PARA_AVANZAR` o si requiere un microticket de ajustes visuales.

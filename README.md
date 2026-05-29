@@ -66,7 +66,7 @@ npm run test:e2e
 
 Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
 
-La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, motion polish base y un overlay placeholder de transición hacia Mundo I; la transición pixelart final y Estación I real quedan pendientes.
+La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, motion polish base y un overlay placeholder de transición hacia Mundo I; la transición pixelart final y Estación I real quedan pendientes. El ticket 002H agrega capturas QA 390x844 para que el usuario decida si queda `APROBADA_PARA_AVANZAR` o requiere microajustes.
 
 ## Metodología de avance por pantalla
 
@@ -80,7 +80,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede avanzar bajo do
 Estado actual:
 
 - Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
-- Portada: TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA
+- Portada: QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA
 - Final: NO_INICIADA / BLOQUEADO

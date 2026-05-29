@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `PREPRODUCCION_DESBLOQUEADA / NO_IMPLEMENTADA`
+Estado: `QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -233,7 +233,8 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 3. `002D`: implementación funcional base de Portada / Intro.
 4. `002E`: diálogos de Lía y gating de Portal I.
 5. `002F`: polish visual/motion/reduced motion.
-6. `002G`: validación mobile y handoff a transición/Mundo I si alcanza umbral.
+6. `002G`: transición placeholder y handoff a Mundo I.
+7. `002H`: QA visual mobile y decisión de aprobación para avanzar.
 
 ## Asset staging V1
 
@@ -439,3 +440,45 @@ Notas para 002H:
 - Revisar copy, diálogos, motion, reduced motion y overlay de transición placeholder.
 - Decidir si Portada / Intro queda `APROBADA_PARA_AVANZAR` o requiere nuevos ajustes.
 - No iniciar Estación I real antes de esa aprobación explícita.
+
+## QA visual 002H
+
+Estado:
+
+`QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA`
+
+Ruta activa:
+
+`/portada`
+
+Evidencia generada:
+
+- Capturas 390x844 en `docs/visual/cover-intro/qa/002H/`.
+- Matriz QA visual en `docs/visual/cover-intro/qa/002H/QA_VISUAL_PORTADA_INTRO_002H.md`.
+- Handoff en `docs/status/HANDOFF_002H_PORTADA_INTRO_QA_VISUAL.md`.
+
+Estados revisados:
+
+- `portada_idle`.
+- Primer diálogo de Lía.
+- Diálogo de aclaración de mediación.
+- `portal_1_ready`.
+- `portal_1_opening_placeholder`.
+- `transition_to_station_1_placeholder`.
+- Feedback de portal bloqueado.
+- Reduced motion con diálogo activo.
+
+Pendiente de decisión:
+
+- El usuario Ing. José David debe decidir si la pantalla queda `APROBADA_PARA_AVANZAR`.
+- Si no alcanza el umbral visual, abrir microticket de ajustes.
+- No marcar `CERRADA_APROBADA_FINAL` en esta fase.
+
+No implementado en 002H:
+
+- Interiores de portales.
+- Transición pixelart final.
+- Estación I real.
+- Desbloqueo de Portales II-V.
+- Nuevos assets runtime.
+- Cambios en `/` o `/carga`.
