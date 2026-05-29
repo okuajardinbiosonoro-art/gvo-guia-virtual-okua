@@ -20,6 +20,7 @@ import {
   COVER_INTRO_INITIAL_STATE,
   persistCoverIntroCompleted,
   readCoverIntroCompleted,
+  resetCoverIntroCompleted,
 } from "./coverIntroState";
 import type { CoverIntroPhase, CoverIntroState } from "./coverIntroState";
 
@@ -32,6 +33,15 @@ const liaPoseByState = {
 } satisfies Record<CoverIntroDialoguePose | "idle" | "activatePortal1", string>;
 
 function createInitialCoverIntroState(): CoverIntroState {
+  const shouldResetIntro =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("resetIntro") === "1";
+
+  if (shouldResetIntro) {
+    resetCoverIntroCompleted();
+    return COVER_INTRO_INITIAL_STATE;
+  }
+
   const introCompleted = readCoverIntroCompleted();
 
   if (introCompleted) {
@@ -78,6 +88,19 @@ export function CoverIntroScreen() {
   );
   const blockedMessageTimeoutRef = useRef<number | null>(null);
   const transitionTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+
+    if (url.searchParams.get("resetIntro") === "1") {
+      url.searchParams.delete("resetIntro");
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${url.pathname}${url.search}${url.hash}`,
+      );
+    }
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -146,6 +169,16 @@ export function CoverIntroScreen() {
   const portalOneOpening =
     coverState.phase === "portal_1_opening_placeholder" ||
     coverState.phase === "transition_to_station_1_placeholder";
+  const portalStageClassNames = [
+    "cover-intro__portal-stage",
+    "cover-portal-stage",
+    "cover-activation-stage",
+    dialogueIsVisible ? "cover-portal-stage--dialogue-active" : "",
+    portalOneReady ? "cover-portal-stage--ready" : "",
+    portalOneOpening ? "cover-portal-stage--opening" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const ctaText = portalOneReady
     ? coverIntroText.enterWorldOne
     : coverIntroText.cta;
@@ -305,7 +338,10 @@ export function CoverIntroScreen() {
         </header>
 
         <section className="cover-intro__scene" aria-label="Archivo Vivo OKÚA">
-          <div className="cover-intro__lia-stage cover-lia-stage">
+          <div
+            className="cover-intro__lia-stage cover-lia-stage"
+            data-testid="cover-lia-stage"
+          >
             <div
               className="cover-intro__lia-wrap cover-lia-layer"
               data-lia-state={activeDialogue?.liaPose ?? coverState.phase}
@@ -323,12 +359,13 @@ export function CoverIntroScreen() {
 
           {activeDialogue ? (
             <section
-              className="cover-intro__dialogue"
+              className="cover-intro__dialogue cover-dialogue-dock cover-dialogue-panel"
               role="dialog"
               aria-live="polite"
               aria-label="Diálogo de Lía"
               data-dialogue-id={activeDialogue.id}
               data-dialogue-step={activeDialogueStep}
+              data-testid="cover-dialogue-panel"
             >
               <div className="cover-intro__dialogue-meta">
                 <span className="cover-intro__dialogue-speaker">Lía</span>
@@ -362,8 +399,9 @@ export function CoverIntroScreen() {
           ) : null}
 
           <div
-            className="cover-intro__portal-stage cover-portal-stage cover-activation-stage"
+            className={portalStageClassNames}
             aria-label="Portales del recorrido"
+            data-testid="cover-portal-stage"
           >
             <div className="cover-intro__portal-group cover-portal-group">
               {coverIntroPortals.map((portal) => {

@@ -16,6 +16,7 @@ import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
 describe("CoverIntroScreen", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    window.history.replaceState({}, "", "/");
   });
 
   afterEach(() => {
@@ -105,6 +106,21 @@ describe("CoverIntroScreen", () => {
     expect(
       container.querySelector("[data-lia-state='greeting']"),
     ).toBeInTheDocument();
+  });
+
+  it("resetIntro=1 limpia la persistencia y muestra primera pasada", () => {
+    window.localStorage.setItem(COVER_INTRO_STORAGE_KEY, "true");
+    window.history.replaceState({}, "", "/portada?resetIntro=1");
+
+    render(<CoverIntroScreen />);
+
+    expect(window.localStorage.getItem(COVER_INTRO_STORAGE_KEY)).toBeNull();
+    expect(
+      screen.getByRole("button", { name: coverIntroText.cta }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: coverIntroText.enterWorldOne }),
+    ).not.toBeInTheDocument();
   });
 
   it("inicia diálogos desde Portal I antes de dejarlo abrir", () => {

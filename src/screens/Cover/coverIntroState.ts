@@ -48,3 +48,11 @@ export function persistCoverIntroCompleted() {
     // Persistence is a convenience for the cover intro, not a navigation gate.
   }
 }
+
+export function resetCoverIntroCompleted() {
+  try {
+    getLocalStorage()?.removeItem(COVER_INTRO_STORAGE_KEY);
+  } catch {
+    // Reset is a QA convenience; ignore storage errors in private modes.
+  }
+}

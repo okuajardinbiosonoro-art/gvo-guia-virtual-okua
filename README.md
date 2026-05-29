@@ -66,7 +66,7 @@ npm run test:e2e
 
 Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
 
-La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo premium con progreso, Portal I más protagonista y un overlay placeholder de transición hacia Mundo I; la transición pixelart final y Estación I real quedan pendientes.
+La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo premium revisado con progreso, Portal I más protagonista y un overlay placeholder de transición hacia Mundo I; la transición pixelart final y Estación I real quedan pendientes. Para revisar primera pasada, usar `/portada?resetIntro=1` o `/?resetIntro=1`.
 
 ## Metodología de avance por pantalla
 
@@ -80,7 +80,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede avanzar bajo do
 Estado actual:
 
 - Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
-- Portada: AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA
+- Portada: AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA
 - Final: NO_INICIADA / BLOQUEADO

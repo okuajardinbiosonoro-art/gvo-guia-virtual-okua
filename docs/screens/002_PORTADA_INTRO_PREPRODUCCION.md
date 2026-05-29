@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA`
+Estado: `AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -236,6 +236,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 6. `002G`: transición placeholder y handoff a Mundo I.
 7. `002H`: QA visual mobile y decisión de aprobación para avanzar.
 8. `002I`: diálogo premium y recomposición visual D3/P3 parcial.
+9. `002I-FIX`: corrección de diálogo, layout y QA flow.
 
 ## Asset staging V1
 
@@ -531,3 +532,40 @@ Notas para 002J:
 - Agregar blink y microvida de Lía de forma sobria.
 - Mantener el panel premium y la recomposición de portales.
 - No implementar todavía la coreografía física completa del Portal I.
+
+## Corrección 002I-FIX — Diálogo, layout y QA flow
+
+Estado:
+
+`AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA`
+
+Implementado:
+
+- `/portada?resetIntro=1` limpia `gvo.coverIntro.introCompleted.v1`.
+- `/?resetIntro=1` permite revisar el flujo local completo: carga inicial y luego portada fresca.
+- `/carga` sigue siendo ruta aislada para QA de carga inicial.
+- El panel de diálogo se mueve a una zona media, debajo del rostro de Lía y por encima de portales.
+- El panel queda más compacto y menos invasivo.
+- Portal I mantiene protagonismo sin quedar oculto por el diálogo.
+- Portales II-V siguen visibles, bloqueados y con candados.
+- Se generan capturas en `docs/visual/cover-intro/qa/002I-FIX/`.
+
+Rutas de prueba:
+
+- Primera pasada directa: `/portada?resetIntro=1`.
+- Flujo local completo: `/?resetIntro=1`.
+- Carga aislada: `/carga`.
+
+Pendiente:
+
+- `L2`: rig facial, blink y microvida.
+- `P3 completo`: coreografía física de activación del Portal I.
+- Transición pixelart final.
+- Estación I real.
+
+No se modificó:
+
+- Assets PNG staged.
+- Textos narrativos.
+- Carga inicial visual.
+- Portales bloqueados.

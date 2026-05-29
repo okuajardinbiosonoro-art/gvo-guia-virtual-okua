@@ -130,6 +130,46 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   expect(overflow).toBe(false);
 });
 
+test("resetIntro en /portada fuerza primera pasada", async ({ page }) => {
+  await page.goto("/portada");
+  await page.evaluate(() => {
+    window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
+  });
+
+  await page.goto("/portada?resetIntro=1");
+
+  await expect(page).toHaveURL(/\/portada$/);
+  await expect(
+    page.getByRole("button", { name: "Comenzar recorrido" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Entrar a Mundo I" }),
+  ).toHaveCount(0);
+});
+
+test("resetIntro desde / reproduce carga y llega a portada fresca", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/portada");
+  await page.evaluate(() => {
+    window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
+  });
+
+  await page.goto("/?resetIntro=1");
+
+  await expect(
+    page.getByRole("heading", { name: "Preparando el recorrido" }),
+  ).toBeVisible();
+  await expect(page).toHaveURL(/\/portada$/, { timeout: 5000 });
+  await expect(
+    page.getByRole("button", { name: "Comenzar recorrido" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Entrar a Mundo I" }),
+  ).toHaveCount(0);
+});
+
 test("reduced motion conserva diálogos y gating en /portada", async ({
   page,
 }) => {
