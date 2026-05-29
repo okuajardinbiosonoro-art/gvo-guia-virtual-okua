@@ -70,7 +70,8 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   await expect(
     page.getByRole("dialog").getByText("Lía", { exact: true }),
   ).toBeVisible();
-  await expect(page.getByText("1/5")).toBeVisible();
+  await expect(page.getByText("Paso 1 de 5")).toBeVisible();
+  await expect(page.getByText("1/5")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveCount(1);
 
   await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
@@ -79,7 +80,8 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
       "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
     ),
   ).toBeVisible();
-  await expect(page.getByText("2/5")).toBeVisible();
+  await expect(page.getByText("Paso 2 de 5")).toBeVisible();
+  await expect(page.getByText("2/5")).toHaveCount(0);
   await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
   await expect(
     page.getByText(
@@ -128,6 +130,10 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
   expect(overflow).toBe(false);
+
+  await page.getByRole("link", { name: "Continuar a Mundo I" }).click();
+  await expect(page).toHaveURL(/\/estacion\/1$/);
+  await expect(page.getByText("Estación placeholder")).toBeVisible();
 });
 
 test("resetIntro en /portada fuerza primera pasada", async ({ page }) => {
@@ -182,6 +188,7 @@ test("reduced motion conserva diálogos y gating en /portada", async ({
       "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
     ),
   ).toBeVisible();
+  await expect(page.getByText("Paso 1 de 5")).toBeVisible();
 
   for (let index = 0; index < 4; index += 1) {
     await page

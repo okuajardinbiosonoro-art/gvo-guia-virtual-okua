@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA`
+Estado: `AJUSTE_002I_FIX2 / DIALOGO_LIA_INTEGRADO / ACTIVACION_PORTAL_I_REVISADA / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -237,6 +237,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 7. `002H`: QA visual mobile y decisión de aprobación para avanzar.
 8. `002I`: diálogo premium y recomposición visual D3/P3 parcial.
 9. `002I-FIX`: corrección de diálogo, layout y QA flow.
+10. `002I-FIX2`: diálogo integrado con Lía y activación visual de Portal I.
 
 ## Asset staging V1
 
@@ -569,3 +570,41 @@ No se modificó:
 - Textos narrativos.
 - Carga inicial visual.
 - Portales bloqueados.
+
+## Corrección 002I-FIX2 — Diálogo integrado con Lía y activación Portal I
+
+Estado:
+
+`AJUSTE_002I_FIX2 / DIALOGO_LIA_INTEGRADO / ACTIVACION_PORTAL_I_REVISADA / NO_CERRADA`
+
+Implementado:
+
+- El indicador compacto `1/5` se reemplaza por `Paso 1 de 5`, `Paso 2 de 5`, etc.
+- El cuerpo de diálogo usa tipografía cómoda de lectura: `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
+- El botón del diálogo, mensajes de bloqueo y textos largos del placeholder de transición comparten la misma fuente de lectura.
+- El panel de diálogo conserva la estética editorial cálida, pero agrega conector/acento visual hacia Lía para sentirse menos separado.
+- En activación/opening, Lía se renderiza dentro de una capa anclada al Portal I, no como pose genérica en el lateral.
+- La activación usa glow posterior, Lía activate, velo CSS sutil y frame frontal duplicado para simular que Lía se acerca al portal.
+- Portal I responde con glow y mantiene el placeholder `Abriendo Mundo I: Raíz...` antes del overlay `Preparando recorrido...`.
+- Se generan capturas en `docs/visual/cover-intro/qa/002I-FIX2/`.
+
+Rutas de prueba:
+
+- Primera pasada directa: `/portada?resetIntro=1`.
+- Flujo local completo: `/?resetIntro=1`.
+- Carga aislada: `/carga`.
+- Handoff placeholder: `Continuar a Mundo I` sigue apuntando a `/estacion/1`.
+
+Pendiente:
+
+- `L2`: rig facial, blink, ojos neutral/happy/attentive y microvida.
+- Coreografía física completa del Portal I si la activación visual todavía requiere otra iteración.
+- Transición pixelart final.
+- Estación I real.
+
+No se modificó:
+
+- Assets PNG staged.
+- Textos narrativos base.
+- Carga inicial visual.
+- Desbloqueo de Portales II-V.

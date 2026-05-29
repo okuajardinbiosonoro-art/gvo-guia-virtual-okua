@@ -156,7 +156,7 @@ export function CoverIntroScreen() {
     ? coverIntroDialogues[coverState.activeDialogueIndex]
     : null;
   const activeDialogueStep = activeDialogue
-    ? `${coverState.activeDialogueIndex + 1}/${coverIntroDialogues.length}`
+    ? `Paso ${coverState.activeDialogueIndex + 1} de ${coverIntroDialogues.length}`
     : null;
   const activeLiaPose = getLiaPoseSource(
     coverState.phase,
@@ -331,7 +331,7 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
     >
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002I">
+      <div className="cover-intro__stage" data-cover-intro-version="002I-FIX2">
         <header className="cover-intro__header">
           <p className="cover-intro__brand">{coverIntroText.logo}</p>
           <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
@@ -367,11 +367,15 @@ export function CoverIntroScreen() {
               data-dialogue-step={activeDialogueStep}
               data-testid="cover-dialogue-panel"
             >
+              <span
+                className="cover-intro__dialogue-connector"
+                aria-hidden="true"
+              />
               <div className="cover-intro__dialogue-meta">
                 <span className="cover-intro__dialogue-speaker">Lía</span>
                 <span
                   className="cover-intro__dialogue-step"
-                  aria-label={`Diálogo ${activeDialogueStep}`}
+                  aria-label={activeDialogueStep ?? undefined}
                 >
                   {activeDialogueStep}
                 </span>
@@ -404,6 +408,33 @@ export function CoverIntroScreen() {
             data-testid="cover-portal-stage"
           >
             <div className="cover-intro__portal-group cover-portal-group">
+              {portalOneOpening ? (
+                <div
+                  className="cover-intro__portal-activation-rig"
+                  data-testid="cover-portal-activation-rig"
+                  aria-hidden="true"
+                >
+                  <img
+                    className="cover-intro__portal-activation-glow"
+                    src={coverIntroAssets.portal1Glow}
+                    alt=""
+                    data-runtime-asset={coverIntroAssets.portal1Glow}
+                  />
+                  <img
+                    className="cover-intro__portal-activation-lia"
+                    src={coverIntroAssets.liaActivatePortal1}
+                    alt=""
+                    data-runtime-asset={coverIntroAssets.liaActivatePortal1}
+                  />
+                  <span className="cover-intro__portal-activation-veil" />
+                  <img
+                    className="cover-intro__portal-activation-frame"
+                    src={coverIntroAssets.portal1Frame}
+                    alt=""
+                    data-runtime-asset={coverIntroAssets.portal1Frame}
+                  />
+                </div>
+              ) : null}
               {coverIntroPortals.map((portal) => {
                 const available = portal.state === "available";
                 const frameSrc = available

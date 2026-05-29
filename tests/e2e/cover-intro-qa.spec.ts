@@ -32,7 +32,8 @@ test.describe("QA visual Portada / Intro", () => {
         "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
       ),
     ).toBeVisible();
-    await expect(page.getByText("1/5")).toBeVisible();
+    await expect(page.getByText("Paso 1 de 5")).toBeVisible();
+    await expect(page.getByText("1/5")).toHaveCount(0);
     await capture(page, testInfo, "cover-intro-qa-02-dialogue-01-390x844.png");
 
     await page
@@ -43,7 +44,8 @@ test.describe("QA visual Portada / Intro", () => {
         "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
       ),
     ).toBeVisible();
-    await expect(page.getByText("2/5")).toBeVisible();
+    await expect(page.getByText("Paso 2 de 5")).toBeVisible();
+    await expect(page.getByText("2/5")).toHaveCount(0);
     await capture(
       page,
       testInfo,
@@ -116,7 +118,7 @@ test.describe("QA visual Portada / Intro", () => {
         "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
       ),
     ).toBeVisible();
-    await expect(page.getByText("1/5")).toBeVisible();
+    await expect(page.getByText("Paso 1 de 5")).toBeVisible();
     await capture(
       page,
       testInfo,

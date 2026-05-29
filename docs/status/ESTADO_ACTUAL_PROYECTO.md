@@ -1,8 +1,8 @@
 # Estado actual del proyecto
 
-Fecha: 2026-05-17
+Fecha: 2026-05-29
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con corrección 002I-FIX de diálogo, layout y flujo QA, sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con corrección 002I-FIX2 de diálogo integrado con Lía y activación visual de Portal I, sin rig facial completo, transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -32,9 +32,10 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Motion polish base de Portada / Intro con reduced motion robusto.
 - Transición placeholder de Portada / Intro hacia Mundo I en `/portada`.
 - QA visual documental 002H de Portada / Intro con ocho capturas 390x844.
-- Diálogo premium base 002I con etiqueta Lía, progreso 1/5 y panel museográfico integrado.
+- Diálogo premium base 002I con etiqueta Lía, progreso inicial y panel museográfico integrado.
 - Recomposición visual 002I de portales con mayor protagonismo de Portal I.
 - Corrección 002I-FIX con `resetIntro=1`, flujo `/` a `/portada` y capturas QA nuevas.
+- Corrección 002I-FIX2 con progreso `Paso X de 5`, tipografía de lectura en diálogos, panel más asociado a Lía y activación de Lía anclada al Portal I.
 
 ## No implementado todavía
 
@@ -50,7 +51,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisar visualmente 002I-FIX antes de abrir `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md`.
+- Próximo trabajo recomendado: revisar visualmente 002I-FIX2 antes de abrir `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md`.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -232,12 +233,27 @@ Resultado posterior de revisión manual:
 - No se implementa Estación I real ni transición pixelart final.
 - No se modifican PNG staged.
 
+## Ticket 002I-FIX2: Portada / Intro diálogo integrado con Lía y activación Portal I
+
+- Estado: AJUSTE_002I_FIX2 / DIALOGO_LIA_INTEGRADO / ACTIVACION_PORTAL_I_REVISADA / NO_CERRADA.
+- Rama correctiva: feature/002I-fix2-portada-intro-dialogo-lia-portal.
+- El indicador visible cambia de `1/5` a `Paso 1 de 5`, `Paso 2 de 5`, etc.
+- El cuerpo de diálogo, botones de diálogo, mensajes de bloqueo y textos largos de transición usan tipografía de lectura `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
+- El panel de diálogo suma conector visual y acento ámbar/lavanda para sentirse asociado a Lía.
+- En `portal_1_opening_placeholder` y `transition_to_station_1_placeholder`, Lía usa una capa de activación anclada al Portal I.
+- La activación usa un sandwich visual con glow de Portal I, Lía activate, velo CSS sutil y frame frontal duplicado; no se crean assets nuevos.
+- Se generan capturas QA en `docs/visual/cover-intro/qa/002I-FIX2/`.
+- `/portada?resetIntro=1`, `/?resetIntro=1` y `/carga` se conservan.
+- No se implementa rig facial ni blink.
+- No se implementa transición pixelart final ni Estación I real.
+- No se modifican PNG staged.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | AJUSTE_002I_FIX / DIALOGO_PREMIUM_REVISADO / QA_FLOW_CORREGIDO / NO_CERRADA | Revisar antes de abrir L2 rig facial    |
+| Portada / Intro           | AJUSTE_002I_FIX2 / DIALOGO_LIA_INTEGRADO / ACTIVACION_PORTAL_I_REVISADA / NO_CERRADA | Revisar antes de abrir L2 rig facial    |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -248,8 +264,8 @@ Resultado posterior de revisión manual:
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I y corrección 002I-FIX en `/portada`, pero la aprobación visual para avanzar, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, corrección 002I-FIX en `/portada` y corrección 002I-FIX2 de diálogo/activación, pero la aprobación visual para avanzar, el rig facial completo, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002I-FIX/`. Si el fix queda aprobado visualmente, abrir `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md` para cubrir L2.
+Revisar las capturas de `docs/visual/cover-intro/qa/002I-FIX2/`. Si el fix queda aprobado visualmente, abrir `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md` para cubrir L2. Si la activación todavía no convence, abrir primero `TICKET_002I_FIX3_PORTADA_INTRO_ACTIVACION_PORTAL_I.md`.

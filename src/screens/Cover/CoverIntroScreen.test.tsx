@@ -38,7 +38,7 @@ describe("CoverIntroScreen", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(
-      container.querySelector("[data-cover-intro-version='002I']"),
+      container.querySelector("[data-cover-intro-version='002I-FIX2']"),
     ).toBeInTheDocument();
   });
 
@@ -96,7 +96,8 @@ describe("CoverIntroScreen", () => {
       coverIntroDialogues[0].text,
     );
     expect(screen.getByText("Lía")).toBeInTheDocument();
-    expect(screen.getByText("1/5")).toBeInTheDocument();
+    expect(screen.getByText("Paso 1 de 5")).toBeInTheDocument();
+    expect(screen.queryByText("1/5")).not.toBeInTheDocument();
     expect(screen.getByRole("dialog")).not.toHaveTextContent(
       coverIntroDialogues[1].text,
     );
@@ -155,7 +156,7 @@ describe("CoverIntroScreen", () => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
       coverIntroDialogues[coverIntroDialogues.length - 1].text,
     );
-    expect(screen.getByText("5/5")).toBeInTheDocument();
+    expect(screen.getByText("Paso 5 de 5")).toBeInTheDocument();
     fireEvent.click(
       screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
     );
@@ -199,6 +200,9 @@ describe("CoverIntroScreen", () => {
       "data-cover-phase",
       "portal_1_opening_placeholder",
     );
+    expect(
+      screen.getByTestId("cover-portal-activation-rig"),
+    ).toBeInTheDocument();
   });
 
   it("avanza a transition_to_station_1_placeholder y prepara handoff a Mundo I", () => {
@@ -270,11 +274,13 @@ describe("CoverIntroScreen", () => {
     expect(
       screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("1/5")).toBeInTheDocument();
+    expect(screen.getByText("Paso 1 de 5")).toBeInTheDocument();
+    expect(screen.queryByText("1/5")).not.toBeInTheDocument();
     fireEvent.click(
       screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
     );
-    expect(screen.getByText("2/5")).toBeInTheDocument();
+    expect(screen.getByText("Paso 2 de 5")).toBeInTheDocument();
+    expect(screen.queryByText("2/5")).not.toBeInTheDocument();
   });
 
   it("renderiza números romanos como contenido DOM", () => {
