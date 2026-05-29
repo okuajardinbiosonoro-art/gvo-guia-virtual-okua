@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con assets aprobados en staging runtime, sin implementación visual funcional.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con base visual funcional en `/portada`, sin diálogos completos ni gating final.
 
 ## Implementado
 
@@ -27,10 +27,11 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Assets runtime staged de Portada / Intro en `public/assets/runtime/cover-intro/`.
 - Manifest de assets de Portada / Intro en `public/assets/runtime/cover-intro/manifest.json`.
 - Validador de assets de Portada / Intro en `tools/validate_cover_intro_assets.mjs`.
+- Base visual de Portada / Intro en `/portada`.
 
 ## No implementado todavía
 
-- Portada real runtime funcional.
+- Portada real con diálogos completos y gating final.
 - Estaciones reales.
 - Final real.
 - Scanner interno con cámara.
@@ -42,7 +43,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: implementación funcional base de Portada / Intro con los assets staged.
+- Próximo trabajo funcional: diálogos introductorios de Lía y gating de Portal I.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -112,24 +113,37 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se crea ruta nueva.
 - No se toca la carga inicial funcional.
 
+## Ticket 002D: Portada / Intro base visual
+
+- Estado: BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA.
+- Rama funcional: feature/002D-portada-intro-base-visual.
+- Se reemplaza el placeholder de `/portada` por una base visual funcional.
+- Se usan assets staged desde `public/assets/runtime/cover-intro/`.
+- Se muestran fondo Archivo Vivo, Lía, Portal I disponible, Portales II-V bloqueados, candados, botón y textos DOM.
+- Se agrega reduced motion básico.
+- No se implementan diálogos completos.
+- No se implementa gating final.
+- No se implementa transición a Mundo I.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido              |
-| ------------------------- | ------------------------------------------------------------ | --------------------------------------- |
-| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global |
-| Portada / Intro           | ASSETS_STAGED / NO_IMPLEMENTADA                              | Lista para implementación base 002D     |
-| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior  |
-| Estación I                | NO_INICIADA                                                  | BLOQUEADA                               |
-| Estación II               | NO_INICIADA                                                  | BLOQUEADA                               |
-| Estación III              | NO_INICIADA                                                  | BLOQUEADA                               |
-| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                               |
-| Estación V                | NO_INICIADA                                                  | BLOQUEADA                               |
-| Final                     | NO_INICIADA                                                  | BLOQUEADO                               |
+| Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
+| ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
+| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
+| Portada / Intro           | BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA | Lista para 002E                         |
+| Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
+| Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
+| Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
+| Estación III              | NO_INICIADA                                                             | BLOQUEADA                               |
+| Estación IV               | NO_INICIADA                                                             | BLOQUEADA                               |
+| Estación V                | NO_INICIADA                                                             | BLOQUEADA                               |
+| Final                     | NO_INICIADA                                                             | BLOQUEADO                               |
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya cuenta con assets staged y manifest runtime. La implementación funcional debe ocurrir únicamente en ticket 002D o posterior.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual funcional en `/portada`, pero los diálogos completos, gating narrativo y transición quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Abrir `TICKET_002D_PORTADA_INTRO_IMPLEMENTACION_BASE.md` para montar la Portada / Intro con los assets staged, sin reabrir selección visual salvo bloqueo documentado.
+Abrir `TICKET_002E_PORTADA_INTRO_DIALOGOS_Y_GATING.md` para implementar la secuencia real de diálogos de Lía y el gating de Portal I.

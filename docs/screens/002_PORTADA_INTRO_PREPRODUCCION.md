@@ -279,3 +279,46 @@ Restricciones:
 - No se implementó componente React.
 - No se creó ruta funcional de portada.
 - No se modificó carga inicial.
+
+## Base visual 002D
+
+Estado:
+
+`BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA`
+
+Ruta activa:
+
+`/portada`
+
+Implementado:
+
+- Base visual mobile-first de Portada / Intro.
+- Fondo Archivo Vivo desde assets staged.
+- Lía visible como guía principal usando `lia_pose_idle_v1.png`.
+- Portal I disponible visualmente.
+- Portales II-V bloqueados visualmente con frame locked compartido.
+- Candados visibles para Portales II-V.
+- Textos DOM:
+  - `OKÚA`
+  - `GUÍA VISUAL`
+  - `EL ARCHIVO VIVO DE OKÚA`
+  - `Comenzar recorrido`
+  - `I`, `II`, `III`, `IV`, `V`
+- Botón DOM/CSS.
+- Números romanos DOM/CSS.
+- Reduced motion básico.
+
+No implementado:
+
+- Secuencia completa de diálogos.
+- Gating narrativo final de Portal I.
+- Transición pixelart a Mundo I.
+- Interiores de portales.
+- Desbloqueo de Portales II-V.
+
+Notas para 002E:
+
+- El botón y Portal I deben iniciar los diálogos introductorios.
+- Portales II-V deben mostrar feedback breve sin navegar.
+- Portal I solo debe quedar listo después de completar diálogos.
+- La transición real todavía puede quedar para un ticket posterior si el alcance de 002E se mantiene acotado.

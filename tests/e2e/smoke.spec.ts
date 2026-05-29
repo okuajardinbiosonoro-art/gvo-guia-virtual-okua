@@ -41,6 +41,30 @@ test("muestra la carga inicial en /carga", async ({ page }) => {
   await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
 });
 
+test("muestra la base visual de portada en /portada", async ({ page }) => {
+  await page.goto("/portada");
+
+  await expect(
+    page.getByRole("heading", { name: "EL ARCHIVO VIVO DE OKÚA" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Comenzar recorrido" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", {
+      name: "Estación I, Mundo Raíz, disponible.",
+    }),
+  ).toBeVisible();
+  await expect(page.locator('[data-portal-state="locked"]')).toHaveCount(4);
+  await expect(page.locator("audio")).toHaveCount(0);
+  await expect(page.locator("video")).toHaveCount(0);
+
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > window.innerWidth,
+  );
+  expect(overflow).toBe(false);
+});
+
 for (const viewport of mobileViewports) {
   test(`sin overflow horizontal en /carga ${viewport.width}x${viewport.height}`, async ({
     page,

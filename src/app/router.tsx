@@ -2,7 +2,7 @@ import { createBrowserRouter, useParams } from "react-router-dom";
 
 import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
 import { flowSteps } from "../data/flow";
-import { CoverPlaceholder } from "../screens/Cover/CoverPlaceholder";
+import { CoverIntroScreen } from "../screens/Cover";
 import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/portada",
-    element: <CoverPlaceholder flowSteps={flowSteps} />,
+    element: <CoverIntroScreen />,
   },
   {
     path: "/estacion/:stationId",
