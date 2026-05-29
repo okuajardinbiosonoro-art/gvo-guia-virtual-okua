@@ -3,7 +3,39 @@ export const coverIntroText = {
   subtitle: "GUÍA VISUAL",
   archiveTitle: "EL ARCHIVO VIVO DE OKÚA",
   cta: "Comenzar recorrido",
+  enterWorldOne: "Entrar a Mundo I",
+  openingWorldOne: "Abriendo Mundo I: Raíz...",
+  dialogueNext: "Siguiente",
+  dialogueFinish: "Finalizar introducción",
 } as const;
+
+export const coverIntroDialogues = [
+  {
+    id: "intro-01-presentation",
+    liaPose: "greeting",
+    text: "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
+  },
+  {
+    id: "intro-02-clarification",
+    liaPose: "explainCalm",
+    text: "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
+  },
+  {
+    id: "intro-03-mediation",
+    liaPose: "explainCalm",
+    text: "Lo que vas a recorrer es una mediación: una señal viva, una captura técnica y una interpretación.",
+  },
+  {
+    id: "intro-04-order",
+    liaPose: "explainCalm",
+    text: "Primero seguiremos el orden de los mundos. Al final podrás volver libremente a cualquier estación.",
+  },
+  {
+    id: "intro-05-root",
+    liaPose: "pointPortal1",
+    text: "Empecemos por la raíz: el origen y el propósito de OKÚA.",
+  },
+] as const;
 
 export const coverIntroPortals = [
   {
@@ -44,3 +76,17 @@ export const coverIntroPortals = [
 ] as const;
 
 export type CoverIntroPortal = (typeof coverIntroPortals)[number];
+
+export const lockedPortalMessages = {
+  "portal-2":
+    "Primero debemos entrar por Raíz. Después llegaremos al pulso invisible.",
+  "portal-3":
+    "Ese mundo se desbloquea más adelante. Antes necesitamos entender el origen y la señal.",
+  "portal-4":
+    "La operación técnica tendrá sentido cuando ya conozcas la mediación.",
+  "portal-5": "El presente se entiende mejor al final del recorrido.",
+} as const;
+
+export type CoverIntroDialogue = (typeof coverIntroDialogues)[number];
+export type CoverIntroDialoguePose = CoverIntroDialogue["liaPose"];
+export type LockedPortalId = keyof typeof lockedPortalMessages;

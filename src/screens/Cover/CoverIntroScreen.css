@@ -88,6 +88,80 @@
   pointer-events: none;
   filter: drop-shadow(0 14px 20px rgb(38 21 45 / 32%));
   animation: cover-lia-float 5.6s ease-in-out infinite;
+  transition:
+    opacity 180ms ease-out,
+    filter 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.cover-intro--intro_dialogue_started .cover-intro__lia,
+.cover-intro--intro_dialogue_active .cover-intro__lia,
+.cover-intro--portal_1_ready .cover-intro__lia,
+.cover-intro--portal_1_opening_placeholder .cover-intro__lia {
+  filter:
+    drop-shadow(0 14px 20px rgb(38 21 45 / 30%))
+    drop-shadow(0 0 14px rgb(242 212 138 / 20%));
+}
+
+.cover-intro__dialogue {
+  position: absolute;
+  z-index: 5;
+  top: clamp(112px, 21svh, 188px);
+  left: 0;
+  width: min(68%, 292px);
+  padding: 9px 10px 10px;
+  display: grid;
+  gap: 7px;
+  border: 2px solid rgb(217 203 225 / 72%);
+  color: var(--cover-cream-soft);
+  background:
+    linear-gradient(180deg, rgb(59 41 70 / 86%), rgb(39 25 48 / 88%)),
+    rgb(39 25 48 / 90%);
+  box-shadow:
+    0 3px 0 rgb(33 20 40 / 62%),
+    0 12px 18px rgb(25 15 32 / 24%);
+  text-align: left;
+}
+
+.cover-intro__dialogue::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  background: rgb(59 41 70 / 88%);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.cover-intro__dialogue-text {
+  margin: 0;
+  font-size: clamp(0.72rem, 2.8vw, 0.86rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgb(31 21 38 / 65%);
+}
+
+.cover-intro__dialogue-button {
+  justify-self: end;
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 2px solid rgb(248 239 216 / 82%);
+  border-radius: 0;
+  color: var(--cover-ink);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 5px,
+      var(--cover-amber) 5px calc(100% - 5px),
+      transparent calc(100% - 5px)
+    ),
+    linear-gradient(180deg, #fff2bc, var(--cover-amber-strong));
+  box-shadow: 0 2px 0 rgb(33 20 40 / 62%);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .cover-intro__portals {
@@ -119,6 +193,23 @@
   cursor: pointer;
   transform: translateY(-5px);
   animation: cover-portal-ready 3.8s ease-in-out infinite;
+}
+
+.cover-intro__portal--locked {
+  cursor: pointer;
+}
+
+.cover-intro__portal--ready {
+  transform: translateY(-8px);
+}
+
+.cover-intro__portal--ready .cover-intro__portal-glow {
+  opacity: 1;
+}
+
+.cover-intro__portal--opening .cover-intro__portal-glow {
+  animation: cover-portal-opening 1.2s ease-in-out infinite;
+  opacity: 1;
 }
 
 .cover-intro__portal-frame,
@@ -189,6 +280,25 @@
   text-align: center;
 }
 
+.cover-intro__blocked-message,
+.cover-intro__opening {
+  max-width: 30ch;
+  margin: 0;
+  padding: 6px 9px;
+  border: 2px solid rgb(217 203 225 / 58%);
+  color: var(--cover-cream-soft);
+  background: rgb(48 32 58 / 78%);
+  box-shadow: 0 2px 0 rgb(33 20 40 / 45%);
+  font-size: clamp(0.76rem, 3.4vw, 0.95rem);
+  line-height: 1.04;
+  text-shadow: 0 1px 0 rgb(31 21 38 / 58%);
+}
+
+.cover-intro__opening {
+  color: var(--cover-amber);
+  background: rgb(48 32 58 / 70%);
+}
+
 .cover-intro__title {
   max-width: 16ch;
   margin: 0;
@@ -224,13 +334,16 @@
 }
 
 .cover-intro__portal--available:focus-visible,
-.cover-intro__cta:focus-visible {
+.cover-intro__portal--locked:focus-visible,
+.cover-intro__cta:focus-visible,
+.cover-intro__dialogue-button:focus-visible {
   outline: 3px solid var(--cover-cream-soft);
   outline-offset: 3px;
 }
 
 .cover-intro__portal--available:active,
-.cover-intro__cta:active {
+.cover-intro__cta:active,
+.cover-intro__dialogue-button:active {
   transform: translateY(0);
 }
 
@@ -256,6 +369,19 @@
   }
 }
 
+@keyframes cover-portal-opening {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: saturate(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+    filter: saturate(1.12);
+  }
+}
+
 @media (max-width: 374px) {
   .cover-intro__stage {
     padding-top: 18px;
@@ -266,6 +392,16 @@
     top: 4px;
     right: -42px;
     width: 170px;
+  }
+
+  .cover-intro__dialogue {
+    top: 104px;
+    width: min(72%, 248px);
+    padding: 8px;
+  }
+
+  .cover-intro__dialogue-text {
+    font-size: 0.69rem;
   }
 
   .cover-intro__portals {
@@ -288,6 +424,17 @@
     width: clamp(140px, 48vw, 210px);
   }
 
+  .cover-intro__dialogue {
+    top: clamp(92px, 20svh, 134px);
+    width: min(70%, 266px);
+    gap: 5px;
+  }
+
+  .cover-intro__dialogue-button {
+    min-height: 26px;
+    padding-block: 4px;
+  }
+
   .cover-intro__footer {
     gap: 8px;
   }
@@ -305,5 +452,6 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
 }

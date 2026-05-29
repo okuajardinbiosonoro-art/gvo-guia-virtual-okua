@@ -322,3 +322,43 @@ Notas para 002E:
 - Portales II-V deben mostrar feedback breve sin navegar.
 - Portal I solo debe quedar listo después de completar diálogos.
 - La transición real todavía puede quedar para un ticket posterior si el alcance de 002E se mantiene acotado.
+
+## Base narrativa 002E
+
+Estado:
+
+`DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA`
+
+Ruta activa:
+
+`/portada`
+
+Implementado:
+
+- `Comenzar recorrido` inicia la secuencia introductoria de Lía.
+- Portal I inicia la misma secuencia en primera pasada; no abre directamente.
+- Se muestran los cinco diálogos obligatorios, uno a la vez, como texto DOM accesible.
+- Durante los diálogos no se navega ni se abre Portal I.
+- Al terminar la introducción, Portal I queda listo y el botón cambia a `Entrar a Mundo I`.
+- Al tocar `Entrar a Mundo I` o Portal I listo, la pantalla pasa a `portal_1_opening_placeholder`.
+- El placeholder muestra `Abriendo Mundo I: Raíz...`.
+- Portales II-V siguen bloqueados y muestran feedback breve al toque.
+- Lía cambia entre poses staged existentes: idle, greeting, explainCalm, pointPortal1 y activatePortal1.
+- Se usa persistencia mínima `gvo.coverIntro.introCompleted.v1` solo para recordar que la introducción fue completada.
+
+No implementado:
+
+- Transición pixelart real a Mundo I.
+- Estación I.
+- Interiores de portales.
+- Desbloqueo de Portales II-V.
+- Modo libre completo.
+- Nuevos assets o edición de assets staged.
+
+Notas para 002F:
+
+- Pulir motion de poses de Lía y diálogo sin cambiar textos.
+- Refinar pulso de Portal I listo y estado opening placeholder.
+- Robustecer reduced motion.
+- Mantener `/` y `/carga` intactas.
+- No implementar todavía la transición real.

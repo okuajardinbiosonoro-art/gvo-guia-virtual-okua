@@ -66,7 +66,7 @@ npm run test:e2e
 
 Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
 
-La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA`. Existe una primera base visual en `/portada`, usando assets runtime locales staged; los diálogos completos, gating narrativo y transición quedan pendientes.
+La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados y el placeholder `Abriendo Mundo I: Raíz...`; la transición real hacia Mundo I queda pendiente.
 
 ## Metodología de avance por pantalla
 
@@ -80,7 +80,7 @@ GVO se desarrolla por pantallas secuenciales. Una pantalla puede avanzar bajo do
 Estado actual:
 
 - Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
-- Portada: BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA
+- Portada: DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA
 - Estaciones: NO_INICIADAS / BLOQUEADAS
 - Transición: NO_INICIADA / BLOQUEADA
 - Final: NO_INICIADA / BLOQUEADO

@@ -41,7 +41,9 @@ test("muestra la carga inicial en /carga", async ({ page }) => {
   await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
 });
 
-test("muestra la base visual de portada en /portada", async ({ page }) => {
+test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
+  page,
+}) => {
   await page.goto("/portada");
 
   await expect(
@@ -52,12 +54,61 @@ test("muestra la base visual de portada en /portada", async ({ page }) => {
   ).toBeVisible();
   await expect(
     page.getByRole("button", {
-      name: "Estación I, Mundo Raíz, disponible.",
+      name: "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía.",
     }),
   ).toBeVisible();
   await expect(page.locator('[data-portal-state="locked"]')).toHaveCount(4);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Comenzar recorrido" }).click();
+  await expect(
+    page.getByText(
+      "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
+    ),
+  ).toBeVisible();
+  await expect(page.getByRole("dialog")).toHaveCount(1);
+
+  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
+  await expect(
+    page.getByText(
+      "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
+    ),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
+  await expect(
+    page.getByText(
+      "Lo que vas a recorrer es una mediación: una señal viva, una captura técnica y una interpretación.",
+    ),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
+  await expect(
+    page.getByText(
+      "Primero seguiremos el orden de los mundos. Al final podrás volver libremente a cualquier estación.",
+    ),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
+  await expect(
+    page.getByText("Empecemos por la raíz: el origen y el propósito de OKÚA."),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Finalizar introducción" }).click();
+
+  await expect(
+    page.getByRole("button", { name: "Entrar a Mundo I" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", {
+      name: "Estación II, bloqueada hasta completar Mundo I.",
+    })
+    .click({ force: true });
+  await expect(
+    page.getByText(
+      "Primero debemos entrar por Raíz. Después llegaremos al pulso invisible.",
+    ),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
+  await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
+  await expect(page).toHaveURL(/\/portada$/);
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,

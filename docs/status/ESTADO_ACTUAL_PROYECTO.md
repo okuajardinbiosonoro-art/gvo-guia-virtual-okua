@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con base visual funcional en `/portada`, sin diálogos completos ni gating final.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con diálogos base y gating de Portal I implementados en `/portada`, sin transición real.
 
 ## Implementado
 
@@ -28,10 +28,11 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Manifest de assets de Portada / Intro en `public/assets/runtime/cover-intro/manifest.json`.
 - Validador de assets de Portada / Intro en `tools/validate_cover_intro_assets.mjs`.
 - Base visual de Portada / Intro en `/portada`.
+- Diálogos introductorios de Lía y gating narrativo base de Portal I en `/portada`.
 
 ## No implementado todavía
 
-- Portada real con diálogos completos y gating final.
+- Transición real de Portada / Intro hacia Mundo I.
 - Estaciones reales.
 - Final real.
 - Scanner interno con cámara.
@@ -43,7 +44,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: diálogos introductorios de Lía y gating de Portal I.
+- Próximo trabajo funcional: motion polish, reduced motion robusto y preparación visual de transición sin abrir Mundo I.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -126,12 +127,28 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se implementa transición a Mundo I.
 - No se toca `/` ni `/carga`.
 
+## Ticket 002E: Portada / Intro diálogos y gating
+
+- Estado: DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA.
+- Rama funcional: feature/002E-portada-intro-dialogos-gating.
+- Se implementa la secuencia obligatoria de cinco diálogos de Lía.
+- `Comenzar recorrido` inicia la introducción.
+- Portal I inicia la misma introducción en primera pasada.
+- Al completar los diálogos, Portal I queda listo y el botón cambia a `Entrar a Mundo I`.
+- Al tocar `Entrar a Mundo I` o Portal I listo, se muestra `Abriendo Mundo I: Raíz...` como placeholder controlado.
+- No existe navegación real ni transición a Estación I.
+- Portales II-V conservan bloqueo y muestran feedback breve al toque.
+- Lía cambia de pose usando assets staged existentes.
+- Se agrega persistencia mínima `gvo.coverIntro.introCompleted.v1` para recordar introducción completada sin desbloquear estaciones.
+- No se modifican assets staged.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | BASE_VISUAL_IMPLEMENTADA / SIN_DIALOGOS / SIN_GATING_FINAL / NO_CERRADA | Lista para 002E                         |
+| Portada / Intro           | DIALOGOS_BASE_IMPLEMENTADOS / GATING_PORTAL_I_BASE / SIN_TRANSICION_REAL / NO_CERRADA | Lista para 002F                         |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -142,8 +159,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual funcional en `/portada`, pero los diálogos completos, gating narrativo y transición quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios y gating narrativo de Portal I en `/portada`, pero la transición real a Mundo I queda pendiente.
 
 ## Próximo ticket recomendado
 
-Abrir `TICKET_002E_PORTADA_INTRO_DIALOGOS_Y_GATING.md` para implementar la secuencia real de diálogos de Lía y el gating de Portal I.
+Abrir `TICKET_002F_PORTADA_INTRO_MOTION_POLISH_Y_REDUCED_MOTION.md` para refinar motion de Lía, pulso de Portal I, aparición de diálogos y reduced motion sin implementar todavía la transición real.
