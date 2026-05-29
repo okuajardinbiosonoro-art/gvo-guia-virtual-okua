@@ -1,0 +1,163 @@
+.lia-hybrid {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
+.lia-hybrid--pose {
+  height: auto;
+}
+
+.lia-hybrid--rig-idle {
+  position: relative;
+  aspect-ratio: 941 / 1672;
+  overflow: visible;
+}
+
+.lia-hybrid__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.lia-hybrid__layer--shadow {
+  opacity: 0;
+}
+
+.lia-hybrid__layer--collar-glow {
+  opacity: 0.48;
+  mix-blend-mode: screen;
+  animation: lia-hybrid-collar-breathe 2.35s ease-in-out infinite;
+}
+
+.lia-hybrid__eye {
+  opacity: 0;
+  animation-duration: 5.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+.lia-hybrid__eye--neutral {
+  opacity: 1;
+  animation-name: lia-hybrid-eye-neutral;
+}
+
+.lia-hybrid__eye--blink-25 {
+  animation-name: lia-hybrid-eye-blink-25;
+}
+
+.lia-hybrid__eye--blink-50 {
+  animation-name: lia-hybrid-eye-blink-50;
+}
+
+.lia-hybrid__eye--closed {
+  animation-name: lia-hybrid-eye-closed;
+}
+
+.lia-hybrid__eye--static {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes lia-hybrid-collar-breathe {
+  0%,
+  100% {
+    opacity: 0.36;
+    filter: saturate(0.96);
+  }
+
+  50% {
+    opacity: 0.62;
+    filter: saturate(1.06);
+  }
+}
+
+@keyframes lia-hybrid-eye-neutral {
+  0%,
+  72.9%,
+  80.2%,
+  100% {
+    opacity: 1;
+  }
+
+  73%,
+  80.1% {
+    opacity: 0;
+  }
+}
+
+@keyframes lia-hybrid-eye-blink-25 {
+  0%,
+  72.9%,
+  74.1%,
+  78%,
+  79.2%,
+  100% {
+    opacity: 0;
+  }
+
+  73%,
+  74%,
+  78.1%,
+  79.1% {
+    opacity: 1;
+  }
+}
+
+@keyframes lia-hybrid-eye-blink-50 {
+  0%,
+  74.1%,
+  75.2%,
+  76.8%,
+  78%,
+  100% {
+    opacity: 0;
+  }
+
+  74.2%,
+  75.1%,
+  76.9%,
+  77.9% {
+    opacity: 1;
+  }
+}
+
+@keyframes lia-hybrid-eye-closed {
+  0%,
+  75.2%,
+  76.7%,
+  100% {
+    opacity: 0;
+  }
+
+  75.3%,
+  76.6% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lia-hybrid__layer--collar-glow {
+    opacity: 0.42 !important;
+    animation: none !important;
+  }
+
+  .lia-hybrid__eye {
+    animation: none !important;
+  }
+
+  .lia-hybrid__eye--neutral,
+  .lia-hybrid__eye--static {
+    opacity: 1 !important;
+  }
+
+  .lia-hybrid__eye--blink-25,
+  .lia-hybrid__eye--blink-50,
+  .lia-hybrid__eye--closed {
+    opacity: 0 !important;
+  }
+}

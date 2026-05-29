@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `AJUSTE_002I_FIX2 / DIALOGO_LIA_INTEGRADO / ACTIVACION_PORTAL_I_REVISADA / NO_CERRADA`
+Estado: `LIA_HYBRID_RIG_IDLE_IMPLEMENTADO / DIALOGO_LIA_INTEGRADO / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -238,6 +238,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 8. `002I`: diálogo premium y recomposición visual D3/P3 parcial.
 9. `002I-FIX`: corrección de diálogo, layout y QA flow.
 10. `002I-FIX2`: diálogo integrado con Lía y activación visual de Portal I.
+11. `002J`: Lía hybrid rig facial seguro en idle.
 
 ## Asset staging V1
 
@@ -608,3 +609,50 @@ No se modificó:
 - Textos narrativos base.
 - Carga inicial visual.
 - Desbloqueo de Portales II-V.
+
+## Lía hybrid rig facial 002J
+
+Estado:
+
+`LIA_HYBRID_RIG_IDLE_IMPLEMENTADO / DIALOGO_LIA_INTEGRADO / NO_CERRADA`
+
+Implementado:
+
+- Se crea `LiaHybridAvatar` para centralizar la representación de Lía en la portada.
+- En `portada_idle`, Lía usa un rig por capas desde `public/assets/runtime/cover-intro/lia/rig/idle_v1/`.
+- El rig idle incluye cuerpo, pétalos, collar, glow, cabeza limpia y ojos como capas locales staged.
+- El parpadeo se aplica solo en `rig-idle` con secuencia controlada `neutral -> blink_25 -> blink_50 -> closed -> blink_50 -> blink_25 -> neutral`.
+- El collar usa glow sutil solo en `rig-idle`.
+- Las capas internas del rig son `aria-hidden`, con una sola descripción accesible global de Lía.
+
+Regla de seguridad visual:
+
+- Las poses completas staged se conservan para estados narrativos: `greeting`, `explainCalm`, `pointPortal1` y `activatePortal1`.
+- No se superponen ojos del rig sobre poses completas.
+- No se generan doble ojo, manchas visuales ni overlays inseguros sobre los PNG narrativos.
+
+Reduced motion:
+
+- Desactiva parpadeo automático.
+- Desactiva pulso del collar.
+- Mantiene a Lía visible y conserva diálogos/gating.
+
+Capturas QA:
+
+- `docs/visual/cover-intro/qa/002J/cover-intro-002j-01-idle-rig-390x844.png`
+- `docs/visual/cover-intro/qa/002J/cover-intro-002j-02-dialogue-greeting-390x844.png`
+
+Pendiente:
+
+- Revisión visual del usuario sobre el rig idle.
+- Coreografía física avanzada del Portal I.
+- Transición pixelart final.
+- Estación I real.
+
+No se modificó:
+
+- PNG staged.
+- Textos narrativos.
+- Carga inicial visual.
+- Portales II-V bloqueados.
+- Rutas `/`, `/carga`, `/portada` ni `/estacion/1`.

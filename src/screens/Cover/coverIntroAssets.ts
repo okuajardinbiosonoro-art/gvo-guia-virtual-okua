@@ -10,6 +10,38 @@ export const coverIntroAssets = {
     "/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
   liaActivatePortal1:
     "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+  liaRigShadow:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
+  liaRigBody:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_body_bulb_segmented_v1.png",
+  liaRigPetalLeftLower:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_lower_v1.png",
+  liaRigPetalRightLower:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_lower_v1.png",
+  liaRigPetalLeftUpper:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_upper_v1.png",
+  liaRigPetalRightUpper:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_upper_v1.png",
+  liaRigPetalTop:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_top_v1.png",
+  liaRigCollar:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_collar_amber_v1.png",
+  liaRigCollarGlow:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_glow_collar_v1.png",
+  liaRigHeadClean:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_head_opal_clean_v1.png",
+  liaRigEyesNeutral:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_neutral_v1.png",
+  liaRigEyesBlink25:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_25_v1.png",
+  liaRigEyesBlink50:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_50_v1.png",
+  liaRigEyesClosed:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_closed_v1.png",
+  liaRigEyesHappy:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_happy_v1.png",
+  liaRigEyesAttentive:
+    "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
   portal1Frame:
     "/assets/runtime/cover-intro/portals/portal_1/frame/portal_1_frame_enabled_v1.png",
   portal1Glow:

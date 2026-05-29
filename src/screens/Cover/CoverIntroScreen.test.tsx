@@ -38,8 +38,31 @@ describe("CoverIntroScreen", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(
-      container.querySelector("[data-cover-intro-version='002I-FIX2']"),
+      container.querySelector("[data-cover-intro-version='002J']"),
     ).toBeInTheDocument();
+  });
+
+  it("renderiza Lía en rig-idle por capas en portada_idle", () => {
+    const { container } = render(<CoverIntroScreen />);
+
+    expect(
+      screen.getByRole("img", { name: "Lía, guía visual de OKÚA" }),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-expression='neutral']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-rig-layer='head-clean']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigHeadClean);
+    expect(
+      container.querySelector("[data-lia-rig-layer='eyes-neutral']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigEyesNeutral);
+    expect(
+      screen.getAllByRole("img", { name: "Lía, guía visual de OKÚA" }),
+    ).toHaveLength(1);
   });
 
   it("renderiza cinco portales con Portal I disponible y II-V bloqueados", () => {
@@ -72,7 +95,12 @@ describe("CoverIntroScreen", () => {
 
     expect(
       container.querySelector(
-        `[data-runtime-asset="${coverIntroAssets.liaIdle}"]`,
+        `[data-runtime-asset="${coverIntroAssets.liaRigHeadClean}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${coverIntroAssets.liaRigEyesNeutral}"]`,
       ),
     ).toBeInTheDocument();
     expect(
@@ -107,6 +135,17 @@ describe("CoverIntroScreen", () => {
     expect(
       container.querySelector("[data-lia-state='greeting']"),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-avatar-mode='pose']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${coverIntroAssets.liaGreeting}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-rig-layer='eyes-neutral']"),
+    ).not.toBeInTheDocument();
   });
 
   it("resetIntro=1 limpia la persistencia y muestra primera pasada", () => {

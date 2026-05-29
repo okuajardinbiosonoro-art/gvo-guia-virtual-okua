@@ -57,6 +57,8 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
       name: "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía.",
     }),
   ).toBeVisible();
+  await expect(page.locator('[data-lia-avatar-mode="rig-idle"]')).toBeVisible();
+  await expect(page.locator('[data-lia-rig-layer="eyes-neutral"]')).toBeVisible();
   await expect(page.locator('[data-portal-state="locked"]')).toHaveCount(4);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
@@ -70,6 +72,11 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   await expect(
     page.getByRole("dialog").getByText("Lía", { exact: true }),
   ).toBeVisible();
+  await expect(page.locator('[data-lia-avatar-mode="pose"]')).toBeVisible();
+  await expect(page.locator('[data-lia-pose="greeting"]')).toBeVisible();
+  await expect(page.locator('[data-lia-rig-layer="eyes-neutral"]')).toHaveCount(
+    0,
+  );
   await expect(page.getByText("Paso 1 de 5")).toBeVisible();
   await expect(page.getByText("1/5")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveCount(1);

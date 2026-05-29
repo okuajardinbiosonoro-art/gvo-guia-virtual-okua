@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 import { coverIntroAssets } from "./coverIntroAssets";
+import { LiaHybridAvatar } from "./LiaHybridAvatar";
 import {
   coverIntroDialogues,
   coverIntroPortals,
@@ -80,6 +81,28 @@ function getLiaPoseSource(
   }
 
   return liaPoseByState.idle;
+}
+
+function getLiaPoseName(
+  phase: CoverIntroPhase,
+  dialoguePose?: CoverIntroDialoguePose,
+) {
+  if (
+    phase === "portal_1_opening_placeholder" ||
+    phase === "transition_to_station_1_placeholder"
+  ) {
+    return "activatePortal1";
+  }
+
+  if (phase === "portal_1_ready" || phase === "intro_dialogue_completed") {
+    return "pointPortal1";
+  }
+
+  if (dialoguePose) {
+    return dialoguePose;
+  }
+
+  return "idle";
 }
 
 export function CoverIntroScreen() {
@@ -162,6 +185,16 @@ export function CoverIntroScreen() {
     coverState.phase,
     activeDialogue?.liaPose,
   );
+  const activeLiaPoseName = getLiaPoseName(
+    coverState.phase,
+    activeDialogue?.liaPose,
+  );
+  const liaAvatarMode =
+    coverState.phase === "portada_idle" ? "rig-idle" : "pose";
+  const liaRigExpression =
+    coverState.phase === "portada_idle" && coverState.blockedPortalMessage
+      ? "attentive"
+      : "neutral";
   const portalOneReady =
     coverState.phase === "portal_1_ready" ||
     coverState.phase === "portal_1_opening_placeholder" ||
@@ -331,7 +364,7 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
     >
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002I-FIX2">
+      <div className="cover-intro__stage" data-cover-intro-version="002J">
         <header className="cover-intro__header">
           <p className="cover-intro__brand">{coverIntroText.logo}</p>
           <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
@@ -344,16 +377,24 @@ export function CoverIntroScreen() {
           >
             <div
               className="cover-intro__lia-wrap cover-lia-layer"
-              data-lia-state={activeDialogue?.liaPose ?? coverState.phase}
+              data-lia-state={activeLiaPoseName}
             >
-              <img
-                key={activeLiaPose}
-                className="cover-intro__lia"
-                src={activeLiaPose}
-                alt="Lía, guía visual de OKÚA."
-                data-runtime-asset={activeLiaPose}
-                data-lia-pose={activeDialogue?.liaPose ?? coverState.phase}
-              />
+              {liaAvatarMode === "rig-idle" ? (
+                <LiaHybridAvatar
+                  key="lia-rig-idle"
+                  className="cover-intro__lia"
+                  mode="rig-idle"
+                  expression={liaRigExpression}
+                />
+              ) : (
+                <LiaHybridAvatar
+                  key={activeLiaPose}
+                  className="cover-intro__lia"
+                  mode="pose"
+                  poseName={activeLiaPoseName}
+                  poseSrc={activeLiaPose}
+                />
+              )}
             </div>
           </div>
 

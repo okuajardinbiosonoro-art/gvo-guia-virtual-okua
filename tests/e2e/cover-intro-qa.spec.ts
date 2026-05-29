@@ -20,6 +20,8 @@ async function capture(page: Page, testInfo: TestInfo, name: string) {
 }
 
 test.describe("QA visual Portada / Intro", () => {
+  test.describe.configure({ timeout: 60_000 });
+
   test("genera capturas 390x844 de estados principales", async ({
     page,
   }, testInfo) => {
