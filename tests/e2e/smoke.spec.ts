@@ -67,6 +67,10 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
       "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
     ),
   ).toBeVisible();
+  await expect(
+    page.getByRole("dialog").getByText("Lía", { exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText("1/5")).toBeVisible();
   await expect(page.getByRole("dialog")).toHaveCount(1);
 
   await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
@@ -75,6 +79,7 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
       "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
     ),
   ).toBeVisible();
+  await expect(page.getByText("2/5")).toBeVisible();
   await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
   await expect(
     page.getByText(

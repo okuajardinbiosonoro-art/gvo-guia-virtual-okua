@@ -1,17 +1,5 @@
-import { mkdirSync } from "node:fs";
-import path from "node:path";
-
 import { expect, test } from "@playwright/test";
-import type { Page } from "@playwright/test";
-
-const qaOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "cover-intro",
-  "qa",
-  "002H",
-);
+import type { Page, TestInfo } from "@playwright/test";
 
 async function prepareCover(page: Page) {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -23,22 +11,20 @@ async function prepareCover(page: Page) {
   ).toBeVisible();
 }
 
-async function capture(page: Page, name: string) {
+async function capture(page: Page, testInfo: TestInfo, name: string) {
   await page.screenshot({
     animations: "disabled",
     fullPage: true,
-    path: path.join(qaOutputDir, name),
+    path: testInfo.outputPath(name),
   });
 }
 
-test.describe("QA visual Portada / Intro 002H", () => {
-  test.beforeAll(() => {
-    mkdirSync(qaOutputDir, { recursive: true });
-  });
-
-  test("genera capturas 390x844 de estados principales", async ({ page }) => {
+test.describe("QA visual Portada / Intro", () => {
+  test("genera capturas 390x844 de estados principales", async ({
+    page,
+  }, testInfo) => {
     await prepareCover(page);
-    await capture(page, "cover-intro-qa-01-idle-390x844.png");
+    await capture(page, testInfo, "cover-intro-qa-01-idle-390x844.png");
 
     await page.getByRole("button", { name: "Comenzar recorrido" }).click();
     await expect(
@@ -46,7 +32,8 @@ test.describe("QA visual Portada / Intro 002H", () => {
         "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
       ),
     ).toBeVisible();
-    await capture(page, "cover-intro-qa-02-dialogue-01-390x844.png");
+    await expect(page.getByText("1/5")).toBeVisible();
+    await capture(page, testInfo, "cover-intro-qa-02-dialogue-01-390x844.png");
 
     await page
       .getByRole("button", { name: "Siguiente diálogo de Lía" })
@@ -56,8 +43,10 @@ test.describe("QA visual Portada / Intro 002H", () => {
         "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
       ),
     ).toBeVisible();
+    await expect(page.getByText("2/5")).toBeVisible();
     await capture(
       page,
+      testInfo,
       "cover-intro-qa-03-dialogue-clarification-390x844.png",
     );
 
@@ -70,12 +59,17 @@ test.describe("QA visual Portada / Intro 002H", () => {
     await expect(
       page.getByRole("button", { name: "Entrar a Mundo I" }),
     ).toBeVisible();
-    await capture(page, "cover-intro-qa-04-portal-1-ready-390x844.png");
+    await capture(
+      page,
+      testInfo,
+      "cover-intro-qa-04-portal-1-ready-390x844.png",
+    );
 
     await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
     await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
     await capture(
       page,
+      testInfo,
       "cover-intro-qa-05-opening-placeholder-390x844.png",
     );
 
@@ -85,12 +79,13 @@ test.describe("QA visual Portada / Intro 002H", () => {
     ).toHaveAttribute("href", "/estacion/1");
     await capture(
       page,
+      testInfo,
       "cover-intro-qa-06-transition-placeholder-390x844.png",
     );
     await expect(page).toHaveURL(/\/portada$/);
   });
 
-  test("genera captura de portal bloqueado", async ({ page }) => {
+  test("genera captura de portal bloqueado", async ({ page }, testInfo) => {
     await prepareCover(page);
     await page
       .getByRole("button", {
@@ -104,12 +99,15 @@ test.describe("QA visual Portada / Intro 002H", () => {
     ).toBeVisible();
     await capture(
       page,
+      testInfo,
       "cover-intro-qa-07-blocked-portal-feedback-390x844.png",
     );
     await expect(page).toHaveURL(/\/portada$/);
   });
 
-  test("genera captura reduced motion con diálogo activo", async ({ page }) => {
+  test("genera captura reduced motion con diálogo activo", async ({
+    page,
+  }, testInfo) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await prepareCover(page);
     await page.getByRole("button", { name: "Comenzar recorrido" }).click();
@@ -118,8 +116,10 @@ test.describe("QA visual Portada / Intro 002H", () => {
         "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
       ),
     ).toBeVisible();
+    await expect(page.getByText("1/5")).toBeVisible();
     await capture(
       page,
+      testInfo,
       "cover-intro-qa-08-reduced-motion-dialogue-390x844.png",
     );
   });

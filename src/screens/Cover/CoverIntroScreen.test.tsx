@@ -37,7 +37,7 @@ describe("CoverIntroScreen", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(
-      container.querySelector("[data-cover-intro-version='002F']"),
+      container.querySelector("[data-cover-intro-version='002I']"),
     ).toBeInTheDocument();
   });
 
@@ -94,6 +94,8 @@ describe("CoverIntroScreen", () => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
       coverIntroDialogues[0].text,
     );
+    expect(screen.getByText("Lía")).toBeInTheDocument();
+    expect(screen.getByText("1/5")).toBeInTheDocument();
     expect(screen.getByRole("dialog")).not.toHaveTextContent(
       coverIntroDialogues[1].text,
     );
@@ -137,6 +139,7 @@ describe("CoverIntroScreen", () => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
       coverIntroDialogues[coverIntroDialogues.length - 1].text,
     );
+    expect(screen.getByText("5/5")).toBeInTheDocument();
     fireEvent.click(
       screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
     );
@@ -251,6 +254,11 @@ describe("CoverIntroScreen", () => {
     expect(
       screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
     ).toBeInTheDocument();
+    expect(screen.getByText("1/5")).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+    );
+    expect(screen.getByText("2/5")).toBeInTheDocument();
   });
 
   it("renderiza números romanos como contenido DOM", () => {

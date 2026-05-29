@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA`
+Estado: `AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -235,6 +235,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 5. `002F`: polish visual/motion/reduced motion.
 6. `002G`: transición placeholder y handoff a Mundo I.
 7. `002H`: QA visual mobile y decisión de aprobación para avanzar.
+8. `002I`: diálogo premium y recomposición visual D3/P3 parcial.
 
 ## Asset staging V1
 
@@ -482,3 +483,51 @@ No implementado en 002H:
 - Desbloqueo de Portales II-V.
 - Nuevos assets runtime.
 - Cambios en `/` o `/carga`.
+
+## Reapertura visual 002I — Diálogo premium y recomposición
+
+Estado:
+
+`AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA`
+
+Decisión de revisión:
+
+`AJUSTE_VISUAL_REQUERIDO`
+
+Estrategia global:
+
+`D3 + L2 + P3`
+
+Cobertura de 002I:
+
+- `D3`: diálogo premium tipo anfitriona / ficha museográfica integrada al Archivo Vivo.
+- `P3 parcial`: recomposición visual y mayor protagonismo de Portal I.
+
+Implementado:
+
+- Panel de diálogo crema/translúcido con borde lavanda/ámbar sutil.
+- Etiqueta `Lía`.
+- Indicador de progreso `1/5`, `2/5`, etc.
+- Botón de diálogo integrado al panel.
+- Portal I más grande y protagonista.
+- Portales II-V más legibles, bloqueados y con candados.
+- Clases de preparación para coreografía futura:
+  - `cover-lia-stage`
+  - `cover-lia-layer`
+  - `cover-portal-stage`
+  - `cover-portal-group`
+  - `cover-activation-stage`
+
+Pendiente:
+
+- `L2`: rig facial de Lía, blink y microvida.
+- `P3 completo`: coreografía física de activación del Portal I.
+- Transición pixelart final.
+- Estación I real.
+
+Notas para 002J:
+
+- Usar el rig facial staged sin modificar assets.
+- Agregar blink y microvida de Lía de forma sobria.
+- Mantener el panel premium y la recomposición de portales.
+- No implementar todavía la coreografía física completa del Portal I.

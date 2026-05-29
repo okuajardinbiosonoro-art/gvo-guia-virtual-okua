@@ -132,6 +132,9 @@ export function CoverIntroScreen() {
   const activeDialogue = dialogueIsVisible
     ? coverIntroDialogues[coverState.activeDialogueIndex]
     : null;
+  const activeDialogueStep = activeDialogue
+    ? `${coverState.activeDialogueIndex + 1}/${coverIntroDialogues.length}`
+    : null;
   const activeLiaPose = getLiaPoseSource(
     coverState.phase,
     activeDialogue?.liaPose,
@@ -295,35 +298,47 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
     >
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002F">
+      <div className="cover-intro__stage" data-cover-intro-version="002I">
         <header className="cover-intro__header">
           <p className="cover-intro__brand">{coverIntroText.logo}</p>
           <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
         </header>
 
         <section className="cover-intro__scene" aria-label="Archivo Vivo OKÚA">
-          <div
-            className="cover-intro__lia-wrap"
-            data-lia-state={activeDialogue?.liaPose ?? coverState.phase}
-          >
-            <img
-              key={activeLiaPose}
-              className="cover-intro__lia"
-              src={activeLiaPose}
-              alt="Lía, guía visual de OKÚA."
-              data-runtime-asset={activeLiaPose}
-              data-lia-pose={activeDialogue?.liaPose ?? coverState.phase}
-            />
+          <div className="cover-intro__lia-stage cover-lia-stage">
+            <div
+              className="cover-intro__lia-wrap cover-lia-layer"
+              data-lia-state={activeDialogue?.liaPose ?? coverState.phase}
+            >
+              <img
+                key={activeLiaPose}
+                className="cover-intro__lia"
+                src={activeLiaPose}
+                alt="Lía, guía visual de OKÚA."
+                data-runtime-asset={activeLiaPose}
+                data-lia-pose={activeDialogue?.liaPose ?? coverState.phase}
+              />
+            </div>
           </div>
 
           {activeDialogue ? (
-            <div
+            <section
               className="cover-intro__dialogue"
               role="dialog"
               aria-live="polite"
               aria-label="Diálogo de Lía"
               data-dialogue-id={activeDialogue.id}
+              data-dialogue-step={activeDialogueStep}
             >
+              <div className="cover-intro__dialogue-meta">
+                <span className="cover-intro__dialogue-speaker">Lía</span>
+                <span
+                  className="cover-intro__dialogue-step"
+                  aria-label={`Diálogo ${activeDialogueStep}`}
+                >
+                  {activeDialogueStep}
+                </span>
+              </div>
               <p className="cover-intro__dialogue-text">
                 {activeDialogue.text}
               </p>
@@ -343,97 +358,101 @@ export function CoverIntroScreen() {
                   ? coverIntroText.dialogueFinish
                   : coverIntroText.dialogueNext}
               </button>
-            </div>
+            </section>
           ) : null}
 
           <div
-            className="cover-intro__portals"
+            className="cover-intro__portal-stage cover-portal-stage cover-activation-stage"
             aria-label="Portales del recorrido"
           >
-            {coverIntroPortals.map((portal) => {
-              const available = portal.state === "available";
-              const frameSrc = available
-                ? coverIntroAssets.portal1Frame
-                : coverIntroAssets.lockedFrame;
-              const portalClassNames = [
-                "cover-intro__portal",
-                `cover-intro__portal--${portal.state}`,
-                portal.id === "portal-1" && portalOneReady
-                  ? "cover-intro__portal--ready"
-                  : "",
-                portal.id === "portal-1" &&
-                portalOneOpening
-                  ? "cover-intro__portal--opening"
-                  : "",
-                portal.id === coverState.blockedPortalId
-                  ? "cover-intro__portal--blocked-feedback"
-                  : "",
-              ]
-                .filter(Boolean)
-                .join(" ");
-              const ariaLabel =
-                portal.id === "portal-1"
-                  ? portalOneReady
-                    ? "Estación I, Mundo Raíz, lista para abrir."
-                    : "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía."
-                  : portal.ariaLabel;
+            <div className="cover-intro__portal-group cover-portal-group">
+              {coverIntroPortals.map((portal) => {
+                const available = portal.state === "available";
+                const frameSrc = available
+                  ? coverIntroAssets.portal1Frame
+                  : coverIntroAssets.lockedFrame;
+                const portalClassNames = [
+                  "cover-intro__portal",
+                  `cover-intro__portal--${portal.state}`,
+                  portal.id === "portal-1"
+                    ? "cover-intro__portal--primary"
+                    : "cover-intro__portal--locked-secondary",
+                  portal.id === "portal-1" && portalOneReady
+                    ? "cover-intro__portal--ready"
+                    : "",
+                  portal.id === "portal-1" && portalOneOpening
+                    ? "cover-intro__portal--opening"
+                    : "",
+                  portal.id === coverState.blockedPortalId
+                    ? "cover-intro__portal--blocked-feedback"
+                    : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ");
+                const ariaLabel =
+                  portal.id === "portal-1"
+                    ? portalOneReady
+                      ? "Estación I, Mundo Raíz, lista para abrir."
+                      : "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía."
+                    : portal.ariaLabel;
 
-              return (
-                <button
-                  key={portal.id}
-                  type="button"
-                  className={portalClassNames}
-                  aria-label={ariaLabel}
-                  aria-disabled={available ? undefined : "true"}
-                  data-portal-id={portal.id}
-                  data-portal-state={
-                    portal.id === "portal-1" && portalOneReady
-                      ? "ready"
-                      : portal.state
-                  }
-                  onClick={
-                    portal.id === "portal-1"
-                      ? handlePortalOneClick
-                      : () => showBlockedPortalMessage(portal.id)
-                  }
-                >
-                  {available ? (
-                    <img
-                      className="cover-intro__portal-glow"
-                      src={coverIntroAssets.portal1Glow}
-                      alt=""
-                      aria-hidden="true"
-                      data-runtime-asset={coverIntroAssets.portal1Glow}
-                    />
-                  ) : null}
-                  <img
-                    className="cover-intro__portal-frame"
-                    src={frameSrc}
-                    alt=""
-                    aria-hidden="true"
-                    data-runtime-asset={frameSrc}
-                  />
-                  <span
-                    className="cover-intro__portal-roman"
-                    aria-hidden="true"
+                return (
+                  <button
+                    key={portal.id}
+                    type="button"
+                    className={portalClassNames}
+                    aria-label={ariaLabel}
+                    aria-disabled={available ? undefined : "true"}
+                    data-portal-id={portal.id}
+                    data-portal-state={
+                      portal.id === "portal-1" && portalOneReady
+                        ? "ready"
+                        : portal.state
+                    }
+                    onClick={
+                      portal.id === "portal-1"
+                        ? handlePortalOneClick
+                        : () => showBlockedPortalMessage(portal.id)
+                    }
                   >
-                    {portal.roman}
-                  </span>
-                  {available ? null : (
+                    {available ? (
+                      <img
+                        className="cover-intro__portal-glow"
+                        src={coverIntroAssets.portal1Glow}
+                        alt=""
+                        aria-hidden="true"
+                        data-runtime-asset={coverIntroAssets.portal1Glow}
+                      />
+                    ) : null}
                     <img
-                      className="cover-intro__portal-lock"
-                      src={coverIntroAssets.lock}
+                      className="cover-intro__portal-frame"
+                      src={frameSrc}
                       alt=""
                       aria-hidden="true"
-                      data-runtime-asset={coverIntroAssets.lock}
+                      data-runtime-asset={frameSrc}
                     />
-                  )}
-                  <span className="cover-intro__portal-title">
-                    {portal.title}
-                  </span>
-                </button>
-              );
-            })}
+                    <span
+                      className="cover-intro__portal-roman"
+                      aria-hidden="true"
+                    >
+                      {portal.roman}
+                    </span>
+                    {available ? null : (
+                      <img
+                        className="cover-intro__portal-lock"
+                        src={coverIntroAssets.lock}
+                        alt=""
+                        aria-hidden="true"
+                        data-runtime-asset={coverIntroAssets.lock}
+                      />
+                    )}
+                    <span className="cover-intro__portal-title">
+                      {portal.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </section>
 

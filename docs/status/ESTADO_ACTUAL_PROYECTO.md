@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con QA visual 002H generado y decisión de aprobación pendiente del usuario, sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro reabierta visualmente con diálogo premium base y recomposición de portales 002I, sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -32,6 +32,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Motion polish base de Portada / Intro con reduced motion robusto.
 - Transición placeholder de Portada / Intro hacia Mundo I en `/portada`.
 - QA visual documental 002H de Portada / Intro con ocho capturas 390x844.
+- Diálogo premium base 002I con etiqueta Lía, progreso 1/5 y panel museográfico integrado.
+- Recomposición visual 002I de portales con mayor protagonismo de Portal I.
 
 ## No implementado todavía
 
@@ -47,7 +49,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisión visual del usuario sobre QA 002H para decidir `APROBADA_PARA_AVANZAR` o microticket de ajustes.
+- Próximo trabajo recomendado: `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md`.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -190,12 +192,35 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se modifican PNG staged.
 - No se toca `/` ni `/carga`.
 
+Resultado posterior de revisión manual:
+
+- Decisión del usuario: AJUSTE_VISUAL_REQUERIDO.
+- Estrategia global aprobada para reapertura: D3 + L2 + P3.
+
+## Ticket 002I: Portada / Intro diálogo premium y recomposición
+
+- Estado: AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA.
+- Rama funcional: feature/002I-portada-intro-dialogo-premium-layout.
+- Cubre D3 y P3 parcial.
+- Se reemplaza el cuadro de diálogo oscuro por un panel anfitriona / ficha museográfica.
+- El diálogo incluye etiqueta `Lía` e indicador de progreso `1/5`, `2/5`, etc.
+- El botón de diálogo queda integrado al panel y conserva label accesible.
+- Se agregan capas `cover-lia-stage`, `cover-lia-layer`, `cover-portal-stage`, `cover-portal-group` y `cover-activation-stage`.
+- Portal I queda como `cover-intro__portal--primary`, más grande y protagonista.
+- Portales II-V siguen bloqueados, visibles y con candados.
+- El placeholder de transición hacia Mundo I sigue funcionando.
+- No se implementa rig facial ni blink.
+- No se implementa coreografía física completa del Portal I.
+- No se implementa Estación I real ni transición pixelart final.
+- No se modifican assets staged.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | QA_VISUAL_GENERADO / PENDIENTE_APROBACION_USUARIO / NO_CERRADA               | Espera decisión visual del usuario      |
+| Portada / Intro           | AJUSTE_VISUAL_D3_PARCIAL / DIALOGO_PREMIUM_BASE / RECOMPOSICION_PORTALES / NO_CERRADA | Siguiente: L2 rig facial de Lía         |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -206,8 +231,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I y QA visual 002H en `/portada`, pero la aprobación visual del usuario, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H y primera reapertura visual 002I en `/portada`, pero la aprobación visual para avanzar, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002H/` y decidir si Portada / Intro queda `APROBADA_PARA_AVANZAR` o si requiere un microticket de ajustes visuales.
+Abrir `TICKET_002J_PORTADA_INTRO_LIA_HYBRID_RIG_FACIAL.md` para cubrir L2: microvida de Lía con rig facial, blink y estados de ojos, sin modificar assets ni implementar coreografía física completa.
