@@ -8,6 +8,8 @@ import {
   coverIntroDialogues,
   coverIntroPortals,
   coverIntroText,
+  coverIntroTransitionText,
+  coverIntroWorldOnePlaceholderRoute,
   lockedPortalMessages,
 } from "./coverIntroContent";
 import type {
@@ -52,7 +54,10 @@ function getLiaPoseSource(
   phase: CoverIntroPhase,
   dialoguePose?: CoverIntroDialoguePose,
 ) {
-  if (phase === "portal_1_opening_placeholder") {
+  if (
+    phase === "portal_1_opening_placeholder" ||
+    phase === "transition_to_station_1_placeholder"
+  ) {
     return liaPoseByState.activatePortal1;
   }
 
@@ -72,14 +77,53 @@ export function CoverIntroScreen() {
     createInitialCoverIntroState,
   );
   const blockedMessageTimeoutRef = useRef<number | null>(null);
+  const transitionTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     return () => {
       if (blockedMessageTimeoutRef.current !== null) {
         window.clearTimeout(blockedMessageTimeoutRef.current);
       }
+
+      if (transitionTimeoutRef.current !== null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (transitionTimeoutRef.current !== null) {
+      window.clearTimeout(transitionTimeoutRef.current);
+      transitionTimeoutRef.current = null;
+    }
+
+    if (coverState.phase !== "portal_1_opening_placeholder") {
+      return;
+    }
+
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      setCoverState((current) => {
+        if (current.phase !== "portal_1_opening_placeholder") {
+          return current;
+        }
+
+        return {
+          ...current,
+          phase: "transition_to_station_1_placeholder",
+          blockedPortalMessage: null,
+          blockedPortalId: null,
+        };
+      });
+      transitionTimeoutRef.current = null;
+    }, 650);
+
+    return () => {
+      if (transitionTimeoutRef.current !== null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+        transitionTimeoutRef.current = null;
+      }
+    };
+  }, [coverState.phase]);
 
   const stageStyle = {
     "--cover-background-image": `url(${coverIntroAssets.background})`,
@@ -94,7 +138,11 @@ export function CoverIntroScreen() {
   );
   const portalOneReady =
     coverState.phase === "portal_1_ready" ||
-    coverState.phase === "portal_1_opening_placeholder";
+    coverState.phase === "portal_1_opening_placeholder" ||
+    coverState.phase === "transition_to_station_1_placeholder";
+  const portalOneOpening =
+    coverState.phase === "portal_1_opening_placeholder" ||
+    coverState.phase === "transition_to_station_1_placeholder";
   const ctaText = portalOneReady
     ? coverIntroText.enterWorldOne
     : coverIntroText.cta;
@@ -106,7 +154,8 @@ export function CoverIntroScreen() {
     setCoverState((current) => {
       if (
         isDialoguePhase(current.phase) ||
-        current.phase === "portal_1_opening_placeholder"
+        current.phase === "portal_1_opening_placeholder" ||
+        current.phase === "transition_to_station_1_placeholder"
       ) {
         return current;
       }
@@ -182,7 +231,10 @@ export function CoverIntroScreen() {
       return;
     }
 
-    if (coverState.phase === "portal_1_opening_placeholder") {
+    if (
+      coverState.phase === "portal_1_opening_placeholder" ||
+      coverState.phase === "transition_to_station_1_placeholder"
+    ) {
       return;
     }
 
@@ -192,7 +244,8 @@ export function CoverIntroScreen() {
   function showBlockedPortalMessage(portalId: LockedPortalId) {
     if (
       isDialoguePhase(coverState.phase) ||
-      coverState.phase === "portal_1_opening_placeholder"
+      coverState.phase === "portal_1_opening_placeholder" ||
+      coverState.phase === "transition_to_station_1_placeholder"
     ) {
       return;
     }
@@ -223,7 +276,10 @@ export function CoverIntroScreen() {
       return;
     }
 
-    if (coverState.phase === "portal_1_opening_placeholder") {
+    if (
+      coverState.phase === "portal_1_opening_placeholder" ||
+      coverState.phase === "transition_to_station_1_placeholder"
+    ) {
       return;
     }
 
@@ -306,7 +362,7 @@ export function CoverIntroScreen() {
                   ? "cover-intro__portal--ready"
                   : "",
                 portal.id === "portal-1" &&
-                coverState.phase === "portal_1_opening_placeholder"
+                portalOneOpening
                   ? "cover-intro__portal--opening"
                   : "",
                 portal.id === coverState.blockedPortalId
@@ -389,7 +445,7 @@ export function CoverIntroScreen() {
           ) : null}
           {coverState.phase === "portal_1_opening_placeholder" ? (
             <p className="cover-intro__opening" role="status">
-              {coverIntroText.openingWorldOne}
+              {coverIntroTransitionText.opening}
             </p>
           ) : null}
           <h1 id="cover-intro-title" className="cover-intro__title">
@@ -404,6 +460,38 @@ export function CoverIntroScreen() {
             {ctaText}
           </button>
         </footer>
+
+        {coverState.phase === "transition_to_station_1_placeholder" ? (
+          <section
+            className="cover-intro__transition-overlay"
+            role="dialog"
+            aria-live="polite"
+            aria-label="Transición hacia Mundo I"
+          >
+            <div className="cover-intro__transition-card">
+              <p className="cover-intro__transition-eyebrow">
+                {coverIntroTransitionText.opening}
+              </p>
+              <p className="cover-intro__transition-title">
+                {coverIntroTransitionText.preparing}
+              </p>
+              <p className="cover-intro__transition-copy">
+                {coverIntroTransitionText.pending}
+              </p>
+              <span
+                className="cover-intro__transition-indicator"
+                aria-hidden="true"
+              />
+              <a
+                className="cover-intro__transition-link"
+                href={coverIntroWorldOnePlaceholderRoute}
+                aria-label={coverIntroTransitionText.continue}
+              >
+                {coverIntroTransitionText.continue}
+              </a>
+            </div>
+          </section>
+        ) : null}
       </div>
     </main>
   );

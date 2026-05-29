@@ -400,3 +400,42 @@ Notas para 002G:
 - Conectar `portal_1_opening_placeholder` con una transición controlada o handoff hacia Mundo I.
 - Mantener Estación I completa fuera de alcance salvo ticket autorizado.
 - Conservar las reglas de reduced motion y no introducir audio, video runtime ni recursos externos.
+
+## Transición placeholder 002G
+
+Estado:
+
+`TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA`
+
+Ruta activa:
+
+`/portada`
+
+Implementado:
+
+- Se agrega el estado `transition_to_station_1_placeholder`.
+- Al tocar `Entrar a Mundo I`, primero se conserva `portal_1_opening_placeholder`.
+- Después de un lapso breve, la portada muestra un overlay DOM de transición placeholder.
+- El overlay muestra:
+  - `Abriendo Mundo I: Raíz...`
+  - `Preparando recorrido...`
+  - `La transición visual final se integrará en una fase posterior.`
+- Se usa una acción explícita `Continuar a Mundo I`.
+- La acción apunta a la ruta placeholder existente `/estacion/1`.
+
+No implementado:
+
+- Transición pixelart final.
+- Navegación automática a Estación I.
+- Estación I real.
+- Interiores de portales.
+- Desbloqueo de Portales II-V.
+- Nuevos assets.
+- Edición de assets staged.
+
+Notas para 002H:
+
+- Revisar visualmente `/portada` en mobile 390x844.
+- Revisar copy, diálogos, motion, reduced motion y overlay de transición placeholder.
+- Decidir si Portada / Intro queda `APROBADA_PARA_AVANZAR` o requiere nuevos ajustes.
+- No iniciar Estación I real antes de esa aprobación explícita.

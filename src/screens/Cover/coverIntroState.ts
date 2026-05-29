@@ -4,7 +4,8 @@ export type CoverIntroPhase =
   | "intro_dialogue_active"
   | "intro_dialogue_completed"
   | "portal_1_ready"
-  | "portal_1_opening_placeholder";
+  | "portal_1_opening_placeholder"
+  | "transition_to_station_1_placeholder";
 
 export type CoverIntroState = {
   phase: CoverIntroPhase;

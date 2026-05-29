@@ -108,6 +108,15 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
   await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
+  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(
+    page.getByText(
+      "La transición visual final se integrará en una fase posterior.",
+    ),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Continuar a Mundo I" }),
+  ).toHaveAttribute("href", "/estacion/1");
   await expect(page).toHaveURL(/\/portada$/);
 
   const overflow = await page.evaluate(
@@ -141,6 +150,10 @@ test("reduced motion conserva diálogos y gating en /portada", async ({
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
   await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
+  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Continuar a Mundo I" }),
+  ).toHaveAttribute("href", "/estacion/1");
   await expect(page).toHaveURL(/\/portada$/);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);

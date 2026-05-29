@@ -1,5 +1,5 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { CoverIntroScreen } from "./CoverIntroScreen";
 import { coverIntroAssets } from "./coverIntroAssets";
@@ -7,6 +7,8 @@ import {
   coverIntroDialogues,
   coverIntroPortals,
   coverIntroText,
+  coverIntroTransitionText,
+  coverIntroWorldOnePlaceholderRoute,
   lockedPortalMessages,
 } from "./coverIntroContent";
 import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
@@ -17,6 +19,8 @@ describe("CoverIntroScreen", () => {
   });
 
   afterEach(() => {
+    vi.clearAllTimers();
+    vi.useRealTimers();
     cleanup();
   });
 
@@ -169,12 +173,55 @@ describe("CoverIntroScreen", () => {
       screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
     );
 
-    expect(screen.getByText(coverIntroText.openingWorldOne)).toBeInTheDocument();
+    expect(
+      screen.getByText(coverIntroTransitionText.opening),
+    ).toBeInTheDocument();
     expect(container.firstElementChild).toHaveAttribute(
       "data-cover-phase",
       "portal_1_opening_placeholder",
     );
-    expect(container.querySelector("a")).not.toBeInTheDocument();
+  });
+
+  it("avanza a transition_to_station_1_placeholder y prepara handoff a Mundo I", () => {
+    vi.useFakeTimers();
+    const { container } = render(<CoverIntroScreen />);
+
+    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
+    for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
+      fireEvent.click(
+        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+      );
+    }
+    fireEvent.click(
+      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(650);
+    });
+
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "transition_to_station_1_placeholder",
+    );
+    expect(
+      screen.getByText(coverIntroTransitionText.preparing),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(coverIntroTransitionText.pending),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: coverIntroTransitionText.continue }),
+    ).toHaveAttribute("href", coverIntroWorldOnePlaceholderRoute);
+    expect(
+      screen.queryByText("Ruta base creada para navegación secuencial"),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelectorAll('[data-portal-state="locked"]'),
+    ).toHaveLength(4);
   });
 
   it.each(Object.entries(lockedPortalMessages))(

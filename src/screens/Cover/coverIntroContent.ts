@@ -9,6 +9,15 @@ export const coverIntroText = {
   dialogueFinish: "Finalizar introducción",
 } as const;
 
+export const coverIntroTransitionText = {
+  opening: "Abriendo Mundo I: Raíz...",
+  preparing: "Preparando recorrido...",
+  pending: "La transición visual final se integrará en una fase posterior.",
+  continue: "Continuar a Mundo I",
+} as const;
+
+export const coverIntroWorldOnePlaceholderRoute = "/estacion/1";
+
 export const coverIntroDialogues = [
   {
     id: "intro-01-presentation",

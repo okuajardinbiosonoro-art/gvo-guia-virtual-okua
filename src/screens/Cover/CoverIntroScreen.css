@@ -110,7 +110,8 @@
 }
 
 .cover-intro--portal_1_ready .cover-intro__lia,
-.cover-intro--portal_1_opening_placeholder .cover-intro__lia {
+.cover-intro--portal_1_opening_placeholder .cover-intro__lia,
+.cover-intro--transition_to_station_1_placeholder .cover-intro__lia {
   filter:
     drop-shadow(0 13px 19px rgb(38 21 45 / 28%))
     drop-shadow(0 0 16px rgb(242 212 138 / 24%));
@@ -339,6 +340,112 @@
   background: rgb(48 32 58 / 70%);
 }
 
+.cover-intro__transition-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: end center;
+  padding: 24px var(--cover-stage-padding-x)
+    calc(112px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 18% 58%, rgb(242 212 138 / 16%), transparent 34%),
+    linear-gradient(180deg, rgb(35 22 42 / 14%), rgb(35 22 42 / 42%));
+  pointer-events: auto;
+  animation: cover-transition-overlay-enter 360ms ease-out both;
+}
+
+.cover-intro__transition-card {
+  width: min(100%, 336px);
+  padding: 12px 13px 13px;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  border: 2px solid rgb(217 203 225 / 76%);
+  color: var(--cover-cream-soft);
+  background:
+    linear-gradient(180deg, rgb(57 39 68 / 88%), rgb(39 25 48 / 91%)),
+    rgb(39 25 48 / 92%);
+  box-shadow:
+    0 3px 0 rgb(33 20 40 / 68%),
+    0 15px 22px rgb(25 15 32 / 28%);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.cover-intro--transition_to_station_1_placeholder .cover-intro__footer {
+  opacity: 0.56;
+  pointer-events: none;
+}
+
+.cover-intro__transition-eyebrow,
+.cover-intro__transition-title,
+.cover-intro__transition-copy {
+  margin: 0;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgb(31 21 38 / 60%);
+}
+
+.cover-intro__transition-eyebrow {
+  color: var(--cover-amber);
+  font-size: clamp(0.78rem, 3.2vw, 0.96rem);
+  line-height: 1;
+}
+
+.cover-intro__transition-title {
+  color: var(--cover-cream-soft);
+  font-size: clamp(1rem, 4.5vw, 1.3rem);
+  line-height: 0.98;
+}
+
+.cover-intro__transition-copy {
+  max-width: 32ch;
+  color: rgb(248 239 216 / 78%);
+  font-size: clamp(0.72rem, 3vw, 0.88rem);
+  line-height: 1.08;
+}
+
+.cover-intro__transition-indicator {
+  width: 44px;
+  height: 4px;
+  display: block;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 4px,
+      var(--cover-lavender) 4px 8px,
+      transparent 8px 12px,
+      var(--cover-amber) 12px 32px,
+      transparent 32px 36px,
+      var(--cover-lavender) 36px 40px,
+      transparent 40px
+    );
+  animation: cover-transition-indicator 1.6s ease-in-out infinite;
+}
+
+.cover-intro__transition-link {
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 2px solid rgb(248 239 216 / 82%);
+  color: var(--cover-ink);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 6px,
+      var(--cover-amber) 6px calc(100% - 6px),
+      transparent calc(100% - 6px)
+    ),
+    linear-gradient(180deg, #fff2bc, var(--cover-amber-strong));
+  box-shadow: 0 2px 0 rgb(33 20 40 / 62%);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 160ms ease-out,
+    filter 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+
 .cover-intro__title {
   max-width: 16ch;
   margin: 0;
@@ -380,7 +487,8 @@
 .cover-intro__portal--available:focus-visible,
 .cover-intro__portal--locked:focus-visible,
 .cover-intro__cta:focus-visible,
-.cover-intro__dialogue-button:focus-visible {
+.cover-intro__dialogue-button:focus-visible,
+.cover-intro__transition-link:focus-visible {
   outline: 3px solid var(--cover-cream-soft);
   outline-offset: 3px;
   filter: drop-shadow(0 0 8px rgb(242 212 138 / 45%));
@@ -388,7 +496,8 @@
 
 .cover-intro__portal--available:active,
 .cover-intro__cta:active,
-.cover-intro__dialogue-button:active {
+.cover-intro__dialogue-button:active,
+.cover-intro__transition-link:active {
   transform: translateY(1px) scale(0.98);
 }
 
@@ -504,6 +613,29 @@
   }
 }
 
+@keyframes cover-transition-overlay-enter {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cover-transition-indicator {
+  0%,
+  100% {
+    opacity: 0.54;
+    transform: scaleX(0.84);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
 @media (max-width: 374px) {
   .cover-intro__stage {
     padding-top: 18px;
@@ -555,6 +687,10 @@
   .cover-intro__dialogue-button {
     min-height: 26px;
     padding-block: 4px;
+  }
+
+  .cover-intro__transition-overlay {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
   }
 
   .cover-intro__footer {

@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-17
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con motion polish base, diálogos y gating de Portal I implementados en `/portada`, sin transición real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con transición placeholder y handoff a Mundo I preparados, sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -30,6 +30,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Base visual de Portada / Intro en `/portada`.
 - Diálogos introductorios de Lía y gating narrativo base de Portal I en `/portada`.
 - Motion polish base de Portada / Intro con reduced motion robusto.
+- Transición placeholder de Portada / Intro hacia Mundo I en `/portada`.
 
 ## No implementado todavía
 
@@ -45,7 +46,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo funcional: placeholder/handoff de transición controlada hacia Mundo I, sin implementar Estación I completa.
+- Próximo trabajo recomendado: QA visual de Portada / Intro antes de avanzar a transición real o Mundo I.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -159,12 +160,27 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - No se modifican assets staged.
 - No se toca `/` ni `/carga`.
 
+## Ticket 002G: Portada / Intro transición placeholder y handoff a Mundo I
+
+- Estado: TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA.
+- Rama funcional: feature/002G-portada-intro-transition-handoff.
+- Se agrega el estado `transition_to_station_1_placeholder`.
+- Al presionar `Entrar a Mundo I`, la portada pasa por `portal_1_opening_placeholder` y luego muestra un overlay DOM de transición.
+- El overlay muestra `Abriendo Mundo I: Raíz...`, `Preparando recorrido...` y una nota de que la transición visual final se integrará después.
+- Se usa la ruta placeholder existente `/estacion/1` como acción explícita `Continuar a Mundo I`.
+- No hay navegación automática a Estación I.
+- Estación I sigue siendo placeholder, no una estación real.
+- Portales II-V siguen bloqueados.
+- No se implementa transición pixelart final.
+- No se modifican assets staged.
+- No se toca `/` ni `/carga`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | MOTION_POLISH_BASE / DIALOGOS_BASE_IMPLEMENTADOS / SIN_TRANSICION_REAL / NO_CERRADA | Lista para 002G                         |
+| Portada / Intro           | TRANSICION_PLACEHOLDER_IMPLEMENTADA / HANDOFF_MUNDO_I_PREPARADO / NO_CERRADA | Lista para QA visual 002H               |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -175,8 +191,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo de Portal I y motion polish base en `/portada`, pero la transición real a Mundo I queda pendiente.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish y transición placeholder hacia Mundo I en `/portada`, pero la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Abrir `TICKET_002G_PORTADA_INTRO_TRANSICION_PLACEHOLDER_Y_HANDOFF_MUNDO_I.md` para conectar el estado opening placeholder con una transición controlada/handoff, sin implementar todavía Estación I completa salvo placeholder autorizado.
+Abrir `TICKET_002H_PORTADA_INTRO_QA_VISUAL_Y_APROBACION_PARA_AVANZAR.md` para revisión visual mobile, textos, diálogos, motion/reduced motion y decisión de avanzar o ajustar.
