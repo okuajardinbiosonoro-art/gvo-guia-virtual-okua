@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-29
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con ajuste 002J-FIX de microvida de Lía y diálogo sin conector ordinario, sin coreografía física avanzada, transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con coreografía base de activación del Portal I, microvida de Lía aceptada, diálogo sin conector ordinario, sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -38,6 +38,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Corrección 002I-FIX2 con progreso `Paso X de 5`, tipografía de lectura en diálogos, panel más asociado a Lía y activación de Lía anclada al Portal I.
 - Lía hybrid rig facial 002J en `portada_idle`, con capas locales staged, parpadeo controlado, glow sutil de collar y poses completas preservadas para estados narrativos.
 - Corrección 002J-FIX con rig idle en diálogos seguros, expresiones `happy`/`attentive`, blink más perceptible, glow de collar reforzado y panel de diálogo sin línea/flecha/triángulo ordinario.
+- Coreografía 002K del Portal I con sandwich visual por capas, Lía `activatePortal1` anclada al portal, frame frontal duplicado como rim, luz CSS de contacto y overlay placeholder posterior al contacto.
 
 ## No implementado todavía
 
@@ -53,7 +54,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisar visualmente 002J-FIX antes de abrir coreografía física avanzada del Portal I o transición pixelart final.
+- Próximo trabajo recomendado: revisar visualmente 002K antes de abrir transición pixelart final o preproducción de Mundo I.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -289,24 +290,44 @@ Resultado posterior de revisión manual:
 - No se implementa coreografía física avanzada del Portal I.
 - No se implementa transición pixelart final ni Estación I real.
 
+## Ticket 002K: Portada / Intro coreografía de activación Portal I
+
+- Estado: COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA.
+- Rama funcional: feature/002K-portada-intro-coreografia-portal-i.
+- Base: `feature/002J-fix-lia-microvida-dialogue-anchor`.
+- Se conserva la microvida aprobada de Lía en `portada_idle` y diálogos seguros.
+- Se conserva el diálogo sin línea/flecha/triángulo ordinario.
+- En `portal_1_opening_placeholder`, la activación usa una estructura por capas:
+  - glow de Portal I detrás;
+  - frame de Portal I back;
+  - Lía `activatePortal1` anclada al contenedor del Portal I;
+  - luz CSS de contacto;
+  - frame frontal duplicado como rim.
+- El paso a `transition_to_station_1_placeholder` se retrasa a 920ms para que el contacto se lea antes del overlay.
+- `Continuar a Mundo I` sigue apuntando a `/estacion/1`.
+- Portales II-V siguen bloqueados.
+- No se crean assets nuevos.
+- No se modifican PNG staged.
+- No se implementa transición pixelart final ni Estación I real.
+
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
-| ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
-| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA | Revisar 002J-FIX antes de coreografía Portal I |
-| Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
-| Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
-| Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
-| Estación III              | NO_INICIADA                                                             | BLOQUEADA                               |
-| Estación IV               | NO_INICIADA                                                             | BLOQUEADA                               |
-| Estación V                | NO_INICIADA                                                             | BLOQUEADA                               |
-| Final                     | NO_INICIADA                                                             | BLOQUEADO                               |
+| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido                                |
+| ------------------------- | ------------------------------------------------------------ | --------------------------------------------------------- |
+| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global                   |
+| Portada / Intro           | COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA    | Revisar 002K antes de transición pixelart final o Mundo I |
+| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior                    |
+| Estación I                | NO_INICIADA                                                  | BLOQUEADA                                                 |
+| Estación II               | NO_INICIADA                                                  | BLOQUEADA                                                 |
+| Estación III              | NO_INICIADA                                                  | BLOQUEADA                                                 |
+| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                                                 |
+| Estación V                | NO_INICIADA                                                  | BLOQUEADA                                                 |
+| Final                     | NO_INICIADA                                                  | BLOQUEADO                                                 |
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J y ajuste 002J-FIX de microvida/dialogue anchor, pero la aprobación visual para avanzar, la coreografía física avanzada del Portal I, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor y coreografía base 002K de activación del Portal I, pero la aprobación visual para avanzar, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002J-FIX/`. Si la microvida y el panel quedan aprobados visualmente, abrir `TICKET_002K_PORTADA_INTRO_COREOGRAFIA_ACTIVACION_PORTAL_I.md`. Si Lía sigue sin sentirse viva, abrir primero `TICKET_002J_FIX2_LIA_RIG_VISUAL_REVIEW.md`.
+Revisar las capturas de `docs/visual/cover-intro/qa/002K/`. Si la coreografía Portal I queda aprobada visualmente, abrir `TICKET_002L_PORTADA_INTRO_QA_VISUAL_REAPROBACION.md`. No iniciar Mundo I real ni transición pixelart final antes de esa revisión.

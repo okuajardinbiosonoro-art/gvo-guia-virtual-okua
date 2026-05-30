@@ -1,4 +1,10 @@
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { CoverIntroScreen } from "./CoverIntroScreen";
@@ -286,9 +292,27 @@ describe("CoverIntroScreen", () => {
     expect(
       screen.getByTestId("cover-portal-activation-rig"),
     ).toBeInTheDocument();
+    expect(screen.getByTestId("cover-portal-activation-rig")).toHaveAttribute(
+      "data-activation-stage",
+      "portal-i",
+    );
+    expect(screen.getByTestId("cover-activation-lia")).toHaveAttribute(
+      "data-runtime-asset",
+      coverIntroAssets.liaActivatePortal1,
+    );
+    expect(screen.getByTestId("cover-activation-portal-front")).toHaveAttribute(
+      "data-runtime-asset",
+      coverIntroAssets.portal1Frame,
+    );
+    expect(
+      screen.getByTestId("cover-activation-contact-light"),
+    ).toBeInTheDocument();
     expect(
       container.querySelector("[data-lia-pose='activatePortal1']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaActivatePortal1);
+    ).toHaveAttribute(
+      "data-runtime-asset",
+      coverIntroAssets.liaActivatePortal1,
+    );
   });
 
   it("avanza a transition_to_station_1_placeholder y prepara handoff a Mundo I", () => {
@@ -309,7 +333,7 @@ describe("CoverIntroScreen", () => {
     );
 
     act(() => {
-      vi.advanceTimersByTime(650);
+      vi.advanceTimersByTime(920);
     });
 
     expect(container.firstElementChild).toHaveAttribute(

@@ -34,6 +34,8 @@ const liaPoseByState = {
   activatePortal1: coverIntroAssets.liaActivatePortal1,
 } satisfies Record<CoverIntroDialoguePose | "idle" | "activatePortal1", string>;
 
+const PORTAL_ACTIVATION_TO_TRANSITION_MS = 920;
+
 function createInitialCoverIntroState(): CoverIntroState {
   const shouldResetIntro =
     typeof window !== "undefined" &&
@@ -59,7 +61,9 @@ function createInitialCoverIntroState(): CoverIntroState {
 }
 
 function isDialoguePhase(phase: CoverIntroPhase) {
-  return phase === "intro_dialogue_started" || phase === "intro_dialogue_active";
+  return (
+    phase === "intro_dialogue_started" || phase === "intro_dialogue_active"
+  );
 }
 
 function getLiaPoseSource(
@@ -186,7 +190,7 @@ export function CoverIntroScreen() {
         };
       });
       transitionTimeoutRef.current = null;
-    }, 650);
+    }, PORTAL_ACTIVATION_TO_TRANSITION_MS);
 
     return () => {
       if (transitionTimeoutRef.current !== null) {
@@ -475,8 +479,9 @@ export function CoverIntroScreen() {
             <div className="cover-intro__portal-group cover-portal-group">
               {portalOneOpening ? (
                 <div
-                  className="cover-intro__portal-activation-rig"
+                  className="cover-intro__portal-activation-rig cover-activation-stage"
                   data-testid="cover-portal-activation-rig"
+                  data-activation-stage="portal-i"
                   aria-hidden="true"
                 >
                   <img
@@ -486,16 +491,27 @@ export function CoverIntroScreen() {
                     data-runtime-asset={coverIntroAssets.portal1Glow}
                   />
                   <img
+                    className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--back"
+                    src={coverIntroAssets.portal1Frame}
+                    alt=""
+                    data-runtime-asset={coverIntroAssets.portal1Frame}
+                  />
+                  <img
                     className="cover-intro__portal-activation-lia"
                     src={coverIntroAssets.liaActivatePortal1}
                     alt=""
+                    data-testid="cover-activation-lia"
                     data-runtime-asset={coverIntroAssets.liaActivatePortal1}
                   />
-                  <span className="cover-intro__portal-activation-veil" />
+                  <span
+                    className="cover-intro__portal-activation-contact"
+                    data-testid="cover-activation-contact-light"
+                  />
                   <img
-                    className="cover-intro__portal-activation-frame"
+                    className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--front"
                     src={coverIntroAssets.portal1Frame}
                     alt=""
+                    data-testid="cover-activation-portal-front"
                     data-runtime-asset={coverIntroAssets.portal1Frame}
                   />
                 </div>

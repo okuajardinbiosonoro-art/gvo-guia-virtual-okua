@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA`
+Estado: `COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -240,6 +240,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 10. `002I-FIX2`: diálogo integrado con Lía y activación visual de Portal I.
 11. `002J`: Lía hybrid rig facial seguro en idle.
 12. `002J-FIX`: microvida perceptible y diálogo sin conector ordinario.
+13. `002K`: coreografía base de activación del Portal I.
 
 ## Asset staging V1
 
@@ -712,3 +713,33 @@ No se modificó:
 - Carga inicial V13.
 - Rutas `/`, `/carga`, `/portada` ni `/estacion/1`.
 - Desbloqueo de Portales II-V.
+
+## Coreografía de activación 002K
+
+Estado:
+
+`COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA`
+
+Implementado:
+
+- La activación del Portal I usa una composición tipo sandwich visual por capas.
+- Lía `activatePortal1` se renderiza dentro de la estructura anclada al Portal I, no como pose lateral independiente.
+- El Portal I duplica su frame: una capa back detrás de Lía y una capa front/rim por encima para dar sensación de profundidad.
+- Se agrega una luz de contacto CSS, sin asset nuevo, para marcar el momento en que Lía activa el portal.
+- El glow del Portal I sube de forma breve y controlada durante la activación.
+- El overlay `Preparando recorrido...` aparece después de una pausa de 920ms para que el contacto se lea antes del handoff placeholder.
+
+No implementado:
+
+- Transición pixelart final.
+- Estación I real.
+- Interiores de portales.
+- Desbloqueo de Portales II-V.
+- Nuevos assets runtime.
+- Edición de PNG staged.
+
+Notas para 002L:
+
+- Revisar visualmente la captura `docs/visual/cover-intro/qa/002K/cover-intro-002k-02-activation-opening-390x844.png`.
+- Confirmar si D3 + L2 + P3 ya alcanza `APROBADA_PARA_AVANZAR`.
+- Documentar deuda visual antes de abrir transición real o preproducción de Mundo I.
