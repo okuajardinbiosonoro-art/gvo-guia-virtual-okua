@@ -6,9 +6,9 @@ Fecha: 2026-05-30
 
 `QA_FINAL_002L_GENERADO`
 
-## Estado visual propuesto
+## Estado visual aprobado
 
-`CANDIDATA_APROBADA_PARA_AVANZAR`
+`APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`
 
 ## Evidencia principal
 
@@ -16,16 +16,26 @@ Fecha: 2026-05-30
 - Capturas finales: `docs/visual/cover-intro/qa/002L/`
 - Handoff: `docs/status/HANDOFF_002L_PORTADA_INTRO_QA_REAPROBACION.md`
 
-## Opciones de decisión
+## Decisión visual del usuario
 
-A. `APROBADA_PARA_AVANZAR`
+`APROBADA_PARA_AVANZAR`
 
-B. `AJUSTE_VISUAL_REQUERIDO`
+Calificación manual: `7.8/10`
 
-C. `CERRADA_APROBADA_FINAL`
+Aprobador visual explícito: Ing. José David.
 
-## Decisión final del usuario
+## Alcance de la decisión
 
-`PENDIENTE`
+La Portada / Intro queda aprobada para avanzar hacia la siguiente fase del recorrido, con deuda visual documentada y sin cierre final.
 
-La decisión final debe ser confirmada explícitamente por el usuario Ing. José David en chat antes de avanzar a transición real, Mundo I o cierre final.
+- No queda `CERRADA_APROBADA_FINAL`.
+- No se implementa transición pixelart final en este cierre.
+- No se implementa Mundo I real en este cierre.
+- La deuda visual queda reservada para pulido global o iteraciones futuras.
+
+## Deuda visual documentada
+
+- Transición pixelart final hacia Mundo I pendiente.
+- Estación I real pendiente.
+- Interiores/identidades visuales completas de portales pendientes.
+- Microajustes de composición y motion podrían revisarse en pulido global si el conjunto del recorrido lo exige.

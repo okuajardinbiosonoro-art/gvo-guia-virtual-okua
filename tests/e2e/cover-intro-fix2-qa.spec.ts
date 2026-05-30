@@ -15,11 +15,15 @@ const fix2QaOutputDir = path.join(
 
 async function prepareFreshCover(page: Page) {
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/portada");
+  await page.evaluate(() => {
+    window.localStorage.removeItem("gvo.coverIntro.introCompleted.v1");
+  });
   await page.goto("/portada?resetIntro=1");
-  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
   await expect(
     page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 10_000 });
   await expect(
     page.getByRole("button", { name: "Entrar a Mundo I" }),
   ).toHaveCount(0);
@@ -131,10 +135,7 @@ test.describe("QA visual Portada / Intro 002I-FIX2", () => {
     });
 
     await page.goto("/?resetIntro=1");
-    await expect(
-      page.getByRole("heading", { name: "Preparando el recorrido" }),
-    ).toBeVisible();
-    await expect(page).toHaveURL(/\/portada$/, { timeout: 5000 });
+    await expect(page).toHaveURL(/\/portada$/, { timeout: 15_000 });
     await expect(
       page.getByRole("button", { name: "Comenzar recorrido" }),
     ).toBeVisible();

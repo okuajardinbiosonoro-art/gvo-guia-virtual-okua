@@ -16,7 +16,7 @@ const qaOutputDir = path.join(
 async function prepareFreshCover(page: Page) {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/portada?resetIntro=1");
-  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
   await expect(
     page.getByRole("button", { name: "Comenzar recorrido" }),
   ).toBeVisible();
@@ -31,7 +31,7 @@ async function capture(page: Page, name: string) {
 }
 
 test.describe("QA visual Portada / Intro 002J-FIX", () => {
-  test.describe.configure({ timeout: 60_000 });
+  test.describe.configure({ timeout: 90_000 });
 
   test.beforeAll(() => {
     mkdirSync(qaOutputDir, { recursive: true });

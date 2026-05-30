@@ -1,8 +1,8 @@
 # Estado actual del proyecto
 
-Fecha: 2026-05-29
+Fecha: 2026-05-30
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con QA final 002L generado y candidata a aprobación para avanzar, pendiente de confirmación visual final del usuario; sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -39,7 +39,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Lía hybrid rig facial 002J en `portada_idle`, con capas locales staged, parpadeo controlado, glow sutil de collar y poses completas preservadas para estados narrativos.
 - Corrección 002J-FIX con rig idle en diálogos seguros, expresiones `happy`/`attentive`, blink más perceptible, glow de collar reforzado y panel de diálogo sin línea/flecha/triángulo ordinario.
 - Coreografía 002K del Portal I con sandwich visual por capas, Lía `activatePortal1` anclada al portal, frame frontal duplicado como rim, luz CSS de contacto y overlay placeholder posterior al contacto.
-- QA final 002L de Portada / Intro con capturas 390x844, matriz visual, handoff de reaprobación y borrador de decisión visual.
+- QA final 002L de Portada / Intro con capturas 390x844, matriz visual, handoff de reaprobación y decisión visual aprobada para avanzar.
+- Cierre documental 002M de Portada / Intro como `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`.
 
 ## No implementado todavía
 
@@ -55,7 +56,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisar visualmente 002L y confirmar si Portada / Intro queda `APROBADA_PARA_AVANZAR`, `AJUSTE_VISUAL_REQUERIDO` o `CERRADA_APROBADA_FINAL`.
+- Próximo trabajo recomendado: iniciar preproducción de la transición entre mundos; no implementar Estación I real sin ticket autorizado.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -313,7 +314,7 @@ Resultado posterior de revisión manual:
 
 ## Ticket 002L: Portada / Intro QA visual final y reaprobación
 
-- Estado: QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO.
+- Estado: QA_FINAL_002L_GENERADO / APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL.
 - Rama técnica: feature/002L-portada-intro-qa-reaprobacion.
 - Base: `feature/002K-portada-intro-coreografia-portal-i`.
 - Se crea `tests/e2e/cover-intro-002l-final-qa.spec.ts`.
@@ -325,19 +326,35 @@ Resultado posterior de revisión manual:
 - Se crea `HANDOFF_002L_PORTADA_INTRO_QA_REAPROBACION.md`.
 - Se crea `DECISION_VISUAL_002L_PORTADA_INTRO.md`.
 - Decisión técnica de Codex: `CANDIDATA_APROBADA_PARA_AVANZAR`.
-- Decisión visual final del usuario: `PENDIENTE`.
+- Decisión visual final del usuario: `APROBADA_PARA_AVANZAR`.
+- Calificación manual del usuario: `7.8/10`.
 - No se implementa Estación I real.
 - No se implementa transición pixelart final.
 - No se modifican assets staged.
+
+## Ticket 002M: Portada / Intro cierre de aprobación y limpieza
+
+- Estado: APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL.
+- Rama documental: feature/002M-portada-intro-cierre-limpieza.
+- Base: `feature/002L-portada-intro-qa-reaprobacion`.
+- Se registra la decisión explícita del usuario Ing. José David.
+- Se crea `docs/status/HANDOFF_002M_PORTADA_INTRO_APROBADA_PARA_AVANZAR.md`.
+- Se prepara tag checkpoint `checkpoint/portada-intro-v1-7p8-aprobada-avanzar`.
+- No se modifica código funcional.
+- No se modifican assets runtime.
+- No se regeneran capturas.
+- No se implementa transición pixelart final.
+- No se implementa Mundo I real.
+- No se marca `CERRADA_APROBADA_FINAL`.
 
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                                               | Bloqueo / avance permitido                      |
 | ------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA                                    | Avance permitido; deuda a pulido global         |
-| Portada / Intro           | QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO | Pendiente decisión visual explícita del usuario |
-| Transición entre mundos   | NO_INICIADA                                                                                     | BLOQUEADA hasta autorización posterior          |
-| Estación I                | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Portada / Intro           | APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL                 | Avance permitido; deuda a pulido global         |
+| Transición entre mundos   | NO_INICIADA                                                                                     | PREPRODUCCION_RECOMENDADA                       |
+| Estación I                | NO_INICIADA                                                                                     | BLOQUEADA hasta transición/ticket autorizado    |
 | Estación II               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación III              | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación IV               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
@@ -346,8 +363,8 @@ Resultado posterior de revisión manual:
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor, coreografía base 002K de activación del Portal I y QA final 002L generado. La decisión visual final del usuario, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor, coreografía base 002K de activación del Portal I, QA final 002L y cierre documental 002M. La Portada / Intro queda `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. La transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002L/` y confirmar una decisión visual: `APROBADA_PARA_AVANZAR`, `AJUSTE_VISUAL_REQUERIDO` o `CERRADA_APROBADA_FINAL`. No iniciar Mundo I real ni transición pixelart final antes de esa decisión.
+Iniciar preproducción documental de la transición entre mundos antes de implementar la transición real o Mundo I. No iniciar Estación I real sin ticket autorizado.

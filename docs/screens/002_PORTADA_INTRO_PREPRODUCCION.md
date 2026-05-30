@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO`
+Estado: `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`
 
 Fecha: 2026-05-17
 
@@ -749,7 +749,7 @@ Notas para 002L:
 
 Estado:
 
-`QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO`
+`QA_FINAL_002L_GENERADO / APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`
 
 Evidencia:
 
@@ -775,7 +775,9 @@ Revisado:
 Decisión:
 
 - Decisión técnica de Codex: `CANDIDATA_APROBADA_PARA_AVANZAR`.
-- Decisión visual final: pendiente del usuario Ing. José David.
+- Decisión visual final del usuario Ing. José David: `APROBADA_PARA_AVANZAR`.
+- Calificación manual: `7.8/10`.
+- La pantalla no queda `CERRADA_APROBADA_FINAL`.
 
 No implementado:
 
@@ -783,3 +785,24 @@ No implementado:
 - Estación I real.
 - Desbloqueo de Portales II-V.
 - Assets nuevos.
+
+## Cierre 002M — Aprobación para avanzar
+
+Estado:
+
+`APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`
+
+La Portada / Intro supera el umbral visual mínimo definido por metodología y queda habilitada para avanzar a la siguiente fase del recorrido. Esta decisión permite abrir preproducción de transición entre mundos, pero no autoriza todavía implementar Estación I real ni marcar la pantalla como cierre final.
+
+Deuda reservada:
+
+- Transición pixelart final hacia Mundo I.
+- Estación I real.
+- Interiores/identidades visuales completas de portales.
+- Pulido global posterior si el recorrido completo lo requiere.
+
+Próxima fase recomendada:
+
+1. Preproducción de transición entre mundos.
+2. Definición visual y técnica del paso desde Portal I hacia Mundo I.
+3. Ticket funcional posterior solo cuando existan assets, límites y criterios aprobados.

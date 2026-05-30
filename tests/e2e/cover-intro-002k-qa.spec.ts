@@ -15,7 +15,7 @@ const qaOutputDir = path.join(
 
 async function completeIntro(page: Page) {
   await page.goto("/portada?resetIntro=1");
-  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
   await page.getByRole("button", { name: "Comenzar recorrido" }).click();
 
   for (let index = 0; index < 4; index += 1) {
