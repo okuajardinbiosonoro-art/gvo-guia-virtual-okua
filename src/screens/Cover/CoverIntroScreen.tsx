@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 
 import { coverIntroAssets } from "./coverIntroAssets";
 import { LiaHybridAvatar } from "./LiaHybridAvatar";
+import type { LiaRigExpression } from "./LiaHybridAvatar";
 import {
   coverIntroDialogues,
   coverIntroPortals,
@@ -105,6 +106,30 @@ function getLiaPoseName(
   return "idle";
 }
 
+function getLiaRigExpression(
+  phase: CoverIntroPhase,
+  activeDialogueIndex: number,
+  hasBlockedPortalMessage: boolean,
+): LiaRigExpression | null {
+  if (phase === "portada_idle") {
+    return hasBlockedPortalMessage ? "attentive" : "neutral";
+  }
+
+  if (!isDialoguePhase(phase)) {
+    return null;
+  }
+
+  if (activeDialogueIndex === 0) {
+    return "happy";
+  }
+
+  if (activeDialogueIndex >= 1 && activeDialogueIndex <= 3) {
+    return "attentive";
+  }
+
+  return null;
+}
+
 export function CoverIntroScreen() {
   const [coverState, setCoverState] = useState<CoverIntroState>(
     createInitialCoverIntroState,
@@ -189,12 +214,15 @@ export function CoverIntroScreen() {
     coverState.phase,
     activeDialogue?.liaPose,
   );
-  const liaAvatarMode =
-    coverState.phase === "portada_idle" ? "rig-idle" : "pose";
-  const liaRigExpression =
-    coverState.phase === "portada_idle" && coverState.blockedPortalMessage
-      ? "attentive"
-      : "neutral";
+  const liaRigExpression = getLiaRigExpression(
+    coverState.phase,
+    coverState.activeDialogueIndex,
+    Boolean(coverState.blockedPortalMessage),
+  );
+  const liaAvatarMode = liaRigExpression ? "rig-idle" : "pose";
+  const activeLiaStateName = liaRigExpression
+    ? `rig-${liaRigExpression}`
+    : activeLiaPoseName;
   const portalOneReady =
     coverState.phase === "portal_1_ready" ||
     coverState.phase === "portal_1_opening_placeholder" ||
@@ -364,7 +392,7 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
     >
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002J">
+      <div className="cover-intro__stage" data-cover-intro-version="002J-FIX">
         <header className="cover-intro__header">
           <p className="cover-intro__brand">{coverIntroText.logo}</p>
           <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
@@ -377,14 +405,14 @@ export function CoverIntroScreen() {
           >
             <div
               className="cover-intro__lia-wrap cover-lia-layer"
-              data-lia-state={activeLiaPoseName}
+              data-lia-state={activeLiaStateName}
             >
               {liaAvatarMode === "rig-idle" ? (
                 <LiaHybridAvatar
                   key="lia-rig-idle"
                   className="cover-intro__lia"
                   mode="rig-idle"
-                  expression={liaRigExpression}
+                  expression={liaRigExpression ?? "neutral"}
                 />
               ) : (
                 <LiaHybridAvatar
@@ -408,10 +436,6 @@ export function CoverIntroScreen() {
               data-dialogue-step={activeDialogueStep}
               data-testid="cover-dialogue-panel"
             >
-              <span
-                className="cover-intro__dialogue-connector"
-                aria-hidden="true"
-              />
               <div className="cover-intro__dialogue-meta">
                 <span className="cover-intro__dialogue-speaker">Lía</span>
                 <span

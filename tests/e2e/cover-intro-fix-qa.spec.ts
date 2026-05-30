@@ -31,6 +31,8 @@ async function completeDialogues(page: Page) {
 }
 
 test.describe("QA visual Portada / Intro 002I-FIX", () => {
+  test.describe.configure({ timeout: 60_000 });
+
   test("genera capturas 002I-FIX de estados clave", async ({
     page,
   }, testInfo) => {

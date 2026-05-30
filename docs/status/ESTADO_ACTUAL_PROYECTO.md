@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-29
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con Lía hybrid rig facial 002J en idle, diálogo integrado con Lía y activación visual de Portal I, sin coreografía física avanzada, transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con ajuste 002J-FIX de microvida de Lía y diálogo sin conector ordinario, sin coreografía física avanzada, transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -37,6 +37,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Corrección 002I-FIX con `resetIntro=1`, flujo `/` a `/portada` y capturas QA nuevas.
 - Corrección 002I-FIX2 con progreso `Paso X de 5`, tipografía de lectura en diálogos, panel más asociado a Lía y activación de Lía anclada al Portal I.
 - Lía hybrid rig facial 002J en `portada_idle`, con capas locales staged, parpadeo controlado, glow sutil de collar y poses completas preservadas para estados narrativos.
+- Corrección 002J-FIX con rig idle en diálogos seguros, expresiones `happy`/`attentive`, blink más perceptible, glow de collar reforzado y panel de diálogo sin línea/flecha/triángulo ordinario.
 
 ## No implementado todavía
 
@@ -52,7 +53,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisar visualmente 002J antes de abrir coreografía física avanzada del Portal I o transición pixelart final.
+- Próximo trabajo recomendado: revisar visualmente 002J-FIX antes de abrir coreografía física avanzada del Portal I o transición pixelart final.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -267,12 +268,33 @@ Resultado posterior de revisión manual:
 - No se implementa coreografía física avanzada del Portal I.
 - No se implementa transición pixelart final ni Estación I real.
 
+## Ticket 002J-FIX: Portada / Intro microvida de Lía y diálogo sin conector ordinario
+
+- Estado: AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA.
+- Rama correctiva: feature/002J-fix-lia-microvida-dialogue-anchor.
+- Se extiende el uso de `rig-idle` a estados seguros de diálogo.
+- Diálogo 1 usa rig idle con expresión `happy`.
+- Diálogos 2-4 usan rig idle con expresión `attentive`.
+- Diálogo 5 conserva pose completa `pointPortal1`.
+- Portal listo conserva pose completa `pointPortal1`.
+- Opening y transition placeholder conservan pose completa `activatePortal1`.
+- El blink ahora vuelve a la expresión base activa y no siempre a neutral.
+- El intervalo del blink se reduce a 4.2s y el cierre queda más perceptible sin exagerarse.
+- El glow del collar sube de presencia de forma controlada.
+- Se elimina el conector lineal, la flecha y el triángulo pegado del panel de diálogo.
+- El panel queda asociado a Lía por badge, ubicación, paleta, acento superior y nodo ámbar-lavanda integrado.
+- Se generan capturas QA en `docs/visual/cover-intro/qa/002J-FIX/`.
+- No se crean assets nuevos.
+- No se modifican PNG staged.
+- No se implementa coreografía física avanzada del Portal I.
+- No se implementa transición pixelart final ni Estación I real.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                       | Bloqueo / avance permitido              |
 | ------------------------- | ----------------------------------------------------------------------- | --------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA            | Avance permitido; deuda a pulido global |
-| Portada / Intro           | LIA_HYBRID_RIG_IDLE_IMPLEMENTADO / DIALOGO_LIA_INTEGRADO / NO_CERRADA | Revisar 002J antes de coreografía Portal I |
+| Portada / Intro           | AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA | Revisar 002J-FIX antes de coreografía Portal I |
 | Transición entre mundos   | NO_INICIADA                                                             | BLOQUEADA hasta autorización posterior  |
 | Estación I                | NO_INICIADA                                                             | BLOQUEADA                               |
 | Estación II               | NO_INICIADA                                                             | BLOQUEADA                               |
@@ -283,8 +305,8 @@ Resultado posterior de revisión manual:
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2 y rig facial seguro 002J en idle, pero la aprobación visual para avanzar, la coreografía física avanzada del Portal I, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J y ajuste 002J-FIX de microvida/dialogue anchor, pero la aprobación visual para avanzar, la coreografía física avanzada del Portal I, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002J/`. Si el rig híbrido queda aprobado visualmente, abrir `TICKET_002K_PORTADA_INTRO_COREOGRAFIA_ACTIVACION_PORTAL_I.md`. Si el rig introduce problemas visuales, abrir primero un `002J-FIX`.
+Revisar las capturas de `docs/visual/cover-intro/qa/002J-FIX/`. Si la microvida y el panel quedan aprobados visualmente, abrir `TICKET_002K_PORTADA_INTRO_COREOGRAFIA_ACTIVACION_PORTAL_I.md`. Si Lía sigue sin sentirse viva, abrir primero `TICKET_002J_FIX2_LIA_RIG_VISUAL_REVIEW.md`.

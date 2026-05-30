@@ -72,11 +72,9 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   await expect(
     page.getByRole("dialog").getByText("Lía", { exact: true }),
   ).toBeVisible();
-  await expect(page.locator('[data-lia-avatar-mode="pose"]')).toBeVisible();
-  await expect(page.locator('[data-lia-pose="greeting"]')).toBeVisible();
-  await expect(page.locator('[data-lia-rig-layer="eyes-neutral"]')).toHaveCount(
-    0,
-  );
+  await expect(page.locator('[data-lia-avatar-mode="rig-idle"]')).toBeVisible();
+  await expect(page.locator('[data-lia-expression="happy"]')).toBeVisible();
+  await expect(page.locator('[data-lia-rig-layer="eyes-happy"]')).toBeVisible();
   await expect(page.getByText("Paso 1 de 5")).toBeVisible();
   await expect(page.getByText("1/5")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveCount(1);
@@ -88,6 +86,10 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
     ),
   ).toBeVisible();
   await expect(page.getByText("Paso 2 de 5")).toBeVisible();
+  await expect(page.locator('[data-lia-expression="attentive"]')).toBeVisible();
+  await expect(
+    page.locator('[data-lia-rig-layer="eyes-attentive"]'),
+  ).toBeVisible();
   await expect(page.getByText("2/5")).toHaveCount(0);
   await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
   await expect(
@@ -105,6 +107,8 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   await expect(
     page.getByText("Empecemos por la raíz: el origen y el propósito de OKÚA."),
   ).toBeVisible();
+  await expect(page.locator('[data-lia-avatar-mode="pose"]')).toBeVisible();
+  await expect(page.locator('[data-lia-pose="pointPortal1"]')).toBeVisible();
   await page.getByRole("button", { name: "Finalizar introducción" }).click();
 
   await expect(

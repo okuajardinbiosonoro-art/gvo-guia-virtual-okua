@@ -38,7 +38,7 @@ describe("CoverIntroScreen", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(
-      container.querySelector("[data-cover-intro-version='002J']"),
+      container.querySelector("[data-cover-intro-version='002J-FIX']"),
     ).toBeInTheDocument();
   });
 
@@ -133,18 +133,59 @@ describe("CoverIntroScreen", () => {
       screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
     ).toBeInTheDocument();
     expect(
-      container.querySelector("[data-lia-state='greeting']"),
+      container.querySelector("[data-lia-state='rig-happy']"),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-expression='happy']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-rig-layer='eyes-happy']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigEyesHappy);
+    expect(
+      container.querySelector("[data-lia-avatar-mode='pose']"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("usa rig atento en diálogos intermedios y pose completa desde diálogo 5", () => {
+    const { container } = render(<CoverIntroScreen />);
+
+    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+    );
+
+    expect(screen.getByText("Paso 2 de 5")).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-expression='attentive']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-rig-layer='eyes-attentive']"),
+    ).toHaveAttribute(
+      "data-runtime-asset",
+      coverIntroAssets.liaRigEyesAttentive,
+    );
+
+    for (let index = 0; index < 3; index += 1) {
+      fireEvent.click(
+        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+      );
+    }
+
+    expect(screen.getByText("Paso 5 de 5")).toBeInTheDocument();
     expect(
       container.querySelector("[data-lia-avatar-mode='pose']"),
     ).toBeInTheDocument();
     expect(
-      container.querySelector(
-        `[data-runtime-asset="${coverIntroAssets.liaGreeting}"]`,
-      ),
-    ).toBeInTheDocument();
+      container.querySelector("[data-lia-pose='pointPortal1']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaPointPortal1);
     expect(
-      container.querySelector("[data-lia-rig-layer='eyes-neutral']"),
+      container.querySelector("[data-lia-rig-layer='eyes-attentive']"),
     ).not.toBeInTheDocument();
   });
 
@@ -209,6 +250,9 @@ describe("CoverIntroScreen", () => {
         name: "Estación I, Mundo Raíz, lista para abrir.",
       }),
     ).toHaveAttribute("data-portal-state", "ready");
+    expect(
+      container.querySelector("[data-lia-pose='pointPortal1']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaPointPortal1);
     expect(container.firstElementChild).toHaveAttribute(
       "data-cover-phase",
       "portal_1_ready",
@@ -242,6 +286,9 @@ describe("CoverIntroScreen", () => {
     expect(
       screen.getByTestId("cover-portal-activation-rig"),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-lia-pose='activatePortal1']"),
+    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaActivatePortal1);
   });
 
   it("avanza a transition_to_station_1_placeholder y prepara handoff a Mundo I", () => {

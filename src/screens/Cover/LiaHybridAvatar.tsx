@@ -86,8 +86,19 @@ export function LiaHybridAvatar(props: LiaHybridAvatarProps) {
         />
       ))}
 
-      {expression === "neutral" ? (
-        blinkEyes.map(([layerName, src]) => (
+      <img
+        className={`lia-hybrid__layer lia-hybrid__eye lia-hybrid__eye--base lia-hybrid__eye--${expression}`}
+        src={expressionEyes[expression]}
+        alt=""
+        aria-hidden="true"
+        data-lia-rig-layer={`eyes-${expression}`}
+        data-lia-blink-base={expression}
+        data-runtime-asset={expressionEyes[expression]}
+      />
+
+      {blinkEyes
+        .filter(([layerName]) => layerName !== "neutral")
+        .map(([layerName, src]) => (
           <img
             key={layerName}
             className={`lia-hybrid__layer lia-hybrid__eye lia-hybrid__eye--${layerName}`}
@@ -97,17 +108,7 @@ export function LiaHybridAvatar(props: LiaHybridAvatarProps) {
             data-lia-rig-layer={`eyes-${layerName}`}
             data-runtime-asset={src}
           />
-        ))
-      ) : (
-        <img
-          className={`lia-hybrid__layer lia-hybrid__eye lia-hybrid__eye--static lia-hybrid__eye--${expression}`}
-          src={expressionEyes[expression]}
-          alt=""
-          aria-hidden="true"
-          data-lia-rig-layer={`eyes-${expression}`}
-          data-runtime-asset={expressionEyes[expression]}
-        />
-      )}
+        ))}
     </div>
   );
 }

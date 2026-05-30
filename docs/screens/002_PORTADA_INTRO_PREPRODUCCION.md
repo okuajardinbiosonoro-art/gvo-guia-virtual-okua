@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `LIA_HYBRID_RIG_IDLE_IMPLEMENTADO / DIALOGO_LIA_INTEGRADO / NO_CERRADA`
+Estado: `AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA`
 
 Fecha: 2026-05-17
 
@@ -239,6 +239,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 9. `002I-FIX`: corrección de diálogo, layout y QA flow.
 10. `002I-FIX2`: diálogo integrado con Lía y activación visual de Portal I.
 11. `002J`: Lía hybrid rig facial seguro en idle.
+12. `002J-FIX`: microvida perceptible y diálogo sin conector ordinario.
 
 ## Asset staging V1
 
@@ -656,3 +657,58 @@ No se modificó:
 - Carga inicial visual.
 - Portales II-V bloqueados.
 - Rutas `/`, `/carga`, `/portada` ni `/estacion/1`.
+
+## Corrección 002J-FIX — Microvida de Lía y diálogo sin conector ordinario
+
+Estado:
+
+`AJUSTE_002J_FIX / LIA_MICROVIDA_REFORZADA / DIALOGO_ANCHOR_REVISADO / NO_CERRADA`
+
+Problemas corregidos:
+
+- La microvida de Lía casi no se percibía porque el rig solo aparecía en `portada_idle`.
+- El conector del panel de diálogo se veía como línea/flecha ordinaria y bajaba la calidad del conjunto.
+
+Implementado:
+
+- `rig-idle` se usa también en diálogos visualmente seguros.
+- Diálogo 1 usa expresión `happy`.
+- Diálogos 2-4 usan expresión `attentive`.
+- Diálogo 5 vuelve a pose completa `pointPortal1`.
+- Portal ready conserva pose completa `pointPortal1`.
+- Opening y transition placeholder conservan pose completa `activatePortal1`.
+- El blink vuelve a la expresión base activa (`happy` o `attentive`) en lugar de volver siempre a neutral.
+- El blink usa un ciclo más corto y perceptible, sin volverse caricaturesco.
+- El glow del collar queda más presente, pero sin flash.
+- Reduced motion conserva expresión fija y desactiva blink/glow pulsante.
+
+Diálogo:
+
+- Se elimina el conector lineal externo.
+- Se elimina el triángulo/flecha tipo tooltip.
+- El panel queda asociado a Lía por cercanía, badge `Lía`, acento superior y nodo ámbar-lavanda integrado en la esquina.
+- Se conserva `Paso X de 5`.
+- No vuelve a aparecer `1/5`.
+
+Capturas QA:
+
+- `docs/visual/cover-intro/qa/002J-FIX/cover-intro-002j-fix-01-idle-rig-390x844.png`
+- `docs/visual/cover-intro/qa/002J-FIX/cover-intro-002j-fix-02-dialogue-happy-390x844.png`
+- `docs/visual/cover-intro/qa/002J-FIX/cover-intro-002j-fix-03-dialogue-attentive-390x844.png`
+- `docs/visual/cover-intro/qa/002J-FIX/cover-intro-002j-fix-04-portal-ready-390x844.png`
+- `docs/visual/cover-intro/qa/002J-FIX/cover-intro-002j-fix-05-opening-activation-390x844.png`
+
+Pendiente:
+
+- Revisión visual del usuario.
+- Coreografía física avanzada del Portal I.
+- Transición pixelart final.
+- Estación I real.
+
+No se modificó:
+
+- PNG staged.
+- Textos narrativos base.
+- Carga inicial V13.
+- Rutas `/`, `/carga`, `/portada` ni `/estacion/1`.
+- Desbloqueo de Portales II-V.

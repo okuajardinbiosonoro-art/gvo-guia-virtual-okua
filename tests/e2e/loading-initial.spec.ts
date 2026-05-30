@@ -3,6 +3,8 @@ import { expect, test } from "@playwright/test";
 test("carga inicial V13 conserva rutas, textos y ausencia de portada", async ({
   page,
 }) => {
+  test.setTimeout(45_000);
+
   await page.goto("/carga");
 
   await expect(

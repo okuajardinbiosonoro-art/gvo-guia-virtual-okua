@@ -149,8 +149,8 @@
   padding: 12px 13px 13px;
   display: grid;
   gap: 8px;
-  border: 1px solid rgb(184 150 196 / 34%);
-  border-left: 3px solid rgb(242 212 138 / 68%);
+  border: 1px solid rgb(184 150 196 / 38%);
+  border-top: 2px solid rgb(242 212 138 / 58%);
   border-radius: 17px;
   color: var(--cover-dialog-text);
   background:
@@ -186,43 +186,16 @@
 .cover-intro__dialogue::after {
   content: "";
   position: absolute;
-  right: -9px;
-  top: 24px;
-  width: 16px;
-  height: 16px;
-  border-top: 1px solid rgb(184 150 196 / 34%);
-  border-right: 1px solid rgb(184 150 196 / 34%);
-  background: rgb(246 239 223 / 88%);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  filter: drop-shadow(0 0 8px rgb(242 212 138 / 22%));
-}
-
-.cover-intro__dialogue-connector {
-  position: absolute;
-  right: -50px;
-  top: -10px;
-  width: 56px;
-  height: 42px;
-  border-top: 1px solid rgb(242 212 138 / 50%);
-  border-right: 1px solid rgb(242 212 138 / 32%);
-  border-radius: 0 16px 0 0;
-  opacity: 0.9;
-  pointer-events: none;
-  transform: skewX(-18deg);
-}
-
-.cover-intro__dialogue-connector::after {
-  content: "";
-  position: absolute;
-  right: -3px;
-  top: -4px;
-  width: 8px;
-  height: 8px;
+  right: 18px;
+  top: -7px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(255 252 241 / 62%);
   background: var(--cover-dialog-amber);
   box-shadow:
-    0 0 0 1px rgb(255 252 241 / 48%),
-    0 0 11px rgb(242 212 138 / 70%);
-  transform: rotate(45deg) skewX(18deg);
+    0 0 0 2px rgb(184 150 196 / 14%),
+    0 0 12px rgb(242 212 138 / 58%);
+  transform: rotate(45deg);
 }
 
 .cover-intro__dialogue-meta {
@@ -957,11 +930,6 @@
     top: clamp(184px, 31svh, 222px);
     width: min(74vw, 270px);
     padding: 9px 10px 10px;
-  }
-
-  .cover-intro__dialogue-connector {
-    right: -40px;
-    width: 45px;
   }
 
   .cover-intro__dialogue-text {
