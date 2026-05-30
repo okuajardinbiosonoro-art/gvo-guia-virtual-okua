@@ -2,7 +2,7 @@
 
 Pantalla: `PORTADA / INTRO - EL ARCHIVO VIVO DE OKÚA`
 
-Estado: `COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA`
+Estado: `QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO`
 
 Fecha: 2026-05-17
 
@@ -241,6 +241,7 @@ Para `CERRADA_APROBADA_FINAL` se espera:
 11. `002J`: Lía hybrid rig facial seguro en idle.
 12. `002J-FIX`: microvida perceptible y diálogo sin conector ordinario.
 13. `002K`: coreografía base de activación del Portal I.
+14. `002L`: QA visual final y reaprobación.
 
 ## Asset staging V1
 
@@ -743,3 +744,42 @@ Notas para 002L:
 - Revisar visualmente la captura `docs/visual/cover-intro/qa/002K/cover-intro-002k-02-activation-opening-390x844.png`.
 - Confirmar si D3 + L2 + P3 ya alcanza `APROBADA_PARA_AVANZAR`.
 - Documentar deuda visual antes de abrir transición real o preproducción de Mundo I.
+
+## QA final 002L — Reaprobación visual
+
+Estado:
+
+`QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO`
+
+Evidencia:
+
+- Capturas finales 390x844 en `docs/visual/cover-intro/qa/002L/`.
+- Matriz final en `docs/visual/cover-intro/qa/002L/QA_VISUAL_PORTADA_INTRO_002L.md`.
+- Handoff en `docs/status/HANDOFF_002L_PORTADA_INTRO_QA_REAPROBACION.md`.
+- Borrador de decisión en `docs/status/DECISION_VISUAL_002L_PORTADA_INTRO.md`.
+
+Revisado:
+
+- Flujo `/?resetIntro=1`: carga inicial y llegada a portada fresca.
+- Ruta `/portada?resetIntro=1`.
+- Diálogo 1 con Lía `happy`.
+- Diálogo 2 con aclaración de mediación.
+- Microvida de Lía en rig seguro.
+- Portal I listo.
+- Activación coreografiada del Portal I.
+- Transition placeholder.
+- Feedback de portal bloqueado.
+- Reduced motion.
+- `/estacion/1` como placeholder.
+
+Decisión:
+
+- Decisión técnica de Codex: `CANDIDATA_APROBADA_PARA_AVANZAR`.
+- Decisión visual final: pendiente del usuario Ing. José David.
+
+No implementado:
+
+- Transición pixelart final.
+- Estación I real.
+- Desbloqueo de Portales II-V.
+- Assets nuevos.

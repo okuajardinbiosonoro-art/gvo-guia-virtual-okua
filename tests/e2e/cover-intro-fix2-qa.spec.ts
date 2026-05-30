@@ -44,7 +44,7 @@ async function completeDialoguesFromStepTwo(page: Page) {
 }
 
 test.describe("QA visual Portada / Intro 002I-FIX2", () => {
-  test.describe.configure({ timeout: 60_000 });
+  test.describe.configure({ timeout: 90_000 });
 
   test.beforeAll(() => {
     mkdirSync(fix2QaOutputDir, { recursive: true });

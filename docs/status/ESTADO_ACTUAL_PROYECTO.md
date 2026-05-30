@@ -2,7 +2,7 @@
 
 Fecha: 2026-05-29
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con coreografía base de activación del Portal I, microvida de Lía aceptada, diálogo sin conector ordinario, sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro con QA final 002L generado y candidata a aprobación para avanzar, pendiente de confirmación visual final del usuario; sin transición pixelart final ni Estación I real.
 
 ## Implementado
 
@@ -39,6 +39,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Lía hybrid rig facial 002J en `portada_idle`, con capas locales staged, parpadeo controlado, glow sutil de collar y poses completas preservadas para estados narrativos.
 - Corrección 002J-FIX con rig idle en diálogos seguros, expresiones `happy`/`attentive`, blink más perceptible, glow de collar reforzado y panel de diálogo sin línea/flecha/triángulo ordinario.
 - Coreografía 002K del Portal I con sandwich visual por capas, Lía `activatePortal1` anclada al portal, frame frontal duplicado como rim, luz CSS de contacto y overlay placeholder posterior al contacto.
+- QA final 002L de Portada / Intro con capturas 390x844, matriz visual, handoff de reaprobación y borrador de decisión visual.
 
 ## No implementado todavía
 
@@ -54,7 +55,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: revisar visualmente 002K antes de abrir transición pixelart final o preproducción de Mundo I.
+- Próximo trabajo recomendado: revisar visualmente 002L y confirmar si Portada / Intro queda `APROBADA_PARA_AVANZAR`, `AJUSTE_VISUAL_REQUERIDO` o `CERRADA_APROBADA_FINAL`.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -310,24 +311,43 @@ Resultado posterior de revisión manual:
 - No se modifican PNG staged.
 - No se implementa transición pixelart final ni Estación I real.
 
+## Ticket 002L: Portada / Intro QA visual final y reaprobación
+
+- Estado: QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO.
+- Rama técnica: feature/002L-portada-intro-qa-reaprobacion.
+- Base: `feature/002K-portada-intro-coreografia-portal-i`.
+- Se crea `tests/e2e/cover-intro-002l-final-qa.spec.ts`.
+- Se generan capturas finales en `docs/visual/cover-intro/qa/002L/`.
+- Se valida flujo `/?resetIntro=1`: carga inicial y llegada a `/portada` fresca.
+- Se valida `/portada?resetIntro=1`.
+- Se valida diálogo 1, diálogo 2, Portal I listo, activación Portal I, transition placeholder, feedback de Portal II bloqueado, reduced motion y `/estacion/1` placeholder.
+- Se crea `QA_VISUAL_PORTADA_INTRO_002L.md`.
+- Se crea `HANDOFF_002L_PORTADA_INTRO_QA_REAPROBACION.md`.
+- Se crea `DECISION_VISUAL_002L_PORTADA_INTRO.md`.
+- Decisión técnica de Codex: `CANDIDATA_APROBADA_PARA_AVANZAR`.
+- Decisión visual final del usuario: `PENDIENTE`.
+- No se implementa Estación I real.
+- No se implementa transición pixelart final.
+- No se modifican assets staged.
+
 ## Matriz de estados por pantalla
 
-| Pantalla                  | Estado de madurez                                            | Bloqueo / avance permitido                                |
-| ------------------------- | ------------------------------------------------------------ | --------------------------------------------------------- |
-| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA | Avance permitido; deuda a pulido global                   |
-| Portada / Intro           | COREOGRAFIA_PORTAL_I_BASE / LIA_MICROVIDA_OK / NO_CERRADA    | Revisar 002K antes de transición pixelart final o Mundo I |
-| Transición entre mundos   | NO_INICIADA                                                  | BLOQUEADA hasta autorización posterior                    |
-| Estación I                | NO_INICIADA                                                  | BLOQUEADA                                                 |
-| Estación II               | NO_INICIADA                                                  | BLOQUEADA                                                 |
-| Estación III              | NO_INICIADA                                                  | BLOQUEADA                                                 |
-| Estación IV               | NO_INICIADA                                                  | BLOQUEADA                                                 |
-| Estación V                | NO_INICIADA                                                  | BLOQUEADA                                                 |
-| Final                     | NO_INICIADA                                                  | BLOQUEADO                                                 |
+| Pantalla                  | Estado de madurez                                                                               | Bloqueo / avance permitido                      |
+| ------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA                                    | Avance permitido; deuda a pulido global         |
+| Portada / Intro           | QA_FINAL_002L_GENERADO / CANDIDATA_APROBADA_PARA_AVANZAR / PENDIENTE_CONFIRMACION_FINAL_USUARIO | Pendiente decisión visual explícita del usuario |
+| Transición entre mundos   | NO_INICIADA                                                                                     | BLOQUEADA hasta autorización posterior          |
+| Estación I                | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Estación II               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Estación III              | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Estación IV               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Estación V                | NO_INICIADA                                                                                     | BLOQUEADA                                       |
+| Final                     | NO_INICIADA                                                                                     | BLOQUEADO                                       |
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor y coreografía base 002K de activación del Portal I, pero la aprobación visual para avanzar, la transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor, coreografía base 002K de activación del Portal I y QA final 002L generado. La decisión visual final del usuario, la transición pixelart final y Estación I real quedan pendientes.
 
 ## Próximo ticket recomendado
 
-Revisar las capturas de `docs/visual/cover-intro/qa/002K/`. Si la coreografía Portal I queda aprobada visualmente, abrir `TICKET_002L_PORTADA_INTRO_QA_VISUAL_REAPROBACION.md`. No iniciar Mundo I real ni transición pixelart final antes de esa revisión.
+Revisar las capturas de `docs/visual/cover-intro/qa/002L/` y confirmar una decisión visual: `APROBADA_PARA_AVANZAR`, `AJUSTE_VISUAL_REQUERIDO` o `CERRADA_APROBADA_FINAL`. No iniciar Mundo I real ni transición pixelart final antes de esa decisión.

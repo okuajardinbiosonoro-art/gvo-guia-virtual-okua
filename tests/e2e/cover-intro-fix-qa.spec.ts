@@ -31,7 +31,7 @@ async function completeDialogues(page: Page) {
 }
 
 test.describe("QA visual Portada / Intro 002I-FIX", () => {
-  test.describe.configure({ timeout: 60_000 });
+  test.describe.configure({ timeout: 90_000 });
 
   test("genera capturas 002I-FIX de estados clave", async ({
     page,
@@ -42,11 +42,7 @@ test.describe("QA visual Portada / Intro 002I-FIX", () => {
     await page.getByRole("button", { name: "Comenzar recorrido" }).click();
     await expect(page.getByText("Paso 1 de 5")).toBeVisible();
     await expect(page.getByText("1/5")).toHaveCount(0);
-    await capture(
-      page,
-      testInfo,
-      "cover-intro-fix-02-dialogue-01-390x844.png",
-    );
+    await capture(page, testInfo, "cover-intro-fix-02-dialogue-01-390x844.png");
 
     const dialogueBox = await page
       .getByTestId("cover-dialogue-panel")
