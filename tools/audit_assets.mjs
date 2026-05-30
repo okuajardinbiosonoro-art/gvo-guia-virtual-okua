@@ -2,6 +2,16 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 const roots = ["src", "public", "assets"];
+const binaryImageExtensions = new Set([
+  ".avif",
+  ".gif",
+  ".jpeg",
+  ".jpg",
+  ".png",
+  ".webp",
+  ".woff",
+  ".woff2",
+]);
 const forbiddenPatterns = [
   {
     name: "URL externa",
@@ -44,6 +54,10 @@ for (const root of roots) {
   const files = await collectFiles(root);
 
   for (const file of files) {
+    if (binaryImageExtensions.has(path.extname(file).toLowerCase())) {
+      continue;
+    }
+
     const content = await readFile(file, "utf8");
 
     for (const forbiddenPattern of forbiddenPatterns) {

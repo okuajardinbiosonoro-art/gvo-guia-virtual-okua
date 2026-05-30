@@ -1,10 +1,17 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  createBrowserRouter,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
 import { flowSteps } from "../data/flow";
-import { CoverPlaceholder } from "../screens/Cover/CoverPlaceholder";
+import { CoverIntroScreen } from "../screens/Cover";
 import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
+import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 
 function QrRoute() {
@@ -12,10 +19,38 @@ function QrRoute() {
   return <QrAccessPlaceholder stationId={stationId ?? "sin-id"} />;
 }
 
+function JourneyLoadingRoute() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const shouldResetIntro = searchParams.get("resetIntro") === "1";
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const durationMs = prefersReducedMotion
+      ? loadingInitialTimeline.reducedMotionDurationMs
+      : loadingInitialTimeline.durationMs;
+    const destination = shouldResetIntro
+      ? "/portada?resetIntro=1"
+      : "/portada";
+    const timeoutId = window.setTimeout(() => {
+      navigate(destination, { replace: true });
+    }, durationMs);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [location.search, navigate]);
+
+  return <LoadingInitialScreen />;
+}
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoadingInitialScreen />,
+    element: <JourneyLoadingRoute />,
   },
   {
     path: "/carga",
@@ -23,7 +58,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/portada",
-    element: <CoverPlaceholder flowSteps={flowSteps} />,
+    element: <CoverIntroScreen />,
   },
   {
     path: "/estacion/:stationId",

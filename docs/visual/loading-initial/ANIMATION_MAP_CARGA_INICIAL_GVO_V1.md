@@ -42,4 +42,4 @@ Con `prefers-reduced-motion: reduce`:
 - `/`: muestra carga inicial animada V1.
 - `/carga`: muestra carga inicial animada V1.
 
-La portada sigue bloqueada porque la carga inicial requiere revisión visual del usuario antes de `CERRADA_APROBADA`.
+Nota 002A: este bloqueo histórico fue reemplazado por la metodología de avance por umbral visual. La carga inicial V13 quedó como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`, lo que permite preproducción de Portada / Intro sin declarar cierre final.

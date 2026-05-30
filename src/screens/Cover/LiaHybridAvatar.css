@@ -1,0 +1,158 @@
+.lia-hybrid {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
+.lia-hybrid--pose {
+  height: auto;
+}
+
+.lia-hybrid--rig-idle {
+  position: relative;
+  aspect-ratio: 941 / 1672;
+  overflow: visible;
+}
+
+.lia-hybrid__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.lia-hybrid__layer--shadow {
+  opacity: 0;
+}
+
+.lia-hybrid__layer--collar-glow {
+  opacity: 0.62;
+  mix-blend-mode: screen;
+  animation: lia-hybrid-collar-breathe 2.1s ease-in-out infinite;
+}
+
+.lia-hybrid__eye {
+  opacity: 0;
+  animation-duration: 4.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+  filter: drop-shadow(0 0 5px rgb(255 249 235 / 36%));
+}
+
+.lia-hybrid__eye--base {
+  opacity: 1;
+  animation-name: lia-hybrid-eye-base;
+}
+
+.lia-hybrid__eye--blink-25 {
+  animation-name: lia-hybrid-eye-blink-25;
+}
+
+.lia-hybrid__eye--blink-50 {
+  animation-name: lia-hybrid-eye-blink-50;
+}
+
+.lia-hybrid__eye--closed {
+  animation-name: lia-hybrid-eye-closed;
+}
+
+@keyframes lia-hybrid-collar-breathe {
+  0%,
+  100% {
+    opacity: 0.42;
+    filter: saturate(0.98) drop-shadow(0 0 3px rgb(242 212 138 / 24%));
+  }
+
+  50% {
+    opacity: 0.82;
+    filter: saturate(1.08) drop-shadow(0 0 8px rgb(242 212 138 / 42%));
+  }
+}
+
+@keyframes lia-hybrid-eye-base {
+  0%,
+  69.9%,
+  78.5%,
+  100% {
+    opacity: 1;
+  }
+
+  70%,
+  78.4% {
+    opacity: 0;
+  }
+}
+
+@keyframes lia-hybrid-eye-blink-25 {
+  0%,
+  69.9%,
+  71.6%,
+  76.6%,
+  78.5%,
+  100% {
+    opacity: 0;
+  }
+
+  70%,
+  71.5%,
+  76.7%,
+  78.4% {
+    opacity: 1;
+  }
+}
+
+@keyframes lia-hybrid-eye-blink-50 {
+  0%,
+  71.6%,
+  73.1%,
+  75.2%,
+  76.6%,
+  100% {
+    opacity: 0;
+  }
+
+  71.7%,
+  73%,
+  75.3%,
+  76.5% {
+    opacity: 1;
+  }
+}
+
+@keyframes lia-hybrid-eye-closed {
+  0%,
+  73.1%,
+  75.1%,
+  100% {
+    opacity: 0;
+  }
+
+  73.2%,
+  75% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lia-hybrid__layer--collar-glow {
+    opacity: 0.52 !important;
+    animation: none !important;
+  }
+
+  .lia-hybrid__eye {
+    animation: none !important;
+  }
+
+  .lia-hybrid__eye--base {
+    opacity: 1 !important;
+  }
+
+  .lia-hybrid__eye--blink-25,
+  .lia-hybrid__eye--blink-50,
+  .lia-hybrid__eye--closed {
+    opacity: 0 !important;
+  }
+}
