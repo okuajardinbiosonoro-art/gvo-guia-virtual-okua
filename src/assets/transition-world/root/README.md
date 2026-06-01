@@ -1,6 +1,6 @@
 # TransitionWorld Root Asset Staging
 
-Estado: `STAGING_T003D / PENDING_ASSETS`
+Estado: `ART_DIRECTION_T003E0 / PENDING_ASSETS`
 
 Esta carpeta prepara el intake de assets para la transicion Portada / Intro -> Mundo I: Raiz. T003D no integra PNG, WebP ni SVG finales: solo deja manifest y criterios para que la siguiente fase pueda trabajar con archivos aprobados.
 
@@ -36,3 +36,11 @@ No se necesita rig completo para la transicion. La recomendacion para T003E/T003
 - blink: 1 frame opcional.
 
 Hasta que esos assets esten aprobados, `TransitionWorld` usa un fallback SVG inline local.
+
+## Direccion artistica T003E0
+
+El paquete canonico para producir y revisar assets reales vive en:
+
+`docs/visual/transition-world/art-direction/t003e0/`
+
+T003E0 no aprueba assets ni integra runtime. Solo documenta referencias, prompts, pipeline Photopea, checklist, micro-rig, portal y coreografia futura.
