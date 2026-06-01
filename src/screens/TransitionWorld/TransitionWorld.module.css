@@ -1,0 +1,480 @@
+.transitionWorld {
+  --transition-stage-max: min(100vw, 430px);
+  --transition-portal-width: clamp(118px, 34vw, 154px);
+  --transition-progress-width: clamp(156px, 46vw, 206px);
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  background: var(--transition-bg, #172b27);
+  color: var(--transition-text, #f1e7ff);
+  font-family: "Pixelify Sans", system-ui, sans-serif;
+  isolation: isolate;
+}
+
+.background,
+.fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.background {
+  z-index: -3;
+  background:
+    linear-gradient(180deg, rgb(22 43 39 / 0.86), rgb(31 31 45 / 0.96)),
+    radial-gradient(circle at 50% 42%, rgb(216 199 255 / 0.2), transparent 36%),
+    var(--transition-bg, #172b27);
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgb(245 223 145 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(245 223 145 / 0.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  image-rendering: pixelated;
+}
+
+.backgroundMistOne,
+.backgroundMistTwo {
+  position: absolute;
+  width: 58%;
+  max-width: 260px;
+  aspect-ratio: 1;
+  opacity: 0.28;
+  background: var(--transition-mist, #d8c7ff);
+  clip-path: polygon(42% 0, 74% 16%, 100% 46%, 78% 78%, 40% 100%, 10% 76%, 0 42%, 18% 14%);
+  filter: blur(26px);
+}
+
+.backgroundMistOne {
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.backgroundMistTwo {
+  right: -22%;
+  bottom: 10%;
+  opacity: 0.16;
+}
+
+.backgroundPixelOne,
+.backgroundPixelTwo,
+.backgroundPixelThree {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgb(245 223 145 / 0.7);
+  box-shadow:
+    14px 0 0 rgb(216 199 255 / 0.42),
+    0 14px 0 rgb(216 199 255 / 0.28);
+  image-rendering: pixelated;
+  animation: transition-pixel-breathe 2800ms ease-in-out infinite;
+}
+
+.backgroundPixelOne {
+  top: 21%;
+  left: 17%;
+}
+
+.backgroundPixelTwo {
+  top: 32%;
+  right: 14%;
+  animation-delay: 420ms;
+}
+
+.backgroundPixelThree {
+  right: 22%;
+  bottom: 28%;
+  animation-delay: 960ms;
+}
+
+.fade {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(10 18 18 / 0.34), transparent 20%, transparent 72%, rgb(10 18 18 / 0.46)),
+    radial-gradient(circle at 50% 52%, transparent 0 32%, rgb(8 16 16 / 0.2) 78%);
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: var(--transition-stage-max);
+  min-height: 100svh;
+  grid-template-rows: 1fr auto auto;
+  justify-items: center;
+  padding: clamp(30px, 7svh, 72px) 22px clamp(34px, 7svh, 68px);
+}
+
+.visualStack {
+  position: relative;
+  align-self: end;
+  width: min(82vw, 320px);
+  min-height: clamp(250px, 48svh, 390px);
+  display: grid;
+  place-items: end center;
+  padding-bottom: clamp(10px, 3svh, 24px);
+}
+
+.portal {
+  --transition-portal-core: #f5df91;
+  --transition-portal-edge: #8f72c9;
+  --transition-portal-glow: #d9ad62;
+  position: relative;
+  width: var(--transition-portal-width);
+  aspect-ratio: 0.68;
+  display: grid;
+  place-items: center;
+  image-rendering: pixelated;
+  animation: transition-portal-settle 2300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portalGlow {
+  position: absolute;
+  inset: -18%;
+  opacity: 0.58;
+  background: var(--transition-portal-glow);
+  clip-path: polygon(50% 0, 76% 10%, 100% 42%, 91% 76%, 58% 100%, 22% 90%, 0 56%, 9% 20%);
+  filter: blur(18px);
+  animation: transition-portal-glow 2300ms ease-in-out infinite;
+}
+
+.portalFrame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(90deg, transparent 0 12%, var(--transition-portal-edge) 12% 88%, transparent 88%),
+    linear-gradient(180deg, transparent 0 8%, var(--transition-portal-edge) 8% 92%, transparent 92%);
+  clip-path: polygon(46% 0, 70% 6%, 90% 22%, 100% 50%, 92% 78%, 68% 96%, 46% 100%, 20% 90%, 4% 66%, 2% 34%, 18% 10%);
+  box-shadow:
+    0 0 0 2px rgb(245 223 145 / 0.24),
+    0 8px 0 rgb(0 0 0 / 0.18);
+}
+
+.portalInner {
+  width: 70%;
+  height: 76%;
+  background:
+    linear-gradient(180deg, rgb(245 223 145 / 0.94), rgb(216 173 98 / 0.78)),
+    var(--transition-portal-core);
+  clip-path: polygon(46% 0, 70% 8%, 92% 28%, 100% 54%, 88% 82%, 62% 100%, 34% 96%, 10% 74%, 0 46%, 10% 18%, 30% 4%);
+  box-shadow: inset 0 0 0 4px rgb(255 249 208 / 0.28);
+  animation: transition-portal-inner 2300ms steps(4, end) infinite;
+}
+
+.portalRoot {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 28px;
+  height: 34px;
+  transform: translateX(-50%);
+}
+
+.portalRoot span {
+  position: absolute;
+  left: 12px;
+  width: 4px;
+  height: 34px;
+  background: rgb(68 55 70 / 0.68);
+}
+
+.portalRoot span:nth-child(2) {
+  top: 16px;
+  left: 2px;
+  height: 18px;
+  transform: rotate(45deg);
+  transform-origin: top center;
+}
+
+.portalRoot span:nth-child(3) {
+  top: 16px;
+  left: 22px;
+  height: 18px;
+  transform: rotate(-45deg);
+  transform-origin: top center;
+}
+
+.liaFallback {
+  position: absolute;
+  right: clamp(42px, 17vw, 72px);
+  bottom: clamp(20px, 8svh, 58px);
+  width: 52px;
+  height: 60px;
+  transform-origin: 50% 82%;
+  animation: transition-lia-float 4200ms ease-in-out infinite;
+  image-rendering: pixelated;
+}
+
+.liaFallback span {
+  position: absolute;
+  display: block;
+  box-shadow: 0 3px 0 rgb(0 0 0 / 0.16);
+}
+
+.liaPetalTop,
+.liaPetalLeft,
+.liaPetalRight {
+  background: #dfd4ff;
+}
+
+.liaPetalTop {
+  top: 2px;
+  left: 20px;
+  width: 14px;
+  height: 22px;
+  clip-path: polygon(50% 0, 100% 34%, 78% 100%, 20% 100%, 0 34%);
+}
+
+.liaPetalLeft {
+  top: 19px;
+  left: 6px;
+  width: 20px;
+  height: 18px;
+  clip-path: polygon(0 48%, 42% 0, 100% 22%, 88% 90%, 26% 100%);
+}
+
+.liaPetalRight {
+  top: 18px;
+  right: 4px;
+  width: 22px;
+  height: 18px;
+  clip-path: polygon(0 22%, 58% 0, 100% 48%, 74% 100%, 12% 90%);
+}
+
+.liaBody {
+  top: 22px;
+  left: 15px;
+  width: 24px;
+  height: 28px;
+  background: #c6f2d9;
+  clip-path: polygon(48% 0, 100% 22%, 88% 82%, 50% 100%, 10% 82%, 0 22%);
+}
+
+.liaCollar {
+  top: 30px;
+  left: 23px;
+  width: 8px;
+  height: 8px;
+  background: #eab86e;
+  box-shadow:
+    0 0 0 2px rgb(72 55 78 / 0.5),
+    0 0 12px rgb(234 184 110 / 0.54);
+}
+
+.copy {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: clamp(18px, 4svh, 34px);
+  text-align: center;
+}
+
+.title,
+.subtitle {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-wrap: balance;
+  text-shadow: 1px 1px 0 rgb(58 42 72 / 0.65);
+}
+
+.title {
+  max-width: 18ch;
+  color: var(--transition-text, #f1e7ff);
+  font-size: clamp(1.32rem, 6vw, 1.72rem);
+  line-height: 1.05;
+}
+
+.subtitle {
+  color: var(--transition-text-soft, #d8cbe6);
+  font-size: clamp(0.9rem, 3.9vw, 1.08rem);
+  line-height: 1.12;
+  opacity: 0.88;
+}
+
+.progress {
+  --transition-progress-duration: 2300ms;
+  --transition-progress-track: #6f5c8d;
+  --transition-progress-fill: #e8bd6f;
+  display: grid;
+  width: var(--transition-progress-width);
+  grid-template-columns: 9px 1fr 9px;
+  align-items: center;
+  column-gap: 6px;
+  margin-top: 18px;
+  image-rendering: pixelated;
+}
+
+.progressCap {
+  width: 9px;
+  height: 9px;
+  background: var(--transition-progress-fill);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  box-shadow: 0 0 0 2px var(--transition-progress-track);
+}
+
+.progressTrack {
+  position: relative;
+  height: 2px;
+  background: var(--transition-progress-track);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: var(--transition-progress-fill);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: transition-progress-fill var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) forwards;
+}
+
+.progressMarker {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background: #f4df9a;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  box-shadow: 0 0 0 2px #8f72c9;
+  transform: translate(-50%, -50%);
+  animation: transition-progress-marker var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) forwards;
+}
+
+@keyframes transition-pixel-breathe {
+  0%,
+  100% {
+    opacity: 0.36;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.86;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes transition-portal-settle {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes transition-portal-glow {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 0.62;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes transition-portal-inner {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes transition-lia-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+}
+
+@keyframes transition-progress-fill {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes transition-progress-marker {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@media (max-width: 374px) {
+  .stage {
+    padding-inline: 18px;
+  }
+
+  .visualStack {
+    min-height: clamp(232px, 46svh, 330px);
+  }
+
+  .liaFallback {
+    right: clamp(34px, 14vw, 54px);
+  }
+}
+
+@media (max-height: 690px) {
+  .stage {
+    padding-block: 22px 28px;
+  }
+
+  .visualStack {
+    min-height: clamp(218px, 45svh, 310px);
+  }
+
+  .copy {
+    margin-top: 12px;
+  }
+
+  .progress {
+    margin-top: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backgroundPixelOne,
+  .backgroundPixelTwo,
+  .backgroundPixelThree,
+  .portal,
+  .portalGlow,
+  .portalInner,
+  .liaFallback,
+  .progressFill,
+  .progressMarker {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

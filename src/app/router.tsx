@@ -13,6 +13,7 @@ import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
+import { TransitionWorld } from "../screens/TransitionWorld";
 
 function QrRoute() {
   const { stationId } = useParams();
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
   {
     path: "/portada",
     element: <CoverIntroScreen />,
+  },
+  {
+    path: "/dev/transition-world",
+    element: <TransitionWorld />,
   },
   {
     path: "/estacion/:stationId",
