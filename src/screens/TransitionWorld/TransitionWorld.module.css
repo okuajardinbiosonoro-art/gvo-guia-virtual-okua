@@ -1,7 +1,7 @@
 .transitionWorld {
   --transition-stage-max: min(100vw, 430px);
-  --transition-portal-width: clamp(158px, 43vw, 190px);
-  --transition-progress-width: clamp(168px, 50vw, 218px);
+  --transition-portal-width: clamp(168px, 43vw, 198px);
+  --transition-progress-width: clamp(226px, 66vw, 292px);
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -23,8 +23,8 @@
 .background {
   z-index: -3;
   background:
-    radial-gradient(circle at 50% 39%, rgb(255 245 200 / 0.88), transparent 31%),
-    radial-gradient(circle at 50% 45%, rgb(201 184 232 / 0.22), transparent 52%),
+    radial-gradient(ellipse at 50% 34%, rgb(255 245 200 / 0.84), transparent 35%),
+    radial-gradient(ellipse at 50% 46%, rgb(201 184 232 / 0.14), transparent 58%),
     linear-gradient(180deg, #fff7e5 0%, var(--transition-bg, #f7efd8) 56%, #ead8b9 100%);
 }
 
@@ -41,26 +41,22 @@
 
 .backgroundMistOne,
 .backgroundMistTwo {
-  position: absolute;
-  aspect-ratio: 1;
-  background: var(--transition-mist, #e6dcf7);
-  clip-path: polygon(50% 0, 74% 14%, 100% 50%, 80% 82%, 50% 100%, 16% 82%, 0 48%, 22% 14%);
-  filter: blur(18px);
+  display: none;
 }
 
 .backgroundMistOne {
-  top: 12%;
+  top: 20%;
   left: 50%;
-  width: min(70vw, 310px);
-  opacity: 0.38;
+  width: min(46vw, 190px);
+  opacity: 0.12;
   transform: translateX(-50%);
 }
 
 .backgroundMistTwo {
   right: -15%;
   bottom: 8%;
-  width: min(46vw, 190px);
-  opacity: 0.2;
+  width: min(40vw, 160px);
+  opacity: 0.12;
 }
 
 .backgroundPixelOne,
@@ -110,8 +106,8 @@
   min-height: 100svh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(38px, 8svh, 78px) 22px clamp(44px, 8svh, 74px);
+  justify-content: flex-start;
+  padding: clamp(88px, 13svh, 124px) 22px clamp(44px, 8svh, 74px);
 }
 
 .visualStack {
@@ -119,7 +115,7 @@
   align-self: center;
   display: grid;
   width: min(90vw, 360px);
-  min-height: clamp(314px, 48svh, 410px);
+  min-height: clamp(304px, 44svh, 374px);
   place-items: center;
   padding-bottom: 0;
 }
@@ -131,7 +127,7 @@
   position: relative;
   display: grid;
   width: var(--transition-portal-width);
-  aspect-ratio: 0.69;
+  aspect-ratio: 0.62;
   place-items: center;
   image-rendering: pixelated;
   animation: transition-portal-settle 2300ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -139,8 +135,8 @@
 
 .portalGlow {
   position: absolute;
-  inset: -22% -18%;
-  opacity: 0.28;
+  inset: -14% -18%;
+  opacity: 0.22;
   background: var(--transition-portal-glow);
   clip-path: polygon(50% 0, 78% 12%, 100% 45%, 86% 82%, 50% 100%, 14% 82%, 0 45%, 22% 12%);
   filter: blur(20px);
@@ -154,7 +150,7 @@
   height: auto;
   display: block;
   overflow: visible;
-  filter: drop-shadow(0 12px 0 rgb(126 98 72 / 0.12));
+  filter: drop-shadow(0 10px 0 rgb(126 98 72 / 0.1));
 }
 
 .portalAura {
@@ -180,14 +176,14 @@
 
 .portalRootMark {
   fill: #7e6248;
-  opacity: 0.66;
+  opacity: 0.58;
 }
 
 .liaFallback {
   position: absolute;
-  top: 43%;
-  left: clamp(46px, 13vw, 64px);
-  width: clamp(54px, 15vw, 66px);
+  top: 50%;
+  left: clamp(42px, 12vw, 58px);
+  width: clamp(58px, 15.5vw, 70px);
   aspect-ratio: 0.84;
   transform: translateY(-50%);
   transform-origin: 50% 76%;
@@ -276,7 +272,7 @@
   --transition-progress-fill: #e3a33e;
   display: grid;
   width: var(--transition-progress-width);
-  grid-template-columns: 7px 1fr 7px;
+  grid-template-columns: 9px 1fr 9px;
   align-items: center;
   column-gap: 7px;
   margin-top: 14px;
@@ -284,8 +280,8 @@
 }
 
 .progressCap {
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   background: #fff7e5;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
   box-shadow: 0 0 0 2px var(--transition-progress-fill);
@@ -293,7 +289,7 @@
 
 .progressTrack {
   position: relative;
-  height: 2px;
+  height: 3px;
   background: var(--transition-progress-track);
 }
 
@@ -302,7 +298,7 @@
   inset: 0;
   width: 100%;
   background: var(--transition-progress-fill);
-  transform: scaleX(0.76);
+  transform: scaleX(0.74);
   transform-origin: left center;
   animation: transition-progress-fill var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
@@ -310,9 +306,9 @@
 .progressMarker {
   position: absolute;
   top: 50%;
-  left: 76%;
-  width: 7px;
-  height: 7px;
+  left: 74%;
+  width: 9px;
+  height: 9px;
   background: #fff7e5;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
   box-shadow: 0 0 0 2px #c9b8e8;
@@ -375,7 +371,7 @@
   }
 
   100% {
-    transform: scaleX(0.82);
+    transform: scaleX(0.78);
   }
 }
 
@@ -385,7 +381,7 @@
   }
 
   100% {
-    left: 82%;
+    left: 78%;
   }
 }
 
@@ -395,11 +391,11 @@
   }
 
   .visualStack {
-    min-height: clamp(286px, 48svh, 360px);
+    min-height: clamp(278px, 44svh, 340px);
   }
 
   .liaFallback {
-    left: clamp(34px, 12vw, 48px);
+    left: clamp(30px, 10vw, 42px);
   }
 
   .title {
@@ -414,7 +410,7 @@
   }
 
   .visualStack {
-    min-height: clamp(262px, 46svh, 330px);
+    min-height: clamp(252px, 42svh, 316px);
   }
 
   .copy {

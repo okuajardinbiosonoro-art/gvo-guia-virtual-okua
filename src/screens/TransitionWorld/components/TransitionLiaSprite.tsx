@@ -38,10 +38,19 @@ export function TransitionLiaSprite() {
           className={styles.liaHead}
           d="M28 28 44 28 54 40 50 56 36 64 22 56 18 40Z"
         />
-        <rect className={styles.liaEyes} x="28" y="43" width="5" height="3" />
-        <rect className={styles.liaEyes} x="39" y="43" width="5" height="3" />
-        <rect className={styles.liaCollar} x="31" y="58" width="10" height="10" />
-        <path className={styles.liaBulb} d="M28 66 44 66 48 78 36 84 24 78Z" />
+        <path className={styles.liaEyes} d="M27 42 32 42 32 45 27 45Z" />
+        <path className={styles.liaEyes} d="M40 42 45 42 45 45 40 45Z" />
+        <rect
+          className={styles.liaCollar}
+          x="31"
+          y="58"
+          width="10"
+          height="10"
+        />
+        <path
+          className={styles.liaBulb}
+          d="M28 66 44 66 48 78 36 84 24 78Z"
+        />
       </svg>
     </div>
   );

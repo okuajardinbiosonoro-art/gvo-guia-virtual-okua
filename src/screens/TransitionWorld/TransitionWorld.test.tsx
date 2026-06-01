@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 
+import transitionRootAssetManifestRaw from "../../assets/transition-world/root/asset-manifest.transition-root.json?raw";
 import { TransitionWorld } from "./TransitionWorld";
 import {
   introToStationOneTransition,
@@ -39,7 +40,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion tecnica T003B sin rutas funcionales nuevas", () => {
+  it("expone configuracion tecnica T003D sin rutas funcionales nuevas", () => {
     expect(introToStationOneTransition.id).toBe("intro-to-station-1");
     expect(introToStationOneTransition.durationMs).toBe(2300);
     expect(introToStationOneTransition.reducedMotionDurationMs).toBe(1000);
@@ -75,5 +76,34 @@ describe("TransitionWorld", () => {
       "data-reduced-motion",
       "true",
     );
+  });
+
+  it("mantiene manifest de staging de assets de transicion raiz", () => {
+    const manifest = JSON.parse(transitionRootAssetManifestRaw) as {
+      assets: Array<{ id: string; status: string }>;
+      allowedStatuses: string[];
+      transition: { id: string; durationMs: number; reducedMotionDurationMs: number };
+    };
+    const assetIds = manifest.assets.map((asset) => asset.id);
+
+    expect(manifest.transition.id).toBe("intro-to-station-1");
+    expect(manifest.transition.durationMs).toBe(2300);
+    expect(manifest.transition.reducedMotionDurationMs).toBe(1000);
+    expect(assetIds).toEqual(
+      expect.arrayContaining([
+        "lia_transition_root_idle_4f",
+        "lia_transition_root_guide_2f",
+        "lia_transition_root_exit_1f",
+        "lia_transition_root_blink_1f",
+        "portal_root_base",
+        "portal_root_glow",
+        "symbol_root",
+        "transition_root_review_capture_390x844",
+        "transition_root_review_capture_430x932",
+      ]),
+    );
+    for (const asset of manifest.assets) {
+      expect(manifest.allowedStatuses).toContain(asset.status);
+    }
   });
 });

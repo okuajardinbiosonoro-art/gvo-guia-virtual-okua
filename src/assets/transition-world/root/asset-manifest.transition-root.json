@@ -1,0 +1,96 @@
+{
+  "screen": "transition-world-root",
+  "version": "t003d",
+  "status": "staging_pending_assets",
+  "transition": {
+    "id": "intro-to-station-1",
+    "fromRoute": "/portada",
+    "toRoute": "/mundo-i-raiz",
+    "durationMs": 2300,
+    "reducedMotionDurationMs": 1000
+  },
+  "allowedStatuses": ["pending", "candidate", "approved", "rejected", "integrated"],
+  "assets": [
+    {
+      "id": "lia_transition_root_idle_4f",
+      "type": "lia-micro-rig",
+      "required": true,
+      "acceptedFormats": ["png", "webp"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/lia/",
+      "notes": "Idle pixelart real de Lía con cuatro frames, fondo transparente."
+    },
+    {
+      "id": "lia_transition_root_guide_2f",
+      "type": "lia-micro-rig",
+      "required": true,
+      "acceptedFormats": ["png", "webp"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/lia/",
+      "notes": "Pose guia/point hacia portal, sin brazos ni manos."
+    },
+    {
+      "id": "lia_transition_root_exit_1f",
+      "type": "lia-micro-rig",
+      "required": true,
+      "acceptedFormats": ["png", "webp"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/lia/",
+      "notes": "Frame corto de salida o acompañamiento final."
+    },
+    {
+      "id": "lia_transition_root_blink_1f",
+      "type": "lia-micro-rig",
+      "required": false,
+      "acceptedFormats": ["png", "webp"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/lia/",
+      "notes": "Blink opcional de ojos media luna."
+    },
+    {
+      "id": "portal_root_base",
+      "type": "portal",
+      "required": true,
+      "acceptedFormats": ["svg"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/portal/",
+      "notes": "Portal vertical pixelart sobrio, sin texto."
+    },
+    {
+      "id": "portal_root_glow",
+      "type": "portal",
+      "required": true,
+      "acceptedFormats": ["svg"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/portal/",
+      "notes": "Capa de brillo moderado, sin saturacion ni fondo opaco."
+    },
+    {
+      "id": "symbol_root",
+      "type": "symbol",
+      "required": true,
+      "acceptedFormats": ["svg"],
+      "status": "pending",
+      "targetRuntimePath": "public/assets/runtime/transition-world/root/symbols/",
+      "notes": "Raiz o brote minimo para centro del portal."
+    },
+    {
+      "id": "transition_root_review_capture_390x844",
+      "type": "review-capture",
+      "required": false,
+      "acceptedFormats": ["png"],
+      "status": "integrated",
+      "targetRuntimePath": "docs/visual/transition-world/validation/t003d/transition-world-t003d-390x844.png",
+      "notes": "Captura documental de revision visual, no asset runtime."
+    },
+    {
+      "id": "transition_root_review_capture_430x932",
+      "type": "review-capture",
+      "required": false,
+      "acceptedFormats": ["png"],
+      "status": "integrated",
+      "targetRuntimePath": "docs/visual/transition-world/validation/t003d/transition-world-t003d-430x932.png",
+      "notes": "Captura documental de revision visual, no asset runtime."
+    }
+  ]
+}
