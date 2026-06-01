@@ -1,6 +1,6 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 
-export const TRANSITION_WORLD_VERSION = "T003B_STATIC_BASE";
+export const TRANSITION_WORLD_VERSION = "T003C_VISUAL_ALIGNMENT";
 
 export const introToStationOneTransition: TransitionWorldConfig = {
   id: "intro-to-station-1",
@@ -14,15 +14,15 @@ export const introToStationOneTransition: TransitionWorldConfig = {
   portalState: "open",
   portalSymbol: "root",
   palette: {
-    background: "#172b27",
-    mist: "#d8c7ff",
-    portalCore: "#f5df91",
-    portalEdge: "#8f72c9",
-    portalGlow: "#d9ad62",
-    text: "#f1e7ff",
-    textSoft: "#d8cbe6",
-    progressTrack: "#6f5c8d",
-    progressFill: "#e8bd6f",
+    background: "#F7EFD8",
+    mist: "#E6DCF7",
+    portalCore: "#FFF5C8",
+    portalEdge: "#C9B8E8",
+    portalGlow: "#E3A33E",
+    text: "#4E3F35",
+    textSoft: "#7E6248",
+    progressTrack: "#D7C9A8",
+    progressFill: "#E3A33E",
   },
 };
 

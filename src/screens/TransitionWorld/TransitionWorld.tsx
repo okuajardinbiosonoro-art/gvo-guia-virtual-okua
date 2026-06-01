@@ -21,6 +21,7 @@ export function TransitionWorld({
   const effectiveDurationMs = isReducedMotion
     ? config.reducedMotionDurationMs
     : config.durationMs;
+  const accessibleStatus = `${config.title.replace("...", ".")} ${config.subtitle.replace("...", ".")}`;
   const style = {
     "--transition-text": config.palette.text,
     "--transition-text-soft": config.palette.textSoft,
@@ -47,7 +48,7 @@ export function TransitionWorld({
         className={styles.stage}
         role="status"
         aria-live="polite"
-        aria-label={`${config.title} ${config.subtitle}`}
+        aria-label={accessibleStatus}
       >
         <div className={styles.visualStack} aria-hidden="false">
           <TransitionPortal

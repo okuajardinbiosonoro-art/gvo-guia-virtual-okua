@@ -23,6 +23,11 @@ describe("TransitionWorld", () => {
     expect(
       screen.getByTestId("transition-world-lia-fallback"),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("status", {
+        name: "Abriendo Mundo I: Raíz. Preparando recorrido.",
+      }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
     expect(container.querySelector("main")).toHaveAttribute(
       "data-transition-world-version",
@@ -48,6 +53,9 @@ describe("TransitionWorld", () => {
     expect(container.querySelector("button")).not.toBeInTheDocument();
     expect(container.querySelector("a")).not.toBeInTheDocument();
     expect(screen.queryByText(/Cargando assets/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Inicializando/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Sincronizando/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Fetching/i)).not.toBeInTheDocument();
     expect(container.querySelector("audio")).not.toBeInTheDocument();
     expect(container.querySelector("video")).not.toBeInTheDocument();
   });

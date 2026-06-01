@@ -1,14 +1,14 @@
 .transitionWorld {
   --transition-stage-max: min(100vw, 430px);
-  --transition-portal-width: clamp(118px, 34vw, 154px);
-  --transition-progress-width: clamp(156px, 46vw, 206px);
+  --transition-portal-width: clamp(158px, 43vw, 190px);
+  --transition-progress-width: clamp(168px, 50vw, 218px);
   position: relative;
   display: grid;
   min-height: 100svh;
   overflow: hidden;
   place-items: center;
-  background: var(--transition-bg, #172b27);
-  color: var(--transition-text, #f1e7ff);
+  background: var(--transition-bg, #f7efd8);
+  color: var(--transition-text, #4e3f35);
   font-family: "Pixelify Sans", system-ui, sans-serif;
   isolation: isolate;
 }
@@ -23,113 +23,115 @@
 .background {
   z-index: -3;
   background:
-    linear-gradient(180deg, rgb(22 43 39 / 0.86), rgb(31 31 45 / 0.96)),
-    radial-gradient(circle at 50% 42%, rgb(216 199 255 / 0.2), transparent 36%),
-    var(--transition-bg, #172b27);
+    radial-gradient(circle at 50% 39%, rgb(255 245 200 / 0.88), transparent 31%),
+    radial-gradient(circle at 50% 45%, rgb(201 184 232 / 0.22), transparent 52%),
+    linear-gradient(180deg, #fff7e5 0%, var(--transition-bg, #f7efd8) 56%, #ead8b9 100%);
 }
 
 .backgroundGrid {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.12;
   background-image:
-    linear-gradient(rgb(245 223 145 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(245 223 145 / 0.08) 1px, transparent 1px);
-  background-size: 18px 18px;
+    linear-gradient(rgb(126 98 72 / 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(126 98 72 / 0.13) 1px, transparent 1px);
+  background-size: 16px 16px;
   image-rendering: pixelated;
 }
 
 .backgroundMistOne,
 .backgroundMistTwo {
   position: absolute;
-  width: 58%;
-  max-width: 260px;
   aspect-ratio: 1;
-  opacity: 0.28;
-  background: var(--transition-mist, #d8c7ff);
-  clip-path: polygon(42% 0, 74% 16%, 100% 46%, 78% 78%, 40% 100%, 10% 76%, 0 42%, 18% 14%);
-  filter: blur(26px);
+  background: var(--transition-mist, #e6dcf7);
+  clip-path: polygon(50% 0, 74% 14%, 100% 50%, 80% 82%, 50% 100%, 16% 82%, 0 48%, 22% 14%);
+  filter: blur(18px);
 }
 
 .backgroundMistOne {
-  top: 16%;
+  top: 12%;
   left: 50%;
+  width: min(70vw, 310px);
+  opacity: 0.38;
   transform: translateX(-50%);
 }
 
 .backgroundMistTwo {
-  right: -22%;
-  bottom: 10%;
-  opacity: 0.16;
+  right: -15%;
+  bottom: 8%;
+  width: min(46vw, 190px);
+  opacity: 0.2;
 }
 
 .backgroundPixelOne,
 .backgroundPixelTwo,
 .backgroundPixelThree {
   position: absolute;
-  width: 5px;
-  height: 5px;
-  background: rgb(245 223 145 / 0.7);
+  width: 4px;
+  height: 4px;
+  background: rgb(227 163 62 / 0.72);
   box-shadow:
-    14px 0 0 rgb(216 199 255 / 0.42),
-    0 14px 0 rgb(216 199 255 / 0.28);
+    12px 0 0 rgb(201 184 232 / 0.62),
+    0 12px 0 rgb(255 247 229 / 0.94),
+    12px 12px 0 rgb(184 143 82 / 0.32);
   image-rendering: pixelated;
-  animation: transition-pixel-breathe 2800ms ease-in-out infinite;
+  animation: transition-pixel-breathe 3200ms ease-in-out infinite;
 }
 
 .backgroundPixelOne {
-  top: 21%;
-  left: 17%;
+  top: 18%;
+  left: 16%;
 }
 
 .backgroundPixelTwo {
-  top: 32%;
+  top: 31%;
   right: 14%;
   animation-delay: 420ms;
 }
 
 .backgroundPixelThree {
-  right: 22%;
-  bottom: 28%;
+  right: 21%;
+  bottom: 26%;
   animation-delay: 960ms;
 }
 
 .fade {
   z-index: -1;
   background:
-    linear-gradient(180deg, rgb(10 18 18 / 0.34), transparent 20%, transparent 72%, rgb(10 18 18 / 0.46)),
-    radial-gradient(circle at 50% 52%, transparent 0 32%, rgb(8 16 16 / 0.2) 78%);
+    linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent 22%, transparent 76%, rgb(126 98 72 / 0.11)),
+    radial-gradient(circle at 50% 50%, transparent 0 56%, rgb(126 98 72 / 0.08) 100%);
 }
 
 .stage {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: flex;
   width: var(--transition-stage-max);
   min-height: 100svh;
-  grid-template-rows: 1fr auto auto;
-  justify-items: center;
-  padding: clamp(30px, 7svh, 72px) 22px clamp(34px, 7svh, 68px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(38px, 8svh, 78px) 22px clamp(44px, 8svh, 74px);
 }
 
 .visualStack {
   position: relative;
-  align-self: end;
-  width: min(82vw, 320px);
-  min-height: clamp(250px, 48svh, 390px);
+  align-self: center;
   display: grid;
-  place-items: end center;
-  padding-bottom: clamp(10px, 3svh, 24px);
+  width: min(90vw, 360px);
+  min-height: clamp(314px, 48svh, 410px);
+  place-items: center;
+  padding-bottom: 0;
 }
 
 .portal {
-  --transition-portal-core: #f5df91;
-  --transition-portal-edge: #8f72c9;
-  --transition-portal-glow: #d9ad62;
+  --transition-portal-core: #fff5c8;
+  --transition-portal-edge: #c9b8e8;
+  --transition-portal-glow: #e3a33e;
   position: relative;
-  width: var(--transition-portal-width);
-  aspect-ratio: 0.68;
   display: grid;
+  width: var(--transition-portal-width);
+  aspect-ratio: 0.69;
   place-items: center;
   image-rendering: pixelated;
   animation: transition-portal-settle 2300ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -137,137 +139,102 @@
 
 .portalGlow {
   position: absolute;
-  inset: -18%;
-  opacity: 0.58;
+  inset: -22% -18%;
+  opacity: 0.28;
   background: var(--transition-portal-glow);
-  clip-path: polygon(50% 0, 76% 10%, 100% 42%, 91% 76%, 58% 100%, 22% 90%, 0 56%, 9% 20%);
-  filter: blur(18px);
-  animation: transition-portal-glow 2300ms ease-in-out infinite;
+  clip-path: polygon(50% 0, 78% 12%, 100% 45%, 86% 82%, 50% 100%, 14% 82%, 0 45%, 22% 12%);
+  filter: blur(20px);
+  animation: transition-portal-glow 3200ms ease-in-out infinite;
 }
 
-.portalFrame {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(90deg, transparent 0 12%, var(--transition-portal-edge) 12% 88%, transparent 88%),
-    linear-gradient(180deg, transparent 0 8%, var(--transition-portal-edge) 8% 92%, transparent 92%);
-  clip-path: polygon(46% 0, 70% 6%, 90% 22%, 100% 50%, 92% 78%, 68% 96%, 46% 100%, 20% 90%, 4% 66%, 2% 34%, 18% 10%);
-  box-shadow:
-    0 0 0 2px rgb(245 223 145 / 0.24),
-    0 8px 0 rgb(0 0 0 / 0.18);
+.portalSvg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 12px 0 rgb(126 98 72 / 0.12));
 }
 
-.portalInner {
-  width: 70%;
-  height: 76%;
-  background:
-    linear-gradient(180deg, rgb(245 223 145 / 0.94), rgb(216 173 98 / 0.78)),
-    var(--transition-portal-core);
-  clip-path: polygon(46% 0, 70% 8%, 92% 28%, 100% 54%, 88% 82%, 62% 100%, 34% 96%, 10% 74%, 0 46%, 10% 18%, 30% 4%);
-  box-shadow: inset 0 0 0 4px rgb(255 249 208 / 0.28);
-  animation: transition-portal-inner 2300ms steps(4, end) infinite;
+.portalAura {
+  fill: rgb(255 247 229 / 0.72);
 }
 
-.portalRoot {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  width: 28px;
-  height: 34px;
-  transform: translateX(-50%);
+.portalGoldFrame {
+  fill: #d8b768;
 }
 
-.portalRoot span {
-  position: absolute;
-  left: 12px;
-  width: 4px;
-  height: 34px;
-  background: rgb(68 55 70 / 0.68);
+.portalLavenderFrame {
+  fill: var(--transition-portal-edge);
 }
 
-.portalRoot span:nth-child(2) {
-  top: 16px;
-  left: 2px;
-  height: 18px;
-  transform: rotate(45deg);
-  transform-origin: top center;
+.portalCore {
+  fill: var(--transition-portal-core);
 }
 
-.portalRoot span:nth-child(3) {
-  top: 16px;
-  left: 22px;
-  height: 18px;
-  transform: rotate(-45deg);
-  transform-origin: top center;
+.portalHighlightOne,
+.portalHighlightTwo {
+  fill: rgb(255 255 255 / 0.7);
+}
+
+.portalRootMark {
+  fill: #7e6248;
+  opacity: 0.66;
 }
 
 .liaFallback {
   position: absolute;
-  right: clamp(42px, 17vw, 72px);
-  bottom: clamp(20px, 8svh, 58px);
-  width: 52px;
-  height: 60px;
-  transform-origin: 50% 82%;
-  animation: transition-lia-float 4200ms ease-in-out infinite;
+  top: 43%;
+  left: clamp(46px, 13vw, 64px);
+  width: clamp(54px, 15vw, 66px);
+  aspect-ratio: 0.84;
+  transform: translateY(-50%);
+  transform-origin: 50% 76%;
+  animation: transition-lia-float 4400ms ease-in-out infinite;
   image-rendering: pixelated;
 }
 
-.liaFallback span {
-  position: absolute;
+.liaSvg {
   display: block;
-  box-shadow: 0 3px 0 rgb(0 0 0 / 0.16);
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 0 rgb(126 98 72 / 0.12));
 }
 
-.liaPetalTop,
-.liaPetalLeft,
-.liaPetalRight {
-  background: #dfd4ff;
+.liaPetalSoft {
+  fill: #fff7e5;
+  stroke: #c9b8e8;
+  stroke-width: 2px;
 }
 
-.liaPetalTop {
-  top: 2px;
-  left: 20px;
-  width: 14px;
-  height: 22px;
-  clip-path: polygon(50% 0, 100% 34%, 78% 100%, 20% 100%, 0 34%);
+.liaPetalLavender {
+  fill: #eadfff;
+  stroke: #c9b8e8;
+  stroke-width: 2px;
 }
 
-.liaPetalLeft {
-  top: 19px;
-  left: 6px;
-  width: 20px;
-  height: 18px;
-  clip-path: polygon(0 48%, 42% 0, 100% 22%, 88% 90%, 26% 100%);
+.liaHead {
+  fill: #d9f1eb;
+  stroke: #f7efd8;
+  stroke-width: 3px;
 }
 
-.liaPetalRight {
-  top: 18px;
-  right: 4px;
-  width: 22px;
-  height: 18px;
-  clip-path: polygon(0 22%, 58% 0, 100% 48%, 74% 100%, 12% 90%);
-}
-
-.liaBody {
-  top: 22px;
-  left: 15px;
-  width: 24px;
-  height: 28px;
-  background: #c6f2d9;
-  clip-path: polygon(48% 0, 100% 22%, 88% 82%, 50% 100%, 10% 82%, 0 22%);
+.liaEyes {
+  fill: #7e6248;
+  opacity: 0.72;
 }
 
 .liaCollar {
-  top: 30px;
-  left: 23px;
-  width: 8px;
-  height: 8px;
-  background: #eab86e;
-  box-shadow:
-    0 0 0 2px rgb(72 55 78 / 0.5),
-    0 0 12px rgb(234 184 110 / 0.54);
+  fill: #e3a33e;
+  stroke: #7e6248;
+  stroke-width: 2px;
+}
+
+.liaBulb {
+  fill: #cfead7;
+  stroke: #fff7e5;
+  stroke-width: 2px;
 }
 
 .copy {
@@ -275,7 +242,7 @@
   justify-items: center;
   gap: 7px;
   width: 100%;
-  margin-top: clamp(18px, 4svh, 34px);
+  margin-top: clamp(10px, 2svh, 18px);
   text-align: center;
 }
 
@@ -285,42 +252,43 @@
   font-weight: 600;
   letter-spacing: 0;
   text-wrap: balance;
-  text-shadow: 1px 1px 0 rgb(58 42 72 / 0.65);
+  text-shadow: 1px 1px 0 rgb(255 247 229 / 0.86);
 }
 
 .title {
-  max-width: 18ch;
-  color: var(--transition-text, #f1e7ff);
-  font-size: clamp(1.32rem, 6vw, 1.72rem);
+  max-width: 100%;
+  color: var(--transition-text, #4e3f35);
+  font-size: clamp(1.08rem, 4.4vw, 1.34rem);
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 .subtitle {
-  color: var(--transition-text-soft, #d8cbe6);
-  font-size: clamp(0.9rem, 3.9vw, 1.08rem);
+  color: var(--transition-text-soft, #7e6248);
+  font-size: clamp(0.88rem, 3.8vw, 1.02rem);
   line-height: 1.12;
-  opacity: 0.88;
+  opacity: 0.86;
 }
 
 .progress {
   --transition-progress-duration: 2300ms;
-  --transition-progress-track: #6f5c8d;
-  --transition-progress-fill: #e8bd6f;
+  --transition-progress-track: #d7c9a8;
+  --transition-progress-fill: #e3a33e;
   display: grid;
   width: var(--transition-progress-width);
-  grid-template-columns: 9px 1fr 9px;
+  grid-template-columns: 7px 1fr 7px;
   align-items: center;
-  column-gap: 6px;
-  margin-top: 18px;
+  column-gap: 7px;
+  margin-top: 14px;
   image-rendering: pixelated;
 }
 
 .progressCap {
-  width: 9px;
-  height: 9px;
-  background: var(--transition-progress-fill);
+  width: 7px;
+  height: 7px;
+  background: #fff7e5;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  box-shadow: 0 0 0 2px var(--transition-progress-track);
+  box-shadow: 0 0 0 2px var(--transition-progress-fill);
 }
 
 .progressTrack {
@@ -334,7 +302,7 @@
   inset: 0;
   width: 100%;
   background: var(--transition-progress-fill);
-  transform: scaleX(0);
+  transform: scaleX(0.76);
   transform-origin: left center;
   animation: transition-progress-fill var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
@@ -342,12 +310,12 @@
 .progressMarker {
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 9px;
-  height: 9px;
-  background: #f4df9a;
+  left: 76%;
+  width: 7px;
+  height: 7px;
+  background: #fff7e5;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  box-shadow: 0 0 0 2px #8f72c9;
+  box-shadow: 0 0 0 2px #c9b8e8;
   transform: translate(-50%, -50%);
   animation: transition-progress-marker var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
@@ -355,20 +323,20 @@
 @keyframes transition-pixel-breathe {
   0%,
   100% {
-    opacity: 0.36;
+    opacity: 0.34;
     transform: translateY(0);
   }
 
   50% {
-    opacity: 0.86;
-    transform: translateY(-3px);
+    opacity: 0.74;
+    transform: translateY(-2px);
   }
 }
 
 @keyframes transition-portal-settle {
   0% {
     opacity: 0;
-    transform: translateY(8px) scale(0.97);
+    transform: translateY(6px) scale(0.985);
   }
 
   100% {
@@ -380,55 +348,44 @@
 @keyframes transition-portal-glow {
   0%,
   100% {
-    opacity: 0.38;
+    opacity: 0.22;
     transform: scale(0.98);
   }
 
   50% {
-    opacity: 0.62;
+    opacity: 0.34;
     transform: scale(1.03);
-  }
-}
-
-@keyframes transition-portal-inner {
-  0%,
-  100% {
-    opacity: 0.82;
-  }
-
-  50% {
-    opacity: 1;
   }
 }
 
 @keyframes transition-lia-float {
   0%,
   100% {
-    transform: translateY(0) rotate(-0.4deg);
+    transform: translateY(-50%) rotate(-2deg);
   }
 
   50% {
-    transform: translateY(-5px) rotate(0.5deg);
+    transform: translateY(calc(-50% - 5px)) rotate(1deg);
   }
 }
 
 @keyframes transition-progress-fill {
   0% {
-    transform: scaleX(0);
+    transform: scaleX(0.2);
   }
 
   100% {
-    transform: scaleX(1);
+    transform: scaleX(0.82);
   }
 }
 
 @keyframes transition-progress-marker {
   0% {
-    left: 0;
+    left: 20%;
   }
 
   100% {
-    left: 100%;
+    left: 82%;
   }
 }
 
@@ -438,29 +395,34 @@
   }
 
   .visualStack {
-    min-height: clamp(232px, 46svh, 330px);
+    min-height: clamp(286px, 48svh, 360px);
   }
 
   .liaFallback {
-    right: clamp(34px, 14vw, 54px);
+    left: clamp(34px, 12vw, 48px);
+  }
+
+  .title {
+    max-width: 21ch;
+    white-space: normal;
   }
 }
 
 @media (max-height: 690px) {
   .stage {
-    padding-block: 22px 28px;
+    padding-block: 24px 30px;
   }
 
   .visualStack {
-    min-height: clamp(218px, 45svh, 310px);
+    min-height: clamp(262px, 46svh, 330px);
   }
 
   .copy {
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   .progress {
-    margin-top: 14px;
+    margin-top: 12px;
   }
 }
 
@@ -470,7 +432,6 @@
   .backgroundPixelThree,
   .portal,
   .portalGlow,
-  .portalInner,
   .liaFallback,
   .progressFill,
   .progressMarker {
