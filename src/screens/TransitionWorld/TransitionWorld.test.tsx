@@ -27,6 +27,10 @@ describe("TransitionWorld", () => {
       "data-motion-layer",
       "final-fade",
     );
+    expect(screen.getByTestId("transition-world-fade")).toHaveAttribute(
+      "data-motion-effect",
+      "portal-centered-flash",
+    );
     expect(screen.getByTestId("transition-world-portal")).toBeInTheDocument();
     expect(screen.getByTestId("transition-world-portal")).toHaveAttribute(
       "data-motion-sequence",
@@ -48,17 +52,41 @@ describe("TransitionWorld", () => {
       "data-lia-motion",
       "idle-guide-exit",
     );
+    expect(screen.getByTestId("transition-world-lia-sprite")).toHaveAttribute(
+      "data-lia-placement",
+      "left-of-portal",
+    );
+    expect(screen.getByTestId("transition-world-lia-sprite")).toHaveAttribute(
+      "data-lia-sprite-mode",
+      "cropped-background",
+    );
     expect(screen.getByTestId("transition-world-lia-real")).toHaveAttribute(
       "data-asset-id",
       "lia_transition_root_idle_4f",
+    );
+    expect(screen.getByTestId("transition-world-lia-real")).toHaveAttribute(
+      "data-frame-count",
+      "4",
+    );
+    expect(screen.getByTestId("transition-world-lia-real")).toHaveAttribute(
+      "data-frame-size",
+      "256x256",
     );
     expect(screen.getByTestId("transition-world-lia-guide")).toHaveAttribute(
       "data-asset-id",
       "lia_transition_root_guide_2f",
     );
+    expect(screen.getByTestId("transition-world-lia-guide")).toHaveAttribute(
+      "data-frame-count",
+      "2",
+    );
     expect(screen.getByTestId("transition-world-lia-exit")).toHaveAttribute(
       "data-asset-id",
       "lia_transition_root_exit_1f",
+    );
+    expect(screen.getByTestId("transition-world-lia-exit")).toHaveAttribute(
+      "data-frame-count",
+      "1",
     );
     expect(
       screen.getByTestId("transition-world-progress-real"),
@@ -74,6 +102,10 @@ describe("TransitionWorld", () => {
     expect(screen.getByTestId("transition-world-progress-spark")).toHaveAttribute(
       "data-asset-id",
       "transition_root_progress_spark",
+    );
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-progress-spark-alignment",
+      "channel-centered",
     );
     expect(
       screen.getByRole("status", {
@@ -131,8 +163,8 @@ describe("TransitionWorld", () => {
     const portalImage = container.querySelector(
       '[data-testid="transition-world-portal-real"] img',
     );
-    const liaImage = container.querySelector(
-      '[data-testid="transition-world-lia-real"] img',
+    const liaFrame = container.querySelector(
+      '[data-testid="transition-world-lia-real"]',
     );
     const progressImage = container.querySelector(
       '[data-testid="transition-world-progress-track"] img',
@@ -142,7 +174,7 @@ describe("TransitionWorld", () => {
       "transition_root_background_v1",
     );
     expect(portalImage?.getAttribute("src")).toContain("portal_root_open_v1");
-    expect(liaImage?.getAttribute("src")).toContain(
+    expect(liaFrame?.getAttribute("style")).toContain(
       "lia_transition_root_idle_4f_v1",
     );
     expect(progressImage?.getAttribute("src")).toContain(
@@ -167,6 +199,10 @@ describe("TransitionWorld", () => {
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-progress-motion",
       "fill-and-spark",
+    );
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-progress-spark-alignment",
+      "channel-centered",
     );
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-progress-preview",

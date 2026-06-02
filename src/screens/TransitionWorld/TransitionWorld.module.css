@@ -1,7 +1,9 @@
 .transitionWorld {
   --transition-stage-max: min(100vw, 430px);
   --transition-portal-width: clamp(242px, 64vw, 304px);
-  --transition-lia-width: clamp(78px, 22vw, 98px);
+  --transition-lia-width: clamp(90px, 25vw, 112px);
+  --transition-lia-left: clamp(-14px, -2.4vw, -6px);
+  --transition-lia-top: 57%;
   --transition-progress-width: clamp(282px, 80vw, 360px);
   --transition-progress-track-inset-left: 3.6%;
   --transition-progress-track-inset-right: 5.2%;
@@ -10,6 +12,8 @@
   --transition-progress-fill-scale: 1;
   --transition-preview-fill-width: 58.6%;
   --transition-preview-spark-x: 62.2%;
+  --transition-progress-channel-center-y: 46%;
+  --transition-progress-spark-y: var(--transition-progress-channel-center-y);
   --transition-progress-fill-start-width: 2.4%;
   --transition-progress-fill-first-width: 38%;
   --transition-progress-fill-second-width: 76%;
@@ -133,6 +137,18 @@
   animation: transition-final-fade 2300ms cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
+.fade::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 35%, rgb(255 252 235 / 0.72) 0 7%, rgb(227 163 62 / 0.2) 16%, rgb(201 184 232 / 0.14) 26%, transparent 42%);
+  transform: scale(0.72);
+  transform-origin: 50% 35%;
+  animation: transition-portal-centered-flash 2300ms cubic-bezier(0.33, 0, 0.2, 1) both;
+}
+
 .stage {
   position: relative;
   z-index: 1;
@@ -167,6 +183,19 @@
   place-items: center;
   image-rendering: pixelated;
   animation: transition-portal-settle 2300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portal::after {
+  position: absolute;
+  z-index: 2;
+  inset: -18%;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle, rgb(255 252 235 / 0.86) 0 8%, rgb(227 163 62 / 0.24) 18%, rgb(201 184 232 / 0.16) 28%, transparent 46%);
+  transform: scale(0.68);
+  animation: transition-portal-core-flash 2300ms cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
 .portalGlow {
@@ -216,62 +245,50 @@
 .liaSprite {
   position: absolute;
   z-index: 2;
-  top: 58%;
-  right: clamp(4px, 2.4vw, 16px);
+  top: var(--transition-lia-top);
+  left: var(--transition-lia-left);
+  right: auto;
   width: var(--transition-lia-width);
   aspect-ratio: 1;
   transform: translateY(-50%);
   transform-origin: 50% 62%;
   overflow: hidden;
-  animation:
-    transition-lia-stage 2300ms cubic-bezier(0.22, 1, 0.36, 1) both,
-    transition-lia-float 1700ms ease-in-out 2300ms infinite;
+  animation: transition-lia-stage 2300ms cubic-bezier(0.22, 1, 0.36, 1) both;
   image-rendering: pixelated;
 }
 
-.liaPicture {
+.liaFrameViewport {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
+  aspect-ratio: 1;
   overflow: hidden;
   opacity: 0;
-}
-
-.liaPicture img {
-  display: block;
-  height: auto;
+  background-repeat: no-repeat;
+  background-position: 0 0;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 0 rgb(126 98 72 / 0.13));
 }
 
 .liaIdleLayer {
   opacity: 1;
-  animation: transition-lia-idle-opacity 2300ms steps(1, end) both;
-}
-
-.liaIdleLayer img {
-  width: 400%;
-  max-width: none;
-  animation: transition-lia-idle-frames 1500ms steps(4, end) infinite;
+  background-size: 400% 100%;
+  animation:
+    transition-lia-idle-opacity 2300ms steps(1, end) both,
+    transition-lia-idle-frames 1500ms steps(1, end) infinite;
 }
 
 .liaGuideLayer {
-  animation: transition-lia-guide-opacity 2300ms steps(1, end) both;
-}
-
-.liaGuideLayer img {
-  width: 200%;
-  max-width: none;
-  animation: transition-lia-guide-frames 360ms steps(2, end) 820ms 2 both;
+  background-size: 200% 100%;
+  animation:
+    transition-lia-guide-opacity 2300ms steps(1, end) both,
+    transition-lia-guide-frames 360ms steps(1, end) 820ms 2 both;
 }
 
 .liaExitLayer {
+  background-size: 100% 100%;
   animation: transition-lia-exit-opacity 2300ms steps(1, end) both;
-}
-
-.liaExitLayer img {
-  width: 100%;
 }
 
 .copy {
@@ -382,7 +399,7 @@
 .progressSparkPicture {
   position: absolute;
   z-index: 4;
-  top: 50%;
+  top: var(--transition-progress-spark-y);
   left: var(--transition-preview-spark-x);
   display: block;
   width: clamp(20px, 5.8vw, 28px);
@@ -425,16 +442,52 @@
 
 @keyframes transition-final-fade {
   0%,
-  82% {
+  78% {
     opacity: 0;
   }
 
   94% {
-    opacity: 0.28;
+    opacity: 0.2;
   }
 
   100% {
-    opacity: 0.2;
+    opacity: 0.16;
+  }
+}
+
+@keyframes transition-portal-centered-flash {
+  0%,
+  82% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  93% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.26;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes transition-portal-core-flash {
+  0%,
+  82% {
+    opacity: 0;
+    transform: scale(0.68);
+  }
+
+  93% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.18;
+    transform: scale(1.06);
   }
 }
 
@@ -571,12 +624,12 @@
 @keyframes transition-lia-stage {
   0% {
     opacity: 0;
-    transform: translate(16px, calc(-50% + 7px)) rotate(-1deg);
+    transform: translate(-14px, calc(-50% + 7px)) rotate(-1deg);
   }
 
   12% {
     opacity: 0;
-    transform: translate(16px, calc(-50% + 7px)) rotate(-1deg);
+    transform: translate(-14px, calc(-50% + 7px)) rotate(-1deg);
   }
 
   28% {
@@ -594,12 +647,12 @@
 
   91% {
     opacity: 1;
-    transform: translate(-5px, calc(-50% - 3px)) rotate(0.8deg);
+    transform: translate(42px, calc(-50% - 5px)) scale(0.98) rotate(0.8deg);
   }
 
   100% {
-    opacity: 0.92;
-    transform: translate(-4px, calc(-50% - 1px)) rotate(0.2deg);
+    opacity: 0.12;
+    transform: translate(48px, calc(-50% - 7px)) scale(0.96) rotate(0.2deg);
   }
 }
 
@@ -655,22 +708,36 @@
 }
 
 @keyframes transition-lia-idle-frames {
-  0% {
-    transform: translateX(0);
+  0%,
+  24.99% {
+    background-position: 0 0;
   }
 
+  25%,
+  49.99% {
+    background-position: 33.3333% 0;
+  }
+
+  50%,
+  74.99% {
+    background-position: 66.6667% 0;
+  }
+
+  75%,
   100% {
-    transform: translateX(-75%);
+    background-position: 100% 0;
   }
 }
 
 @keyframes transition-lia-guide-frames {
-  0% {
-    transform: translateX(0);
+  0%,
+  49.99% {
+    background-position: 0 0;
   }
 
+  50%,
   100% {
-    transform: translateX(-50%);
+    background-position: 100% 0;
   }
 }
 
@@ -748,7 +815,7 @@
   }
 
   .liaSprite {
-    right: 0;
+    left: clamp(-10px, -2vw, -4px);
   }
 
   .title {
@@ -783,8 +850,7 @@
   .portalGlow,
   .portalLayer,
   .liaSprite,
-  .liaPicture,
-  .liaPicture img,
+  .liaFrameViewport,
   .progressFillClip,
   .progressSparkPicture,
   .fade,
@@ -803,8 +869,7 @@
 .transitionWorld[data-reduced-motion="true"] .portalGlow,
 .transitionWorld[data-reduced-motion="true"] .portalLayer,
 .transitionWorld[data-reduced-motion="true"] .liaSprite,
-.transitionWorld[data-reduced-motion="true"] .liaPicture,
-.transitionWorld[data-reduced-motion="true"] .liaPicture img,
+.transitionWorld[data-reduced-motion="true"] .liaFrameViewport,
 .transitionWorld[data-reduced-motion="true"] .progressFillClip,
 .transitionWorld[data-reduced-motion="true"] .progressSparkPicture,
 .transitionWorld[data-reduced-motion="true"] .fade {
@@ -841,8 +906,8 @@
   transform: translateY(-50%);
 }
 
-.transitionWorld[data-reduced-motion="true"] .liaIdleLayer img {
-  transform: translateX(0);
+.transitionWorld[data-reduced-motion="true"] .liaIdleLayer {
+  background-position: 0 0;
 }
 
 .transitionWorld[data-reduced-motion="true"] .progressFillClip {

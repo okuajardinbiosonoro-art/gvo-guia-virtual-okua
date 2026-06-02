@@ -32,6 +32,7 @@ export function TransitionProgress({
       data-testid="transition-world-progress"
       data-motion-layer="progress"
       data-progress-motion="fill-and-spark"
+      data-progress-spark-alignment="channel-centered"
       data-reduced-motion={isReducedMotion ? "true" : "false"}
       role="progressbar"
       aria-valuemin={0}

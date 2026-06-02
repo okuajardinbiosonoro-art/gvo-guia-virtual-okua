@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e5",
+  "t003e5a",
 );
 
 test.beforeAll(() => {
@@ -53,9 +53,6 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
       [
         '[data-testid="transition-world-background-real"] img',
         '[data-testid="transition-world-portal-real"] img',
-        '[data-testid="transition-world-lia-real"] img',
-        '[data-testid="transition-world-lia-guide"] img',
-        '[data-testid="transition-world-lia-exit"] img',
         '[data-testid="transition-world-progress-real"] img',
       ].join(","),
     )
@@ -66,10 +63,47 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
       })),
     );
 
-  expect(loadedImages.length).toBeGreaterThanOrEqual(4);
+  expect(loadedImages.length).toBeGreaterThanOrEqual(3);
   for (const image of loadedImages) {
     expect(image.complete).toBe(true);
     expect(image.naturalWidth).toBeGreaterThan(0);
+  }
+
+  const liaBackgrounds = await page
+    .locator(
+      [
+        '[data-testid="transition-world-lia-real"]',
+        '[data-testid="transition-world-lia-guide"]',
+        '[data-testid="transition-world-lia-exit"]',
+      ].join(","),
+    )
+    .evaluateAll((layers) =>
+      layers.map((layer) => ({
+        asset: layer.getAttribute("data-asset-id"),
+        frameCount: layer.getAttribute("data-frame-count"),
+        backgroundImage: getComputedStyle(layer).backgroundImage,
+      })),
+    );
+
+  expect(liaBackgrounds).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        asset: "lia_transition_root_idle_4f",
+        frameCount: "4",
+      }),
+      expect.objectContaining({
+        asset: "lia_transition_root_guide_2f",
+        frameCount: "2",
+      }),
+      expect.objectContaining({
+        asset: "lia_transition_root_exit_1f",
+        frameCount: "1",
+      }),
+    ]),
+  );
+
+  for (const layer of liaBackgrounds) {
+    expect(layer.backgroundImage).toContain("lia_transition_root");
   }
 
   const hasHorizontalOverflow = await page.evaluate(
@@ -92,7 +126,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003E5_MOTION_FOUNDATION",
+    version: "T003E5A_MOTION_POLISH_LIA_PROGRESS",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -102,11 +136,47 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
     motionState: "preview-sequence",
   });
 
+  const motionGeometry = await page.evaluate(() => {
+    const portal = document.querySelector(
+      '[data-testid="transition-world-portal"]',
+    )?.getBoundingClientRect();
+    const lia = document.querySelector(
+      '[data-testid="transition-world-lia-sprite"]',
+    )?.getBoundingClientRect();
+    const progress = document.querySelector(
+      '[data-testid="transition-world-progress-real"]',
+    )?.getBoundingClientRect();
+    const spark = document.querySelector(
+      '[data-testid="transition-world-progress-spark"]',
+    )?.getBoundingClientRect();
+
+    return {
+      liaCenterX: lia ? lia.left + lia.width / 2 : null,
+      portalCenterX: portal ? portal.left + portal.width / 2 : null,
+      progressCenterY: progress ? progress.top + progress.height / 2 : null,
+      sparkCenterY: spark ? spark.top + spark.height / 2 : null,
+    };
+  });
+
+  expect(motionGeometry.liaCenterX).not.toBeNull();
+  expect(motionGeometry.portalCenterX).not.toBeNull();
+  expect(motionGeometry.sparkCenterY).not.toBeNull();
+  expect(motionGeometry.progressCenterY).not.toBeNull();
+  expect(motionGeometry.liaCenterX as number).toBeLessThan(
+    motionGeometry.portalCenterX as number,
+  );
+  expect(
+    Math.abs(
+      (motionGeometry.sparkCenterY as number) -
+        (motionGeometry.progressCenterY as number),
+    ),
+  ).toBeLessThanOrEqual(6);
+
   await page.waitForTimeout(2400);
   await expect(page).toHaveURL(/\/dev\/transition-world$/);
 });
 
-test("genera capturas de revision visual T003E5 en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E5A en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -123,7 +193,7 @@ test("genera capturas de revision visual T003E5 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e5-start-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e5a-start-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(980);
@@ -131,7 +201,7 @@ test("genera capturas de revision visual T003E5 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e5-mid-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e5a-mid-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(1300);
@@ -139,7 +209,7 @@ test("genera capturas de revision visual T003E5 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e5-final-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e5a-final-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }
