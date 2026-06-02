@@ -1,6 +1,6 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 
-export const TRANSITION_WORLD_VERSION = "T003E4A_PROGRESS_FILL_ALIGNMENT";
+export const TRANSITION_WORLD_VERSION = "T003E5_MOTION_FOUNDATION";
 
 export const introToStationOneTransition: TransitionWorldConfig = {
   id: "intro-to-station-1",

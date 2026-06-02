@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e4a",
+  "t003e5",
 );
 
 test.beforeAll(() => {
@@ -27,9 +27,15 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   await expect(page.getByText("Preparando recorrido...")).toBeVisible();
   await expect(page.getByTestId("transition-world-background-real")).toBeVisible();
   await expect(page.getByTestId("transition-world-portal")).toBeVisible();
+  await expect(page.getByTestId("transition-world-portal-inactive")).toBeVisible();
+  await expect(
+    page.getByTestId("transition-world-portal-activating"),
+  ).toBeVisible();
   await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
   await expect(page.getByTestId("transition-world-lia-sprite")).toBeVisible();
   await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
+  await expect(page.getByTestId("transition-world-lia-guide")).toBeVisible();
+  await expect(page.getByTestId("transition-world-lia-exit")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
   await expect(page.getByTestId("transition-world-progress-real")).toBeVisible();
   await expect(page.getByTestId("transition-world-progress-track")).toBeVisible();
@@ -48,6 +54,8 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
         '[data-testid="transition-world-background-real"] img',
         '[data-testid="transition-world-portal-real"] img',
         '[data-testid="transition-world-lia-real"] img',
+        '[data-testid="transition-world-lia-guide"] img',
+        '[data-testid="transition-world-lia-exit"] img',
         '[data-testid="transition-world-progress-real"] img',
       ].join(","),
     )
@@ -79,19 +87,26 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
     reducedMotionDurationMs: element.getAttribute(
       "data-reduced-motion-duration-ms",
     ),
+    motionMode: element.getAttribute("data-motion-mode"),
+    motionState: element.getAttribute("data-motion-state"),
   }));
 
   expect(routeData).toEqual({
-    version: "T003E4A_PROGRESS_FILL_ALIGNMENT",
+    version: "T003E5_MOTION_FOUNDATION",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
     durationMs: "2300",
     reducedMotionDurationMs: "1000",
+    motionMode: "css-timeline",
+    motionState: "preview-sequence",
   });
+
+  await page.waitForTimeout(2400);
+  await expect(page).toHaveURL(/\/dev\/transition-world$/);
 });
 
-test("genera capturas de revision visual T003E4A en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E5 en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -103,12 +118,28 @@ test("genera capturas de revision visual T003E4A en mobile", async ({ page }) =>
     ).toBeVisible();
     await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
     await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(120);
     await page.screenshot({
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e4a-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e5-start-${viewport.width}x${viewport.height}.png`,
+      ),
+    });
+    await page.waitForTimeout(980);
+    await page.screenshot({
+      fullPage: true,
+      path: path.join(
+        transitionWorldOutputDir,
+        `transition-world-t003e5-mid-${viewport.width}x${viewport.height}.png`,
+      ),
+    });
+    await page.waitForTimeout(1300);
+    await page.screenshot({
+      fullPage: true,
+      path: path.join(
+        transitionWorldOutputDir,
+        `transition-world-t003e5-final-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }

@@ -10,6 +10,19 @@
   --transition-progress-fill-scale: 1;
   --transition-preview-fill-width: 58.6%;
   --transition-preview-spark-x: 62.2%;
+  --transition-progress-fill-start-width: 2.4%;
+  --transition-progress-fill-first-width: 38%;
+  --transition-progress-fill-second-width: 76%;
+  --transition-progress-fill-final-width: calc(
+    100% - var(--transition-progress-track-inset-left) -
+      var(--transition-progress-track-inset-right)
+  );
+  --transition-progress-spark-start-x: 7.2%;
+  --transition-progress-spark-first-x: 43%;
+  --transition-progress-spark-second-x: 80%;
+  --transition-progress-spark-final-x: calc(
+    100% - var(--transition-progress-track-inset-right)
+  );
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -46,6 +59,7 @@
   object-fit: cover;
   object-position: center;
   image-rendering: auto;
+  animation: transition-background-arrive 2300ms ease-out both;
 }
 
 .backgroundGrid {
@@ -55,6 +69,7 @@
   background:
     radial-gradient(ellipse at 50% 38%, rgb(255 250 228 / 0.28), transparent 48%),
     linear-gradient(180deg, rgb(255 247 229 / 0.1), transparent 62%, rgb(126 98 72 / 0.06));
+  animation: transition-background-grid 2300ms ease-out both;
 }
 
 .backgroundMistOne,
@@ -114,6 +129,8 @@
   background:
     linear-gradient(180deg, rgb(255 255 255 / 0.12), transparent 22%, transparent 80%, rgb(126 98 72 / 0.07)),
     radial-gradient(circle at 50% 50%, transparent 0 62%, rgb(126 98 72 / 0.05) 100%);
+  opacity: 0;
+  animation: transition-final-fade 2300ms cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
 .stage {
@@ -136,6 +153,7 @@
   min-height: clamp(390px, 53svh, 468px);
   place-items: center;
   padding-bottom: 0;
+  animation: transition-visual-stack-presence 2300ms ease-out both;
 }
 
 .portal {
@@ -158,7 +176,9 @@
   background: var(--transition-portal-glow);
   clip-path: ellipse(42% 45% at 50% 50%);
   filter: blur(14px);
-  animation: transition-portal-glow 3200ms ease-in-out infinite;
+  animation:
+    transition-portal-glow 2300ms cubic-bezier(0.33, 0, 0.2, 1) both,
+    transition-portal-idle-glow 3600ms ease-in-out 2300ms infinite;
 }
 
 .portalPicture,
@@ -167,6 +187,24 @@
   z-index: 1;
   display: block;
   width: 100%;
+}
+
+.portalLayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.portalLayerInactive {
+  animation: transition-portal-inactive 2300ms steps(1, end) both;
+}
+
+.portalLayerActivating {
+  animation: transition-portal-activating 2300ms steps(1, end) both;
+}
+
+.portalLayerOpen {
+  animation: transition-portal-open 2300ms steps(1, end) both;
 }
 
 .portalPicture img {
@@ -184,20 +222,56 @@
   aspect-ratio: 1;
   transform: translateY(-50%);
   transform-origin: 50% 62%;
-  animation: transition-lia-float 4400ms ease-in-out infinite;
+  overflow: hidden;
+  animation:
+    transition-lia-stage 2300ms cubic-bezier(0.22, 1, 0.36, 1) both,
+    transition-lia-float 1700ms ease-in-out 2300ms infinite;
   image-rendering: pixelated;
 }
 
-.liaPicture,
-.liaPicture img {
+.liaPicture {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
+  overflow: hidden;
+  opacity: 0;
 }
 
 .liaPicture img {
+  display: block;
   height: auto;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 0 rgb(126 98 72 / 0.13));
+}
+
+.liaIdleLayer {
+  opacity: 1;
+  animation: transition-lia-idle-opacity 2300ms steps(1, end) both;
+}
+
+.liaIdleLayer img {
+  width: 400%;
+  max-width: none;
+  animation: transition-lia-idle-frames 1500ms steps(4, end) infinite;
+}
+
+.liaGuideLayer {
+  animation: transition-lia-guide-opacity 2300ms steps(1, end) both;
+}
+
+.liaGuideLayer img {
+  width: 200%;
+  max-width: none;
+  animation: transition-lia-guide-frames 360ms steps(2, end) 820ms 2 both;
+}
+
+.liaExitLayer {
+  animation: transition-lia-exit-opacity 2300ms steps(1, end) both;
+}
+
+.liaExitLayer img {
+  width: 100%;
 }
 
 .copy {
@@ -283,6 +357,7 @@
   overflow: hidden;
   border-radius: 0;
   transform-origin: left center;
+  animation: transition-progress-fill var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
 .progressFillPicture,
@@ -312,6 +387,7 @@
   display: block;
   width: clamp(20px, 5.8vw, 28px);
   transform: translate(-50%, -50%);
+  animation: transition-progress-spark var(--transition-progress-duration) cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
 .progressSparkPicture img {
@@ -319,6 +395,58 @@
   width: 100%;
   height: auto;
   image-rendering: pixelated;
+}
+
+@keyframes transition-background-arrive {
+  0% {
+    opacity: 0;
+    transform: scale(1.012);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes transition-background-grid {
+  0% {
+    opacity: 0;
+  }
+
+  38% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 0.16;
+  }
+}
+
+@keyframes transition-final-fade {
+  0%,
+  82% {
+    opacity: 0;
+  }
+
+  94% {
+    opacity: 0.28;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes transition-visual-stack-presence {
+  0% {
+    opacity: 0.82;
+  }
+
+  22%,
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes transition-pixel-breathe {
@@ -337,7 +465,20 @@
 @keyframes transition-portal-settle {
   0% {
     opacity: 0;
-    transform: translateY(6px) scale(0.985);
+    transform: translateY(6px) scale(0.992);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  80% {
+    transform: translateY(0) scale(1);
+  }
+
+  92% {
+    transform: translateY(-1px) scale(1.01);
   }
 
   100% {
@@ -347,15 +488,242 @@
 }
 
 @keyframes transition-portal-glow {
-  0%,
-  100% {
-    opacity: 0.22;
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  24% {
+    opacity: 0.12;
     transform: scale(0.98);
   }
 
+  58% {
+    opacity: 0.32;
+    transform: scale(1.02);
+  }
+
+  88% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: scale(1.01);
+  }
+}
+
+@keyframes transition-portal-idle-glow {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scale(1);
+  }
+
   50% {
-    opacity: 0.34;
-    transform: scale(1.03);
+    opacity: 0.3;
+    transform: scale(1.025);
+  }
+}
+
+@keyframes transition-portal-inactive {
+  0%,
+  24% {
+    opacity: 0.72;
+  }
+
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes transition-portal-activating {
+  0%,
+  23% {
+    opacity: 0;
+  }
+
+  24%,
+  52% {
+    opacity: 1;
+  }
+
+  53%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes transition-portal-open {
+  0%,
+  45% {
+    opacity: 0;
+  }
+
+  46%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes transition-lia-stage {
+  0% {
+    opacity: 0;
+    transform: translate(16px, calc(-50% + 7px)) rotate(-1deg);
+  }
+
+  12% {
+    opacity: 0;
+    transform: translate(16px, calc(-50% + 7px)) rotate(-1deg);
+  }
+
+  28% {
+    opacity: 1;
+    transform: translate(0, -50%) rotate(-0.6deg);
+  }
+
+  45% {
+    transform: translate(0, calc(-50% - 2px)) rotate(0.4deg);
+  }
+
+  72% {
+    transform: translate(0, -50%) rotate(-0.4deg);
+  }
+
+  91% {
+    opacity: 1;
+    transform: translate(-5px, calc(-50% - 3px)) rotate(0.8deg);
+  }
+
+  100% {
+    opacity: 0.92;
+    transform: translate(-4px, calc(-50% - 1px)) rotate(0.2deg);
+  }
+}
+
+@keyframes transition-lia-idle-opacity {
+  0%,
+  36% {
+    opacity: 1;
+  }
+
+  37%,
+  52% {
+    opacity: 0;
+  }
+
+  53%,
+  88% {
+    opacity: 1;
+  }
+
+  89%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes transition-lia-guide-opacity {
+  0%,
+  36% {
+    opacity: 0;
+  }
+
+  37%,
+  52% {
+    opacity: 1;
+  }
+
+  53%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes transition-lia-exit-opacity {
+  0%,
+  88% {
+    opacity: 0;
+  }
+
+  89%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes transition-lia-idle-frames {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-75%);
+  }
+}
+
+@keyframes transition-lia-guide-frames {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes transition-progress-fill {
+  0% {
+    width: var(--transition-progress-fill-start-width);
+  }
+
+  44% {
+    width: var(--transition-progress-fill-first-width);
+  }
+
+  80% {
+    width: var(--transition-progress-fill-second-width);
+  }
+
+  94%,
+  100% {
+    width: var(--transition-progress-fill-final-width);
+  }
+}
+
+@keyframes transition-progress-spark {
+  0% {
+    opacity: 0;
+    left: var(--transition-progress-spark-start-x);
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  44% {
+    left: var(--transition-progress-spark-first-x);
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+
+  80% {
+    left: var(--transition-progress-spark-second-x);
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+
+  94% {
+    opacity: 1;
+    left: var(--transition-progress-spark-final-x);
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  100% {
+    opacity: 0.82;
+    left: var(--transition-progress-spark-final-x);
+    transform: translate(-50%, -50%) scale(0.96);
   }
 }
 
@@ -413,8 +781,76 @@
   .backgroundPixelThree,
   .portal,
   .portalGlow,
-  .liaSprite {
+  .portalLayer,
+  .liaSprite,
+  .liaPicture,
+  .liaPicture img,
+  .progressFillClip,
+  .progressSparkPicture,
+  .fade,
+  .backgroundImage img,
+  .backgroundGrid,
+  .visualStack {
     animation-duration: 1ms;
     animation-iteration-count: 1;
   }
+}
+
+.transitionWorld[data-reduced-motion="true"] .backgroundImage img,
+.transitionWorld[data-reduced-motion="true"] .backgroundGrid,
+.transitionWorld[data-reduced-motion="true"] .visualStack,
+.transitionWorld[data-reduced-motion="true"] .portal,
+.transitionWorld[data-reduced-motion="true"] .portalGlow,
+.transitionWorld[data-reduced-motion="true"] .portalLayer,
+.transitionWorld[data-reduced-motion="true"] .liaSprite,
+.transitionWorld[data-reduced-motion="true"] .liaPicture,
+.transitionWorld[data-reduced-motion="true"] .liaPicture img,
+.transitionWorld[data-reduced-motion="true"] .progressFillClip,
+.transitionWorld[data-reduced-motion="true"] .progressSparkPicture,
+.transitionWorld[data-reduced-motion="true"] .fade {
+  animation: none;
+}
+
+.transitionWorld[data-reduced-motion="true"] .backgroundGrid {
+  opacity: 0.16;
+}
+
+.transitionWorld[data-reduced-motion="true"] .fade {
+  opacity: 0.12;
+}
+
+.transitionWorld[data-reduced-motion="true"] .portalGlow {
+  opacity: 0.22;
+  transform: scale(1);
+}
+
+.transitionWorld[data-reduced-motion="true"] .portalLayerInactive,
+.transitionWorld[data-reduced-motion="true"] .portalLayerActivating,
+.transitionWorld[data-reduced-motion="true"] .liaGuideLayer,
+.transitionWorld[data-reduced-motion="true"] .liaExitLayer {
+  opacity: 0;
+}
+
+.transitionWorld[data-reduced-motion="true"] .portalLayerOpen,
+.transitionWorld[data-reduced-motion="true"] .liaIdleLayer {
+  opacity: 1;
+}
+
+.transitionWorld[data-reduced-motion="true"] .liaSprite {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.transitionWorld[data-reduced-motion="true"] .liaIdleLayer img {
+  transform: translateX(0);
+}
+
+.transitionWorld[data-reduced-motion="true"] .progressFillClip {
+  width: var(--transition-progress-fill-final-width);
+}
+
+.transitionWorld[data-reduced-motion="true"] .progressSparkPicture {
+  left: var(--transition-progress-spark-final-x);
+  opacity: 0.86;
+  transform: translate(-50%, -50%);
 }

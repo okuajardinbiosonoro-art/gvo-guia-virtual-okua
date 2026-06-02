@@ -38,6 +38,8 @@ export function TransitionWorld({
       data-duration-ms={config.durationMs}
       data-reduced-motion-duration-ms={config.reducedMotionDurationMs}
       data-reduced-motion={isReducedMotion ? "true" : "false"}
+      data-motion-mode="css-timeline"
+      data-motion-state="preview-sequence"
       aria-labelledby="transition-world-title"
       aria-describedby="transition-world-subtitle"
       style={style}
@@ -50,7 +52,11 @@ export function TransitionWorld({
         aria-live="polite"
         aria-label={accessibleStatus}
       >
-        <div className={styles.visualStack} aria-hidden="false">
+        <div
+          className={styles.visualStack}
+          data-motion-layer="visual-stack"
+          aria-hidden="false"
+        >
           <TransitionPortal
             label={config.portalLabel}
             palette={config.palette}

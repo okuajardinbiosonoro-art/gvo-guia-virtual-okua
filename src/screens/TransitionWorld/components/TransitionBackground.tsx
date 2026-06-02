@@ -20,6 +20,7 @@ export function TransitionBackground({ palette }: TransitionBackgroundProps) {
     <div
       className={styles.background}
       data-testid="transition-world-background"
+      data-motion-layer="background"
       aria-hidden="true"
       style={style}
     >

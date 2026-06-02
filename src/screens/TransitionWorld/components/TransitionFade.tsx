@@ -5,6 +5,7 @@ export function TransitionFade() {
     <div
       className={styles.fade}
       data-testid="transition-world-fade"
+      data-motion-layer="final-fade"
       aria-hidden="true"
     />
   );

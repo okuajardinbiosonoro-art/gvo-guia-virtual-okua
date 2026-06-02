@@ -30,6 +30,8 @@ export function TransitionProgress({
     <div
       className={styles.progress}
       data-testid="transition-world-progress"
+      data-motion-layer="progress"
+      data-progress-motion="fill-and-spark"
       data-reduced-motion={isReducedMotion ? "true" : "false"}
       role="progressbar"
       aria-valuemin={0}
@@ -37,7 +39,7 @@ export function TransitionProgress({
       aria-valuenow={72}
       aria-valuetext="Preparando recorrido"
       style={style}
-      data-progress-preview="0.62"
+      data-progress-preview="motion"
     >
       <span
         className={styles.progressTrackFrame}
