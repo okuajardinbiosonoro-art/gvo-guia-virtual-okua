@@ -1,4 +1,5 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { act } from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 
 import transitionRootAssetManifestRaw from "../../assets/transition-world/root/asset-manifest.transition-root.json?raw";
@@ -10,6 +11,8 @@ import {
 
 describe("TransitionWorld", () => {
   afterEach(() => {
+    vi.clearAllTimers();
+    vi.useRealTimers();
     cleanup();
   });
 
@@ -140,12 +143,74 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion tecnica sin rutas funcionales nuevas", () => {
+  it("expone configuracion tecnica de la ruta intro-to-station-1", () => {
     expect(introToStationOneTransition.id).toBe("intro-to-station-1");
     expect(introToStationOneTransition.durationMs).toBe(2300);
     expect(introToStationOneTransition.reducedMotionDurationMs).toBe(1000);
     expect(introToStationOneTransition.fromRoute).toBe("/portada");
-    expect(introToStationOneTransition.toRoute).toBe("/mundo-i-raiz");
+    expect(introToStationOneTransition.toRoute).toBe("/estacion/1");
+  });
+
+  it("preview no ejecuta onComplete aunque termine la duracion", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+
+    render(<TransitionWorld onComplete={handleComplete} />);
+
+    act(() => {
+      vi.advanceTimersByTime(2400);
+    });
+
+    expect(handleComplete).not.toHaveBeenCalled();
+  });
+
+  it("runtime ejecuta onComplete una sola vez al terminar", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+    const { container } = render(
+      <TransitionWorld variant="runtime" onComplete={handleComplete} />,
+    );
+
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-motion-state",
+      "runtime-sequence",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-navigation-locked",
+      "true",
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(2300);
+      vi.advanceTimersByTime(2300);
+    });
+
+    expect(handleComplete).toHaveBeenCalledTimes(1);
+  });
+
+  it("runtime reduced motion usa duracion de 1000ms para completar", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+
+    render(
+      <TransitionWorld
+        variant="runtime"
+        isReducedMotion
+        onComplete={handleComplete}
+      />,
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(999);
+    });
+
+    expect(handleComplete).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+
+    expect(handleComplete).toHaveBeenCalledTimes(1);
   });
 
   it("no renderiza botones, enlaces, copy tecnico, audio ni video", () => {

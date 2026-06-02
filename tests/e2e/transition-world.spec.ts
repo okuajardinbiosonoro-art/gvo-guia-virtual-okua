@@ -131,7 +131,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
     version: "T003E7C_TYPOGRAPHY_TOKENS",
     id: "intro-to-station-1",
     fromRoute: "/portada",
-    toRoute: "/mundo-i-raiz",
+    toRoute: "/estacion/1",
     durationMs: "2300",
     reducedMotionDurationMs: "1000",
     motionMode: "css-timeline",
@@ -211,6 +211,54 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
 
   await page.waitForTimeout(2400);
   await expect(page).toHaveURL(/\/dev\/transition-world$/);
+});
+
+test("ruta runtime de transicion navega una sola vez al destino", async ({
+  page,
+}) => {
+  await page.goto("/transition/intro-to-station-1");
+
+  await expect(
+    page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+  ).toBeVisible();
+  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(page.locator("main")).toHaveAttribute(
+    "data-transition-world-variant",
+    "runtime",
+  );
+  await expect(page.locator("main")).toHaveAttribute(
+    "data-motion-state",
+    "runtime-sequence",
+  );
+  await expect(page.locator("main")).toHaveAttribute(
+    "data-navigation-locked",
+    "true",
+  );
+  await expect(page.locator("button")).toHaveCount(0);
+  await expect(page.locator("a")).toHaveCount(0);
+
+  await page.mouse.click(195, 422);
+  await page.mouse.click(195, 422);
+
+  await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
+  await expect(page.getByText("Estación placeholder")).toBeVisible();
+  await expect(page.getByText("Mundo I: Raíz")).toBeVisible();
+  await expect(page.locator("audio")).toHaveCount(0);
+  await expect(page.locator("video")).toHaveCount(0);
+});
+
+test("ruta runtime respeta duracion reducida de 1000ms", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/transition/intro-to-station-1");
+
+  await expect(page.locator("main")).toHaveAttribute(
+    "data-reduced-motion",
+    "true",
+  );
+  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/);
+  await page.waitForTimeout(900);
+  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/);
+  await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 1000 });
 });
 
 test("genera capturas de revision visual T003E7C en mobile", async ({ page }) => {

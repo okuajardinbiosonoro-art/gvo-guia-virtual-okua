@@ -32,4 +32,5 @@ export type TransitionWorldProps = {
   config?: TransitionWorldConfig;
   variant?: TransitionWorldVariant;
   isReducedMotion?: boolean;
+  onComplete?: () => void;
 };

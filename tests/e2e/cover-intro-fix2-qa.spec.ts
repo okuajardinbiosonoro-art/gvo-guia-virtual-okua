@@ -114,14 +114,16 @@ test.describe("QA visual Portada / Intro 002I-FIX2", () => {
 
     await capture(page, "cover-intro-fix2-04-opening-activation-390x844.png");
 
+    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+      timeout: 5000,
+    });
     await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+    await expect(page.locator("button")).toHaveCount(0);
+    await expect(page.locator("a")).toHaveCount(0);
     await capture(
       page,
       "cover-intro-fix2-05-transition-placeholder-390x844.png",
     );
-    await expect(
-      page.getByRole("link", { name: "Continuar a Mundo I" }),
-    ).toHaveAttribute("href", "/estacion/1");
   });
 
   test("genera captura del flujo root reset hacia portada fresca", async ({

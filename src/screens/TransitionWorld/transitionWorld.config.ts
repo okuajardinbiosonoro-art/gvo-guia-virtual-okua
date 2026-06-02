@@ -1,11 +1,12 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
+import { worldOneEntryRoute } from "../../app/routes";
 
 export const TRANSITION_WORLD_VERSION = "T003E7C_TYPOGRAPHY_TOKENS";
 
 export const introToStationOneTransition: TransitionWorldConfig = {
   id: "intro-to-station-1",
   fromRoute: "/portada",
-  toRoute: "/mundo-i-raiz",
+  toRoute: worldOneEntryRoute,
   title: "Abriendo Mundo I: Raíz...",
   subtitle: "Preparando recorrido...",
   durationMs: 2300,

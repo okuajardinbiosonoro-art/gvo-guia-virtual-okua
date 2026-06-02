@@ -77,16 +77,17 @@ test.describe("QA visual Portada / Intro", () => {
       "cover-intro-qa-05-opening-placeholder-390x844.png",
     );
 
+    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+      timeout: 5000,
+    });
     await expect(page.getByText("Preparando recorrido...")).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Continuar a Mundo I" }),
-    ).toHaveAttribute("href", "/estacion/1");
+    await expect(page.locator("button")).toHaveCount(0);
+    await expect(page.locator("a")).toHaveCount(0);
     await capture(
       page,
       testInfo,
       "cover-intro-qa-06-transition-placeholder-390x844.png",
     );
-    await expect(page).toHaveURL(/\/portada$/);
   });
 
   test("genera captura de portal bloqueado", async ({ page }, testInfo) => {

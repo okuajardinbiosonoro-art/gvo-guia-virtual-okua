@@ -138,20 +138,18 @@ test.describe("QA visual final Portada / Intro 002L", () => {
     await page.waitForTimeout(620);
     await capture(page, "cover-intro-002l-06-activation-contact-390x844.png");
 
-    await expect(
-      page.locator('[data-cover-phase="transition_to_station_1_placeholder"]'),
-    ).toBeVisible();
+    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+      timeout: 5000,
+    });
     await expect(page.getByText("Preparando recorrido...")).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Continuar a Mundo I" }),
-    ).toHaveAttribute("href", "/estacion/1");
+    await expect(page.locator("button")).toHaveCount(0);
+    await expect(page.locator("a")).toHaveCount(0);
     await capture(
       page,
       "cover-intro-002l-07-transition-placeholder-390x844.png",
     );
 
-    await page.getByRole("link", { name: "Continuar a Mundo I" }).click();
-    await expect(page).toHaveURL(/\/estacion\/1$/);
+    await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
     await expect(page.getByText("Estación placeholder")).toBeVisible();
     await expect(page.getByText("Mundo I: Raíz")).toBeVisible();
     await capture(

@@ -38,6 +38,11 @@
   isolation: isolate;
 }
 
+.transitionWorld[data-navigation-locked="true"] {
+  pointer-events: none;
+  user-select: none;
+}
+
 .background,
 .transitionSparkles,
 .fade {

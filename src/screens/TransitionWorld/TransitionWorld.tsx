@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
 import { TransitionBackground } from "./components/TransitionBackground";
@@ -18,7 +19,9 @@ export function TransitionWorld({
   config = introToStationOneTransition,
   variant = "preview",
   isReducedMotion = false,
+  onComplete,
 }: TransitionWorldProps) {
+  const completionCalledRef = useRef(false);
   const effectiveDurationMs = isReducedMotion
     ? config.reducedMotionDurationMs
     : config.durationMs;
@@ -27,6 +30,26 @@ export function TransitionWorld({
     "--transition-text": config.palette.text,
     "--transition-text-soft": config.palette.textSoft,
   } as CSSProperties;
+
+  useEffect(() => {
+    if (variant !== "runtime" || !onComplete) {
+      return undefined;
+    }
+
+    completionCalledRef.current = false;
+    const timeoutId = window.setTimeout(() => {
+      if (completionCalledRef.current) {
+        return;
+      }
+
+      completionCalledRef.current = true;
+      onComplete();
+    }, effectiveDurationMs);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [effectiveDurationMs, onComplete, variant]);
 
   return (
     <main
@@ -40,7 +63,10 @@ export function TransitionWorld({
       data-reduced-motion-duration-ms={config.reducedMotionDurationMs}
       data-reduced-motion={isReducedMotion ? "true" : "false"}
       data-motion-mode="css-timeline"
-      data-motion-state="preview-sequence"
+      data-motion-state={
+        variant === "runtime" ? "runtime-sequence" : "preview-sequence"
+      }
+      data-navigation-locked={variant === "runtime" ? "true" : "false"}
       aria-labelledby="transition-world-title"
       aria-describedby="transition-world-subtitle"
       style={style}

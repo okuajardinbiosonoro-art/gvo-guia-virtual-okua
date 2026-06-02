@@ -7,6 +7,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { coverToWorldOneTransitionRoute } from "../../app/routes";
 import { CoverIntroScreen } from "./CoverIntroScreen";
 import { coverIntroAssets } from "./coverIntroAssets";
 import {
@@ -14,15 +15,29 @@ import {
   coverIntroPortals,
   coverIntroText,
   coverIntroTransitionText,
-  coverIntroWorldOnePlaceholderRoute,
   lockedPortalMessages,
 } from "./coverIntroContent";
 import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
+
+const { navigateMock } = vi.hoisted(() => ({
+  navigateMock: vi.fn(),
+}));
+
+vi.mock("react-router-dom", async () => {
+  const actual =
+    await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+
+  return {
+    ...actual,
+    useNavigate: () => navigateMock,
+  };
+});
 
 describe("CoverIntroScreen", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.history.replaceState({}, "", "/");
+    navigateMock.mockClear();
   });
 
   afterEach(() => {
@@ -315,7 +330,7 @@ describe("CoverIntroScreen", () => {
     );
   });
 
-  it("avanza a transition_to_station_1_placeholder y prepara handoff a Mundo I", () => {
+  it("navega a la transición runtime una sola vez despues de la activación", () => {
     vi.useFakeTimers();
     const { container } = render(<CoverIntroScreen />);
 
@@ -336,25 +351,49 @@ describe("CoverIntroScreen", () => {
       vi.advanceTimersByTime(920);
     });
 
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
     expect(container.firstElementChild).toHaveAttribute(
       "data-cover-phase",
-      "transition_to_station_1_placeholder",
+      "portal_1_opening_placeholder",
     );
-    expect(
-      screen.getByText(coverIntroTransitionText.preparing),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(coverIntroTransitionText.pending),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: coverIntroTransitionText.continue }),
-    ).toHaveAttribute("href", coverIntroWorldOnePlaceholderRoute);
+    expect(screen.queryByText(coverIntroTransitionText.preparing)).not.toBeInTheDocument();
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
     expect(
       screen.queryByText("Ruta base creada para navegación secuencial"),
     ).not.toBeInTheDocument();
     expect(
       container.querySelectorAll('[data-portal-state="locked"]'),
     ).toHaveLength(4);
+  });
+
+  it("bloquea doble navegación al abrir Mundo I", () => {
+    vi.useFakeTimers();
+    render(<CoverIntroScreen />);
+
+    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
+    for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
+      fireEvent.click(
+        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+      );
+    }
+    fireEvent.click(
+      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
+    );
+
+    const enterButton = screen.getByRole("button", {
+      name: coverIntroText.enterWorldOne,
+    });
+
+    fireEvent.click(enterButton);
+    fireEvent.click(enterButton);
+
+    act(() => {
+      vi.advanceTimersByTime(920);
+    });
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
   });
 
   it.each(Object.entries(lockedPortalMessages))(
