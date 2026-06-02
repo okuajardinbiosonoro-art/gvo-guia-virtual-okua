@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003d",
+  "t003e3",
 );
 
 test.beforeAll(() => {
@@ -25,14 +25,47 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
     page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
   ).toBeVisible();
   await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(page.getByTestId("transition-world-background-real")).toBeVisible();
   await expect(page.getByTestId("transition-world-portal")).toBeVisible();
-  await expect(page.getByTestId("transition-world-lia-fallback")).toBeVisible();
+  await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
+  await expect(page.getByTestId("transition-world-lia-sprite")).toBeVisible();
+  await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
+  await expect(page.getByTestId("transition-world-progress-real")).toBeVisible();
   await expect(page.locator("button")).toHaveCount(0);
   await expect(page.locator("a")).toHaveCount(0);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
   await expect(page.getByText(/Cargando assets/i)).toHaveCount(0);
+  await expect(page.getByText(/\d+%/)).toHaveCount(0);
+
+  const loadedImages = await page
+    .locator(
+      [
+        '[data-testid="transition-world-background-real"] img',
+        '[data-testid="transition-world-portal-real"] img',
+        '[data-testid="transition-world-lia-real"] img',
+        '[data-testid="transition-world-progress-real"] img',
+      ].join(","),
+    )
+    .evaluateAll((images) =>
+      images.map((image) => ({
+        complete: (image as HTMLImageElement).complete,
+        naturalWidth: (image as HTMLImageElement).naturalWidth,
+      })),
+    );
+
+  expect(loadedImages.length).toBeGreaterThanOrEqual(4);
+  for (const image of loadedImages) {
+    expect(image.complete).toBe(true);
+    expect(image.naturalWidth).toBeGreaterThan(0);
+  }
+
+  const hasHorizontalOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > window.innerWidth + 1,
+  );
+
+  expect(hasHorizontalOverflow).toBe(false);
 
   const routeData = await page.locator("main").evaluate((element) => ({
     version: element.getAttribute("data-transition-world-version"),
@@ -46,7 +79,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003D_STATIC_POLISH",
+    version: "T003E3_REAL_ASSETS_PREVIEW",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -55,7 +88,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   });
 });
 
-test("genera capturas de revision visual T003D en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E3 en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -65,13 +98,14 @@ test("genera capturas de revision visual T003D en mobile", async ({ page }) => {
     await expect(
       page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
     ).toBeVisible();
-    await expect(page.getByTestId("transition-world-portal")).toBeVisible();
-    await page.waitForTimeout(2400);
+    await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
+    await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
+    await page.waitForTimeout(400);
     await page.screenshot({
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003d-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e3-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }

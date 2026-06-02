@@ -38,5 +38,39 @@ export const transitionRootAssetsById = Object.fromEntries(
   transitionRootAssetManifest.assets.map((asset) => [asset.id, asset]),
 ) as Record<string, TransitionRootAsset>;
 
+const runtimeAssetUrls = import.meta.glob<string>("./runtime/**/*.{png,webp}", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+
+function resolveRuntimeAssetUrl(assetPath: string) {
+  const assetUrl = runtimeAssetUrls[`./${assetPath}`];
+  if (!assetUrl) {
+    throw new Error(`No se encontro asset runtime aprobado: ${assetPath}`);
+  }
+  return assetUrl;
+}
+
+export type TransitionRootAssetUrls = TransitionRootAsset & {
+  urls: {
+    png: string;
+    webp: string;
+  };
+};
+
+export const transitionRootAssetUrlsById = Object.fromEntries(
+  transitionRootAssetManifest.assets.map((asset) => [
+    asset.id,
+    {
+      ...asset,
+      urls: {
+        png: resolveRuntimeAssetUrl(asset.png),
+        webp: resolveRuntimeAssetUrl(asset.webp),
+      },
+    },
+  ]),
+) as Record<string, TransitionRootAssetUrls>;
+
 export const transitionRootAssetRuntimeBase =
   "src/assets/transition-world/root/runtime";

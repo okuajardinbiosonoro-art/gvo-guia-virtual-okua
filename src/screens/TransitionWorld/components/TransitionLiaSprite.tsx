@@ -1,57 +1,31 @@
+import { transitionRootAssetUrlsById } from "../../../assets/transition-world/root/transition-root-assets";
 import styles from "../TransitionWorld.module.css";
 
 export function TransitionLiaSprite() {
+  const liaAsset = transitionRootAssetUrlsById.lia_transition_root_master;
+
   return (
     <div
-      className={styles.liaFallback}
-      data-testid="transition-world-lia-fallback"
+      className={styles.liaSprite}
+      data-testid="transition-world-lia-sprite"
       role="img"
-      aria-label="Lía en versión pixelart temporal para transición."
+      aria-label="Lía en versión pixelart aprobada para transición."
+      data-asset-id={liaAsset.id}
     >
-      <svg
-        className={styles.liaSvg}
-        viewBox="0 0 72 86"
+      <picture
+        className={styles.liaPicture}
+        data-testid="transition-world-lia-real"
+        data-asset-id={liaAsset.id}
         aria-hidden="true"
-        shapeRendering="crispEdges"
       >
-        <path
-          className={styles.liaPetalSoft}
-          d="M34 2 45 14 42 34 30 34 27 14Z"
+        <source srcSet={liaAsset.urls.webp} type="image/webp" />
+        <img
+          src={liaAsset.urls.png}
+          alt=""
+          draggable={false}
+          decoding="async"
         />
-        <path
-          className={styles.liaPetalLavender}
-          d="M10 22 28 16 36 30 26 44 8 38Z"
-        />
-        <path
-          className={styles.liaPetalSoft}
-          d="M62 22 44 16 36 30 46 44 64 38Z"
-        />
-        <path
-          className={styles.liaPetalSoft}
-          d="M14 48 31 38 39 52 29 68 10 62Z"
-        />
-        <path
-          className={styles.liaPetalLavender}
-          d="M58 48 41 38 33 52 43 68 62 62Z"
-        />
-        <path
-          className={styles.liaHead}
-          d="M28 28 44 28 54 40 50 56 36 64 22 56 18 40Z"
-        />
-        <path className={styles.liaEyes} d="M27 42 32 42 32 45 27 45Z" />
-        <path className={styles.liaEyes} d="M40 42 45 42 45 45 40 45Z" />
-        <rect
-          className={styles.liaCollar}
-          x="31"
-          y="58"
-          width="10"
-          height="10"
-        />
-        <path
-          className={styles.liaBulb}
-          d="M28 66 44 66 48 78 36 84 24 78Z"
-        />
-      </svg>
+      </picture>
     </div>
   );
 }

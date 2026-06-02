@@ -20,9 +20,22 @@ describe("TransitionWorld", () => {
       screen.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
     ).toBeInTheDocument();
     expect(screen.getByText("Preparando recorrido...")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("transition-world-background-real"),
+    ).toBeInTheDocument();
     expect(screen.getByTestId("transition-world-portal")).toBeInTheDocument();
     expect(
-      screen.getByTestId("transition-world-lia-fallback"),
+      screen.getByTestId("transition-world-portal-real"),
+    ).toHaveAttribute("data-asset-id", "portal_root_open");
+    expect(
+      screen.getByTestId("transition-world-lia-sprite"),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("transition-world-lia-real")).toHaveAttribute(
+      "data-asset-id",
+      "lia_transition_root_master",
+    );
+    expect(
+      screen.getByTestId("transition-world-progress-real"),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("status", {
@@ -59,6 +72,37 @@ describe("TransitionWorld", () => {
     expect(screen.queryByText(/Fetching/i)).not.toBeInTheDocument();
     expect(container.querySelector("audio")).not.toBeInTheDocument();
     expect(container.querySelector("video")).not.toBeInTheDocument();
+  });
+
+  it("usa imagenes reales aprobadas sin incrustar texto en imagen", () => {
+    const { container } = render(<TransitionWorld />);
+
+    const backgroundImage = container.querySelector(
+      '[data-testid="transition-world-background-real"] img',
+    );
+    const portalImage = container.querySelector(
+      '[data-testid="transition-world-portal-real"] img',
+    );
+    const liaImage = container.querySelector(
+      '[data-testid="transition-world-lia-real"] img',
+    );
+    const progressImage = container.querySelector(
+      '[data-testid="transition-world-progress-real"] img',
+    );
+
+    expect(backgroundImage?.getAttribute("src")).toContain(
+      "transition_root_background_v1",
+    );
+    expect(portalImage?.getAttribute("src")).toContain("portal_root_open_v1");
+    expect(liaImage?.getAttribute("src")).toContain(
+      "lia_transition_root_master_v1",
+    );
+    expect(progressImage?.getAttribute("src")).toContain(
+      "transition_root_progress_track_base_v1",
+    );
+    expect(
+      screen.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+    ).toBeInTheDocument();
   });
 
   it("mantiene reduced motion simple y con duracion de 1000ms", () => {
