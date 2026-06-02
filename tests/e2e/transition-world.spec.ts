@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e4",
+  "t003e4a",
 );
 
 test.beforeAll(() => {
@@ -82,7 +82,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003E4_STATIC_CORRECTIONS",
+    version: "T003E4A_PROGRESS_FILL_ALIGNMENT",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -91,7 +91,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   });
 });
 
-test("genera capturas de revision visual T003E4 en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E4A en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -108,7 +108,7 @@ test("genera capturas de revision visual T003E4 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e4-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e4a-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }

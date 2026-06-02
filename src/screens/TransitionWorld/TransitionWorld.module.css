@@ -3,9 +3,13 @@
   --transition-portal-width: clamp(242px, 64vw, 304px);
   --transition-lia-width: clamp(78px, 22vw, 98px);
   --transition-progress-width: clamp(282px, 80vw, 360px);
-  --transition-progress-inner-inset: 7%;
-  --transition-preview-fill-width: 54%;
-  --transition-preview-spark-x: 61%;
+  --transition-progress-track-inset-left: 3.6%;
+  --transition-progress-track-inset-right: 5.2%;
+  --transition-progress-channel-inset-y: 17%;
+  --transition-progress-fill-offset-x: var(--transition-progress-track-inset-left);
+  --transition-progress-fill-scale: 1;
+  --transition-preview-fill-width: 58.6%;
+  --transition-preview-spark-x: 62.2%;
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -272,9 +276,9 @@
 .progressFillClip {
   position: absolute;
   z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: var(--transition-progress-inner-inset);
+  top: var(--transition-progress-channel-inset-y);
+  bottom: var(--transition-progress-channel-inset-y);
+  left: var(--transition-progress-track-inset-left);
   width: var(--transition-preview-fill-width);
   overflow: hidden;
   border-radius: 0;
@@ -285,6 +289,14 @@
 .progressFillPicture img {
   width: var(--transition-progress-width);
   max-width: none;
+}
+
+.progressFillPicture {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--transition-progress-fill-offset-x) * -1);
+  transform: translateY(-50%) scaleX(var(--transition-progress-fill-scale));
+  transform-origin: left center;
 }
 
 .progressFillPicture img {

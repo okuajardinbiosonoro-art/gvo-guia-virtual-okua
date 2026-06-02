@@ -82,6 +82,8 @@ describe("TransitionWorld", () => {
     expect(screen.queryByText(/Inicializando/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Sincronizando/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Fetching/i)).not.toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/\d/);
+    expect(container).not.toHaveTextContent(/%/);
     expect(container.querySelector("audio")).not.toBeInTheDocument();
     expect(container.querySelector("video")).not.toBeInTheDocument();
   });
