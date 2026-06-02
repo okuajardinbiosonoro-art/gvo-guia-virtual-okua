@@ -59,8 +59,6 @@
 }
 
 .transitionSparkle {
-  --transition-sparkle-core: rgb(255 247 229 / 0.82);
-  --transition-sparkle-edge: rgb(201 184 232 / 0.64);
   position: absolute;
   top: var(--transition-sparkle-y);
   left: var(--transition-sparkle-x);
@@ -68,50 +66,14 @@
   width: var(--transition-sparkle-size);
   height: var(--transition-sparkle-size);
   opacity: 0;
+  object-fit: contain;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.84);
   transform-origin: 50% 50%;
-  animation: transition-sparkle-ambient var(--transition-sparkle-duration) ease-in-out infinite;
+  animation: transition-sparkle-loading-pulse var(--transition-sparkle-duration) ease-in-out infinite;
   animation-delay: var(--transition-sparkle-delay);
   image-rendering: pixelated;
-}
-
-.transitionSparkle::before,
-.transitionSparkle::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  content: "";
-  background: var(--transition-sparkle-core);
-  box-shadow: 0 0 0 1px var(--transition-sparkle-edge);
-  image-rendering: pixelated;
-}
-
-.transitionSparkle::before {
-  width: 100%;
-  height: max(2px, calc(var(--transition-sparkle-size) * 0.34));
-  transform: translate(-50%, -50%);
-}
-
-.transitionSparkle::after {
-  width: max(2px, calc(var(--transition-sparkle-size) * 0.34));
-  height: 100%;
-  transform: translate(-50%, -50%);
-}
-
-.transitionSparkle[data-transition-sparkle-tone="lilac"] {
-  --transition-sparkle-core: rgb(218 204 247 / 0.76);
-  --transition-sparkle-edge: rgb(126 98 72 / 0.22);
-}
-
-.transitionSparkle[data-transition-sparkle-tone="amber"] {
-  --transition-sparkle-core: rgb(227 163 62 / 0.62);
-  --transition-sparkle-edge: rgb(255 247 229 / 0.64);
-}
-
-.transitionSparkle[data-transition-sparkle-tone="pearl"] {
-  --transition-sparkle-core: rgb(255 247 229 / 0.78);
-  --transition-sparkle-edge: rgb(201 184 232 / 0.5);
+  user-select: none;
 }
 
 .backgroundImage,
@@ -579,31 +541,31 @@
   }
 }
 
-@keyframes transition-sparkle-ambient {
+@keyframes transition-sparkle-loading-pulse {
   0%,
-  23% {
+  24% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.84);
   }
 
   42% {
-    opacity: 0.24;
-    transform: translate(-50%, -50%) scale(1.04);
+    opacity: 0.44;
+    transform: translate(-50%, -50%) scale(1.03);
   }
 
   58% {
-    opacity: 0.38;
+    opacity: 0.58;
     transform: translate(-50%, -50%) scale(1);
   }
 
   74% {
-    opacity: 0.14;
-    transform: translate(-50%, -50%) scale(0.94);
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(0.98);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.88);
+    transform: translate(-50%, -50%) scale(0.9);
   }
 }
 
@@ -952,6 +914,16 @@
   .visualStack {
     animation-duration: 1ms;
     animation-iteration-count: 1;
+  }
+
+  .transitionSparkle {
+    animation: none;
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  .transitionSparkle:nth-child(n + 5) {
+    display: none;
   }
 }
 

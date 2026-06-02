@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e6",
+  "t003e6a",
 );
 
 test.beforeAll(() => {
@@ -128,7 +128,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003E6_AMBIENT_SPARKLES",
+    version: "T003E6A_REUSE_LOADING_SPARKLES",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -179,32 +179,41 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
     .evaluateAll((sparkles) =>
       sparkles.map((sparkle) => ({
         slot: sparkle.getAttribute("data-transition-sparkle-slot"),
-        tone: sparkle.getAttribute("data-transition-sparkle-tone"),
+        loadingSlot: sparkle.getAttribute("data-loading-sparkle-slot"),
+        assetId: sparkle.getAttribute("data-asset-id"),
+        runtimeAsset: sparkle.getAttribute("data-runtime-asset"),
         pointerEvents: getComputedStyle(sparkle).pointerEvents,
+        width: Math.round(parseFloat(getComputedStyle(sparkle).width)),
+        height: Math.round(parseFloat(getComputedStyle(sparkle).height)),
       })),
     );
 
   expect(sparkleData).toHaveLength(8);
   expect(sparkleData.map((sparkle) => sparkle.slot)).toEqual([
-    "upper-left-air",
-    "upper-right-air",
-    "far-left-mist",
-    "far-right-mist",
-    "left-lower-air",
-    "right-lower-air",
-    "bottom-left-edge",
-    "bottom-right-edge",
+    "sparkle-lilac-upper-left",
+    "sparkle-amber-upper-right",
+    "sparkle-white-upper-air",
+    "sparkle-white-middle-left",
+    "sparkle-amber-middle-right",
+    "sparkle-lilac-lower-left",
+    "sparkle-lilac-lower-right",
+    "sparkle-lilac-bottom-right",
   ]);
   for (const sparkle of sparkleData) {
-    expect(["lilac", "amber", "pearl"]).toContain(sparkle.tone);
+    expect(sparkle.assetId).toMatch(/^sparkle_0[1-4]_/);
+    expect(sparkle.runtimeAsset).toContain(
+      "/assets/runtime/loading-initial/sparkles/",
+    );
     expect(sparkle.pointerEvents).toBe("none");
+    expect(sparkle.width).toBeGreaterThanOrEqual(12);
+    expect(sparkle.height).toBeGreaterThanOrEqual(12);
   }
 
   await page.waitForTimeout(2400);
   await expect(page).toHaveURL(/\/dev\/transition-world$/);
 });
 
-test("genera capturas de revision visual T003E6 en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E6A en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -221,7 +230,7 @@ test("genera capturas de revision visual T003E6 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6-start-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e6a-start-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(980);
@@ -229,7 +238,7 @@ test("genera capturas de revision visual T003E6 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6-mid-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e6a-mid-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(1300);
@@ -237,7 +246,7 @@ test("genera capturas de revision visual T003E6 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6-final-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e6a-final-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }

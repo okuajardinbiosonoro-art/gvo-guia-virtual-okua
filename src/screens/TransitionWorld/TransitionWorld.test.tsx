@@ -25,7 +25,7 @@ describe("TransitionWorld", () => {
     ).toBeInTheDocument();
     expect(screen.getByTestId("transition-world-sparkles")).toHaveAttribute(
       "data-sparkle-reference",
-      "loading-initial-deterministic-slots",
+      "loading-initial-runtime-assets-and-css",
     );
     expect(screen.getByTestId("transition-world-sparkles")).toHaveAttribute(
       "data-sparkle-layer",
@@ -172,15 +172,35 @@ describe("TransitionWorld", () => {
     expect(sparkleLayer).toHaveAttribute("aria-hidden", "true");
     expect(sparkleLayer).toHaveAttribute("data-sparkle-count", "8");
     expect(sparkleSlots.map((slot) => slot.getAttribute("data-transition-sparkle-slot"))).toEqual([
-      "upper-left-air",
-      "upper-right-air",
-      "far-left-mist",
-      "far-right-mist",
-      "left-lower-air",
-      "right-lower-air",
-      "bottom-left-edge",
-      "bottom-right-edge",
+      "sparkle-lilac-upper-left",
+      "sparkle-amber-upper-right",
+      "sparkle-white-upper-air",
+      "sparkle-white-middle-left",
+      "sparkle-amber-middle-right",
+      "sparkle-lilac-lower-left",
+      "sparkle-lilac-lower-right",
+      "sparkle-lilac-bottom-right",
     ]);
+    expect(sparkleSlots.map((slot) => slot.getAttribute("data-asset-id"))).toEqual([
+      "sparkle_01_lilac_small",
+      "sparkle_02_amber_small",
+      "sparkle_04_micro_white",
+      "sparkle_04_micro_white",
+      "sparkle_02_amber_small",
+      "sparkle_03_lilac_medium",
+      "sparkle_01_lilac_small",
+      "sparkle_03_lilac_medium",
+    ]);
+    for (const slot of sparkleSlots) {
+      expect(slot.tagName).toBe("IMG");
+      expect(slot).toHaveAttribute("alt", "");
+      expect(slot.getAttribute("data-runtime-asset")).toContain(
+        "/assets/runtime/loading-initial/sparkles/",
+      );
+      expect(slot.getAttribute("data-loading-sparkle-class")).toContain(
+        "loading-initial__sparkle--",
+      );
+    }
   });
 
   it("usa imagenes reales aprobadas sin incrustar texto en imagen", () => {

@@ -1,6 +1,6 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 
-export const TRANSITION_WORLD_VERSION = "T003E6_AMBIENT_SPARKLES";
+export const TRANSITION_WORLD_VERSION = "T003E6A_REUSE_LOADING_SPARKLES";
 
 export const introToStationOneTransition: TransitionWorldConfig = {
   id: "intro-to-station-1",
