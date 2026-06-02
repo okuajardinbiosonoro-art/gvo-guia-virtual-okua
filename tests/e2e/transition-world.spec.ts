@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e6a",
+  "t003e7c",
 );
 
 test.beforeAll(() => {
@@ -128,7 +128,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003E6A_REUSE_LOADING_SPARKLES",
+    version: "T003E7C_TYPOGRAPHY_TOKENS",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -213,7 +213,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   await expect(page).toHaveURL(/\/dev\/transition-world$/);
 });
 
-test("genera capturas de revision visual T003E6A en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E7C en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -230,7 +230,7 @@ test("genera capturas de revision visual T003E6A en mobile", async ({ page }) =>
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6a-start-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e7c-start-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(980);
@@ -238,7 +238,7 @@ test("genera capturas de revision visual T003E6A en mobile", async ({ page }) =>
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6a-mid-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e7c-mid-${viewport.width}x${viewport.height}.png`,
       ),
     });
     await page.waitForTimeout(1300);
@@ -246,7 +246,7 @@ test("genera capturas de revision visual T003E6A en mobile", async ({ page }) =>
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e6a-final-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e7c-final-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }

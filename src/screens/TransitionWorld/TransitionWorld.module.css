@@ -34,7 +34,7 @@
   place-items: center;
   background: var(--transition-bg, #f7efd8);
   color: var(--transition-text, #4e3f35);
-  font-family: "Pixelify Sans", system-ui, sans-serif;
+  font-family: var(--gvo-font-heading);
   isolation: isolate;
 }
 
@@ -329,8 +329,6 @@
 .title,
 .subtitle {
   margin: 0;
-  font-weight: 600;
-  letter-spacing: 0;
   text-wrap: balance;
   text-shadow: 1px 1px 0 rgb(255 247 229 / 0.86);
 }
@@ -338,15 +336,21 @@
 .title {
   max-width: 100%;
   color: var(--transition-text, #4e3f35);
-  font-size: clamp(1.08rem, 4.4vw, 1.34rem);
-  line-height: 1.05;
+  font-family: var(--gvo-font-heading);
+  font-size: var(--gvo-text-heading-size);
+  font-weight: var(--gvo-font-weight-semibold);
+  line-height: var(--gvo-line-height-heading);
+  letter-spacing: var(--gvo-letter-spacing-pixel-normal);
   white-space: nowrap;
 }
 
 .subtitle {
   color: var(--transition-text-soft, #7e6248);
-  font-size: clamp(0.88rem, 3.8vw, 1.02rem);
-  line-height: 1.12;
+  font-family: var(--gvo-font-microcopy);
+  font-size: var(--gvo-text-microcopy-size);
+  font-weight: var(--gvo-font-weight-medium);
+  line-height: var(--gvo-line-height-ui);
+  letter-spacing: var(--gvo-letter-spacing-pixel-normal);
   opacity: 0.86;
 }
 
