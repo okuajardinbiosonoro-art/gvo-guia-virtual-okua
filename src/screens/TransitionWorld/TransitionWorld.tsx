@@ -5,6 +5,7 @@ import { TransitionFade } from "./components/TransitionFade";
 import { TransitionLiaSprite } from "./components/TransitionLiaSprite";
 import { TransitionPortal } from "./components/TransitionPortal";
 import { TransitionProgress } from "./components/TransitionProgress";
+import { TransitionSparkles } from "./components/TransitionSparkles";
 import { TransitionText } from "./components/TransitionText";
 import styles from "./TransitionWorld.module.css";
 import {
@@ -45,6 +46,7 @@ export function TransitionWorld({
       style={style}
     >
       <TransitionBackground palette={config.palette} />
+      <TransitionSparkles />
       <TransitionFade />
       <section
         className={styles.stage}

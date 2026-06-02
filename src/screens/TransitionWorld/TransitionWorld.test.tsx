@@ -23,6 +23,15 @@ describe("TransitionWorld", () => {
     expect(
       screen.getByTestId("transition-world-background-real"),
     ).toBeInTheDocument();
+    expect(screen.getByTestId("transition-world-sparkles")).toHaveAttribute(
+      "data-sparkle-reference",
+      "loading-initial-deterministic-slots",
+    );
+    expect(screen.getByTestId("transition-world-sparkles")).toHaveAttribute(
+      "data-sparkle-layer",
+      "ambient-background",
+    );
+    expect(screen.getAllByTestId("transition-world-sparkle")).toHaveLength(8);
     expect(screen.getByTestId("transition-world-fade")).toHaveAttribute(
       "data-motion-layer",
       "final-fade",
@@ -154,6 +163,26 @@ describe("TransitionWorld", () => {
     expect(container.querySelector("video")).not.toBeInTheDocument();
   });
 
+  it("mantiene los sparkles ambientales decorativos y deterministas", () => {
+    render(<TransitionWorld />);
+
+    const sparkleLayer = screen.getByTestId("transition-world-sparkles");
+    const sparkleSlots = screen.getAllByTestId("transition-world-sparkle");
+
+    expect(sparkleLayer).toHaveAttribute("aria-hidden", "true");
+    expect(sparkleLayer).toHaveAttribute("data-sparkle-count", "8");
+    expect(sparkleSlots.map((slot) => slot.getAttribute("data-transition-sparkle-slot"))).toEqual([
+      "upper-left-air",
+      "upper-right-air",
+      "far-left-mist",
+      "far-right-mist",
+      "left-lower-air",
+      "right-lower-air",
+      "bottom-left-edge",
+      "bottom-right-edge",
+    ]);
+  });
+
   it("usa imagenes reales aprobadas sin incrustar texto en imagen", () => {
     const { container } = render(<TransitionWorld />);
 
@@ -210,6 +239,10 @@ describe("TransitionWorld", () => {
     );
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-reduced-motion",
+      "true",
+    );
+    expect(screen.getByTestId("transition-world-sparkles")).toHaveAttribute(
+      "aria-hidden",
       "true",
     );
   });
