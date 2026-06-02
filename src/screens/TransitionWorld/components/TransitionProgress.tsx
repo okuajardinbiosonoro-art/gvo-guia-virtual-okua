@@ -37,28 +37,17 @@ export function TransitionProgress({
       aria-valuenow={72}
       aria-valuetext="Preparando recorrido"
       style={style}
-      data-progress-preview="0.64"
+      data-progress-preview="0.62"
     >
       <span
-        className={styles.progressFrame}
+        className={styles.progressTrackFrame}
         data-testid="transition-world-progress-real"
         aria-hidden="true"
       >
-        <picture
-          className={styles.progressTrackPicture}
-          data-asset-id={trackAsset.id}
-        >
-          <source srcSet={trackAsset.urls.webp} type="image/webp" />
-          <img
-            src={trackAsset.urls.png}
-            alt=""
-            draggable={false}
-            decoding="async"
-          />
-        </picture>
         <span className={styles.progressFillClip}>
           <picture
             className={styles.progressFillPicture}
+            data-testid="transition-world-progress-fill"
             data-asset-id={fillAsset.id}
           >
             <source srcSet={fillAsset.urls.webp} type="image/webp" />
@@ -71,7 +60,21 @@ export function TransitionProgress({
           </picture>
         </span>
         <picture
+          className={styles.progressTrackPicture}
+          data-testid="transition-world-progress-track"
+          data-asset-id={trackAsset.id}
+        >
+          <source srcSet={trackAsset.urls.webp} type="image/webp" />
+          <img
+            src={trackAsset.urls.png}
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+        </picture>
+        <picture
           className={styles.progressSparkPicture}
+          data-testid="transition-world-progress-spark"
           data-asset-id={sparkAsset.id}
         >
           <source srcSet={sparkAsset.urls.webp} type="image/webp" />

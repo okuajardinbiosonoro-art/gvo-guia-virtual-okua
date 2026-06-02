@@ -37,6 +37,18 @@ describe("TransitionWorld", () => {
     expect(
       screen.getByTestId("transition-world-progress-real"),
     ).toBeInTheDocument();
+    expect(screen.getByTestId("transition-world-progress-track")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_track_base",
+    );
+    expect(screen.getByTestId("transition-world-progress-fill")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_fill_segment",
+    );
+    expect(screen.getByTestId("transition-world-progress-spark")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_spark",
+    );
     expect(
       screen.getByRole("status", {
         name: "Abriendo Mundo I: Raíz. Preparando recorrido.",
@@ -53,7 +65,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion tecnica T003D sin rutas funcionales nuevas", () => {
+  it("expone configuracion tecnica sin rutas funcionales nuevas", () => {
     expect(introToStationOneTransition.id).toBe("intro-to-station-1");
     expect(introToStationOneTransition.durationMs).toBe(2300);
     expect(introToStationOneTransition.reducedMotionDurationMs).toBe(1000);
@@ -87,7 +99,7 @@ describe("TransitionWorld", () => {
       '[data-testid="transition-world-lia-real"] img',
     );
     const progressImage = container.querySelector(
-      '[data-testid="transition-world-progress-real"] img',
+      '[data-testid="transition-world-progress-track"] img',
     );
 
     expect(backgroundImage?.getAttribute("src")).toContain(

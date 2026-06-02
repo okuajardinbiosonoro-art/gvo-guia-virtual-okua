@@ -9,7 +9,7 @@ const transitionWorldOutputDir = path.join(
   "visual",
   "transition-world",
   "validation",
-  "t003e3",
+  "t003e4",
 );
 
 test.beforeAll(() => {
@@ -32,6 +32,9 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
   await expect(page.getByTestId("transition-world-progress-real")).toBeVisible();
+  await expect(page.getByTestId("transition-world-progress-track")).toBeVisible();
+  await expect(page.getByTestId("transition-world-progress-fill")).toBeVisible();
+  await expect(page.getByTestId("transition-world-progress-spark")).toBeVisible();
   await expect(page.locator("button")).toHaveCount(0);
   await expect(page.locator("a")).toHaveCount(0);
   await expect(page.locator("audio")).toHaveCount(0);
@@ -79,7 +82,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   }));
 
   expect(routeData).toEqual({
-    version: "T003E3_REAL_ASSETS_PREVIEW",
+    version: "T003E4_STATIC_CORRECTIONS",
     id: "intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/mundo-i-raiz",
@@ -88,7 +91,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   });
 });
 
-test("genera capturas de revision visual T003E3 en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E4 en mobile", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -105,7 +108,7 @@ test("genera capturas de revision visual T003E3 en mobile", async ({ page }) => 
       fullPage: true,
       path: path.join(
         transitionWorldOutputDir,
-        `transition-world-t003e3-${viewport.width}x${viewport.height}.png`,
+        `transition-world-t003e4-${viewport.width}x${viewport.height}.png`,
       ),
     });
   }
