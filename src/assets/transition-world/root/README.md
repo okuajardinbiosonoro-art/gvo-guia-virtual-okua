@@ -1,8 +1,8 @@
 # TransitionWorld Root Asset Staging
 
-Estado: `ART_DIRECTION_T003E0 / PENDING_ASSETS`
+Estado: `ASSETS_INGESTED_T003E2 / APPROVED_RUNTIME_READY`
 
-Esta carpeta prepara el intake de assets para la transicion Portada / Intro -> Mundo I: Raiz. T003D no integra PNG, WebP ni SVG finales: solo deja manifest y criterios para que la siguiente fase pueda trabajar con archivos aprobados.
+Esta carpeta contiene el intake aprobado de assets para la transicion Portada / Intro -> Mundo I: Raiz. T003E2 copia PNG/WebP aprobados, actualiza manifest y agrega validacion tecnica. La pantalla `/dev/transition-world` todavia no los usa visualmente.
 
 ## Assets Esperados
 
@@ -44,3 +44,26 @@ El paquete canonico para producir y revisar assets reales vive en:
 `docs/visual/transition-world/art-direction/t003e0/`
 
 T003E0 no aprueba assets ni integra runtime. Solo documenta referencias, prompts, pipeline Photopea, checklist, micro-rig, portal y coreografia futura.
+
+## Runtime aprobado T003E2
+
+Estructura:
+
+- `runtime/lia/`
+- `runtime/portal/`
+- `runtime/background/`
+- `runtime/progress/`
+- `runtime/validation/`
+
+Validacion:
+
+```powershell
+npm run validate:transition-root-assets
+```
+
+Notas:
+
+- No se copian PSD al runtime.
+- No se copia `transition_root_progress_review_board_v1.*` al runtime.
+- El simbolo raiz aprobado mide `256x256`.
+- El progress fill aprobado mide `1152x96`.

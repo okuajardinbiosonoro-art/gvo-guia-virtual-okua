@@ -17,7 +17,8 @@
     "audit:assets": "node tools/audit_assets.mjs",
     "assets:normalize:loading": "node tools/normalize_loading_initial_assets.mjs",
     "assets:validate:loading": "node tools/validate_loading_initial_assets.mjs",
-    "validate:cover-intro-assets": "node tools/validate_cover_intro_assets.mjs"
+    "validate:cover-intro-assets": "node tools/validate_cover_intro_assets.mjs",
+    "validate:transition-root-assets": "node scripts/validate-transition-root-assets.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

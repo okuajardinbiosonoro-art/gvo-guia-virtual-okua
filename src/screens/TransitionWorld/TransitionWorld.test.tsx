@@ -78,9 +78,15 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("mantiene manifest de staging de assets de transicion raiz", () => {
+  it("mantiene manifest de assets aprobados de transicion raiz", () => {
     const manifest = JSON.parse(transitionRootAssetManifestRaw) as {
-      assets: Array<{ id: string; status: string }>;
+      assets: Array<{
+        id: string;
+        status: string;
+        runtimeReady: boolean;
+        png: string;
+        webp: string;
+      }>;
       allowedStatuses: string[];
       transition: { id: string; durationMs: number; reducedMotionDurationMs: number };
     };
@@ -94,16 +100,23 @@ describe("TransitionWorld", () => {
         "lia_transition_root_idle_4f",
         "lia_transition_root_guide_2f",
         "lia_transition_root_exit_1f",
-        "lia_transition_root_blink_1f",
         "portal_root_base",
-        "portal_root_glow",
+        "portal_root_states_3f",
+        "portal_root_inactive",
+        "portal_root_activating",
+        "portal_root_open",
         "symbol_root",
-        "transition_root_review_capture_390x844",
-        "transition_root_review_capture_430x932",
+        "transition_root_background",
+        "transition_root_progress_track_base",
+        "transition_root_progress_fill_segment",
       ]),
     );
     for (const asset of manifest.assets) {
       expect(manifest.allowedStatuses).toContain(asset.status);
+      expect(asset.status).toBe("approved");
+      expect(asset.runtimeReady).toBe(true);
+      expect(asset.png).toMatch(/^runtime\//);
+      expect(asset.webp).toMatch(/^runtime\//);
     }
   });
 });
