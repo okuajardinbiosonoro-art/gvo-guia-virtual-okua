@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
   createBrowserRouter,
   useLocation,
@@ -13,6 +13,9 @@ import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
+import { TransitionWorld } from "../screens/TransitionWorld";
+import { introToStationOneTransition } from "../screens/TransitionWorld/transitionWorld.config";
+import { coverToWorldOneTransitionRoute } from "./routes";
 
 function QrRoute() {
   const { stationId } = useParams();
@@ -47,6 +50,25 @@ function JourneyLoadingRoute() {
   return <LoadingInitialScreen />;
 }
 
+function TransitionWorldRuntimeRoute() {
+  const navigate = useNavigate();
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const handleComplete = useCallback(() => {
+    navigate(introToStationOneTransition.toRoute, { replace: true });
+  }, [navigate]);
+
+  return (
+    <TransitionWorld
+      config={introToStationOneTransition}
+      variant="runtime"
+      isReducedMotion={prefersReducedMotion}
+      onComplete={handleComplete}
+    />
+  );
+}
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +81,14 @@ export const router = createBrowserRouter([
   {
     path: "/portada",
     element: <CoverIntroScreen />,
+  },
+  {
+    path: "/dev/transition-world",
+    element: <TransitionWorld />,
+  },
+  {
+    path: coverToWorldOneTransitionRoute,
+    element: <TransitionWorldRuntimeRoute />,
   },
   {
     path: "/estacion/:stationId",

@@ -127,23 +127,18 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
   await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
   await expect(page.getByText("Preparando recorrido...")).toBeVisible();
-  await expect(
-    page.getByText(
-      "La transición visual final se integrará en una fase posterior.",
-    ),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Continuar a Mundo I" }),
-  ).toHaveAttribute("href", "/estacion/1");
-  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+    timeout: 5000,
+  });
+  await expect(page.locator("button")).toHaveCount(0);
+  await expect(page.locator("a")).toHaveCount(0);
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
   expect(overflow).toBe(false);
 
-  await page.getByRole("link", { name: "Continuar a Mundo I" }).click();
-  await expect(page).toHaveURL(/\/estacion\/1$/);
+  await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
   await expect(page.getByText("Estación placeholder")).toBeVisible();
 });
 
@@ -214,10 +209,11 @@ test("reduced motion conserva diálogos y gating en /portada", async ({
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
   await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
   await expect(page.getByText("Preparando recorrido...")).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Continuar a Mundo I" }),
-  ).toHaveAttribute("href", "/estacion/1");
-  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+    timeout: 5000,
+  });
+  await expect(page.locator("button")).toHaveCount(0);
+  await expect(page.locator("a")).toHaveCount(0);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
 });

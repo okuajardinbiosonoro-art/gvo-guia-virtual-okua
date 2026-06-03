@@ -2,7 +2,9 @@ import "./CoverIntroScreen.css";
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { coverToWorldOneTransitionRoute } from "../../app/routes";
 import { coverIntroAssets } from "./coverIntroAssets";
 import { LiaHybridAvatar } from "./LiaHybridAvatar";
 import type { LiaRigExpression } from "./LiaHybridAvatar";
@@ -11,7 +13,6 @@ import {
   coverIntroPortals,
   coverIntroText,
   coverIntroTransitionText,
-  coverIntroWorldOnePlaceholderRoute,
   lockedPortalMessages,
 } from "./coverIntroContent";
 import type {
@@ -135,11 +136,13 @@ function getLiaRigExpression(
 }
 
 export function CoverIntroScreen() {
+  const navigate = useNavigate();
   const [coverState, setCoverState] = useState<CoverIntroState>(
     createInitialCoverIntroState,
   );
   const blockedMessageTimeoutRef = useRef<number | null>(null);
   const transitionTimeoutRef = useRef<number | null>(null);
+  const portalHandoffStartedRef = useRef(false);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -177,18 +180,7 @@ export function CoverIntroScreen() {
     }
 
     transitionTimeoutRef.current = window.setTimeout(() => {
-      setCoverState((current) => {
-        if (current.phase !== "portal_1_opening_placeholder") {
-          return current;
-        }
-
-        return {
-          ...current,
-          phase: "transition_to_station_1_placeholder",
-          blockedPortalMessage: null,
-          blockedPortalId: null,
-        };
-      });
+      navigate(coverToWorldOneTransitionRoute);
       transitionTimeoutRef.current = null;
     }, PORTAL_ACTIVATION_TO_TRANSITION_MS);
 
@@ -198,7 +190,7 @@ export function CoverIntroScreen() {
         transitionTimeoutRef.current = null;
       }
     };
-  }, [coverState.phase]);
+  }, [coverState.phase, navigate]);
 
   const stageStyle = {
     "--cover-background-image": `url(${coverIntroAssets.background})`,
@@ -312,6 +304,14 @@ export function CoverIntroScreen() {
   }
 
   function openPortalOnePlaceholder() {
+    if (
+      portalHandoffStartedRef.current ||
+      coverState.phase !== "portal_1_ready"
+    ) {
+      return;
+    }
+
+    portalHandoffStartedRef.current = true;
     setCoverState((current) => {
       if (current.phase !== "portal_1_ready") {
         return current;
@@ -559,6 +559,7 @@ export function CoverIntroScreen() {
                         ? "ready"
                         : portal.state
                     }
+                    disabled={portal.id === "portal-1" && portalOneOpening}
                     onClick={
                       portal.id === "portal-1"
                         ? handlePortalOneClick
@@ -625,42 +626,11 @@ export function CoverIntroScreen() {
             className="cover-intro__cta"
             aria-label={ctaLabel}
             onClick={handleCtaClick}
+            disabled={portalOneOpening}
           >
             {ctaText}
           </button>
         </footer>
-
-        {coverState.phase === "transition_to_station_1_placeholder" ? (
-          <section
-            className="cover-intro__transition-overlay"
-            role="dialog"
-            aria-live="polite"
-            aria-label="Transición hacia Mundo I"
-          >
-            <div className="cover-intro__transition-card">
-              <p className="cover-intro__transition-eyebrow">
-                {coverIntroTransitionText.opening}
-              </p>
-              <p className="cover-intro__transition-title">
-                {coverIntroTransitionText.preparing}
-              </p>
-              <p className="cover-intro__transition-copy">
-                {coverIntroTransitionText.pending}
-              </p>
-              <span
-                className="cover-intro__transition-indicator"
-                aria-hidden="true"
-              />
-              <a
-                className="cover-intro__transition-link"
-                href={coverIntroWorldOnePlaceholderRoute}
-                aria-label={coverIntroTransitionText.continue}
-              >
-                {coverIntroTransitionText.continue}
-              </a>
-            </div>
-          </section>
-        ) : null}
       </div>
     </main>
   );

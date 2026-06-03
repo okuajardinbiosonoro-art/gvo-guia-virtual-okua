@@ -79,9 +79,14 @@ test.describe("QA visual Portada / Intro 002I-FIX", () => {
     );
 
     await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
+    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
+      timeout: 5000,
+    });
     await expect(page.getByText("Preparando recorrido...")).toBeVisible({
       timeout: 15_000,
     });
+    await expect(page.locator("button")).toHaveCount(0);
+    await expect(page.locator("a")).toHaveCount(0);
     await capture(
       page,
       testInfo,

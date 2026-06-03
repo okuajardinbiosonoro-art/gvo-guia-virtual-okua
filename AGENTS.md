@@ -21,3 +21,16 @@ Este repositorio corresponde a GVO — Guía Virtual OKÚA. Todo cambio debe res
 ## Cierre de tickets
 
 Cada ticket debe quedar pequeño, cerrable, documentado y probado. Si el alcance empieza a crecer, dividir el trabajo antes de implementar.
+
+## Metodología GVO por pantalla
+
+- Trabajar siempre por tickets pequeños, acotados y verificables.
+- No avanzar a una pantalla nueva sin cierre explícito de la pantalla actual.
+- No recomendar el siguiente paso en la salida final; la planificación del siguiente ticket la define el usuario con Ari.
+- Reportar solo ejecución, archivos creados/modificados, validaciones, fallos, bloqueos, deudas y estado final del repo.
+- No usar assets inventados cuando el ticket pida assets aprobados o runtime real.
+- No animar placeholders como si fueran resultado final.
+- Si un asset debe animarse, pedirlo o usarlo por piezas, estados o frames.
+- Mantener textos finales en DOM/CSS, no incrustados en imagen, salvo ticket explícito.
+- No usar CDN, audio, video runtime pesado, Three.js ni dependencias pesadas sin autorización explícita.
+- Al cerrar una pantalla aprobada por el usuario, generar documento de cierre, handoff para nuevo chat, prompt base de auditoría para la fase siguiente, validación técnica final y merge/checkpoint cuando el ticket lo autorice.
