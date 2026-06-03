@@ -1,8 +1,8 @@
 # Estado actual del proyecto
 
-Fecha: 2026-05-30
+Fecha: 2026-06-02
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; sin transición pixelart final ni Estación I real.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; Transición entre mundos aprobada para avanzar con calificación manual 7.9/10 y flujo funcional integrado; Mundo I sigue como placeholder técnico.
 
 ## Implementado
 
@@ -41,11 +41,15 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Coreografía 002K del Portal I con sandwich visual por capas, Lía `activatePortal1` anclada al portal, frame frontal duplicado como rim, luz CSS de contacto y overlay placeholder posterior al contacto.
 - QA final 002L de Portada / Intro con capturas 390x844, matriz visual, handoff de reaprobación y decisión visual aprobada para avanzar.
 - Cierre documental 002M de Portada / Intro como `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`.
+- Transición entre mundos runtime en `/transition/intro-to-station-1`.
+- Preview técnico aislado de Transición entre mundos en `/dev/transition-world`.
+- Flujo Portada / Intro -> Transición -> `/estacion/1`.
+- Cierre técnico T003E9 de Transición entre mundos como `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`.
 
 ## No implementado todavía
 
-- Transición real de Portada / Intro hacia Mundo I.
-- Estaciones reales.
+- Mundo I real; `/estacion/1` es placeholder técnico.
+- Estaciones reales II-V.
 - Final real.
 - Scanner interno con cámara.
 - Assets finales del resto del recorrido.
@@ -56,7 +60,8 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Próximo trabajo recomendado: iniciar preproducción de la transición entre mundos; no implementar Estación I real sin ticket autorizado.
+- Estado de fase actual: Transición entre mundos integrada; Mundo I real no iniciado.
+- Planificación posterior: la define el usuario con Ari; Codex no recomienda siguiente paso en cierres.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
 ## Cierre de contexto Ticket 000B
@@ -347,14 +352,31 @@ Resultado posterior de revisión manual:
 - No se implementa Mundo I real.
 - No se marca `CERRADA_APROBADA_FINAL`.
 
+## Ticket T003E9: Transición entre mundos cierre técnico
+
+- Estado: APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA.
+- Rama final: feature/003E8-cover-to-transition-flow.
+- Commit base: `db4c2c6 feat: connect cover intro to transition flow`.
+- Ruta preview: `/dev/transition-world`.
+- Ruta runtime: `/transition/intro-to-station-1`.
+- Destino técnico: `/estacion/1`.
+- Portada / Intro ya entrega el flujo real hacia TransitionWorld.
+- TransitionWorld navega automáticamente al placeholder técnico de Mundo I al completar.
+- `/estacion/1` sigue siendo placeholder técnico, no Mundo I real.
+- Deuda principal: la animación de Lía todavía debe mejorar metodológicamente para futuras pantallas.
+- Aprendizaje metodológico: no animar placeholders, no usar assets fusionados para animaciones por piezas, y no recomendar siguiente paso en salidas finales de Codex.
+- No se implementa Mundo I real.
+- No se implementan estaciones.
+- No se marca `CERRADA_APROBADA_FINAL`.
+
 ## Matriz de estados por pantalla
 
 | Pantalla                  | Estado de madurez                                                                               | Bloqueo / avance permitido                      |
 | ------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA                                    | Avance permitido; deuda a pulido global         |
 | Portada / Intro           | APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL                 | Avance permitido; deuda a pulido global         |
-| Transición entre mundos   | NO_INICIADA                                                                                     | PREPRODUCCION_RECOMENDADA                       |
-| Estación I                | NO_INICIADA                                                                                     | BLOQUEADA hasta transición/ticket autorizado    |
+| Transición entre mundos   | APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA             | Avance permitido; deuda a pulido global         |
+| Estación I                | PLACEHOLDER_TECNICO                                                                             | Mundo I real no iniciado                        |
 | Estación II               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación III              | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación IV               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
@@ -363,8 +385,10 @@ Resultado posterior de revisión manual:
 
 ## Regla de avance
 
-La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, transición placeholder hacia Mundo I, QA visual 002H, primera reapertura visual 002I, correcciones 002I-FIX/002I-FIX2, rig facial seguro 002J, ajuste 002J-FIX de microvida/dialogue anchor, coreografía base 002K de activación del Portal I, QA final 002L y cierre documental 002M. La Portada / Intro queda `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. La transición pixelart final y Estación I real quedan pendientes.
+La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, QA visual, reaprobación, coreografía base de activación del Portal I y cierre documental 002M. La Portada / Intro queda `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`.
 
-## Próximo ticket recomendado
+La Transición entre mundos queda integrada funcionalmente entre `/portada` y `/estacion/1` mediante `/transition/intro-to-station-1`, con preview aislado en `/dev/transition-world`. Su estado es `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`. Mundo I real no está implementado; `/estacion/1` conserva solo un placeholder técnico.
 
-Iniciar preproducción documental de la transición entre mundos antes de implementar la transición real o Mundo I. No iniciar Estación I real sin ticket autorizado.
+## Regla de cierre operativo
+
+En cierres de pantalla, Codex reporta lo ejecutado, archivos creados/modificados, validaciones, fallos, bloqueos, deudas y estado final del repo. Codex no recomienda el siguiente paso; la planificación posterior la define el usuario con Ari.

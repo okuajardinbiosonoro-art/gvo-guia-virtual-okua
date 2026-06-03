@@ -26,7 +26,7 @@ El visitante debe poder abrir una guía visual desde el navegador de su celular 
 7. Estación V — Mundo V: Mapa del presente
 8. Final — Mirador final del jardín
 
-También existe una pantalla reutilizable de transición entre mundos, pendiente de diseño e implementación en ticket propio.
+También existe una pantalla reutilizable de transición entre mundos. La primera transición runtime aprobada para avanzar conecta Portada / Intro con el placeholder técnico de Mundo I.
 
 ## Stack técnico
 
@@ -66,7 +66,9 @@ npm run test:e2e
 
 Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
 
-La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo integrado sin conector ordinario, progreso legible `Paso X de 5`, Portal I protagonista, rig facial seguro en idle y diálogos 1-4, y una activación del Portal I por capas con Lía anclada al portal, frame frontal duplicado y luz de contacto CSS antes del overlay placeholder hacia Mundo I. La transición pixelart final y Estación I real quedan pendientes. Para revisar primera pasada, usar `/portada?resetIntro=1` o `/?resetIntro=1`.
+La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo integrado sin conector ordinario, progreso legible `Paso X de 5`, Portal I protagonista, rig facial seguro en idle y diálogos 1-4, y una activación del Portal I por capas con Lía anclada al portal, frame frontal duplicado y luz de contacto CSS antes de entregar el flujo a la transición real. Para revisar primera pasada, usar `/portada?resetIntro=1` o `/?resetIntro=1`.
+
+La Transición entre mundos está en `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`. `/transition/intro-to-station-1` ejecuta la transición runtime desde Portada hacia `/estacion/1`; `/dev/transition-world` se conserva como preview técnico aislado. `/estacion/1` sigue siendo placeholder técnico, no Mundo I final.
 
 ## Metodología de avance por pantalla
 
@@ -81,6 +83,7 @@ Estado actual:
 
 - Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
 - Portada: APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL
-- Estaciones: NO_INICIADAS / BLOQUEADAS
-- Transición: NO_INICIADA / PREPRODUCCION_RECOMENDADA
+- Transición: APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA
+- Estación I: PLACEHOLDER_TECNICO / MUNDO_I_NO_IMPLEMENTADO
+- Estaciones II-V: NO_INICIADAS / BLOQUEADAS
 - Final: NO_INICIADA / BLOQUEADO
