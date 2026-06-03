@@ -1,0 +1,1230 @@
+{
+  "id": "lia_asset_manifest_v1",
+  "project": "GVO - Guia Visual OKUA",
+  "character": "Lia",
+  "createdByTicket": "004D-8A",
+  "status": "library_created",
+  "generatedAt": "2026-06-03",
+  "rules": {
+    "copyOnly": true,
+    "doNotMoveOriginals": true,
+    "doNotRedesign": true,
+    "futureAssetsMustBeRegistered": true,
+    "screenSpecificUsageMustBeDocumented": true
+  },
+  "scanSummary": {
+    "visualAssetCandidatesFound": 56,
+    "currentUsedAssetsCopied": 31,
+    "nonCopiedVisualReferences": 25,
+    "duplicateOrEquivalentGroups": 22
+  },
+  "assets": [
+    {
+      "assetId": "lia_loading_16f",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/carga-inicial/lia_loading_16f.png",
+      "originalPath": "public/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+      "fileName": "lia_loading_16f.png",
+      "extension": ".png",
+      "sha256": "971e57a5a8c09124a6f55e686c9ac147430fec03943b0c43c1bed1d823ab31ce",
+      "copiedSha256": "971e57a5a8c09124a6f55e686c9ac147430fec03943b0c43c1bed1d823ab31ce",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 2560,
+        "height": 2560
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Carga Inicial",
+          "route": "/ y /carga",
+          "file": "src/screens/LoadingInitial/loadingInitialAssets.ts",
+          "line": 7,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Carga Inicial",
+          "route": "/ y /carga",
+          "file": "docs/visual/loading-initial/ASSET_MANIFEST_CARGA_INICIAL_GVO_V1.md",
+          "line": 19,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Spritesheet 4x4, 16 frames, usado por la pantalla de carga inicial."
+    },
+    {
+      "assetId": "lia_master_cover_reference_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_master_cover_reference_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/reference/lia_master_cover_reference_v1.png",
+      "fileName": "lia_master_cover_reference_v1.png",
+      "extension": ".png",
+      "sha256": "3387e924a280eda332744b5f458dcd01468d8c35d33bedaf1846d29bf5c2e144",
+      "copiedSha256": "3387e924a280eda332744b5f458dcd01468d8c35d33bedaf1846d29bf5c2e144",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "public/assets/runtime/cover-intro/manifest.json",
+          "line": 21,
+          "usageType": "manifest|docs"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "docs/visual/transition-world/art-direction/t003e0/CANONICAL_REFERENCES.md",
+          "line": 11,
+          "usageType": "manifest|docs"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Referencia master canonica aprobada de Lia para Portada / Intro."
+    },
+    {
+      "assetId": "lia_pose_idle_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_idle_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",
+      "fileName": "lia_pose_idle_v1.png",
+      "extension": ".png",
+      "sha256": "5ebe67cb6857eb66e8f783c40f809e19c17053726ca600baaa9de509d3f50ddf",
+      "copiedSha256": "5ebe67cb6857eb66e8f783c40f809e19c17053726ca600baaa9de509d3f50ddf",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 4,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/CoverIntroScreen.tsx",
+          "line": 30,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Pose idle de Portada / Intro."
+    },
+    {
+      "assetId": "lia_pose_greeting_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_greeting_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png",
+      "fileName": "lia_pose_greeting_v1.png",
+      "extension": ".png",
+      "sha256": "7a25a54fbc96852d0c5e26b4de1fd470ae708eccdef7ef7352d37806e89c0ad5",
+      "copiedSha256": "7a25a54fbc96852d0c5e26b4de1fd470ae708eccdef7ef7352d37806e89c0ad5",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 4,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/CoverIntroScreen.tsx",
+          "line": 30,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Pose greeting usada en dialogos de Portada / Intro."
+    },
+    {
+      "assetId": "lia_pose_explain_calm_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_explain_calm_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png",
+      "fileName": "lia_pose_explain_calm_v1.png",
+      "extension": ".png",
+      "sha256": "17020fcdce68624db85ff173869d693d77a009e408859e323fc238d2f90b7064",
+      "copiedSha256": "17020fcdce68624db85ff173869d693d77a009e408859e323fc238d2f90b7064",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 4,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/CoverIntroScreen.tsx",
+          "line": 30,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Pose explain calm usada en dialogos de Portada / Intro."
+    },
+    {
+      "assetId": "lia_pose_point_portal_1_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_point_portal_1_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
+      "fileName": "lia_pose_point_portal_1_v1.png",
+      "extension": ".png",
+      "sha256": "00618770ee7b259dcb867a3f6758b7e0697a7d851967986a79d4ad3f8b3b1353",
+      "copiedSha256": "00618770ee7b259dcb867a3f6758b7e0697a7d851967986a79d4ad3f8b3b1353",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 4,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/CoverIntroScreen.tsx",
+          "line": 30,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Pose para senalar Portal I en Portada / Intro."
+    },
+    {
+      "assetId": "lia_pose_activate_portal_1_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_activate_portal_1_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+      "fileName": "lia_pose_activate_portal_1_v1.png",
+      "extension": ".png",
+      "sha256": "540b20575f2812088484045e1aaebc2c44e076489b5a6158e9906847f43727b4",
+      "copiedSha256": "540b20575f2812088484045e1aaebc2c44e076489b5a6158e9906847f43727b4",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 4,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/CoverIntroScreen.tsx",
+          "line": 30,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Pose de activacion de Portal I en Portada / Intro."
+    },
+    {
+      "assetId": "lia_rig_shadow_soft_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_shadow_soft_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
+      "fileName": "lia_rig_shadow_soft_v1.png",
+      "extension": ".png",
+      "sha256": "8a1dbd2f6fb96d38a89963cebf861a6a41645eca96ad9efc0171e69ec402c896",
+      "copiedSha256": "8a1dbd2f6fb96d38a89963cebf861a6a41645eca96ad9efc0171e69ec402c896",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Sombra suave del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_body_bulb_segmented_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_body_bulb_segmented_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_body_bulb_segmented_v1.png",
+      "fileName": "lia_rig_body_bulb_segmented_v1.png",
+      "extension": ".png",
+      "sha256": "a32fc8bfd4e6cbc33d200efc1fe7c4ee1ad217970bcc730ebd5932326af75685",
+      "copiedSha256": "a32fc8bfd4e6cbc33d200efc1fe7c4ee1ad217970bcc730ebd5932326af75685",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Cuerpo/bulbo segmentado del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_petal_left_lower_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_lower_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_lower_v1.png",
+      "fileName": "lia_rig_petal_left_lower_v1.png",
+      "extension": ".png",
+      "sha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7",
+      "copiedSha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Petalo inferior izquierdo del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_petal_right_lower_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_lower_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_lower_v1.png",
+      "fileName": "lia_rig_petal_right_lower_v1.png",
+      "extension": ".png",
+      "sha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5",
+      "copiedSha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Petalo inferior derecho del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_petal_left_upper_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_upper_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_upper_v1.png",
+      "fileName": "lia_rig_petal_left_upper_v1.png",
+      "extension": ".png",
+      "sha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9",
+      "copiedSha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Petalo superior izquierdo del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_petal_right_upper_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_upper_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_upper_v1.png",
+      "fileName": "lia_rig_petal_right_upper_v1.png",
+      "extension": ".png",
+      "sha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4",
+      "copiedSha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Petalo superior derecho del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_petal_top_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_top_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_top_v1.png",
+      "fileName": "lia_rig_petal_top_v1.png",
+      "extension": ".png",
+      "sha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515",
+      "copiedSha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Petalo superior central del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_collar_amber_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_collar_amber_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_collar_amber_v1.png",
+      "fileName": "lia_rig_collar_amber_v1.png",
+      "extension": ".png",
+      "sha256": "50bed4928638fcbd8ba59ec04e769d4c7127986083e74ff6f48680e0d43b3592",
+      "copiedSha256": "50bed4928638fcbd8ba59ec04e769d4c7127986083e74ff6f48680e0d43b3592",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Collar ambar del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_glow_collar_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_glow_collar_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_glow_collar_v1.png",
+      "fileName": "lia_rig_glow_collar_v1.png",
+      "extension": ".png",
+      "sha256": "ed7c109044b82d9b1e4a122062a67966438e27867322f65957bd53a9f0e851d5",
+      "copiedSha256": "ed7c109044b82d9b1e4a122062a67966438e27867322f65957bd53a9f0e851d5",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Glow de collar del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_head_opal_clean_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_head_opal_clean_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_head_opal_clean_v1.png",
+      "fileName": "lia_rig_head_opal_clean_v1.png",
+      "extension": ".png",
+      "sha256": "d63712d641648228a0cbf26dfec31330f2234f6debf2fc8ffb48bd0962401b49",
+      "copiedSha256": "d63712d641648228a0cbf26dfec31330f2234f6debf2fc8ffb48bd0962401b49",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Cabeza/visor opalescente limpio del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_neutral_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_neutral_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_neutral_v1.png",
+      "fileName": "lia_rig_eyes_crescent_neutral_v1.png",
+      "extension": ".png",
+      "sha256": "894d535eca8dac0e5bcb1a2d4e6ae5ff8f8253e6abb30105689358dd4331a9ca",
+      "copiedSha256": "894d535eca8dac0e5bcb1a2d4e6ae5ff8f8253e6abb30105689358dd4331a9ca",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos media luna neutral del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_blink_25_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_blink_25_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_25_v1.png",
+      "fileName": "lia_rig_eyes_crescent_blink_25_v1.png",
+      "extension": ".png",
+      "sha256": "3f277e17d5e2cebf98e9b2418c1f6adafc8257696b440fecab0d30ab765a116d",
+      "copiedSha256": "3f277e17d5e2cebf98e9b2418c1f6adafc8257696b440fecab0d30ab765a116d",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos blink 25 del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_blink_50_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_blink_50_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_50_v1.png",
+      "fileName": "lia_rig_eyes_crescent_blink_50_v1.png",
+      "extension": ".png",
+      "sha256": "4000665f86badc98e063f2e0503708e5c331d44b4494b79edc8cd076fb4dd92d",
+      "copiedSha256": "4000665f86badc98e063f2e0503708e5c331d44b4494b79edc8cd076fb4dd92d",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos blink 50 del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_closed_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_closed_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_closed_v1.png",
+      "fileName": "lia_rig_eyes_crescent_closed_v1.png",
+      "extension": ".png",
+      "sha256": "8571b835606c773764ee4d42a8840a8ae876d23eaf461d9b41f3812574909ee7",
+      "copiedSha256": "8571b835606c773764ee4d42a8840a8ae876d23eaf461d9b41f3812574909ee7",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos cerrados del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_happy_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_happy_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_happy_v1.png",
+      "fileName": "lia_rig_eyes_crescent_happy_v1.png",
+      "extension": ".png",
+      "sha256": "3dde255910f0c68d7d16f84e573adaf10ecf7743674f83594cdd3547a3761083",
+      "copiedSha256": "3dde255910f0c68d7d16f84e573adaf10ecf7743674f83594cdd3547a3761083",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos happy del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_rig_eyes_crescent_attentive_v1",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_attentive_v1.png",
+      "originalPath": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
+      "fileName": "lia_rig_eyes_crescent_attentive_v1.png",
+      "extension": ".png",
+      "sha256": "bafccef0ed05db8e3a8f846ce4ff38663ffc8b5e71f4df64d99d5f0f159c6960",
+      "copiedSha256": "bafccef0ed05db8e3a8f846ce4ff38663ffc8b5e71f4df64d99d5f0f159c6960",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/coverIntroAssets.ts",
+          "line": 13,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Portada / Intro",
+          "route": "/portada",
+          "file": "src/screens/Cover/LiaHybridAvatar.tsx",
+          "line": 24,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Ojos attentive del rig idle de Lia."
+    },
+    {
+      "assetId": "lia_transition_root_master_v1_png",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_master_v1.png",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_master_v1.png",
+      "fileName": "lia_transition_root_master_v1.png",
+      "extension": ".png",
+      "sha256": "289e54681bbd4d390290ddd04ab308c455d5174bc2d5c31c4dc05c7d3f9ce46b",
+      "copiedSha256": "289e54681bbd4d390290ddd04ab308c455d5174bc2d5c31c4dc05c7d3f9ce46b",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "manifest"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "manifest"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Master aprobado de Lia para transicion raiz, registrado en manifest. Manifest id: lia_transition_root_master."
+    },
+    {
+      "assetId": "lia_transition_root_master_v1_webp",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_master_v1.webp",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_master_v1.webp",
+      "fileName": "lia_transition_root_master_v1.webp",
+      "extension": ".webp",
+      "sha256": "89e7a0cb1063ce2924e122a2b4b29471c0931c78b8905526917358fcda7503f0",
+      "copiedSha256": "89e7a0cb1063ce2924e122a2b4b29471c0931c78b8905526917358fcda7503f0",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Version WebP del master de Lia para transicion raiz. Manifest id: lia_transition_root_master."
+    },
+    {
+      "assetId": "lia_transition_root_idle_4f_v1_png",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_idle_4f_v1.png",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_idle_4f_v1.png",
+      "fileName": "lia_transition_root_idle_4f_v1.png",
+      "extension": ".png",
+      "sha256": "556c1169de2b3f593b3c193c29d3a39df8c234c337e4dbfde79b099d9608ee9d",
+      "copiedSha256": "556c1169de2b3f593b3c193c29d3a39df8c234c337e4dbfde79b099d9608ee9d",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1024,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "manifest"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "manifest"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Spritesheet idle de Lia, fallback PNG. Manifest id: lia_transition_root_idle_4f."
+    },
+    {
+      "assetId": "lia_transition_root_idle_4f_v1_webp",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_idle_4f_v1.webp",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_idle_4f_v1.webp",
+      "fileName": "lia_transition_root_idle_4f_v1.webp",
+      "extension": ".webp",
+      "sha256": "01cb2547adfd3f281bbcbadc0522881c7d0fce20529b654647dbb3e93aa46013",
+      "copiedSha256": "01cb2547adfd3f281bbcbadc0522881c7d0fce20529b654647dbb3e93aa46013",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1024,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Spritesheet idle de Lia usado por TransitionLiaSprite. Manifest id: lia_transition_root_idle_4f."
+    },
+    {
+      "assetId": "lia_transition_root_guide_2f_v1_png",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_guide_2f_v1.png",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_guide_2f_v1.png",
+      "fileName": "lia_transition_root_guide_2f_v1.png",
+      "extension": ".png",
+      "sha256": "a2a7d6be91d6da7d5519185e90163980090a834f9b1c189dca295664022ec454",
+      "copiedSha256": "a2a7d6be91d6da7d5519185e90163980090a834f9b1c189dca295664022ec454",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 512,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "manifest"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "manifest"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Spritesheet guide de Lia, fallback PNG. Manifest id: lia_transition_root_guide_2f."
+    },
+    {
+      "assetId": "lia_transition_root_guide_2f_v1_webp",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_guide_2f_v1.webp",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_guide_2f_v1.webp",
+      "fileName": "lia_transition_root_guide_2f_v1.webp",
+      "extension": ".webp",
+      "sha256": "2f10665e3a6a20b684c938e4c157e17f8e80be33549419082bc32d1d02cc182c",
+      "copiedSha256": "2f10665e3a6a20b684c938e4c157e17f8e80be33549419082bc32d1d02cc182c",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 512,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Spritesheet guide de Lia usado por TransitionLiaSprite. Manifest id: lia_transition_root_guide_2f."
+    },
+    {
+      "assetId": "lia_transition_root_exit_v1_png",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_exit_v1.png",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_exit_v1.png",
+      "fileName": "lia_transition_root_exit_v1.png",
+      "extension": ".png",
+      "sha256": "090ca24aff6dc46e3e4e85baf5badae95debe4bb22541a636539a1853615bddc",
+      "copiedSha256": "090ca24aff6dc46e3e4e85baf5badae95debe4bb22541a636539a1853615bddc",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "manifest"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "manifest"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Frame exit de Lia, fallback PNG. Manifest id: lia_transition_root_exit_1f."
+    },
+    {
+      "assetId": "lia_transition_root_exit_v1_webp",
+      "libraryPath": "public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_exit_v1.webp",
+      "originalPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_exit_v1.webp",
+      "fileName": "lia_transition_root_exit_v1.webp",
+      "extension": ".webp",
+      "sha256": "1cd7cdb558a18fb6118a68ba93ff9d878f4764ed93c1bb1b5eec7e830ee0a2f4",
+      "copiedSha256": "1cd7cdb558a18fb6118a68ba93ff9d878f4764ed93c1bb1b5eec7e830ee0a2f4",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "alpha": "yes",
+      "detectedUsages": [
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/assets/transition-world/root/asset-manifest.transition-root.json",
+          "line": 20,
+          "usageType": "runtime"
+        },
+        {
+          "screen": "Transicion entre mundos",
+          "route": "/transition/intro-to-station-1",
+          "file": "src/screens/TransitionWorld/components/TransitionLiaSprite.tsx",
+          "line": 7,
+          "usageType": "runtime"
+        }
+      ],
+      "status": "current_used",
+      "notes": "Frame exit de Lia usado por TransitionLiaSprite. Manifest id: lia_transition_root_exit_1f."
+    }
+  ],
+  "missingReferences": [],
+  "duplicateOrEquivalentReferences": [
+    {
+      "sha256": "540b20575f2812088484045e1aaebc2c44e076489b5a6158e9906847f43727b4",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_activate_portal.png"
+      ]
+    },
+    {
+      "sha256": "17020fcdce68624db85ff173869d693d77a009e408859e323fc238d2f90b7064",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_explain_calm.png"
+      ]
+    },
+    {
+      "sha256": "5ebe67cb6857eb66e8f783c40f809e19c17053726ca600baaa9de509d3f50ddf",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_idle.png"
+      ]
+    },
+    {
+      "sha256": "00618770ee7b259dcb867a3f6758b7e0697a7d851967986a79d4ad3f8b3b1353",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_point_portal.png"
+      ]
+    },
+    {
+      "sha256": "3387e924a280eda332744b5f458dcd01468d8c35d33bedaf1846d29bf5c2e144",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/reference/lia_master_cover_reference_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_primary.png"
+      ]
+    },
+    {
+      "sha256": "a32fc8bfd4e6cbc33d200efc1fe7c4ee1ad217970bcc730ebd5932326af75685",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_body_bulb_segmented_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_body_bulb_segmented_v1.png"
+      ]
+    },
+    {
+      "sha256": "50bed4928638fcbd8ba59ec04e769d4c7127986083e74ff6f48680e0d43b3592",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_collar_amber_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_collar_amber_v1.png"
+      ]
+    },
+    {
+      "sha256": "bafccef0ed05db8e3a8f846ce4ff38663ffc8b5e71f4df64d99d5f0f159c6960",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_attentive_v1.png"
+      ]
+    },
+    {
+      "sha256": "3f277e17d5e2cebf98e9b2418c1f6adafc8257696b440fecab0d30ab765a116d",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_25_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_blink_25_v1.png"
+      ]
+    },
+    {
+      "sha256": "4000665f86badc98e063f2e0503708e5c331d44b4494b79edc8cd076fb4dd92d",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_50_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_blink_50_v1.png"
+      ]
+    },
+    {
+      "sha256": "8571b835606c773764ee4d42a8840a8ae876d23eaf461d9b41f3812574909ee7",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_closed_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_closed_v1.png"
+      ]
+    },
+    {
+      "sha256": "3dde255910f0c68d7d16f84e573adaf10ecf7743674f83594cdd3547a3761083",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_happy_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_happy_v1.png"
+      ]
+    },
+    {
+      "sha256": "894d535eca8dac0e5bcb1a2d4e6ae5ff8f8253e6abb30105689358dd4331a9ca",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_neutral_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_neutral_v1.png"
+      ]
+    },
+    {
+      "sha256": "ed7c109044b82d9b1e4a122062a67966438e27867322f65957bd53a9f0e851d5",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_glow_collar_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_glow_collar_v1.png"
+      ]
+    },
+    {
+      "sha256": "d63712d641648228a0cbf26dfec31330f2234f6debf2fc8ffb48bd0962401b49",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_head_opal_clean_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_head_opal_clean_v1.png"
+      ]
+    },
+    {
+      "sha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_lower_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_left_lower_v1.png"
+      ]
+    },
+    {
+      "sha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_upper_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_left_upper_v1.png"
+      ]
+    },
+    {
+      "sha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_lower_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_right_lower_v1.png"
+      ]
+    },
+    {
+      "sha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_upper_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_right_upper_v1.png"
+      ]
+    },
+    {
+      "sha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_top_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_top_v1.png"
+      ]
+    },
+    {
+      "sha256": "8a1dbd2f6fb96d38a89963cebf861a6a41645eca96ad9efc0171e69ec402c896",
+      "files": [
+        "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_shadow_soft_v1.png"
+      ]
+    },
+    {
+      "sha256": "971e57a5a8c09124a6f55e686c9ac147430fec03943b0c43c1bed1d823ab31ce",
+      "files": [
+        "public/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+        "docs/visual/transition-world/art-direction/t003e1_reference_pack/03_style_references_loading_cover/loading_lia_spritesheet_motion_reference.png"
+      ]
+    }
+  ],
+  "nonCopiedVisualReferences": [
+    "docs/visual/loading-initial/validation/v2/t_03_0s_lia_entering.png",
+    "docs/visual/loading-initial/validation/v3/t_02_5s_lia_entering.png",
+    "docs/visual/loading-initial/validation/v4/t_03_0s_lia_entering.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_activate_portal.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_explain_calm.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_idle.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_cover_pose_point_portal.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/00_lia_canonical/lia_canonical_primary.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_body_bulb_segmented_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_collar_amber_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_attentive_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_blink_25_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_blink_50_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_closed_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_happy_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_eyes_crescent_neutral_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_glow_collar_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_head_opal_clean_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_left_lower_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_left_upper_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_right_lower_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_right_upper_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_top_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_shadow_soft_v1.png",
+    "docs/visual/transition-world/art-direction/t003e1_reference_pack/03_style_references_loading_cover/loading_lia_spritesheet_motion_reference.png"
+  ]
+}
