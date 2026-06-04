@@ -1,0 +1,553 @@
+{
+  "id": "world1_root_asset_manifest_v1",
+  "project": "GVO - Guia Visual OKUA",
+  "station": "Mundo I - Raiz",
+  "route": "/estacion/1",
+  "createdByTicket": "004D-10A",
+  "status": "assets_ingested_pre_runtime",
+  "source": {
+    "localFolder": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1",
+    "assetCountExpected": 20,
+    "assetCountDetected": 20,
+    "extraNoIngested": []
+  },
+  "rules": {
+    "noRuntimeImplementation": true,
+    "textsAsDomCss": true,
+    "doNotChangeOfficialTypography": true,
+    "doNotRedesignAssets": true,
+    "userHandlesManualBackgroundCleanupWhenNeeded": true
+  },
+  "copySummary": {
+    "sourceAssetsExpected": 20,
+    "sourceAssetsDetected": 20,
+    "assetsCopiedToWorld1Folder": 20,
+    "liaAssetsCopiedToCentralLibrary": 11,
+    "hashChecksVerified": 31,
+    "hashMismatches": 0
+  },
+  "assets": [
+    {
+      "assetId": "world1_root_background_base",
+      "sourceFileName": "world1_root_background_base_candidate_B.png",
+      "canonicalFileName": "world1_root_background_base_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+      "category": "background",
+      "role": "base background",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": false,
+      "sha256": "e22e5d7e7ecbeaa03b820fc94e70b7f31903f666e6fd29cae20ac5c4f198526e",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 2,
+        "colorTypeName": "truecolor",
+        "channels": 3
+      },
+      "alpha": "no",
+      "alphaLessThan255": false,
+      "alphaScan": "not_applicable",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_ambient_light_kit",
+      "sourceFileName": "world1_root_ambient_light_kit_candidate_B.png",
+      "canonicalFileName": "world1_root_ambient_light_kit_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/light/world1_root_ambient_light_kit_approved_v1.png",
+      "category": "ambient_light",
+      "role": "ambient light overlay kit",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "1e8b23df108c38ef2ce432665faeff4cdb119aebac4e6d42981e4ccce21cd8d2",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_young_plant",
+      "sourceFileName": "world1_root_young_plant_approved_v1.png",
+      "canonicalFileName": "world1_root_young_plant_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1.png",
+      "category": "plant",
+      "role": "young plant origin",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "dca068c4bf01daa907b98eab6a64c7810c4b87e479b10cbb133cda5492c6d10a",
+      "dimensions": {
+        "width": 798,
+        "height": 987
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_roots_base",
+      "sourceFileName": "world1_root_roots_base_approved_v1.png",
+      "canonicalFileName": "world1_root_roots_base_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/roots/world1_root_roots_base_approved_v1.png",
+      "category": "roots_base",
+      "role": "base roots system",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "fb47e049d43ce1fa0354ff9133e4f873b1095117496768b30168c9aa07e0f662",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_active_relation",
+      "sourceFileName": "world1_root_active_relation_approved_v1.png",
+      "canonicalFileName": "world1_root_active_relation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "category": "roots_active",
+      "role": "active relation root",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "6bed4c693f03a292ecb223fbf29c9ee1340f12f9ed13f4fdbff57ff7b7a31da4",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_active_perception",
+      "sourceFileName": "world1_root_active_perception_approved_v1.png",
+      "canonicalFileName": "world1_root_active_perception_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "category": "roots_active",
+      "role": "active perception root",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "352d492f6b0d9e08c38e1beaacddad6bdd42e84f8715e2e9c9dc1b327e1e0f57",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_active_mediation",
+      "sourceFileName": "world1_root_active_mediation_approved_v1.png",
+      "canonicalFileName": "world1_root_active_mediation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "category": "roots_active",
+      "role": "active mediation root",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "519f3ac2a0a45626fb8dd44ae4d15214001397978650b7816825d79b2d428420",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_node_state_kit",
+      "sourceFileName": "world1_root_node_state_kit_approved_v1.png",
+      "canonicalFileName": "world1_root_node_state_kit_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/nodes/world1_root_node_state_kit_approved_v1.png",
+      "category": "nodes",
+      "role": "root node states kit",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "7685d15ad22ee87419201579610e70cecf4971d52793c27895bb16ea4380410c",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "world1_root_exit_path",
+      "sourceFileName": "world1_root_exit_path_approved_v1.png",
+      "canonicalFileName": "world1_root_exit_path_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
+      "category": "exit_path",
+      "role": "exit path visual",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "b0e4327363f63825ea96b7de00593605483e8404b3aa860ab0ab17fa64047327",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_idle",
+      "sourceFileName": "lia_root_idle_approved_v1.png",
+      "canonicalFileName": "lia_root_idle_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "category": "lia_pose",
+      "role": "idle_initial",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "39a858c4691928effea8d0168f5b806c9a179c57ece44fa468b4b7ce3a47489a",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_invite_relation",
+      "sourceFileName": "lia_root_invite_relation_candidate_C.png",
+      "canonicalFileName": "lia_root_invite_relation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_invite_relation_approved_v1.png",
+      "category": "lia_pose",
+      "role": "invite_relation",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "64e9755c82796ef991d596f9f6838a854761a58cdbc356e2b1583c597d333057",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_point_relation",
+      "sourceFileName": "lia_root_point_relation_candidate_C.png",
+      "canonicalFileName": "lia_root_point_relation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "category": "lia_pose",
+      "role": "point_relation",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "828d747b71a2089649f2e516700ceae4f95aae4869eaffe1968f36380c3ec0d8",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_look_perception",
+      "sourceFileName": "lia_root_look_perception_candidate_A.png",
+      "canonicalFileName": "lia_root_look_perception_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "category": "lia_pose",
+      "role": "look_perception",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "91cb0d8e8c60ba90b2100aa4f69a8f6cf25e7821e5d5d0eba8cdb8382a9ee4ec",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_guide_mediation",
+      "sourceFileName": "lia_root_guide_mediation_candidate_C.png",
+      "canonicalFileName": "lia_root_guide_mediation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "category": "lia_pose",
+      "role": "guide_mediation",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "e4113c43dbcbb5a89e9771d18c12b19d6e8682e7b4ee0b0e6dee1d7894beba12",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_ready_continue",
+      "sourceFileName": "lia_root_ready_continue_candidate_C.png",
+      "canonicalFileName": "lia_root_ready_continue_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_ready_continue_approved_v1.png",
+      "category": "lia_pose",
+      "role": "ready_continue",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "996dc33e6f62af6eb3784371444ff5b681b042f121cc26b5713e25956e9c143b",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_exit",
+      "sourceFileName": "lia_root_exit_candidate_B.png",
+      "canonicalFileName": "lia_root_exit_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_exit_approved_v1.png",
+      "category": "lia_pose",
+      "role": "exit_soft",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "d560f9eaa0dcab83d56c7c1a014d1eb9989520dff77940afca0b42d7158f23c0",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_teleport_out",
+      "sourceFileName": "lia_root_teleport_out_candidate_A.png",
+      "canonicalFileName": "lia_root_teleport_out_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_out_approved_v1.png",
+      "category": "lia_teleport",
+      "role": "teleport_out",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "d5fbcc66250bf2e6c0d0a702c58015526d9b5646a48c2279a596683660dc0357",
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_teleport_in_relation",
+      "sourceFileName": "lia_root_teleport_in_relation_candidate_B.png",
+      "canonicalFileName": "lia_root_teleport_in_relation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+      "category": "lia_teleport",
+      "role": "teleport_in_relation",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "2c40b20357c0dc2c368cdd1f27eb527d5230d7252916dac8a96383591418efae",
+      "dimensions": {
+        "width": 927,
+        "height": 1295
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_teleport_in_perception",
+      "sourceFileName": "lia_root_teleport_in_perception_candidate_A.png",
+      "canonicalFileName": "lia_root_teleport_in_perception_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+      "category": "lia_teleport",
+      "role": "teleport_in_perception",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "a50b9d24caa94c0b476766f9e3b090b08cf0f1e2f48c979c791d98fef5674f5c",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    },
+    {
+      "assetId": "lia_root_teleport_in_mediation",
+      "sourceFileName": "lia_root_teleport_in_mediation_candidate_A.png",
+      "canonicalFileName": "lia_root_teleport_in_mediation_approved_v1.png",
+      "path": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
+      "category": "lia_teleport",
+      "role": "teleport_in_mediation",
+      "visualStatus": "approved",
+      "runtimeStatus": "not_integrated",
+      "expectedAlpha": true,
+      "sha256": "2ba632c65810cc3202be37f3a7432e90790bb43bda44cdbfdbd55db66d6e5faa",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "png": {
+        "bitDepth": 8,
+        "colorType": 6,
+        "colorTypeName": "truecolor-alpha",
+        "channels": 4
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "alphaScan": "scanned",
+      "notes": ""
+    }
+  ],
+  "warnings": [],
+  "generatedAt": "2026-06-04"
+}

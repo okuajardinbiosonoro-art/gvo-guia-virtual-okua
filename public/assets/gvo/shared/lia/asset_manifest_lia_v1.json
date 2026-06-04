@@ -1041,6 +1041,336 @@
       ],
       "status": "current_used",
       "notes": "Frame exit de Lia usado por TransitionLiaSprite. Manifest id: lia_transition_root_exit_1f."
+    },
+    {
+      "assetId": "lia_root_idle",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_idle_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_idle_approved_v1.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "fileName": "lia_root_idle_approved_v1.png",
+      "sourceFileName": "lia_root_idle_approved_v1.png",
+      "extension": ".png",
+      "sha256": "39a858c4691928effea8d0168f5b806c9a179c57ece44fa468b4b7ce3a47489a",
+      "copiedSha256": "39a858c4691928effea8d0168f5b806c9a179c57ece44fa468b4b7ce3a47489a",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: idle_initial. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_invite_relation",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_invite_relation_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_invite_relation_candidate_C.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_invite_relation_approved_v1.png",
+      "fileName": "lia_root_invite_relation_approved_v1.png",
+      "sourceFileName": "lia_root_invite_relation_candidate_C.png",
+      "extension": ".png",
+      "sha256": "64e9755c82796ef991d596f9f6838a854761a58cdbc356e2b1583c597d333057",
+      "copiedSha256": "64e9755c82796ef991d596f9f6838a854761a58cdbc356e2b1583c597d333057",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: invite_relation. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_point_relation",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_point_relation_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_point_relation_candidate_C.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "fileName": "lia_root_point_relation_approved_v1.png",
+      "sourceFileName": "lia_root_point_relation_candidate_C.png",
+      "extension": ".png",
+      "sha256": "828d747b71a2089649f2e516700ceae4f95aae4869eaffe1968f36380c3ec0d8",
+      "copiedSha256": "828d747b71a2089649f2e516700ceae4f95aae4869eaffe1968f36380c3ec0d8",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: point_relation. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_look_perception",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_look_perception_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_look_perception_candidate_A.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "fileName": "lia_root_look_perception_approved_v1.png",
+      "sourceFileName": "lia_root_look_perception_candidate_A.png",
+      "extension": ".png",
+      "sha256": "91cb0d8e8c60ba90b2100aa4f69a8f6cf25e7821e5d5d0eba8cdb8382a9ee4ec",
+      "copiedSha256": "91cb0d8e8c60ba90b2100aa4f69a8f6cf25e7821e5d5d0eba8cdb8382a9ee4ec",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: look_perception. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_guide_mediation",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_guide_mediation_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_guide_mediation_candidate_C.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "fileName": "lia_root_guide_mediation_approved_v1.png",
+      "sourceFileName": "lia_root_guide_mediation_candidate_C.png",
+      "extension": ".png",
+      "sha256": "e4113c43dbcbb5a89e9771d18c12b19d6e8682e7b4ee0b0e6dee1d7894beba12",
+      "copiedSha256": "e4113c43dbcbb5a89e9771d18c12b19d6e8682e7b4ee0b0e6dee1d7894beba12",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: guide_mediation. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_ready_continue",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_ready_continue_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_ready_continue_candidate_C.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_ready_continue_approved_v1.png",
+      "fileName": "lia_root_ready_continue_approved_v1.png",
+      "sourceFileName": "lia_root_ready_continue_candidate_C.png",
+      "extension": ".png",
+      "sha256": "996dc33e6f62af6eb3784371444ff5b681b042f121cc26b5713e25956e9c143b",
+      "copiedSha256": "996dc33e6f62af6eb3784371444ff5b681b042f121cc26b5713e25956e9c143b",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: ready_continue. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_exit",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_exit_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_exit_candidate_B.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_exit_approved_v1.png",
+      "fileName": "lia_root_exit_approved_v1.png",
+      "sourceFileName": "lia_root_exit_candidate_B.png",
+      "extension": ".png",
+      "sha256": "d560f9eaa0dcab83d56c7c1a014d1eb9989520dff77940afca0b42d7158f23c0",
+      "copiedSha256": "d560f9eaa0dcab83d56c7c1a014d1eb9989520dff77940afca0b42d7158f23c0",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: exit_soft. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_teleport_out",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_teleport_out_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_teleport_out_candidate_A.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_out_approved_v1.png",
+      "fileName": "lia_root_teleport_out_approved_v1.png",
+      "sourceFileName": "lia_root_teleport_out_candidate_A.png",
+      "extension": ".png",
+      "sha256": "d5fbcc66250bf2e6c0d0a702c58015526d9b5646a48c2279a596683660dc0357",
+      "copiedSha256": "d5fbcc66250bf2e6c0d0a702c58015526d9b5646a48c2279a596683660dc0357",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: teleport_out. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_teleport_in_relation",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_teleport_in_relation_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_teleport_in_relation_candidate_B.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+      "fileName": "lia_root_teleport_in_relation_approved_v1.png",
+      "sourceFileName": "lia_root_teleport_in_relation_candidate_B.png",
+      "extension": ".png",
+      "sha256": "2c40b20357c0dc2c368cdd1f27eb527d5230d7252916dac8a96383591418efae",
+      "copiedSha256": "2c40b20357c0dc2c368cdd1f27eb527d5230d7252916dac8a96383591418efae",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 927,
+        "height": 1295
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: teleport_in_relation. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_teleport_in_perception",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_teleport_in_perception_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_teleport_in_perception_candidate_A.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+      "fileName": "lia_root_teleport_in_perception_approved_v1.png",
+      "sourceFileName": "lia_root_teleport_in_perception_candidate_A.png",
+      "extension": ".png",
+      "sha256": "a50b9d24caa94c0b476766f9e3b090b08cf0f1e2f48c979c791d98fef5674f5c",
+      "copiedSha256": "a50b9d24caa94c0b476766f9e3b090b08cf0f1e2f48c979c791d98fef5674f5c",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: teleport_in_perception. Copia preserva bytes desde fuente local."
+    },
+    {
+      "assetId": "lia_root_teleport_in_mediation",
+      "libraryPath": "public/assets/gvo/shared/lia/future/mundo-i-raiz/lia_root_teleport_in_mediation_approved_v1.png",
+      "originalPath": "C:\\Users\\JOSE DAVID\\Downloads\\MUNDO1\\lia_root_teleport_in_mediation_candidate_A.png",
+      "screenSpecificPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
+      "fileName": "lia_root_teleport_in_mediation_approved_v1.png",
+      "sourceFileName": "lia_root_teleport_in_mediation_candidate_A.png",
+      "extension": ".png",
+      "sha256": "2ba632c65810cc3202be37f3a7432e90790bb43bda44cdbfdbd55db66d6e5faa",
+      "copiedSha256": "2ba632c65810cc3202be37f3a7432e90790bb43bda44cdbfdbd55db66d6e5faa",
+      "copiedHashMatchesOriginal": true,
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "alpha": "yes",
+      "alphaLessThan255": true,
+      "detectedUsages": [
+        {
+          "screen": "Mundo I: Raiz",
+          "route": "/estacion/1",
+          "file": null,
+          "usageType": "future_runtime_not_integrated"
+        }
+      ],
+      "status": "approved_for_mundo_i_pre_runtime",
+      "createdByTicket": "004D-10A",
+      "runtimeStatus": "not_integrated",
+      "notes": "Asset aprobado para Mundo I pre-runtime. Rol previsto: teleport_in_mediation. Copia preserva bytes desde fuente local."
     }
   ],
   "missingReferences": [],
@@ -1226,5 +1556,13 @@
     "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_petal_top_v1.png",
     "docs/visual/transition-world/art-direction/t003e1_reference_pack/01_lia_rig_existing/lia_rig_shadow_soft_v1.png",
     "docs/visual/transition-world/art-direction/t003e1_reference_pack/03_style_references_loading_cover/loading_lia_spritesheet_motion_reference.png"
-  ]
+  ],
+  "updatedByTicket": "004D-10A",
+  "updatedAt": "2026-06-04",
+  "world1RootPreRuntimeAssets": {
+    "status": "approved_for_mundo_i_pre_runtime",
+    "count": 11,
+    "sourceManifest": "public/assets/gvo/stations/world-1-root/manifests/world1_root_asset_manifest_v1.json",
+    "updatedAt": "2026-06-04"
+  }
 }
