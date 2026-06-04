@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GVO - Lia Mundo I - Contact Sheet 004D-8C</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #141016;
+        --panel: #201822;
+        --panel-soft: #2a2030;
+        --line: #6d5a76;
+        --text: #f5edf7;
+        --muted: #c7b6cf;
+        --amber: #e3b766;
+        --ok: #8dd7b3;
+        --warn: #f0c77a;
+        --bad: #d98686;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(227, 183, 102, 0.14), transparent 34rem),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      header,
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        padding: 32px 0 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 5vw, 3.2rem);
+      }
+
+      h2 {
+        margin-top: 36px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(245, 237, 247, 0.18);
+        font-size: clamp(1.3rem, 3vw, 2rem);
+      }
+
+      p {
+        color: var(--muted);
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .pill {
+        border: 1px solid rgba(245, 237, 247, 0.14);
+        border-radius: 6px;
+        background: rgba(32, 24, 34, 0.82);
+        padding: 10px 12px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        margin: 18px 0 8px;
+      }
+
+      .card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-height: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(245, 237, 247, 0.15);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(42, 32, 48, 0.96), rgba(32, 24, 34, 0.96));
+      }
+
+      .thumb {
+        display: grid;
+        place-items: center;
+        min-height: 190px;
+        padding: 14px;
+        background-color: #1a141d;
+        background-image:
+          linear-gradient(45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
+          linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%);
+        background-position:
+          0 0,
+          0 8px,
+          8px -8px,
+          -8px 0;
+        background-size: 16px 16px;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 210px;
+        image-rendering: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.36));
+      }
+
+      .wide img {
+        max-height: 150px;
+      }
+
+      .body {
+        padding: 14px;
+      }
+
+      .body h3 {
+        margin-bottom: 8px;
+        color: #fff6dd;
+        font-size: 1rem;
+        overflow-wrap: anywhere;
+      }
+
+      dl {
+        display: grid;
+        gap: 5px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      dt {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      dd {
+        margin: 0 0 6px;
+        overflow-wrap: anywhere;
+      }
+
+      code {
+        color: #ffe3a3;
+        font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        font-size: 0.86em;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 10px 0 0;
+      }
+
+      .tag {
+        border: 1px solid rgba(227, 183, 102, 0.36);
+        border-radius: 999px;
+        padding: 3px 8px;
+        color: #ffe0a1;
+        font-size: 0.74rem;
+      }
+
+      .tag.ok {
+        border-color: rgba(141, 215, 179, 0.46);
+        color: var(--ok);
+      }
+
+      .tag.warn {
+        border-color: rgba(240, 199, 122, 0.46);
+        color: var(--warn);
+      }
+
+      .tag.bad {
+        border-color: rgba(217, 134, 134, 0.46);
+        color: var(--bad);
+      }
+
+      .empty {
+        border: 1px dashed rgba(245, 237, 247, 0.28);
+        border-radius: 8px;
+        padding: 18px;
+        background: rgba(32, 24, 34, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GVO - Lia para Mundo I: Raiz</h1>
+      <p>Contact sheet local de revision 004D-8C. Este archivo referencia copias existentes de la biblioteca central; no modifica, reexporta ni genera nuevos assets.</p>
+      <div class="meta">
+        <div class="pill"><strong>Estado:</strong> CONTACT_SHEET_DOCUMENTAL / SIN_RUNTIME</div>
+        <div class="pill"><strong>Base recomendada:</strong> Portada / Intro canonical + rig idle</div>
+        <div class="pill"><strong>Motion secundaria:</strong> Transicion + Carga Inicial</div>
+        <div class="pill"><strong>Mundo I:</strong> sin microposes creadas</div>
+      </div>
+    </header>
+
+    <main>
+      <h2>Carga Inicial</h2>
+      <p>Funcion: timing, aparicion y referencia de movimiento. No es identidad visual principal para Mundo I.</p>
+      <section class="grid">
+        <article class="card wide">
+          <div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/carga-inicial/lia_loading_16f.png" alt="lia_loading_16f.png" /></div>
+          <div class="body">
+            <h3>lia_loading_16f.png</h3>
+            <dl>
+              <dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/carga-inicial/lia_loading_16f.png</code></dd>
+              <dt>Original</dt><dd><code>public/assets/runtime/loading-initial/lia/lia_loading_16f.png</code></dd>
+              <dt>Origen</dt><dd>Carga Inicial, rutas <code>/</code> y <code>/carga</code>.</dd>
+              <dt>Observacion</dt><dd>Spritesheet 4x4 de riego; util para timing/frame registration, no para identidad principal.</dd>
+            </dl>
+            <div class="tag-list">
+              <span class="tag warn">APTO_REFERENCIA_MOTION</span>
+              <span class="tag bad">NO_RECOMENDADO_MUNDO_I</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <h2>Portada / Intro - referencia canonica</h2>
+      <section class="grid">
+        <article class="card">
+          <div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_master_cover_reference_v1.png" alt="lia_master_cover_reference_v1.png" /></div>
+          <div class="body">
+            <h3>lia_master_cover_reference_v1.png</h3>
+            <dl>
+              <dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_master_cover_reference_v1.png</code></dd>
+              <dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/reference/lia_master_cover_reference_v1.png</code></dd>
+              <dt>Origen</dt><dd>Portada / Intro, referencia master aprobada.</dd>
+              <dt>Observacion</dt><dd>Mejor fuente de identidad canonica para generar microposes de Mundo I.</dd>
+            </dl>
+            <div class="tag-list">
+              <span class="tag ok">APTO_BASE_MUNDO_I</span>
+              <span class="tag ok">APTO_REFERENCIA_IDENTIDAD</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <h2>Portada / Intro - poses</h2>
+      <section class="grid">
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_idle_v1.png" alt="lia_pose_idle_v1.png" /></div><div class="body"><h3>lia_pose_idle_v1.png</h3><dl><dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_idle_v1.png</code></dd><dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png</code></dd><dt>Uso actual</dt><dd>Pose base de Portada / Intro.</dd><dt>Utilidad</dt><dd>Referencia para <code>lia_root_idle</code> junto a la planta.</dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_POSE</span><span class="tag ok">APTO_BASE_MUNDO_I</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_greeting_v1.png" alt="lia_pose_greeting_v1.png" /></div><div class="body"><h3>lia_pose_greeting_v1.png</h3><dl><dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_greeting_v1.png</code></dd><dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png</code></dd><dt>Uso actual</dt><dd>Dialogo inicial de Portada / Intro.</dd><dt>Utilidad</dt><dd>Referencia para invitacion tranquila, no runtime directo.</dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_POSE</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_explain_calm_v1.png" alt="lia_pose_explain_calm_v1.png" /></div><div class="body"><h3>lia_pose_explain_calm_v1.png</h3><dl><dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_explain_calm_v1.png</code></dd><dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png</code></dd><dt>Uso actual</dt><dd>Explicacion calmada en Portada / Intro.</dd><dt>Utilidad</dt><dd>Referencia para dialogos detallados de RELACION, PERCEPCION y MEDIACION.</dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_POSE</span><span class="tag ok">APTO_FALLBACK</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_point_portal_1_v1.png" alt="lia_pose_point_portal_1_v1.png" /></div><div class="body"><h3>lia_pose_point_portal_1_v1.png</h3><dl><dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_point_portal_1_v1.png</code></dd><dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png</code></dd><dt>Uso actual</dt><dd>Senalamiento de Portal I.</dd><dt>Utilidad</dt><dd>Referencia para guiar raices sin agregar brazos/manos humanos.</dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_POSE</span><span class="tag ok">APTO_REFERENCIA_IDENTIDAD</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_activate_portal_1_v1.png" alt="lia_pose_activate_portal_1_v1.png" /></div><div class="body"><h3>lia_pose_activate_portal_1_v1.png</h3><dl><dt>Biblioteca</dt><dd><code>public/assets/gvo/shared/lia/current-used/portada-intro/lia_pose_activate_portal_1_v1.png</code></dd><dt>Original</dt><dd><code>public/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png</code></dd><dt>Uso actual</dt><dd>Activacion de Portal I.</dd><dt>Utilidad</dt><dd>Referencia de energia y foco; no usar como runtime directo de raiz.</dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_POSE</span><span class="tag bad">NO_RECOMENDADO_MUNDO_I</span></div></div></article>
+      </section>
+
+      <h2>Portada / Intro - rig por capas</h2>
+      <p>Funcion: heredar microvida sin redisenar a Lia. Especialmente valiosos: ojos/blink, collar, glow, sombra, petalos y flotacion.</p>
+      <section class="grid">
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_shadow_soft_v1.png" alt="lia_rig_shadow_soft_v1.png" /></div><div class="body"><h3>lia_rig_shadow_soft_v1.png</h3><dl><dt>Utilidad</dt><dd>Sombra/ancla para flotacion y materializacion.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_shadow_soft_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_body_bulb_segmented_v1.png" alt="lia_rig_body_bulb_segmented_v1.png" /></div><div class="body"><h3>lia_rig_body_bulb_segmented_v1.png</h3><dl><dt>Utilidad</dt><dd>Cuerpo/bulbo canonico para mantener silueta.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_body_bulb_segmented_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_lower_v1.png" alt="lia_rig_petal_left_lower_v1.png" /></div><div class="body"><h3>lia_rig_petal_left_lower_v1.png</h3><dl><dt>Utilidad</dt><dd>Petalo para respiracion sutil.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_petal_left_lower_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_lower_v1.png" alt="lia_rig_petal_right_lower_v1.png" /></div><div class="body"><h3>lia_rig_petal_right_lower_v1.png</h3><dl><dt>Utilidad</dt><dd>Petalo para respiracion sutil.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_petal_right_lower_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_upper_v1.png" alt="lia_rig_petal_left_upper_v1.png" /></div><div class="body"><h3>lia_rig_petal_left_upper_v1.png</h3><dl><dt>Utilidad</dt><dd>Petalo para inclinacion/guia.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_petal_left_upper_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_upper_v1.png" alt="lia_rig_petal_right_upper_v1.png" /></div><div class="body"><h3>lia_rig_petal_right_upper_v1.png</h3><dl><dt>Utilidad</dt><dd>Petalo para inclinacion/guia.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_petal_right_upper_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_top_v1.png" alt="lia_rig_petal_top_v1.png" /></div><div class="body"><h3>lia_rig_petal_top_v1.png</h3><dl><dt>Utilidad</dt><dd>Petalo superior; preserva regla de cinco petalos.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_petal_top_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_collar_amber_v1.png" alt="lia_rig_collar_amber_v1.png" /></div><div class="body"><h3>lia_rig_collar_amber_v1.png</h3><dl><dt>Utilidad</dt><dd>Collar/anillo ambar canonico.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_collar_amber_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_glow_collar_v1.png" alt="lia_rig_glow_collar_v1.png" /></div><div class="body"><h3>lia_rig_glow_collar_v1.png</h3><dl><dt>Utilidad</dt><dd>Glow para teletransporte y microvida.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_glow_collar_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span><span class="tag ok">APTO_REFERENCIA_MOTION</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_head_opal_clean_v1.png" alt="lia_rig_head_opal_clean_v1.png" /></div><div class="body"><h3>lia_rig_head_opal_clean_v1.png</h3><dl><dt>Utilidad</dt><dd>Cabeza/visor opalescente canonico.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_head_opal_clean_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_neutral_v1.png" alt="lia_rig_eyes_crescent_neutral_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_neutral_v1.png</h3><dl><dt>Utilidad</dt><dd>Ojos base en media luna.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_neutral_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_blink_25_v1.png" alt="lia_rig_eyes_crescent_blink_25_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_blink_25_v1.png</h3><dl><dt>Utilidad</dt><dd>Blink 25 para microvida.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_blink_25_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span><span class="tag ok">APTO_REFERENCIA_MOTION</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_blink_50_v1.png" alt="lia_rig_eyes_crescent_blink_50_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_blink_50_v1.png</h3><dl><dt>Utilidad</dt><dd>Blink 50 para microvida.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_blink_50_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span><span class="tag ok">APTO_REFERENCIA_MOTION</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_closed_v1.png" alt="lia_rig_eyes_crescent_closed_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_closed_v1.png</h3><dl><dt>Utilidad</dt><dd>Ojos cerrados para blink/settle.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_closed_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_happy_v1.png" alt="lia_rig_eyes_crescent_happy_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_happy_v1.png</h3><dl><dt>Utilidad</dt><dd>Expresion suave; usar con moderacion.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_happy_v1.png</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_RIG</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_eyes_crescent_attentive_v1.png" alt="lia_rig_eyes_crescent_attentive_v1.png" /></div><div class="body"><h3>lia_rig_eyes_crescent_attentive_v1.png</h3><dl><dt>Utilidad</dt><dd>Atencion/guia para raiz seleccionada.</dd><dt>Ruta</dt><dd><code>current-used/portada-intro/lia_rig_eyes_crescent_attentive_v1.png</code></dd></dl><div class="tag-list"><span class="tag ok">APTO_REFERENCIA_RIG</span></div></div></article>
+      </section>
+
+      <h2>Transicion entre mundos</h2>
+      <p>Funcion: referencia secundaria de escala compacta y movimiento breve. No reemplaza la base canonica de Portada / Intro.</p>
+      <section class="grid">
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_master_v1.png" alt="lia_transition_root_master_v1.png" /></div><div class="body"><h3>lia_transition_root_master_v1.png</h3><dl><dt>Utilidad</dt><dd>Escala compacta; referencia secundaria.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_master_v1.png</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_ESCALA</span></div></div></article>
+        <article class="card wide"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_idle_4f_v1.png" alt="lia_transition_root_idle_4f_v1.png" /></div><div class="body"><h3>lia_transition_root_idle_4f_v1.png</h3><dl><dt>Utilidad</dt><dd>Spritesheet idle compacto para economia de frames.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_idle_4f_v1.png</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_MOTION</span><span class="tag warn">APTO_REFERENCIA_ESCALA</span></div></div></article>
+        <article class="card wide"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_guide_2f_v1.png" alt="lia_transition_root_guide_2f_v1.png" /></div><div class="body"><h3>lia_transition_root_guide_2f_v1.png</h3><dl><dt>Utilidad</dt><dd>Gesto guia breve; referencia para raiz, no base unica.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_guide_2f_v1.png</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_MOTION</span><span class="tag warn">APTO_REFERENCIA_ESCALA</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_exit_v1.png" alt="lia_transition_root_exit_v1.png" /></div><div class="body"><h3>lia_transition_root_exit_v1.png</h3><dl><dt>Utilidad</dt><dd>Referencia de salida serena.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_exit_v1.png</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_ESCALA</span><span class="tag ok">APTO_FALLBACK</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_master_v1.webp" alt="lia_transition_root_master_v1.webp" /></div><div class="body"><h3>lia_transition_root_master_v1.webp</h3><dl><dt>Utilidad</dt><dd>Version WebP equivalente para revision de peso/formato.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_master_v1.webp</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_ESCALA</span></div></div></article>
+        <article class="card wide"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_idle_4f_v1.webp" alt="lia_transition_root_idle_4f_v1.webp" /></div><div class="body"><h3>lia_transition_root_idle_4f_v1.webp</h3><dl><dt>Utilidad</dt><dd>Version WebP del idle compacto.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_idle_4f_v1.webp</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_MOTION</span></div></div></article>
+        <article class="card wide"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_guide_2f_v1.webp" alt="lia_transition_root_guide_2f_v1.webp" /></div><div class="body"><h3>lia_transition_root_guide_2f_v1.webp</h3><dl><dt>Utilidad</dt><dd>Version WebP del gesto guia compacto.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_guide_2f_v1.webp</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_MOTION</span></div></div></article>
+        <article class="card"><div class="thumb"><img src="../../../../public/assets/gvo/shared/lia/current-used/transition-world/lia_transition_root_exit_v1.webp" alt="lia_transition_root_exit_v1.webp" /></div><div class="body"><h3>lia_transition_root_exit_v1.webp</h3><dl><dt>Utilidad</dt><dd>Version WebP de salida.</dd><dt>Ruta</dt><dd><code>current-used/transition-world/lia_transition_root_exit_v1.webp</code></dd></dl><div class="tag-list"><span class="tag warn">APTO_REFERENCIA_ESCALA</span></div></div></article>
+      </section>
+
+      <h2>Mundo I: Raiz - carpeta futura</h2>
+      <div class="empty">
+        <p><strong>Estado:</strong> <code>public/assets/gvo/shared/lia/future/mundo-i-raiz/</code> esta preparada, pero no contiene microposes de Mundo I. Solo existe <code>.gitkeep</code>.</p>
+        <p>Microposes futuras documentadas, no creadas: <code>lia_root_idle</code>, <code>lia_root_invite_relation</code>, <code>lia_root_point_relation</code>, <code>lia_root_look_perception</code>, <code>lia_root_guide_mediation</code>, <code>lia_root_ready_continue</code>, <code>lia_root_exit</code>, estados de desmaterializacion y materializacion por raiz.</p>
+      </div>
+    </main>
+  </body>
+</html>
