@@ -241,8 +241,11 @@ test("ruta runtime de transicion navega una sola vez al destino", async ({
   await page.mouse.click(195, 422);
 
   await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
-  await expect(page.getByText("Estación placeholder")).toBeVisible();
   await expect(page.getByText("Mundo I: Raíz")).toBeVisible();
+  await expect(page.getByText("Antes de escuchar")).toBeVisible();
+  await expect(page.getByText("RELACIÓN")).toBeVisible();
+  await expect(page.getByText("PERCEPCIÓN")).toBeVisible();
+  await expect(page.getByText("MEDIACIÓN")).toBeVisible();
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
 });

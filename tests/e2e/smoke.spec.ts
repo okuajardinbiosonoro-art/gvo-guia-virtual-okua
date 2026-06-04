@@ -139,7 +139,10 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
   expect(overflow).toBe(false);
 
   await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
-  await expect(page.getByText("Estación placeholder")).toBeVisible();
+  await expect(page.getByText("Antes de escuchar")).toBeVisible();
+  await expect(page.getByText("RELACIÓN")).toBeVisible();
+  await expect(page.getByText("PERCEPCIÓN")).toBeVisible();
+  await expect(page.getByText("MEDIACIÓN")).toBeVisible();
 });
 
 test("resetIntro en /portada fuerza primera pasada", async ({ page }) => {

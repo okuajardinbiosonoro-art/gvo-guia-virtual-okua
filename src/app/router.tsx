@@ -15,6 +15,7 @@ import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitial
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import { TransitionWorld } from "../screens/TransitionWorld";
 import { introToStationOneTransition } from "../screens/TransitionWorld/transitionWorld.config";
+import { World1RootScreen } from "../screens/World1Root";
 import { coverToWorldOneTransitionRoute } from "./routes";
 
 function QrRoute() {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
   {
     path: coverToWorldOneTransitionRoute,
     element: <TransitionWorldRuntimeRoute />,
+  },
+  {
+    path: "/estacion/1",
+    element: <World1RootScreen />,
   },
   {
     path: "/estacion/:stationId",
