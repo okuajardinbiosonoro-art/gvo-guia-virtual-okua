@@ -18,6 +18,13 @@
   width: min(100%, 430px);
   max-height: calc(100svh - 20px);
   aspect-ratio: 941 / 1672;
+  --world1-plant-top: 18.5%;
+  --world1-plant-width: 24%;
+  --world1-roots-top: 20.3%;
+  --world1-roots-width: 100%;
+  --world1-node-size: 62px;
+  --world1-node-sheet-width: 238px;
+  --world1-node-sheet-height: 423px;
   overflow: hidden;
   border: 1px solid rgb(245 205 120 / 18%);
   border-radius: 8px;
@@ -48,6 +55,12 @@
 
 .world1-root-layer--roots {
   z-index: 2;
+  top: var(--world1-roots-top);
+  bottom: auto;
+  left: 50%;
+  width: var(--world1-roots-width);
+  height: auto;
+  transform: translateX(-50%);
   object-fit: contain;
   opacity: 0.94;
 }
@@ -55,9 +68,9 @@
 .world1-root-plant {
   position: absolute;
   z-index: 3;
-  top: 8.5%;
+  top: var(--world1-plant-top);
   left: 50%;
-  width: 22%;
+  width: var(--world1-plant-width);
   height: auto;
   transform: translateX(-50%);
   pointer-events: none;
@@ -96,46 +109,39 @@
 }
 
 .world1-root-node--relation {
-  top: 58%;
+  top: 53%;
   left: 15%;
 }
 
 .world1-root-node--perception {
-  top: 51%;
+  top: 47%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .world1-root-node--mediation {
-  top: 58%;
+  top: 53%;
   right: 15%;
 }
 
 .world1-root-node__orb {
   position: relative;
-  width: 54px;
-  height: 54px;
+  width: var(--world1-node-size);
+  height: var(--world1-node-size);
   overflow: hidden;
   border-radius: 50%;
+  background-image: var(--world1-node-kit);
+  background-repeat: no-repeat;
+  background-size: var(--world1-node-sheet-width)
+    var(--world1-node-sheet-height);
 }
 
-.world1-root-node__orb img {
-  position: absolute;
-  width: 318px;
-  max-width: none;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
+.world1-root-node__orb--locked {
+  background-position: 2px -180px;
 }
 
-.world1-root-node__orb--locked img {
-  left: -5px;
-  top: -260px;
-}
-
-.world1-root-node__orb--available img {
-  left: -79px;
-  top: -260px;
+.world1-root-node__orb--available {
+  background-position: -57px -181px;
 }
 
 .world1-root-node__label {
@@ -221,6 +227,20 @@
 
   .world1-root-node {
     width: 76px;
+  }
+
+  .world1-root-stage {
+    --world1-node-size: 56px;
+    --world1-node-sheet-width: 215px;
+    --world1-node-sheet-height: 382px;
+  }
+
+  .world1-root-node__orb--locked {
+    background-position: 2px -162px;
+  }
+
+  .world1-root-node__orb--available {
+    background-position: -51px -163px;
   }
 
   .world1-root-node--relation {

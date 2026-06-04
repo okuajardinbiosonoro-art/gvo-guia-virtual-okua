@@ -1,6 +1,16 @@
 import "./World1RootScreen.css";
 
+import type { CSSProperties } from "react";
+
 import { world1RootAssets } from "./world1RootAssets";
+
+type NodeOrbStyle = CSSProperties & {
+  "--world1-node-kit": string;
+};
+
+const nodeOrbStyle = {
+  "--world1-node-kit": `url(${world1RootAssets.nodeKit})`,
+} as NodeOrbStyle;
 
 const conceptNodes = [
   {
@@ -85,12 +95,10 @@ export function World1RootScreen() {
               <span
                 className={`world1-root-node__orb world1-root-node__orb--${node.frame}`}
                 aria-hidden="true"
+                data-runtime-asset={world1RootAssets.nodeKit}
+                data-node-frame={node.frame}
+                style={nodeOrbStyle}
               >
-                <img
-                  src={world1RootAssets.nodeKit}
-                  alt=""
-                  data-runtime-asset={world1RootAssets.nodeKit}
-                />
               </span>
               <span className="world1-root-node__label">{node.label}</span>
             </div>
