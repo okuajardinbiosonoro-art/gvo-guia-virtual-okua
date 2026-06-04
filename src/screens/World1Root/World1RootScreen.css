@@ -18,8 +18,8 @@
   width: min(100%, 430px);
   max-height: calc(100svh - 20px);
   aspect-ratio: 941 / 1672;
-  --world1-plant-top: 18.5%;
-  --world1-plant-width: 24%;
+  --world1-plant-top: 15.8%;
+  --world1-plant-width: 31%;
   --world1-roots-top: 20.3%;
   --world1-roots-width: 100%;
   --world1-node-size: 62px;
@@ -100,7 +100,7 @@
   width: 88px;
   display: grid;
   justify-items: center;
-  gap: 5px;
+  gap: 4px;
   color: #ffe7a1;
   text-align: center;
   text-shadow:
@@ -109,19 +109,19 @@
 }
 
 .world1-root-node--relation {
-  top: 53%;
-  left: 15%;
+  top: 56%;
+  left: 10%;
 }
 
 .world1-root-node--perception {
-  top: 47%;
+  top: 54%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .world1-root-node--mediation {
-  top: 53%;
-  right: 15%;
+  top: 56%;
+  right: 10%;
 }
 
 .world1-root-node__orb {
@@ -145,6 +145,7 @@
 }
 
 .world1-root-node__label {
+  order: -1;
   padding: 4px 6px;
   border: 1px solid rgb(249 215 139 / 34%);
   border-radius: 4px;
@@ -244,11 +245,11 @@
   }
 
   .world1-root-node--relation {
-    left: 12%;
+    left: 8%;
   }
 
   .world1-root-node--mediation {
-    right: 12%;
+    right: 8%;
   }
 
   .world1-root-copy {
