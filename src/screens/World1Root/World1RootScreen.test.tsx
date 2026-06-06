@@ -89,6 +89,11 @@ describe("World1RootScreen", () => {
     ).not.toBeInTheDocument();
     expect(
       container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaReadyContinue}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
         `[data-runtime-asset="${world1RootAssets.liaTeleportOut}"]`,
       ),
     ).not.toBeInTheDocument();
@@ -288,6 +293,75 @@ describe("World1RootScreen", () => {
       ),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+  });
+
+  it("cierra MEDIACIÓN en ready_to_continue sin navegar", () => {
+    const { container } = render(<World1RootScreen />);
+    const initialLocation = window.location.href;
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
+
+    expect(screen.getByTestId("world1-root-stage")).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-root-state="ready_to_continue"]'),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
+      "data-node-state",
+      "completed",
+    );
+    expect(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
+    expect(
+      screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
+    expect(screen.getByText("LISTO PARA CONTINUAR")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Ya recorriste las tres raíces de esta pregunta: relación, percepción y mediación.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.exitPath}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-exit-path="ready_to_continue"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaReadyContinue}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-lia-pose="ready_continue"]'),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-world1-root-active]")).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaExit}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaTeleportOut}"]`,
+      ),
+    ).not.toBeInTheDocument();
+
+    const continueButton = screen.getByRole("button", { name: "Continuar" });
+    expect(continueButton).not.toBeDisabled();
+    expect(continueButton).toHaveAttribute("aria-disabled", "false");
+
+    fireEvent.click(continueButton);
+
+    expect(window.location.href).toBe(initialLocation);
+    expect(
+      screen.getByText("La salida se activará en una fase posterior."),
+    ).toBeInTheDocument();
   });
 
   it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa antes de PERCEPCIÓN", () => {

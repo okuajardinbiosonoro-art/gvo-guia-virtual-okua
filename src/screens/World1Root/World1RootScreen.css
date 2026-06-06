@@ -124,6 +124,12 @@
   transform: translate(-50%, -50%);
 }
 
+.world1-root-layer--exit-path {
+  z-index: 5;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
 .world1-root-plant {
   position: absolute;
   z-index: 4;
@@ -261,6 +267,26 @@
   box-shadow: 0 14px 34px rgb(0 0 0 / 28%);
 }
 
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-copy {
+  padding-top: 42px;
+}
+
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-node--relation {
+  top: 54%;
+}
+
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-node--perception {
+  top: 52%;
+}
+
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-node--mediation {
+  top: 54%;
+}
+
 .world1-root-copy__eyebrow {
   margin: 0 0 4px;
   color: #f7c36d;
@@ -279,11 +305,36 @@
   line-height: 1.15;
 }
 
-.world1-root-copy p:last-child {
+.world1-root-copy__body,
+.world1-root-copy__note {
   margin: 6px 0 0;
   color: rgb(255 243 210 / 86%);
   font-size: clamp(0.78rem, 3.18vw, 0.92rem);
   line-height: 1.33;
+}
+
+.world1-root-copy__note {
+  color: rgb(255 226 165 / 78%);
+}
+
+.world1-root-copy__action {
+  margin-top: 9px;
+  min-height: 30px;
+  padding: 7px 11px;
+  border: 1px solid rgb(255 218 143 / 46%);
+  border-radius: 4px;
+  color: #fff1bd;
+  background: rgb(92 58 22 / 82%);
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.74rem, 2.9vw, 0.86rem);
+  font-weight: var(--gvo-font-weight-semibold);
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.world1-root-copy__action:focus-visible {
+  outline: 2px solid rgb(255 228 153 / 88%);
+  outline-offset: 3px;
 }
 
 .world1-root-continue {
@@ -305,8 +356,31 @@
   cursor: not-allowed;
 }
 
+.world1-root-continue--ready {
+  color: #fff1bd;
+  border-color: rgb(255 218 143 / 64%);
+  background: rgb(93 61 24 / 88%);
+  cursor: pointer;
+}
+
 .world1-root-continue:disabled {
   opacity: 1;
+}
+
+.world1-root-continue-note {
+  position: absolute;
+  z-index: 8;
+  right: 18px;
+  bottom: 0;
+  left: 18px;
+  min-height: 10px;
+  margin: 0;
+  color: rgb(255 226 165 / 78%);
+  font-family: var(--gvo-font-ui);
+  font-size: 0.68rem;
+  line-height: 1;
+  text-align: right;
+  pointer-events: none;
 }
 
 @media (width <= 374px) {

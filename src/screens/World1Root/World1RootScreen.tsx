@@ -13,7 +13,12 @@ const nodeOrbStyle = {
   "--world1-node-kit": `url(${world1RootAssets.nodeKit})`,
 } as NodeOrbStyle;
 
-type World1Concept = "intro" | "relation" | "perception" | "mediation";
+type World1Concept =
+  | "intro"
+  | "relation"
+  | "perception"
+  | "mediation"
+  | "ready_to_continue";
 type World1NodeState = "locked" | "available" | "active" | "completed";
 
 type World1Node = {
@@ -45,7 +50,7 @@ const conceptNodes: ReadonlyArray<World1Node> = [
 
 const copyByConcept: Record<
   World1Concept,
-  { eyebrow: string; title: string; body: string }
+  { eyebrow: string; title: string; body: string; secondary?: string }
 > = {
   intro: {
     eyebrow: "Mundo I: Raíz",
@@ -69,6 +74,13 @@ const copyByConcept: Record<
     title:
       "Mediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.",
     body: "OKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.",
+  },
+  ready_to_continue: {
+    eyebrow: "LISTO PARA CONTINUAR",
+    title:
+      "Ya recorriste las tres raíces de esta pregunta: relación, percepción y mediación.",
+    body: "Ahora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.",
+    secondary: "La salida quedará conectada en una fase posterior.",
   },
 };
 
@@ -96,14 +108,20 @@ function getNodeState(
     return nodeId === "perception" ? "active" : "available";
   }
 
-  return nodeId === "mediation" ? "active" : "completed";
+  if (concept === "mediation") {
+    return nodeId === "mediation" ? "active" : "completed";
+  }
+
+  return "completed";
 }
 
 export function World1RootScreen() {
   const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
+  const [continueNote, setContinueNote] = useState("");
   const copy = copyByConcept[activeConcept];
+  const isReadyToContinue = activeConcept === "ready_to_continue";
   const activeRoot =
-    activeConcept === "intro"
+    activeConcept === "intro" || isReadyToContinue
       ? null
       : {
           concept: activeConcept,
@@ -118,19 +136,22 @@ export function World1RootScreen() {
     relation: world1RootAssets.liaPointRelation,
     perception: world1RootAssets.liaLookPerception,
     mediation: world1RootAssets.liaGuideMediation,
+    ready_to_continue: world1RootAssets.liaReadyContinue,
   };
   const liaPoseByConcept: Record<World1Concept, string> = {
     intro: "idle",
     relation: "point_relation",
     perception: "look_perception",
     mediation: "guide_mediation",
+    ready_to_continue: "ready_continue",
   };
 
   return (
     <main
       className="world1-root-screen"
-      data-world1-root-version="004E-4A-static-mediation"
+      data-world1-root-version="004E-5A-static-ready"
       data-world1-root-state={activeConcept}
+      data-world1-exit-ready={isReadyToContinue ? "true" : undefined}
       aria-labelledby="world1-root-title"
     >
       <section
@@ -171,6 +192,16 @@ export function World1RootScreen() {
             data-world1-relation-calibration={
               activeRoot.concept === "relation" ? "manual-calibration" : undefined
             }
+          />
+        ) : null}
+        {isReadyToContinue ? (
+          <img
+            className="world1-root-layer world1-root-layer--exit-path"
+            src={world1RootAssets.exitPath}
+            alt=""
+            aria-hidden="true"
+            data-runtime-asset={world1RootAssets.exitPath}
+            data-world1-exit-path="ready_to_continue"
           />
         ) : null}
         <img
@@ -239,17 +270,42 @@ export function World1RootScreen() {
         <div className="world1-root-copy">
           <p className="world1-root-copy__eyebrow">{copy.eyebrow}</p>
           <h1 id="world1-root-title">{copy.title}</h1>
-          <p>{copy.body}</p>
+          <p className="world1-root-copy__body">{copy.body}</p>
+          {copy.secondary ? (
+            <p className="world1-root-copy__note">{copy.secondary}</p>
+          ) : null}
+          {activeConcept === "mediation" ? (
+            <button
+              className="world1-root-copy__action"
+              type="button"
+              onClick={() => {
+                setContinueNote("");
+                setActiveConcept("ready_to_continue");
+              }}
+            >
+              Cerrar raíz
+            </button>
+          ) : null}
         </div>
 
         <button
-          className="world1-root-continue"
+          className={`world1-root-continue${isReadyToContinue ? " world1-root-continue--ready" : ""}`}
           type="button"
-          disabled
-          aria-disabled="true"
+          disabled={!isReadyToContinue}
+          aria-disabled={isReadyToContinue ? "false" : "true"}
+          onClick={
+            isReadyToContinue
+              ? () => {
+                  setContinueNote("La salida se activará en una fase posterior.");
+                }
+              : undefined
+          }
         >
           Continuar
         </button>
+        <p className="world1-root-continue-note" aria-live="polite">
+          {continueNote}
+        </p>
       </section>
     </main>
   );
