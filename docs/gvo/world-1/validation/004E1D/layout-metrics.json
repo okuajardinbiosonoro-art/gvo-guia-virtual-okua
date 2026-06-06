@@ -1,0 +1,314 @@
+[
+  {
+    "viewport": {
+      "name": "mobile_360x800",
+      "width": 360,
+      "height": 800
+    },
+    "metrics": {
+      "url": "/estacion/1",
+      "viewportWidth": 360,
+      "viewportHeight": 800,
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "css": {
+        "plantX": "49.6%",
+        "plantTop": "11.2%",
+        "plantWidth": "40%",
+        "rootsTop": "20.3%",
+        "rootsWidth": "100%"
+      },
+      "stage": {
+        "top": 98,
+        "left": 10,
+        "right": 350,
+        "bottom": 702,
+        "width": 340,
+        "height": 604
+      },
+      "plant": {
+        "top": 166,
+        "left": 111,
+        "right": 246,
+        "bottom": 334,
+        "width": 135,
+        "height": 167
+      },
+      "roots": {
+        "top": 221,
+        "left": 11,
+        "right": 349,
+        "bottom": 822,
+        "width": 338,
+        "height": 601
+      },
+      "relation": {
+        "top": 460,
+        "left": 28,
+        "right": 104,
+        "bottom": 542,
+        "width": 76,
+        "height": 82
+      },
+      "perception": {
+        "top": 448,
+        "left": 142,
+        "right": 218,
+        "bottom": 530,
+        "width": 76,
+        "height": 82
+      },
+      "mediation": {
+        "top": 460,
+        "left": 256,
+        "right": 332,
+        "bottom": 542,
+        "width": 76,
+        "height": 82
+      },
+      "copy": {
+        "top": 540,
+        "left": 23,
+        "right": 337,
+        "bottom": 653,
+        "width": 314,
+        "height": 113
+      },
+      "continueButton": {
+        "top": 655,
+        "left": 217,
+        "right": 335,
+        "bottom": 689,
+        "width": 118,
+        "height": 34
+      },
+      "buttonDisabled": true,
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available"
+        },
+        {
+          "id": "perception",
+          "state": "locked"
+        },
+        {
+          "id": "mediation",
+          "state": "locked"
+        }
+      ],
+      "media": {
+        "audio": 0,
+        "video": 0
+      }
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile_390x844",
+      "width": 390,
+      "height": 844
+    },
+    "metrics": {
+      "url": "/estacion/1",
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "css": {
+        "plantX": "49.6%",
+        "plantTop": "11.2%",
+        "plantWidth": "40%",
+        "rootsTop": "20.3%",
+        "rootsWidth": "100%"
+      },
+      "stage": {
+        "top": 93,
+        "left": 10,
+        "right": 380,
+        "bottom": 751,
+        "width": 370,
+        "height": 657
+      },
+      "plant": {
+        "top": 168,
+        "left": 120,
+        "right": 267,
+        "bottom": 350,
+        "width": 147,
+        "height": 182
+      },
+      "roots": {
+        "top": 227,
+        "left": 11,
+        "right": 379,
+        "bottom": 881,
+        "width": 368,
+        "height": 654
+      },
+      "relation": {
+        "top": 501,
+        "left": 40,
+        "right": 128,
+        "bottom": 589,
+        "width": 88,
+        "height": 88
+      },
+      "perception": {
+        "top": 488,
+        "left": 151,
+        "right": 239,
+        "bottom": 576,
+        "width": 88,
+        "height": 88
+      },
+      "mediation": {
+        "top": 501,
+        "left": 262,
+        "right": 350,
+        "bottom": 589,
+        "width": 88,
+        "height": 88
+      },
+      "copy": {
+        "top": 586,
+        "left": 27,
+        "right": 363,
+        "bottom": 702,
+        "width": 336,
+        "height": 116
+      },
+      "continueButton": {
+        "top": 704,
+        "left": 243,
+        "right": 361,
+        "bottom": 738,
+        "width": 118,
+        "height": 34
+      },
+      "buttonDisabled": true,
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available"
+        },
+        {
+          "id": "perception",
+          "state": "locked"
+        },
+        {
+          "id": "mediation",
+          "state": "locked"
+        }
+      ],
+      "media": {
+        "audio": 0,
+        "video": 0
+      }
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile_430x932",
+      "width": 430,
+      "height": 932
+    },
+    "metrics": {
+      "url": "/estacion/1",
+      "viewportWidth": 430,
+      "viewportHeight": 932,
+      "scrollWidth": 430,
+      "bodyScrollWidth": 430,
+      "css": {
+        "plantX": "49.6%",
+        "plantTop": "11.2%",
+        "plantWidth": "40%",
+        "rootsTop": "20.3%",
+        "rootsWidth": "100%"
+      },
+      "stage": {
+        "top": 102,
+        "left": 10,
+        "right": 420,
+        "bottom": 830,
+        "width": 410,
+        "height": 729
+      },
+      "plant": {
+        "top": 184,
+        "left": 132,
+        "right": 295,
+        "bottom": 386,
+        "width": 163,
+        "height": 202
+      },
+      "roots": {
+        "top": 250,
+        "left": 11,
+        "right": 419,
+        "bottom": 975,
+        "width": 408,
+        "height": 725
+      },
+      "relation": {
+        "top": 553,
+        "left": 44,
+        "right": 132,
+        "bottom": 643,
+        "width": 88,
+        "height": 89
+      },
+      "perception": {
+        "top": 539,
+        "left": 171,
+        "right": 259,
+        "bottom": 628,
+        "width": 88,
+        "height": 89
+      },
+      "mediation": {
+        "top": 553,
+        "left": 298,
+        "right": 386,
+        "bottom": 643,
+        "width": 88,
+        "height": 89
+      },
+      "copy": {
+        "top": 657,
+        "left": 27,
+        "right": 403,
+        "bottom": 781,
+        "width": 376,
+        "height": 124
+      },
+      "continueButton": {
+        "top": 783,
+        "left": 283,
+        "right": 401,
+        "bottom": 817,
+        "width": 118,
+        "height": 34
+      },
+      "buttonDisabled": true,
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available"
+        },
+        {
+          "id": "perception",
+          "state": "locked"
+        },
+        {
+          "id": "mediation",
+          "state": "locked"
+        }
+      ],
+      "media": {
+        "audio": 0,
+        "video": 0
+      }
+    }
+  }
+]

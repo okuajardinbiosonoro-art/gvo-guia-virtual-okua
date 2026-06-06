@@ -18,7 +18,8 @@
   width: min(100%, 430px);
   max-height: calc(100svh - 20px);
   aspect-ratio: 941 / 1672;
-  --world1-plant-top: 12.8%;
+  --world1-plant-x: 49.6%;
+  --world1-plant-top: 11.2%;
   --world1-plant-width: 40%;
   --world1-roots-top: 20.3%;
   --world1-roots-width: 100%;
@@ -69,10 +70,11 @@
   position: absolute;
   z-index: 3;
   top: var(--world1-plant-top);
-  left: 50%;
+  left: var(--world1-plant-x);
   width: var(--world1-plant-width);
   height: auto;
   transform: translateX(-50%);
+  transform-origin: center bottom;
   pointer-events: none;
   user-select: none;
 }
