@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   createBrowserRouter,
   useLocation,
@@ -17,6 +17,8 @@ import { TransitionWorld } from "../screens/TransitionWorld";
 import { introToStationOneTransition } from "../screens/TransitionWorld/transitionWorld.config";
 import { World1RootScreen } from "../screens/World1Root";
 import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
+import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import { coverToWorldOneTransitionRoute } from "./routes";
 
 function QrRoute() {
@@ -27,29 +29,52 @@ function QrRoute() {
 function JourneyLoadingRoute() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [minimumDurationComplete, setMinimumDurationComplete] = useState(false);
+  const coverIntroPreload = useAssetPreloader(
+    screenAssetBundles.coverIntroCritical,
+    {
+      timeoutMs: 9000,
+    },
+  );
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const shouldResetIntro = searchParams.get("resetIntro") === "1";
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const durationMs = prefersReducedMotion
       ? loadingInitialTimeline.reducedMotionDurationMs
       : loadingInitialTimeline.durationMs;
-    const destination = shouldResetIntro
-      ? "/portada?resetIntro=1"
-      : "/portada";
+    setMinimumDurationComplete(false);
     const timeoutId = window.setTimeout(() => {
-      navigate(destination, { replace: true });
+      setMinimumDurationComplete(true);
     }, durationMs);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [location.search, navigate]);
+  }, [location.search]);
 
-  return <LoadingInitialScreen />;
+  useEffect(() => {
+    if (!minimumDurationComplete || !coverIntroPreload.ready) {
+      return;
+    }
+
+    const searchParams = new URLSearchParams(location.search);
+    const shouldResetIntro = searchParams.get("resetIntro") === "1";
+    const destination = shouldResetIntro
+      ? "/portada?resetIntro=1"
+      : "/portada";
+
+    navigate(destination, { replace: true });
+  }, [coverIntroPreload.ready, location.search, minimumDurationComplete, navigate]);
+
+  return (
+    <LoadingInitialScreen
+      preloadStatus={coverIntroPreload.status}
+      preloadProgress={coverIntroPreload.progress}
+      preloadTarget="coverIntroCritical"
+    />
+  );
 }
 
 function TransitionWorldRuntimeRoute() {

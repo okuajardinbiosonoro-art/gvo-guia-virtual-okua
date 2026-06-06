@@ -51,6 +51,27 @@
   gap: clamp(10px, 2svh, 18px);
 }
 
+.cover-intro--preloading-critical .cover-intro__stage {
+  opacity: 0;
+}
+
+.cover-intro__preload-status {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+  color: var(--cover-cream-soft);
+  font-family: var(--gvo-font-heading);
+  font-size: clamp(1rem, 4vw, 1.24rem);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 2px 0 rgb(55 37 62 / 28%);
+  pointer-events: none;
+}
+
 .cover-intro__header {
   display: grid;
   justify-items: center;

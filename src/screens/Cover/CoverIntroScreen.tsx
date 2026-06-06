@@ -5,6 +5,8 @@ import type { CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { coverToWorldOneTransitionRoute } from "../../app/routes";
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { coverIntroAssets } from "./coverIntroAssets";
 import { LiaHybridAvatar } from "./LiaHybridAvatar";
 import type { LiaRigExpression } from "./LiaHybridAvatar";
@@ -140,9 +142,24 @@ export function CoverIntroScreen() {
   const [coverState, setCoverState] = useState<CoverIntroState>(
     createInitialCoverIntroState,
   );
+  const [portalActivationDelayComplete, setPortalActivationDelayComplete] =
+    useState(false);
+  const coverCriticalPreload = useAssetPreloader(
+    screenAssetBundles.coverIntroCritical,
+    {
+      timeoutMs: 9000,
+    },
+  );
+  const transitionRootPreload = useAssetPreloader(
+    screenAssetBundles.transitionRootCritical,
+    {
+      timeoutMs: 9000,
+    },
+  );
   const blockedMessageTimeoutRef = useRef<number | null>(null);
   const transitionTimeoutRef = useRef<number | null>(null);
   const portalHandoffStartedRef = useRef(false);
+  const portalNavigationDoneRef = useRef(false);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -170,17 +187,14 @@ export function CoverIntroScreen() {
   }, []);
 
   useEffect(() => {
-    if (transitionTimeoutRef.current !== null) {
-      window.clearTimeout(transitionTimeoutRef.current);
-      transitionTimeoutRef.current = null;
-    }
-
     if (coverState.phase !== "portal_1_opening_placeholder") {
+      setPortalActivationDelayComplete(false);
       return;
     }
 
+    setPortalActivationDelayComplete(false);
     transitionTimeoutRef.current = window.setTimeout(() => {
-      navigate(coverToWorldOneTransitionRoute);
+      setPortalActivationDelayComplete(true);
       transitionTimeoutRef.current = null;
     }, PORTAL_ACTIVATION_TO_TRANSITION_MS);
 
@@ -190,7 +204,26 @@ export function CoverIntroScreen() {
         transitionTimeoutRef.current = null;
       }
     };
-  }, [coverState.phase, navigate]);
+  }, [coverState.phase]);
+
+  useEffect(() => {
+    if (
+      coverState.phase !== "portal_1_opening_placeholder" ||
+      !portalActivationDelayComplete ||
+      !transitionRootPreload.ready ||
+      portalNavigationDoneRef.current
+    ) {
+      return;
+    }
+
+    portalNavigationDoneRef.current = true;
+    navigate(coverToWorldOneTransitionRoute);
+  }, [
+    coverState.phase,
+    navigate,
+    portalActivationDelayComplete,
+    transitionRootPreload.ready,
+  ]);
 
   const stageStyle = {
     "--cover-background-image": `url(${coverIntroAssets.background})`,
@@ -312,6 +345,8 @@ export function CoverIntroScreen() {
     }
 
     portalHandoffStartedRef.current = true;
+    portalNavigationDoneRef.current = false;
+    setPortalActivationDelayComplete(false);
     setCoverState((current) => {
       if (current.phase !== "portal_1_ready") {
         return current;
@@ -389,12 +424,22 @@ export function CoverIntroScreen() {
 
   return (
     <main
-      className={`cover-intro cover-intro--${coverState.phase}`}
+      className={`cover-intro cover-intro--${coverState.phase}${coverCriticalPreload.ready ? "" : " cover-intro--preloading-critical"}`}
       aria-labelledby="cover-intro-title"
       style={stageStyle}
       data-cover-phase={coverState.phase}
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
+      data-critical-assets-ready={coverCriticalPreload.ready ? "true" : "false"}
+      data-critical-assets-status={coverCriticalPreload.status}
+      data-transition-preload-ready={
+        transitionRootPreload.ready ? "true" : "false"
+      }
     >
+      {coverCriticalPreload.ready ? null : (
+        <p className="cover-intro__preload-status" role="status">
+          Preparando el recorrido
+        </p>
+      )}
       <div className="cover-intro__scrim" aria-hidden="true" />
       <div className="cover-intro__stage" data-cover-intro-version="002J-FIX">
         <header className="cover-intro__header">

@@ -1,0 +1,321 @@
+{
+  "generatedAt": "2026-06-06T18:43:30.753Z",
+  "baseUrl": "http://127.0.0.1:5182",
+  "metrics": [
+    {
+      "label": "loading",
+      "route": "/carga",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "criticalAssetsReady": null,
+      "criticalAssetsStatus": null,
+      "preloadTarget": "loadingInitialCritical",
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageCount": 11,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Preparando el recorrido\n\nCuidando el inicio..."
+    },
+    {
+      "label": "cover",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageCount": 24,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "OKÚA\n\nGUÍA VISUAL\n\nI\nEstación I — Mundo I: Raíz\nII\nEstación II — Mundo II: Lía y el pulso invisible\nIII\nEstación III — Mundo III: Cuaderno de pruebas\nIV\nEstación IV — Mundo IV: Mesa de sistema\nV\nEstación V — Mundo V: Mapa del presente\nEL ARCHIVO VIVO DE OKÚA\nComenzar recorrido"
+    },
+    {
+      "label": "transition",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": "true",
+      "incompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageCount": 15,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Abriendo Mundo I: Raíz...\n\nPreparando recorrido..."
+    },
+    {
+      "label": "world1_intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageCount": 5,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "label": "world1_ready",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 6,
+      "imageCount": 6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "label": "loading",
+      "route": "/carga",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "criticalAssetsReady": null,
+      "criticalAssetsStatus": null,
+      "preloadTarget": "loadingInitialCritical",
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageCount": 11,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Preparando el recorrido\n\nCuidando el inicio..."
+    },
+    {
+      "label": "cover",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageCount": 24,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "OKÚA\n\nGUÍA VISUAL\n\nI\nEstación I — Mundo I: Raíz\nII\nEstación II — Mundo II: Lía y el pulso invisible\nIII\nEstación III — Mundo III: Cuaderno de pruebas\nIV\nEstación IV — Mundo IV: Mesa de sistema\nV\nEstación V — Mundo V: Mapa del presente\nEL ARCHIVO VIVO DE OKÚA\nComenzar recorrido"
+    },
+    {
+      "label": "transition",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": "true",
+      "incompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageCount": 15,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Abriendo Mundo I: Raíz...\n\nPreparando recorrido..."
+    },
+    {
+      "label": "world1_intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageCount": 5,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "label": "world1_ready",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 6,
+      "imageCount": 6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "label": "loading",
+      "route": "/carga",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "criticalAssetsReady": null,
+      "criticalAssetsStatus": null,
+      "preloadTarget": "loadingInitialCritical",
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageCount": 11,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Preparando el recorrido\n\nCuidando el inicio..."
+    },
+    {
+      "label": "cover",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageCount": 24,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "OKÚA\n\nGUÍA VISUAL\n\nI\nEstación I — Mundo I: Raíz\nII\nEstación II — Mundo II: Lía y el pulso invisible\nIII\nEstación III — Mundo III: Cuaderno de pruebas\nIV\nEstación IV — Mundo IV: Mesa de sistema\nV\nEstación V — Mundo V: Mapa del presente\nEL ARCHIVO VIVO DE OKÚA\nComenzar recorrido"
+    },
+    {
+      "label": "transition",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": "true",
+      "incompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageCount": 15,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "Abriendo Mundo I: Raíz...\n\nPreparando recorrido..."
+    },
+    {
+      "label": "world1_intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageCount": 5,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "label": "world1_ready",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "criticalAssetsReady": "true",
+      "criticalAssetsStatus": "ready",
+      "preloadTarget": null,
+      "targetAssetsReady": null,
+      "incompleteImages": 0,
+      "visibleImageCount": 6,
+      "imageCount": 6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevControls": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    }
+  ]
+}

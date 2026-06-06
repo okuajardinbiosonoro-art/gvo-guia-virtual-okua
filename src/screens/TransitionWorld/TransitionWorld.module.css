@@ -43,6 +43,22 @@
   user-select: none;
 }
 
+.transitionWorld[data-critical-assets-ready="false"] .stage {
+  opacity: 0;
+}
+
+.preloadStatus {
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  color: var(--transition-text, #4e3f35);
+  font-family: var(--gvo-font-heading);
+  font-size: clamp(0.96rem, 4vw, 1.16rem);
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+}
+
 .background,
 .transitionSparkles,
 .fade {

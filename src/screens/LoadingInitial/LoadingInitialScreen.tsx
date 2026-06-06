@@ -16,6 +16,8 @@ import {
   LIA_FRAME_REGISTRATION_VERSION,
   liaFrameRegistrationCssVariables,
 } from "./liaFrameRegistration";
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 
 const sceneAssetStyle = {
   "--loading-lia-sprite": `url("${loadingInitialAssets.lia.src}")`,
@@ -26,12 +28,33 @@ const sceneAssetStyle = {
   ...liaFrameRegistrationCssVariables,
 } as CSSProperties;
 
-export function LoadingInitialScreen() {
+type LoadingInitialScreenProps = {
+  preloadProgress?: number;
+  preloadStatus?: string;
+  preloadTarget?: string;
+};
+
+export function LoadingInitialScreen({
+  preloadProgress,
+  preloadStatus = "idle",
+  preloadTarget = "loadingInitialCritical",
+}: LoadingInitialScreenProps = {}) {
+  useAssetPreloader(screenAssetBundles.loadingInitialCritical, {
+    timeoutMs: 5000,
+  });
+
   return (
     <main
       className="loading-initial"
       aria-labelledby="loading-initial-title"
       aria-describedby="loading-initial-description"
+      data-preload-target={preloadTarget}
+      data-preload-status={preloadStatus}
+      data-preload-progress={
+        typeof preloadProgress === "number"
+          ? Math.round(preloadProgress * 100).toString()
+          : undefined
+      }
     >
       <section
         className="loading-initial__stage"

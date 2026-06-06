@@ -8,6 +8,8 @@ import { TransitionPortal } from "./components/TransitionPortal";
 import { TransitionProgress } from "./components/TransitionProgress";
 import { TransitionSparkles } from "./components/TransitionSparkles";
 import { TransitionText } from "./components/TransitionText";
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import styles from "./TransitionWorld.module.css";
 import {
   introToStationOneTransition,
@@ -22,6 +24,21 @@ export function TransitionWorld({
   onComplete,
 }: TransitionWorldProps) {
   const completionCalledRef = useRef(false);
+  const durationCompleteRef = useRef(false);
+  const targetAssetsReadyRef = useRef(variant !== "runtime");
+  const transitionRootPreload = useAssetPreloader(
+    screenAssetBundles.transitionRootCritical,
+    {
+      timeoutMs: 8000,
+    },
+  );
+  const world1RootInitialPreload = useAssetPreloader(
+    screenAssetBundles.world1RootInitial,
+    {
+      enabled: variant === "runtime",
+      timeoutMs: 9000,
+    },
+  );
   const effectiveDurationMs = isReducedMotion
     ? config.reducedMotionDurationMs
     : config.durationMs;
@@ -32,24 +49,54 @@ export function TransitionWorld({
   } as CSSProperties;
 
   useEffect(() => {
-    if (variant !== "runtime" || !onComplete) {
+    targetAssetsReadyRef.current =
+      variant !== "runtime" || world1RootInitialPreload.ready;
+  }, [variant, world1RootInitialPreload.ready]);
+
+  useEffect(() => {
+    if (
+      variant !== "runtime" ||
+      !onComplete ||
+      !transitionRootPreload.ready
+    ) {
       return undefined;
     }
 
     completionCalledRef.current = false;
+    durationCompleteRef.current = false;
     const timeoutId = window.setTimeout(() => {
-      if (completionCalledRef.current) {
-        return;
-      }
+      durationCompleteRef.current = true;
 
-      completionCalledRef.current = true;
-      onComplete();
+      if (targetAssetsReadyRef.current && !completionCalledRef.current) {
+        completionCalledRef.current = true;
+        onComplete();
+      }
     }, effectiveDurationMs);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [effectiveDurationMs, onComplete, variant]);
+  }, [
+    effectiveDurationMs,
+    onComplete,
+    transitionRootPreload.ready,
+    variant,
+  ]);
+
+  useEffect(() => {
+    if (
+      variant !== "runtime" ||
+      !onComplete ||
+      !durationCompleteRef.current ||
+      !world1RootInitialPreload.ready ||
+      completionCalledRef.current
+    ) {
+      return;
+    }
+
+    completionCalledRef.current = true;
+    onComplete();
+  }, [onComplete, variant, world1RootInitialPreload.ready]);
 
   return (
     <main
@@ -67,10 +114,24 @@ export function TransitionWorld({
         variant === "runtime" ? "runtime-sequence" : "preview-sequence"
       }
       data-navigation-locked={variant === "runtime" ? "true" : "false"}
+      data-critical-assets-ready={transitionRootPreload.ready ? "true" : "false"}
+      data-critical-assets-status={transitionRootPreload.status}
+      data-target-assets-ready={
+        variant === "runtime"
+          ? world1RootInitialPreload.ready
+            ? "true"
+            : "false"
+          : undefined
+      }
       aria-labelledby="transition-world-title"
       aria-describedby="transition-world-subtitle"
       style={style}
     >
+      {transitionRootPreload.ready ? null : (
+        <p className={styles.preloadStatus} role="status">
+          Preparando recorrido...
+        </p>
+      )}
       <TransitionBackground palette={config.palette} />
       <TransitionSparkles />
       <TransitionFade />

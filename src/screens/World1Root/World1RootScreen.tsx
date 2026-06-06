@@ -3,6 +3,8 @@ import "./World1RootScreen.css";
 import type { CSSProperties } from "react";
 import { useState } from "react";
 
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { world1RootAssets } from "./world1RootAssets";
 
 type NodeOrbStyle = CSSProperties & {
@@ -118,6 +120,31 @@ function getNodeState(
 export function World1RootScreen() {
   const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
   const [continueNote, setContinueNote] = useState("");
+  const initialPreload = useAssetPreloader(screenAssetBundles.world1RootInitial, {
+    timeoutMs: 9000,
+  });
+  const relationPreload = useAssetPreloader(screenAssetBundles.world1RootRelation, {
+    enabled: activeConcept === "intro",
+    timeoutMs: 8000,
+  });
+  const perceptionPreload = useAssetPreloader(
+    screenAssetBundles.world1RootPerception,
+    {
+      enabled: activeConcept === "relation",
+      timeoutMs: 8000,
+    },
+  );
+  const mediationPreload = useAssetPreloader(
+    screenAssetBundles.world1RootMediation,
+    {
+      enabled: activeConcept === "perception",
+      timeoutMs: 8000,
+    },
+  );
+  const readyPreload = useAssetPreloader(screenAssetBundles.world1RootReady, {
+    enabled: activeConcept === "mediation",
+    timeoutMs: 8000,
+  });
   const copy = copyByConcept[activeConcept];
   const isReadyToContinue = activeConcept === "ready_to_continue";
   const activeRoot =
@@ -152,8 +179,25 @@ export function World1RootScreen() {
       data-world1-root-version="004E-5A-static-ready"
       data-world1-root-state={activeConcept}
       data-world1-exit-ready={isReadyToContinue ? "true" : undefined}
+      data-critical-assets-ready={initialPreload.ready ? "true" : "false"}
+      data-critical-assets-status={initialPreload.status}
+      data-world1-relation-preload-ready={
+        relationPreload.ready ? "true" : "false"
+      }
+      data-world1-perception-preload-ready={
+        perceptionPreload.ready ? "true" : "false"
+      }
+      data-world1-mediation-preload-ready={
+        mediationPreload.ready ? "true" : "false"
+      }
+      data-world1-ready-preload-ready={readyPreload.ready ? "true" : "false"}
       aria-labelledby="world1-root-title"
     >
+      {initialPreload.ready ? null : (
+        <p className="world1-root-preload-status" role="status">
+          Preparando raíz...
+        </p>
+      )}
       <section
         className="world1-root-stage"
         data-testid="world1-root-stage"

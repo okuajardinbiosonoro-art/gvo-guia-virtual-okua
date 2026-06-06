@@ -50,6 +50,27 @@
   isolation: isolate;
 }
 
+.world1-root-screen[data-critical-assets-ready="false"] .world1-root-stage {
+  opacity: 0;
+}
+
+.world1-root-preload-status {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+  color: #fff7db;
+  font-family: var(--gvo-font-heading);
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 2px 0 rgb(31 16 5 / 78%);
+  pointer-events: none;
+}
+
 .world1-root-layer {
   position: absolute;
   inset: 0;
