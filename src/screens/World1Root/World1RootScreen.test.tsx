@@ -57,6 +57,10 @@ describe("World1RootScreen", () => {
         `[data-runtime-asset="${world1RootAssets.nodeKit}"]`,
       ),
     ).toHaveLength(3);
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-mobile-stabilization",
+      "004F-1B",
+    );
   });
 
   it("no renderiza assets fuera de fase, controles interactivos ni medios runtime", () => {

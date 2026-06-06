@@ -177,6 +177,7 @@ export function World1RootScreen() {
     <main
       className="world1-root-screen"
       data-world1-root-version="004E-5A-static-ready"
+      data-world1-mobile-stabilization="004F-1B"
       data-world1-root-state={activeConcept}
       data-world1-exit-ready={isReadyToContinue ? "true" : undefined}
       data-critical-assets-ready={initialPreload.ready ? "true" : "false"}

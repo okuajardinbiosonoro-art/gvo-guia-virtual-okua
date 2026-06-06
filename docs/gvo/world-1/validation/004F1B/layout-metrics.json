@@ -1,0 +1,1158 @@
+{
+  "generatedAt": "2026-06-06T19:16:46.085Z",
+  "baseUrl": "http://127.0.0.1:5186",
+  "metrics": [
+    {
+      "state": "intro",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "runtimeState": "intro",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 23,
+        "y": 547,
+        "width": 314,
+        "height": 104,
+        "top": 547,
+        "right": 337,
+        "bottom": 651,
+        "left": 23
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 22,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 88,
+            "bottom": 466,
+            "left": 22
+          }
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 147,
+            "y": 385,
+            "width": 65,
+            "height": 69,
+            "top": 385,
+            "right": 213,
+            "bottom": 454,
+            "left": 147
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 338,
+            "bottom": 466,
+            "left": 272
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 81,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "state": "relation",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "runtimeState": "relation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 23,
+        "y": 515,
+        "width": 314,
+        "height": 136,
+        "top": 515,
+        "right": 337,
+        "bottom": 651,
+        "left": 23
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 22,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 88,
+            "bottom": 466,
+            "left": 22
+          }
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 147,
+            "y": 385,
+            "width": 65,
+            "height": 69,
+            "top": 385,
+            "right": 213,
+            "bottom": 454,
+            "left": 147
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 338,
+            "bottom": 466,
+            "left": 272
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 49,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar"
+    },
+    {
+      "state": "perception",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "runtimeState": "perception",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 23,
+        "y": 532,
+        "width": 314,
+        "height": 119,
+        "top": 532,
+        "right": 337,
+        "bottom": 651,
+        "left": 23
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 88,
+            "bottom": 466,
+            "left": 22
+          }
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 147,
+            "y": 385,
+            "width": 65,
+            "height": 69,
+            "top": 385,
+            "right": 213,
+            "bottom": 454,
+            "left": 147
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 272,
+            "y": 397,
+            "width": 65,
+            "height": 69,
+            "top": 397,
+            "right": 338,
+            "bottom": 466,
+            "left": 272
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 66,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar"
+    },
+    {
+      "state": "mediation",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "runtimeState": "mediation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 23,
+        "y": 476,
+        "width": 314,
+        "height": 175,
+        "top": 476,
+        "right": 337,
+        "bottom": 651,
+        "left": 23
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22,
+            "y": 379,
+            "width": 65,
+            "height": 69,
+            "top": 379,
+            "right": 88,
+            "bottom": 448,
+            "left": 22
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147,
+            "y": 366,
+            "width": 65,
+            "height": 69,
+            "top": 366,
+            "right": 213,
+            "bottom": 436,
+            "left": 147
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 272,
+            "y": 379,
+            "width": 65,
+            "height": 69,
+            "top": 379,
+            "right": 338,
+            "bottom": 448,
+            "left": 272
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 28,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nCerrar raíz\nContinuar"
+    },
+    {
+      "state": "ready",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "runtimeState": "ready_to_continue",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 23,
+        "y": 493,
+        "width": 314,
+        "height": 158,
+        "top": 493,
+        "right": 337,
+        "bottom": 651,
+        "left": 23
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22,
+            "y": 348,
+            "width": 65,
+            "height": 69,
+            "top": 348,
+            "right": 88,
+            "bottom": 418,
+            "left": 22
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147,
+            "y": 336,
+            "width": 65,
+            "height": 69,
+            "top": 336,
+            "right": 213,
+            "bottom": 406,
+            "left": 147
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 272,
+            "y": 348,
+            "width": 65,
+            "height": 69,
+            "top": 348,
+            "right": 338,
+            "bottom": 418,
+            "left": 272
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 75,
+      "exitPathRect": {
+        "x": 85,
+        "y": 186,
+        "width": 189,
+        "height": 284,
+        "top": 186,
+        "right": 275,
+        "bottom": 470,
+        "left": 85
+      },
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "state": "intro",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runtimeState": "intro",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 584,
+        "width": 336,
+        "height": 116,
+        "top": 584,
+        "right": 363,
+        "bottom": 700,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 18,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 99,
+            "bottom": 516,
+            "left": 18
+          }
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 155,
+            "y": 422,
+            "width": 81,
+            "height": 81,
+            "top": 422,
+            "right": 235,
+            "bottom": 503,
+            "left": 155
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 291,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 372,
+            "bottom": 516,
+            "left": 291
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 68,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "state": "relation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runtimeState": "relation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 549,
+        "width": 336,
+        "height": 151,
+        "top": 549,
+        "right": 363,
+        "bottom": 700,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 18,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 99,
+            "bottom": 516,
+            "left": 18
+          }
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 155,
+            "y": 422,
+            "width": 81,
+            "height": 81,
+            "top": 422,
+            "right": 235,
+            "bottom": 503,
+            "left": 155
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 291,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 372,
+            "bottom": 516,
+            "left": 291
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 32,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar"
+    },
+    {
+      "state": "perception",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runtimeState": "perception",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 565,
+        "width": 336,
+        "height": 134,
+        "top": 565,
+        "right": 363,
+        "bottom": 700,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 99,
+            "bottom": 516,
+            "left": 18
+          }
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 155,
+            "y": 422,
+            "width": 81,
+            "height": 81,
+            "top": 422,
+            "right": 235,
+            "bottom": 503,
+            "left": 155
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 291,
+            "y": 435,
+            "width": 81,
+            "height": 81,
+            "top": 435,
+            "right": 372,
+            "bottom": 516,
+            "left": 291
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 49,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar"
+    },
+    {
+      "state": "mediation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runtimeState": "mediation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 510,
+        "width": 336,
+        "height": 190,
+        "top": 510,
+        "right": 363,
+        "bottom": 700,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18,
+            "y": 412,
+            "width": 81,
+            "height": 81,
+            "top": 412,
+            "right": 99,
+            "bottom": 493,
+            "left": 18
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 155,
+            "y": 399,
+            "width": 81,
+            "height": 81,
+            "top": 399,
+            "right": 235,
+            "bottom": 480,
+            "left": 155
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 291,
+            "y": 412,
+            "width": 81,
+            "height": 81,
+            "top": 412,
+            "right": 372,
+            "bottom": 493,
+            "left": 291
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 16,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nCerrar raíz\nContinuar"
+    },
+    {
+      "state": "ready",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runtimeState": "ready_to_continue",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 541,
+        "width": 336,
+        "height": 159,
+        "top": 541,
+        "right": 363,
+        "bottom": 700,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18,
+            "y": 380,
+            "width": 81,
+            "height": 81,
+            "top": 380,
+            "right": 99,
+            "bottom": 461,
+            "left": 18
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 155,
+            "y": 367,
+            "width": 81,
+            "height": 81,
+            "top": 367,
+            "right": 235,
+            "bottom": 448,
+            "left": 155
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 291,
+            "y": 380,
+            "width": 81,
+            "height": 81,
+            "top": 380,
+            "right": 372,
+            "bottom": 461,
+            "left": 291
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 80,
+      "exitPathRect": {
+        "x": 88,
+        "y": 190,
+        "width": 213,
+        "height": 320,
+        "top": 190,
+        "right": 302,
+        "bottom": 510,
+        "left": 88
+      },
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "state": "intro",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "runtimeState": "intro",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 655,
+        "width": 376,
+        "height": 124,
+        "top": 655,
+        "right": 403,
+        "bottom": 779,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 24,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 105,
+            "bottom": 561,
+            "left": 24
+          }
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 175,
+            "y": 466,
+            "width": 81,
+            "height": 81,
+            "top": 466,
+            "right": 255,
+            "bottom": 547,
+            "left": 175
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 325,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 406,
+            "bottom": 561,
+            "left": 325
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 94,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar"
+    },
+    {
+      "state": "relation",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "runtimeState": "relation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 617,
+        "width": 376,
+        "height": 163,
+        "top": 617,
+        "right": 403,
+        "bottom": 779,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 24,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 105,
+            "bottom": 561,
+            "left": 24
+          }
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 175,
+            "y": 466,
+            "width": 81,
+            "height": 81,
+            "top": 466,
+            "right": 255,
+            "bottom": 547,
+            "left": 175
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 325,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 406,
+            "bottom": 561,
+            "left": 325
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 55,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar"
+    },
+    {
+      "state": "perception",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "runtimeState": "perception",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 635,
+        "width": 376,
+        "height": 144,
+        "top": 635,
+        "right": 403,
+        "bottom": 779,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 24,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 105,
+            "bottom": 561,
+            "left": 24
+          }
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 175,
+            "y": 466,
+            "width": 81,
+            "height": 81,
+            "top": 466,
+            "right": 255,
+            "bottom": 547,
+            "left": 175
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 325,
+            "y": 480,
+            "width": 81,
+            "height": 81,
+            "top": 480,
+            "right": 406,
+            "bottom": 561,
+            "left": 325
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 73,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar"
+    },
+    {
+      "state": "mediation",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "runtimeState": "mediation",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 578,
+        "width": 376,
+        "height": 202,
+        "top": 578,
+        "right": 403,
+        "bottom": 779,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 24,
+            "y": 455,
+            "width": 81,
+            "height": 81,
+            "top": 455,
+            "right": 105,
+            "bottom": 536,
+            "left": 24
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 175,
+            "y": 440,
+            "width": 81,
+            "height": 81,
+            "top": 440,
+            "right": 255,
+            "bottom": 521,
+            "left": 175
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 325,
+            "y": 455,
+            "width": 81,
+            "height": 81,
+            "top": 455,
+            "right": 406,
+            "bottom": 536,
+            "left": 325
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 42,
+      "exitPathRect": null,
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nCerrar raíz\nContinuar"
+    },
+    {
+      "state": "ready",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "runtimeState": "ready_to_continue",
+      "criticalAssetsReady": "true",
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "panelRect": {
+        "x": 27,
+        "y": 591,
+        "width": 376,
+        "height": 189,
+        "top": 591,
+        "right": 403,
+        "bottom": 779,
+        "left": 27
+      },
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 24,
+            "y": 419,
+            "width": 81,
+            "height": 81,
+            "top": 419,
+            "right": 105,
+            "bottom": 500,
+            "left": 24
+          }
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 175,
+            "y": 404,
+            "width": 81,
+            "height": 81,
+            "top": 404,
+            "right": 255,
+            "bottom": 485,
+            "left": 175
+          }
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 325,
+            "y": 419,
+            "width": 81,
+            "height": 81,
+            "top": 419,
+            "right": 406,
+            "bottom": 500,
+            "left": 325
+          }
+        }
+      ],
+      "nodePanelOverlaps": [],
+      "nodePanelGapPx": 91,
+      "exitPathRect": {
+        "x": 97,
+        "y": 209,
+        "width": 237,
+        "height": 355,
+        "top": 209,
+        "right": 333,
+        "bottom": 564,
+        "left": 97
+      },
+      "exitPathOverlapsPanel": false,
+      "continueVisible": true,
+      "continueDisabled": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "textSample": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    }
+  ]
+}

@@ -39,9 +39,25 @@
   --world1-active-mediation-y: 69.4%;
   --world1-active-mediation-width: 91.5%;
   --world1-active-mediation-opacity: 1;
+  --world1-node-relation-x: 13%;
+  --world1-node-relation-y: 51.5%;
+  --world1-node-relation-scale: 0.92;
+  --world1-node-perception-x: 50%;
+  --world1-node-perception-y: 49.5%;
+  --world1-node-perception-scale: 0.92;
+  --world1-node-mediation-x: 87%;
+  --world1-node-mediation-y: 51.5%;
+  --world1-node-mediation-scale: 0.92;
+  --world1-ready-node-relation-y: 43%;
+  --world1-ready-node-perception-y: 41%;
+  --world1-ready-node-mediation-y: 43%;
   --world1-node-size: 62px;
   --world1-node-sheet-width: 238px;
   --world1-node-sheet-height: 423px;
+  --world1-exit-path-x: 50%;
+  --world1-exit-path-y: 39%;
+  --world1-exit-path-width: 58%;
+  --world1-exit-path-opacity: 0.42;
   overflow: hidden;
   border: 1px solid rgb(245 205 120 / 18%);
   border-radius: 8px;
@@ -146,9 +162,17 @@
 }
 
 .world1-root-layer--exit-path {
-  z-index: 5;
-  object-fit: cover;
-  opacity: 0.9;
+  z-index: 3;
+  inset: auto;
+  top: var(--world1-exit-path-y);
+  right: auto;
+  bottom: auto;
+  left: var(--world1-exit-path-x);
+  width: var(--world1-exit-path-width);
+  height: auto;
+  object-fit: contain;
+  opacity: var(--world1-exit-path-opacity);
+  transform: translate(-50%, -50%);
 }
 
 .world1-root-plant {
@@ -216,19 +240,21 @@
 }
 
 .world1-root-node--relation {
-  top: 62%;
-  left: 8%;
+  top: var(--world1-node-relation-y);
+  left: var(--world1-node-relation-x);
+  transform: translateX(-50%) scale(var(--world1-node-relation-scale));
 }
 
 .world1-root-node--perception {
-  top: 60%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: var(--world1-node-perception-y);
+  left: var(--world1-node-perception-x);
+  transform: translateX(-50%) scale(var(--world1-node-perception-scale));
 }
 
 .world1-root-node--mediation {
-  top: 62%;
-  right: 8%;
+  top: var(--world1-node-mediation-y);
+  left: var(--world1-node-mediation-x);
+  transform: translateX(-50%) scale(var(--world1-node-mediation-scale));
 }
 
 .world1-root-node__orb {
@@ -277,7 +303,7 @@
   position: absolute;
   z-index: 7;
   right: 16px;
-  bottom: 48px;
+  bottom: 50px;
   left: 16px;
   padding: 10px 13px;
   border: 1px solid rgb(255 225 154 / 22%);
@@ -290,22 +316,28 @@
 
 .world1-root-screen[data-world1-root-state="ready_to_continue"]
   .world1-root-copy {
-  padding-top: 42px;
+  padding-top: 12px;
 }
 
 .world1-root-screen[data-world1-root-state="ready_to_continue"]
   .world1-root-node--relation {
-  top: 54%;
+  top: var(--world1-ready-node-relation-y);
 }
 
 .world1-root-screen[data-world1-root-state="ready_to_continue"]
   .world1-root-node--perception {
-  top: 52%;
+  top: var(--world1-ready-node-perception-y);
 }
 
 .world1-root-screen[data-world1-root-state="ready_to_continue"]
   .world1-root-node--mediation {
-  top: 54%;
+  top: var(--world1-ready-node-mediation-y);
+}
+
+.world1-root-screen[data-world1-root-state="mediation"] .world1-root-stage {
+  --world1-node-relation-y: 48%;
+  --world1-node-perception-y: 46%;
+  --world1-node-mediation-y: 48%;
 }
 
 .world1-root-copy__eyebrow {
@@ -407,6 +439,20 @@
 @media (width <= 374px) {
   .world1-root-stage {
     width: min(100%, 360px);
+    --world1-node-relation-x: 13%;
+    --world1-node-relation-y: 48.5%;
+    --world1-node-relation-scale: 0.86;
+    --world1-node-perception-y: 46.5%;
+    --world1-node-perception-scale: 0.86;
+    --world1-node-mediation-x: 87%;
+    --world1-node-mediation-y: 48.5%;
+    --world1-node-mediation-scale: 0.86;
+    --world1-ready-node-relation-y: 40.5%;
+    --world1-ready-node-perception-y: 38.5%;
+    --world1-ready-node-mediation-y: 40.5%;
+    --world1-exit-path-y: 38%;
+    --world1-exit-path-width: 56%;
+    --world1-exit-path-opacity: 0.4;
   }
 
   .world1-root-node {
@@ -440,25 +486,33 @@
     background-position: -157px -163px;
   }
 
-  .world1-root-node--relation {
-    top: 60%;
-    left: 5%;
-  }
-
-  .world1-root-node--perception {
-    top: 58%;
-  }
-
-  .world1-root-node--mediation {
-    top: 60%;
-    right: 5%;
-  }
-
   .world1-root-copy {
     right: 12px;
-    bottom: 48px;
+    bottom: 50px;
     left: 12px;
-    padding: 9px 11px;
+    padding: 8px 10px;
+  }
+
+  .world1-root-screen[data-world1-root-state="ready_to_continue"]
+    .world1-root-copy {
+    padding-top: 10px;
+  }
+
+  .world1-root-screen[data-world1-root-state="mediation"]
+    .world1-root-stage {
+    --world1-node-relation-y: 45.5%;
+    --world1-node-perception-y: 43.5%;
+    --world1-node-mediation-y: 45.5%;
+  }
+
+  .world1-root-copy h1 {
+    font-size: clamp(0.92rem, 3.85vw, 1.06rem);
+  }
+
+  .world1-root-copy__body,
+  .world1-root-copy__note {
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+    line-height: 1.27;
   }
 
   .world1-root-continue {
