@@ -46,8 +46,10 @@ export const world1RootRenderedAssetKeys = [
   "rootsBase",
   "activeRelation",
   "activePerception",
+  "activeMediation",
   "nodeKit",
   "liaIdle",
   "liaPointRelation",
   "liaLookPerception",
+  "liaGuideMediation",
 ] as const;

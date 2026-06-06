@@ -110,6 +110,20 @@
   transform: translate(-50%, -50%);
 }
 
+.world1-root-layer--active-mediation {
+  z-index: 3;
+  inset: auto;
+  top: var(--world1-active-mediation-y);
+  right: auto;
+  bottom: auto;
+  left: var(--world1-active-mediation-x);
+  width: var(--world1-active-mediation-width);
+  height: auto;
+  object-fit: contain;
+  opacity: var(--world1-active-mediation-opacity);
+  transform: translate(-50%, -50%);
+}
+
 .world1-root-plant {
   position: absolute;
   z-index: 4;

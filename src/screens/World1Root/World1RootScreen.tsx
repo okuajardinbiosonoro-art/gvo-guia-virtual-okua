@@ -13,7 +13,7 @@ const nodeOrbStyle = {
   "--world1-node-kit": `url(${world1RootAssets.nodeKit})`,
 } as NodeOrbStyle;
 
-type World1Concept = "intro" | "relation" | "perception";
+type World1Concept = "intro" | "relation" | "perception" | "mediation";
 type World1NodeState = "locked" | "available" | "active" | "completed";
 
 type World1Node = {
@@ -64,6 +64,12 @@ const copyByConcept: Record<
       "Una planta puede parecer quieta, pero eso no significa que esté inactiva.",
     body: "Percibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.",
   },
+  mediation: {
+    eyebrow: "MEDIACIÓN",
+    title:
+      "Mediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.",
+    body: "OKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.",
+  },
 };
 
 function getNodeState(
@@ -82,11 +88,15 @@ function getNodeState(
     return nodeId === "perception" ? "available" : "locked";
   }
 
-  if (nodeId === "relation") {
-    return "completed";
+  if (concept === "perception") {
+    if (nodeId === "relation") {
+      return "completed";
+    }
+
+    return nodeId === "perception" ? "active" : "available";
   }
 
-  return nodeId === "perception" ? "active" : "locked";
+  return nodeId === "mediation" ? "active" : "completed";
 }
 
 export function World1RootScreen() {
@@ -97,26 +107,29 @@ export function World1RootScreen() {
       ? null
       : {
           concept: activeConcept,
-          asset:
-            activeConcept === "relation"
-              ? world1RootAssets.activeRelation
-              : world1RootAssets.activePerception,
+          asset: {
+            relation: world1RootAssets.activeRelation,
+            perception: world1RootAssets.activePerception,
+            mediation: world1RootAssets.activeMediation,
+          }[activeConcept],
         };
   const liaAssetByConcept: Record<World1Concept, string> = {
     intro: world1RootAssets.liaIdle,
     relation: world1RootAssets.liaPointRelation,
     perception: world1RootAssets.liaLookPerception,
+    mediation: world1RootAssets.liaGuideMediation,
   };
   const liaPoseByConcept: Record<World1Concept, string> = {
     intro: "idle",
     relation: "point_relation",
     perception: "look_perception",
+    mediation: "guide_mediation",
   };
 
   return (
     <main
       className="world1-root-screen"
-      data-world1-root-version="004E-3A-static-perception"
+      data-world1-root-version="004E-4A-static-mediation"
       data-world1-root-state={activeConcept}
       aria-labelledby="world1-root-title"
     >
@@ -183,9 +196,7 @@ export function World1RootScreen() {
             const nodeState = getNodeState(node.id, activeConcept);
             const isLocked = nodeState === "locked";
             const isPressed = nodeState === "active";
-            const isClickable =
-              node.id === "relation" ||
-              (node.id === "perception" && activeConcept !== "intro");
+            const isClickable = nodeState === "available" || isPressed;
 
             return (
               <button
@@ -195,14 +206,18 @@ export function World1RootScreen() {
                 data-world1-root-node={node.id}
                 data-node-state={nodeState}
                 aria-label={isLocked ? node.lockedName : node.accessibleName}
-                aria-disabled={isLocked ? "true" : undefined}
+                aria-disabled={!isClickable ? "true" : undefined}
                 aria-pressed={isClickable ? isPressed : undefined}
-                disabled={isLocked}
+                disabled={!isClickable}
                 onClick={
                   isClickable
                     ? () =>
                         setActiveConcept(
-                          node.id === "perception" ? "perception" : "relation",
+                          node.id === "mediation"
+                            ? "mediation"
+                            : node.id === "perception"
+                              ? "perception"
+                              : "relation",
                         )
                     : undefined
                 }

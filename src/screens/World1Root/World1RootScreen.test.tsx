@@ -168,7 +168,7 @@ describe("World1RootScreen", () => {
     ).toBeDisabled();
   });
 
-  it("activa PERCEPCIÓN solo después de RELACIÓN con raíz, Lía y copy propios", () => {
+  it("activa PERCEPCIÓN despues de RELACIÓN y deja MEDIACIÓN disponible", () => {
     const { container } = render(<World1RootScreen />);
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
@@ -186,10 +186,11 @@ describe("World1RootScreen", () => {
       screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
     ).toHaveAttribute("aria-pressed", "true");
     expect(
-      screen.getByRole("button", {
-        name: "MEDIACIÓN bloqueada en esta fase",
-      }),
-    ).toBeDisabled();
+      screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
+    ).toHaveAttribute("data-node-state", "available");
+    expect(
+      screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
+    ).not.toBeDisabled();
 
     expect(
       screen.getByText(
@@ -225,7 +226,71 @@ describe("World1RootScreen", () => {
     expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
   });
 
-  it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa", () => {
+  it("activa MEDIACIÓN solo después de PERCEPCIÓN con raíz, Lía y copy propios", () => {
+    const { container } = render(<World1RootScreen />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
+
+    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
+      "data-node-state",
+      "completed",
+    );
+    expect(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
+    expect(
+      screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
+    ).toHaveAttribute("data-node-state", "active");
+    expect(
+      screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      screen.getByText(
+        "Mediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeMediation}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-root-active="mediation"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeRelation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activePerception}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaGuideMediation}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-lia-pose="guide_mediation"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.exitPath}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaTeleportOut}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+  });
+
+  it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa antes de PERCEPCIÓN", () => {
     const { container } = render(<World1RootScreen />);
 
     fireEvent.click(
@@ -245,6 +310,21 @@ describe("World1RootScreen", () => {
     expect(container.querySelector("[data-world1-root-active]")).not.toBeInTheDocument();
     expect(
       container.querySelector('[data-world1-lia-pose="point_relation"]'),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "MEDIACIÓN bloqueada en esta fase",
+      }),
+    );
+
+    expect(screen.getAllByText("RELACIÓN").length).toBeGreaterThanOrEqual(2);
+    expect(
+      container.querySelector('[data-world1-root-active="mediation"]'),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-lia-pose="guide_mediation"]'),
     ).not.toBeInTheDocument();
   });
 

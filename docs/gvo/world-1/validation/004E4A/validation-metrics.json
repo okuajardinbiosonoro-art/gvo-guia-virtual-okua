@@ -1,0 +1,577 @@
+{
+  "route": "/estacion/1",
+  "generatedAt": "2026-06-06T17:27:59.554Z",
+  "viewports": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "label": "intro",
+      "state": "intro",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": null,
+      "activeRootAsset": null,
+      "liaPose": "idle",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "label": "relation_active",
+      "state": "relation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "relation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "label": "perception_active",
+      "state": "perception",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "perception",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "liaPose": "look_perception",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "label": "mediation_active",
+      "state": "mediation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "mediation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "liaPose": "guide_mediation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "intro",
+      "state": "intro",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": null,
+      "activeRootAsset": null,
+      "liaPose": "idle",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "relation_active",
+      "state": "relation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "relation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "perception_active",
+      "state": "perception",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "perception",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "liaPose": "look_perception",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "mediation_active",
+      "state": "mediation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "mediation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "liaPose": "guide_mediation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "label": "intro",
+      "state": "intro",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": null,
+      "activeRootAsset": null,
+      "liaPose": "idle",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMundo I: Raíz\n\nAntes de escuchar, necesitamos aprender a mirar.\n\nMundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "label": "relation_active",
+      "state": "relation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "relation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nRELACIÓN\n\nLa planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.\n\nAntes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "label": "perception_active",
+      "state": "perception",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "perception",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "liaPose": "look_perception",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nPERCEPCIÓN\n\nUna planta puede parecer quieta, pero eso no significa que esté inactiva.\n\nPercibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "label": "mediation_active",
+      "state": "mediation",
+      "version": "004E-4A-static-mediation",
+      "activeRoot": "mediation",
+      "activeRootAsset": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "liaPose": "guide_mediation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "continueDisabled": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasDevUi": false,
+      "horizontalOverflow": false,
+      "text": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nMEDIACIÓN\n\nMediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.\n\nOKÚA no reemplaza la planta ni habla por ella. Ayuda a percibir, con respeto, algo que necesita una mediación para volverse sensible.\n\nContinuar",
+      "nodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\world-1\\validation\\004E4A\\intro_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\world-1\\validation\\004E4A\\relation_active_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\world-1\\validation\\004E4A\\perception_active_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\world-1\\validation\\004E4A\\mediation_active_390x844.png"
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "passed": true,
+      "finalState": "mediation",
+      "finalActiveRoot": "mediation",
+      "finalLiaPose": "guide_mediation",
+      "finalNodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "finalState": "mediation",
+      "finalActiveRoot": "mediation",
+      "finalLiaPose": "guide_mediation",
+      "finalNodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "passed": true,
+      "finalState": "mediation",
+      "finalActiveRoot": "mediation",
+      "finalLiaPose": "guide_mediation",
+      "finalNodes": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "disabled": true,
+          "ariaPressed": null
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true"
+        }
+      ]
+    }
+  ],
+  "devLayoutRouteStatus": {
+    "title": "GVO - Guia Virtual OKUA",
+    "hasCalibrator": true
+  },
+  "failures": []
+}
