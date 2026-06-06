@@ -94,4 +94,13 @@ describe("World1RootScreen", () => {
     expect(button).toBeDisabled();
     expect((button as HTMLButtonElement).onclick).toBeNull();
   });
+
+  it("no muestra controles ni guias de calibracion en runtime", () => {
+    render(<World1RootScreen />);
+
+    expect(screen.queryByText("Calibración Mundo I")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("plantX")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("rootOriginX")).not.toBeInTheDocument();
+    expect(screen.queryByText(/--world1-root-origin-x/)).not.toBeInTheDocument();
+  });
 });

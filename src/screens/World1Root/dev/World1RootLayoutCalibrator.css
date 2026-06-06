@@ -1,0 +1,397 @@
+.world1-calibrator {
+  min-width: 320px;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: max(10px, env(safe-area-inset-top)) 10px
+    max(10px, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  color: #fff3c8;
+  background: #100a06;
+  font-family: var(--gvo-font-body);
+}
+
+.world1-calibrator__preview {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.world1-calibrator__stage {
+  position: relative;
+  width: min(100%, 430px);
+  max-height: 72svh;
+  aspect-ratio: 941 / 1672;
+  overflow: hidden;
+  border: 1px solid rgb(245 205 120 / 28%);
+  border-radius: 8px;
+  background: #17100a;
+  box-shadow: 0 18px 54px rgb(0 0 0 / 42%);
+  isolation: isolate;
+}
+
+.world1-calibrator__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.world1-calibrator__layer--background {
+  z-index: 0;
+}
+
+.world1-calibrator__layer--ambient {
+  z-index: 1;
+  object-fit: contain;
+  opacity: 0.82;
+}
+
+.world1-calibrator__roots {
+  position: absolute;
+  z-index: 2;
+  top: var(--cal-roots-top);
+  left: 50%;
+  width: var(--cal-roots-width);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.world1-calibrator__plant {
+  position: absolute;
+  z-index: 3;
+  top: var(--cal-plant-y);
+  left: var(--cal-plant-x);
+  width: var(--cal-plant-width);
+  height: auto;
+  transform: translate(
+    calc(-1 * var(--cal-plant-anchor-x)),
+    calc(-1 * var(--cal-plant-anchor-y))
+  );
+  transform-origin: var(--cal-plant-anchor-x) var(--cal-plant-anchor-y);
+  pointer-events: none;
+  user-select: none;
+}
+
+.world1-calibrator__lia {
+  position: absolute;
+  z-index: 5;
+  top: 12.5%;
+  right: 8%;
+  width: 25%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.world1-calibrator__nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.world1-calibrator__node {
+  position: absolute;
+  width: 88px;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: #ffe7a1;
+  text-align: center;
+  text-shadow:
+    0 1px 0 rgb(31 16 5 / 92%),
+    0 0 12px rgb(237 166 64 / 42%);
+}
+
+.world1-calibrator__node--relation {
+  top: var(--cal-node-relation-top);
+  left: var(--cal-node-relation-x);
+}
+
+.world1-calibrator__node--perception {
+  top: var(--cal-node-perception-top);
+  left: var(--cal-node-perception-x);
+  transform: translateX(-50%);
+}
+
+.world1-calibrator__node--mediation {
+  top: var(--cal-node-mediation-top);
+  right: var(--cal-node-mediation-x);
+}
+
+.world1-calibrator__node-label {
+  order: -1;
+  padding: 4px 6px;
+  border: 1px solid rgb(249 215 139 / 34%);
+  border-radius: 4px;
+  background: rgb(18 10 4 / 54%);
+  color: #fff0b8;
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.66rem, 2.8vw, 0.82rem);
+  font-weight: var(--gvo-font-weight-semibold);
+  line-height: var(--gvo-line-height-ui);
+  letter-spacing: 0;
+}
+
+.world1-calibrator__orb {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-image: var(--cal-node-kit);
+  background-repeat: no-repeat;
+  background-size: 238px 423px;
+}
+
+.world1-calibrator__orb--locked {
+  background-position: 2px -180px;
+}
+
+.world1-calibrator__orb--available {
+  background-position: -57px -181px;
+}
+
+.world1-calibrator__guides,
+.world1-calibrator__anchor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.world1-calibrator__guide-center {
+  stroke: rgb(255 255 255 / 42%);
+  stroke-dasharray: 1 2;
+  stroke-width: 0.18;
+}
+
+.world1-calibrator__guide-connector {
+  stroke: #f7c36d;
+  stroke-width: 0.24;
+}
+
+.world1-calibrator__anchor {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 2px solid;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__anchor::before,
+.world1-calibrator__anchor::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.world1-calibrator__anchor::before {
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__anchor::after {
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__anchor--root {
+  top: var(--cal-root-origin-y);
+  left: var(--cal-root-origin-x);
+  color: #41e6ff;
+  border-color: #41e6ff;
+}
+
+.world1-calibrator__anchor--plant {
+  top: var(--cal-plant-y);
+  left: var(--cal-plant-x);
+  width: 8px;
+  height: 8px;
+  color: #ff4f83;
+  border-color: #ff4f83;
+}
+
+.world1-calibrator__panel {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.world1-calibrator__header {
+  display: grid;
+  gap: 4px;
+}
+
+.world1-calibrator__header h1,
+.world1-calibrator__exports h2 {
+  margin: 0;
+  font-family: var(--gvo-font-heading);
+  font-weight: var(--gvo-font-weight-semibold);
+  letter-spacing: 0;
+}
+
+.world1-calibrator__header h1 {
+  color: #fff5c9;
+  font-size: clamp(1rem, 4.1vw, 1.25rem);
+}
+
+.world1-calibrator__header p {
+  margin: 0;
+  color: rgb(255 234 188 / 82%);
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.76rem, 3vw, 0.9rem);
+}
+
+.world1-calibrator__fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 9px;
+  border: 1px solid rgb(255 216 139 / 24%);
+  border-radius: 8px;
+  background: rgb(28 17 8 / 78%);
+}
+
+.world1-calibrator__fieldset legend {
+  padding: 0 5px;
+  color: #f7c36d;
+  font-family: var(--gvo-font-ui);
+  font-size: 0.76rem;
+  font-weight: var(--gvo-font-weight-semibold);
+}
+
+.world1-calibrator__preset-row,
+.world1-calibrator__toggle-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.world1-calibrator__preset,
+.world1-calibrator__toggle,
+.world1-calibrator__control {
+  font-family: var(--gvo-font-ui);
+  font-size: 0.76rem;
+}
+
+.world1-calibrator__preset {
+  min-height: 30px;
+  border: 1px solid rgb(255 223 156 / 34%);
+  border-radius: 4px;
+  color: #fff0b8;
+  background: rgb(58 36 16 / 82%);
+}
+
+.world1-calibrator__toggle {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  align-items: center;
+  color: #fff0b8;
+}
+
+.world1-calibrator__control {
+  display: grid;
+  grid-template-columns: minmax(104px, 1fr) minmax(110px, 2fr) 72px;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  margin: 7px 0;
+  color: #fff0b8;
+}
+
+.world1-calibrator__control input[type="range"] {
+  width: 100%;
+}
+
+.world1-calibrator__control input[type="number"] {
+  width: 100%;
+  min-height: 28px;
+  border: 1px solid rgb(255 223 156 / 30%);
+  border-radius: 4px;
+  color: #fff0b8;
+  background: rgb(10 6 3 / 78%);
+  font: inherit;
+}
+
+.world1-calibrator__exports {
+  display: grid;
+  gap: 7px;
+}
+
+.world1-calibrator__exports h2 {
+  color: #f7c36d;
+  font-size: 0.82rem;
+}
+
+.world1-calibrator__exports pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 10px;
+  overflow-x: auto;
+  border: 1px solid rgb(255 216 139 / 20%);
+  border-radius: 6px;
+  color: #fff4d6;
+  background: rgb(5 4 3 / 82%);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+@media (width >= 900px) {
+  .world1-calibrator {
+    grid-template-columns: minmax(360px, 430px) minmax(420px, 1fr);
+    align-items: start;
+  }
+
+  .world1-calibrator__stage {
+    max-height: calc(100svh - 20px);
+  }
+}
+
+@media (width <= 374px) {
+  .world1-calibrator__stage {
+    width: min(100%, 360px);
+  }
+
+  .world1-calibrator__node {
+    width: 76px;
+  }
+
+  .world1-calibrator__orb {
+    width: 56px;
+    height: 56px;
+    background-size: 215px 382px;
+  }
+
+  .world1-calibrator__orb--locked {
+    background-position: 2px -162px;
+  }
+
+  .world1-calibrator__orb--available {
+    background-position: -51px -163px;
+  }
+
+  .world1-calibrator__control {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .world1-calibrator__control span {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,176 @@
+[
+  {
+    "viewport": {
+      "name": "360x800",
+      "width": 360,
+      "height": 800
+    },
+    "route": {
+      "id": "station",
+      "url": "/estacion/1"
+    },
+    "metrics": {
+      "pathname": "/estacion/1",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "overflowX": false,
+      "hasCalibrator": false,
+      "hasCalibratorStage": false,
+      "hasStationStage": true,
+      "hasPlantControl": false,
+      "hasRootControl": false,
+      "hasCssExport": false,
+      "hasJsonExport": false,
+      "hasGuides": false,
+      "hasAnchorDots": false,
+      "hasContinueDisabled": true,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "360x800",
+      "width": 360,
+      "height": 800
+    },
+    "route": {
+      "id": "calibrator",
+      "url": "/dev/world1-root-layout"
+    },
+    "metrics": {
+      "pathname": "/dev/world1-root-layout",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "overflowX": false,
+      "hasCalibrator": true,
+      "hasCalibratorStage": true,
+      "hasStationStage": false,
+      "hasPlantControl": true,
+      "hasRootControl": true,
+      "hasCssExport": true,
+      "hasJsonExport": true,
+      "hasGuides": true,
+      "hasAnchorDots": true,
+      "hasContinueDisabled": false,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "route": {
+      "id": "station",
+      "url": "/estacion/1"
+    },
+    "metrics": {
+      "pathname": "/estacion/1",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "overflowX": false,
+      "hasCalibrator": false,
+      "hasCalibratorStage": false,
+      "hasStationStage": true,
+      "hasPlantControl": false,
+      "hasRootControl": false,
+      "hasCssExport": false,
+      "hasJsonExport": false,
+      "hasGuides": false,
+      "hasAnchorDots": false,
+      "hasContinueDisabled": true,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "route": {
+      "id": "calibrator",
+      "url": "/dev/world1-root-layout"
+    },
+    "metrics": {
+      "pathname": "/dev/world1-root-layout",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "overflowX": false,
+      "hasCalibrator": true,
+      "hasCalibratorStage": true,
+      "hasStationStage": false,
+      "hasPlantControl": true,
+      "hasRootControl": true,
+      "hasCssExport": true,
+      "hasJsonExport": true,
+      "hasGuides": true,
+      "hasAnchorDots": true,
+      "hasContinueDisabled": false,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932
+    },
+    "route": {
+      "id": "station",
+      "url": "/estacion/1"
+    },
+    "metrics": {
+      "pathname": "/estacion/1",
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "overflowX": false,
+      "hasCalibrator": false,
+      "hasCalibratorStage": false,
+      "hasStationStage": true,
+      "hasPlantControl": false,
+      "hasRootControl": false,
+      "hasCssExport": false,
+      "hasJsonExport": false,
+      "hasGuides": false,
+      "hasAnchorDots": false,
+      "hasContinueDisabled": true,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932
+    },
+    "route": {
+      "id": "calibrator",
+      "url": "/dev/world1-root-layout"
+    },
+    "metrics": {
+      "pathname": "/dev/world1-root-layout",
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "overflowX": false,
+      "hasCalibrator": true,
+      "hasCalibratorStage": true,
+      "hasStationStage": false,
+      "hasPlantControl": true,
+      "hasRootControl": true,
+      "hasCssExport": true,
+      "hasJsonExport": true,
+      "hasGuides": true,
+      "hasAnchorDots": true,
+      "hasContinueDisabled": false,
+      "audioCount": 0,
+      "videoCount": 0
+    }
+  }
+]
