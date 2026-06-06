@@ -18,8 +18,10 @@
   width: min(100%, 430px);
   max-height: calc(100svh - 20px);
   aspect-ratio: 941 / 1672;
-  --world1-plant-x: 49.6%;
-  --world1-plant-top: 11.2%;
+  --world1-root-origin-x: 50.8%;
+  --world1-root-origin-y: 35.9%;
+  --world1-plant-anchor-x: 56.9%;
+  --world1-plant-anchor-y: 90.7%;
   --world1-plant-width: 40%;
   --world1-roots-top: 20.3%;
   --world1-roots-width: 100%;
@@ -69,12 +71,16 @@
 .world1-root-plant {
   position: absolute;
   z-index: 3;
-  top: var(--world1-plant-top);
-  left: var(--world1-plant-x);
+  top: var(--world1-root-origin-y);
+  left: var(--world1-root-origin-x);
   width: var(--world1-plant-width);
   height: auto;
-  transform: translateX(-50%);
-  transform-origin: center bottom;
+  transform: translate(
+    calc(-1 * var(--world1-plant-anchor-x)),
+    calc(-1 * var(--world1-plant-anchor-y))
+  );
+  transform-origin: var(--world1-plant-anchor-x)
+    var(--world1-plant-anchor-y);
   pointer-events: none;
   user-select: none;
 }
