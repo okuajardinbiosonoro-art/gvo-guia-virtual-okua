@@ -496,12 +496,14 @@
   font-weight: var(--gvo-font-weight-semibold);
 }
 
+.world1-calibrator__mode-grid,
 .world1-calibrator__state-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
   gap: 7px;
 }
 
+.world1-calibrator__mode-button,
 .world1-calibrator__state-button {
   display: grid;
   gap: 4px;
@@ -515,11 +517,13 @@
   font-family: var(--gvo-font-ui);
 }
 
+.world1-calibrator__mode-button[data-active="true"],
 .world1-calibrator__state-button[data-active="true"] {
   border-color: rgb(255 210 107 / 76%);
   background: rgb(74 48 18 / 82%);
 }
 
+.world1-calibrator__mode-button small,
 .world1-calibrator__state-button small {
   color: rgb(255 234 188 / 72%);
   font-size: 0.68rem;
@@ -529,7 +533,8 @@
 .world1-calibrator__preset-row,
 .world1-calibrator__toggle-grid,
 .world1-calibrator__save-grid,
-.world1-calibrator__state-selects {
+.world1-calibrator__state-selects,
+.world1-calibrator__target-row {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
@@ -540,6 +545,7 @@
 .world1-calibrator__control,
 .world1-calibrator__select-label,
 .world1-calibrator__import,
+.world1-calibrator__helper,
 .world1-calibrator button {
   font-family: var(--gvo-font-ui);
   font-size: 0.76rem;
@@ -552,6 +558,26 @@
   border-radius: 4px;
   color: #fff0b8;
   background: rgb(58 36 16 / 82%);
+}
+
+.world1-calibrator__target-row {
+  margin: 0 0 8px;
+}
+
+.world1-calibrator__target-row button[data-active="true"] {
+  border-color: rgb(255 210 107 / 76%);
+  color: #fff7d2;
+  background: rgb(89 59 23 / 88%);
+}
+
+.world1-calibrator__helper {
+  margin: 0 0 9px;
+  padding: 7px 8px;
+  border: 1px solid rgb(255 223 156 / 18%);
+  border-radius: 6px;
+  color: rgb(255 234 188 / 78%);
+  background: rgb(10 6 3 / 36%);
+  line-height: 1.35;
 }
 
 .world1-calibrator__toggle {

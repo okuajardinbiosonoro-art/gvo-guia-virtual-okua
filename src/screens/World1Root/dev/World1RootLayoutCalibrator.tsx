@@ -30,6 +30,18 @@ type LiaPose =
 
 type ActiveRootId = "relation" | "perception" | "mediation";
 
+type EditorPanel =
+  | "states"
+  | "layers"
+  | "stage"
+  | "base"
+  | "activeRoots"
+  | "nodes"
+  | "lia"
+  | "dialog"
+  | "guides"
+  | "save";
+
 type LayoutValues = {
   stageScale: number;
   stageOffsetY: number;
@@ -172,6 +184,63 @@ const visualStates: ReadonlyArray<{
     id: "all_roots_reference",
     label: "all_roots_reference",
     description: "Referencia diagnostica con raices superpuestas.",
+  },
+];
+
+const editorPanels: ReadonlyArray<{
+  id: EditorPanel;
+  label: string;
+  description: string;
+}> = [
+  {
+    id: "states",
+    label: "Estado",
+    description: "Elegir preview y preset.",
+  },
+  {
+    id: "layers",
+    label: "Capas",
+    description: "Mostrar solo lo necesario.",
+  },
+  {
+    id: "stage",
+    label: "Stage",
+    description: "Escala y encuadre global.",
+  },
+  {
+    id: "base",
+    label: "Base",
+    description: "Planta, ancla y raiz base.",
+  },
+  {
+    id: "activeRoots",
+    label: "Raices activas",
+    description: "RELACION, PERCEPCION o MEDIACION.",
+  },
+  {
+    id: "nodes",
+    label: "Nodos",
+    description: "Posicion, escala y estado.",
+  },
+  {
+    id: "lia",
+    label: "Lia",
+    description: "Pose y tamano por estado.",
+  },
+  {
+    id: "dialog",
+    label: "Dialogo",
+    description: "Panel inferior y copy.",
+  },
+  {
+    id: "guides",
+    label: "Guias",
+    description: "Anclas y cajas de ayuda.",
+  },
+  {
+    id: "save",
+    label: "Guardar",
+    description: "LocalStorage y export.",
   },
 ];
 
@@ -545,70 +614,82 @@ const controlGroups: ReadonlyArray<{
   {
     title: "Escena / Stage",
     controls: [
-      { key: "stageScale", label: "stageScale", min: 0.86, max: 1.08, step: 0.01 },
-      { key: "stageOffsetY", label: "stageOffsetY", min: -80, max: 80, step: 1 },
+      {
+        key: "stageScale",
+        label: "stageScale",
+        min: 0.6,
+        max: 1.35,
+        step: 0.01,
+      },
+      {
+        key: "stageOffsetY",
+        label: "stageOffsetY",
+        min: -180,
+        max: 220,
+        step: 1,
+      },
     ],
   },
   {
     title: "Planta y raiz base",
     controls: [
-      { key: "plantX", label: "plantX", min: 35, max: 65, step: 0.1 },
-      { key: "plantY", label: "plantY", min: 20, max: 45, step: 0.1 },
-      { key: "plantWidth", label: "plantWidth", min: 25, max: 56, step: 0.1 },
-      { key: "plantAnchorX", label: "plantAnchorX", min: 40, max: 70, step: 0.1 },
-      { key: "plantAnchorY", label: "plantAnchorY", min: 75, max: 100, step: 0.1 },
-      { key: "rootOriginX", label: "rootOriginX", min: 42, max: 58, step: 0.1 },
-      { key: "rootOriginY", label: "rootOriginY", min: 25, max: 45, step: 0.1 },
-      { key: "rootsTop", label: "rootsTop", min: 10, max: 32, step: 0.1 },
-      { key: "rootsWidth", label: "rootsWidth", min: 82, max: 116, step: 0.1 },
+      { key: "plantX", label: "plantX", min: -10, max: 110, step: 0.1 },
+      { key: "plantY", label: "plantY", min: -10, max: 110, step: 0.1 },
+      { key: "plantWidth", label: "plantWidth", min: 8, max: 95, step: 0.1 },
+      { key: "plantAnchorX", label: "plantAnchorX", min: 0, max: 130, step: 0.1 },
+      { key: "plantAnchorY", label: "plantAnchorY", min: 0, max: 130, step: 0.1 },
+      { key: "rootOriginX", label: "rootOriginX", min: -10, max: 110, step: 0.1 },
+      { key: "rootOriginY", label: "rootOriginY", min: -10, max: 110, step: 0.1 },
+      { key: "rootsTop", label: "rootsTop", min: -20, max: 95, step: 0.1 },
+      { key: "rootsWidth", label: "rootsWidth", min: 35, max: 170, step: 0.1 },
     ],
   },
   {
     title: "Raices activas",
     controls: [
-      { key: "activeRelationX", label: "activeRelationX", min: 35, max: 65, step: 0.1 },
-      { key: "activeRelationY", label: "activeRelationY", min: 35, max: 65, step: 0.1 },
-      { key: "activeRelationWidth", label: "activeRelationWidth", min: 70, max: 115, step: 0.1 },
+      { key: "activeRelationX", label: "activeRelationX", min: -40, max: 140, step: 0.1 },
+      { key: "activeRelationY", label: "activeRelationY", min: -40, max: 160, step: 0.1 },
+      { key: "activeRelationWidth", label: "activeRelationWidth", min: 20, max: 220, step: 0.1 },
       { key: "activeRelationOpacity", label: "activeRelationOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "activePerceptionX", label: "activePerceptionX", min: 35, max: 65, step: 0.1 },
-      { key: "activePerceptionY", label: "activePerceptionY", min: 35, max: 65, step: 0.1 },
-      { key: "activePerceptionWidth", label: "activePerceptionWidth", min: 70, max: 115, step: 0.1 },
+      { key: "activePerceptionX", label: "activePerceptionX", min: -40, max: 140, step: 0.1 },
+      { key: "activePerceptionY", label: "activePerceptionY", min: -40, max: 160, step: 0.1 },
+      { key: "activePerceptionWidth", label: "activePerceptionWidth", min: 20, max: 220, step: 0.1 },
       { key: "activePerceptionOpacity", label: "activePerceptionOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "activeMediationX", label: "activeMediationX", min: 35, max: 65, step: 0.1 },
-      { key: "activeMediationY", label: "activeMediationY", min: 35, max: 65, step: 0.1 },
-      { key: "activeMediationWidth", label: "activeMediationWidth", min: 70, max: 115, step: 0.1 },
+      { key: "activeMediationX", label: "activeMediationX", min: -40, max: 140, step: 0.1 },
+      { key: "activeMediationY", label: "activeMediationY", min: -40, max: 160, step: 0.1 },
+      { key: "activeMediationWidth", label: "activeMediationWidth", min: 20, max: 220, step: 0.1 },
       { key: "activeMediationOpacity", label: "activeMediationOpacity", min: 0, max: 1, step: 0.01 },
     ],
   },
   {
     title: "Nodos",
     controls: [
-      { key: "nodeRelationX", label: "nodeRelationX", min: 0, max: 24, step: 0.1 },
-      { key: "nodeRelationY", label: "nodeRelationY", min: 48, max: 74, step: 0.1 },
-      { key: "nodeRelationScale", label: "nodeRelationScale", min: 0.72, max: 1.22, step: 0.01 },
-      { key: "nodePerceptionX", label: "nodePerceptionX", min: 35, max: 65, step: 0.1 },
-      { key: "nodePerceptionY", label: "nodePerceptionY", min: 48, max: 74, step: 0.1 },
-      { key: "nodePerceptionScale", label: "nodePerceptionScale", min: 0.72, max: 1.22, step: 0.01 },
-      { key: "nodeMediationX", label: "nodeMediationX", min: 76, max: 100, step: 0.1 },
-      { key: "nodeMediationY", label: "nodeMediationY", min: 48, max: 74, step: 0.1 },
-      { key: "nodeMediationScale", label: "nodeMediationScale", min: 0.72, max: 1.22, step: 0.01 },
+      { key: "nodeRelationX", label: "nodeRelationX", min: -25, max: 125, step: 0.1 },
+      { key: "nodeRelationY", label: "nodeRelationY", min: -15, max: 125, step: 0.1 },
+      { key: "nodeRelationScale", label: "nodeRelationScale", min: 0.35, max: 2, step: 0.01 },
+      { key: "nodePerceptionX", label: "nodePerceptionX", min: -25, max: 125, step: 0.1 },
+      { key: "nodePerceptionY", label: "nodePerceptionY", min: -15, max: 125, step: 0.1 },
+      { key: "nodePerceptionScale", label: "nodePerceptionScale", min: 0.35, max: 2, step: 0.01 },
+      { key: "nodeMediationX", label: "nodeMediationX", min: -25, max: 125, step: 0.1 },
+      { key: "nodeMediationY", label: "nodeMediationY", min: -15, max: 125, step: 0.1 },
+      { key: "nodeMediationScale", label: "nodeMediationScale", min: 0.35, max: 2, step: 0.01 },
     ],
   },
   {
     title: "Lia",
     controls: liaPoseSpecs.flatMap((pose) => [
-      { key: pose.xKey, label: pose.xKey, min: 50, max: 92, step: 0.1 },
-      { key: pose.yKey, label: pose.yKey, min: 2, max: 34, step: 0.1 },
-      { key: pose.widthKey, label: pose.widthKey, min: 15, max: 38, step: 0.1 },
+      { key: pose.xKey, label: pose.xKey, min: -25, max: 125, step: 0.1 },
+      { key: pose.yKey, label: pose.yKey, min: -25, max: 125, step: 0.1 },
+      { key: pose.widthKey, label: pose.widthKey, min: 5, max: 75, step: 0.1 },
     ]),
   },
   {
     title: "Dialogo / panel inferior",
     controls: [
-      { key: "dialogPanelY", label: "dialogPanelY", min: 36, max: 64, step: 0.1 },
-      { key: "dialogPanelHeight", label: "dialogPanelHeight", min: 10, max: 28, step: 0.1 },
+      { key: "dialogPanelY", label: "dialogPanelY", min: -10, max: 110, step: 0.1 },
+      { key: "dialogPanelHeight", label: "dialogPanelHeight", min: 4, max: 55, step: 0.1 },
       { key: "dialogPanelOpacity", label: "dialogPanelOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "dialogTextScale", label: "dialogTextScale", min: 0.8, max: 1.2, step: 0.01 },
+      { key: "dialogTextScale", label: "dialogTextScale", min: 0.5, max: 1.8, step: 0.01 },
     ],
   },
 ];
@@ -647,6 +728,27 @@ const guideToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: strin
   { key: "showActiveRootBounds", label: "active root bounds" },
   { key: "showTextSafeZone", label: "text safe zone" },
 ];
+
+const panelGroupTitles: Partial<Record<EditorPanel, string>> = {
+  stage: "Escena / Stage",
+  base: "Planta y raiz base",
+  activeRoots: "Raices activas",
+  nodes: "Nodos",
+  lia: "Lia",
+  dialog: "Dialogo / panel inferior",
+};
+
+const activeRootKeyPrefix: Record<ActiveRootId, string> = {
+  relation: "activeRelation",
+  perception: "activePerception",
+  mediation: "activeMediation",
+};
+
+const nodeKeyPrefix: Record<NodeId, string> = {
+  relation: "nodeRelation",
+  perception: "nodePerception",
+  mediation: "nodeMediation",
+};
 
 function format(value: number) {
   return Number(value.toFixed(2));
@@ -773,6 +875,18 @@ function currentLiaPoseForState(state: VisualState): LiaPose {
   }
 
   return "idle";
+}
+
+function activeRootForState(state: VisualState): ActiveRootId {
+  if (state === "perception_preview") {
+    return "perception";
+  }
+
+  if (state === "mediation_preview") {
+    return "mediation";
+  }
+
+  return "relation";
 }
 
 function makePresetSnapshot(
@@ -902,6 +1016,14 @@ export function World1RootLayoutCalibrator() {
   const [nodeStates, setNodeStates] = useState<NodeStateMap>(() =>
     defaultNodeStatesForState(initialState.visualState),
   );
+  const [activePanel, setActivePanel] = useState<EditorPanel>("activeRoots");
+  const [selectedActiveRoot, setSelectedActiveRoot] = useState<ActiveRootId>(() =>
+    activeRootForState(initialState.visualState),
+  );
+  const [selectedNode, setSelectedNode] = useState<NodeId>("relation");
+  const [selectedLiaPose, setSelectedLiaPose] = useState<LiaPose>(() =>
+    currentLiaPoseForState(initialState.visualState),
+  );
   const [savedPresets, setSavedPresets] =
     useState<SavedPresetMap>(readSavedPresets);
   const [selectedSavedPreset, setSelectedSavedPreset] = useState("");
@@ -917,11 +1039,8 @@ export function World1RootLayoutCalibrator() {
 
     const params = new URLSearchParams();
     params.set("state", visualState);
-    for (const [key, value] of Object.entries(values)) {
-      params.set(key, String(format(value)));
-    }
     window.history.replaceState(null, "", `?${params.toString()}`);
-  }, [values, visualState]);
+  }, [visualState]);
 
   const style = useMemo<CalibratorStyle>(
     () =>
@@ -997,9 +1116,47 @@ export function World1RootLayoutCalibrator() {
 
   const currentLiaPose = currentLiaPoseForState(visualState);
   const currentLiaSpec = liaPoseSpecs.find((pose) => pose.id === currentLiaPose);
+  const selectedActiveRootSpec = activeRootSpecs.find(
+    (root) => root.id === selectedActiveRoot,
+  );
+  const selectedNodeSpec = nodeSpecs.find((node) => node.id === selectedNode);
+  const selectedLiaSpec = liaPoseSpecs.find(
+    (pose) => pose.id === selectedLiaPose,
+  );
   const activeRoots = visibleActiveRootsForState(visualState, toggles);
   const deltaX = ((values.plantX - values.rootOriginX) / 100) * size.width;
   const deltaY = ((values.plantY - values.rootOriginY) / 100) * size.height;
+  const activeGroupTitle = panelGroupTitles[activePanel];
+  const visibleControlGroups = activeGroupTitle
+    ? controlGroups.filter((group) => group.title === activeGroupTitle)
+    : [];
+
+  const getVisibleControls = (group: (typeof controlGroups)[number]) => {
+    if (group.title === "Raices activas") {
+      const prefix = activeRootKeyPrefix[selectedActiveRoot];
+      return group.controls.filter((control) =>
+        String(control.key).startsWith(prefix),
+      );
+    }
+
+    if (group.title === "Nodos") {
+      const prefix = nodeKeyPrefix[selectedNode];
+      return group.controls.filter((control) =>
+        String(control.key).startsWith(prefix),
+      );
+    }
+
+    if (group.title === "Lia" && selectedLiaSpec) {
+      return group.controls.filter(
+        (control) =>
+          control.key === selectedLiaSpec.xKey ||
+          control.key === selectedLiaSpec.yKey ||
+          control.key === selectedLiaSpec.widthKey,
+      );
+    }
+
+    return group.controls;
+  };
 
   const cssExport = [
     "/* Mundo I base */",
@@ -1135,11 +1292,18 @@ export function World1RootLayoutCalibrator() {
     setValues({ ...preset.values });
     setToggles({ ...preset.toggles });
     setNodeStates({ ...preset.nodeStates });
+    setSelectedActiveRoot(activeRootForState(preset.visualState));
+    setSelectedLiaPose(currentLiaPoseForState(preset.visualState));
   };
 
   const changeVisualState = (nextState: VisualState) => {
     setVisualState(nextState);
     setNodeStates(defaultNodeStatesForState(nextState));
+    setSelectedActiveRoot(activeRootForState(nextState));
+    setSelectedLiaPose(currentLiaPoseForState(nextState));
+    if (nextState !== "base_intro") {
+      setActivePanel("activeRoots");
+    }
   };
 
   const saveCurrentPreset = () => {
@@ -1205,6 +1369,84 @@ export function World1RootLayoutCalibrator() {
     persistSavedPresets(nextPresets);
   };
 
+  const focusLayer = (
+    mode: "clean" | "activeRoot" | "lia" | "nodes" | "dialog" | "all",
+  ) => {
+    if (mode === "clean") {
+      setToggles({
+        ...defaultToggles,
+        showGuides: false,
+        showGrid: false,
+        showRootOrigin: false,
+        showPlantAnchor: false,
+        showNodeAnchors: false,
+        showLiaBounds: false,
+        showRootBounds: false,
+        showActiveRootBounds: false,
+        showTextSafeZone: false,
+      });
+      return;
+    }
+
+    if (mode === "activeRoot") {
+      setToggles({
+        ...defaultToggles,
+        showAmbientLight: false,
+        showNodes: false,
+        showLia: false,
+        showDialoguePanel: false,
+        showContinueButton: false,
+        showIntroCopy: false,
+        showRelationCopy: false,
+        showActiveRelation: selectedActiveRoot === "relation",
+        showActivePerception: selectedActiveRoot === "perception",
+        showActiveMediation: selectedActiveRoot === "mediation",
+      });
+      return;
+    }
+
+    if (mode === "lia") {
+      setToggles({
+        ...defaultToggles,
+        showActiveRelation: visualState === "relation_active",
+        showActivePerception: visualState === "perception_preview",
+        showActiveMediation: visualState === "mediation_preview",
+        showNodes: false,
+        showDialoguePanel: false,
+        showContinueButton: false,
+      });
+      return;
+    }
+
+    if (mode === "nodes") {
+      setToggles({
+        ...defaultToggles,
+        showAmbientLight: false,
+        showActiveRelation: false,
+        showActivePerception: false,
+        showActiveMediation: false,
+        showLia: false,
+        showDialoguePanel: false,
+        showContinueButton: false,
+        showNodeAnchors: true,
+      });
+      return;
+    }
+
+    if (mode === "dialog") {
+      setToggles({
+        ...defaultToggles,
+        showActiveRelation: visualState === "relation_active",
+        showActivePerception: visualState === "perception_preview",
+        showActiveMediation: visualState === "mediation_preview",
+        showGuides: false,
+      });
+      return;
+    }
+
+    setToggles(defaultToggles);
+  };
+
   const importFromJson = () => {
     try {
       const parsed = JSON.parse(importJson) as Partial<CalibratorPreset> & {
@@ -1223,6 +1465,8 @@ export function World1RootLayoutCalibrator() {
 
       if (importedState && visualStates.some((state) => state.id === importedState)) {
         setVisualState(importedState);
+        setSelectedActiveRoot(activeRootForState(importedState));
+        setSelectedLiaPose(currentLiaPoseForState(importedState));
       }
 
       if (parsed.toggles) {
@@ -1499,6 +1743,26 @@ export function World1RootLayoutCalibrator() {
           </dl>
         </header>
 
+        <fieldset className="world1-calibrator__fieldset world1-calibrator__workspace">
+          <legend>Que quieres ajustar ahora</legend>
+          <div className="world1-calibrator__mode-grid">
+            {editorPanels.map((panel) => (
+              <button
+                aria-label={`Modo ${panel.label}`}
+                className="world1-calibrator__mode-button"
+                data-active={activePanel === panel.id ? "true" : "false"}
+                key={panel.id}
+                type="button"
+                onClick={() => setActivePanel(panel.id)}
+              >
+                <span>{panel.label}</span>
+                <small>{panel.description}</small>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        {activePanel === "states" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Estados visuales</legend>
           <div className="world1-calibrator__state-grid">
@@ -1516,7 +1780,9 @@ export function World1RootLayoutCalibrator() {
             ))}
           </div>
         </fieldset>
+        ) : null}
 
+        {activePanel === "states" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Presets internos</legend>
           <div className="world1-calibrator__preset-row">
@@ -1532,9 +1798,35 @@ export function World1RootLayoutCalibrator() {
             ))}
           </div>
         </fieldset>
+        ) : null}
 
+        {activePanel === "layers" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Capas visibles</legend>
+          <p className="world1-calibrator__helper">
+            Usa estos enfoques para no calibrar con ruido visual. Ningun boton
+            aplica cambios al runtime ni modifica archivos.
+          </p>
+          <div className="world1-calibrator__preset-row">
+            <button type="button" onClick={() => focusLayer("clean")}>
+              Vista limpia
+            </button>
+            <button type="button" onClick={() => focusLayer("activeRoot")}>
+              Solo raiz activa
+            </button>
+            <button type="button" onClick={() => focusLayer("lia")}>
+              Enfocar Lia
+            </button>
+            <button type="button" onClick={() => focusLayer("nodes")}>
+              Enfocar nodos
+            </button>
+            <button type="button" onClick={() => focusLayer("dialog")}>
+              Enfocar dialogo
+            </button>
+            <button type="button" onClick={() => focusLayer("all")}>
+              Restaurar todo
+            </button>
+          </div>
           <div className="world1-calibrator__toggle-grid">
             {layerToggleControls.map((control) => (
               <label className="world1-calibrator__toggle" key={control.key}>
@@ -1553,7 +1845,9 @@ export function World1RootLayoutCalibrator() {
             ))}
           </div>
         </fieldset>
+        ) : null}
 
+        {activePanel === "layers" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Escena / Stage toggles</legend>
           <div className="world1-calibrator__toggle-grid">
@@ -1574,11 +1868,72 @@ export function World1RootLayoutCalibrator() {
             ))}
           </div>
         </fieldset>
+        ) : null}
 
-        {controlGroups.map((group) => (
+        {visibleControlGroups.map((group) => (
           <fieldset className="world1-calibrator__fieldset" key={group.title}>
             <legend>{group.title}</legend>
-            {group.controls.map((control) => (
+            {group.title === "Raices activas" ? (
+              <div className="world1-calibrator__target-row">
+                {activeRootSpecs.map((root) => (
+                  <button
+                    data-active={selectedActiveRoot === root.id ? "true" : "false"}
+                    key={root.id}
+                    type="button"
+                    onClick={() => setSelectedActiveRoot(root.id)}
+                  >
+                    {root.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+            {group.title === "Nodos" ? (
+              <div className="world1-calibrator__target-row">
+                {nodeSpecs.map((node) => (
+                  <button
+                    data-active={selectedNode === node.id ? "true" : "false"}
+                    key={node.id}
+                    type="button"
+                    onClick={() => setSelectedNode(node.id)}
+                  >
+                    {node.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+            {group.title === "Lia" ? (
+              <div className="world1-calibrator__target-row">
+                {liaPoseSpecs.map((pose) => (
+                  <button
+                    data-active={selectedLiaPose === pose.id ? "true" : "false"}
+                    key={pose.id}
+                    type="button"
+                    onClick={() => setSelectedLiaPose(pose.id)}
+                  >
+                    {pose.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+            {selectedActiveRootSpec && group.title === "Raices activas" ? (
+              <p className="world1-calibrator__helper">
+                Editando {selectedActiveRootSpec.label}. Rango ampliado: X de
+                -40% a 140%, Y de -40% a 160%, width de 20% a 220%.
+              </p>
+            ) : null}
+            {selectedNodeSpec && group.title === "Nodos" ? (
+              <p className="world1-calibrator__helper">
+                Editando nodo {selectedNodeSpec.label}. Los demas nodos quedan
+                visibles como referencia, pero no se muestran sus sliders.
+              </p>
+            ) : null}
+            {selectedLiaSpec && group.title === "Lia" ? (
+              <p className="world1-calibrator__helper">
+                Editando pose {selectedLiaSpec.label}. Cambia de estado visual
+                si quieres ver esta pose en contexto.
+              </p>
+            ) : null}
+            {getVisibleControls(group).map((control) => (
               <NumberControl
                 control={control}
                 key={control.key}
@@ -1614,6 +1969,7 @@ export function World1RootLayoutCalibrator() {
           </fieldset>
         ))}
 
+        {activePanel === "guides" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Guias y debugging</legend>
           <div className="world1-calibrator__toggle-grid">
@@ -1634,9 +1990,16 @@ export function World1RootLayoutCalibrator() {
             ))}
           </div>
         </fieldset>
+        ) : null}
 
+        {activePanel === "save" ? (
         <fieldset className="world1-calibrator__fieldset">
           <legend>Guardar / cargar / exportar</legend>
+          <p className="world1-calibrator__helper">
+            Guardar solo usa el almacenamiento local de este navegador
+            ({LOCAL_STORAGE_KEY}). No modifica archivos del repo, no aplica
+            valores a /estacion/1 y no crea commits.
+          </p>
           <div className="world1-calibrator__save-grid">
             <label className="world1-calibrator__select-label">
               <span>Nombre de preset</span>
@@ -1665,7 +2028,7 @@ export function World1RootLayoutCalibrator() {
           </div>
           <div className="world1-calibrator__preset-row">
             <button type="button" onClick={saveCurrentPreset}>
-              Guardar preset actual
+              Guardar preset local
             </button>
             <button type="button" onClick={loadSavedPreset}>
               Cargar preset guardado
@@ -1696,13 +2059,16 @@ export function World1RootLayoutCalibrator() {
             <p className="world1-calibrator__import-status">{importStatus}</p>
           ) : null}
         </fieldset>
+        ) : null}
 
+        {activePanel === "save" ? (
         <section className="world1-calibrator__exports" aria-label="Exportacion">
           <h2>CSS</h2>
           <pre>{cssExport}</pre>
           <h2>JSON</h2>
           <pre>{jsonExport}</pre>
         </section>
+        ) : null}
       </section>
     </main>
   );

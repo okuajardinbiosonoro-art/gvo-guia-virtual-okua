@@ -7,6 +7,15 @@ Estado del ticket: IMPLEMENTADO COMO HERRAMIENTA DEV.
 
 La ruta `/dev/world1-root-layout` fue ampliada como calibrador avanzado de layout para Mundo I. La ruta real `/estacion/1` no recibio valores finales, controles dev, guias, nuevas interacciones, animacion, teletransporte, particulas, root flow ni focus scaling.
 
+Actualizacion de usabilidad posterior a revision manual:
+
+- La herramienta ya no muestra todos los controles a la vez.
+- El panel se organiza por modos: Estado, Capas, Stage, Base, Raices activas, Nodos, Lia, Dialogo, Guias y Guardar.
+- En Raices activas, Nodos y Lia se selecciona primero el objetivo y luego se muestran solo sus controles.
+- Los rangos de posicion fueron ampliados para poder sacar elementos mucho mas arriba, abajo, izquierda o derecha durante la calibracion.
+- El calibrador ya no reescribe la URL con todos los valores al mover sliders; solo conserva el estado visual seleccionado.
+- Guardar preset usa solo `localStorage` del navegador y no modifica archivos del repo ni aplica valores al runtime.
+
 ## 1. Objetivo
 
 Permitir calibrar visualmente estados internos de Mundo I antes de aplicar cualquier valor al runtime real. La herramienta existe para encontrar composiciones aprobables de manera controlada, exportar CSS/JSON y guardar presets locales de trabajo.
@@ -75,6 +84,7 @@ Planta y raiz base:
 
 Raices activas:
 
+- selector de raiz activa: RELACION, PERCEPCION, MEDIACION
 - `activeRelationX`, `activeRelationY`, `activeRelationWidth`, `activeRelationOpacity`
 - `activePerceptionX`, `activePerceptionY`, `activePerceptionWidth`, `activePerceptionOpacity`
 - `activeMediationX`, `activeMediationY`, `activeMediationWidth`, `activeMediationOpacity`
@@ -82,15 +92,29 @@ Raices activas:
 - `showActivePerception`
 - `showActiveMediation`
 
+Rangos ampliados:
+
+- X: -40% a 140%.
+- Y: -40% a 160%.
+- Width: 20% a 220%.
+
 Nodos:
 
+- selector de nodo: RELACION, PERCEPCION, MEDIACION
 - `nodeRelationX`, `nodeRelationY`, `nodeRelationScale`
 - `nodePerceptionX`, `nodePerceptionY`, `nodePerceptionScale`
 - `nodeMediationX`, `nodeMediationY`, `nodeMediationScale`
 - estados preview: `locked`, `available`, `active`, `completed`
 
+Rangos ampliados:
+
+- X: -25% a 125%.
+- Y: -15% a 125%.
+- Scale: 0.35 a 2.
+
 Lia:
 
+- selector de pose: idle, point relation, look perception, guide mediation, ready continue, exit, teleport out, teleport in relation/perception/mediation
 - `liaIdleX`, `liaIdleY`, `liaIdleWidth`
 - `liaPointRelationX`, `liaPointRelationY`, `liaPointRelationWidth`
 - `liaLookPerceptionX`, `liaLookPerceptionY`, `liaLookPerceptionWidth`
@@ -101,6 +125,12 @@ Lia:
 - `liaTeleportInRelationX`, `liaTeleportInRelationY`, `liaTeleportInRelationWidth`
 - `liaTeleportInPerceptionX`, `liaTeleportInPerceptionY`, `liaTeleportInPerceptionWidth`
 - `liaTeleportInMediationX`, `liaTeleportInMediationY`, `liaTeleportInMediationWidth`
+
+Rangos ampliados:
+
+- X: -25% a 125%.
+- Y: -25% a 125%.
+- Width: 5% a 75%.
 
 Dialogo / panel inferior:
 
@@ -134,13 +164,14 @@ gvo-dev-world1-layout-calibrator-v2
 
 Funciones disponibles:
 
-- Guardar preset actual.
+- Guardar preset local.
 - Cargar preset guardado.
 - Resetear preset guardado.
 - Duplicar preset.
 - Renombrar preset.
 
 Los presets guardados no modifican `/estacion/1`.
+Tampoco modifican archivos del repo; viven en el navegador hasta que el usuario copie/exporte CSS o JSON para un ticket posterior.
 
 ## 8. Exportacion CSS/JSON
 
@@ -261,11 +292,13 @@ http://<IP_DEL_PC>:5173/dev/world1-root-layout
 Flujo recomendado:
 
 1. Elegir estado visual.
-2. Ajustar stage, planta, raiz base, raiz activa, nodo y Lia.
-3. Activar guias necesarias.
-4. Guardar preset local.
-5. Copiar CSS/JSON.
-6. Revisar con el usuario antes de crear un ticket de aplicacion runtime.
+2. Elegir modo de edicion: Capas, Stage, Base, Raices activas, Nodos, Lia, Dialogo, Guias o Guardar.
+3. Si el modo tiene varios objetivos, seleccionar solo la raiz/nodo/pose que se quiere ajustar.
+4. Usar los enfoques de Capas para ver solo lo necesario.
+5. Ajustar valores con el rango ampliado.
+6. Guardar preset local solo si se quiere conservar esa prueba en el navegador.
+7. Copiar CSS/JSON.
+8. Revisar con el usuario antes de crear un ticket de aplicacion runtime.
 
 ## 15. Proxima accion esperada
 
