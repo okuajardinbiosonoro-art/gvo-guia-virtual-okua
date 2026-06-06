@@ -1,0 +1,647 @@
+{
+  "generatedAt": "2026-06-06T18:14:49.960Z",
+  "byScreen": {
+    "Carga Inicial": {
+      "totalAssets": 8,
+      "totalBytes": 3415689,
+      "criticalAssets": 8,
+      "criticalBytes": 3415689,
+      "largest": [
+        {
+          "assetPath": "/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+          "mb": 2.46,
+          "dimensions": "2560x2560",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/plant/plant_growth_4f.png",
+          "mb": 0.55,
+          "dimensions": "3072x768",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/water/water_flow_5f.png",
+          "mb": 0.12,
+          "dimensions": "5120x768",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/ground/ground_halo_01_orbital_ring.png",
+          "mb": 0.06,
+          "dimensions": "960x256",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/sparkles/sparkle_02_amber_small.png",
+          "mb": 0.02,
+          "dimensions": "187x186",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/sparkles/sparkle_03_lilac_medium.png",
+          "mb": 0.02,
+          "dimensions": "240x233",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/sparkles/sparkle_01_lilac_small.png",
+          "mb": 0.02,
+          "dimensions": "189x189",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/loading-initial/sparkles/sparkle_04_micro_white.png",
+          "mb": 0.01,
+          "dimensions": "103x100",
+          "criticality": "critical"
+        }
+      ],
+      "totalKB": 3335.6,
+      "totalMB": 3.26,
+      "criticalKB": 3335.6,
+      "criticalMB": 3.26
+    },
+    "Portada / Intro": {
+      "totalAssets": 26,
+      "totalBytes": 9074641,
+      "criticalAssets": 21,
+      "criticalBytes": 5565693,
+      "largest": [
+        {
+          "assetPath": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+          "mb": 2.92,
+          "dimensions": "941x1672",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png",
+          "mb": 0.69,
+          "dimensions": "1086x1448",
+          "criticality": "secondary"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
+          "mb": 0.69,
+          "dimensions": "1024x1536",
+          "criticality": "secondary"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png",
+          "mb": 0.67,
+          "dimensions": "1086x1448",
+          "criticality": "secondary"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+          "mb": 0.66,
+          "dimensions": "941x1672",
+          "criticality": "secondary"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",
+          "mb": 0.64,
+          "dimensions": "941x1672",
+          "criticality": "secondary"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/portals/portal_1/glow/portal_1_glow_enabled_v1.png",
+          "mb": 0.43,
+          "dimensions": "941x1672",
+          "criticality": "critical"
+        },
+        {
+          "assetPath": "/assets/runtime/cover-intro/locks/lock_soft_gold_v1.png",
+          "mb": 0.42,
+          "dimensions": "941x1672",
+          "criticality": "critical"
+        }
+      ],
+      "totalKB": 8862,
+      "totalMB": 8.65,
+      "criticalKB": 5435.2,
+      "criticalMB": 5.31
+    },
+    "Transición entre mundos": {
+      "totalAssets": 34,
+      "totalBytes": 5405435,
+      "criticalAssets": 8,
+      "criticalBytes": 154422,
+      "largest": [
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/background/transition_root_background_v1.png",
+          "mb": 2.74,
+          "dimensions": "1440x2560",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_states_3f_v1.png",
+          "mb": 0.8,
+          "dimensions": "1536x768",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_master_v1.png",
+          "mb": 0.21,
+          "dimensions": "512x768",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_idle_4f_v1.png",
+          "mb": 0.21,
+          "dimensions": "1024x256",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_activating_v1.png",
+          "mb": 0.2,
+          "dimensions": "512x768",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_open_v1.png",
+          "mb": 0.2,
+          "dimensions": "512x768",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_inactive_v1.png",
+          "mb": 0.2,
+          "dimensions": "512x768",
+          "criticality": "fallback"
+        },
+        {
+          "assetPath": "src/assets/transition-world/root/runtime/lia/lia_transition_root_guide_2f_v1.png",
+          "mb": 0.08,
+          "dimensions": "512x256",
+          "criticality": "fallback"
+        }
+      ],
+      "totalKB": 5278.7,
+      "totalMB": 5.16,
+      "criticalKB": 150.8,
+      "criticalMB": 0.15
+    },
+    "Mundo I: Raíz": {
+      "totalAssets": 19,
+      "totalBytes": 20504191,
+      "criticalAssets": 6,
+      "criticalBytes": 5248402,
+      "largest": [
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
+          "mb": 2.09,
+          "dimensions": "1024x1536",
+          "criticality": "secondary_state"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+          "mb": 2.03,
+          "dimensions": "941x1672",
+          "criticality": "critical_initial"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+          "mb": 1.81,
+          "dimensions": "1024x1536",
+          "criticality": "optional_future"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+          "mb": 1.38,
+          "dimensions": "941x1672",
+          "criticality": "secondary_state"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
+          "mb": 1.28,
+          "dimensions": "1024x1536",
+          "criticality": "optional_future"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+          "mb": 1.26,
+          "dimensions": "941x1672",
+          "criticality": "secondary_state"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+          "mb": 1.24,
+          "dimensions": "941x1672",
+          "criticality": "secondary_state"
+        },
+        {
+          "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+          "mb": 1.17,
+          "dimensions": "927x1295",
+          "criticality": "optional_future"
+        }
+      ],
+      "totalKB": 20023.6,
+      "totalMB": 19.55,
+      "criticalKB": 5125.4,
+      "criticalMB": 5.01
+    }
+  },
+  "largest": [
+    {
+      "screen": "Portada / Intro",
+      "id": "cover_bg_archivo_vivo_base_v1",
+      "assetPath": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "extension": "png",
+      "bytes": 3065328,
+      "kb": 2993.5,
+      "mb": 2.92,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "critical"
+    },
+    {
+      "screen": "Transición entre mundos",
+      "id": "transition_root_background.png",
+      "assetPath": "src/assets/transition-world/root/runtime/background/transition_root_background_v1.png",
+      "fsPath": "src/assets/transition-world/root/runtime/background/transition_root_background_v1.png",
+      "extension": "png",
+      "bytes": 2872308,
+      "kb": 2805,
+      "mb": 2.74,
+      "width": 1440,
+      "height": 2560,
+      "channels": 3,
+      "hasAlpha": false,
+      "format": "png",
+      "criticality": "fallback"
+    },
+    {
+      "screen": "Carga Inicial",
+      "id": "lia_loading_16f",
+      "assetPath": "/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+      "fsPath": "public/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+      "extension": "png",
+      "bytes": 2579756,
+      "kb": 2519.3,
+      "mb": 2.46,
+      "width": 2560,
+      "height": 2560,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "critical"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_exit_path_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
+      "extension": "png",
+      "bytes": 2192494,
+      "kb": 2141.1,
+      "mb": 2.09,
+      "width": 1024,
+      "height": 1536,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary_state"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_background_base_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+      "extension": "png",
+      "bytes": 2127097,
+      "kb": 2077.2,
+      "mb": 2.03,
+      "width": 941,
+      "height": 1672,
+      "channels": 3,
+      "hasAlpha": false,
+      "format": "png",
+      "criticality": "critical_initial"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_teleport_in_perception_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+      "extension": "png",
+      "bytes": 1894782,
+      "kb": 1850.4,
+      "mb": 1.81,
+      "width": 1024,
+      "height": 1536,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_active_mediation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+      "extension": "png",
+      "bytes": 1448327,
+      "kb": 1414.4,
+      "mb": 1.38,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary_state"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_teleport_in_mediation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
+      "extension": "png",
+      "bytes": 1339817,
+      "kb": 1308.4,
+      "mb": 1.28,
+      "width": 1024,
+      "height": 1536,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_active_perception_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+      "extension": "png",
+      "bytes": 1318687,
+      "kb": 1287.8,
+      "mb": 1.26,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary_state"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_active_relation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+      "extension": "png",
+      "bytes": 1300686,
+      "kb": 1270.2,
+      "mb": 1.24,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary_state"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_teleport_in_relation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+      "extension": "png",
+      "bytes": 1230441,
+      "kb": 1201.6,
+      "mb": 1.17,
+      "width": 927,
+      "height": 1295,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_teleport_out_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_out_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_teleport_out_approved_v1.png",
+      "extension": "png",
+      "bytes": 974371,
+      "kb": 951.5,
+      "mb": 0.93,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Transición entre mundos",
+      "id": "portal_root_states_3f.png",
+      "assetPath": "src/assets/transition-world/root/runtime/portal/portal_root_states_3f_v1.png",
+      "fsPath": "src/assets/transition-world/root/runtime/portal/portal_root_states_3f_v1.png",
+      "extension": "png",
+      "bytes": 843737,
+      "kb": 824,
+      "mb": 0.8,
+      "width": 1536,
+      "height": 768,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "fallback"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_ready_continue_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_ready_continue_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_ready_continue_approved_v1.png",
+      "extension": "png",
+      "bytes": 839720,
+      "kb": 820,
+      "mb": 0.8,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary_state"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "world1_root_young_plant_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1.png",
+      "extension": "png",
+      "bytes": 815569,
+      "kb": 796.5,
+      "mb": 0.78,
+      "width": 798,
+      "height": 987,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "critical_initial"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_exit_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_exit_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_exit_approved_v1.png",
+      "extension": "png",
+      "bytes": 763622,
+      "kb": 745.7,
+      "mb": 0.73,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_idle_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+      "extension": "png",
+      "bytes": 737378,
+      "kb": 720.1,
+      "mb": 0.7,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "critical_initial"
+    },
+    {
+      "screen": "Portada / Intro",
+      "id": "lia_pose_explain_calm_v1",
+      "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png",
+      "extension": "png",
+      "bytes": 727614,
+      "kb": 710.6,
+      "mb": 0.69,
+      "width": 1086,
+      "height": 1448,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary"
+    },
+    {
+      "screen": "Portada / Intro",
+      "id": "lia_pose_point_portal_1_v1",
+      "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
+      "extension": "png",
+      "bytes": 720030,
+      "kb": 703.2,
+      "mb": 0.69,
+      "width": 1024,
+      "height": 1536,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary"
+    },
+    {
+      "screen": "Portada / Intro",
+      "id": "lia_pose_greeting_v1",
+      "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png",
+      "extension": "png",
+      "bytes": 702541,
+      "kb": 686.1,
+      "mb": 0.67,
+      "width": 1086,
+      "height": 1448,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_look_perception_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+      "extension": "png",
+      "bytes": 696877,
+      "kb": 680.5,
+      "mb": 0.66,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Portada / Intro",
+      "id": "lia_pose_activate_portal_1_v1",
+      "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+      "extension": "png",
+      "bytes": 691835,
+      "kb": 675.6,
+      "mb": 0.66,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary"
+    },
+    {
+      "screen": "Portada / Intro",
+      "id": "lia_pose_idle_v1",
+      "assetPath": "/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",
+      "fsPath": "public/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",
+      "extension": "png",
+      "bytes": 666928,
+      "kb": 651.3,
+      "mb": 0.64,
+      "width": 941,
+      "height": 1672,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "secondary"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_point_relation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "extension": "png",
+      "bytes": 655978,
+      "kb": 640.6,
+      "mb": 0.63,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    },
+    {
+      "screen": "Mundo I: Raíz",
+      "id": "lia_root_guide_mediation_approved_v1",
+      "assetPath": "/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "fsPath": "public/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+      "extension": "png",
+      "bytes": 599987,
+      "kb": 585.9,
+      "mb": 0.57,
+      "width": 1080,
+      "height": 1920,
+      "channels": 4,
+      "hasAlpha": true,
+      "format": "png",
+      "criticality": "optional_future"
+    }
+  ]
+}

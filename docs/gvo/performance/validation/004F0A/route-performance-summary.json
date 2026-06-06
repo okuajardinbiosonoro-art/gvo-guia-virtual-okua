@@ -1,0 +1,345 @@
+{
+  "generatedAt": "2026-06-06T18:16:24.457Z",
+  "routeSummaries": [
+    {
+      "label": "root-loading",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageResourceCount": 42,
+      "resourceCount": 105,
+      "resourceBytesKB": 6119.7,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "carga",
+      "route": "/carga",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageResourceCount": 42,
+      "resourceCount": 105,
+      "resourceBytesKB": 6119.7,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "carga",
+      "route": "/carga",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageResourceCount": 42,
+      "resourceCount": 105,
+      "resourceBytesKB": 6119.7,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "carga",
+      "route": "/carga",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 11,
+      "imageResourceCount": 42,
+      "resourceCount": 105,
+      "resourceBytesKB": 6119.7,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "portada",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageResourceCount": 53,
+      "resourceCount": 116,
+      "resourceBytesKB": 8189.6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "portada",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageResourceCount": 53,
+      "resourceCount": 116,
+      "resourceBytesKB": 8189.6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "portada",
+      "route": "/portada?resetIntro=1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 24,
+      "imageResourceCount": 53,
+      "resourceCount": 116,
+      "resourceBytesKB": 8189.6,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "transition-runtime",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageResourceCount": 48,
+      "resourceCount": 111,
+      "resourceBytesKB": 3025.4,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "transition-runtime",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageResourceCount": 48,
+      "resourceCount": 111,
+      "resourceBytesKB": 3025.4,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "transition-runtime",
+      "route": "/transition/intro-to-station-1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageResourceCount": 48,
+      "resourceCount": 111,
+      "resourceBytesKB": 3025.4,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "world1-intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageResourceCount": 40,
+      "resourceCount": 103,
+      "resourceBytesKB": 7908.9,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "world1-intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageResourceCount": 40,
+      "resourceCount": 103,
+      "resourceBytesKB": 7908.9,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "world1-intro",
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageResourceCount": 40,
+      "resourceCount": 103,
+      "resourceBytesKB": 7908.9,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "dev-transition-world",
+      "route": "/dev/transition-world",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 15,
+      "imageResourceCount": 48,
+      "resourceCount": 111,
+      "resourceBytesKB": 3025.4,
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    },
+    {
+      "label": "dev-world1-root-layout",
+      "route": "/dev/world1-root-layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "earlyIncompleteImages": 0,
+      "lateIncompleteImages": 0,
+      "visibleImageCount": 5,
+      "imageResourceCount": 40,
+      "resourceCount": 103,
+      "resourceBytesKB": 7908.9,
+      "horizontalOverflow": false,
+      "verticalScroll": true,
+      "hasAudio": false,
+      "hasVideo": false,
+      "hasPlaceholder": false
+    }
+  ],
+  "world1StateSummaries": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "continueRouteStable": true,
+      "readyHorizontalOverflow": false,
+      "readyVerticalScroll": false,
+      "readyIncompleteImages": 1,
+      "readyText": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "continueRouteStable": true,
+      "readyHorizontalOverflow": false,
+      "readyVerticalScroll": false,
+      "readyIncompleteImages": 0,
+      "readyText": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "continueRouteStable": true,
+      "readyHorizontalOverflow": false,
+      "readyVerticalScroll": false,
+      "readyIncompleteImages": 1,
+      "readyText": "RELACIÓN\nPERCEPCIÓN\nMEDIACIÓN\n\nLISTO PARA CONTINUAR\n\nYa recorriste las tres raíces de esta pregunta: relación, percepción y mediación.\n\nAhora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.\n\nLa salida quedará conectada en una fase posterior.\n\nContinuar"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\root-loading_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\carga_360x800.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\carga_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\carga_430x932.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\portada_360x800.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\portada_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\portada_430x932.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\transition-runtime_360x800.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\transition-runtime_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\transition-runtime_430x932.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1-intro_360x800.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1-intro_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1-intro_430x932.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\dev-transition-world_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\dev-world1-root-layout_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1_ready_360x800.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1_ready_390x844.png",
+    "C:\\Users\\JOSE DAVID\\Desktop\\OKÚA\\Aplicaciones\\gvo-guia-virtual-okua\\docs\\gvo\\performance\\validation\\004F0A\\world1_ready_430x932.png"
+  ]
+}
