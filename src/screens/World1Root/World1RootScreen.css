@@ -18,8 +18,8 @@
   width: min(100%, 430px);
   max-height: calc(100svh - 20px);
   aspect-ratio: 941 / 1672;
-  --world1-plant-top: 15.8%;
-  --world1-plant-width: 31%;
+  --world1-plant-top: 12.8%;
+  --world1-plant-width: 40%;
   --world1-roots-top: 20.3%;
   --world1-roots-width: 100%;
   --world1-node-size: 62px;
@@ -109,19 +109,19 @@
 }
 
 .world1-root-node--relation {
-  top: 56%;
-  left: 10%;
+  top: 62%;
+  left: 8%;
 }
 
 .world1-root-node--perception {
-  top: 54%;
+  top: 60%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .world1-root-node--mediation {
-  top: 56%;
-  right: 10%;
+  top: 62%;
+  right: 8%;
 }
 
 .world1-root-node__orb {
@@ -162,9 +162,9 @@
   position: absolute;
   z-index: 6;
   right: 16px;
-  bottom: 74px;
+  bottom: 48px;
   left: 16px;
-  padding: 12px 13px;
+  padding: 10px 13px;
   border: 1px solid rgb(255 225 154 / 22%);
   border-radius: 8px;
   background:
@@ -174,7 +174,7 @@
 }
 
 .world1-root-copy__eyebrow {
-  margin: 0 0 5px;
+  margin: 0 0 4px;
   color: #f7c36d;
   font-family: var(--gvo-font-ui);
   font-size: clamp(0.74rem, 3vw, 0.9rem);
@@ -192,7 +192,7 @@
 }
 
 .world1-root-copy p:last-child {
-  margin: 7px 0 0;
+  margin: 6px 0 0;
   color: rgb(255 243 210 / 86%);
   font-size: clamp(0.78rem, 3.18vw, 0.92rem);
   line-height: 1.33;
@@ -202,7 +202,7 @@
   position: absolute;
   z-index: 7;
   right: 18px;
-  bottom: 20px;
+  bottom: 12px;
   min-width: 118px;
   min-height: 34px;
   padding: 8px 14px;
@@ -245,22 +245,28 @@
   }
 
   .world1-root-node--relation {
-    left: 8%;
+    top: 60%;
+    left: 5%;
+  }
+
+  .world1-root-node--perception {
+    top: 58%;
   }
 
   .world1-root-node--mediation {
-    right: 8%;
+    top: 60%;
+    right: 5%;
   }
 
   .world1-root-copy {
     right: 12px;
-    bottom: 66px;
+    bottom: 48px;
     left: 12px;
-    padding: 10px 11px;
+    padding: 9px 11px;
   }
 
   .world1-root-continue {
     right: 14px;
-    bottom: 16px;
+    bottom: 12px;
   }
 }
