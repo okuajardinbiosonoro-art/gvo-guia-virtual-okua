@@ -114,20 +114,6 @@
   transform: translate(-50%, -50%);
 }
 
-.world1-root-layer--exit-path {
-  z-index: 3;
-  inset: auto;
-  top: var(--world1-exit-path-y);
-  right: auto;
-  bottom: auto;
-  left: var(--world1-exit-path-x);
-  width: var(--world1-exit-path-width);
-  height: auto;
-  object-fit: contain;
-  opacity: var(--world1-exit-path-opacity);
-  transform: translate(-50%, -50%);
-}
-
 .world1-root-plant {
   position: absolute;
   z-index: 4;

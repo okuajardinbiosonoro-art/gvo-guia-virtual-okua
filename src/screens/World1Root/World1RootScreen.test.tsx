@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
 import { World1RootScreen } from "./World1RootScreen";
@@ -337,10 +338,10 @@ describe("World1RootScreen", () => {
       container.querySelector(
         `[data-runtime-asset="${world1RootAssets.exitPath}"]`,
       ),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(
       container.querySelector('[data-world1-exit-path="ready_to_continue"]'),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(
       container.querySelector(
         `[data-runtime-asset="${world1RootAssets.liaReadyContinue}"]`,
@@ -373,6 +374,22 @@ describe("World1RootScreen", () => {
     expect(
       screen.getByText("La salida se activará en una fase posterior."),
     ).toBeInTheDocument();
+  });
+
+  it("mantiene el asset de salida fuera del preload critico ready", () => {
+    expect(world1RootAssets.exitPath).toBe(
+      "/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
+    );
+    expect(screenAssetBundles.world1RootReady.assets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ src: world1RootAssets.liaReadyContinue }),
+      ]),
+    );
+    expect(screenAssetBundles.world1RootReady.assets).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ src: world1RootAssets.exitPath }),
+      ]),
+    );
   });
 
   it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa antes de PERCEPCIÓN", () => {

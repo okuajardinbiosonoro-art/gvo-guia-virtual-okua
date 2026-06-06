@@ -40,10 +40,22 @@ function image(
 const coverRigInitialAssets = [
   image("cover_lia_rig_shadow", coverIntroAssets.liaRigShadow),
   image("cover_lia_rig_body", coverIntroAssets.liaRigBody),
-  image("cover_lia_rig_petal_left_lower", coverIntroAssets.liaRigPetalLeftLower),
-  image("cover_lia_rig_petal_right_lower", coverIntroAssets.liaRigPetalRightLower),
-  image("cover_lia_rig_petal_left_upper", coverIntroAssets.liaRigPetalLeftUpper),
-  image("cover_lia_rig_petal_right_upper", coverIntroAssets.liaRigPetalRightUpper),
+  image(
+    "cover_lia_rig_petal_left_lower",
+    coverIntroAssets.liaRigPetalLeftLower,
+  ),
+  image(
+    "cover_lia_rig_petal_right_lower",
+    coverIntroAssets.liaRigPetalRightLower,
+  ),
+  image(
+    "cover_lia_rig_petal_left_upper",
+    coverIntroAssets.liaRigPetalLeftUpper,
+  ),
+  image(
+    "cover_lia_rig_petal_right_upper",
+    coverIntroAssets.liaRigPetalRightUpper,
+  ),
   image("cover_lia_rig_petal_top", coverIntroAssets.liaRigPetalTop),
   image("cover_lia_rig_collar", coverIntroAssets.liaRigCollar),
   image("cover_lia_rig_collar_glow", coverIntroAssets.liaRigCollarGlow),
@@ -119,11 +131,13 @@ export const screenAssetBundles = {
       ),
       image(
         "transition_progress_track_webp",
-        transitionRootAssetUrlsById.transition_root_progress_track_base.urls.webp,
+        transitionRootAssetUrlsById.transition_root_progress_track_base.urls
+          .webp,
       ),
       image(
         "transition_progress_fill_webp",
-        transitionRootAssetUrlsById.transition_root_progress_fill_segment.urls.webp,
+        transitionRootAssetUrlsById.transition_root_progress_fill_segment.urls
+          .webp,
       ),
       image(
         "transition_progress_spark_png",
@@ -153,7 +167,11 @@ export const screenAssetBundles = {
     description: "Assets del estado RELACION.",
     assets: [
       image("world1_active_relation", world1RootAssets.activeRelation, 1270),
-      image("world1_lia_point_relation", world1RootAssets.liaPointRelation, 641),
+      image(
+        "world1_lia_point_relation",
+        world1RootAssets.liaPointRelation,
+        641,
+      ),
     ],
   },
   world1RootPerception: {
@@ -161,8 +179,16 @@ export const screenAssetBundles = {
     route: "/estacion/1#perception",
     description: "Assets del estado PERCEPCION.",
     assets: [
-      image("world1_active_perception", world1RootAssets.activePerception, 1288),
-      image("world1_lia_look_perception", world1RootAssets.liaLookPerception, 681),
+      image(
+        "world1_active_perception",
+        world1RootAssets.activePerception,
+        1288,
+      ),
+      image(
+        "world1_lia_look_perception",
+        world1RootAssets.liaLookPerception,
+        681,
+      ),
     ],
   },
   world1RootMediation: {
@@ -171,7 +197,11 @@ export const screenAssetBundles = {
     description: "Assets del estado MEDIACION.",
     assets: [
       image("world1_active_mediation", world1RootAssets.activeMediation, 1414),
-      image("world1_lia_guide_mediation", world1RootAssets.liaGuideMediation, 586),
+      image(
+        "world1_lia_guide_mediation",
+        world1RootAssets.liaGuideMediation,
+        586,
+      ),
     ],
   },
   world1RootReady: {
@@ -179,8 +209,11 @@ export const screenAssetBundles = {
     route: "/estacion/1#ready_to_continue",
     description: "Assets del estado LISTO PARA CONTINUAR.",
     assets: [
-      image("world1_exit_path", world1RootAssets.exitPath, 2141),
-      image("world1_lia_ready_continue", world1RootAssets.liaReadyContinue, 820),
+      image(
+        "world1_lia_ready_continue",
+        world1RootAssets.liaReadyContinue,
+        820,
+      ),
     ],
   },
 } as const satisfies Record<ScreenAssetBundleId, ScreenAssetBundle>;
@@ -195,4 +228,3 @@ export function getBundleEstimatedKb(bundle: ScreenAssetBundle) {
     0,
   );
 }
-

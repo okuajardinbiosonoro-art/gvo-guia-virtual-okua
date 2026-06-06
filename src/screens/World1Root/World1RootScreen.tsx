@@ -252,16 +252,6 @@ export function World1RootScreen() {
               }
             />
           ) : null}
-          {isReadyToContinue ? (
-            <img
-              className="world1-root-layer world1-root-layer--exit-path"
-              src={world1RootAssets.exitPath}
-              alt=""
-              aria-hidden="true"
-              data-runtime-asset={world1RootAssets.exitPath}
-              data-world1-exit-path="ready_to_continue"
-            />
-          ) : null}
           <img
             className="world1-root-plant"
             src={world1RootAssets.plant}
