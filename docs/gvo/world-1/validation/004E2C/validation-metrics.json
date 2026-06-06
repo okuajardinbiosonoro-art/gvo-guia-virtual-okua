@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-06-06T16:16:08.901Z",
+  "baseUrl": "http://127.0.0.1:5174",
+  "metrics": [
+    {
+      "route": "/dev/world1-root-layout",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "devState": "perception_preview",
+      "activePerceptionVisible": true,
+      "liaLookPerceptionVisible": true,
+      "activePerceptionControl": true
+    },
+    {
+      "route": "/dev/world1-root-layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "devState": "perception_preview",
+      "activePerceptionVisible": true,
+      "liaLookPerceptionVisible": true,
+      "activePerceptionControl": true
+    },
+    {
+      "route": "/dev/world1-root-layout",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "devState": "perception_preview",
+      "activePerceptionVisible": true,
+      "liaLookPerceptionVisible": true,
+      "activePerceptionControl": true
+    },
+    {
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "devUiVisible": false,
+      "perceptionButtonDisabled": true,
+      "mediationButtonDisabled": true,
+      "activePerceptionRuntime": false,
+      "relationCalibrationVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "devUiVisible": false,
+      "perceptionButtonDisabled": true,
+      "mediationButtonDisabled": true,
+      "activePerceptionRuntime": false,
+      "relationCalibrationVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "devUiVisible": false,
+      "perceptionButtonDisabled": true,
+      "mediationButtonDisabled": true,
+      "activePerceptionRuntime": false,
+      "relationCalibrationVisible": true
+    }
+  ]
+}

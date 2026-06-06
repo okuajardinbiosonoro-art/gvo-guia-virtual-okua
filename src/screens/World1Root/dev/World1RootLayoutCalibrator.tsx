@@ -680,7 +680,7 @@ const controlGroups: ReadonlyArray<{
     controls: liaPoseSpecs.flatMap((pose) => [
       { key: pose.xKey, label: pose.xKey, min: -25, max: 125, step: 0.1 },
       { key: pose.yKey, label: pose.yKey, min: -25, max: 125, step: 0.1 },
-      { key: pose.widthKey, label: pose.widthKey, min: 5, max: 75, step: 0.1 },
+      { key: pose.widthKey, label: pose.widthKey, min: 5, max: 80, step: 0.1 },
     ]),
   },
   {
@@ -1288,18 +1288,22 @@ export function World1RootLayoutCalibrator() {
     };
 
   const applyPreset = (preset: CalibratorPreset) => {
+    const presetActiveRoot = activeRootForState(preset.visualState);
     setVisualState(preset.visualState);
     setValues({ ...preset.values });
     setToggles({ ...preset.toggles });
     setNodeStates({ ...preset.nodeStates });
-    setSelectedActiveRoot(activeRootForState(preset.visualState));
+    setSelectedActiveRoot(presetActiveRoot);
+    setSelectedNode(presetActiveRoot);
     setSelectedLiaPose(currentLiaPoseForState(preset.visualState));
   };
 
   const changeVisualState = (nextState: VisualState) => {
+    const nextActiveRoot = activeRootForState(nextState);
     setVisualState(nextState);
     setNodeStates(defaultNodeStatesForState(nextState));
-    setSelectedActiveRoot(activeRootForState(nextState));
+    setSelectedActiveRoot(nextActiveRoot);
+    setSelectedNode(nextActiveRoot);
     setSelectedLiaPose(currentLiaPoseForState(nextState));
     if (nextState !== "base_intro") {
       setActivePanel("activeRoots");
@@ -1370,7 +1374,7 @@ export function World1RootLayoutCalibrator() {
   };
 
   const focusLayer = (
-    mode: "clean" | "activeRoot" | "lia" | "nodes" | "dialog" | "all",
+    mode: "clean" | "activeRoot" | "perception" | "lia" | "nodes" | "dialog" | "all",
   ) => {
     if (mode === "clean") {
       setToggles({
@@ -1383,6 +1387,33 @@ export function World1RootLayoutCalibrator() {
         showLiaBounds: false,
         showRootBounds: false,
         showActiveRootBounds: false,
+        showTextSafeZone: false,
+      });
+      return;
+    }
+
+    if (mode === "perception") {
+      setVisualState("perception_preview");
+      setNodeStates(defaultNodeStatesForState("perception_preview"));
+      setSelectedActiveRoot("perception");
+      setSelectedNode("perception");
+      setSelectedLiaPose("lookPerception");
+      setActivePanel("activeRoots");
+      setToggles({
+        ...defaultToggles,
+        showActiveRelation: false,
+        showActivePerception: true,
+        showActiveMediation: false,
+        showIntroCopy: false,
+        showRelationCopy: false,
+        showContinueButton: false,
+        showGrid: false,
+        showRootOrigin: true,
+        showPlantAnchor: true,
+        showNodeAnchors: true,
+        showLiaBounds: true,
+        showRootBounds: true,
+        showActiveRootBounds: true,
         showTextSafeZone: false,
       });
       return;
@@ -1464,8 +1495,10 @@ export function World1RootLayoutCalibrator() {
       }
 
       if (importedState && visualStates.some((state) => state.id === importedState)) {
+        const importedActiveRoot = activeRootForState(importedState);
         setVisualState(importedState);
-        setSelectedActiveRoot(activeRootForState(importedState));
+        setSelectedActiveRoot(importedActiveRoot);
+        setSelectedNode(importedActiveRoot);
         setSelectedLiaPose(currentLiaPoseForState(importedState));
       }
 
@@ -1813,6 +1846,9 @@ export function World1RootLayoutCalibrator() {
             </button>
             <button type="button" onClick={() => focusLayer("activeRoot")}>
               Solo raiz activa
+            </button>
+            <button type="button" onClick={() => focusLayer("perception")}>
+              Enfocar PERCEPCION
             </button>
             <button type="button" onClick={() => focusLayer("lia")}>
               Enfocar Lia

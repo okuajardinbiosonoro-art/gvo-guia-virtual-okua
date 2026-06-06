@@ -43,6 +43,7 @@ describe("World1RootLayoutCalibrator", () => {
     fireEvent.click(screen.getByRole("button", { name: "Modo Lia" }));
     expect(screen.getByRole("group", { name: "Lia" })).toBeInTheDocument();
     expect(screen.getByLabelText("liaIdleY")).toHaveAttribute("max", "125");
+    expect(screen.getByLabelText("liaIdleWidth")).toHaveAttribute("max", "80");
 
     fireEvent.click(screen.getByRole("button", { name: "Modo Guardar" }));
     expect(
@@ -68,6 +69,89 @@ describe("World1RootLayoutCalibrator", () => {
     expect(screen.getByLabelText("relation node state")).toHaveValue("active");
     fireEvent.click(screen.getByRole("button", { name: "Modo Guardar" }));
     expect(screen.getByText(/"state": "relation_active"/)).toBeInTheDocument();
+  });
+
+  it("prepara perception_preview con raiz, nodo y Lia look_perception calibrables", () => {
+    render(<World1RootLayoutCalibrator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Modo Estado" }));
+    fireEvent.click(screen.getByRole("button", { name: /perception_preview/i }));
+
+    expect(screen.getByTestId("world1-layout-calibrator")).toHaveAttribute(
+      "data-calibrator-visual-state",
+      "perception_preview",
+    );
+    expect(screen.getByRole("group", { name: "Raices activas" })).toBeInTheDocument();
+    expect(screen.getByLabelText("activePerceptionX")).toHaveAttribute("min", "-40");
+    expect(screen.getByLabelText("activePerceptionY")).toHaveAttribute("max", "160");
+    expect(screen.getByLabelText("activePerceptionWidth")).toHaveAttribute(
+      "max",
+      "220",
+    );
+    expect(screen.getByLabelText("activePerceptionOpacity")).toHaveAttribute(
+      "max",
+      "1",
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Modo Nodos" }));
+    expect(screen.getByRole("button", { name: "PERCEPCION" })).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+    expect(screen.getByLabelText("nodePerceptionX")).toHaveAttribute("min", "-25");
+    expect(screen.getByLabelText("nodePerceptionY")).toHaveAttribute("max", "125");
+    expect(screen.getByLabelText("nodePerceptionScale")).toHaveAttribute(
+      "max",
+      "2",
+    );
+    expect(screen.getByLabelText("perception node state")).toHaveValue("active");
+
+    fireEvent.click(screen.getByRole("button", { name: "Modo Lia" }));
+    expect(screen.getByRole("button", { name: "look perception" })).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+    expect(screen.getByLabelText("liaLookPerceptionX")).toHaveAttribute("min", "-25");
+    expect(screen.getByLabelText("liaLookPerceptionY")).toHaveAttribute("max", "125");
+    expect(screen.getByLabelText("liaLookPerceptionWidth")).toHaveAttribute(
+      "max",
+      "80",
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Modo Capas" }));
+    fireEvent.click(screen.getByRole("button", { name: "Enfocar PERCEPCION" }));
+
+    expect(screen.getByTestId("world1-layout-calibrator")).toHaveAttribute(
+      "data-calibrator-visual-state",
+      "perception_preview",
+    );
+    expect(screen.getByRole("group", { name: "Raices activas" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "PERCEPCION" })).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+    expect(screen.getByLabelText("activePerceptionX")).toBeInTheDocument();
+  });
+
+  it("exporta CSS y JSON con valores editables de PERCEPCION sin aplicarlos", () => {
+    render(<World1RootLayoutCalibrator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Modo Estado" }));
+    fireEvent.click(screen.getByRole("button", { name: /perception_preview/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Modo Guardar" }));
+
+    expect(screen.getByText(/--world1-active-perception-x:/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-active-perception-y:/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-active-perception-width:/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/--world1-active-perception-opacity:/),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/--world1-node-perception-x:/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-lia-lookPerception-x:/)).toBeInTheDocument();
+    expect(screen.getByText(/"state": "perception_preview"/)).toBeInTheDocument();
+    expect(screen.getByText(/"activeRoots"/)).toBeInTheDocument();
+    expect(screen.getByText(/"perception"/)).toBeInTheDocument();
+    expect(screen.getByText(/"lookPerception"/)).toBeInTheDocument();
   });
 
   it("guarda, carga e importa presets locales solo para la ruta dev", () => {
