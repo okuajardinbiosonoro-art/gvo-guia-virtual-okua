@@ -70,9 +70,14 @@
   opacity: 0.94;
 }
 
+.world1-root-layer--active-relation {
+  z-index: 3;
+  object-fit: cover;
+}
+
 .world1-root-plant {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   top: var(--world1-plant-y);
   left: var(--world1-plant-x);
   width: var(--world1-plant-width);
@@ -89,7 +94,7 @@
 
 .world1-root-lia {
   position: absolute;
-  z-index: 5;
+  z-index: 6;
   top: 12.5%;
   right: 8%;
   width: 25%;
@@ -101,21 +106,37 @@
 .world1-root-nodes {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 5;
   pointer-events: none;
 }
 
 .world1-root-node {
   position: absolute;
   width: 88px;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
   display: grid;
   justify-items: center;
   gap: 4px;
   color: #ffe7a1;
+  font: inherit;
   text-align: center;
   text-shadow:
     0 1px 0 rgb(31 16 5 / 92%),
     0 0 12px rgb(237 166 64 / 42%);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.world1-root-node:disabled {
+  cursor: default;
+}
+
+.world1-root-node:focus-visible {
+  outline: 2px solid rgb(255 228 153 / 88%);
+  outline-offset: 4px;
 }
 
 .world1-root-node--relation {
@@ -154,6 +175,10 @@
   background-position: -57px -181px;
 }
 
+.world1-root-node__orb--active {
+  background-position: -116px -181px;
+}
+
 .world1-root-node__label {
   order: -1;
   padding: 4px 6px;
@@ -170,7 +195,7 @@
 
 .world1-root-copy {
   position: absolute;
-  z-index: 6;
+  z-index: 7;
   right: 16px;
   bottom: 48px;
   left: 16px;
@@ -210,7 +235,7 @@
 
 .world1-root-continue {
   position: absolute;
-  z-index: 7;
+  z-index: 8;
   right: 18px;
   bottom: 12px;
   min-width: 118px;
@@ -257,6 +282,10 @@
 
   .world1-root-node__orb--available {
     background-position: -51px -163px;
+  }
+
+  .world1-root-node__orb--active {
+    background-position: -104px -163px;
   }
 
   .world1-root-node--relation {

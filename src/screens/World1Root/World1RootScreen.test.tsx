@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { World1RootScreen } from "./World1RootScreen";
@@ -93,6 +93,90 @@ describe("World1RootScreen", () => {
 
     expect(button).toBeDisabled();
     expect((button as HTMLButtonElement).onclick).toBeNull();
+  });
+
+  it("activa solo RELACIÓN con raíz activa, pose estática y diálogo propio", () => {
+    const { container } = render(<World1RootScreen />);
+
+    const relation = screen.getByRole("button", {
+      name: "Explorar RELACIÓN",
+    });
+    const perception = screen.getByRole("button", {
+      name: "PERCEPCIÓN bloqueada en esta fase",
+    });
+    const mediation = screen.getByRole("button", {
+      name: "MEDIACIÓN bloqueada en esta fase",
+    });
+
+    expect(relation).toHaveAttribute("data-node-state", "available");
+    expect(relation).toHaveAttribute("aria-pressed", "false");
+    expect(perception).toBeDisabled();
+    expect(mediation).toBeDisabled();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeRelation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(relation);
+
+    expect(relation).toHaveAttribute("data-node-state", "active");
+    expect(relation).toHaveAttribute("aria-pressed", "true");
+    expect(perception).toBeDisabled();
+    expect(perception).toHaveAttribute("data-node-state", "locked");
+    expect(mediation).toBeDisabled();
+    expect(mediation).toHaveAttribute("data-node-state", "locked");
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeRelation}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaPointRelation}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("RELACIÓN").length).toBeGreaterThanOrEqual(2);
+    expect(
+      screen.getByText(
+        "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Continuar" }),
+    ).toBeDisabled();
+  });
+
+  it("PERCEPCIÓN y MEDIACIÓN no activan estados propios", () => {
+    const { container } = render(<World1RootScreen />);
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "PERCEPCIÓN bloqueada en esta fase",
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "MEDIACIÓN bloqueada en esta fase",
+      }),
+    );
+
+    expect(
+      screen.getByText("Antes de escuchar, necesitamos aprender a mirar."),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activePerception}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeMediation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-lia-pose="point_relation"]'),
+    ).not.toBeInTheDocument();
   });
 
   it("no muestra controles ni guias de calibracion en runtime", () => {

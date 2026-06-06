@@ -19,6 +19,8 @@ export const world1RootAssets = {
     "/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
   liaIdle:
     "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
+  liaPointRelation:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
 } as const;
 
 export const world1RootRenderedAssetKeys = [
@@ -26,6 +28,8 @@ export const world1RootRenderedAssetKeys = [
   "ambientLight",
   "plant",
   "rootsBase",
+  "activeRelation",
   "nodeKit",
   "liaIdle",
+  "liaPointRelation",
 ] as const;

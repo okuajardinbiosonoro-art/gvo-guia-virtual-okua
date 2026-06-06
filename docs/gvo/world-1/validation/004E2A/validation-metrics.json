@@ -1,0 +1,254 @@
+[
+  {
+    "viewport": {
+      "name": "360x800",
+      "width": 360,
+      "height": 800
+    },
+    "intro": {
+      "pathname": "/estacion/1",
+      "state": "intro",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": false,
+      "liaPose": "idle",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "Antes de escuchar, necesitamos aprender a mirar.",
+      "body": "Mundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.",
+      "audio": 0,
+      "video": 0
+    },
+    "relation": {
+      "pathname": "/estacion/1",
+      "state": "relation",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": true,
+      "activePerceptionOverlay": false,
+      "activeMediationOverlay": false,
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
+      "body": "Antes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.",
+      "audio": 0,
+      "video": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "intro": {
+      "pathname": "/estacion/1",
+      "state": "intro",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": false,
+      "liaPose": "idle",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "Antes de escuchar, necesitamos aprender a mirar.",
+      "body": "Mundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.",
+      "audio": 0,
+      "video": 0
+    },
+    "relation": {
+      "pathname": "/estacion/1",
+      "state": "relation",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": true,
+      "activePerceptionOverlay": false,
+      "activeMediationOverlay": false,
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
+      "body": "Antes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.",
+      "audio": 0,
+      "video": 0
+    }
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932
+    },
+    "intro": {
+      "pathname": "/estacion/1",
+      "state": "intro",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": false,
+      "liaPose": "idle",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "available",
+          "disabled": false,
+          "ariaPressed": "false",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "Antes de escuchar, necesitamos aprender a mirar.",
+      "body": "Mundo I empieza en la raíz: una relación viva que se observa con cuidado antes de ser mediada.",
+      "audio": 0,
+      "video": 0
+    },
+    "relation": {
+      "pathname": "/estacion/1",
+      "state": "relation",
+      "version": "004E-2A-static-relation",
+      "overflowX": false,
+      "hasCalibrator": false,
+      "activeRelationOverlay": true,
+      "activePerceptionOverlay": false,
+      "activeMediationOverlay": false,
+      "liaPose": "point_relation",
+      "liaAsset": "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+      "nodeStates": [
+        {
+          "id": "relation",
+          "state": "active",
+          "disabled": false,
+          "ariaPressed": "true",
+          "text": "RELACIÓN"
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "PERCEPCIÓN"
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "disabled": true,
+          "ariaPressed": null,
+          "text": "MEDIACIÓN"
+        }
+      ],
+      "continueDisabled": true,
+      "title": "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
+      "body": "Antes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.",
+      "audio": 0,
+      "video": 0
+    }
+  }
+]
