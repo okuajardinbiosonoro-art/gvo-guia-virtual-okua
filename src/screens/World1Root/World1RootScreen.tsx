@@ -13,7 +13,8 @@ const nodeOrbStyle = {
   "--world1-node-kit": `url(${world1RootAssets.nodeKit})`,
 } as NodeOrbStyle;
 
-type World1Concept = "intro" | "relation";
+type World1Concept = "intro" | "relation" | "perception";
+type World1NodeState = "locked" | "available" | "active" | "completed";
 
 type World1Node = {
   id: "relation" | "perception" | "mediation";
@@ -57,28 +58,65 @@ const copyByConcept: Record<
       "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
     body: "Antes de interpretar sus señales, observa cómo cada raíz sostiene un vínculo. En OKÚA, escuchar empieza reconociendo esa relación viva.",
   },
+  perception: {
+    eyebrow: "PERCEPCIÓN",
+    title:
+      "Una planta puede parecer quieta, pero eso no significa que esté inactiva.",
+    body: "Percibir empieza cuando miramos con más cuidado: hay procesos vivos que no siempre vemos de inmediato.",
+  },
 };
 
-function getNodeState(nodeId: World1Node["id"], concept: World1Concept) {
-  if (nodeId === "relation") {
-    return concept === "relation" ? "active" : "available";
+function getNodeState(
+  nodeId: World1Node["id"],
+  concept: World1Concept,
+): World1NodeState {
+  if (concept === "intro") {
+    return nodeId === "relation" ? "available" : "locked";
   }
 
-  return "locked";
+  if (concept === "relation") {
+    if (nodeId === "relation") {
+      return "active";
+    }
+
+    return nodeId === "perception" ? "available" : "locked";
+  }
+
+  if (nodeId === "relation") {
+    return "completed";
+  }
+
+  return nodeId === "perception" ? "active" : "locked";
 }
 
 export function World1RootScreen() {
   const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
   const copy = copyByConcept[activeConcept];
-  const isRelationActive = activeConcept === "relation";
-  const liaAsset = isRelationActive
-    ? world1RootAssets.liaPointRelation
-    : world1RootAssets.liaIdle;
+  const activeRoot =
+    activeConcept === "intro"
+      ? null
+      : {
+          concept: activeConcept,
+          asset:
+            activeConcept === "relation"
+              ? world1RootAssets.activeRelation
+              : world1RootAssets.activePerception,
+        };
+  const liaAssetByConcept: Record<World1Concept, string> = {
+    intro: world1RootAssets.liaIdle,
+    relation: world1RootAssets.liaPointRelation,
+    perception: world1RootAssets.liaLookPerception,
+  };
+  const liaPoseByConcept: Record<World1Concept, string> = {
+    intro: "idle",
+    relation: "point_relation",
+    perception: "look_perception",
+  };
 
   return (
     <main
       className="world1-root-screen"
-      data-world1-root-version="004E-2A-static-relation"
+      data-world1-root-version="004E-3A-static-perception"
       data-world1-root-state={activeConcept}
       aria-labelledby="world1-root-title"
     >
@@ -108,15 +146,18 @@ export function World1RootScreen() {
           aria-hidden="true"
           data-runtime-asset={world1RootAssets.rootsBase}
         />
-        {isRelationActive ? (
+        {activeRoot ? (
           <img
-            className="world1-root-layer world1-root-layer--active-relation"
-            src={world1RootAssets.activeRelation}
+            className={`world1-root-layer world1-root-layer--active-${activeRoot.concept}`}
+            src={activeRoot.asset}
             alt=""
             aria-hidden="true"
-            data-runtime-asset={world1RootAssets.activeRelation}
-            data-world1-root-active="relation"
-            data-world1-relation-calibration="manual-calibration"
+            data-runtime-asset={activeRoot.asset}
+            data-world1-root-active={activeRoot.concept}
+            data-world1-active-roots-calibration="manual-calibration"
+            data-world1-relation-calibration={
+              activeRoot.concept === "relation" ? "manual-calibration" : undefined
+            }
           />
         ) : null}
         <img
@@ -128,10 +169,10 @@ export function World1RootScreen() {
         />
         <img
           className="world1-root-lia"
-          src={liaAsset}
+          src={liaAssetByConcept[activeConcept]}
           alt="Lía, guía visual de OKÚA"
-          data-runtime-asset={liaAsset}
-          data-world1-lia-pose={isRelationActive ? "point_relation" : "idle"}
+          data-runtime-asset={liaAssetByConcept[activeConcept]}
+          data-world1-lia-pose={liaPoseByConcept[activeConcept]}
         />
 
         <div
@@ -140,8 +181,11 @@ export function World1RootScreen() {
         >
           {conceptNodes.map((node) => {
             const nodeState = getNodeState(node.id, activeConcept);
-            const isRelationNode = node.id === "relation";
             const isLocked = nodeState === "locked";
+            const isPressed = nodeState === "active";
+            const isClickable =
+              node.id === "relation" ||
+              (node.id === "perception" && activeConcept !== "intro");
 
             return (
               <button
@@ -152,11 +196,14 @@ export function World1RootScreen() {
                 data-node-state={nodeState}
                 aria-label={isLocked ? node.lockedName : node.accessibleName}
                 aria-disabled={isLocked ? "true" : undefined}
-                aria-pressed={isRelationNode ? isRelationActive : undefined}
+                aria-pressed={isClickable ? isPressed : undefined}
                 disabled={isLocked}
                 onClick={
-                  isRelationNode
-                    ? () => setActiveConcept("relation")
+                  isClickable
+                    ? () =>
+                        setActiveConcept(
+                          node.id === "perception" ? "perception" : "relation",
+                        )
                     : undefined
                 }
               >

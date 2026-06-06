@@ -96,6 +96,20 @@
   transform: translate(-50%, -50%);
 }
 
+.world1-root-layer--active-perception {
+  z-index: 3;
+  inset: auto;
+  top: var(--world1-active-perception-y);
+  right: auto;
+  bottom: auto;
+  left: var(--world1-active-perception-x);
+  width: var(--world1-active-perception-width);
+  height: auto;
+  object-fit: contain;
+  opacity: var(--world1-active-perception-opacity);
+  transform: translate(-50%, -50%);
+}
+
 .world1-root-plant {
   position: absolute;
   z-index: 4;
@@ -127,7 +141,7 @@
 .world1-root-nodes {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 8;
   pointer-events: none;
 }
 
@@ -198,6 +212,10 @@
 
 .world1-root-node__orb--active {
   background-position: -116px -181px;
+}
+
+.world1-root-node__orb--completed {
+  background-position: -175px -181px;
 }
 
 .world1-root-node__label {
@@ -307,6 +325,10 @@
 
   .world1-root-node__orb--active {
     background-position: -104px -163px;
+  }
+
+  .world1-root-node__orb--completed {
+    background-position: -157px -163px;
   }
 
   .world1-root-node--relation {

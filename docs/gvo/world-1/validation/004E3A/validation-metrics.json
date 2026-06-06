@@ -1,0 +1,212 @@
+{
+  "generatedAt": "2026-06-06T17:07:49.009Z",
+  "baseUrl": "http://127.0.0.1:5176",
+  "metrics": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "intro": {
+        "label": "intro",
+        "route": "/estacion/1",
+        "state": "intro",
+        "relationNode": "available",
+        "perceptionNode": "locked",
+        "mediationNode": "locked",
+        "activeRoot": null,
+        "liaPose": "idle",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "relation": {
+        "label": "relation",
+        "route": "/estacion/1",
+        "state": "relation",
+        "relationNode": "active",
+        "perceptionNode": "available",
+        "mediationNode": "locked",
+        "activeRoot": "relation",
+        "liaPose": "point_relation",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "perception": {
+        "label": "perception",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "afterMediationClick": {
+        "label": "after_mediation_click",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "intro": {
+        "label": "intro",
+        "route": "/estacion/1",
+        "state": "intro",
+        "relationNode": "available",
+        "perceptionNode": "locked",
+        "mediationNode": "locked",
+        "activeRoot": null,
+        "liaPose": "idle",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "relation": {
+        "label": "relation",
+        "route": "/estacion/1",
+        "state": "relation",
+        "relationNode": "active",
+        "perceptionNode": "available",
+        "mediationNode": "locked",
+        "activeRoot": "relation",
+        "liaPose": "point_relation",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "perception": {
+        "label": "perception",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "afterMediationClick": {
+        "label": "after_mediation_click",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      }
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "intro": {
+        "label": "intro",
+        "route": "/estacion/1",
+        "state": "intro",
+        "relationNode": "available",
+        "perceptionNode": "locked",
+        "mediationNode": "locked",
+        "activeRoot": null,
+        "liaPose": "idle",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "relation": {
+        "label": "relation",
+        "route": "/estacion/1",
+        "state": "relation",
+        "relationNode": "active",
+        "perceptionNode": "available",
+        "mediationNode": "locked",
+        "activeRoot": "relation",
+        "liaPose": "point_relation",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "perception": {
+        "label": "perception",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      },
+      "afterMediationClick": {
+        "label": "after_mediation_click",
+        "route": "/estacion/1",
+        "state": "perception",
+        "relationNode": "completed",
+        "perceptionNode": "active",
+        "mediationNode": "locked",
+        "activeRoot": "perception",
+        "liaPose": "look_perception",
+        "continueDisabled": true,
+        "devUiVisible": false,
+        "audioCount": 0,
+        "videoCount": 0,
+        "overflowX": false
+      }
+    },
+    {
+      "route": "/dev/world1-root-layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "devCalibratorExists": true
+    }
+  ]
+}

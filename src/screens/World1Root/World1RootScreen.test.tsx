@@ -59,7 +59,7 @@ describe("World1RootScreen", () => {
     ).toHaveLength(3);
   });
 
-  it("no renderiza assets futuros, controles interactivos ni medios runtime", () => {
+  it("no renderiza assets fuera de fase, controles interactivos ni medios runtime", () => {
     const { container } = render(<World1RootScreen />);
 
     expect(
@@ -82,6 +82,16 @@ describe("World1RootScreen", () => {
         `[data-runtime-asset="${world1RootAssets.exitPath}"]`,
       ),
     ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaGuideMediation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaTeleportOut}"]`,
+      ),
+    ).not.toBeInTheDocument();
     expect(container.querySelectorAll("audio")).toHaveLength(0);
     expect(container.querySelectorAll("video")).toHaveLength(0);
   });
@@ -95,7 +105,7 @@ describe("World1RootScreen", () => {
     expect((button as HTMLButtonElement).onclick).toBeNull();
   });
 
-  it("activa solo RELACIÓN con raíz activa, pose estática y diálogo propio", () => {
+  it("activa RELACIÓN y deja PERCEPCIÓN disponible sin habilitar MEDIACIÓN", () => {
     const { container } = render(<World1RootScreen />);
 
     const relation = screen.getByRole("button", {
@@ -122,8 +132,9 @@ describe("World1RootScreen", () => {
 
     expect(relation).toHaveAttribute("data-node-state", "active");
     expect(relation).toHaveAttribute("aria-pressed", "true");
-    expect(perception).toBeDisabled();
-    expect(perception).toHaveAttribute("data-node-state", "locked");
+    expect(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    ).toHaveAttribute("data-node-state", "available");
     expect(mediation).toBeDisabled();
     expect(mediation).toHaveAttribute("data-node-state", "locked");
     expect(
@@ -132,8 +143,15 @@ describe("World1RootScreen", () => {
       ),
     ).toBeInTheDocument();
     expect(
-      container.querySelector('[data-world1-relation-calibration="manual-calibration"]'),
+      container.querySelector(
+        '[data-world1-active-roots-calibration="manual-calibration"]',
+      ),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activePerception}"]`,
+      ),
+    ).not.toBeInTheDocument();
     expect(
       container.querySelector(
         `[data-runtime-asset="${world1RootAssets.liaPointRelation}"]`,
@@ -150,7 +168,64 @@ describe("World1RootScreen", () => {
     ).toBeDisabled();
   });
 
-  it("PERCEPCIÓN y MEDIACIÓN no activan estados propios", () => {
+  it("activa PERCEPCIÓN solo después de RELACIÓN con raíz, Lía y copy propios", () => {
+    const { container } = render(<World1RootScreen />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+
+    expect(screen.getByTestId("world1-root-stage")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
+      "data-node-state",
+      "completed",
+    );
+    expect(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    ).toHaveAttribute("data-node-state", "active");
+    expect(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      screen.getByRole("button", {
+        name: "MEDIACIÓN bloqueada en esta fase",
+      }),
+    ).toBeDisabled();
+
+    expect(
+      screen.getByText(
+        "Una planta puede parecer quieta, pero eso no significa que esté inactiva.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activePerception}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-root-active="perception"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeRelation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.activeMediation}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world1RootAssets.liaLookPerception}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-lia-pose="look_perception"]'),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+  });
+
+  it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa", () => {
     const { container } = render(<World1RootScreen />);
 
     fireEvent.click(
@@ -167,16 +242,7 @@ describe("World1RootScreen", () => {
     expect(
       screen.getByText("Antes de escuchar, necesitamos aprender a mirar."),
     ).toBeInTheDocument();
-    expect(
-      container.querySelector(
-        `[data-runtime-asset="${world1RootAssets.activePerception}"]`,
-      ),
-    ).not.toBeInTheDocument();
-    expect(
-      container.querySelector(
-        `[data-runtime-asset="${world1RootAssets.activeMediation}"]`,
-      ),
-    ).not.toBeInTheDocument();
+    expect(container.querySelector("[data-world1-root-active]")).not.toBeInTheDocument();
     expect(
       container.querySelector('[data-world1-lia-pose="point_relation"]'),
     ).not.toBeInTheDocument();
