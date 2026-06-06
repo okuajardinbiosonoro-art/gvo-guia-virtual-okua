@@ -116,6 +116,7 @@ export function World1RootScreen() {
             aria-hidden="true"
             data-runtime-asset={world1RootAssets.activeRelation}
             data-world1-root-active="relation"
+            data-world1-relation-calibration="manual-calibration"
           />
         ) : null}
         <img

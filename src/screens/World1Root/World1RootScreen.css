@@ -27,6 +27,10 @@
   --world1-plant-width: 40%;
   --world1-roots-top: 20.3%;
   --world1-roots-width: 100%;
+  --world1-active-relation-x: 49.6%;
+  --world1-active-relation-y: 69.9%;
+  --world1-active-relation-width: 95.2%;
+  --world1-active-relation-opacity: 1;
   --world1-node-size: 62px;
   --world1-node-sheet-width: 238px;
   --world1-node-sheet-height: 423px;
@@ -72,7 +76,16 @@
 
 .world1-root-layer--active-relation {
   z-index: 3;
-  object-fit: cover;
+  inset: auto;
+  top: var(--world1-active-relation-y);
+  right: auto;
+  bottom: auto;
+  left: var(--world1-active-relation-x);
+  width: var(--world1-active-relation-width);
+  height: auto;
+  object-fit: contain;
+  opacity: var(--world1-active-relation-opacity);
+  transform: translate(-50%, -50%);
 }
 
 .world1-root-plant {

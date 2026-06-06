@@ -132,6 +132,9 @@ describe("World1RootScreen", () => {
       ),
     ).toBeInTheDocument();
     expect(
+      container.querySelector('[data-world1-relation-calibration="manual-calibration"]'),
+    ).toBeInTheDocument();
+    expect(
       container.querySelector(
         `[data-runtime-asset="${world1RootAssets.liaPointRelation}"]`,
       ),
