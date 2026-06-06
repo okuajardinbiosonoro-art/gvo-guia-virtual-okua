@@ -21,6 +21,22 @@ export const world1RootAssets = {
     "/assets/gvo/stations/world-1-root/lia/lia_root_idle_approved_v1.png",
   liaPointRelation:
     "/assets/gvo/stations/world-1-root/lia/lia_root_point_relation_approved_v1.png",
+  liaLookPerception:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_look_perception_approved_v1.png",
+  liaGuideMediation:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_guide_mediation_approved_v1.png",
+  liaReadyContinue:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_ready_continue_approved_v1.png",
+  liaExit:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_exit_approved_v1.png",
+  liaTeleportOut:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_out_approved_v1.png",
+  liaTeleportInRelation:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_relation_approved_v1.png",
+  liaTeleportInPerception:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_perception_approved_v1.png",
+  liaTeleportInMediation:
+    "/assets/gvo/stations/world-1-root/lia/lia_root_teleport_in_mediation_approved_v1.png",
 } as const;
 
 export const world1RootRenderedAssetKeys = [

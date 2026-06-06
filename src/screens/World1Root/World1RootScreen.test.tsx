@@ -183,8 +183,13 @@ describe("World1RootScreen", () => {
     render(<World1RootScreen />);
 
     expect(screen.queryByText("Calibración Mundo I")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Calibrador Mundo I — solo desarrollo"),
+    ).not.toBeInTheDocument();
     expect(screen.queryByLabelText("plantX")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("rootOriginX")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("activeRelationX")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("liaPointRelationX")).not.toBeInTheDocument();
     expect(screen.queryByText(/--world1-root-origin-x/)).not.toBeInTheDocument();
   });
 });

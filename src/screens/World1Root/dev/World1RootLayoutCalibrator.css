@@ -18,9 +18,21 @@
   min-width: 0;
 }
 
+.world1-calibrator__stage-shell {
+  width: min(100%, 430px);
+  padding: 6px;
+  border: 1px solid rgb(245 205 120 / 18%);
+  border-radius: 10px;
+  background: rgb(0 0 0 / 16%);
+}
+
+.world1-calibrator__stage-shell[data-show-frame="true"] {
+  border-color: rgb(123 223 255 / 42%);
+}
+
 .world1-calibrator__stage {
   position: relative;
-  width: min(100%, 430px);
+  width: 100%;
   max-height: 72svh;
   aspect-ratio: 941 / 1672;
   overflow: hidden;
@@ -29,6 +41,14 @@
   background: #17100a;
   box-shadow: 0 18px 54px rgb(0 0 0 / 42%);
   isolation: isolate;
+}
+
+.world1-calibrator__stage-scale {
+  position: absolute;
+  inset: 0;
+  transform: translateY(var(--cal-stage-offset-y))
+    scale(var(--cal-stage-scale));
+  transform-origin: 50% 50%;
 }
 
 .world1-calibrator__layer {
@@ -63,9 +83,41 @@
   user-select: none;
 }
 
-.world1-calibrator__plant {
+.world1-calibrator__active-root {
   position: absolute;
   z-index: 3;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.world1-calibrator__active-root--relation {
+  top: var(--cal-active-relation-y);
+  left: var(--cal-active-relation-x);
+  width: var(--cal-active-relation-width);
+  opacity: var(--cal-active-relation-opacity);
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__active-root--perception {
+  top: var(--cal-active-perception-y);
+  left: var(--cal-active-perception-x);
+  width: var(--cal-active-perception-width);
+  opacity: var(--cal-active-perception-opacity);
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__active-root--mediation {
+  top: var(--cal-active-mediation-y);
+  left: var(--cal-active-mediation-x);
+  width: var(--cal-active-mediation-width);
+  opacity: var(--cal-active-mediation-opacity);
+  transform: translate(-50%, -50%);
+}
+
+.world1-calibrator__plant {
+  position: absolute;
+  z-index: 4;
   top: var(--cal-plant-y);
   left: var(--cal-plant-x);
   width: var(--cal-plant-width);
@@ -81,11 +133,12 @@
 
 .world1-calibrator__lia {
   position: absolute;
-  z-index: 5;
-  top: 12.5%;
-  right: 8%;
-  width: 25%;
+  z-index: 6;
+  top: var(--cal-lia-y);
+  left: var(--cal-lia-x);
+  width: var(--cal-lia-width);
   height: auto;
+  transform: translateX(-50%);
   pointer-events: none;
   user-select: none;
 }
@@ -93,12 +146,14 @@
 .world1-calibrator__nodes {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 5;
   pointer-events: none;
 }
 
 .world1-calibrator__node {
   position: absolute;
+  top: var(--cal-node-y);
+  left: var(--cal-node-x);
   width: 88px;
   display: grid;
   justify-items: center;
@@ -108,22 +163,8 @@
   text-shadow:
     0 1px 0 rgb(31 16 5 / 92%),
     0 0 12px rgb(237 166 64 / 42%);
-}
-
-.world1-calibrator__node--relation {
-  top: var(--cal-node-relation-top);
-  left: var(--cal-node-relation-x);
-}
-
-.world1-calibrator__node--perception {
-  top: var(--cal-node-perception-top);
-  left: var(--cal-node-perception-x);
-  transform: translateX(-50%);
-}
-
-.world1-calibrator__node--mediation {
-  top: var(--cal-node-mediation-top);
-  right: var(--cal-node-mediation-x);
+  transform: translateX(-50%) scale(var(--cal-node-scale));
+  transform-origin: 50% 50%;
 }
 
 .world1-calibrator__node-label {
@@ -159,12 +200,86 @@
   background-position: -57px -181px;
 }
 
+.world1-calibrator__orb--active {
+  background-position: -116px -181px;
+}
+
+.world1-calibrator__orb--completed {
+  background-position: -174px -181px;
+}
+
+.world1-calibrator__dialog-panel {
+  position: absolute;
+  z-index: 7;
+  right: 16px;
+  bottom: var(--cal-dialog-panel-y);
+  left: 16px;
+  min-height: var(--cal-dialog-panel-height);
+  padding: 10px 13px;
+  border: 1px solid rgb(255 225 154 / 22%);
+  border-radius: 8px;
+  color: #fff7dd;
+  background:
+    linear-gradient(180deg, rgb(34 20 10 / 78%), rgb(16 10 6 / 88%)),
+    rgb(22 12 6 / 84%);
+  box-shadow: 0 14px 34px rgb(0 0 0 / 28%);
+  opacity: var(--cal-dialog-panel-opacity);
+  transform: scale(var(--cal-dialog-text-scale));
+  transform-origin: 50% 100%;
+}
+
+.world1-calibrator__dialog-panel p,
+.world1-calibrator__dialog-panel strong {
+  margin: 0;
+  font-size: clamp(0.72rem, 3vw, 0.9rem);
+  line-height: 1.24;
+}
+
+.world1-calibrator__dialog-panel p + p,
+.world1-calibrator__dialog-panel strong + p {
+  margin-top: 6px;
+}
+
+.world1-calibrator__eyebrow {
+  color: #f7c36d;
+  font-family: var(--gvo-font-ui);
+  font-weight: var(--gvo-font-weight-semibold);
+}
+
+.world1-calibrator__continue {
+  position: absolute;
+  z-index: 8;
+  right: 18px;
+  bottom: 12px;
+  min-width: 118px;
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 218 143 / 40%);
+  border-radius: 4px;
+  color: rgb(255 240 190 / 62%);
+  background: rgb(42 27 13 / 76%);
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.78rem, 3.1vw, 0.9rem);
+  font-weight: var(--gvo-font-weight-semibold);
+}
+
+.world1-calibrator__grid,
 .world1-calibrator__guides,
-.world1-calibrator__anchor-layer {
+.world1-calibrator__anchor-layer,
+.world1-calibrator__bounds,
+.world1-calibrator__safe-area {
   position: absolute;
   inset: 0;
   z-index: 20;
   pointer-events: none;
+}
+
+.world1-calibrator__grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 12%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 12%) 1px, transparent 1px);
+  background-size: 10% 10%;
 }
 
 .world1-calibrator__guide-center {
@@ -226,6 +341,76 @@
   border-color: #ff4f83;
 }
 
+.world1-calibrator__anchor--node {
+  top: var(--cal-anchor-y);
+  left: var(--cal-anchor-x);
+  width: 9px;
+  height: 9px;
+  color: #d8f477;
+  border-color: #d8f477;
+}
+
+.world1-calibrator__bounds {
+  border: 1px dashed rgb(255 255 255 / 46%);
+}
+
+.world1-calibrator__bounds--roots {
+  top: var(--cal-roots-top);
+  left: 50%;
+  width: var(--cal-roots-width);
+  height: 50%;
+  transform: translateX(-50%);
+}
+
+.world1-calibrator__bounds--active-relation {
+  top: var(--cal-active-relation-y);
+  left: var(--cal-active-relation-x);
+  width: var(--cal-active-relation-width);
+  aspect-ratio: 941 / 1672;
+  transform: translate(-50%, -50%);
+  border-color: rgb(255 187 82 / 78%);
+}
+
+.world1-calibrator__bounds--active-perception {
+  top: var(--cal-active-perception-y);
+  left: var(--cal-active-perception-x);
+  width: var(--cal-active-perception-width);
+  aspect-ratio: 941 / 1672;
+  transform: translate(-50%, -50%);
+  border-color: rgb(115 205 255 / 72%);
+}
+
+.world1-calibrator__bounds--active-mediation {
+  top: var(--cal-active-mediation-y);
+  left: var(--cal-active-mediation-x);
+  width: var(--cal-active-mediation-width);
+  aspect-ratio: 941 / 1672;
+  transform: translate(-50%, -50%);
+  border-color: rgb(190 255 125 / 72%);
+}
+
+.world1-calibrator__bounds--lia {
+  top: var(--cal-lia-y);
+  left: var(--cal-lia-x);
+  width: var(--cal-lia-width);
+  aspect-ratio: 1 / 1;
+  transform: translateX(-50%);
+  border-color: rgb(250 117 190 / 76%);
+}
+
+.world1-calibrator__bounds--text {
+  right: 12px;
+  bottom: 46px;
+  left: 12px;
+  height: 22%;
+  border-color: rgb(255 243 170 / 70%);
+}
+
+.world1-calibrator__safe-area {
+  inset: 12px;
+  border: 1px dashed rgb(123 223 255 / 56%);
+}
+
 .world1-calibrator__panel {
   min-width: 0;
   display: grid;
@@ -235,7 +420,11 @@
 
 .world1-calibrator__header {
   display: grid;
-  gap: 4px;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid rgb(255 216 139 / 20%);
+  border-radius: 8px;
+  background: rgb(28 17 8 / 78%);
 }
 
 .world1-calibrator__header h1,
@@ -258,6 +447,38 @@
   font-size: clamp(0.76rem, 3vw, 0.9rem);
 }
 
+.world1-calibrator__warning {
+  color: #f7c36d;
+  font-weight: var(--gvo-font-weight-semibold);
+}
+
+.world1-calibrator__metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+
+.world1-calibrator__metrics div {
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid rgb(255 216 139 / 16%);
+  border-radius: 6px;
+  background: rgb(10 6 3 / 48%);
+}
+
+.world1-calibrator__metrics dt {
+  color: rgb(255 223 156 / 74%);
+  font-size: 0.68rem;
+}
+
+.world1-calibrator__metrics dd {
+  margin: 0;
+  color: #fff4d6;
+  font-size: 0.75rem;
+}
+
 .world1-calibrator__fieldset {
   min-width: 0;
   margin: 0;
@@ -275,8 +496,40 @@
   font-weight: var(--gvo-font-weight-semibold);
 }
 
+.world1-calibrator__state-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 7px;
+}
+
+.world1-calibrator__state-button {
+  display: grid;
+  gap: 4px;
+  min-height: 54px;
+  padding: 8px;
+  border: 1px solid rgb(255 223 156 / 26%);
+  border-radius: 5px;
+  color: #fff0b8;
+  text-align: left;
+  background: rgb(38 23 11 / 76%);
+  font-family: var(--gvo-font-ui);
+}
+
+.world1-calibrator__state-button[data-active="true"] {
+  border-color: rgb(255 210 107 / 76%);
+  background: rgb(74 48 18 / 82%);
+}
+
+.world1-calibrator__state-button small {
+  color: rgb(255 234 188 / 72%);
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
 .world1-calibrator__preset-row,
-.world1-calibrator__toggle-grid {
+.world1-calibrator__toggle-grid,
+.world1-calibrator__save-grid,
+.world1-calibrator__state-selects {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
@@ -284,12 +537,16 @@
 
 .world1-calibrator__preset,
 .world1-calibrator__toggle,
-.world1-calibrator__control {
+.world1-calibrator__control,
+.world1-calibrator__select-label,
+.world1-calibrator__import,
+.world1-calibrator button {
   font-family: var(--gvo-font-ui);
   font-size: 0.76rem;
 }
 
-.world1-calibrator__preset {
+.world1-calibrator__preset,
+.world1-calibrator button {
   min-height: 30px;
   border: 1px solid rgb(255 223 156 / 34%);
   border-radius: 4px;
@@ -307,7 +564,7 @@
 
 .world1-calibrator__control {
   display: grid;
-  grid-template-columns: minmax(104px, 1fr) minmax(110px, 2fr) 72px;
+  grid-template-columns: minmax(132px, 1fr) minmax(110px, 2fr) 72px;
   gap: 8px;
   align-items: center;
   min-width: 0;
@@ -319,7 +576,10 @@
   width: 100%;
 }
 
-.world1-calibrator__control input[type="number"] {
+.world1-calibrator__control input[type="number"],
+.world1-calibrator__select-label input,
+.world1-calibrator__select-label select,
+.world1-calibrator__import textarea {
   width: 100%;
   min-height: 28px;
   border: 1px solid rgb(255 223 156 / 30%);
@@ -327,6 +587,33 @@
   color: #fff0b8;
   background: rgb(10 6 3 / 78%);
   font: inherit;
+}
+
+.world1-calibrator__select-label,
+.world1-calibrator__import {
+  display: grid;
+  gap: 4px;
+  color: #fff0b8;
+}
+
+.world1-calibrator__select-label {
+  min-width: min(100%, 180px);
+}
+
+.world1-calibrator__import {
+  margin-top: 8px;
+}
+
+.world1-calibrator__import textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.world1-calibrator__import-status {
+  margin: 7px 0 0;
+  color: #f7c36d;
+  font-family: var(--gvo-font-ui);
+  font-size: 0.76rem;
 }
 
 .world1-calibrator__exports {
@@ -353,24 +640,29 @@
   line-height: 1.45;
 }
 
-@media (width >= 900px) {
+@media (width >= 980px) {
   .world1-calibrator {
-    grid-template-columns: minmax(360px, 430px) minmax(420px, 1fr);
+    grid-template-columns: minmax(360px, 430px) minmax(520px, 1fr);
     align-items: start;
   }
 
   .world1-calibrator__stage {
-    max-height: calc(100svh - 20px);
+    max-height: calc(100svh - 32px);
   }
 }
 
 @media (width <= 374px) {
-  .world1-calibrator__stage {
+  .world1-calibrator__stage-shell {
     width: min(100%, 360px);
   }
 
   .world1-calibrator__node {
     width: 76px;
+  }
+
+  .world1-calibrator__node-label {
+    padding: 4px 5px;
+    font-size: 0.64rem;
   }
 
   .world1-calibrator__orb {
@@ -385,6 +677,14 @@
 
   .world1-calibrator__orb--available {
     background-position: -51px -163px;
+  }
+
+  .world1-calibrator__orb--active {
+    background-position: -104px -163px;
+  }
+
+  .world1-calibrator__orb--completed {
+    background-position: -156px -163px;
   }
 
   .world1-calibrator__control {
