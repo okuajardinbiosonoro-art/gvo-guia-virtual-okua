@@ -5,6 +5,10 @@
 
 Aplicado al runtime de `/estacion/1`.
 
+Actualizacion posterior: los valores iniciales de RELACION fueron reemplazados
+por la calibracion conjunta de las tres raices activas documentada en
+`ACTIVE_ROOTS_RUNTIME_CALIBRATION_MANUAL.md`.
+
 ## Fuente
 
 Valores entregados por el usuario desde el calibrador `/dev/world1-root-layout`, preset local `manual-calibration`, estado `relation_active`.
@@ -12,9 +16,9 @@ Valores entregados por el usuario desde el calibrador `/dev/world1-root-layout`,
 ## Valores aplicados
 
 ```css
---world1-active-relation-x: 49.6%;
---world1-active-relation-y: 69.9%;
---world1-active-relation-width: 95.2%;
+--world1-active-relation-x: 49.4%;
+--world1-active-relation-y: 70.1%;
+--world1-active-relation-width: 96.2%;
 --world1-active-relation-opacity: 1;
 ```
 

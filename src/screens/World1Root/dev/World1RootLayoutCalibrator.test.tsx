@@ -51,7 +51,9 @@ describe("World1RootLayoutCalibrator", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("CSS")).toBeInTheDocument();
     expect(screen.getByText("JSON")).toBeInTheDocument();
-    expect(screen.getByText(/--world1-active-relation-x:/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-active-relation-x: 49\.4%;/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-active-perception-y: 72%;/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-active-mediation-y: 69\.4%;/)).toBeInTheDocument();
     expect(screen.getByText(/"screen": "world1-root"/)).toBeInTheDocument();
   });
 

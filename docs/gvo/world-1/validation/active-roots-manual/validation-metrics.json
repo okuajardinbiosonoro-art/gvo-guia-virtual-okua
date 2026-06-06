@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-06-06T16:40:41.627Z",
+  "baseUrl": "http://127.0.0.1:5175",
+  "metrics": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "vars": {
+        "relationX": "49.4%",
+        "relationY": "70.1%",
+        "relationWidth": "96.2%",
+        "perceptionX": "50%",
+        "perceptionY": "72%",
+        "perceptionWidth": "99.5%",
+        "mediationX": "50%",
+        "mediationY": "69.4%",
+        "mediationWidth": "91.5%"
+      },
+      "perceptionDisabled": true,
+      "mediationDisabled": true,
+      "activePerceptionRuntime": false,
+      "activeMediationRuntime": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "vars": {
+        "relationX": "49.4%",
+        "relationY": "70.1%",
+        "relationWidth": "96.2%",
+        "perceptionX": "50%",
+        "perceptionY": "72%",
+        "perceptionWidth": "99.5%",
+        "mediationX": "50%",
+        "mediationY": "69.4%",
+        "mediationWidth": "91.5%"
+      },
+      "perceptionDisabled": true,
+      "mediationDisabled": true,
+      "activePerceptionRuntime": false,
+      "activeMediationRuntime": false
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "vars": {
+        "relationX": "49.4%",
+        "relationY": "70.1%",
+        "relationWidth": "96.2%",
+        "perceptionX": "50%",
+        "perceptionY": "72%",
+        "perceptionWidth": "99.5%",
+        "mediationX": "50%",
+        "mediationY": "69.4%",
+        "mediationWidth": "91.5%"
+      },
+      "perceptionDisabled": true,
+      "mediationDisabled": true,
+      "activePerceptionRuntime": false,
+      "activeMediationRuntime": false
+    }
+  ]
+}

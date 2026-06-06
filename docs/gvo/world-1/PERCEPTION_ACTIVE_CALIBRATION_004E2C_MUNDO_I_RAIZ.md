@@ -7,6 +7,8 @@ Estado del ticket: PREPARACION DEV IMPLEMENTADA.
 
 La ruta `/dev/world1-root-layout` queda preparada para calibrar visualmente el estado futuro `perception_preview`. La ruta runtime `/estacion/1` no recibio valores finales de PERCEPCION, no habilito PERCEPCION y conserva la interaccion estatica aprobada de RELACION.
 
+Nota posterior: despues de esta preparacion, el usuario entrego una calibracion manual conjunta para las tres raices activas. Esos valores quedaron sincronizados como variables CSS/defaults de calibrador en `ACTIVE_ROOTS_RUNTIME_CALIBRATION_MANUAL.md`, sin desbloquear PERCEPCION en runtime.
+
 ## 1. Objetivo
 
 Preparar el calibrador avanzado para que el usuario pueda ajustar, revisar y exportar valores de PERCEPCION activa antes de cualquier aplicacion runtime.
@@ -133,7 +135,7 @@ Exportar no aplica ningun valor al runtime.
 - ausencia de guias dev;
 - ausencia de `perception_preview` runtime.
 
-No se modificaron `World1RootScreen.tsx` ni `World1RootScreen.css` en este ticket.
+La calibracion posterior agrego variables CSS preparadas para PERCEPCION y MEDIACION, pero no renderiza esas raices ni habilita sus nodos en `/estacion/1`.
 
 ## 7. Validacion mobile
 
