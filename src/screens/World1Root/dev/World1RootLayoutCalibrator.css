@@ -133,10 +133,10 @@
   border-radius: 4px;
   background: rgb(18 10 4 / 54%);
   color: #fff0b8;
-  font-family: var(--gvo-font-ui);
-  font-size: clamp(0.66rem, 2.8vw, 0.82rem);
-  font-weight: var(--gvo-font-weight-semibold);
-  line-height: var(--gvo-line-height-ui);
+  font-family: var(--gvo-font-system-readable);
+  font-size: 0.72rem;
+  font-weight: var(--gvo-font-weight-bold);
+  line-height: 1.05;
   letter-spacing: 0;
 }
 

@@ -102,8 +102,8 @@ const presets: Record<string, LayoutValues> = {
     nodeMediationX: 8,
   },
   current: {
-    plantX: 50.8,
-    plantY: 35.9,
+    plantX: 50.5,
+    plantY: 33.5,
     plantWidth: 40,
     plantAnchorX: 56.9,
     plantAnchorY: 93.2,
@@ -119,8 +119,8 @@ const presets: Record<string, LayoutValues> = {
     nodeMediationX: 8,
   },
   "manual candidate": {
-    plantX: 50.8,
-    plantY: 35.9,
+    plantX: 50.5,
+    plantY: 33.5,
     plantWidth: 40,
     plantAnchorX: 56.9,
     plantAnchorY: 93.2,

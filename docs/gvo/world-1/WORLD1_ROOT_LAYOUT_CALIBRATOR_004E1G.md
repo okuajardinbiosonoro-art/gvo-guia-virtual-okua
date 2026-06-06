@@ -83,8 +83,8 @@ La herramienta muestra un bloque CSS copyable con variables como:
 ```css
 --world1-root-origin-x: 50.8%;
 --world1-root-origin-y: 35.9%;
---world1-plant-x: 50.8%;
---world1-plant-y: 35.9%;
+--world1-plant-x: 50.5%;
+--world1-plant-y: 33.5%;
 --world1-plant-width: 40%;
 --world1-plant-anchor-x: 56.9%;
 --world1-plant-anchor-y: 93.2%;
@@ -105,7 +105,19 @@ Presets disponibles:
 - `current`;
 - `manual candidate`.
 
-`current` refleja el estado productivo existente antes de este ticket. `manual candidate` inicia igual que `current` para permitir ajustes del usuario.
+`current` refleja el estado productivo vigente. Despues de la calibracion manual aprobada por el usuario, `current` y `manual candidate` usan:
+
+- `plantX: 50.5%`;
+- `plantY: 33.5%`;
+- `plantWidth: 40%`;
+- `plantAnchorX: 56.9%`;
+- `plantAnchorY: 93.2%`;
+- `rootOriginX: 50.8%`;
+- `rootOriginY: 35.9%`;
+- `rootsTop: 20.3%`;
+- `rootsWidth: 100%`.
+
+Los presets `004E-1D` y `004E-1E` quedan como comparativos historicos.
 
 ## 8. Confirmacion de que /estacion/1 no cambio funcionalmente
 
@@ -177,4 +189,4 @@ No se implemento:
 
 ## 13. Proxima accion esperada
 
-La herramienta no aplica valores finales al runtime. El usuario debe calibrar visualmente y reportar los valores aprobados para aplicarlos en un ticket posterior.
+La herramienta nacio como calibrador temporal sin aplicar valores finales al runtime. Tras revision manual del usuario, los valores aprobados fueron aplicados a `/estacion/1` en una iteracion posterior acotada, sin cambiar interaccion, animacion, teletransporte, particulas ni assets.

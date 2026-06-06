@@ -20,6 +20,8 @@
   aspect-ratio: 941 / 1672;
   --world1-root-origin-x: 50.8%;
   --world1-root-origin-y: 35.9%;
+  --world1-plant-x: 50.5%;
+  --world1-plant-y: 33.5%;
   --world1-plant-anchor-x: 56.9%;
   --world1-plant-anchor-y: 93.2%;
   --world1-plant-width: 40%;
@@ -71,8 +73,8 @@
 .world1-root-plant {
   position: absolute;
   z-index: 3;
-  top: var(--world1-root-origin-y);
-  left: var(--world1-root-origin-x);
+  top: var(--world1-plant-y);
+  left: var(--world1-plant-x);
   width: var(--world1-plant-width);
   height: auto;
   transform: translate(
@@ -159,10 +161,10 @@
   border-radius: 4px;
   background: rgb(18 10 4 / 54%);
   color: #fff0b8;
-  font-family: var(--gvo-font-ui);
-  font-size: clamp(0.66rem, 2.8vw, 0.82rem);
-  font-weight: var(--gvo-font-weight-semibold);
-  line-height: var(--gvo-line-height-ui);
+  font-family: var(--gvo-font-system-readable);
+  font-size: 0.72rem;
+  font-weight: var(--gvo-font-weight-bold);
+  line-height: 1.05;
   letter-spacing: 0;
 }
 
@@ -236,6 +238,11 @@
 
   .world1-root-node {
     width: 76px;
+  }
+
+  .world1-root-node__label {
+    padding: 4px 5px;
+    font-size: 0.64rem;
   }
 
   .world1-root-stage {

@@ -24,6 +24,8 @@ describe("World1RootLayoutCalibrator", () => {
     expect(
       screen.getByText(/--world1-root-origin-x: 50\.8%;/),
     ).toBeInTheDocument();
+    expect(screen.getByText(/--world1-plant-x: 50\.5%;/)).toBeInTheDocument();
+    expect(screen.getByText(/--world1-plant-y: 33\.5%;/)).toBeInTheDocument();
     expect(screen.getByText(/"plantAnchorY": "93.2%"/)).toBeInTheDocument();
   });
 
