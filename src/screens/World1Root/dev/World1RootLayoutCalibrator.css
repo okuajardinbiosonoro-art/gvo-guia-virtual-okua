@@ -1,6 +1,8 @@
 .world1-calibrator {
   min-width: 320px;
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 12px;
@@ -19,35 +21,32 @@
 }
 
 .world1-calibrator__stage-shell {
-  width: min(100%, 430px);
-  padding: 6px;
-  border: 1px solid rgb(245 205 120 / 18%);
-  border-radius: 10px;
-  background: rgb(0 0 0 / 16%);
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .world1-calibrator__stage-shell[data-show-frame="true"] {
-  border-color: rgb(123 223 255 / 42%);
+  filter: none;
+}
+
+.world1-calibrator__stage-shell[data-show-frame="true"]
+  .world1-calibrator__stage {
+  outline: 1px solid rgb(123 223 255 / 42%);
+  outline-offset: 6px;
 }
 
 .world1-calibrator__stage {
-  position: relative;
-  width: 100%;
-  max-height: 72svh;
-  aspect-ratio: 941 / 1672;
-  overflow: hidden;
-  border: 1px solid rgb(245 205 120 / 28%);
-  border-radius: 8px;
-  background: #17100a;
-  box-shadow: 0 18px 54px rgb(0 0 0 / 42%);
-  isolation: isolate;
+  --world1-stage-safe-block: 20px;
 }
 
 .world1-calibrator__stage-scale {
-  position: absolute;
-  inset: 0;
-  transform: translateY(var(--cal-stage-offset-y))
-    scale(var(--cal-stage-scale));
+  transform: translateY(var(--world1-stage-offset-y))
+    scale(var(--world1-stage-scale));
   transform-origin: 50% 50%;
 }
 
@@ -74,9 +73,9 @@
 .world1-calibrator__roots {
   position: absolute;
   z-index: 2;
-  top: var(--cal-roots-top);
+  top: var(--world1-roots-top);
   left: 50%;
-  width: var(--cal-roots-width);
+  width: var(--world1-roots-width);
   height: auto;
   transform: translateX(-50%);
   pointer-events: none;
@@ -92,41 +91,41 @@
 }
 
 .world1-calibrator__active-root--relation {
-  top: var(--cal-active-relation-y);
-  left: var(--cal-active-relation-x);
-  width: var(--cal-active-relation-width);
-  opacity: var(--cal-active-relation-opacity);
+  top: var(--world1-active-relation-y);
+  left: var(--world1-active-relation-x);
+  width: var(--world1-active-relation-width);
+  opacity: var(--world1-active-relation-opacity);
   transform: translate(-50%, -50%);
 }
 
 .world1-calibrator__active-root--perception {
-  top: var(--cal-active-perception-y);
-  left: var(--cal-active-perception-x);
-  width: var(--cal-active-perception-width);
-  opacity: var(--cal-active-perception-opacity);
+  top: var(--world1-active-perception-y);
+  left: var(--world1-active-perception-x);
+  width: var(--world1-active-perception-width);
+  opacity: var(--world1-active-perception-opacity);
   transform: translate(-50%, -50%);
 }
 
 .world1-calibrator__active-root--mediation {
-  top: var(--cal-active-mediation-y);
-  left: var(--cal-active-mediation-x);
-  width: var(--cal-active-mediation-width);
-  opacity: var(--cal-active-mediation-opacity);
+  top: var(--world1-active-mediation-y);
+  left: var(--world1-active-mediation-x);
+  width: var(--world1-active-mediation-width);
+  opacity: var(--world1-active-mediation-opacity);
   transform: translate(-50%, -50%);
 }
 
 .world1-calibrator__plant {
   position: absolute;
   z-index: 4;
-  top: var(--cal-plant-y);
-  left: var(--cal-plant-x);
-  width: var(--cal-plant-width);
+  top: var(--world1-plant-y);
+  left: var(--world1-plant-x);
+  width: var(--world1-plant-width);
   height: auto;
   transform: translate(
-    calc(-1 * var(--cal-plant-anchor-x)),
-    calc(-1 * var(--cal-plant-anchor-y))
+    calc(-1 * var(--world1-plant-anchor-x)),
+    calc(-1 * var(--world1-plant-anchor-y))
   );
-  transform-origin: var(--cal-plant-anchor-x) var(--cal-plant-anchor-y);
+  transform-origin: var(--world1-plant-anchor-x) var(--world1-plant-anchor-y);
   pointer-events: none;
   user-select: none;
 }
@@ -134,13 +133,37 @@
 .world1-calibrator__lia {
   position: absolute;
   z-index: 6;
-  top: var(--cal-lia-y);
-  left: var(--cal-lia-x);
-  width: var(--cal-lia-width);
+  top: var(--world1-lia-idle-y);
+  left: var(--world1-lia-idle-x);
+  width: var(--world1-lia-idle-width);
   height: auto;
   transform: translateX(-50%);
   pointer-events: none;
   user-select: none;
+}
+
+.world1-calibrator__lia--pointRelation {
+  top: var(--world1-lia-pointRelation-y);
+  left: var(--world1-lia-pointRelation-x);
+  width: var(--world1-lia-pointRelation-width);
+}
+
+.world1-calibrator__lia--lookPerception {
+  top: var(--world1-lia-lookPerception-y);
+  left: var(--world1-lia-lookPerception-x);
+  width: var(--world1-lia-lookPerception-width);
+}
+
+.world1-calibrator__lia--guideMediation {
+  top: var(--world1-lia-guideMediation-y);
+  left: var(--world1-lia-guideMediation-x);
+  width: var(--world1-lia-guideMediation-width);
+}
+
+.world1-calibrator__lia--readyContinue {
+  top: var(--world1-lia-readyContinue-y);
+  left: var(--world1-lia-readyContinue-x);
+  width: var(--world1-lia-readyContinue-width);
 }
 
 .world1-calibrator__nodes {
@@ -152,8 +175,8 @@
 
 .world1-calibrator__node {
   position: absolute;
-  top: var(--cal-node-y);
-  left: var(--cal-node-x);
+  top: var(--world1-node-relation-y);
+  left: var(--world1-node-relation-x);
   width: 88px;
   display: grid;
   justify-items: center;
@@ -163,8 +186,20 @@
   text-shadow:
     0 1px 0 rgb(31 16 5 / 92%),
     0 0 12px rgb(237 166 64 / 42%);
-  transform: translateX(-50%) scale(var(--cal-node-scale));
+  transform: translate(-50%, -50%) scale(var(--world1-node-relation-scale));
   transform-origin: 50% 50%;
+}
+
+.world1-calibrator__node--perception {
+  top: var(--world1-node-perception-y);
+  left: var(--world1-node-perception-x);
+  transform: translate(-50%, -50%) scale(var(--world1-node-perception-scale));
+}
+
+.world1-calibrator__node--mediation {
+  top: var(--world1-node-mediation-y);
+  left: var(--world1-node-mediation-x);
+  transform: translate(-50%, -50%) scale(var(--world1-node-mediation-scale));
 }
 
 .world1-calibrator__node-label {
@@ -326,15 +361,15 @@
 }
 
 .world1-calibrator__anchor--root {
-  top: var(--cal-root-origin-y);
-  left: var(--cal-root-origin-x);
+  top: var(--world1-root-origin-y);
+  left: var(--world1-root-origin-x);
   color: #41e6ff;
   border-color: #41e6ff;
 }
 
 .world1-calibrator__anchor--plant {
-  top: var(--cal-plant-y);
-  left: var(--cal-plant-x);
+  top: var(--world1-plant-y);
+  left: var(--world1-plant-x);
   width: 8px;
   height: 8px;
   color: #ff4f83;
@@ -355,35 +390,35 @@
 }
 
 .world1-calibrator__bounds--roots {
-  top: var(--cal-roots-top);
+  top: var(--world1-roots-top);
   left: 50%;
-  width: var(--cal-roots-width);
+  width: var(--world1-roots-width);
   height: 50%;
   transform: translateX(-50%);
 }
 
 .world1-calibrator__bounds--active-relation {
-  top: var(--cal-active-relation-y);
-  left: var(--cal-active-relation-x);
-  width: var(--cal-active-relation-width);
+  top: var(--world1-active-relation-y);
+  left: var(--world1-active-relation-x);
+  width: var(--world1-active-relation-width);
   aspect-ratio: 941 / 1672;
   transform: translate(-50%, -50%);
   border-color: rgb(255 187 82 / 78%);
 }
 
 .world1-calibrator__bounds--active-perception {
-  top: var(--cal-active-perception-y);
-  left: var(--cal-active-perception-x);
-  width: var(--cal-active-perception-width);
+  top: var(--world1-active-perception-y);
+  left: var(--world1-active-perception-x);
+  width: var(--world1-active-perception-width);
   aspect-ratio: 941 / 1672;
   transform: translate(-50%, -50%);
   border-color: rgb(115 205 255 / 72%);
 }
 
 .world1-calibrator__bounds--active-mediation {
-  top: var(--cal-active-mediation-y);
-  left: var(--cal-active-mediation-x);
-  width: var(--cal-active-mediation-width);
+  top: var(--world1-active-mediation-y);
+  left: var(--world1-active-mediation-x);
+  width: var(--world1-active-mediation-width);
   aspect-ratio: 941 / 1672;
   transform: translate(-50%, -50%);
   border-color: rgb(190 255 125 / 72%);
@@ -671,17 +706,9 @@
     grid-template-columns: minmax(360px, 430px) minmax(520px, 1fr);
     align-items: start;
   }
-
-  .world1-calibrator__stage {
-    max-height: calc(100svh - 32px);
-  }
 }
 
 @media (width <= 374px) {
-  .world1-calibrator__stage-shell {
-    width: min(100%, 360px);
-  }
-
   .world1-calibrator__node {
     width: 76px;
   }

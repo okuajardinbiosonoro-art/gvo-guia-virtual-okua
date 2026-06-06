@@ -1,0 +1,5050 @@
+{
+  "generatedAt": "2026-06-06T19:53:50.679Z",
+  "metrics": [
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 482.66,
+        "width": 321,
+        "height": 115.22,
+        "top": 482.66,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 16.4,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 97.35,
+            "bottom": 383.44,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 147.02,
+            "y": 289.83,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 289.83,
+            "right": 227.98,
+            "bottom": 370.86,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 277.63,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 358.59,
+            "bottom": 383.44,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 423.08,
+        "width": 321,
+        "height": 174.8,
+        "top": 423.08,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 16.4,
+            "y": 248.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 248.95,
+            "right": 97.35,
+            "bottom": 329.98,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.02,
+            "y": 236.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 236.37,
+            "right": 227.98,
+            "bottom": 317.41,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 277.63,
+            "y": 248.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 248.95,
+            "right": 358.59,
+            "bottom": 329.98,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 584.05,
+        "width": 336,
+        "height": 115.66,
+        "top": 584.05,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 18.35,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 99.31,
+            "bottom": 472.33,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 154.52,
+            "y": 378.19,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 378.19,
+            "right": 235.48,
+            "bottom": 459.22,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 290.68,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 371.64,
+            "bottom": 472.33,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 540.84,
+        "width": 336,
+        "height": 158.86,
+        "top": 540.84,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.35,
+            "y": 335.59,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 335.59,
+            "right": 99.31,
+            "bottom": 416.63,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 154.52,
+            "y": 322.48,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 322.48,
+            "right": 235.48,
+            "bottom": 403.52,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 290.68,
+            "y": 335.59,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 335.59,
+            "right": 371.64,
+            "bottom": 416.63,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 589.88,
+        "width": 339,
+        "height": 116,
+        "top": 589.88,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 18.74,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 99.7,
+            "bottom": 475.92,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 156.02,
+            "y": 381.67,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 381.67,
+            "right": 236.98,
+            "bottom": 462.7,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 293.29,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 374.25,
+            "bottom": 475.92,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 546.5,
+        "width": 339,
+        "height": 159.38,
+        "top": 546.5,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.74,
+            "y": 338.72,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 338.72,
+            "right": 99.7,
+            "bottom": 419.75,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 156.02,
+            "y": 325.52,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 325.52,
+            "right": 236.98,
+            "bottom": 406.55,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 293.29,
+            "y": 338.72,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 338.72,
+            "right": 374.25,
+            "bottom": 419.75,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 515.2,
+        "width": 314,
+        "height": 135.84,
+        "top": 515.2,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 22.26,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 87.62,
+            "bottom": 425.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 147.32,
+            "y": 344.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 344.19,
+            "right": 212.68,
+            "bottom": 413.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272.37,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 337.73,
+            "bottom": 425.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 532.13,
+        "width": 314,
+        "height": 118.92,
+        "top": 532.13,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 87.62,
+            "bottom": 425.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 147.32,
+            "y": 344.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 344.19,
+            "right": 212.68,
+            "bottom": 413.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 272.37,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 337.73,
+            "bottom": 425.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 476.2,
+        "width": 314,
+        "height": 174.84,
+        "top": 476.2,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 338.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 338.17,
+            "right": 87.62,
+            "bottom": 407.61,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 326.13,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.13,
+            "right": 212.68,
+            "bottom": 395.56,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 272.37,
+            "y": 338.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 338.17,
+            "right": 337.73,
+            "bottom": 407.61,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 492.59,
+        "width": 314,
+        "height": 158.45,
+        "top": 492.59,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 308.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.07,
+            "right": 87.62,
+            "bottom": 377.5,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 296.02,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 296.02,
+            "right": 212.68,
+            "bottom": 365.45,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 272.37,
+            "y": 308.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.07,
+            "right": 337.73,
+            "bottom": 377.5,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 482.66,
+        "width": 321,
+        "height": 115.22,
+        "top": 482.66,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 16.4,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 97.35,
+            "bottom": 383.44,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 147.02,
+            "y": 289.83,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 289.83,
+            "right": 227.98,
+            "bottom": 370.86,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 277.63,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 358.59,
+            "bottom": 383.44,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 429.28,
+        "width": 321,
+        "height": 168.59,
+        "top": 429.28,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 16.4,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 97.35,
+            "bottom": 383.44,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 147.02,
+            "y": 289.83,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 289.83,
+            "right": 227.98,
+            "bottom": 370.86,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 277.63,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 358.59,
+            "bottom": 383.44,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 447.67,
+        "width": 321,
+        "height": 150.2,
+        "top": 447.67,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 16.4,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 97.35,
+            "bottom": 383.44,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 147.02,
+            "y": 289.83,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 289.83,
+            "right": 227.98,
+            "bottom": 370.86,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 277.63,
+            "y": 302.41,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 302.41,
+            "right": 358.59,
+            "bottom": 383.44,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 408.67,
+        "width": 321,
+        "height": 189.2,
+        "top": 408.67,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 16.4,
+            "y": 280.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 280.39,
+            "right": 97.35,
+            "bottom": 361.42,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.02,
+            "y": 267.81,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 267.81,
+            "right": 227.98,
+            "bottom": 348.84,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 277.63,
+            "y": 280.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 280.39,
+            "right": 358.59,
+            "bottom": 361.42,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_se",
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 18.11,
+        "width": 355,
+        "height": 630.77,
+        "top": 18.11,
+        "right": 365,
+        "bottom": 648.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 423.08,
+        "width": 321,
+        "height": 174.8,
+        "top": 423.08,
+        "right": 348,
+        "bottom": 597.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 228,
+        "y": 601.88,
+        "width": 118,
+        "height": 34,
+        "top": 601.88,
+        "right": 346,
+        "bottom": 635.88,
+        "left": 228
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 16.4,
+            "y": 248.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 248.95,
+            "right": 97.35,
+            "bottom": 329.98,
+            "left": 16.4
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.02,
+            "y": 236.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 236.37,
+            "right": 227.98,
+            "bottom": 317.41,
+            "left": 147.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 277.63,
+            "y": 248.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 248.95,
+            "right": 358.59,
+            "bottom": 329.98,
+            "left": 277.63
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.06,
+        "yPx": -15.14,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 584.05,
+        "width": 336,
+        "height": 115.66,
+        "top": 584.05,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 18.35,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 99.31,
+            "bottom": 472.33,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 154.52,
+            "y": 378.19,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 378.19,
+            "right": 235.48,
+            "bottom": 459.22,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 290.68,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 371.64,
+            "bottom": 472.33,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 548.84,
+        "width": 336,
+        "height": 150.86,
+        "top": 548.84,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 18.35,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 99.31,
+            "bottom": 472.33,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 154.52,
+            "y": 378.19,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 378.19,
+            "right": 235.48,
+            "bottom": 459.22,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 290.68,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 371.64,
+            "bottom": 472.33,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 565.44,
+        "width": 336,
+        "height": 134.27,
+        "top": 565.44,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.35,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 99.31,
+            "bottom": 472.33,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 154.52,
+            "y": 378.19,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 378.19,
+            "right": 235.48,
+            "bottom": 459.22,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 290.68,
+            "y": 391.3,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 391.3,
+            "right": 371.64,
+            "bottom": 472.33,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 509.84,
+        "width": 336,
+        "height": 189.86,
+        "top": 509.84,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.35,
+            "y": 368.36,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 368.36,
+            "right": 99.31,
+            "bottom": 449.39,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 154.52,
+            "y": 355.25,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 355.25,
+            "right": 235.48,
+            "bottom": 436.28,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 290.68,
+            "y": 368.36,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 368.36,
+            "right": 371.64,
+            "bottom": 449.39,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "iphone_13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 93.28,
+        "width": 370,
+        "height": 657.42,
+        "top": 93.28,
+        "right": 380,
+        "bottom": 750.7,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 540.84,
+        "width": 336,
+        "height": 158.86,
+        "top": 540.84,
+        "right": 363,
+        "bottom": 699.7,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 243,
+        "y": 703.7,
+        "width": 118,
+        "height": 34,
+        "top": 703.7,
+        "right": 361,
+        "bottom": 737.7,
+        "left": 243
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.35,
+            "y": 335.59,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 335.59,
+            "right": 99.31,
+            "bottom": 416.63,
+            "left": 18.35
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 154.52,
+            "y": 322.48,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 322.48,
+            "right": 235.48,
+            "bottom": 403.52,
+            "left": 154.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 290.68,
+            "y": 335.59,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 335.59,
+            "right": 371.64,
+            "bottom": 416.63,
+            "left": 290.68
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.11,
+        "yPx": -15.78,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 589.88,
+        "width": 339,
+        "height": 116,
+        "top": 589.88,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 18.74,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 99.7,
+            "bottom": 475.92,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 156.02,
+            "y": 381.67,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 381.67,
+            "right": 236.98,
+            "bottom": 462.7,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 293.29,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 374.25,
+            "bottom": 475.92,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 554.5,
+        "width": 339,
+        "height": 151.38,
+        "top": 554.5,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 18.74,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 99.7,
+            "bottom": 475.92,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 156.02,
+            "y": 381.67,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 381.67,
+            "right": 236.98,
+            "bottom": 462.7,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 293.29,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 374.25,
+            "bottom": 475.92,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 571.13,
+        "width": 339,
+        "height": 134.75,
+        "top": 571.13,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.74,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 99.7,
+            "bottom": 475.92,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 156.02,
+            "y": 381.67,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 381.67,
+            "right": 236.98,
+            "bottom": 462.7,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 293.29,
+            "y": 394.89,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 394.89,
+            "right": 374.25,
+            "bottom": 475.92,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 515.5,
+        "width": 339,
+        "height": 190.38,
+        "top": 515.5,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.74,
+            "y": 371.77,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 371.77,
+            "right": 99.7,
+            "bottom": 452.8,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 156.02,
+            "y": 358.55,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 358.55,
+            "right": 236.98,
+            "bottom": 439.58,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 293.29,
+            "y": 371.77,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 371.77,
+            "right": 374.25,
+            "bottom": 452.8,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "pixel",
+      "viewport": {
+        "width": 393,
+        "height": 851
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.75,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 94.13,
+        "width": 373,
+        "height": 662.75,
+        "top": 94.13,
+        "right": 383,
+        "bottom": 756.88,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 546.5,
+        "width": 339,
+        "height": 159.38,
+        "top": 546.5,
+        "right": 366,
+        "bottom": 705.88,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 246,
+        "y": 709.88,
+        "width": 118,
+        "height": 34,
+        "top": 709.88,
+        "right": 364,
+        "bottom": 743.88,
+        "left": 246
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 18.74,
+            "y": 338.72,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 338.72,
+            "right": 99.7,
+            "bottom": 419.75,
+            "left": 18.74
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 156.02,
+            "y": 325.52,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 325.52,
+            "right": 236.98,
+            "bottom": 406.55,
+            "left": 156.02
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 293.29,
+            "y": 338.72,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 338.72,
+            "right": 374.25,
+            "bottom": 419.75,
+            "left": 293.29
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.12,
+        "yPx": -15.91,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "samsung_like",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.625,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 109.23,
+        "width": 392,
+        "height": 696.52,
+        "top": 109.23,
+        "right": 402,
+        "bottom": 805.75,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 634.77,
+        "width": 358,
+        "height": 119.98,
+        "top": 634.77,
+        "right": 385,
+        "bottom": 754.75,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 265,
+        "y": 758.75,
+        "width": 118,
+        "height": 34,
+        "top": 758.75,
+        "right": 383,
+        "bottom": 792.75,
+        "left": 265
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 21.21,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 102.17,
+            "bottom": 508.42,
+            "left": 21.21
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 165.52,
+            "y": 413.5,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 413.5,
+            "right": 246.48,
+            "bottom": 494.53,
+            "left": 165.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 309.82,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 390.78,
+            "bottom": 508.42,
+            "left": 309.82
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.18,
+        "yPx": -16.72,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "samsung_like",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.625,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 109.23,
+        "width": 392,
+        "height": 696.52,
+        "top": 109.23,
+        "right": 402,
+        "bottom": 805.75,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 597.69,
+        "width": 358,
+        "height": 157.06,
+        "top": 597.69,
+        "right": 385,
+        "bottom": 754.75,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 265,
+        "y": 758.75,
+        "width": 118,
+        "height": 34,
+        "top": 758.75,
+        "right": 383,
+        "bottom": 792.75,
+        "left": 265
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 21.21,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 102.17,
+            "bottom": 508.42,
+            "left": 21.21
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 165.52,
+            "y": 413.5,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 413.5,
+            "right": 246.48,
+            "bottom": 494.53,
+            "left": 165.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 309.82,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 390.78,
+            "bottom": 508.42,
+            "left": 309.82
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.18,
+        "yPx": -16.72,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "samsung_like",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.625,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 109.23,
+        "width": 392,
+        "height": 696.52,
+        "top": 109.23,
+        "right": 402,
+        "bottom": 805.75,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 634.77,
+        "width": 358,
+        "height": 119.98,
+        "top": 634.77,
+        "right": 385,
+        "bottom": 754.75,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 265,
+        "y": 758.75,
+        "width": 118,
+        "height": 34,
+        "top": 758.75,
+        "right": 383,
+        "bottom": 792.75,
+        "left": 265
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 21.21,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 102.17,
+            "bottom": 508.42,
+            "left": 21.21
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 165.52,
+            "y": 413.5,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 413.5,
+            "right": 246.48,
+            "bottom": 494.53,
+            "left": 165.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 309.82,
+            "y": 427.39,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 427.39,
+            "right": 390.78,
+            "bottom": 508.42,
+            "left": 309.82
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.18,
+        "yPx": -16.72,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "samsung_like",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.625,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 109.23,
+        "width": 392,
+        "height": 696.52,
+        "top": 109.23,
+        "right": 402,
+        "bottom": 805.75,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 558.69,
+        "width": 358,
+        "height": 196.06,
+        "top": 558.69,
+        "right": 385,
+        "bottom": 754.75,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 265,
+        "y": 758.75,
+        "width": 118,
+        "height": 34,
+        "top": 758.75,
+        "right": 383,
+        "bottom": 792.75,
+        "left": 265
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 21.21,
+            "y": 403.08,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 403.08,
+            "right": 102.17,
+            "bottom": 484.11,
+            "left": 21.21
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 165.52,
+            "y": 389.19,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 389.19,
+            "right": 246.48,
+            "bottom": 470.22,
+            "left": 165.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 309.82,
+            "y": 403.08,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 403.08,
+            "right": 390.78,
+            "bottom": 484.11,
+            "left": 309.82
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.18,
+        "yPx": -16.72,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "samsung_like",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2.625,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 109.23,
+        "width": 392,
+        "height": 696.52,
+        "top": 109.23,
+        "right": 402,
+        "bottom": 805.75,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 572.27,
+        "width": 358,
+        "height": 182.48,
+        "top": 572.27,
+        "right": 385,
+        "bottom": 754.75,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 265,
+        "y": 758.75,
+        "width": 118,
+        "height": 34,
+        "top": 758.75,
+        "right": 383,
+        "bottom": 792.75,
+        "left": 265
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 21.21,
+            "y": 368.36,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 368.36,
+            "right": 102.17,
+            "bottom": 449.39,
+            "left": 21.21
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 165.52,
+            "y": 354.47,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 354.47,
+            "right": 246.48,
+            "bottom": 435.5,
+            "left": 165.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 309.82,
+            "y": 368.36,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 368.36,
+            "right": 390.78,
+            "bottom": 449.39,
+            "left": 309.82
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.18,
+        "yPx": -16.72,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "small_android",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 67.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 67.94,
+        "right": 350,
+        "bottom": 672.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 516.73,
+        "width": 314,
+        "height": 104.31,
+        "top": 516.73,
+        "right": 337,
+        "bottom": 621.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 625.05,
+        "width": 118,
+        "height": 34,
+        "top": 625.05,
+        "right": 335,
+        "bottom": 659.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 22.26,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 87.62,
+            "bottom": 395.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 147.32,
+            "y": 314.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 314.19,
+            "right": 212.68,
+            "bottom": 383.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272.37,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 337.73,
+            "bottom": 395.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "small_android",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 67.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 67.94,
+        "right": 350,
+        "bottom": 672.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 485.2,
+        "width": 314,
+        "height": 135.84,
+        "top": 485.2,
+        "right": 337,
+        "bottom": 621.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 625.05,
+        "width": 118,
+        "height": 34,
+        "top": 625.05,
+        "right": 335,
+        "bottom": 659.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 22.26,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 87.62,
+            "bottom": 395.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 147.32,
+            "y": 314.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 314.19,
+            "right": 212.68,
+            "bottom": 383.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272.37,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 337.73,
+            "bottom": 395.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "small_android",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 67.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 67.94,
+        "right": 350,
+        "bottom": 672.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 502.13,
+        "width": 314,
+        "height": 118.92,
+        "top": 502.13,
+        "right": 337,
+        "bottom": 621.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 625.05,
+        "width": 118,
+        "height": 34,
+        "top": 625.05,
+        "right": 335,
+        "bottom": 659.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 87.62,
+            "bottom": 395.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 147.32,
+            "y": 314.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 314.19,
+            "right": 212.68,
+            "bottom": 383.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 272.37,
+            "y": 326.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.24,
+            "right": 337.73,
+            "bottom": 395.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "small_android",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 67.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 67.94,
+        "right": 350,
+        "bottom": 672.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 446.2,
+        "width": 314,
+        "height": 174.84,
+        "top": 446.2,
+        "right": 337,
+        "bottom": 621.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 625.05,
+        "width": 118,
+        "height": 34,
+        "top": 625.05,
+        "right": 335,
+        "bottom": 659.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 308.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.17,
+            "right": 87.62,
+            "bottom": 377.61,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 296.13,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 296.13,
+            "right": 212.68,
+            "bottom": 365.56,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 272.37,
+            "y": 308.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.17,
+            "right": 337.73,
+            "bottom": 377.61,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "small_android",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 67.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 67.94,
+        "right": 350,
+        "bottom": 672.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 462.59,
+        "width": 314,
+        "height": 158.45,
+        "top": 462.59,
+        "right": 337,
+        "bottom": 621.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 625.05,
+        "width": 118,
+        "height": 34,
+        "top": 625.05,
+        "right": 335,
+        "bottom": 659.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 278.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 278.07,
+            "right": 87.62,
+            "bottom": 347.5,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 266.02,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 266.02,
+            "right": 212.68,
+            "bottom": 335.45,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 272.37,
+            "y": 278.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 278.07,
+            "right": 337.73,
+            "bottom": 347.5,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 546.73,
+        "width": 314,
+        "height": 104.31,
+        "top": 546.73,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 22.26,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 87.62,
+            "bottom": 425.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 147.32,
+            "y": 344.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 344.19,
+            "right": 212.68,
+            "bottom": 413.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272.37,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 337.73,
+            "bottom": 425.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 515.2,
+        "width": 314,
+        "height": 135.84,
+        "top": 515.2,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 22.26,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 87.62,
+            "bottom": 425.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 147.32,
+            "y": 344.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 344.19,
+            "right": 212.68,
+            "bottom": 413.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 272.37,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 337.73,
+            "bottom": 425.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 532.13,
+        "width": 314,
+        "height": 118.92,
+        "top": 532.13,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 87.62,
+            "bottom": 425.67,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 147.32,
+            "y": 344.19,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 344.19,
+            "right": 212.68,
+            "bottom": 413.62,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 272.37,
+            "y": 356.24,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 356.24,
+            "right": 337.73,
+            "bottom": 425.67,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 476.2,
+        "width": 314,
+        "height": 174.84,
+        "top": 476.2,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 338.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 338.17,
+            "right": 87.62,
+            "bottom": 407.61,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 326.13,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 326.13,
+            "right": 212.68,
+            "bottom": 395.56,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 272.37,
+            "y": 338.17,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 338.17,
+            "right": 337.73,
+            "bottom": 407.61,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 2,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 97.94,
+        "width": 340,
+        "height": 604.11,
+        "top": 97.94,
+        "right": 350,
+        "bottom": 702.05,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 23,
+        "y": 492.59,
+        "width": 314,
+        "height": 158.45,
+        "top": 492.59,
+        "right": 337,
+        "bottom": 651.05,
+        "left": 23
+      },
+      "continueRect": {
+        "x": 217,
+        "y": 655.05,
+        "width": 118,
+        "height": 34,
+        "top": 655.05,
+        "right": 335,
+        "bottom": 689.05,
+        "left": 217
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 22.26,
+            "y": 308.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.07,
+            "right": 87.62,
+            "bottom": 377.5,
+            "left": 22.26
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 147.32,
+            "y": 296.02,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 296.02,
+            "right": 212.68,
+            "bottom": 365.45,
+            "left": 147.32
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 272.37,
+            "y": 308.07,
+            "width": 65.36,
+            "height": 69.43,
+            "top": 308.07,
+            "right": 337.73,
+            "bottom": 377.5,
+            "left": 272.37
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.02,
+        "yPx": -14.5,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "430",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "intro",
+      "runtimeState": "intro",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 101.75,
+        "width": 410,
+        "height": 728.5,
+        "top": 101.75,
+        "right": 420,
+        "bottom": 830.25,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 655.42,
+        "width": 376,
+        "height": 123.83,
+        "top": 655.42,
+        "right": 403,
+        "bottom": 779.25,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 283,
+        "y": 783.25,
+        "width": 118,
+        "height": 34,
+        "top": 783.25,
+        "right": 401,
+        "bottom": 817.25,
+        "left": 283
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "available",
+          "rect": {
+            "x": 23.55,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 104.51,
+            "bottom": 517.41,
+            "left": 23.55
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "locked",
+          "rect": {
+            "x": 174.52,
+            "y": 421.84,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 421.84,
+            "right": 255.48,
+            "bottom": 502.88,
+            "left": 174.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 325.47,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 406.43,
+            "bottom": 517.41,
+            "left": 325.47
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.23,
+        "yPx": -17.48,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "430",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "relation",
+      "runtimeState": "relation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 101.75,
+        "width": 410,
+        "height": 728.5,
+        "top": 101.75,
+        "right": 420,
+        "bottom": 830.25,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 616.73,
+        "width": 376,
+        "height": 162.52,
+        "top": 616.73,
+        "right": 403,
+        "bottom": 779.25,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 283,
+        "y": 783.25,
+        "width": 118,
+        "height": 34,
+        "top": 783.25,
+        "right": 401,
+        "bottom": 817.25,
+        "left": 283
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "active",
+          "rect": {
+            "x": 23.55,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 104.51,
+            "bottom": 517.41,
+            "left": 23.55
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "available",
+          "rect": {
+            "x": 174.52,
+            "y": 421.84,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 421.84,
+            "right": 255.48,
+            "bottom": 502.88,
+            "left": 174.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "locked",
+          "rect": {
+            "x": 325.47,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 406.43,
+            "bottom": 517.41,
+            "left": 325.47
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.23,
+        "yPx": -17.48,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "430",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "perception",
+      "runtimeState": "perception",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 101.75,
+        "width": 410,
+        "height": 728.5,
+        "top": 101.75,
+        "right": 420,
+        "bottom": 830.25,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 634.91,
+        "width": 376,
+        "height": 144.34,
+        "top": 634.91,
+        "right": 403,
+        "bottom": 779.25,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 283,
+        "y": 783.25,
+        "width": 118,
+        "height": 34,
+        "top": 783.25,
+        "right": 401,
+        "bottom": 817.25,
+        "left": 283
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 23.55,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 104.51,
+            "bottom": 517.41,
+            "left": 23.55
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "active",
+          "rect": {
+            "x": 174.52,
+            "y": 421.84,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 421.84,
+            "right": 255.48,
+            "bottom": 502.88,
+            "left": 174.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "available",
+          "rect": {
+            "x": 325.47,
+            "y": 436.37,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 436.37,
+            "right": 406.43,
+            "bottom": 517.41,
+            "left": 325.47
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.23,
+        "yPx": -17.48,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "430",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "mediation",
+      "runtimeState": "mediation",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 101.75,
+        "width": 410,
+        "height": 728.5,
+        "top": 101.75,
+        "right": 420,
+        "bottom": 830.25,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 577.73,
+        "width": 376,
+        "height": 201.52,
+        "top": 577.73,
+        "right": 403,
+        "bottom": 779.25,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 283,
+        "y": 783.25,
+        "width": 118,
+        "height": 34,
+        "top": 783.25,
+        "right": 401,
+        "bottom": 817.25,
+        "left": 283
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 23.55,
+            "y": 410.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 410.95,
+            "right": 104.51,
+            "bottom": 491.98,
+            "left": 23.55
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 174.52,
+            "y": 396.42,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 396.42,
+            "right": 255.48,
+            "bottom": 477.45,
+            "left": 174.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "active",
+          "rect": {
+            "x": 325.47,
+            "y": 410.95,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 410.95,
+            "right": 406.43,
+            "bottom": 491.98,
+            "left": 325.47
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.23,
+        "yPx": -17.48,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/estacion/1",
+      "profile": "430",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "ready_to_continue",
+      "runtimeState": "ready_to_continue",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 101.75,
+        "width": 410,
+        "height": 728.5,
+        "top": 101.75,
+        "right": 420,
+        "bottom": 830.25,
+        "left": 10
+      },
+      "panelRect": {
+        "x": 27,
+        "y": 590.56,
+        "width": 376,
+        "height": 188.69,
+        "top": 590.56,
+        "right": 403,
+        "bottom": 779.25,
+        "left": 27
+      },
+      "continueRect": {
+        "x": 283,
+        "y": 783.25,
+        "width": 118,
+        "height": 34,
+        "top": 783.25,
+        "right": 401,
+        "bottom": 817.25,
+        "left": 283
+      },
+      "nodeRects": [
+        {
+          "id": "relation",
+          "state": "completed",
+          "rect": {
+            "x": 23.55,
+            "y": 374.62,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 374.62,
+            "right": 104.51,
+            "bottom": 455.66,
+            "left": 23.55
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "perception",
+          "state": "completed",
+          "rect": {
+            "x": 174.52,
+            "y": 360.09,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 360.09,
+            "right": 255.48,
+            "bottom": 441.13,
+            "left": 174.52
+          },
+          "overlapsPanel": false
+        },
+        {
+          "id": "mediation",
+          "state": "completed",
+          "rect": {
+            "x": 325.47,
+            "y": 374.62,
+            "width": 80.96,
+            "height": 81.03,
+            "top": 374.62,
+            "right": 406.43,
+            "bottom": 455.66,
+            "left": 325.47
+          },
+          "overlapsPanel": false
+        }
+      ],
+      "nodePanelOverlap": [],
+      "horizontalOverflow": false,
+      "verticalScroll": false,
+      "exitPathPanelOverlap": false,
+      "plantRootAnchorDelta": {
+        "xPx": -1.23,
+        "yPx": -17.48,
+        "rootOrigin": {
+          "x": "50.8%",
+          "y": "35.9%"
+        },
+        "plantAnchor": {
+          "x": "50.5%",
+          "y": "33.5%"
+        }
+      },
+      "devUiLeakedIntoRuntime": false,
+      "hasAudio": false,
+      "hasVideo": false,
+      "continueVisible": true
+    },
+    {
+      "route": "/dev/world1-root-layout",
+      "profile": "390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "relation_active",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 10,
+        "width": 370,
+        "height": 657.42,
+        "top": 10,
+        "right": 380,
+        "bottom": 667.42,
+        "left": 10
+      },
+      "horizontalOverflow": false,
+      "runtimeDevUiSeparation": true
+    },
+    {
+      "route": "/dev/world1-root-layout",
+      "profile": "390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3,
+      "state": "all_roots_reference",
+      "coordinateSystem": "world1-stage-941x1672-004F1C",
+      "stageRect": {
+        "x": 10,
+        "y": 10,
+        "width": 370,
+        "height": 657.42,
+        "top": 10,
+        "right": 380,
+        "bottom": 667.42,
+        "left": 10
+      },
+      "horizontalOverflow": false,
+      "runtimeDevUiSeparation": true
+    }
+  ]
+}

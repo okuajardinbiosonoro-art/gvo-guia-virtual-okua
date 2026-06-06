@@ -3,6 +3,7 @@ import "./World1RootLayoutCalibrator.css";
 import type { CSSProperties, ChangeEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { World1RootStageFrame } from "../layout";
 import { world1RootAssets } from "../world1RootAssets";
 
 type VisualState =
@@ -437,15 +438,15 @@ const defaultValues: LayoutValues = {
   activeMediationY: 69.4,
   activeMediationWidth: 91.5,
   activeMediationOpacity: 1,
-  nodeRelationX: 8,
-  nodeRelationY: 62,
-  nodeRelationScale: 1,
+  nodeRelationX: 13,
+  nodeRelationY: 51.5,
+  nodeRelationScale: 0.92,
   nodePerceptionX: 50,
-  nodePerceptionY: 60,
-  nodePerceptionScale: 1,
-  nodeMediationX: 92,
-  nodeMediationY: 62,
-  nodeMediationScale: 1,
+  nodePerceptionY: 49.5,
+  nodePerceptionScale: 0.92,
+  nodeMediationX: 87,
+  nodeMediationY: 51.5,
+  nodeMediationScale: 0.92,
   liaIdleX: 78,
   liaIdleY: 12.5,
   liaIdleWidth: 25,
@@ -518,7 +519,11 @@ const baseNodeStates: NodeStateMap = {
 };
 
 const presetValues: Record<
-  "current-runtime" | "relation-active-current" | "recommended-start" | "compact-360" | "wide-430",
+  | "current-runtime"
+  | "relation-active-current"
+  | "recommended-start"
+  | "compact-360"
+  | "wide-430",
   CalibratorPreset
 > = {
   "current-runtime": {
@@ -636,10 +641,34 @@ const controlGroups: ReadonlyArray<{
       { key: "plantX", label: "plantX", min: -10, max: 110, step: 0.1 },
       { key: "plantY", label: "plantY", min: -10, max: 110, step: 0.1 },
       { key: "plantWidth", label: "plantWidth", min: 8, max: 95, step: 0.1 },
-      { key: "plantAnchorX", label: "plantAnchorX", min: 0, max: 130, step: 0.1 },
-      { key: "plantAnchorY", label: "plantAnchorY", min: 0, max: 130, step: 0.1 },
-      { key: "rootOriginX", label: "rootOriginX", min: -10, max: 110, step: 0.1 },
-      { key: "rootOriginY", label: "rootOriginY", min: -10, max: 110, step: 0.1 },
+      {
+        key: "plantAnchorX",
+        label: "plantAnchorX",
+        min: 0,
+        max: 130,
+        step: 0.1,
+      },
+      {
+        key: "plantAnchorY",
+        label: "plantAnchorY",
+        min: 0,
+        max: 130,
+        step: 0.1,
+      },
+      {
+        key: "rootOriginX",
+        label: "rootOriginX",
+        min: -10,
+        max: 110,
+        step: 0.1,
+      },
+      {
+        key: "rootOriginY",
+        label: "rootOriginY",
+        min: -10,
+        max: 110,
+        step: 0.1,
+      },
       { key: "rootsTop", label: "rootsTop", min: -20, max: 95, step: 0.1 },
       { key: "rootsWidth", label: "rootsWidth", min: 35, max: 170, step: 0.1 },
     ],
@@ -647,32 +676,158 @@ const controlGroups: ReadonlyArray<{
   {
     title: "Raices activas",
     controls: [
-      { key: "activeRelationX", label: "activeRelationX", min: -40, max: 140, step: 0.1 },
-      { key: "activeRelationY", label: "activeRelationY", min: -40, max: 160, step: 0.1 },
-      { key: "activeRelationWidth", label: "activeRelationWidth", min: 20, max: 220, step: 0.1 },
-      { key: "activeRelationOpacity", label: "activeRelationOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "activePerceptionX", label: "activePerceptionX", min: -40, max: 140, step: 0.1 },
-      { key: "activePerceptionY", label: "activePerceptionY", min: -40, max: 160, step: 0.1 },
-      { key: "activePerceptionWidth", label: "activePerceptionWidth", min: 20, max: 220, step: 0.1 },
-      { key: "activePerceptionOpacity", label: "activePerceptionOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "activeMediationX", label: "activeMediationX", min: -40, max: 140, step: 0.1 },
-      { key: "activeMediationY", label: "activeMediationY", min: -40, max: 160, step: 0.1 },
-      { key: "activeMediationWidth", label: "activeMediationWidth", min: 20, max: 220, step: 0.1 },
-      { key: "activeMediationOpacity", label: "activeMediationOpacity", min: 0, max: 1, step: 0.01 },
+      {
+        key: "activeRelationX",
+        label: "activeRelationX",
+        min: -40,
+        max: 140,
+        step: 0.1,
+      },
+      {
+        key: "activeRelationY",
+        label: "activeRelationY",
+        min: -40,
+        max: 160,
+        step: 0.1,
+      },
+      {
+        key: "activeRelationWidth",
+        label: "activeRelationWidth",
+        min: 20,
+        max: 220,
+        step: 0.1,
+      },
+      {
+        key: "activeRelationOpacity",
+        label: "activeRelationOpacity",
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
+        key: "activePerceptionX",
+        label: "activePerceptionX",
+        min: -40,
+        max: 140,
+        step: 0.1,
+      },
+      {
+        key: "activePerceptionY",
+        label: "activePerceptionY",
+        min: -40,
+        max: 160,
+        step: 0.1,
+      },
+      {
+        key: "activePerceptionWidth",
+        label: "activePerceptionWidth",
+        min: 20,
+        max: 220,
+        step: 0.1,
+      },
+      {
+        key: "activePerceptionOpacity",
+        label: "activePerceptionOpacity",
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
+        key: "activeMediationX",
+        label: "activeMediationX",
+        min: -40,
+        max: 140,
+        step: 0.1,
+      },
+      {
+        key: "activeMediationY",
+        label: "activeMediationY",
+        min: -40,
+        max: 160,
+        step: 0.1,
+      },
+      {
+        key: "activeMediationWidth",
+        label: "activeMediationWidth",
+        min: 20,
+        max: 220,
+        step: 0.1,
+      },
+      {
+        key: "activeMediationOpacity",
+        label: "activeMediationOpacity",
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
     ],
   },
   {
     title: "Nodos",
     controls: [
-      { key: "nodeRelationX", label: "nodeRelationX", min: -25, max: 125, step: 0.1 },
-      { key: "nodeRelationY", label: "nodeRelationY", min: -15, max: 125, step: 0.1 },
-      { key: "nodeRelationScale", label: "nodeRelationScale", min: 0.35, max: 2, step: 0.01 },
-      { key: "nodePerceptionX", label: "nodePerceptionX", min: -25, max: 125, step: 0.1 },
-      { key: "nodePerceptionY", label: "nodePerceptionY", min: -15, max: 125, step: 0.1 },
-      { key: "nodePerceptionScale", label: "nodePerceptionScale", min: 0.35, max: 2, step: 0.01 },
-      { key: "nodeMediationX", label: "nodeMediationX", min: -25, max: 125, step: 0.1 },
-      { key: "nodeMediationY", label: "nodeMediationY", min: -15, max: 125, step: 0.1 },
-      { key: "nodeMediationScale", label: "nodeMediationScale", min: 0.35, max: 2, step: 0.01 },
+      {
+        key: "nodeRelationX",
+        label: "nodeRelationX",
+        min: -25,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodeRelationY",
+        label: "nodeRelationY",
+        min: -15,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodeRelationScale",
+        label: "nodeRelationScale",
+        min: 0.35,
+        max: 2,
+        step: 0.01,
+      },
+      {
+        key: "nodePerceptionX",
+        label: "nodePerceptionX",
+        min: -25,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodePerceptionY",
+        label: "nodePerceptionY",
+        min: -15,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodePerceptionScale",
+        label: "nodePerceptionScale",
+        min: 0.35,
+        max: 2,
+        step: 0.01,
+      },
+      {
+        key: "nodeMediationX",
+        label: "nodeMediationX",
+        min: -25,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodeMediationY",
+        label: "nodeMediationY",
+        min: -15,
+        max: 125,
+        step: 0.1,
+      },
+      {
+        key: "nodeMediationScale",
+        label: "nodeMediationScale",
+        min: 0.35,
+        max: 2,
+        step: 0.01,
+      },
     ],
   },
   {
@@ -686,15 +841,42 @@ const controlGroups: ReadonlyArray<{
   {
     title: "Dialogo / panel inferior",
     controls: [
-      { key: "dialogPanelY", label: "dialogPanelY", min: -10, max: 110, step: 0.1 },
-      { key: "dialogPanelHeight", label: "dialogPanelHeight", min: 4, max: 55, step: 0.1 },
-      { key: "dialogPanelOpacity", label: "dialogPanelOpacity", min: 0, max: 1, step: 0.01 },
-      { key: "dialogTextScale", label: "dialogTextScale", min: 0.5, max: 1.8, step: 0.01 },
+      {
+        key: "dialogPanelY",
+        label: "dialogPanelY",
+        min: -10,
+        max: 110,
+        step: 0.1,
+      },
+      {
+        key: "dialogPanelHeight",
+        label: "dialogPanelHeight",
+        min: 4,
+        max: 55,
+        step: 0.1,
+      },
+      {
+        key: "dialogPanelOpacity",
+        label: "dialogPanelOpacity",
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
+        key: "dialogTextScale",
+        label: "dialogTextScale",
+        min: 0.5,
+        max: 1.8,
+        step: 0.01,
+      },
     ],
   },
 ];
 
-const stageToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: string }> = [
+const stageToggleControls: ReadonlyArray<{
+  key: keyof ToggleValues;
+  label: string;
+}> = [
   { key: "showSafeArea", label: "safe area" },
   { key: "showMobileFrame", label: "mobile frame" },
   { key: "showTextBlock", label: "text block" },
@@ -702,7 +884,10 @@ const stageToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: strin
   { key: "showContinueButton", label: "continue button" },
 ];
 
-const layerToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: string }> = [
+const layerToggleControls: ReadonlyArray<{
+  key: keyof ToggleValues;
+  label: string;
+}> = [
   { key: "showBackground", label: "background" },
   { key: "showAmbientLight", label: "ambient light" },
   { key: "showPlant", label: "plant" },
@@ -716,7 +901,10 @@ const layerToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: strin
   { key: "showRelationCopy", label: "relation copy" },
 ];
 
-const guideToggleControls: ReadonlyArray<{ key: keyof ToggleValues; label: string }> = [
+const guideToggleControls: ReadonlyArray<{
+  key: keyof ToggleValues;
+  label: string;
+}> = [
   { key: "showGuides", label: "guides" },
   { key: "showGrid", label: "grid" },
   { key: "showStageCenter", label: "stage center" },
@@ -930,7 +1118,7 @@ function readInitialState() {
 }
 
 function useStageSize() {
-  const stageRef = useRef<HTMLDivElement | null>(null);
+  const stageRef = useRef<HTMLElement | null>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -978,7 +1166,9 @@ function NumberControl({
     max: number;
     step: number;
   };
-  onChange: (key: keyof LayoutValues) => (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    key: keyof LayoutValues,
+  ) => (event: ChangeEvent<HTMLInputElement>) => void;
   value: number;
 }) {
   return (
@@ -1017,8 +1207,8 @@ export function World1RootLayoutCalibrator() {
     defaultNodeStatesForState(initialState.visualState),
   );
   const [activePanel, setActivePanel] = useState<EditorPanel>("activeRoots");
-  const [selectedActiveRoot, setSelectedActiveRoot] = useState<ActiveRootId>(() =>
-    activeRootForState(initialState.visualState),
+  const [selectedActiveRoot, setSelectedActiveRoot] = useState<ActiveRootId>(
+    () => activeRootForState(initialState.visualState),
   );
   const [selectedNode, setSelectedNode] = useState<NodeId>("relation");
   const [selectedLiaPose, setSelectedLiaPose] = useState<LiaPose>(() =>
@@ -1045,59 +1235,104 @@ export function World1RootLayoutCalibrator() {
   const style = useMemo<CalibratorStyle>(
     () =>
       ({
-        "--cal-stage-scale": formatCssValue(values.stageScale, "number"),
-        "--cal-stage-offset-y": formatCssValue(values.stageOffsetY, "px"),
-        "--cal-plant-x": formatCssValue(values.plantX),
-        "--cal-plant-y": formatCssValue(values.plantY),
-        "--cal-plant-width": formatCssValue(values.plantWidth),
-        "--cal-plant-anchor-x": formatCssValue(values.plantAnchorX),
-        "--cal-plant-anchor-y": formatCssValue(values.plantAnchorY),
-        "--cal-root-origin-x": formatCssValue(values.rootOriginX),
-        "--cal-root-origin-y": formatCssValue(values.rootOriginY),
-        "--cal-roots-top": formatCssValue(values.rootsTop),
-        "--cal-roots-width": formatCssValue(values.rootsWidth),
-        "--cal-active-relation-x": formatCssValue(values.activeRelationX),
-        "--cal-active-relation-y": formatCssValue(values.activeRelationY),
-        "--cal-active-relation-width": formatCssValue(values.activeRelationWidth),
-        "--cal-active-relation-opacity": formatCssValue(
+        "--world1-stage-scale": formatCssValue(values.stageScale, "number"),
+        "--world1-stage-offset-y": formatCssValue(values.stageOffsetY, "px"),
+        "--world1-plant-x": formatCssValue(values.plantX),
+        "--world1-plant-y": formatCssValue(values.plantY),
+        "--world1-plant-width": formatCssValue(values.plantWidth),
+        "--world1-plant-anchor-x": formatCssValue(values.plantAnchorX),
+        "--world1-plant-anchor-y": formatCssValue(values.plantAnchorY),
+        "--world1-root-origin-x": formatCssValue(values.rootOriginX),
+        "--world1-root-origin-y": formatCssValue(values.rootOriginY),
+        "--world1-roots-top": formatCssValue(values.rootsTop),
+        "--world1-roots-width": formatCssValue(values.rootsWidth),
+        "--world1-active-relation-x": formatCssValue(values.activeRelationX),
+        "--world1-active-relation-y": formatCssValue(values.activeRelationY),
+        "--world1-active-relation-width": formatCssValue(
+          values.activeRelationWidth,
+        ),
+        "--world1-active-relation-opacity": formatCssValue(
           values.activeRelationOpacity,
           "number",
         ),
-        "--cal-active-perception-x": formatCssValue(values.activePerceptionX),
-        "--cal-active-perception-y": formatCssValue(values.activePerceptionY),
-        "--cal-active-perception-width": formatCssValue(
+        "--world1-active-perception-x": formatCssValue(
+          values.activePerceptionX,
+        ),
+        "--world1-active-perception-y": formatCssValue(
+          values.activePerceptionY,
+        ),
+        "--world1-active-perception-width": formatCssValue(
           values.activePerceptionWidth,
         ),
-        "--cal-active-perception-opacity": formatCssValue(
+        "--world1-active-perception-opacity": formatCssValue(
           values.activePerceptionOpacity,
           "number",
         ),
-        "--cal-active-mediation-x": formatCssValue(values.activeMediationX),
-        "--cal-active-mediation-y": formatCssValue(values.activeMediationY),
-        "--cal-active-mediation-width": formatCssValue(
+        "--world1-active-mediation-x": formatCssValue(values.activeMediationX),
+        "--world1-active-mediation-y": formatCssValue(values.activeMediationY),
+        "--world1-active-mediation-width": formatCssValue(
           values.activeMediationWidth,
         ),
-        "--cal-active-mediation-opacity": formatCssValue(
+        "--world1-active-mediation-opacity": formatCssValue(
           values.activeMediationOpacity,
           "number",
         ),
-        "--cal-node-relation-x": formatCssValue(values.nodeRelationX),
-        "--cal-node-relation-y": formatCssValue(values.nodeRelationY),
-        "--cal-node-relation-scale": formatCssValue(
+        "--world1-node-relation-x": formatCssValue(values.nodeRelationX),
+        "--world1-node-relation-y": formatCssValue(values.nodeRelationY),
+        "--world1-node-relation-scale": formatCssValue(
           values.nodeRelationScale,
           "number",
         ),
-        "--cal-node-perception-x": formatCssValue(values.nodePerceptionX),
-        "--cal-node-perception-y": formatCssValue(values.nodePerceptionY),
-        "--cal-node-perception-scale": formatCssValue(
+        "--world1-node-perception-x": formatCssValue(values.nodePerceptionX),
+        "--world1-node-perception-y": formatCssValue(values.nodePerceptionY),
+        "--world1-node-perception-scale": formatCssValue(
           values.nodePerceptionScale,
           "number",
         ),
-        "--cal-node-mediation-x": formatCssValue(values.nodeMediationX),
-        "--cal-node-mediation-y": formatCssValue(values.nodeMediationY),
-        "--cal-node-mediation-scale": formatCssValue(
+        "--world1-node-mediation-x": formatCssValue(values.nodeMediationX),
+        "--world1-node-mediation-y": formatCssValue(values.nodeMediationY),
+        "--world1-node-mediation-scale": formatCssValue(
           values.nodeMediationScale,
           "number",
+        ),
+        "--world1-lia-idle-x": formatCssValue(values.liaIdleX),
+        "--world1-lia-idle-y": formatCssValue(values.liaIdleY),
+        "--world1-lia-idle-width": formatCssValue(values.liaIdleWidth),
+        "--world1-lia-pointRelation-x": formatCssValue(
+          values.liaPointRelationX,
+        ),
+        "--world1-lia-pointRelation-y": formatCssValue(
+          values.liaPointRelationY,
+        ),
+        "--world1-lia-pointRelation-width": formatCssValue(
+          values.liaPointRelationWidth,
+        ),
+        "--world1-lia-lookPerception-x": formatCssValue(
+          values.liaLookPerceptionX,
+        ),
+        "--world1-lia-lookPerception-y": formatCssValue(
+          values.liaLookPerceptionY,
+        ),
+        "--world1-lia-lookPerception-width": formatCssValue(
+          values.liaLookPerceptionWidth,
+        ),
+        "--world1-lia-guideMediation-x": formatCssValue(
+          values.liaGuideMediationX,
+        ),
+        "--world1-lia-guideMediation-y": formatCssValue(
+          values.liaGuideMediationY,
+        ),
+        "--world1-lia-guideMediation-width": formatCssValue(
+          values.liaGuideMediationWidth,
+        ),
+        "--world1-lia-readyContinue-x": formatCssValue(
+          values.liaReadyContinueX,
+        ),
+        "--world1-lia-readyContinue-y": formatCssValue(
+          values.liaReadyContinueY,
+        ),
+        "--world1-lia-readyContinue-width": formatCssValue(
+          values.liaReadyContinueWidth,
         ),
         "--cal-dialog-panel-y": formatCssValue(values.dialogPanelY),
         "--cal-dialog-panel-height": formatCssValue(values.dialogPanelHeight),
@@ -1115,7 +1350,9 @@ export function World1RootLayoutCalibrator() {
   );
 
   const currentLiaPose = currentLiaPoseForState(visualState);
-  const currentLiaSpec = liaPoseSpecs.find((pose) => pose.id === currentLiaPose);
+  const currentLiaSpec = liaPoseSpecs.find(
+    (pose) => pose.id === currentLiaPose,
+  );
   const selectedActiveRootSpec = activeRootSpecs.find(
     (root) => root.id === selectedActiveRoot,
   );
@@ -1314,7 +1551,12 @@ export function World1RootLayoutCalibrator() {
     const presetName = presetDraftName.trim() || "manual-calibration";
     const nextPresets = {
       ...savedPresets,
-      [presetName]: makePresetSnapshot(visualState, values, toggles, nodeStates),
+      [presetName]: makePresetSnapshot(
+        visualState,
+        values,
+        toggles,
+        nodeStates,
+      ),
     };
     setSavedPresets(nextPresets);
     setSelectedSavedPreset(presetName);
@@ -1345,7 +1587,8 @@ export function World1RootLayoutCalibrator() {
     const sourcePreset =
       savedPresets[selectedSavedPreset] ??
       makePresetSnapshot(visualState, values, toggles, nodeStates);
-    const baseName = selectedSavedPreset || presetDraftName || "manual-calibration";
+    const baseName =
+      selectedSavedPreset || presetDraftName || "manual-calibration";
     const duplicateName = `${baseName}-copy`;
     const nextPresets = {
       ...savedPresets,
@@ -1359,7 +1602,11 @@ export function World1RootLayoutCalibrator() {
 
   const renamePreset = () => {
     const nextName = presetDraftName.trim();
-    if (!selectedSavedPreset || !nextName || !savedPresets[selectedSavedPreset]) {
+    if (
+      !selectedSavedPreset ||
+      !nextName ||
+      !savedPresets[selectedSavedPreset]
+    ) {
       return;
     }
 
@@ -1374,7 +1621,14 @@ export function World1RootLayoutCalibrator() {
   };
 
   const focusLayer = (
-    mode: "clean" | "activeRoot" | "perception" | "lia" | "nodes" | "dialog" | "all",
+    mode:
+      | "clean"
+      | "activeRoot"
+      | "perception"
+      | "lia"
+      | "nodes"
+      | "dialog"
+      | "all",
   ) => {
     if (mode === "clean") {
       setToggles({
@@ -1494,7 +1748,10 @@ export function World1RootLayoutCalibrator() {
         setValues((current) => ({ ...current, ...importedValues }));
       }
 
-      if (importedState && visualStates.some((state) => state.id === importedState)) {
+      if (
+        importedState &&
+        visualStates.some((state) => state.id === importedState)
+      ) {
         const importedActiveRoot = activeRootForState(importedState);
         setVisualState(importedState);
         setSelectedActiveRoot(importedActiveRoot);
@@ -1522,18 +1779,21 @@ export function World1RootLayoutCalibrator() {
       data-testid="world1-layout-calibrator"
       data-calibrator-visual-state={visualState}
     >
-      <section className="world1-calibrator__preview" aria-label="Preview Mundo I">
+      <section
+        className="world1-calibrator__preview"
+        aria-label="Preview Mundo I"
+      >
         <div
           className="world1-calibrator__stage-shell"
           data-show-frame={toggles.showMobileFrame ? "true" : "false"}
         >
-          <div
+          <World1RootStageFrame
             className="world1-calibrator__stage"
             data-testid="world1-calibrator-stage"
             ref={stageRef}
             style={style}
           >
-            <div className="world1-calibrator__stage-scale">
+            <div className="world1-root-stage-coordinate-layer world1-calibrator__stage-scale">
               {toggles.showBackground ? (
                 <img
                   className="world1-calibrator__layer world1-calibrator__layer--background"
@@ -1593,8 +1853,12 @@ export function World1RootLayoutCalibrator() {
                   data-runtime-asset={currentLiaSpec.asset}
                   style={
                     {
-                      "--cal-lia-x": formatCssValue(values[currentLiaSpec.xKey]),
-                      "--cal-lia-y": formatCssValue(values[currentLiaSpec.yKey]),
+                      "--cal-lia-x": formatCssValue(
+                        values[currentLiaSpec.xKey],
+                      ),
+                      "--cal-lia-y": formatCssValue(
+                        values[currentLiaSpec.yKey],
+                      ),
                       "--cal-lia-width": formatCssValue(
                         values[currentLiaSpec.widthKey],
                       ),
@@ -1634,8 +1898,12 @@ export function World1RootLayoutCalibrator() {
                 <div className="world1-calibrator__dialog-panel">
                   {toggles.showIntroCopy ? (
                     <>
-                      <p className="world1-calibrator__eyebrow">Mundo I: Raiz</p>
-                      <strong>Antes de escuchar, necesitamos aprender a mirar.</strong>
+                      <p className="world1-calibrator__eyebrow">
+                        Mundo I: Raiz
+                      </p>
+                      <strong>
+                        Antes de escuchar, necesitamos aprender a mirar.
+                      </strong>
                     </>
                   ) : null}
                   {toggles.showRelationCopy ? (
@@ -1652,7 +1920,10 @@ export function World1RootLayoutCalibrator() {
               {toggles.showGuides ? (
                 <>
                   {toggles.showGrid ? (
-                    <div className="world1-calibrator__grid" aria-hidden="true"></div>
+                    <div
+                      className="world1-calibrator__grid"
+                      aria-hidden="true"
+                    ></div>
                   ) : null}
                   <svg
                     className="world1-calibrator__guides"
@@ -1686,7 +1957,10 @@ export function World1RootLayoutCalibrator() {
                       y2={values.plantY}
                     />
                   </svg>
-                  <div className="world1-calibrator__anchor-layer" aria-hidden="true">
+                  <div
+                    className="world1-calibrator__anchor-layer"
+                    aria-hidden="true"
+                  >
                     {toggles.showRootOrigin ? (
                       <span className="world1-calibrator__anchor world1-calibrator__anchor--root"></span>
                     ) : null}
@@ -1700,8 +1974,12 @@ export function World1RootLayoutCalibrator() {
                             key={node.id}
                             style={
                               {
-                                "--cal-anchor-x": formatCssValue(values[node.xKey]),
-                                "--cal-anchor-y": formatCssValue(values[node.yKey]),
+                                "--cal-anchor-x": formatCssValue(
+                                  values[node.xKey],
+                                ),
+                                "--cal-anchor-y": formatCssValue(
+                                  values[node.yKey],
+                                ),
                               } as CalibratorStyle
                             }
                           ></span>
@@ -1726,8 +2004,12 @@ export function World1RootLayoutCalibrator() {
                       className="world1-calibrator__bounds world1-calibrator__bounds--lia"
                       style={
                         {
-                          "--cal-lia-x": formatCssValue(values[currentLiaSpec.xKey]),
-                          "--cal-lia-y": formatCssValue(values[currentLiaSpec.yKey]),
+                          "--cal-lia-x": formatCssValue(
+                            values[currentLiaSpec.xKey],
+                          ),
+                          "--cal-lia-y": formatCssValue(
+                            values[currentLiaSpec.yKey],
+                          ),
                           "--cal-lia-width": formatCssValue(
                             values[currentLiaSpec.widthKey],
                           ),
@@ -1744,13 +2026,15 @@ export function World1RootLayoutCalibrator() {
                 </>
               ) : null}
             </div>
-          </div>
+          </World1RootStageFrame>
         </div>
       </section>
 
       <section className="world1-calibrator__panel">
         <header className="world1-calibrator__header">
-          <p className="world1-calibrator__warning">Calibrador Mundo I — solo desarrollo</p>
+          <p className="world1-calibrator__warning">
+            Calibrador Mundo I — solo desarrollo
+          </p>
           <h1>Calibrador Mundo I — solo desarrollo</h1>
           <p>
             Estos valores no se aplican automaticamente al runtime. Copia el
@@ -1796,114 +2080,114 @@ export function World1RootLayoutCalibrator() {
         </fieldset>
 
         {activePanel === "states" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Estados visuales</legend>
-          <div className="world1-calibrator__state-grid">
-            {visualStates.map((state) => (
-              <button
-                className="world1-calibrator__state-button"
-                data-active={visualState === state.id ? "true" : "false"}
-                key={state.id}
-                type="button"
-                onClick={() => changeVisualState(state.id)}
-              >
-                <span>{state.label}</span>
-                <small>{state.description}</small>
-              </button>
-            ))}
-          </div>
-        </fieldset>
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Estados visuales</legend>
+            <div className="world1-calibrator__state-grid">
+              {visualStates.map((state) => (
+                <button
+                  className="world1-calibrator__state-button"
+                  data-active={visualState === state.id ? "true" : "false"}
+                  key={state.id}
+                  type="button"
+                  onClick={() => changeVisualState(state.id)}
+                >
+                  <span>{state.label}</span>
+                  <small>{state.description}</small>
+                </button>
+              ))}
+            </div>
+          </fieldset>
         ) : null}
 
         {activePanel === "states" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Presets internos</legend>
-          <div className="world1-calibrator__preset-row">
-            {Object.entries(presetValues).map(([presetName, preset]) => (
-              <button
-                className="world1-calibrator__preset"
-                key={presetName}
-                type="button"
-                onClick={() => applyPreset(preset)}
-              >
-                {presetName}
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Presets internos</legend>
+            <div className="world1-calibrator__preset-row">
+              {Object.entries(presetValues).map(([presetName, preset]) => (
+                <button
+                  className="world1-calibrator__preset"
+                  key={presetName}
+                  type="button"
+                  onClick={() => applyPreset(preset)}
+                >
+                  {presetName}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+        ) : null}
+
+        {activePanel === "layers" ? (
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Capas visibles</legend>
+            <p className="world1-calibrator__helper">
+              Usa estos enfoques para no calibrar con ruido visual. Ningun boton
+              aplica cambios al runtime ni modifica archivos.
+            </p>
+            <div className="world1-calibrator__preset-row">
+              <button type="button" onClick={() => focusLayer("clean")}>
+                Vista limpia
               </button>
-            ))}
-          </div>
-        </fieldset>
+              <button type="button" onClick={() => focusLayer("activeRoot")}>
+                Solo raiz activa
+              </button>
+              <button type="button" onClick={() => focusLayer("perception")}>
+                Enfocar PERCEPCION
+              </button>
+              <button type="button" onClick={() => focusLayer("lia")}>
+                Enfocar Lia
+              </button>
+              <button type="button" onClick={() => focusLayer("nodes")}>
+                Enfocar nodos
+              </button>
+              <button type="button" onClick={() => focusLayer("dialog")}>
+                Enfocar dialogo
+              </button>
+              <button type="button" onClick={() => focusLayer("all")}>
+                Restaurar todo
+              </button>
+            </div>
+            <div className="world1-calibrator__toggle-grid">
+              {layerToggleControls.map((control) => (
+                <label className="world1-calibrator__toggle" key={control.key}>
+                  <input
+                    checked={toggles[control.key]}
+                    onChange={(event) =>
+                      setToggles((current) => ({
+                        ...current,
+                        [control.key]: event.target.checked,
+                      }))
+                    }
+                    type="checkbox"
+                  />
+                  <span>{control.label}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         ) : null}
 
         {activePanel === "layers" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Capas visibles</legend>
-          <p className="world1-calibrator__helper">
-            Usa estos enfoques para no calibrar con ruido visual. Ningun boton
-            aplica cambios al runtime ni modifica archivos.
-          </p>
-          <div className="world1-calibrator__preset-row">
-            <button type="button" onClick={() => focusLayer("clean")}>
-              Vista limpia
-            </button>
-            <button type="button" onClick={() => focusLayer("activeRoot")}>
-              Solo raiz activa
-            </button>
-            <button type="button" onClick={() => focusLayer("perception")}>
-              Enfocar PERCEPCION
-            </button>
-            <button type="button" onClick={() => focusLayer("lia")}>
-              Enfocar Lia
-            </button>
-            <button type="button" onClick={() => focusLayer("nodes")}>
-              Enfocar nodos
-            </button>
-            <button type="button" onClick={() => focusLayer("dialog")}>
-              Enfocar dialogo
-            </button>
-            <button type="button" onClick={() => focusLayer("all")}>
-              Restaurar todo
-            </button>
-          </div>
-          <div className="world1-calibrator__toggle-grid">
-            {layerToggleControls.map((control) => (
-              <label className="world1-calibrator__toggle" key={control.key}>
-                <input
-                  checked={toggles[control.key]}
-                  onChange={(event) =>
-                    setToggles((current) => ({
-                      ...current,
-                      [control.key]: event.target.checked,
-                    }))
-                  }
-                  type="checkbox"
-                />
-                <span>{control.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        ) : null}
-
-        {activePanel === "layers" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Escena / Stage toggles</legend>
-          <div className="world1-calibrator__toggle-grid">
-            {stageToggleControls.map((control) => (
-              <label className="world1-calibrator__toggle" key={control.key}>
-                <input
-                  checked={toggles[control.key]}
-                  onChange={(event) =>
-                    setToggles((current) => ({
-                      ...current,
-                      [control.key]: event.target.checked,
-                    }))
-                  }
-                  type="checkbox"
-                />
-                <span>{control.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Escena / Stage toggles</legend>
+            <div className="world1-calibrator__toggle-grid">
+              {stageToggleControls.map((control) => (
+                <label className="world1-calibrator__toggle" key={control.key}>
+                  <input
+                    checked={toggles[control.key]}
+                    onChange={(event) =>
+                      setToggles((current) => ({
+                        ...current,
+                        [control.key]: event.target.checked,
+                      }))
+                    }
+                    type="checkbox"
+                  />
+                  <span>{control.label}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         ) : null}
 
         {visibleControlGroups.map((group) => (
@@ -1913,7 +2197,9 @@ export function World1RootLayoutCalibrator() {
               <div className="world1-calibrator__target-row">
                 {activeRootSpecs.map((root) => (
                   <button
-                    data-active={selectedActiveRoot === root.id ? "true" : "false"}
+                    data-active={
+                      selectedActiveRoot === root.id ? "true" : "false"
+                    }
                     key={root.id}
                     type="button"
                     onClick={() => setSelectedActiveRoot(root.id)}
@@ -1980,7 +2266,10 @@ export function World1RootLayoutCalibrator() {
             {group.title === "Nodos" ? (
               <div className="world1-calibrator__state-selects">
                 {nodeSpecs.map((node) => (
-                  <label className="world1-calibrator__select-label" key={node.id}>
+                  <label
+                    className="world1-calibrator__select-label"
+                    key={node.id}
+                  >
                     <span>{node.label} state</span>
                     <select
                       aria-label={`${node.id} node state`}
@@ -2006,104 +2295,109 @@ export function World1RootLayoutCalibrator() {
         ))}
 
         {activePanel === "guides" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Guias y debugging</legend>
-          <div className="world1-calibrator__toggle-grid">
-            {guideToggleControls.map((control) => (
-              <label className="world1-calibrator__toggle" key={control.key}>
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Guias y debugging</legend>
+            <div className="world1-calibrator__toggle-grid">
+              {guideToggleControls.map((control) => (
+                <label className="world1-calibrator__toggle" key={control.key}>
+                  <input
+                    checked={toggles[control.key]}
+                    onChange={(event) =>
+                      setToggles((current) => ({
+                        ...current,
+                        [control.key]: event.target.checked,
+                      }))
+                    }
+                    type="checkbox"
+                  />
+                  <span>{control.label}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ) : null}
+
+        {activePanel === "save" ? (
+          <fieldset className="world1-calibrator__fieldset">
+            <legend>Guardar / cargar / exportar</legend>
+            <p className="world1-calibrator__helper">
+              Guardar solo usa el almacenamiento local de este navegador (
+              {LOCAL_STORAGE_KEY}). No modifica archivos del repo, no aplica
+              valores a /estacion/1 y no crea commits.
+            </p>
+            <div className="world1-calibrator__save-grid">
+              <label className="world1-calibrator__select-label">
+                <span>Nombre de preset</span>
                 <input
-                  checked={toggles[control.key]}
-                  onChange={(event) =>
-                    setToggles((current) => ({
-                      ...current,
-                      [control.key]: event.target.checked,
-                    }))
-                  }
-                  type="checkbox"
+                  aria-label="presetDraftName"
+                  onChange={(event) => setPresetDraftName(event.target.value)}
+                  type="text"
+                  value={presetDraftName}
                 />
-                <span>{control.label}</span>
               </label>
-            ))}
-          </div>
-        </fieldset>
+              <label className="world1-calibrator__select-label">
+                <span>Preset guardado</span>
+                <select
+                  aria-label="savedPresetName"
+                  onChange={(event) =>
+                    setSelectedSavedPreset(event.target.value)
+                  }
+                  value={selectedSavedPreset}
+                >
+                  <option value="">Sin seleccionar</option>
+                  {Object.keys(savedPresets).map((presetName) => (
+                    <option key={presetName} value={presetName}>
+                      {presetName}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div className="world1-calibrator__preset-row">
+              <button type="button" onClick={saveCurrentPreset}>
+                Guardar preset local
+              </button>
+              <button type="button" onClick={loadSavedPreset}>
+                Cargar preset guardado
+              </button>
+              <button type="button" onClick={resetSavedPreset}>
+                Resetear preset guardado
+              </button>
+              <button type="button" onClick={duplicatePreset}>
+                Duplicar preset
+              </button>
+              <button type="button" onClick={renamePreset}>
+                Renombrar preset
+              </button>
+            </div>
+            <label className="world1-calibrator__import">
+              <span>Importar JSON</span>
+              <textarea
+                aria-label="importJson"
+                onChange={(event) => setImportJson(event.target.value)}
+                rows={5}
+                value={importJson}
+              ></textarea>
+            </label>
+            <button type="button" onClick={importFromJson}>
+              Importar JSON
+            </button>
+            {importStatus ? (
+              <p className="world1-calibrator__import-status">{importStatus}</p>
+            ) : null}
+          </fieldset>
         ) : null}
 
         {activePanel === "save" ? (
-        <fieldset className="world1-calibrator__fieldset">
-          <legend>Guardar / cargar / exportar</legend>
-          <p className="world1-calibrator__helper">
-            Guardar solo usa el almacenamiento local de este navegador
-            ({LOCAL_STORAGE_KEY}). No modifica archivos del repo, no aplica
-            valores a /estacion/1 y no crea commits.
-          </p>
-          <div className="world1-calibrator__save-grid">
-            <label className="world1-calibrator__select-label">
-              <span>Nombre de preset</span>
-              <input
-                aria-label="presetDraftName"
-                onChange={(event) => setPresetDraftName(event.target.value)}
-                type="text"
-                value={presetDraftName}
-              />
-            </label>
-            <label className="world1-calibrator__select-label">
-              <span>Preset guardado</span>
-              <select
-                aria-label="savedPresetName"
-                onChange={(event) => setSelectedSavedPreset(event.target.value)}
-                value={selectedSavedPreset}
-              >
-                <option value="">Sin seleccionar</option>
-                {Object.keys(savedPresets).map((presetName) => (
-                  <option key={presetName} value={presetName}>
-                    {presetName}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="world1-calibrator__preset-row">
-            <button type="button" onClick={saveCurrentPreset}>
-              Guardar preset local
-            </button>
-            <button type="button" onClick={loadSavedPreset}>
-              Cargar preset guardado
-            </button>
-            <button type="button" onClick={resetSavedPreset}>
-              Resetear preset guardado
-            </button>
-            <button type="button" onClick={duplicatePreset}>
-              Duplicar preset
-            </button>
-            <button type="button" onClick={renamePreset}>
-              Renombrar preset
-            </button>
-          </div>
-          <label className="world1-calibrator__import">
-            <span>Importar JSON</span>
-            <textarea
-              aria-label="importJson"
-              onChange={(event) => setImportJson(event.target.value)}
-              rows={5}
-              value={importJson}
-            ></textarea>
-          </label>
-          <button type="button" onClick={importFromJson}>
-            Importar JSON
-          </button>
-          {importStatus ? (
-            <p className="world1-calibrator__import-status">{importStatus}</p>
-          ) : null}
-        </fieldset>
-        ) : null}
-
-        {activePanel === "save" ? (
-        <section className="world1-calibrator__exports" aria-label="Exportacion">
-          <h2>CSS</h2>
-          <pre>{cssExport}</pre>
-          <h2>JSON</h2>
-          <pre>{jsonExport}</pre>
-        </section>
+          <section
+            className="world1-calibrator__exports"
+            aria-label="Exportacion"
+          >
+            <h2>CSS</h2>
+            <pre>{cssExport}</pre>
+            <h2>JSON</h2>
+            <pre>{jsonExport}</pre>
+          </section>
         ) : null}
       </section>
     </main>

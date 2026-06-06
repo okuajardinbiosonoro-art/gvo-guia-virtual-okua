@@ -1,6 +1,8 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { World1RootLayoutCalibrator } from "./dev";
+import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
 import { World1RootScreen } from "./World1RootScreen";
 import { world1RootAssets } from "./world1RootAssets";
 
@@ -20,9 +22,7 @@ describe("World1RootScreen", () => {
     expect(screen.getByText("RELACIÓN")).toBeInTheDocument();
     expect(screen.getByText("PERCEPCIÓN")).toBeInTheDocument();
     expect(screen.getByText("MEDIACIÓN")).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Continuar" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
     expect(
       screen.getByRole("img", { name: "Lía, guía visual de OKÚA" }),
     ).toHaveAttribute("src", world1RootAssets.liaIdle);
@@ -59,7 +59,11 @@ describe("World1RootScreen", () => {
     ).toHaveLength(3);
     expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
       "data-world1-mobile-stabilization",
-      "004F-1B",
+      "004F-1C",
+    );
+    expect(screen.getByTestId("world1-root-stage")).toHaveAttribute(
+      "data-world1-coordinate-system",
+      WORLD1_ROOT_COORDINATE_SYSTEM_ID,
     );
   });
 
@@ -172,22 +176,21 @@ describe("World1RootScreen", () => {
         "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
       ),
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Continuar" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
   });
 
   it("activa PERCEPCIÓN despues de RELACIÓN y deja MEDIACIÓN disponible", () => {
     const { container } = render(<World1RootScreen />);
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
-    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
 
     expect(screen.getByTestId("world1-root-stage")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
-      "data-node-state",
-      "completed",
-    );
+    expect(
+      screen.getByRole("button", { name: "Explorar RELACIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
     expect(
       screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
     ).toHaveAttribute("data-node-state", "active");
@@ -239,13 +242,14 @@ describe("World1RootScreen", () => {
     const { container } = render(<World1RootScreen />);
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
-    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
 
-    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
-      "data-node-state",
-      "completed",
-    );
+    expect(
+      screen.getByRole("button", { name: "Explorar RELACIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
     expect(
       screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
     ).toHaveAttribute("data-node-state", "completed");
@@ -304,7 +308,9 @@ describe("World1RootScreen", () => {
     const initialLocation = window.location.href;
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
-    fireEvent.click(screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
     fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
 
@@ -312,10 +318,9 @@ describe("World1RootScreen", () => {
     expect(
       container.querySelector('[data-world1-root-state="ready_to_continue"]'),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Explorar RELACIÓN" })).toHaveAttribute(
-      "data-node-state",
-      "completed",
-    );
+    expect(
+      screen.getByRole("button", { name: "Explorar RELACIÓN" }),
+    ).toHaveAttribute("data-node-state", "completed");
     expect(
       screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
     ).toHaveAttribute("data-node-state", "completed");
@@ -344,7 +349,9 @@ describe("World1RootScreen", () => {
     expect(
       container.querySelector('[data-world1-lia-pose="ready_continue"]'),
     ).toBeInTheDocument();
-    expect(container.querySelector("[data-world1-root-active]")).not.toBeInTheDocument();
+    expect(
+      container.querySelector("[data-world1-root-active]"),
+    ).not.toBeInTheDocument();
     expect(
       container.querySelector(
         `[data-runtime-asset="${world1RootAssets.liaExit}"]`,
@@ -385,7 +392,9 @@ describe("World1RootScreen", () => {
     expect(
       screen.getByText("Antes de escuchar, necesitamos aprender a mirar."),
     ).toBeInTheDocument();
-    expect(container.querySelector("[data-world1-root-active]")).not.toBeInTheDocument();
+    expect(
+      container.querySelector("[data-world1-root-active]"),
+    ).not.toBeInTheDocument();
     expect(
       container.querySelector('[data-world1-lia-pose="point_relation"]'),
     ).not.toBeInTheDocument();
@@ -416,7 +425,24 @@ describe("World1RootScreen", () => {
     expect(screen.queryByLabelText("plantX")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("rootOriginX")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("activeRelationX")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("liaPointRelationX")).not.toBeInTheDocument();
-    expect(screen.queryByText(/--world1-root-origin-x/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("liaPointRelationX"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/--world1-root-origin-x/),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renderiza el calibrador dev con la misma base geometrica del runtime", () => {
+    render(<World1RootLayoutCalibrator />);
+
+    expect(screen.getByTestId("world1-layout-calibrator")).toBeInTheDocument();
+    expect(screen.getByTestId("world1-calibrator-stage")).toHaveAttribute(
+      "data-world1-coordinate-system",
+      WORLD1_ROOT_COORDINATE_SYSTEM_ID,
+    );
+    expect(
+      screen.getAllByText("Calibrador Mundo I — solo desarrollo").length,
+    ).toBeGreaterThanOrEqual(1);
   });
 });

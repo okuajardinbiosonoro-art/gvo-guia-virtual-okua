@@ -1,6 +1,8 @@
 .world1-root-screen {
   min-width: 320px;
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   display: grid;
   place-items: center;
   padding: max(10px, env(safe-area-inset-top)) 10px
@@ -14,56 +16,7 @@
 }
 
 .world1-root-stage {
-  position: relative;
-  width: min(100%, 430px);
-  max-height: calc(100svh - 20px);
-  aspect-ratio: 941 / 1672;
-  --world1-root-origin-x: 50.8%;
-  --world1-root-origin-y: 35.9%;
-  --world1-plant-x: 50.5%;
-  --world1-plant-y: 33.5%;
-  --world1-plant-anchor-x: 56.9%;
-  --world1-plant-anchor-y: 93.2%;
-  --world1-plant-width: 40%;
-  --world1-roots-top: 20.3%;
-  --world1-roots-width: 100%;
-  --world1-active-relation-x: 49.4%;
-  --world1-active-relation-y: 70.1%;
-  --world1-active-relation-width: 96.2%;
-  --world1-active-relation-opacity: 1;
-  --world1-active-perception-x: 50%;
-  --world1-active-perception-y: 72%;
-  --world1-active-perception-width: 99.5%;
-  --world1-active-perception-opacity: 1;
-  --world1-active-mediation-x: 50%;
-  --world1-active-mediation-y: 69.4%;
-  --world1-active-mediation-width: 91.5%;
-  --world1-active-mediation-opacity: 1;
-  --world1-node-relation-x: 13%;
-  --world1-node-relation-y: 51.5%;
-  --world1-node-relation-scale: 0.92;
-  --world1-node-perception-x: 50%;
-  --world1-node-perception-y: 49.5%;
-  --world1-node-perception-scale: 0.92;
-  --world1-node-mediation-x: 87%;
-  --world1-node-mediation-y: 51.5%;
-  --world1-node-mediation-scale: 0.92;
-  --world1-ready-node-relation-y: 43%;
-  --world1-ready-node-perception-y: 41%;
-  --world1-ready-node-mediation-y: 43%;
-  --world1-node-size: 62px;
-  --world1-node-sheet-width: 238px;
-  --world1-node-sheet-height: 423px;
-  --world1-exit-path-x: 50%;
-  --world1-exit-path-y: 39%;
-  --world1-exit-path-width: 58%;
-  --world1-exit-path-opacity: 0.42;
-  overflow: hidden;
-  border: 1px solid rgb(245 205 120 / 18%);
-  border-radius: 8px;
-  background: #17100a;
-  box-shadow: 0 20px 68px rgb(0 0 0 / 42%);
-  isolation: isolate;
+  --world1-stage-safe-block: 20px;
 }
 
 .world1-root-screen[data-critical-assets-ready="false"] .world1-root-stage {
@@ -186,8 +139,7 @@
     calc(-1 * var(--world1-plant-anchor-x)),
     calc(-1 * var(--world1-plant-anchor-y))
   );
-  transform-origin: var(--world1-plant-anchor-x)
-    var(--world1-plant-anchor-y);
+  transform-origin: var(--world1-plant-anchor-x) var(--world1-plant-anchor-y);
   pointer-events: none;
   user-select: none;
 }
@@ -195,12 +147,38 @@
 .world1-root-lia {
   position: absolute;
   z-index: 6;
-  top: 12.5%;
-  right: 8%;
-  width: 25%;
+  top: var(--world1-lia-idle-y);
+  left: var(--world1-lia-idle-x);
+  width: var(--world1-lia-idle-width);
   height: auto;
+  transform: translateX(-50%);
   pointer-events: none;
   user-select: none;
+}
+
+.world1-root-screen[data-world1-root-state="relation"] .world1-root-lia {
+  top: var(--world1-lia-pointRelation-y);
+  left: var(--world1-lia-pointRelation-x);
+  width: var(--world1-lia-pointRelation-width);
+}
+
+.world1-root-screen[data-world1-root-state="perception"] .world1-root-lia {
+  top: var(--world1-lia-lookPerception-y);
+  left: var(--world1-lia-lookPerception-x);
+  width: var(--world1-lia-lookPerception-width);
+}
+
+.world1-root-screen[data-world1-root-state="mediation"] .world1-root-lia {
+  top: var(--world1-lia-guideMediation-y);
+  left: var(--world1-lia-guideMediation-x);
+  width: var(--world1-lia-guideMediation-width);
+}
+
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-lia {
+  top: var(--world1-lia-readyContinue-y);
+  left: var(--world1-lia-readyContinue-x);
+  width: var(--world1-lia-readyContinue-width);
 }
 
 .world1-root-nodes {
@@ -242,19 +220,19 @@
 .world1-root-node--relation {
   top: var(--world1-node-relation-y);
   left: var(--world1-node-relation-x);
-  transform: translateX(-50%) scale(var(--world1-node-relation-scale));
+  transform: translate(-50%, -50%) scale(var(--world1-node-relation-scale));
 }
 
 .world1-root-node--perception {
   top: var(--world1-node-perception-y);
   left: var(--world1-node-perception-x);
-  transform: translateX(-50%) scale(var(--world1-node-perception-scale));
+  transform: translate(-50%, -50%) scale(var(--world1-node-perception-scale));
 }
 
 .world1-root-node--mediation {
   top: var(--world1-node-mediation-y);
   left: var(--world1-node-mediation-x);
-  transform: translateX(-50%) scale(var(--world1-node-mediation-scale));
+  transform: translate(-50%, -50%) scale(var(--world1-node-mediation-scale));
 }
 
 .world1-root-node__orb {
@@ -438,21 +416,7 @@
 
 @media (width <= 374px) {
   .world1-root-stage {
-    width: min(100%, 360px);
-    --world1-node-relation-x: 13%;
-    --world1-node-relation-y: 48.5%;
-    --world1-node-relation-scale: 0.86;
-    --world1-node-perception-y: 46.5%;
-    --world1-node-perception-scale: 0.86;
-    --world1-node-mediation-x: 87%;
-    --world1-node-mediation-y: 48.5%;
-    --world1-node-mediation-scale: 0.86;
-    --world1-ready-node-relation-y: 40.5%;
-    --world1-ready-node-perception-y: 38.5%;
-    --world1-ready-node-mediation-y: 40.5%;
-    --world1-exit-path-y: 38%;
-    --world1-exit-path-width: 56%;
-    --world1-exit-path-opacity: 0.4;
+    --world1-stage-safe-block: 18px;
   }
 
   .world1-root-node {
@@ -462,12 +426,6 @@
   .world1-root-node__label {
     padding: 4px 5px;
     font-size: 0.64rem;
-  }
-
-  .world1-root-stage {
-    --world1-node-size: 56px;
-    --world1-node-sheet-width: 215px;
-    --world1-node-sheet-height: 382px;
   }
 
   .world1-root-node__orb--locked {
@@ -498,8 +456,7 @@
     padding-top: 10px;
   }
 
-  .world1-root-screen[data-world1-root-state="mediation"]
-    .world1-root-stage {
+  .world1-root-screen[data-world1-root-state="mediation"] .world1-root-stage {
     --world1-node-relation-y: 45.5%;
     --world1-node-perception-y: 43.5%;
     --world1-node-mediation-y: 45.5%;

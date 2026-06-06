@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
+import { World1RootStageFrame } from "./layout";
 import { world1RootAssets } from "./world1RootAssets";
 
 type NodeOrbStyle = CSSProperties & {
@@ -120,13 +121,19 @@ function getNodeState(
 export function World1RootScreen() {
   const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
   const [continueNote, setContinueNote] = useState("");
-  const initialPreload = useAssetPreloader(screenAssetBundles.world1RootInitial, {
-    timeoutMs: 9000,
-  });
-  const relationPreload = useAssetPreloader(screenAssetBundles.world1RootRelation, {
-    enabled: activeConcept === "intro",
-    timeoutMs: 8000,
-  });
+  const initialPreload = useAssetPreloader(
+    screenAssetBundles.world1RootInitial,
+    {
+      timeoutMs: 9000,
+    },
+  );
+  const relationPreload = useAssetPreloader(
+    screenAssetBundles.world1RootRelation,
+    {
+      enabled: activeConcept === "intro",
+      timeoutMs: 8000,
+    },
+  );
   const perceptionPreload = useAssetPreloader(
     screenAssetBundles.world1RootPerception,
     {
@@ -177,7 +184,7 @@ export function World1RootScreen() {
     <main
       className="world1-root-screen"
       data-world1-root-version="004E-5A-static-ready"
-      data-world1-mobile-stabilization="004F-1B"
+      data-world1-mobile-stabilization="004F-1C"
       data-world1-root-state={activeConcept}
       data-world1-exit-ready={isReadyToContinue ? "true" : undefined}
       data-critical-assets-ready={initialPreload.ready ? "true" : "false"}
@@ -199,159 +206,167 @@ export function World1RootScreen() {
           Preparando raíz...
         </p>
       )}
-      <section
+      <World1RootStageFrame
         className="world1-root-stage"
         data-testid="world1-root-stage"
         aria-label="Mundo I: Raíz"
       >
-        <img
-          className="world1-root-layer world1-root-layer--background"
-          src={world1RootAssets.background}
-          alt=""
-          aria-hidden="true"
-          data-runtime-asset={world1RootAssets.background}
-        />
-        <img
-          className="world1-root-layer world1-root-layer--ambient"
-          src={world1RootAssets.ambientLight}
-          alt=""
-          aria-hidden="true"
-          data-runtime-asset={world1RootAssets.ambientLight}
-        />
-        <img
-          className="world1-root-layer world1-root-layer--roots"
-          src={world1RootAssets.rootsBase}
-          alt=""
-          aria-hidden="true"
-          data-runtime-asset={world1RootAssets.rootsBase}
-        />
-        {activeRoot ? (
-          <img
-            className={`world1-root-layer world1-root-layer--active-${activeRoot.concept}`}
-            src={activeRoot.asset}
-            alt=""
-            aria-hidden="true"
-            data-runtime-asset={activeRoot.asset}
-            data-world1-root-active={activeRoot.concept}
-            data-world1-active-roots-calibration="manual-calibration"
-            data-world1-relation-calibration={
-              activeRoot.concept === "relation" ? "manual-calibration" : undefined
-            }
-          />
-        ) : null}
-        {isReadyToContinue ? (
-          <img
-            className="world1-root-layer world1-root-layer--exit-path"
-            src={world1RootAssets.exitPath}
-            alt=""
-            aria-hidden="true"
-            data-runtime-asset={world1RootAssets.exitPath}
-            data-world1-exit-path="ready_to_continue"
-          />
-        ) : null}
-        <img
-          className="world1-root-plant"
-          src={world1RootAssets.plant}
-          alt=""
-          aria-hidden="true"
-          data-runtime-asset={world1RootAssets.plant}
-        />
-        <img
-          className="world1-root-lia"
-          src={liaAssetByConcept[activeConcept]}
-          alt="Lía, guía visual de OKÚA"
-          data-runtime-asset={liaAssetByConcept[activeConcept]}
-          data-world1-lia-pose={liaPoseByConcept[activeConcept]}
-        />
-
         <div
-          className="world1-root-nodes"
-          aria-label="Nodos conceptuales de Mundo I"
+          className="world1-root-stage-coordinate-layer"
+          data-world1-stage-coordinate-layer="true"
         >
-          {conceptNodes.map((node) => {
-            const nodeState = getNodeState(node.id, activeConcept);
-            const isLocked = nodeState === "locked";
-            const isPressed = nodeState === "active";
-            const isClickable = nodeState === "available" || isPressed;
+          <img
+            className="world1-root-layer world1-root-layer--background"
+            src={world1RootAssets.background}
+            alt=""
+            aria-hidden="true"
+            data-runtime-asset={world1RootAssets.background}
+          />
+          <img
+            className="world1-root-layer world1-root-layer--ambient"
+            src={world1RootAssets.ambientLight}
+            alt=""
+            aria-hidden="true"
+            data-runtime-asset={world1RootAssets.ambientLight}
+          />
+          <img
+            className="world1-root-layer world1-root-layer--roots"
+            src={world1RootAssets.rootsBase}
+            alt=""
+            aria-hidden="true"
+            data-runtime-asset={world1RootAssets.rootsBase}
+          />
+          {activeRoot ? (
+            <img
+              className={`world1-root-layer world1-root-layer--active-${activeRoot.concept}`}
+              src={activeRoot.asset}
+              alt=""
+              aria-hidden="true"
+              data-runtime-asset={activeRoot.asset}
+              data-world1-root-active={activeRoot.concept}
+              data-world1-active-roots-calibration="manual-calibration"
+              data-world1-relation-calibration={
+                activeRoot.concept === "relation"
+                  ? "manual-calibration"
+                  : undefined
+              }
+            />
+          ) : null}
+          {isReadyToContinue ? (
+            <img
+              className="world1-root-layer world1-root-layer--exit-path"
+              src={world1RootAssets.exitPath}
+              alt=""
+              aria-hidden="true"
+              data-runtime-asset={world1RootAssets.exitPath}
+              data-world1-exit-path="ready_to_continue"
+            />
+          ) : null}
+          <img
+            className="world1-root-plant"
+            src={world1RootAssets.plant}
+            alt=""
+            aria-hidden="true"
+            data-runtime-asset={world1RootAssets.plant}
+          />
+          <img
+            className="world1-root-lia"
+            src={liaAssetByConcept[activeConcept]}
+            alt="Lía, guía visual de OKÚA"
+            data-runtime-asset={liaAssetByConcept[activeConcept]}
+            data-world1-lia-pose={liaPoseByConcept[activeConcept]}
+          />
 
-            return (
-              <button
-                className={`world1-root-node world1-root-node--${node.id}`}
-                key={node.id}
-                type="button"
-                data-world1-root-node={node.id}
-                data-node-state={nodeState}
-                aria-label={isLocked ? node.lockedName : node.accessibleName}
-                aria-disabled={!isClickable ? "true" : undefined}
-                aria-pressed={isClickable ? isPressed : undefined}
-                disabled={!isClickable}
-                onClick={
-                  isClickable
-                    ? () =>
-                        setActiveConcept(
-                          node.id === "mediation"
-                            ? "mediation"
-                            : node.id === "perception"
-                              ? "perception"
-                              : "relation",
-                        )
-                    : undefined
-                }
-              >
-                <span
-                  className={`world1-root-node__orb world1-root-node__orb--${nodeState}`}
-                  aria-hidden="true"
-                  data-runtime-asset={world1RootAssets.nodeKit}
-                  data-node-frame={nodeState}
-                  style={nodeOrbStyle}
+          <div
+            className="world1-root-nodes"
+            aria-label="Nodos conceptuales de Mundo I"
+          >
+            {conceptNodes.map((node) => {
+              const nodeState = getNodeState(node.id, activeConcept);
+              const isLocked = nodeState === "locked";
+              const isPressed = nodeState === "active";
+              const isClickable = nodeState === "available" || isPressed;
+
+              return (
+                <button
+                  className={`world1-root-node world1-root-node--${node.id}`}
+                  key={node.id}
+                  type="button"
+                  data-world1-root-node={node.id}
+                  data-node-state={nodeState}
+                  aria-label={isLocked ? node.lockedName : node.accessibleName}
+                  aria-disabled={!isClickable ? "true" : undefined}
+                  aria-pressed={isClickable ? isPressed : undefined}
+                  disabled={!isClickable}
+                  onClick={
+                    isClickable
+                      ? () =>
+                          setActiveConcept(
+                            node.id === "mediation"
+                              ? "mediation"
+                              : node.id === "perception"
+                                ? "perception"
+                                : "relation",
+                          )
+                      : undefined
+                  }
                 >
-                </span>
-                <span className="world1-root-node__label">{node.label}</span>
+                  <span
+                    className={`world1-root-node__orb world1-root-node__orb--${nodeState}`}
+                    aria-hidden="true"
+                    data-runtime-asset={world1RootAssets.nodeKit}
+                    data-node-frame={nodeState}
+                    style={nodeOrbStyle}
+                  ></span>
+                  <span className="world1-root-node__label">{node.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="world1-root-copy">
+            <p className="world1-root-copy__eyebrow">{copy.eyebrow}</p>
+            <h1 id="world1-root-title">{copy.title}</h1>
+            <p className="world1-root-copy__body">{copy.body}</p>
+            {copy.secondary ? (
+              <p className="world1-root-copy__note">{copy.secondary}</p>
+            ) : null}
+            {activeConcept === "mediation" ? (
+              <button
+                className="world1-root-copy__action"
+                type="button"
+                onClick={() => {
+                  setContinueNote("");
+                  setActiveConcept("ready_to_continue");
+                }}
+              >
+                Cerrar raíz
               </button>
-            );
-          })}
-        </div>
+            ) : null}
+          </div>
 
-        <div className="world1-root-copy">
-          <p className="world1-root-copy__eyebrow">{copy.eyebrow}</p>
-          <h1 id="world1-root-title">{copy.title}</h1>
-          <p className="world1-root-copy__body">{copy.body}</p>
-          {copy.secondary ? (
-            <p className="world1-root-copy__note">{copy.secondary}</p>
-          ) : null}
-          {activeConcept === "mediation" ? (
-            <button
-              className="world1-root-copy__action"
-              type="button"
-              onClick={() => {
-                setContinueNote("");
-                setActiveConcept("ready_to_continue");
-              }}
-            >
-              Cerrar raíz
-            </button>
-          ) : null}
+          <button
+            className={`world1-root-continue${isReadyToContinue ? " world1-root-continue--ready" : ""}`}
+            type="button"
+            disabled={!isReadyToContinue}
+            aria-disabled={isReadyToContinue ? "false" : "true"}
+            onClick={
+              isReadyToContinue
+                ? () => {
+                    setContinueNote(
+                      "La salida se activará en una fase posterior.",
+                    );
+                  }
+                : undefined
+            }
+          >
+            Continuar
+          </button>
+          <p className="world1-root-continue-note" aria-live="polite">
+            {continueNote}
+          </p>
         </div>
-
-        <button
-          className={`world1-root-continue${isReadyToContinue ? " world1-root-continue--ready" : ""}`}
-          type="button"
-          disabled={!isReadyToContinue}
-          aria-disabled={isReadyToContinue ? "false" : "true"}
-          onClick={
-            isReadyToContinue
-              ? () => {
-                  setContinueNote("La salida se activará en una fase posterior.");
-                }
-              : undefined
-          }
-        >
-          Continuar
-        </button>
-        <p className="world1-root-continue-note" aria-live="polite">
-          {continueNote}
-        </p>
-      </section>
+      </World1RootStageFrame>
     </main>
   );
 }
