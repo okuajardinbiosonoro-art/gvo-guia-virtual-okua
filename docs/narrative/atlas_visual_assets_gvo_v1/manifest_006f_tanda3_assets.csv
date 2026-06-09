@@ -1,0 +1,8 @@
+filename,asset_id,screen,source,type,approved,priority_group,notes
+gvo_atlas_006f_301_mundo_iv_overview_cadena_tecnica_mockup.png,GVO_ATLAS_006F_301,estacion_iv,chatgpt_images,mockup,si,w4_node_chain_overview,Asset aprobado de Tanda 3 para overview de cadena técnica.
+gvo_atlas_006f_302_mundo_iv_nodo_tecnico_activo_mockup.png,GVO_ATLAS_006F_302,estacion_iv,chatgpt_images,mockup,si,w4_technical_node_active,Asset aprobado de Tanda 3 para nodo técnico activo.
+gvo_atlas_006f_303_mundo_iv_cadena_completa_cierre_mockup.png,GVO_ATLAS_006F_303,estacion_iv,chatgpt_images,mockup,si,w4_complete,Asset aprobado de Tanda 3 para cierre de cadena completa.
+gvo_atlas_006f_304_mundo_iv_bloqueo_suave_mockup.png,GVO_ATLAS_006F_304,estacion_iv,chatgpt_images,mockup,si,w4_node_locked,Asset aprobado de Tanda 3 para bloqueo suave.
+gvo_atlas_006f_305_mundo_v_area_activa_mockup.png,GVO_ATLAS_006F_305,estacion_v,chatgpt_images,mockup,si,w5_area_active,Asset aprobado de Tanda 3 para área activa.
+gvo_atlas_006f_306_final_revision_libre_mockup.png,GVO_ATLAS_006F_306,pantalla_final,chatgpt_images,mockup,si,final_review_free,Asset aprobado de Tanda 3 para revisión libre.
+gvo_atlas_006f_307_final_confirmar_reinicio_mockup.png,GVO_ATLAS_006F_307,pantalla_final,chatgpt_images,mockup,si,final_restart_confirm,Asset aprobado de Tanda 3 para confirmar reinicio.

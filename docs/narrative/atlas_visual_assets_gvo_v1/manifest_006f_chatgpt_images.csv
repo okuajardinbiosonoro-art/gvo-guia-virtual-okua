@@ -1,0 +1,8 @@
+filename,asset_id,screen,station,asset_kind,visual_group,status,notes
+gvo_atlas_006f_301_mundo_iv_overview_cadena_tecnica_mockup.png,GVO_ATLAS_006F_301,estacion_iv,mundo_iv_mesa_sistema,mockup_aprobado,w4_node_chain_overview,aprobado,Mockup aprobado Tanda 3 para overview de cadena técnica de Mundo IV.
+gvo_atlas_006f_302_mundo_iv_nodo_tecnico_activo_mockup.png,GVO_ATLAS_006F_302,estacion_iv,mundo_iv_mesa_sistema,mockup_aprobado,w4_technical_node_active,aprobado,Mockup aprobado Tanda 3 para nodo técnico activo de Mundo IV.
+gvo_atlas_006f_303_mundo_iv_cadena_completa_cierre_mockup.png,GVO_ATLAS_006F_303,estacion_iv,mundo_iv_mesa_sistema,mockup_aprobado,w4_complete,aprobado,Mockup aprobado Tanda 3 para cadena completa y cierre de Mundo IV.
+gvo_atlas_006f_304_mundo_iv_bloqueo_suave_mockup.png,GVO_ATLAS_006F_304,estacion_iv,mundo_iv_mesa_sistema,mockup_aprobado,w4_node_locked,aprobado,Mockup aprobado Tanda 3 para bloqueo suave de Mundo IV.
+gvo_atlas_006f_305_mundo_v_area_activa_mockup.png,GVO_ATLAS_006F_305,estacion_v,mundo_v_mapa_presente,mockup_aprobado,w5_area_active,aprobado,Mockup aprobado Tanda 3 para área activa de Mundo V.
+gvo_atlas_006f_306_final_revision_libre_mockup.png,GVO_ATLAS_006F_306,pantalla_final,mirador_final,mockup_aprobado,final_review_free,aprobado,Mockup aprobado Tanda 3 para revisión libre en Mirador final.
+gvo_atlas_006f_307_final_confirmar_reinicio_mockup.png,GVO_ATLAS_006F_307,pantalla_final,mirador_final,mockup_aprobado,final_restart_confirm,aprobado,Mockup aprobado Tanda 3 para confirmación de reinicio en Mirador final.
