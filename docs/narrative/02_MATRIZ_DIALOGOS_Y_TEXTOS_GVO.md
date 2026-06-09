@@ -27,9 +27,25 @@ La matriz editable se entrega en:
 
 ## Conteo actual
 
-- Filas de texto: 96.
-- IDs únicos: 96.
+- Filas de texto: 197.
+- IDs únicos: 197.
 
-## Actualizacion 005B
+## Distribución por pantalla
 
-Las filas de `Estación I — Mundo Raíz` fueron refinadas como modelo de guionizacion por pantalla/estado. El bloque conserva columnas, deja vacios `Texto final`, `Alternativa corta` y `Notas escritor`, y mantiene `Estado de revisión` como `Pendiente escritor`.
+| Pantalla / estación | Filas |
+| --- | ---: |
+| Carga inicial | 3 |
+| Portada | 13 |
+| Transición entre mundos | 12 |
+| Estación I — Mundo Raíz | 20 |
+| Estación II — Pulso invisible | 32 |
+| Estación III — Cuaderno Pixel | 23 |
+| Estación IV — Mesa de Sistema | 40 |
+| Estación V — Mapa del Presente | 24 |
+| Pantalla final — Mirador | 30 |
+
+## Actualización 005C
+
+Las filas de Estaciones II-V y Pantalla final fueron reemplazadas por los slots definitivos de guionización. Se conservaron sin cambios las filas de Carga inicial, Portada, Transición entre mundos y Estación I — Mundo Raíz.
+
+Los campos `Texto final`, `Alternativa corta` y `Notas escritor` quedan vacíos para los slots nuevos. `Estado de revisión` queda como `Pendiente escritor`.

@@ -3,8 +3,8 @@
   "date": "2026-06-09",
   "updated_at": "2026-06-09",
   "screens": 9,
-  "matrix_rows": 96,
-  "unique_ids": 96,
+  "matrix_rows": 197,
+  "unique_ids": 197,
   "visual_refs": 9,
   "source_txt": 9,
   "updates": [
@@ -28,6 +28,45 @@
         "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.xlsx",
         "docs/narrative/manifest_narrative_package.json"
       ]
+    },
+    {
+      "ticket": "005C",
+      "date": "2026-06-09",
+      "summary": "Estaciones II-V y pantalla final elevadas a fichas definitivas de guionización por pantalla/estado.",
+      "files_created": [
+        "docs/narrative/estaciones/04_estacion_ii_pulso_invisible_slots.md",
+        "docs/narrative/estaciones/04_estacion_ii_pulso_invisible_revision.md",
+        "docs/narrative/estaciones/05_estacion_iii_cuaderno_pixel_slots.md",
+        "docs/narrative/estaciones/05_estacion_iii_cuaderno_pixel_revision.md",
+        "docs/narrative/estaciones/06_estacion_iv_mesa_sistema_slots.md",
+        "docs/narrative/estaciones/06_estacion_iv_mesa_sistema_revision.md",
+        "docs/narrative/estaciones/07_estacion_v_mapa_presente_slots.md",
+        "docs/narrative/estaciones/07_estacion_v_mapa_presente_revision.md",
+        "docs/narrative/estaciones/08_pantalla_final_mirador_slots.md",
+        "docs/narrative/estaciones/08_pantalla_final_mirador_revision.md"
+      ],
+      "files_updated": [
+        "docs/narrative/estaciones/04_estacion_ii_pulso_invisible.md",
+        "docs/narrative/estaciones/05_estacion_iii_cuaderno_pixel.md",
+        "docs/narrative/estaciones/06_estacion_iv_mesa_sistema.md",
+        "docs/narrative/estaciones/07_estacion_v_mapa_presente.md",
+        "docs/narrative/estaciones/08_pantalla_final_mirador.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.csv",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.xlsx",
+        "docs/narrative/manifest_narrative_package.json"
+      ]
     }
-  ]
+  ],
+  "matrix_counts": {
+    "Carga inicial": 3,
+    "Portada": 13,
+    "Transición entre mundos": 12,
+    "Estación I — Mundo Raíz": 20,
+    "Estación II — Pulso invisible": 32,
+    "Estación III — Cuaderno Pixel": 23,
+    "Estación IV — Mesa de Sistema": 40,
+    "Estación V — Mapa del Presente": 24,
+    "Pantalla final — Mirador": 30
+  }
 }
