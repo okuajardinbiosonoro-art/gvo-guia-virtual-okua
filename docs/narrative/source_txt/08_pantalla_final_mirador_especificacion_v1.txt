@@ -1,0 +1,862 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+PANTALLA FINAL — MIRADOR FINAL DEL JARDÍN
+Versión: V1
+Estado: Definición visual, narrativa, funcional, interactiva y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Pantalla final
+
+Nombre visual:
+    Mirador final del jardín
+
+Título mostrado recomendado:
+    Mirador final del jardín
+
+Subtítulo mostrado recomendado:
+    Recorrido completo
+
+Tema oficial:
+    Cierre del recorrido
+
+Subtema:
+    Revisión libre, contemplación y cierre
+
+Ubicación en el flujo general:
+    Estación V — Mundo V: Mapa del presente
+    → Transición pixelart de cierre
+    → Pantalla final — Mirador final del jardín
+
+Tipo de pantalla:
+    Pantalla de cierre navegable, contemplativa y de revisión libre.
+
+No es:
+    - una estación nueva;
+    - una portada;
+    - una pantalla de carga;
+    - una pantalla de créditos aislada;
+    - una explicación conceptual nueva;
+    - una escena técnica;
+    - una transición;
+    - una estación obligatoria con secuencia pedagógica forzada.
+
+================================================================================
+1. PROPÓSITO DE LA PANTALLA FINAL
+================================================================================
+
+La pantalla final debe cumplir cinco funciones principales:
+
+1. Confirmar que el recorrido fue completado.
+2. Dar una sensación de cierre cálido, bello y satisfactorio.
+3. Permitir volver a cualquier estación en modo revisión libre.
+4. Permitir reiniciar todo el recorrido desde el comienzo.
+5. Mostrar créditos esenciales del desarrollo de forma clara y elegante.
+
+La pantalla final debe sentirse como un mirador de síntesis. No debe enseñar
+contenido nuevo. Debe ofrecer una vista simbólica de todo el camino ya recorrido.
+
+La idea central es:
+
+    Ya entendiste el recorrido. Ahora puedes contemplarlo como conjunto
+    y volver a cualquier mundo cuando quieras.
+
+================================================================================
+2. IDEA PEDAGÓGICA Y NARRATIVA
+================================================================================
+
+La pantalla final no introduce teoría nueva.
+Su función narrativa es cerrar, reunir y abrir la posibilidad de volver a mirar.
+
+Lo que debe expresar:
+
+- el recorrido tuvo un inicio, un desarrollo y un cierre;
+- cada estación fue un mundo con identidad propia;
+- el visitante ya recorrió los cinco mundos;
+- ahora puede revisarlos libremente;
+- el cierre debe sentirse amable, contemplativo y claro.
+
+Narrativamente, esta pantalla dice:
+
+    El jardín ya se abrió para ti.
+    Ya atravesaste sus cinco mundos.
+    Ahora puedes volver a cualquiera de ellos o empezar de nuevo.
+
+================================================================================
+3. TONO EMOCIONAL
+================================================================================
+
+La pantalla final debe transmitir:
+
+- logro;
+- calma;
+- contemplación;
+- belleza serena;
+- satisfacción;
+- ternura;
+- apertura para revisitar.
+
+No debe transmitir:
+
+- urgencia;
+- saturación;
+- complejidad técnica;
+- exceso de información;
+- sensación de tarea pendiente;
+- ruido visual.
+
+Debe sentirse como una recompensa visual suave.
+
+================================================================================
+4. IDENTIDAD VISUAL GENERAL
+================================================================================
+
+Estilo:
+    Pixelart limpio, cálido, poético y legible.
+
+Paleta base:
+    - dorados suaves de atardecer;
+    - verdes naturales;
+    - beige cálido;
+    - violetas suaves en elementos de identidad;
+    - marrones/piedra para estructura del mirador;
+    - acentos luminosos discretos.
+
+Composición general:
+    - cartel superior con título;
+    - paisaje amplio al fondo;
+    - cinco accesos flotantes a las estaciones;
+    - Lía en zona central baja;
+    - botones de navegación principal;
+    - panel inferior de créditos.
+
+La escena debe sentirse como una terraza o balcón alto desde donde se observa
+todo el valle del recorrido.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La pantalla final debe incluir obligatoriamente:
+
+1. Encabezado de cierre
+   - texto principal: “Mirador final del jardín”
+   - texto secundario: “Recorrido completo”
+
+2. Paisaje pixelart de fondo
+   - valle amplio;
+   - montañas o colinas lejanas;
+   - cielo de atardecer;
+   - río o camino sinuoso;
+   - atmósfera de cierre.
+
+3. Cinco accesos flotantes o “islas/portales” a estaciones
+   - I — Raíz
+   - II — Pulso invisible
+   - III — Cuaderno de pruebas
+   - IV — Mesa de sistema
+   - V — Mapa del presente
+
+4. Lía central
+   - flotando en el mirador;
+   - guía del cierre;
+   - no demasiado grande;
+   - claramente integrada al pixelart.
+
+5. Zona de botones principales
+   - “Volver al inicio”
+   - “Reiniciar recorrido”
+
+6. Panel o franja de créditos
+   - “Desarrollado por Momotto S.A.S.”
+   - “A cargo del Ing. José David Pérez Zapata.”
+
+7. Elementos ambientales secundarios discretos
+   - macetas;
+   - flores;
+   - lámpara;
+   - pequeño libro o atril;
+   - banderín o detalle ornamental si se desea.
+
+Todo debe ser claro, legible y no saturado.
+
+================================================================================
+6. FUNCIÓN DE CADA BLOQUE VISUAL
+================================================================================
+
+A. TÍTULO SUPERIOR
+    Confirma que el usuario llegó al final.
+
+B. CINCO ACCESOS FLOTANTES
+    Permiten volver a cada estación en revisión libre.
+
+C. LÍA CENTRAL
+    Actúa como anfitriona final y punto de conexión emocional.
+
+D. BOTONES PRINCIPALES
+    Permiten decidir si volver al inicio o reiniciar toda la experiencia.
+
+E. CRÉDITOS
+    Reconocen autoría y cierre institucional.
+
+F. PAISAJE DE FONDO
+    Sostiene el sentido contemplativo del cierre.
+
+================================================================================
+7. LOS CINCO ACCESOS A ESTACIONES
+================================================================================
+
+Los cinco accesos deben representar de forma resumida cada estación recorrida.
+
+Deben ser reconocibles visualmente y diferenciarse entre sí.
+
+1. I — Raíz
+   Referencia visual:
+   - brote/raíz/luz dorada;
+   - relación con origen y propósito.
+
+2. II — Pulso invisible
+   Referencia visual:
+   - planta y señal violeta;
+   - idea de mediación de señal.
+
+3. III — Cuaderno de pruebas
+   Referencia visual:
+   - cuaderno pixelado o página;
+   - idea de pruebas y registro.
+
+4. IV — Mesa de sistema
+   Referencia visual:
+   - mesa técnica, esquema o red;
+   - idea de sistema y operación.
+
+5. V — Mapa del presente
+   Referencia visual:
+   - mapa o tablero;
+   - idea de síntesis espacial actual.
+
+Cada acceso debe tener:
+- mini escena o ícono principal;
+- rótulo legible;
+- estado completado;
+- respuesta visual al toque.
+
+================================================================================
+8. PAPEL DE LÍA EN LA PANTALLA FINAL
+================================================================================
+
+Lía debe funcionar como anfitriona de despedida y puente hacia la revisión libre.
+
+Su rol aquí es:
+
+- felicitar o acompañar el cierre;
+- recordar que el recorrido terminó;
+- invitar a volver a estaciones;
+- indicar opciones de navegación;
+- mantener presencia cálida.
+
+Lía no debe:
+- explicar conceptos largos;
+- abrir secuencias obligatorias extensas;
+- monopolizar la pantalla;
+- competir con los accesos.
+
+Debe sentirse presente, útil y amable.
+
+================================================================================
+9. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+Acciones principales disponibles:
+
+1. Tocar acceso I — Raíz
+2. Tocar acceso II — Pulso invisible
+3. Tocar acceso III — Cuaderno de pruebas
+4. Tocar acceso IV — Mesa de sistema
+5. Tocar acceso V — Mapa del presente
+6. Tocar “Volver al inicio”
+7. Tocar “Reiniciar recorrido”
+8. Cerrar o ignorar mensaje inicial de Lía
+9. Permanecer contemplando la escena sin hacer nada
+
+Acciones opcionales si se implementan:
+10. Reabrir ayuda breve de Lía
+11. Abrir menú global
+12. Volver a leer créditos si hubiera tooltip, aunque no es necesario
+
+No debe haber más acciones centrales aparte de estas.
+
+================================================================================
+10. ESTADO FUNCIONAL GENERAL
+================================================================================
+
+La pantalla final solo debe aparecer cuando:
+
+- el usuario ya completó la secuencia principal;
+- ya pasó por las cinco estaciones obligatorias;
+- ya llegó desde Estación V.
+
+Al llegar aquí, se asume:
+
+- recorrido completo = verdadero;
+- todas las estaciones desbloqueadas = verdadero;
+- revisión libre habilitada = verdadero.
+
+Por tanto:
+- los cinco accesos deben estar activos;
+- no debe haber accesos bloqueados;
+- no debe existir gating secuencial en esta pantalla.
+
+================================================================================
+11. SECUENCIA DE ENTRADA A LA PANTALLA FINAL
+================================================================================
+
+Secuencia recomendada al llegar desde la transición pixelart:
+
+1. Fade o disolución desde transición.
+2. Aparece cielo de atardecer y paisaje del valle.
+3. Aparece cartel superior:
+       Mirador final del jardín
+       Recorrido completo
+4. Aparecen uno a uno o en grupo suave los cinco accesos flotantes.
+5. Aparece el mirador/balcón inferior.
+6. Aparece Lía flotando en el centro inferior.
+7. Aparecen botones:
+       Volver al inicio
+       Reiniciar recorrido
+8. Aparece panel de créditos.
+9. Lía muestra mensaje de bienvenida al cierre.
+
+Mensaje inicial recomendado:
+    Llegaste al final del recorrido.
+    Ahora puedes volver a cualquier mundo o comenzar otra vez.
+
+Versión aún más corta:
+    Recorrido completo.
+    Puedes volver a cualquier estación cuando quieras.
+
+La entrada debe sentirse suave y ceremonial, no acelerada.
+
+================================================================================
+12. MENSAJE INICIAL DE LÍA
+================================================================================
+
+Lía puede mostrar un mensaje inicial breve, no obligatorio de cerrar, que puede
+desaparecer solo después de unos segundos o mantenerse hasta interacción ligera.
+
+Opciones de copy recomendadas:
+
+Opción A:
+    Llegaste al final del recorrido.
+    Si quieres, puedes volver a cualquiera de los mundos.
+
+Opción B:
+    Ya atravesaste los cinco mundos de OKÚA.
+    Ahora puedes revisarlos libremente.
+
+Opción C:
+    Este jardín queda abierto para volver a mirarlo.
+    Elige un mundo o reinicia el recorrido.
+
+Este mensaje debe ser breve.
+No debe abrir una secuencia larga de diálogos.
+
+================================================================================
+13. COMPORTAMIENTO DE LOS ACCESOS A ESTACIONES
+================================================================================
+
+Cada acceso flotante a estación debe comportarse como botón navegable.
+
+Al tocar uno:
+1. el acceso seleccionado se ilumina;
+2. Lía puede hacer un gesto breve hacia ese acceso;
+3. aparece una micro confirmación visual;
+4. inicia transición pixelart;
+5. se abre la estación correspondiente en modo revisión libre.
+
+Importante:
+- no debe volver a mostrarse la secuencia pedagógica obligatoria;
+- no debe bloquearse la navegación por haberla completado antes;
+- debe abrirse en modo de revisión libre;
+- desde esa estación se debe poder regresar luego al flujo de revisión y al final.
+
+Texto opcional de micro confirmación:
+    Reabriendo Mundo I: Raíz...
+    Reabriendo Mundo II: Pulso invisible...
+    etc.
+
+================================================================================
+14. ESTADOS VISUALES DE CADA ACCESO
+================================================================================
+
+Cada acceso debe tener cuatro estados visuales posibles:
+
+1. Idle / reposo
+   - visible;
+   - animación muy suave;
+   - halo bajo o brillo tenue;
+   - legible.
+
+2. Hover / focus / preselección
+   - leve aumento de brillo;
+   - marco o halo más claro;
+   - pequeño pulso.
+
+3. Press / tap
+   - respuesta breve;
+   - hundimiento visual mínimo o destello corto.
+
+4. Selected / transición
+   - acceso iluminado;
+   - resto baja ligeramente intensidad;
+   - se dispara transición pixelart.
+
+Como en la pantalla final todos los accesos ya están completados, no se requiere
+estado “bloqueado”.
+
+================================================================================
+15. ANIMACIONES DE LOS ACCESOS FLOTANTES
+================================================================================
+
+Las animaciones deben ser suaves y legibles.
+
+Cada acceso puede tener:
+- flotación vertical mínima;
+- brillo ambiente muy tenue;
+- detalle ínfimo relacionado con su mundo:
+    I: destello en brote/raíz;
+    II: pulso leve de señal;
+    III: pequeño blink de cuaderno;
+    IV: línea o nodo que parpadea;
+    V: punto o marca de mapa que titila.
+
+Estas animaciones deben ser:
+- lentas;
+- discretas;
+- no simultáneamente exageradas;
+- no ruidosas.
+
+No deben parecer minijuegos ni distractores.
+
+================================================================================
+16. COMPORTAMIENTO DE LÍA
+================================================================================
+
+Lía debe permanecer en la zona central inferior, cerca del usuario, flotando frente
+al mirador.
+
+Animaciones base de Lía:
+- flotación suave arriba/abajo;
+- pestañeo o cambio mínimo de ojos;
+- brillo tenue alrededor;
+- pequeño gesto de saludo;
+- giro corto de orientación cuando se selecciona una estación.
+
+Al seleccionar un acceso:
+- Lía mira o se orienta hacia esa isla;
+- puede levantar un pétalo/brazo suavemente;
+- luego se dispara la transición.
+
+Lía no debe:
+- recorrer toda la pantalla en trayectos largos;
+- tapar botones;
+- quedar encima de créditos;
+- ser demasiado grande.
+
+================================================================================
+17. BOTÓN “VOLVER AL INICIO”
+================================================================================
+
+Función:
+    Regresar a la portada o pantalla inicial principal de GVO.
+
+Texto:
+    Volver al inicio
+
+Iconografía sugerida:
+    icono de casa o similar.
+
+Comportamiento:
+- tap/click abre confirmación opcional o ejecuta directamente;
+- regresa a la portada;
+- conserva que el usuario completó recorrido, si el producto decide persistencia;
+- no reinicia necesariamente todo el avance salvo que se decida a nivel global.
+
+Confirmación opcional:
+    ¿Quieres volver al inicio?
+    Podrás entrar otra vez al archivo vivo de OKÚA.
+
+No es obligatorio pedir confirmación si el flujo es reversible y claro.
+
+================================================================================
+18. BOTÓN “REINICIAR RECORRIDO”
+================================================================================
+
+Función:
+    Reiniciar todo el recorrido pedagógico desde el principio.
+
+Texto:
+    Reiniciar recorrido
+
+Iconografía sugerida:
+    flecha circular o reinicio.
+
+Comportamiento:
+- debe reiniciar el orden secuencial;
+- debe restaurar la experiencia para vivirse otra vez desde portada;
+- al volver a entrar, solo el portal 1 debería iniciar la secuencia guiada;
+- las estaciones no deben aparecer directamente completas dentro de esa nueva pasada.
+
+Confirmación recomendada:
+    ¿Quieres reiniciar el recorrido completo?
+    Volverás a comenzar desde el inicio.
+
+Si el usuario acepta:
+- reinicia progreso;
+- redirige a portada o pre-portada según arquitectura definida.
+
+================================================================================
+19. DIFERENCIA ENTRE “VOLVER AL INICIO” Y “REINICIAR RECORRIDO”
+================================================================================
+
+Debe quedar muy claro:
+
+VOLVER AL INICIO:
+    te lleva a la portada o punto inicial, sin necesariamente borrar todo el estado.
+
+REINICIAR RECORRIDO:
+    borra o reinicia el avance pedagógico para repetir toda la secuencia.
+
+Esta diferencia debe ser consistente en la implementación.
+
+Si se considera que puede confundir, Lía puede reforzarlo con micro ayudas:
+
+Al foco en “Volver al inicio”:
+    Regresa a la portada principal.
+
+Al foco en “Reiniciar recorrido”:
+    Comienza otra vez desde la primera parte del viaje.
+
+================================================================================
+20. CRÉDITOS
+================================================================================
+
+Texto obligatorio recomendado:
+
+    Desarrollado por Momotto S.A.S.
+    A cargo del Ing. José David Pérez Zapata.
+
+Los créditos deben:
+- ser visibles;
+- estar en una franja o panel inferior elegante;
+- no parecer un aviso legal frío;
+- integrarse al estilo pixelart.
+
+No deben:
+- ocupar demasiado espacio;
+- competir con el título principal;
+- generar muchos enlaces o subopciones.
+
+Los créditos no tienen que ser interactivos.
+Pueden ser meramente informativos.
+
+================================================================================
+21. ELEMENTOS DECORATIVOS SECUNDARIOS
+================================================================================
+
+Se permiten elementos decorativos discretos como:
+
+- macetas pequeñas;
+- flores;
+- poste con lámpara;
+- banderín o emblema;
+- atril o libro abierto;
+- pequeñas enredaderas;
+- barandal del mirador.
+
+Su función es:
+- enriquecer la escena;
+- darle presencia de jardín;
+- reforzar el cierre amable.
+
+No deben:
+- introducir nuevas interacciones principales;
+- distraer más que los accesos;
+- sobrecargar el pixelart.
+
+================================================================================
+22. TEXTO Y JERARQUÍA VISUAL
+================================================================================
+
+Jerarquía recomendada:
+
+Nivel 1:
+    Mirador final del jardín
+
+Nivel 2:
+    Recorrido completo
+
+Nivel 3:
+    Rótulos de las cinco estaciones
+
+Nivel 4:
+    Botones de navegación principal
+
+Nivel 5:
+    Créditos
+
+No deben existir:
+- párrafos largos;
+- explicaciones densas;
+- textos técnicos;
+- narración extensa.
+
+Es una pantalla de cierre, no de contenido nuevo.
+
+================================================================================
+23. SONIDO, AR Y RESTRICCIONES DE PROYECTO
+================================================================================
+
+Debe respetarse de forma estricta:
+
+- sin audio;
+- sin locución;
+- sin AR;
+- sin scanner QR interno;
+- sin asistente conversacional;
+- sin multiavatar;
+- sin internet en campo;
+- mobile-first;
+- lectura simple y clara.
+
+No debe aparecer ningún indicio contrario a estas reglas.
+
+================================================================================
+24. ACCESIBILIDAD
+================================================================================
+
+Todos los accesos y botones deben ser navegables por accesibilidad.
+
+Elementos interactivos principales:
+
+1. Acceso a Mundo I — Raíz
+2. Acceso a Mundo II — Pulso invisible
+3. Acceso a Mundo III — Cuaderno de pruebas
+4. Acceso a Mundo IV — Mesa de sistema
+5. Acceso a Mundo V — Mapa del presente
+6. Volver al inicio
+7. Reiniciar recorrido
+
+Labels sugeridos:
+
+- “Volver a Mundo I: Raíz”
+- “Volver a Mundo II: Pulso invisible”
+- “Volver a Mundo III: Cuaderno de pruebas”
+- “Volver a Mundo IV: Mesa de sistema”
+- “Volver a Mundo V: Mapa del presente”
+- “Volver al inicio”
+- “Reiniciar recorrido”
+
+Los créditos deben ser legibles por lector, aunque no sean interactivos.
+
+No depender solo del color para distinguir estados.
+Debe existir contraste suficiente entre botones y fondo.
+
+================================================================================
+25. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- eliminar flotación constante fuerte;
+- reducir brillos pulsantes;
+- eliminar pequeños desplazamientos de islas;
+- mantener solo cambios suaves de opacidad o resalte;
+- mantener transición simplificada;
+- conservar legibilidad y jerarquía.
+
+En reduced-motion:
+- los accesos siguen siendo claramente seleccionables;
+- Lía puede quedar casi estática;
+- los botones siguen respondiendo con cambio de estado mínimo.
+
+================================================================================
+26. REVISIÓN LIBRE DESDE LA PANTALLA FINAL
+================================================================================
+
+La pantalla final es el centro de revisión libre.
+
+Reglas:
+
+- cualquier estación puede abrirse desde aquí;
+- al salir o cerrar una estación revisada, el usuario debe poder volver al final;
+- no se debe reiniciar la experiencia por visitar una estación desde aquí;
+- no se deben bloquear estaciones ya completadas;
+- la pantalla final funciona como hub de revisión.
+
+Esto debe quedar claro en la lógica de navegación.
+
+================================================================================
+27. POSIBLES MENSAJES DE AYUDA BREVE DE LÍA
+================================================================================
+
+Si se requieren micro ayudas por foco o primera visita al final, se pueden usar:
+
+Sobre una estación:
+    Puedes volver a este mundo cuando quieras.
+
+Sobre “Volver al inicio”:
+    Regresa a la portada principal.
+
+Sobre “Reiniciar recorrido”:
+    Comienza otra vez desde el inicio del viaje.
+
+Mensaje general:
+    Ya recorriste los cinco mundos.
+    Ahora puedes volver a cualquiera o empezar de nuevo.
+
+Estos mensajes deben ser cortos y opcionales.
+
+================================================================================
+28. ESTADOS FUNCIONALES SUGERIDOS
+================================================================================
+
+Estados recomendados:
+
+final_entering
+final_idle
+final_intro_message
+final_station_hovered
+final_station_selected
+final_revisit_transition
+final_back_to_home_prompt
+final_restart_prompt
+final_exiting
+
+No se necesitan estados bloqueados de estaciones aquí.
+
+================================================================================
+29. LO QUE NO DEBE HACERSE
+================================================================================
+
+No debe hacerse nada de esto:
+
+- convertir la pantalla final en una estación nueva;
+- saturar la escena con muchas partículas;
+- agregar demasiados menús;
+- abrir diálogos largos;
+- poner demasiados botones;
+- mezclar créditos con navegación de forma confusa;
+- mostrar contenido técnico nuevo;
+- bloquear el acceso a estaciones;
+- reiniciar el recorrido sin intención clara del usuario;
+- usar animaciones agresivas;
+- hacer que Lía tape accesos;
+- hacer que el cierre se sienta triste o vacío;
+- hacer que el cierre se sienta recargado.
+
+================================================================================
+30. LO QUE NO ES NECESARIO
+================================================================================
+
+No es necesario:
+
+- reproducir resumen textual de cada estación;
+- mostrar progreso numérico complejo;
+- mostrar checklist;
+- mostrar timeline;
+- mostrar notas técnicas;
+- incluir explicación legal larga;
+- hacer los créditos clicables;
+- introducir nuevos sistemas de navegación;
+- reexplicar conceptos de estaciones previas.
+
+================================================================================
+31. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La pantalla final se considera correcta si:
+
+□ Se siente claramente como cierre del recorrido.
+□ El título “Mirador final del jardín” es visible y protagónico.
+□ “Recorrido completo” comunica finalización.
+□ Las cinco estaciones están representadas y diferenciadas.
+□ Los cinco accesos se pueden abrir en revisión libre.
+□ Lía está presente y guía el cierre sin saturar.
+□ Los botones “Volver al inicio” y “Reiniciar recorrido” son claros y distinguibles.
+□ La diferencia entre ambos botones se entiende.
+□ Los créditos están visibles y correctos.
+□ La estética pixelart es coherente con la referencia.
+□ La escena es bella pero no recargada.
+□ No se introduce contenido conceptual nuevo.
+□ No se rompe ninguna restricción del proyecto.
+□ Reduced-motion sigue siendo clara y usable.
+□ La pantalla funciona como hub final de revisión.
+
+================================================================================
+32. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+La pantalla final “Mirador final del jardín” cierra la experiencia de GVO con una
+escena pixelart contemplativa en la que el usuario ve los cinco mundos ya recorridos
+como accesos flotantes de revisión libre. Lía acompaña este cierre desde el mirador,
+mientras los botones “Volver al inicio” y “Reiniciar recorrido” permiten decidir
+cómo continuar. La franja inferior integra los créditos del proyecto de forma clara
+y elegante.
+
+================================================================================
+33. COPY SUGERIDO RESUMIDO
+================================================================================
+
+Título:
+    Mirador final del jardín
+
+Subtítulo:
+    Recorrido completo
+
+Botones:
+    Volver al inicio
+    Reiniciar recorrido
+
+Créditos:
+    Desarrollado por Momotto S.A.S.
+    A cargo del Ing. José David Pérez Zapata.
+
+Microcopy de Lía:
+    Llegaste al final del recorrido.
+    Puedes volver a cualquier mundo cuando quieras.
+
+================================================================================
+34. SALIDA HACIA OTRAS PANTALLAS
+================================================================================
+
+Si el usuario elige una estación:
+    Pantalla final → transición pixelart → estación elegida en modo revisión libre
+
+Si el usuario elige volver al inicio:
+    Pantalla final → portada o flujo inicial
+
+Si el usuario elige reiniciar recorrido:
+    Pantalla final → confirmación → reset de progreso → carga inicial/portada
+
+La pantalla final nunca debe saltar a una estación sin feedback visual mínimo.
+
+================================================================================
+35. CONSIDERACIONES DE IMPLEMENTACIÓN
+================================================================================
+
+- Mobile-first estricto.
+- Los cinco accesos deben quedar cómodamente tocables.
+- Los rótulos de estaciones deben seguir siendo legibles en pantallas pequeñas.
+- Los botones inferiores no deben interferir con créditos.
+- Los créditos deben mantenerse visibles sin exigir scroll complejo.
+- Lía no debe tapar ningún acceso importante.
+- La composición debe conservarse aunque se adapte a diferentes tamaños.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

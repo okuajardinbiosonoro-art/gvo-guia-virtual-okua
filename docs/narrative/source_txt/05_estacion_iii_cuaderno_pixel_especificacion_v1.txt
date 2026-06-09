@@ -1,0 +1,716 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+ESTACIÓN III — MUNDO III: CUADERNO PIXEL DE PRUEBAS
+Versión: V1
+Estado: Definición visual, narrativa, funcional, interactiva y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Estación III
+
+Nombre visual:
+    Mundo III — Cuaderno Pixel de Pruebas
+
+Título mostrado recomendado:
+    ESTACIÓN III
+    MUNDO III
+    CUADERNO PIXEL DE PRUEBAS
+
+Tema oficial:
+    Prototipos y evolución
+
+Subtítulo conceptual:
+    Cómo fuimos ajustando el sistema
+
+Ubicación en el flujo general:
+    Estación II — Mundo II: Lía y el pulso invisible
+    → Transición pixelart: “Abriendo Mundo III: Cuaderno de pruebas...”
+    → Estación III — Mundo III: Cuaderno Pixel de Pruebas
+    → Transición pixelart hacia Estación IV
+
+Tipo de pantalla:
+    Estación narrativa, documental, pixelart y de memoria de desarrollo.
+
+No es:
+    - una pantalla técnica completa;
+    - una explicación de la cadena completa de 8 nodos;
+    - una estación de operación del sistema actual;
+    - una pantalla de carga;
+    - una portada;
+    - una pantalla final;
+    - un minijuego complejo.
+
+================================================================================
+1. PROPÓSITO DE LA ESTACIÓN
+================================================================================
+
+La Estación III debe explicar que OKÚA no apareció como una solución completa desde
+el inicio, sino que fue evolucionando mediante observación, pruebas, errores,
+ajustes y decisiones de mejora.
+
+Su función principal es mostrar que el proyecto tiene un proceso de construcción
+real:
+
+    observar → probar → detectar límites → ajustar → mejorar
+
+La estación debe dejar claro que el sistema no es magia, ni una pieza automática
+perfecta, sino el resultado de un desarrollo progresivo.
+
+La idea central es:
+
+    Cada prototipo dejó una pista.
+
+El visitante debe entender que la mediación de OKÚA fue construida a partir de
+pruebas concretas con plantas, prototipos y señales.
+
+================================================================================
+2. IDEA PEDAGÓGICA PRINCIPAL
+================================================================================
+
+La idea pedagógica es:
+
+    OKÚA se construyó probando, registrando y ajustando.
+
+Esta estación debe enseñar que:
+
+1. Primero hubo observación de la planta y del fenómeno.
+2. Luego se construyeron prototipos para capturar o explorar la señal.
+3. Después se revisó la señal obtenida.
+4. Con esas pruebas se detectaron límites o problemas.
+5. Los ajustes permitieron mejorar la mediación.
+
+El mensaje pedagógico NO debe ser:
+
+    “el prototipo hace magia”
+    “la planta genera música directa”
+    “la señal ya estaba lista desde el inicio”
+    “todo funcionó perfecto desde el primer intento”
+
+El mensaje correcto es:
+
+    El sistema fue aprendido y ajustado con pruebas.
+
+================================================================================
+3. QUÉ QUEREMOS EXPRESAR EN MUNDO III
+================================================================================
+
+Mundo III debe expresar:
+
+1. Memoria de desarrollo
+   El visitante entra a un cuaderno de pruebas, no a un laboratorio saturado.
+
+2. Registro
+   Lo importante aquí es que el proyecto dejó evidencias, notas y aprendizajes.
+
+3. Iteración
+   Probar y equivocarse también hace parte de la construcción.
+
+4. Ajuste
+   El sello “AJUSTADO” representa que hubo mejoras después de observar problemas.
+
+5. Claridad
+   La estación debe ser simple: tres bloques grandes, no muchas opciones.
+
+6. Pixelart sobrio
+   El pixelart debe aportar identidad, orden y calidez, no saturación visual.
+
+================================================================================
+4. COMPOSICIÓN VISUAL BASE
+================================================================================
+
+La referencia visual aprobada muestra:
+
+- formato vertical mobile-first;
+- estilo pixelart;
+- fondo oscuro con marco decorativo sobrio;
+- título superior:
+    Mundo III:
+    Cuaderno Pixel de Pruebas
+    ESTACIÓN III
+- Lía en pixelart flotando sobre el cuaderno;
+- un cuaderno abierto en el centro;
+- tres bloques principales:
+    PLANTA
+    PROTOTIPO
+    SEÑAL
+- elementos visuales asociados:
+    una planta en maceta;
+    un prototipo/circuito;
+    una pantalla con onda de señal;
+- checkmarks o marcas de completado;
+- sello inferior:
+    AJUSTADO
+- indicador inferior de estación III.
+
+La composición debe mantenerse limpia.
+No debe agregarse una gran cantidad de objetos retro.
+No debe convertirse en un collage de laboratorio.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La estación debe contener:
+
+1. Cuaderno central
+   - representa bitácora, memoria y documentación de pruebas;
+   - debe ser el soporte principal de la interacción.
+
+2. Lía pixelart
+   - guía del cuaderno;
+   - flotando arriba o cerca del cuaderno;
+   - debe verse como sprite propio, no como imagen 3D pegada.
+
+3. Tres bloques principales
+   - PLANTA
+   - PROTOTIPO
+   - SEÑAL
+
+4. Checkmarks
+   - indican que una sección fue revisada;
+   - no deben confundirse con “todo está terminado para siempre”;
+   - representan validación de una etapa del aprendizaje.
+
+5. Sello “AJUSTADO”
+   - aparece o se activa al completar los tres bloques;
+   - comunica que el aprendizaje llevó a ajustes.
+
+6. Botón o acción de continuar
+   - puede estar fuera de la imagen o aparecer al completar;
+   - lleva a Estación IV.
+
+================================================================================
+6. LO QUE NO DEBE APARECER
+================================================================================
+
+No debe aparecer:
+
+- demasiadas tarjetas;
+- más de tres bloques principales;
+- mapa complejo;
+- muchas pantallas técnicas;
+- red de 8 nodos;
+- router como foco;
+- sistema central como foco;
+- notas musicales;
+- planta cantando;
+- muchas Lías;
+- múltiples diálogos abiertos;
+- inventario de videojuego con demasiadas opciones;
+- estética arcade saturada;
+- animaciones de error exageradas;
+- demasiadas partículas;
+- texto largo en la página.
+
+Esta estación no debe competir visualmente con Estación II.
+Debe sentirse más sobria, de memoria y proceso.
+
+================================================================================
+7. LÍA EN PIXELART
+================================================================================
+
+Lía debe ser una versión pixelart real del personaje oficial.
+
+Características obligatorias:
+
+- pequeña entidad floral biomimética;
+- silueta clara;
+- cinco pétalos principales;
+- pétalos crema/marfil con puntas lavanda;
+- rostro/visor redondeado y luminoso;
+- ojos simples, lila claro o blanco-lila;
+- collar ámbar pequeño;
+- cuerpo inferior tipo semilla o bulbo;
+- flotante;
+- amable;
+- útil;
+- legible en tamaño sprite.
+
+Lía no debe parecer:
+
+- hada;
+- insecto;
+- humano;
+- flor genérica;
+- sprite cualquiera;
+- personaje anime;
+- render 3D reducido.
+
+Estados de Lía en esta estación:
+
+1. Idle:
+   flota sobre el cuaderno.
+
+2. Señalando:
+   apunta hacia un bloque.
+
+3. Observando:
+   mira el bloque activo.
+
+4. Confirmando:
+   se ilumina suavemente cuando se marca un check.
+
+5. Cierre:
+   acompaña la aparición del sello AJUSTADO.
+
+================================================================================
+8. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+Acciones principales:
+
+1. Tocar bloque PLANTA.
+2. Tocar bloque PROTOTIPO.
+3. Tocar bloque SEÑAL.
+4. Leer ventana de Lía.
+5. Avanzar o cerrar explicación.
+6. Completar los tres bloques.
+7. Activar sello AJUSTADO.
+8. Tocar Continuar hacia Estación IV.
+9. Abrir menú global, si existe.
+
+Primera pasada:
+    PLANTA → PROTOTIPO → SEÑAL → AJUSTADO → Continuar
+
+Revisión posterior:
+    PLANTA, PROTOTIPO y SEÑAL pueden tocarse en cualquier orden.
+
+No debe haber más de tres opciones principales.
+La simplicidad es parte del diseño.
+
+================================================================================
+9. PRIMERA PASADA SECUENCIAL
+================================================================================
+
+En primera pasada, el usuario debe recorrer:
+
+1. PLANTA
+2. PROTOTIPO
+3. SEÑAL
+
+El sello AJUSTADO aparece o se activa solo cuando las tres secciones fueron revisadas.
+
+Reglas:
+
+- al inicio solo PLANTA está disponible;
+- PROTOTIPO se habilita al completar PLANTA;
+- SEÑAL se habilita al completar PROTOTIPO;
+- AJUSTADO se activa al completar SEÑAL;
+- Continuar se habilita después de AJUSTADO.
+
+Si el usuario toca un bloque bloqueado:
+
+Mensaje de Lía:
+    Primero revisemos la pista anterior.
+
+O:
+    Este registro tendrá sentido después del paso actual.
+
+================================================================================
+10. BLOQUE 1 — PLANTA
+================================================================================
+
+Función:
+    Mostrar que las pruebas nacen de observar una planta viva.
+
+Qué se activa visualmente:
+    - bloque PLANTA;
+    - planta en maceta;
+    - pequeños brillos verdes;
+    - checkmark al completar;
+    - Lía se acerca al bloque superior.
+
+Texto de Lía sugerido:
+
+    Todo empezó observando una planta viva.
+    Antes de construir, había que mirar qué relación queríamos cuidar.
+
+Versión corta:
+
+    La primera pista fue la planta: vida antes que dispositivo.
+
+Animación:
+    - Lía flota hacia el bloque PLANTA;
+    - la planta emite un pequeño pulso verde;
+    - aparece o se ilumina una marca de registro;
+    - checkmark queda activo al cerrar explicación.
+
+Qué debe aprender el usuario:
+    El origen de las pruebas no es una máquina, sino la observación de lo vivo.
+
+================================================================================
+11. BLOQUE 2 — PROTOTIPO
+================================================================================
+
+Función:
+    Mostrar que hubo construcción y prueba de dispositivos/prototipos.
+
+Qué se activa visualmente:
+    - bloque PROTOTIPO;
+    - prototipo/circuito;
+    - LED verde encendiéndose;
+    - herramientas o líneas mínimas;
+    - Lía se acerca al prototipo.
+
+Texto de Lía sugerido:
+
+    Después vinieron los prototipos.
+    Cada montaje ayudó a probar cómo capturar y cuidar la señal.
+
+Versión corta:
+
+    El prototipo permitió probar la mediación, no inventarla.
+
+Animación:
+    - LED del prototipo se enciende;
+    - Lía señala el circuito;
+    - pequeño pulso pasa por el prototipo;
+    - checkmark queda activo al completar.
+
+Qué debe aprender el usuario:
+    La mediación se construyó con pruebas, no apareció terminada desde el inicio.
+
+================================================================================
+12. BLOQUE 3 — SEÑAL
+================================================================================
+
+Función:
+    Mostrar que las pruebas se evaluaron observando la señal obtenida.
+
+Qué se activa visualmente:
+    - bloque SEÑAL;
+    - pantalla con onda;
+    - línea verde o violeta;
+    - pequeña variación de señal;
+    - Lía observa la pantalla.
+
+Texto de Lía sugerido:
+
+    Luego revisamos la señal.
+    Si aparecía ruido, inestabilidad o límites, el sistema debía ajustarse.
+
+Versión corta:
+
+    La señal mostró qué funcionaba y qué debía mejorar.
+
+Animación:
+    - onda se dibuja en la pantalla;
+    - la señal puede moverse dos o tres frames;
+    - Lía se inclina hacia la pantalla;
+    - checkmark queda activo al completar.
+
+Qué debe aprender el usuario:
+    La señal no solo se captura; también se evalúa y guía decisiones de ajuste.
+
+================================================================================
+13. SELLO — AJUSTADO
+================================================================================
+
+Función:
+    Comunicar que el proceso de pruebas llevó a mejoras.
+
+El sello no es una cuarta opción principal.
+Es una consecuencia de completar las tres pistas.
+
+Al completar PLANTA, PROTOTIPO y SEÑAL:
+
+1. Los tres checkmarks quedan visibles.
+2. Lía vuelve al centro superior del cuaderno.
+3. Aparece o se ilumina el sello AJUSTADO.
+4. Se muestra una frase de cierre.
+5. Se habilita Continuar.
+
+Texto de Lía:
+
+    Cada prueba dejó una pista.
+    Por eso el sistema se ajustó.
+
+Versión corta:
+
+    No fue magia: fue prueba, error y ajuste.
+
+Animación:
+    - sello aparece con golpe visual suave;
+    - no debe ser brusco;
+    - puede haber pequeño efecto de tinta pixelart;
+    - Lía hace gesto de confirmación.
+
+================================================================================
+14. VENTANAS DE DIÁLOGO DE LÍA
+================================================================================
+
+Cada bloque debe abrir una ventana breve asociada a Lía.
+
+Formato:
+- estilo pixelart;
+- como globo, nota o cuadro pequeño sobre el cuaderno;
+- máximo 2 o 3 líneas;
+- no saturar la página;
+- no bloquear completamente los bloques;
+- botón o indicación “Siguiente” / “Cerrar”.
+
+Reglas:
+- una ventana a la vez;
+- no múltiples diálogos;
+- no bloques de texto largos;
+- no desplazamiento interno;
+- texto claro, humano y breve.
+
+Las ventanas pueden tener estilo de nota adhesiva o recuadro de bitácora.
+
+================================================================================
+15. ANIMACIÓN GENERAL DE LA ESCENA
+================================================================================
+
+Animación de fondo:
+    - casi estático;
+    - brillo mínimo en marco;
+    - sin partículas densas.
+
+Animación del cuaderno:
+    - puede tener leve entrada con desplazamiento vertical;
+    - no pasar páginas constantemente;
+    - no temblar.
+
+Animación de Lía:
+    - flotación de 1 a 2 px;
+    - desplazamiento corto entre bloques;
+    - gesto de señalar;
+    - confirmación al completar.
+
+Animación de bloques:
+    - borde activo;
+    - pequeño pulso;
+    - checkmark aparece;
+    - no animar todo al mismo tiempo.
+
+Animación de señal:
+    - onda simple;
+    - pocos frames;
+    - sin oscilación excesiva.
+
+================================================================================
+16. SECUENCIA DE ENTRADA A LA ESTACIÓN
+================================================================================
+
+Después de la transición pixelart:
+
+1. Fondo oscuro pixelart aparece.
+2. Título se muestra:
+       Mundo III: Cuaderno Pixel de Pruebas
+       Estación III
+3. Cuaderno aparece o se abre suavemente.
+4. Lía aparece flotando sobre el cuaderno.
+5. Los tres bloques aparecen en baja intensidad.
+6. Solo PLANTA queda disponible.
+7. Lía muestra mensaje inicial breve.
+
+Mensaje inicial sugerido:
+
+    Abramos el cuaderno de pruebas.
+    Aquí veremos cómo OKÚA fue aprendiendo.
+
+O:
+
+    Cada prototipo dejó una pista. Vamos a revisar tres registros.
+
+================================================================================
+17. BOTÓN CONTINUAR
+================================================================================
+
+Estado inicial:
+    oculto o deshabilitado.
+
+Estado durante bloques:
+    no debe llamar la atención.
+
+Estado después de sello AJUSTADO:
+    activo.
+
+Texto:
+    Continuar
+
+Al tocar:
+    - Lía cierra o señala el cuaderno;
+    - el sello AJUSTADO queda visible;
+    - aparece transición pixelart hacia Estación IV.
+
+Texto de transición posterior:
+
+    Abriendo Mundo IV: Mesa de sistema...
+    Preparando recorrido...
+
+Si se toca antes de completar:
+    Lía responde:
+        Aún falta revisar una pista del cuaderno.
+
+================================================================================
+18. INTERACCIÓN EN REVISIÓN LIBRE
+================================================================================
+
+En modo revisión posterior:
+
+- los tres bloques están disponibles desde el inicio;
+- el sello AJUSTADO puede estar visible;
+- los checkmarks pueden permanecer activos;
+- el usuario puede tocar cualquier bloque;
+- Continuar permanece disponible.
+
+Mensaje de Lía:
+
+    Puedes volver a revisar cualquier pista del cuaderno.
+
+No se fuerza el orden en revisión libre.
+
+================================================================================
+19. ESTADOS FUNCIONALES
+================================================================================
+
+Estados sugeridos:
+
+station3_entering
+station3_idle
+station3_plant_active
+station3_prototype_active
+station3_signal_active
+station3_block_completed
+station3_adjusted_unlocked
+station3_ready_to_continue
+station3_exiting
+station3_revisit_mode
+
+Reglas:
+- un bloque activo a la vez;
+- una ventana de Lía a la vez;
+- primera pasada secuencial;
+- revisión libre posterior;
+- bloquear taps durante microanimaciones críticas.
+
+================================================================================
+20. ACCESIBILIDAD
+================================================================================
+
+Cada bloque debe ser botón accesible.
+
+Labels sugeridos:
+
+PLANTA:
+    Registro 1 de 3. Planta.
+
+PROTOTIPO:
+    Registro 2 de 3. Prototipo.
+
+SEÑAL:
+    Registro 3 de 3. Señal.
+
+Estados:
+    bloqueado
+    disponible
+    activo
+    completado
+
+Sello AJUSTADO:
+    Proceso de pruebas ajustado.
+
+Botón Continuar:
+    Continuar a Mundo IV.
+
+La ventana de Lía debe anunciarse cuando cambia.
+
+No depender solo del color para indicar completado.
+El checkmark o estado textual debe acompañar.
+
+================================================================================
+21. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no desplazar ampliamente a Lía;
+- no animar señales en bucle;
+- no hacer sello con golpe visual fuerte;
+- usar cambios de opacidad o borde;
+- mantener checkmarks;
+- conservar la secuencia pedagógica.
+
+La experiencia debe seguir entendiéndose con movimiento mínimo.
+
+================================================================================
+22. LO QUE NO ES NECESARIO EN ESTA ESTACIÓN
+================================================================================
+
+No es necesario:
+
+- explicar la cadena completa de 8 nodos;
+- mostrar router;
+- mostrar Wi-Fi/UDP;
+- explicar sistema central;
+- usar 6 capas;
+- usar muchas cápsulas;
+- usar un mapa grande;
+- mostrar código;
+- mostrar diagramas complejos;
+- hacer una simulación técnica real;
+- tener audio;
+- tener video;
+- tener AR;
+- tener scanner QR interno.
+
+================================================================================
+23. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- saturar el cuaderno con demasiados objetos;
+- agregar más de tres bloques principales;
+- llenar de textos largos;
+- usar varias Lías;
+- convertirlo en un minijuego con demasiadas acciones;
+- sugerir que el prototipo inventa la señal;
+- sugerir planta → música directa;
+- ocultar el proceso de prueba y ajuste;
+- hacer que el sello AJUSTADO aparezca antes de completar;
+- permitir salto de bloques en primera pasada.
+
+================================================================================
+24. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La estación se considera correcta si:
+
+□ Se entiende que es Mundo III — Cuaderno Pixel de Pruebas.
+□ Se entiende que trata de prototipos y evolución.
+□ El estilo pixelart es coherente.
+□ Lía está en pixelart real y guía la escena.
+□ Hay solo tres bloques principales.
+□ PLANTA, PROTOTIPO y SEÑAL son claros.
+□ La primera pasada es secuencial.
+□ Los bloques bloqueados no se pueden saltar.
+□ Cada bloque tiene diálogo breve de Lía.
+□ El sello AJUSTADO aparece solo al completar los tres.
+□ El visitante entiende prueba, error y ajuste.
+□ No hay saturación visual.
+□ No se explica la cadena completa de 8 nodos.
+□ No se sugiere planta → música directa.
+□ Reduced-motion conserva comprensión.
+□ La salida usa transición pixelart hacia Mundo IV.
+
+================================================================================
+25. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Mundo III — Cuaderno Pixel de Pruebas presenta la evolución de OKÚA como una
+bitácora pixelart de tres registros: planta, prototipo y señal. Lía guía al visitante
+para entender que el proyecto fue construido mediante observación, pruebas y ajustes.
+Al completar los tres registros, aparece el sello AJUSTADO, reforzando que OKÚA no
+nació como magia ni como sistema perfecto, sino como una mediación mejorada a partir
+de evidencia y aprendizaje.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

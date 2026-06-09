@@ -1,0 +1,874 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+ESTACIÓN IV — MUNDO IV: MESA DE SISTEMA
+Versión: V1
+Estado: Definición visual, narrativa, funcional, interactiva y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Estación IV
+
+Nombre visual:
+    Mundo IV — Mesa de sistema
+
+Título mostrado:
+    ESTACIÓN IV
+    Operación técnica
+    Mesa de sistema
+
+Tema oficial:
+    Operación técnica
+
+Propósito oficial:
+    Explicar cómo funciona el sistema actual de OKÚA.
+
+Ubicación en el flujo general:
+    Estación III — Mundo III: Cuaderno Pixel de Pruebas
+    → Transición pixelart: “Abriendo Mundo IV: Mesa de sistema...”
+    → Estación IV — Mundo IV: Mesa de sistema
+    → Transición pixelart hacia Estación V
+
+Tipo de pantalla:
+    Estación técnica, clara, sobria, explicativa e interactiva.
+
+No es:
+    - una pantalla poética de origen;
+    - una explicación inicial de señal;
+    - una bitácora de prototipos;
+    - una pantalla documental del montaje actual;
+    - una pantalla de carga;
+    - una transición entre mundos;
+    - una pantalla final.
+
+================================================================================
+1. PROPÓSITO DE LA ESTACIÓN
+================================================================================
+
+La Estación IV debe explicar, por primera vez de forma completa, la cadena técnica
+de operación de OKÚA.
+
+Esta estación responde la pregunta:
+
+    ¿Cómo se conecta todo para que una señal vegetal termine en una experiencia
+    sonora mediada?
+
+La función principal es mostrar la secuencia completa de mediación técnica, sin
+hacerla pesada ni saturada.
+
+La cadena obligatoria cuando se explica el sistema completo es:
+
+    planta → bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → router → sistema central → sonido
+
+Esta estación debe dejar claro que el resultado sonoro no aparece por una acción
+directa de la planta, sino por una cadena organizada de componentes y procesos.
+
+================================================================================
+2. IDEA PEDAGÓGICA PRINCIPAL
+================================================================================
+
+La idea pedagógica central es:
+
+    La experiencia no ocurre en una sola pieza.
+    Ocurre en la conexión entre todas.
+
+El visitante debe entender que cada componente cumple una función específica:
+
+- la planta es el origen vivo;
+- el bionosificador capta/acondiciona;
+- el ESP32 interpreta o prepara eventos;
+- MIDI organiza la información como evento musical/control;
+- Wi‑Fi/UDP transporta datos localmente;
+- el router permite la comunicación de red;
+- el sistema central recibe y organiza;
+- el sonido es el resultado final mediado.
+
+Mensaje clave:
+
+    Entre la planta y el sonido no hay un salto mágico. Hay una cadena técnica.
+
+================================================================================
+3. QUÉ QUEREMOS EXPRESAR EN MUNDO IV
+================================================================================
+
+Mundo IV debe expresar:
+
+1. Claridad
+   El visitante debe poder ver toda la cadena sin sentirse abrumado.
+
+2. Sistema
+   OKÚA no depende de un solo elemento. Es una arquitectura conectada.
+
+3. Secuencia
+   Cada paso tiene un orden y una función.
+
+4. Mediación técnica
+   La operación técnica sostiene la experiencia artística.
+
+5. Sobriedad
+   La estación debe sentirse elegante y técnica, no exagerada ni cargada.
+
+6. Confianza
+   Debe dar sensación de sistema real, controlado y comprensible.
+
+================================================================================
+4. COMPOSICIÓN VISUAL BASE
+================================================================================
+
+La referencia visual aprobada muestra:
+
+- formato vertical mobile-first;
+- fondo azul oscuro sobrio;
+- título superior:
+    Estación IV
+    Operación técnica
+    Mesa de sistema
+- una mesa o plataforma central;
+- 8 elementos técnicos ordenados horizontalmente sobre la mesa;
+- línea de flujo inferior numerada del 1 al 8;
+- nodo 3 activo en la imagen de referencia;
+- Lía flotando cerca del nodo activo;
+- tarjeta inferior con información del nodo activo;
+- estilo minimalista, técnico, elegante y sin saturación.
+
+La mesa representa una maqueta técnica simplificada del sistema.
+
+No debe parecer un dashboard frío ni un templo fantástico.
+Debe parecer una mesa de explicación museográfica y técnica.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La estación debe contener:
+
+1. Mesa / plataforma
+   - base visual central;
+   - soporte de los ocho elementos;
+   - sobria, limpia, con mucho aire visual.
+
+2. Los 8 nodos técnicos
+   - Planta
+   - Bionosificador
+   - ESP32
+   - MIDI
+   - Wi‑Fi/UDP
+   - Router
+   - Sistema central
+   - Sonido
+
+3. Línea de flujo
+   - conecta los 8 nodos;
+   - muestra dirección de izquierda a derecha;
+   - debe iluminarse por tramos.
+
+4. Numeración
+   - 1 a 8;
+   - legible;
+   - no invasiva.
+
+5. Lía
+   - guía técnica suave;
+   - se mueve hacia el nodo activo;
+   - explica con ventana o tarjeta.
+
+6. Tarjeta de información
+   - muestra nombre del nodo activo;
+   - muestra explicación breve;
+   - puede incluir icono del nodo;
+   - ubicada en zona inferior.
+
+7. Botón o acción de continuar
+   - se habilita después de recorrer los 8 nodos.
+
+================================================================================
+6. LOS 8 NODOS OBLIGATORIOS
+================================================================================
+
+La estación debe representar exactamente esta cadena:
+
+1. Planta
+2. Bionosificador
+3. ESP32
+4. MIDI
+5. Wi‑Fi/UDP
+6. Router
+7. Sistema central
+8. Sonido
+
+No cambiar el orden.
+
+No eliminar nodos.
+
+No combinar nodos en primera pasada.
+
+No sustituir “bionosificador” por “sensor” si el término oficial del proyecto es
+bionosificador.
+
+No mostrar únicamente 4 grupos conceptuales. En esta estación se debe explicar la
+cadena completa.
+
+================================================================================
+7. LO QUE NO DEBE APARECER
+================================================================================
+
+No debe aparecer:
+
+- exceso de partículas;
+- portales;
+- templos;
+- arquitectura épica;
+- bosque recargado;
+- múltiples Lías;
+- notas musicales saliendo de la planta;
+- planta cantando;
+- demasiados paneles técnicos simultáneos;
+- texto largo;
+- gráficos complejos;
+- código;
+- osciloscopios pesados;
+- cables desordenados;
+- interfaz de operador real demasiado técnica;
+- elementos que confundan la secuencia.
+
+Esta estación debe ser limpia y cómoda visualmente.
+
+================================================================================
+8. ROL DE LÍA EN LA ESTACIÓN
+================================================================================
+
+Lía debe actuar como guía técnica suave.
+
+En esta estación, Lía no es protagonista emocional como en Estación II.
+Tampoco es decorativa.
+
+Lía debe:
+
+- acompañar el flujo;
+- señalar el nodo activo;
+- activar cada pieza;
+- explicar brevemente;
+- ayudar a que lo técnico se entienda;
+- mantener calma y precisión.
+
+Lía debe verse:
+
+- amable;
+- atenta;
+- técnica sin ser rígida;
+- integrada a la mesa;
+- cerca del nodo activo, pero sin taparlo.
+
+Acciones de Lía:
+
+1. Flotar cerca del nodo activo.
+2. Señalar o activar el nodo.
+3. Iluminar suavemente la base del nodo.
+4. Abrir o acompañar la tarjeta explicativa.
+5. Moverse al siguiente nodo al avanzar.
+6. Hacer un gesto de cierre cuando la cadena completa queda activa.
+
+================================================================================
+9. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+Acciones principales:
+
+1. Tocar nodo 1 — Planta.
+2. Tocar nodo 2 — Bionosificador.
+3. Tocar nodo 3 — ESP32.
+4. Tocar nodo 4 — MIDI.
+5. Tocar nodo 5 — Wi‑Fi/UDP.
+6. Tocar nodo 6 — Router.
+7. Tocar nodo 7 — Sistema central.
+8. Tocar nodo 8 — Sonido.
+9. Leer tarjeta de Lía.
+10. Avanzar al siguiente nodo.
+11. Continuar a Estación V al completar la cadena.
+12. Abrir menú global, si existe.
+
+Primera pasada:
+    1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → Continuar
+
+Revisión posterior:
+    los 8 nodos pueden tocarse en cualquier orden.
+
+================================================================================
+10. PRIMERA PASADA SECUENCIAL
+================================================================================
+
+En primera pasada, el recorrido de nodos debe ser obligatorio y ordenado.
+
+Reglas:
+
+- Al inicio solo nodo 1 está habilitado.
+- Nodo 2 se habilita después de completar nodo 1.
+- Nodo 3 se habilita después de completar nodo 2.
+- Y así hasta nodo 8.
+- Continuar se habilita únicamente después de completar nodo 8.
+
+Si el usuario toca un nodo bloqueado:
+
+Mensaje de Lía:
+    Sigamos el flujo en orden. Esta parte viene después.
+
+O:
+    Aún no. Primero veamos cómo llega la señal hasta aquí.
+
+No mostrar error agresivo.
+
+================================================================================
+11. ESTADOS VISUALES DE CADA NODO
+================================================================================
+
+Cada nodo debe tener estos estados:
+
+1. Bloqueado
+   - baja opacidad;
+   - sin brillo activo;
+   - no interactivo en primera pasada;
+   - puede mostrar indicación sutil de pendiente.
+
+2. Disponible
+   - opacidad normal;
+   - borde o base tenue;
+   - listo para tocar.
+
+3. Activo
+   - base iluminada;
+   - línea de flujo hasta ese punto resaltada;
+   - Lía cerca;
+   - tarjeta de información visible.
+
+4. Completado
+   - marca sutil;
+   - brillo bajo estable;
+   - disponible para revisión posterior.
+
+5. Revisado
+   - en modo libre, puede quedar marcado como visto.
+
+Solo un nodo debe estar activo a la vez.
+
+================================================================================
+12. NODO 1 — PLANTA
+================================================================================
+
+Función:
+    Presentar el origen vivo del sistema.
+
+Qué se activa visualmente:
+    - planta en maceta;
+    - punto 1 de la línea;
+    - base suave bajo la planta;
+    - Lía se acerca al inicio de la mesa.
+
+Texto de Lía sugerido:
+
+    Todo inicia en la planta viva.
+    Aquí no hay música directa: hay una actividad que puede ser mediada.
+
+Versión corta:
+
+    La planta es el origen vivo, no una fuente musical directa.
+
+Animación:
+    - planta recibe brillo leve;
+    - punto 1 se ilumina;
+    - Lía mira hacia la planta;
+    - línea hacia nodo 2 permanece tenue.
+
+Qué debe aprender el usuario:
+    El sistema parte de una planta viva, no de una melodía producida por ella.
+
+================================================================================
+13. NODO 2 — BIONOSIFICADOR
+================================================================================
+
+Función:
+    Explicar la primera mediación de captura/acondicionamiento.
+
+Qué se activa visualmente:
+    - módulo bionosificador;
+    - línea 1 → 2 se ilumina;
+    - base del módulo se activa.
+
+Texto de Lía sugerido:
+
+    El bionosificador permite captar y preparar la señal de la planta.
+    Aquí empieza la lectura técnica de lo vivo.
+
+Versión corta:
+
+    El bionosificador capta y prepara la señal para el sistema.
+
+Animación:
+    - línea desde planta hasta bionosificador se ilumina;
+    - módulo emite pequeño pulso;
+    - Lía señala el módulo.
+
+Qué debe aprender el usuario:
+    La señal no se usa sola; necesita un primer proceso de captura y preparación.
+
+================================================================================
+14. NODO 3 — ESP32
+================================================================================
+
+Función:
+    Explicar el papel del microcontrolador.
+
+Qué se activa visualmente:
+    - placa ESP32;
+    - línea 2 → 3 se ilumina;
+    - base de la placa se enciende.
+
+Texto de Lía sugerido:
+
+    El ESP32 interpreta la señal acondicionada y prepara eventos digitales.
+
+Versión corta:
+
+    El ESP32 convierte la lectura en eventos que el sistema puede manejar.
+
+Animación:
+    - luz azul/cian en la base;
+    - pequeños puntos de datos aparecen;
+    - Lía se ubica encima o al lado sin tapar la placa.
+
+Qué debe aprender el usuario:
+    El ESP32 es una pieza de procesamiento/control, no el origen de la vida ni del sonido.
+
+================================================================================
+15. NODO 4 — MIDI
+================================================================================
+
+Función:
+    Explicar la organización de eventos musicales o de control.
+
+Qué se activa visualmente:
+    - controlador o módulo MIDI;
+    - línea 3 → 4 se ilumina;
+    - tarjeta de información cambia.
+
+Texto de Lía sugerido:
+
+    MIDI organiza la información como eventos.
+    No es la voz de la planta: es una forma de traducción.
+
+Versión corta:
+
+    MIDI ordena eventos para que puedan ser interpretados musicalmente.
+
+Animación:
+    - pequeños bloques o pulsos aparecen en el nodo;
+    - Lía señala el módulo;
+    - luz breve en botones del controlador.
+
+Qué debe aprender el usuario:
+    MIDI es una capa de traducción/control, no una música natural directa.
+
+================================================================================
+16. NODO 5 — WI‑FI/UDP
+================================================================================
+
+Función:
+    Explicar el transporte local de datos.
+
+Qué se activa visualmente:
+    - símbolo Wi‑Fi;
+    - línea 4 → 5 se ilumina;
+    - pulso de datos viaja al nodo.
+
+Texto de Lía sugerido:
+
+    Los eventos viajan por la red local usando Wi‑Fi/UDP.
+    Esto permite que el sistema se comunique sin depender de internet.
+
+Versión corta:
+
+    Wi‑Fi/UDP transporta los datos dentro de la red local.
+
+Animación:
+    - pulso recorre la línea;
+    - icono Wi‑Fi emite ondas mínimas;
+    - Lía acompaña el viaje del dato.
+
+Qué debe aprender el usuario:
+    La comunicación es local y técnica; no es una conexión mágica.
+
+================================================================================
+17. NODO 6 — ROUTER
+================================================================================
+
+Función:
+    Explicar el papel del router como organizador de red local.
+
+Qué se activa visualmente:
+    - router;
+    - línea 5 → 6 se ilumina;
+    - luces del router parpadean suavemente.
+
+Texto de Lía sugerido:
+
+    El router organiza la comunicación local.
+    Ayuda a que los datos lleguen al sistema central.
+
+Versión corta:
+
+    El router permite que los nodos se comuniquen dentro de la red.
+
+Animación:
+    - luces del router se encienden;
+    - línea se mantiene activa;
+    - Lía flota cerca del router.
+
+Qué debe aprender el usuario:
+    El router es parte de la mediación de red, no un elemento decorativo.
+
+================================================================================
+18. NODO 7 — SISTEMA CENTRAL
+================================================================================
+
+Función:
+    Explicar recepción, organización e interpretación final.
+
+Qué se activa visualmente:
+    - caja/sistema central;
+    - línea 6 → 7 se ilumina;
+    - indicador del sistema se enciende.
+
+Texto de Lía sugerido:
+
+    El sistema central recibe y organiza la información.
+    Aquí se toman decisiones para la experiencia sonora.
+
+Versión corta:
+
+    El sistema central recibe, organiza e interpreta los eventos.
+
+Animación:
+    - pequeño brillo en el sistema;
+    - datos llegan como puntos;
+    - Lía señala el nodo.
+
+Qué debe aprender el usuario:
+    El sistema central coordina la experiencia, no la planta por sí sola.
+
+================================================================================
+19. NODO 8 — SONIDO
+================================================================================
+
+Función:
+    Explicar el resultado final mediado.
+
+Qué se activa visualmente:
+    - forma de onda/elemento sonoro abstracto;
+    - línea 7 → 8 se ilumina;
+    - cadena completa puede quedar visible.
+
+Texto de Lía sugerido:
+
+    El sonido aparece al final de esta cadena.
+    Es un resultado mediado, no una emisión directa de la planta.
+
+Versión corta:
+
+    El sonido es el resultado final de toda la mediación.
+
+Animación:
+    - forma sonora pulsa suavemente;
+    - línea completa queda activa;
+    - Lía hace gesto de cierre.
+
+Qué debe aprender el usuario:
+    El sonido final depende de toda la arquitectura técnica.
+
+================================================================================
+20. TARJETA DE INFORMACIÓN
+================================================================================
+
+La tarjeta inferior debe mostrar:
+
+- icono del nodo activo;
+- nombre del nodo;
+- explicación corta;
+- opcional: indicador “paso X de 8”.
+
+Ejemplo para nodo 3:
+
+    ESP32
+    Interpreta la señal acondicionada y prepara eventos digitales.
+
+Reglas:
+
+- máximo 2 o 3 líneas;
+- sin párrafos largos;
+- no saturar;
+- no usar tecnicismos sin contexto;
+- mantener tono claro y pedagógico.
+
+La tarjeta cambia al activar cada nodo.
+
+================================================================================
+21. ANIMACIÓN GENERAL DE LA ESCENA
+================================================================================
+
+Animación de fondo:
+    - muy sutil;
+    - sin partículas visibles excesivas;
+    - ambiente azul oscuro estable.
+
+Animación de mesa:
+    - casi estática;
+    - puede tener brillo tenue en borde.
+
+Animación de línea:
+    - se ilumina por tramos;
+    - un pulso pequeño viaja hacia el nodo activo;
+    - no mantener toda la línea con brillo máximo desde el inicio.
+
+Animación de nodos:
+    - nodo activo se eleva mínimamente o ilumina su base;
+    - completados quedan con marca sutil;
+    - bloqueados quedan tenues.
+
+Animación de Lía:
+    - flotación suave;
+    - desplazamiento corto entre nodos;
+    - gesto de señalar;
+    - brillo del collar al activar.
+
+================================================================================
+22. SECUENCIA DE ENTRADA A LA ESTACIÓN
+================================================================================
+
+Después de la transición pixelart:
+
+1. Fade desde transición.
+2. Fondo azul oscuro aparece.
+3. Título superior aparece.
+4. Mesa aparece suavemente.
+5. Nodos aparecen en baja intensidad.
+6. Lía aparece flotando cerca del primer nodo.
+7. Nodo 1 queda disponible.
+8. Lía muestra mensaje inicial breve.
+
+Mensaje inicial sugerido:
+
+    Ahora veremos cómo se conecta todo el sistema.
+
+O:
+
+    Aquí aparece la cadena completa de mediación técnica.
+
+Después se habilita el nodo 1.
+
+================================================================================
+23. BOTÓN CONTINUAR
+================================================================================
+
+Estado inicial:
+    oculto o deshabilitado.
+
+Estado durante nodos:
+    no debe competir con la tarjeta.
+
+Estado después de nodo 8:
+    activo.
+
+Texto:
+    Continuar
+
+Al tocar:
+    - Lía hace gesto de cierre;
+    - la cadena completa queda iluminada por un instante;
+    - se activa transición pixelart hacia Estación V.
+
+Texto de transición posterior:
+
+    Abriendo Mundo V: Mapa del presente...
+    Preparando recorrido...
+
+Si se toca antes de completar:
+    Lía responde:
+        Aún falta recorrer toda la cadena.
+
+================================================================================
+24. INTERACCIÓN EN REVISIÓN LIBRE
+================================================================================
+
+Después de completar la estación o volver desde modo libre:
+
+- los 8 nodos pueden tocarse en cualquier orden;
+- la cadena completa puede mostrarse tenue;
+- el nodo activo se resalta;
+- Continuar permanece disponible.
+
+Mensaje de Lía:
+
+    Puedes revisar cualquier parte del sistema.
+
+No se fuerza el orden en revisión libre.
+
+================================================================================
+25. ESTADOS FUNCIONALES
+================================================================================
+
+Estados sugeridos:
+
+station4_entering
+station4_idle
+station4_node_1_active
+station4_node_2_active
+station4_node_3_active
+station4_node_4_active
+station4_node_5_active
+station4_node_6_active
+station4_node_7_active
+station4_node_8_active
+station4_node_completed
+station4_ready_to_continue
+station4_exiting
+station4_revisit_mode
+
+Reglas:
+- solo un nodo activo a la vez;
+- una tarjeta informativa visible;
+- primera pasada secuencial;
+- revisión libre posterior;
+- bloquear taps durante cambios de nodo.
+
+================================================================================
+26. ACCESIBILIDAD
+================================================================================
+
+Cada nodo debe ser botón accesible.
+
+Labels sugeridos:
+
+Nodo 1:
+    Paso 1 de 8. Planta.
+
+Nodo 2:
+    Paso 2 de 8. Bionosificador.
+
+Nodo 3:
+    Paso 3 de 8. ESP32.
+
+Nodo 4:
+    Paso 4 de 8. MIDI.
+
+Nodo 5:
+    Paso 5 de 8. Wi‑Fi UDP.
+
+Nodo 6:
+    Paso 6 de 8. Router.
+
+Nodo 7:
+    Paso 7 de 8. Sistema central.
+
+Nodo 8:
+    Paso 8 de 8. Sonido.
+
+Estados:
+    bloqueado
+    disponible
+    activo
+    completado
+
+La tarjeta debe actualizarse de manera anunciable.
+
+No depender solo de color para indicar el nodo activo.
+
+================================================================================
+27. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no desplazar ampliamente a Lía;
+- no animar pulsos viajando por toda la línea;
+- no usar parpadeos continuos;
+- usar cambios de opacidad, borde o base iluminada;
+- mantener la secuencia;
+- transición de salida con fade simple.
+
+La comprensión debe conservarse aunque el movimiento sea mínimo.
+
+================================================================================
+28. LO QUE NO ES NECESARIO EN ESTA ESTACIÓN
+================================================================================
+
+No es necesario:
+
+- explicar historia de prototipos;
+- explicar origen filosófico;
+- repetir toda la Estación II;
+- mostrar señal en detalle;
+- mostrar fotos reales del montaje;
+- tener paisajes;
+- tener pixelart;
+- usar portales;
+- usar video;
+- usar audio;
+- usar AR;
+- tener dos estilos visuales;
+- mostrar muchos textos a la vez.
+
+================================================================================
+29. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- cambiar el orden de los 8 nodos;
+- eliminar bionosificador;
+- saltar de planta a sonido;
+- sugerir planta → música directa;
+- usar notas musicales saliendo de la planta;
+- sobrecargar con partículas;
+- convertir en santuario fantástico;
+- hacer que Lía tape los nodos;
+- mostrar múltiples tarjetas simultáneas;
+- usar texto técnico largo;
+- permitir saltos en primera pasada.
+
+================================================================================
+30. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La estación se considera correcta si:
+
+□ Se entiende que es Estación IV — Operación técnica.
+□ Se entiende que es Mesa de sistema.
+□ Aparecen los 8 nodos obligatorios.
+□ El orden de nodos es correcto.
+□ Lía guía el recorrido técnico.
+□ Solo un nodo está activo a la vez.
+□ La tarjeta explica el nodo activo.
+□ La primera pasada es secuencial.
+□ Los nodos bloqueados no se pueden saltar.
+□ La cadena completa queda clara al final.
+□ El visitante entiende que el sonido es mediado.
+□ No se sugiere planta → música directa.
+□ No hay saturación visual.
+□ No se convierte en paisaje fantástico.
+□ Reduced-motion conserva comprensión.
+□ La salida usa transición pixelart hacia Mundo V.
+
+================================================================================
+31. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Mundo IV — Mesa de sistema explica la operación técnica completa de OKÚA mediante
+una maqueta sobria de ocho nodos: planta, bionosificador, ESP32, MIDI, Wi‑Fi/UDP,
+router, sistema central y sonido. Lía guía al visitante nodo por nodo, mostrando
+que el resultado sonoro no surge directamente de la planta, sino de una cadena de
+mediación técnica organizada.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

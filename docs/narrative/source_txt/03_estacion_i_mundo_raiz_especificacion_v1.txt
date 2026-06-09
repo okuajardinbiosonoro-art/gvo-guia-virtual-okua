@@ -1,0 +1,685 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+ESTACIÓN I — MUNDO I: RAÍZ
+Versión: V1
+Estado: Definición visual, narrativa, funcional y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Estación I
+
+Nombre visual:
+    Mundo I — Raíz
+
+Título mostrado:
+    ESTACIÓN I
+    MUNDO I — RAÍZ
+
+Subtítulo:
+    Origen y propósito
+
+Ubicación en el flujo general:
+    Portada / Intro: El Archivo Vivo de OKÚA
+    → Transición pixelart: “Abriendo Mundo I: Raíz...”
+    → Estación I — Mundo I: Raíz
+    → Transición pixelart hacia Estación II
+
+Tipo de pantalla:
+    Estación narrativa, conceptual y fundacional.
+
+No es:
+    - una pantalla técnica;
+    - una explicación de sensores;
+    - una explicación completa del sistema;
+    - una estación de cadena tecnológica;
+    - una pantalla de cierre;
+    - una pantalla de carga.
+
+================================================================================
+1. PROPÓSITO DE LA ESTACIÓN
+================================================================================
+
+La Estación I debe explicar por qué existe OKÚA.
+
+Su función principal es presentar el origen conceptual del proyecto:
+
+    OKÚA nace de una pregunta sobre la relación con una planta viva,
+    no de un deseo de espectáculo.
+
+Esta estación debe preparar emocional y conceptualmente al visitante antes de
+hablar de señales bioeléctricas, captura, bionosificador, ESP32, MIDI, red o
+sistema central.
+
+La Estación I debe enseñar que:
+
+1. Una planta no debe entenderse solo como adorno.
+2. La vida vegetal puede estar activa aunque no la percibamos directamente.
+3. OKÚA no busca inventar una voz para la planta.
+4. OKÚA propone una mediación para percibir de otra manera.
+5. Antes de escuchar, necesitamos aprender a mirar.
+
+La frase central de esta estación es:
+
+    Antes de escuchar, necesitamos aprender a mirar.
+
+================================================================================
+2. IDEA PEDAGÓGICA PRINCIPAL
+================================================================================
+
+La idea pedagógica es:
+
+    La mediación empieza antes de la tecnología.
+    Empieza en una forma distinta de mirar la vida vegetal.
+
+El visitante debe salir de esta estación entendiendo que OKÚA no nace desde la
+pregunta “¿cómo hago sonar una planta?”, sino desde una pregunta más profunda:
+
+    ¿Cómo podemos relacionarnos de otra manera con una planta viva?
+
+Esta estación no debe presentar la técnica como protagonista.
+Debe presentar la actitud inicial: observar, reconocer, percibir y cuidar la
+mediación.
+
+================================================================================
+3. QUÉ QUEREMOS EXPRESAR EN MUNDO I — RAÍZ
+================================================================================
+
+El mundo visual “Raíz” debe expresar:
+
+1. Origen
+   Todo proyecto tiene una raíz. OKÚA nace de una pregunta, no de un efecto.
+
+2. Relación
+   El primer paso no es medir ni convertir. Es reconocer que hay una relación
+   posible con una planta viva.
+
+3. Percepción
+   La planta parece quieta, pero eso no significa que esté inactiva. Hay procesos
+   que no percibimos directamente.
+
+4. Mediación
+   La mediación no inventa la vida de la planta. Ayuda a acercarnos a una señal o
+   actividad que necesita un proceso para volverse perceptible.
+
+5. Cuidado
+   La mirada del visitante debe pasar de “objeto decorativo” a “ser vivo dentro
+   de una experiencia mediada”.
+
+================================================================================
+4. COMPOSICIÓN VISUAL BASE
+================================================================================
+
+La composición aprobada de referencia tiene:
+
+- formato vertical mobile-first;
+- fondo oscuro, cálido y dorado;
+- una planta joven en la parte superior central;
+- raíces visibles bajo la tierra;
+- raíces iluminadas con luz dorada;
+- tres conceptos principales distribuidos en la zona media-inferior:
+    RELACIÓN
+    PERCEPCIÓN
+    MEDIACIÓN
+- Lía flotando cerca de la planta;
+- un camino de luz hacia la derecha;
+- texto explicativo en la parte inferior;
+- botón “Continuar”;
+- navegación mínima superior.
+
+La imagen debe sentirse como un mundo subterráneo y contemplativo, no como un
+bosque mágico saturado.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La estación debe contener:
+
+1. Planta joven
+   - representa el punto de partida vivo;
+   - debe verse frágil pero sana;
+   - debe transmitir inicio y posibilidad.
+
+2. Raíces
+   - representan origen, profundidad y relación;
+   - deben estar iluminadas de forma sutil;
+   - no deben parecer una red eléctrica agresiva.
+
+3. Tres nodos conceptuales
+   - RELACIÓN
+   - PERCEPCIÓN
+   - MEDIACIÓN
+
+4. Lía
+   - guía visual activa;
+   - debe observar, señalar y acompañar;
+   - no debe dominar la escena.
+
+5. Textos fundacionales
+   - OKÚA nace de una pregunta sobre la relación con una planta viva,
+     no de un deseo de espectáculo.
+   - La mediación no inventa la vida de la planta: ayuda a percibirla.
+   - Antes de escuchar, necesitamos aprender a mirar.
+
+6. Botón
+   - Continuar
+
+================================================================================
+6. LO QUE NO DEBE APARECER
+================================================================================
+
+No debe aparecer:
+
+- ESP32;
+- MIDI;
+- Wi-Fi/UDP;
+- router;
+- sistema central;
+- sonido;
+- parlantes;
+- cadena completa de 8 nodos;
+- bionosificador como elemento técnico dominante;
+- gráficas técnicas;
+- paneles de señal;
+- notas musicales;
+- planta cantando;
+- texto técnico extenso;
+- exceso de partículas;
+- muchos personajes;
+- varios avatares;
+- Lía como hada;
+- Lía como adorno sin función.
+
+La Estación I no debe anticipar todo lo técnico.
+Su función es preparar el sentido del recorrido.
+
+================================================================================
+7. ROL DE LÍA EN LA ESTACIÓN
+================================================================================
+
+Lía debe comportarse como guía de observación.
+
+En esta estación, Lía no es operadora técnica.
+No está activando máquinas.
+No está explicando sensores.
+
+Lía debe:
+
+- invitar a mirar;
+- señalar la planta;
+- acercarse a las raíces;
+- guiar entre los tres conceptos;
+- abrir pequeñas ventanas de explicación;
+- activar el paso a Estación II al final.
+
+Lía debe transmitir:
+
+    calma
+    curiosidad
+    cuidado
+    atención
+    respeto por lo vivo
+
+No debe transmitir:
+
+    urgencia
+    espectáculo
+    magia exagerada
+    explicación técnica pesada
+
+================================================================================
+8. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+La estación debe permitir acciones simples.
+
+Acciones principales:
+
+1. Tocar RELACIÓN.
+2. Tocar PERCEPCIÓN.
+3. Tocar MEDIACIÓN.
+4. Leer explicación de Lía.
+5. Cerrar o avanzar explicación.
+6. Tocar “Continuar” después de completar lo necesario.
+7. Abrir menú global, si existe.
+
+Primera pasada:
+    RELACIÓN → PERCEPCIÓN → MEDIACIÓN → Continuar
+
+Revisión posterior:
+    los tres conceptos pueden revisarse libremente.
+
+No debe haber más de tres puntos conceptuales interactivos en esta estación.
+
+================================================================================
+9. PRIMERA PASADA SECUENCIAL
+================================================================================
+
+En la primera pasada, la estación debe guiar al usuario en este orden:
+
+1. RELACIÓN
+2. PERCEPCIÓN
+3. MEDIACIÓN
+4. Continuar
+
+El botón “Continuar” puede estar visible desde el inicio, pero debería estar:
+
+- desactivado;
+- atenuado;
+- o con mensaje de Lía si se toca antes de completar los tres conceptos.
+
+Mensaje si toca Continuar antes de completar:
+
+    Primero miremos las raíces de esta pregunta.
+
+O:
+
+    Aún falta una idea antes de seguir.
+
+Al completar las tres ideas, el botón queda activo.
+
+================================================================================
+10. CONCEPTO 1 — RELACIÓN
+================================================================================
+
+Función:
+    Explicar que OKÚA parte de una relación distinta con la planta.
+
+Qué se activa visualmente:
+    - nodo RELACIÓN;
+    - raíz asociada;
+    - brillo suave desde la planta hacia esa raíz;
+    - Lía se acerca al lado izquierdo o apunta hacia el nodo.
+
+Texto de Lía sugerido:
+
+    OKÚA empieza aquí: en la relación con una planta viva.
+    No la miramos como adorno, sino como parte activa del encuentro.
+
+Mensaje alternativo más corto:
+
+    Primero está la relación: mirar la planta como vida, no como decoración.
+
+Animación:
+    - nodo RELACIÓN pulsa suavemente;
+    - raíz izquierda se ilumina;
+    - Lía se inclina hacia el nodo;
+    - pequeña ventana aparece desde Lía.
+
+Qué debe aprender el usuario:
+    OKÚA no parte de un dispositivo, sino de una forma de relación.
+
+================================================================================
+11. CONCEPTO 2 — PERCEPCIÓN
+================================================================================
+
+Función:
+    Explicar que la planta puede tener actividad que normalmente no percibimos.
+
+Qué se activa visualmente:
+    - nodo PERCEPCIÓN;
+    - raíz central;
+    - brillo subiendo hacia la planta;
+    - ligera luz en las hojas.
+
+Texto de Lía sugerido:
+
+    Una planta puede parecer quieta, pero eso no significa que esté inactiva.
+    Algunas señales necesitan una mediación para volverse perceptibles.
+
+Mensaje alternativo más corto:
+
+    Estar quieta no significa estar inactiva. A veces necesitamos aprender a percibir.
+
+Animación:
+    - raíz central se ilumina desde abajo;
+    - pequeño pulso llega a la planta;
+    - las hojas brillan muy sutilmente;
+    - Lía mira hacia la planta.
+
+Qué debe aprender el usuario:
+    La vida vegetal puede exceder nuestra percepción inmediata.
+
+================================================================================
+12. CONCEPTO 3 — MEDIACIÓN
+================================================================================
+
+Función:
+    Explicar que la mediación no inventa la vida de la planta; ayuda a percibirla.
+
+Qué se activa visualmente:
+    - nodo MEDIACIÓN;
+    - raíz derecha;
+    - camino luminoso hacia la salida;
+    - Lía se mueve hacia el camino de luz.
+
+Texto de Lía sugerido:
+
+    Mediar no es inventar.
+    Es construir una forma cuidadosa de acercarnos a una señal viva.
+
+Mensaje alternativo más corto:
+
+    La mediación no inventa la vida de la planta: ayuda a percibirla.
+
+Animación:
+    - nodo MEDIACIÓN se ilumina;
+    - raíz derecha conecta con el camino luminoso;
+    - Lía señala el camino hacia el siguiente mundo;
+    - botón Continuar gana brillo.
+
+Qué debe aprender el usuario:
+    OKÚA no falsifica la planta; construye una interpretación mediada.
+
+================================================================================
+13. TEXTO FIJO DE LA ESTACIÓN
+================================================================================
+
+Textos visibles en la imagen base:
+
+Título:
+    ESTACIÓN I
+    MUNDO I — RAÍZ
+
+Subtítulo:
+    Origen y propósito
+
+Conceptos:
+    RELACIÓN
+    PERCEPCIÓN
+    MEDIACIÓN
+
+Frases inferiores:
+    OKÚA nace de una pregunta
+    sobre la relación con una planta viva,
+    no de un deseo de espectáculo.
+
+    La mediación no inventa la vida de la planta:
+    ayuda a percibirla.
+
+    Antes de escuchar, necesitamos aprender a mirar.
+
+Botón:
+    Continuar
+
+Regla:
+    Estos textos pueden mantenerse fijos, pero las ventanas de Lía no deben repetir
+    todo exactamente. Deben complementar y guiar.
+
+================================================================================
+14. VENTANAS DE DIÁLOGO DE LÍA
+================================================================================
+
+Cada concepto puede abrir una ventana breve asociada a Lía.
+
+Reglas:
+
+- una ventana a la vez;
+- máximo 2 o 3 líneas;
+- sin scroll;
+- sin párrafos largos;
+- tono cálido y claro;
+- lenguaje sencillo;
+- sin tecnicismos innecesarios;
+- sin repetir todo el texto fijo.
+
+La ventana debe aparecer cerca de Lía o conectada visualmente a ella.
+
+Estados:
+
+- cerrada;
+- apareciendo;
+- visible;
+- completada;
+- cerrando.
+
+El usuario puede:
+    - tocar Siguiente;
+    - tocar la ventana;
+    - tocar otro nodo desbloqueado si ya está en revisión libre.
+
+================================================================================
+15. ANIMACIÓN GENERAL DE LA ESCENA
+================================================================================
+
+Animación de fondo:
+    - muy sutil;
+    - luz cálida respirando lentamente;
+    - polvo o partículas mínimas;
+    - sin saturación.
+
+Animación de planta:
+    - hoja con brillo mínimo;
+    - no movimiento exagerado;
+    - no crecimiento durante esta estación.
+
+Animación de raíces:
+    - líneas de luz recorriendo raíces cuando se activa un concepto;
+    - no todas las raíces encendidas todo el tiempo;
+    - brillo gradual, no parpadeo agresivo.
+
+Animación de nodos:
+    - el nodo activo pulsa suavemente;
+    - los completados quedan con brillo bajo;
+    - los pendientes permanecen tenues.
+
+Animación de Lía:
+    - flota;
+    - se inclina;
+    - señala;
+    - acompaña;
+    - se desplaza poco, no vuela por toda la pantalla.
+
+================================================================================
+16. SECUENCIA DE ANIMACIÓN RECOMENDADA
+================================================================================
+
+Al entrar desde transición:
+
+1. Fade desde transición pixelart.
+2. Fondo de Mundo I aparece.
+3. Planta aparece iluminada.
+4. Raíces se revelan suavemente.
+5. Lía entra flotando desde la derecha o aparece cerca de la planta.
+6. Título ya está visible o aparece con fade.
+7. Nodos RELACIÓN, PERCEPCIÓN y MEDIACIÓN aparecen con baja intensidad.
+8. Lía invita a tocar RELACIÓN.
+
+Mensaje inicial opcional de Lía:
+
+    Empecemos por la raíz de OKÚA.
+
+O:
+
+    Antes de escuchar, miremos de dónde nace esta pregunta.
+
+================================================================================
+17. BOTÓN CONTINUAR
+================================================================================
+
+Estado inicial:
+    visible, pero puede estar atenuado.
+
+Estado antes de completar conceptos:
+    si se toca, Lía indica que falta mirar las raíces.
+
+Estado después de completar conceptos:
+    activo;
+    borde con brillo dorado suave;
+    Lía se acerca o mira hacia el camino luminoso.
+
+Al tocar Continuar:
+    - botón responde;
+    - Lía se desplaza hacia el camino de luz;
+    - la escena prepara salida;
+    - aparece transición pixelart hacia Estación II.
+
+Texto de transición posterior:
+
+    Abriendo Mundo II: Lía y el pulso invisible...
+    Preparando recorrido...
+
+================================================================================
+18. INTERACCIÓN EN REVISIÓN LIBRE
+================================================================================
+
+Después de completar el recorrido o volver en modo revisión:
+
+- los tres conceptos quedan disponibles desde el inicio;
+- Continuar puede estar activo;
+- Lía puede mostrar mensaje breve:
+
+    Puedes volver a mirar cualquiera de estas raíces.
+
+No se fuerza el orden.
+No se repite toda la secuencia inicial obligatoria.
+
+================================================================================
+19. ESTADOS FUNCIONALES
+================================================================================
+
+Estados sugeridos:
+
+station1_entering
+station1_idle
+station1_relation_active
+station1_perception_active
+station1_mediation_active
+station1_concept_completed
+station1_ready_to_continue
+station1_exiting
+station1_revisit_mode
+
+Reglas:
+
+- solo un concepto activo a la vez;
+- no abrir dos ventanas simultáneas;
+- bloquear Continuar hasta completar conceptos en primera pasada;
+- permitir revisión libre si ya se completó.
+
+================================================================================
+20. ACCESIBILIDAD
+================================================================================
+
+Requisitos:
+
+- cada nodo debe ser botón accesible;
+- cada nodo debe tener nombre claro;
+- la ventana de Lía debe anunciarse;
+- el estado completado debe ser accesible;
+- no depender solo del color;
+- botón Continuar debe indicar si está deshabilitado.
+
+Labels sugeridos:
+
+RELACIÓN:
+    Relación. Idea uno de tres. Disponible.
+
+PERCEPCIÓN:
+    Percepción. Idea dos de tres. Bloqueada hasta completar Relación.
+
+MEDIACIÓN:
+    Mediación. Idea tres de tres. Bloqueada hasta completar Percepción.
+
+Continuar deshabilitado:
+    Continuar. Completa las tres ideas para avanzar.
+
+Continuar habilitado:
+    Continuar a Mundo II.
+
+================================================================================
+21. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no desplazar ampliamente a Lía;
+- no animar raíces con recorridos largos;
+- usar cambios de opacidad;
+- usar estado activo por borde o luz fija;
+- no usar partículas en movimiento;
+- transición de salida con fade simple.
+
+La secuencia conceptual debe mantenerse.
+
+================================================================================
+22. LO QUE NO ES NECESARIO EN ESTA ESTACIÓN
+================================================================================
+
+No es necesario:
+
+- mostrar tecnología;
+- explicar bionosificador;
+- explicar ESP32;
+- explicar MIDI;
+- explicar Wi-Fi/UDP;
+- explicar sonido;
+- explicar cadena completa;
+- tener muchas opciones;
+- tener animaciones complejas;
+- tener video;
+- tener audio;
+- tener AR;
+- tener scanner QR interno;
+- tener varios personajes;
+- introducir bilingüismo todavía si no está implementado globalmente.
+
+================================================================================
+23. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- sugerir que la planta hace música por sí sola;
+- usar notas musicales saliendo de la planta;
+- presentar la raíz como cable eléctrico real;
+- convertir la escena en magia excesiva;
+- llenar de partículas;
+- usar Lía como hada;
+- agregar humanos;
+- agregar más de tres nodos conceptuales;
+- poner texto técnico largo;
+- saltar a Estación II sin completar la secuencia;
+- cambiar el propósito conceptual por explicación técnica.
+
+================================================================================
+24. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La estación se considera correcta si:
+
+□ Se entiende que es Mundo I — Raíz.
+□ Se entiende que trata del origen y propósito.
+□ La planta es el centro vivo de la escena.
+□ Las raíces expresan origen, no técnica.
+□ RELACIÓN, PERCEPCIÓN y MEDIACIÓN son claros.
+□ Lía guía y no decora solamente.
+□ El usuario aprende que OKÚA no nace del espectáculo.
+□ El usuario entiende que la mediación no inventa la vida de la planta.
+□ El usuario entiende que antes de escuchar hay que aprender a mirar.
+□ No aparecen componentes técnicos innecesarios.
+□ No se sugiere planta → música directa.
+□ La primera pasada es secuencial.
+□ El botón Continuar se habilita correctamente.
+□ La salida usa transición pixelart hacia Mundo II.
+□ La escena no está saturada.
+□ Reduced-motion mantiene comprensión.
+
+================================================================================
+25. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Mundo I — Raíz introduce el origen y propósito de OKÚA. Presenta una planta joven
+y sus raíces como metáfora de la pregunta inicial del proyecto: relacionarnos de
+otra manera con una planta viva. A través de tres conceptos —Relación, Percepción
+y Mediación— Lía guía al visitante para entender que OKÚA no nace de un deseo de
+espectáculo, sino de una mediación honesta que ayuda a percibir algo vivo sin
+inventarlo.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

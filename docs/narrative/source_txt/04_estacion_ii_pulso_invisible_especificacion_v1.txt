@@ -1,0 +1,819 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+ESTACIÓN II — MUNDO II: LÍA Y EL PULSO INVISIBLE
+Versión: V1
+Estado: Definición visual, narrativa, funcional, interactiva y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Estación II
+
+Nombre visual:
+    Mundo II — Lía y el pulso invisible
+
+Título mostrado:
+    ESTACIÓN II
+    MUNDO II
+    LÍA Y EL PULSO INVISIBLE
+
+Tema oficial:
+    Señales bioeléctricas
+
+Subtítulo conceptual:
+    Qué señal está en juego
+
+Ubicación en el flujo general:
+    Estación I — Mundo I: Raíz
+    → Transición pixelart: “Abriendo Mundo II: Lía y el pulso invisible...”
+    → Estación II — Mundo II: Lía y el pulso invisible
+    → Transición pixelart hacia Estación III
+
+Tipo de pantalla:
+    Estación interactiva, visual, pedagógica y centrada en Lía.
+
+No es:
+    - una portada;
+    - una pantalla de carga;
+    - una transición entre mundos;
+    - una explicación completa de los 8 nodos técnicos;
+    - una estación de operación técnica completa;
+    - una pantalla final.
+
+================================================================================
+1. PROPÓSITO DE LA ESTACIÓN
+================================================================================
+
+La Estación II debe explicar que una planta viva puede presentar una señal
+bioeléctrica real, pero que esa señal no equivale a música por sí sola.
+
+La función pedagógica principal es aclarar:
+
+    La señal existe, pero no es música todavía.
+
+El visitante debe entender que entre la planta viva y el resultado sonoro existe
+una mediación. Esta mediación incluye captura, acondicionamiento, interpretación
+y mapeo.
+
+La Estación II no debe explicar todavía la cadena técnica completa de 8 nodos.
+Esa explicación pertenece a la Estación IV.
+
+La Estación II debe mostrar una explicación por capas:
+
+1. Planta viva.
+2. Señal bioeléctrica.
+3. Captura.
+4. Acondicionamiento.
+5. Mapeo.
+6. Resultado mediado.
+
+================================================================================
+2. IDEA PEDAGÓGICA PRINCIPAL
+================================================================================
+
+La idea pedagógica central es:
+
+    La planta no hace música por sí sola.
+    Primero existe una actividad bioeléctrica.
+    Luego un sistema la captura, prepara e interpreta.
+
+Esta estación debe corregir una interpretación común:
+
+    “la planta canta”
+    “la planta hace música directa”
+    “la señal es música”
+
+La interpretación correcta es:
+
+    planta viva
+    → señal bioeléctrica
+    → captura
+    → acondicionamiento
+    → mapeo
+    → resultado sonoro mediado
+
+La estación debe ser clara, visual y sensible, sin convertir la señal en magia.
+
+================================================================================
+3. QUÉ QUEREMOS EXPRESAR EN MUNDO II
+================================================================================
+
+Mundo II debe expresar:
+
+1. Vida
+   La planta es un ser vivo activo.
+
+2. Invisibilidad
+   La señal no se ve directamente en la experiencia cotidiana.
+
+3. Revelación
+   Lía ayuda a hacer visible esa señal mediante una representación visual.
+
+4. Mediación
+   La señal no se vuelve sonido de forma directa. Requiere procesos.
+
+5. Cuidado conceptual
+   La experiencia no debe hacer creer que la planta produce música por sí sola.
+
+6. Guía activa
+   Lía no es decoración. Lía se mueve, activa puntos, abre explicaciones y guía
+   cada capa.
+
+================================================================================
+4. COMPOSICIÓN VISUAL BASE
+================================================================================
+
+La composición aprobada de referencia incluye:
+
+- formato vertical mobile-first;
+- ambiente oscuro, nocturno, violeta y lavanda;
+- una planta viva principal en la zona izquierda/central;
+- una señal violeta luminosa visible cerca de la planta;
+- Lía grande y protagonista en el centro-derecha;
+- tres burbujas o cápsulas visuales laterales con Lía ejecutando acciones;
+- una ruta de energía violeta que conecta capas;
+- seis botones o íconos inferiores numerados;
+- cada ícono representa una capa de la mediación;
+- texto superior con estación y nombre del mundo.
+
+La imagen debe sentirse como un mundo de pulso invisible: una cámara viva, nocturna
+y orgánica donde Lía revela la señal.
+
+Debe ser bella, pero no saturada.
+Debe tener atmósfera, pero no exceso de partículas.
+Debe ser visualmente clara.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La estación debe contener:
+
+1. Planta viva principal
+   - origen de la señal;
+   - ubicada preferiblemente en la zona izquierda o centro-izquierda;
+   - con raíz o base visible;
+   - no debe parecer decorado pasivo.
+
+2. Señal bioeléctrica
+   - onda violeta irregular;
+   - debe verse como dato/señal;
+   - no debe verse como pentagrama ni como notas musicales.
+
+3. Lía principal
+   - guía activa;
+   - visible y protagonista;
+   - flotando cerca de la señal;
+   - activa cada capa mediante movimiento o gesto.
+
+4. Seis capas inferiores
+   - PLANTA VIVA
+   - SEÑAL
+   - CAPTURA
+   - ACONDICIONAMIENTO
+   - MAPEO
+   - RESULTADO MEDIADO
+
+5. Burbujas o microescenas laterales
+   - pueden mostrar acciones de Lía por capa;
+   - deben ser pocas y claras;
+   - no deben saturar ni duplicar información excesiva.
+
+6. Ruta de mediación
+   - línea violeta o flujo entre elementos;
+   - debe conectar visualmente la secuencia;
+   - no debe parecer que la planta envía música directa.
+
+7. Ventana de diálogo de Lía
+   - debe aparecer por capa;
+   - asociada visualmente a Lía;
+   - texto breve, claro y pedagógico.
+
+================================================================================
+6. LO QUE NO DEBE APARECER
+================================================================================
+
+No debe aparecer:
+
+- notas musicales saliendo de la planta;
+- pentagramas;
+- una planta cantando;
+- parlantes dominantes;
+- explicación completa de 8 nodos;
+- router como elemento principal;
+- sistema central como foco principal;
+- interfaz técnica pesada;
+- demasiados paneles simultáneos;
+- varias Lías principales compitiendo;
+- excesivas partículas;
+- muchas burbujas narrativas al mismo tiempo;
+- texto plano largo fuera de Lía;
+- humano como guía;
+- avatar distinto a Lía.
+
+La Estación II debe centrarse en la señal y su mediación inicial, no en toda la
+arquitectura técnica del sistema.
+
+================================================================================
+7. ROL DE LÍA EN LA ESTACIÓN
+================================================================================
+
+Lía es la protagonista funcional de esta estación.
+
+Aquí Lía debe:
+
+- revelar la señal;
+- moverse entre capas;
+- activar íconos;
+- explicar mediante ventanas;
+- señalar;
+- acompañar el orden pedagógico;
+- evitar que el visitante interprete la señal como música directa.
+
+Lía no debe ser una imagen estática decorativa.
+Lía debe sentirse como una guía útil en pantalla.
+
+Acciones de Lía:
+
+1. Observar la planta.
+2. Acercarse a la señal.
+3. Activar el pulso visible.
+4. Señalar el punto de captura.
+5. Mostrar la señal acondicionada.
+6. Abrir un mapa o matriz.
+7. Cerrar con el resultado mediado.
+
+Estados emocionales:
+
+- curioso;
+- atento;
+- explicativo;
+- cuidadoso;
+- sereno al cierre.
+
+No debe actuar como hada mágica ni como asistente conversacional humano.
+
+================================================================================
+8. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+Acciones principales:
+
+1. Tocar ícono 1 — PLANTA VIVA.
+2. Tocar ícono 2 — SEÑAL.
+3. Tocar ícono 3 — CAPTURA.
+4. Tocar ícono 4 — ACONDICIONAMIENTO.
+5. Tocar ícono 5 — MAPEO.
+6. Tocar ícono 6 — RESULTADO MEDIADO.
+7. Leer diálogo de Lía.
+8. Avanzar diálogo.
+9. Tocar “siguiente” si se implementa control secuencial.
+10. Continuar a la Estación III al completar las seis capas.
+11. Abrir menú global, si existe.
+
+Primera pasada:
+    1 → 2 → 3 → 4 → 5 → 6 → Continuar
+
+Revisión posterior:
+    cualquier capa puede tocarse libremente.
+
+================================================================================
+9. PRIMERA PASADA SECUENCIAL
+================================================================================
+
+En primera pasada, la estación debe guiar al usuario en orden obligatorio:
+
+1. Planta viva.
+2. Señal.
+3. Captura.
+4. Acondicionamiento.
+5. Mapeo.
+6. Resultado mediado.
+
+Reglas:
+
+- Al inicio solo capa 1 está habilitada.
+- Capa 2 se habilita después de completar capa 1.
+- Capa 3 se habilita después de completar capa 2.
+- Y así sucesivamente.
+- El botón “Continuar” se activa solo después de completar capa 6.
+
+Si el usuario toca una capa bloqueada:
+
+Mensaje de Lía:
+    Vamos paso a paso. Primero necesitamos entender la capa anterior.
+
+O:
+    Aún no. Esta parte tendrá sentido después del paso actual.
+
+No mostrar error agresivo.
+No bloquear con alerta técnica.
+
+================================================================================
+10. ESTADO VISUAL DE LAS CAPAS
+================================================================================
+
+Cada ícono/capa debe tener tres estados:
+
+1. Bloqueada
+   - menor opacidad;
+   - candado o indicador sutil;
+   - no se puede activar en primera pasada.
+
+2. Disponible
+   - borde suave;
+   - número visible;
+   - brillo bajo;
+   - puede tocarse.
+
+3. Activa
+   - borde violeta/lavanda más intenso;
+   - conexión visual con Lía;
+   - señal o panel asociado encendido;
+   - ventana de Lía visible.
+
+4. Completada
+   - marca pequeña;
+   - brillo bajo estable;
+   - disponible para revisión si ya se completó.
+
+No todos los íconos deben brillar fuerte al tiempo.
+El foco debe estar en una capa activa a la vez.
+
+================================================================================
+11. CAPA 1 — PLANTA VIVA
+================================================================================
+
+Función:
+    Presentar la planta como ser vivo y origen de la experiencia.
+
+Qué se activa visualmente:
+    - la planta principal;
+    - una luz suave en la base o raíz;
+    - Lía se acerca a la planta;
+    - la señal aún no debe dominar.
+
+Texto de Lía:
+
+    Primero está la planta viva.
+    No la miramos como adorno: aquí es el origen de una relación.
+
+Versión corta:
+
+    Esta es la planta viva. Antes de cualquier sonido, hay vida y relación.
+
+Animación:
+    - Lía flota hacia la planta;
+    - la planta recibe un brillo sutil;
+    - hojas se iluminan apenas;
+    - ícono 1 queda activo.
+
+Qué debe aprender el usuario:
+    La estación inicia desde la vida vegetal, no desde la tecnología.
+
+================================================================================
+12. CAPA 2 — SEÑAL
+================================================================================
+
+Función:
+    Mostrar que existe una variación bioeléctrica, pero no es música.
+
+Qué se activa visualmente:
+    - onda violeta irregular;
+    - brillo de señal cerca de la planta;
+    - Lía apunta o toca la onda;
+    - la onda debe verse como dato.
+
+Texto de Lía:
+
+    Esta variación representa una señal bioeléctrica.
+    Existe, pero todavía no es música.
+
+Versión corta:
+
+    Esto es señal. No es música todavía.
+
+Animación:
+    - onda aparece desde la planta;
+    - trazo irregular se dibuja;
+    - Lía se inclina hacia el pulso;
+    - ícono 2 queda activo.
+
+Qué debe aprender el usuario:
+    La señal bioeléctrica existe, pero no debe confundirse con sonido.
+
+================================================================================
+13. CAPA 3 — CAPTURA
+================================================================================
+
+Función:
+    Explicar que la señal debe ser capturada por un sistema.
+
+Qué se activa visualmente:
+    - punto de captura;
+    - pequeño módulo o símbolo de lectura;
+    - línea de la planta hacia el punto de captura;
+    - Lía activa un capturador o microescena.
+
+Texto de Lía:
+
+    Para poder trabajar con esa señal, primero el sistema debe captarla.
+    Aquí comienza la mediación técnica.
+
+Versión corta:
+
+    El sistema capta la señal para que pueda ser leída.
+
+Animación:
+    - línea conecta señal con punto de captura;
+    - Lía toca o enciende el símbolo de captura;
+    - microescena de captura se ilumina;
+    - ícono 3 queda activo.
+
+Qué debe aprender el usuario:
+    La señal no se interpreta sola; primero debe ser capturada.
+
+================================================================================
+14. CAPA 4 — ACONDICIONAMIENTO
+================================================================================
+
+Función:
+    Explicar que la señal necesita preparación antes de interpretarse.
+
+Qué se activa visualmente:
+    - onda irregular se vuelve más limpia;
+    - pequeño filtro visual;
+    - líneas ordenadas;
+    - Lía muestra el cambio de una señal cruda a una señal preparada.
+
+Texto de Lía:
+
+    Antes de interpretarla, la señal se prepara.
+    Se limpia, se estabiliza y se vuelve más legible para el sistema.
+
+Versión corta:
+
+    La señal se prepara antes de interpretarse.
+
+Animación:
+    - onda cruda se atenúa;
+    - aparece onda más estable;
+    - Lía mueve un pétalo como ajustando;
+    - ícono 4 queda activo.
+
+Qué debe aprender el usuario:
+    El acondicionamiento es parte clave de la mediación.
+
+================================================================================
+15. CAPA 5 — MAPEO
+================================================================================
+
+Función:
+    Explicar que el sistema interpreta y mapea la señal a eventos.
+
+Qué se activa visualmente:
+    - matriz de puntos;
+    - red mínima;
+    - puntos conectándose;
+    - Lía activa una cuadrícula o mapa.
+
+Texto de Lía:
+
+    Luego el sistema interpreta la señal y la mapea.
+    Aquí el dato vivo se traduce en eventos que pueden organizar la experiencia.
+
+Versión corta:
+
+    Aquí la señal se interpreta y se mapea.
+
+Animación:
+    - puntos aparecen uno a uno;
+    - líneas conectan algunos puntos;
+    - Lía señala la matriz;
+    - ícono 5 queda activo.
+
+Qué debe aprender el usuario:
+    El mapeo no es magia; es una decisión de traducción.
+
+================================================================================
+16. CAPA 6 — RESULTADO MEDIADO
+================================================================================
+
+Función:
+    Cerrar la explicación aclarando que el resultado sonoro es mediado.
+
+Qué se activa visualmente:
+    - forma abstracta final;
+    - flor/onda/figura no literal;
+    - no parlante dominante;
+    - Lía vuelve a posición de cierre.
+
+Texto de Lía:
+
+    El resultado no sale solo de la planta.
+    Es una experiencia mediada por captura, preparación, interpretación y software.
+
+Versión corta:
+
+    El sonido final es mediado. No sale directamente de la planta.
+
+Animación:
+    - ruta violeta completa se ilumina;
+    - ícono 6 se activa;
+    - Lía hace gesto de cierre;
+    - botón Continuar se habilita.
+
+Qué debe aprender el usuario:
+    La experiencia sonora es el resultado de una mediación, no una producción directa
+    de la planta.
+
+================================================================================
+17. VENTANA DE DIÁLOGO DE LÍA
+================================================================================
+
+Cada capa debe tener una ventana de diálogo asociada a Lía.
+
+Formato:
+- tarjeta o globo breve;
+- conectada visualmente a Lía;
+- máximo 2 o 3 líneas;
+- sin párrafos largos;
+- sin scroll;
+- botón “Siguiente” o tap para continuar;
+- estilo violeta/lavanda suave.
+
+Reglas:
+- una ventana a la vez;
+- no mostrar todas las explicaciones al mismo tiempo;
+- no poner bloques de texto fuera de Lía salvo etiquetas mínimas;
+- la ventana debe moverse o aparecer cerca de donde Lía está actuando.
+
+Estados:
+- hidden;
+- entering;
+- visible;
+- completed;
+- exiting.
+
+================================================================================
+18. ANIMACIÓN GENERAL DE LA ESCENA
+================================================================================
+
+Animación de fondo:
+    - bruma violeta muy sutil;
+    - poca partícula;
+    - movimiento lento o casi estático;
+    - no saturar.
+
+Animación de planta:
+    - brillo tenue en hojas;
+    - pulso muy suave;
+    - no crecimiento dramático.
+
+Animación de señal:
+    - trazo irregular;
+    - pulso violeta;
+    - debe verse como dato.
+
+Animación de ruta:
+    - línea violeta conecta capas;
+    - se ilumina por tramos;
+    - no toda la ruta al máximo brillo todo el tiempo.
+
+Animación de íconos:
+    - capa activa pulsa;
+    - completadas quedan marcadas;
+    - bloqueadas se mantienen tenues.
+
+Animación de Lía:
+    - desplazamientos cortos;
+    - inclinación;
+    - gesto con pétalo;
+    - brillo del collar;
+    - estado curioso/explicativo.
+
+================================================================================
+19. SECUENCIA DE ENTRADA A LA ESTACIÓN
+================================================================================
+
+Después de la transición pixelart:
+
+1. Fade desde transición.
+2. Aparece fondo violeta oscuro.
+3. Aparece planta.
+4. Aparece Lía en idle cerca de la planta.
+5. Aparecen los seis íconos inferiores.
+6. Solo PLANTA VIVA está activa.
+7. Lía muestra mensaje inicial breve.
+
+Mensaje inicial sugerido:
+
+    En este mundo vamos a mirar la señal que normalmente no vemos.
+
+O:
+
+    Aquí empieza el pulso invisible. Vamos capa por capa.
+
+Después se habilita la interacción con la capa 1.
+
+================================================================================
+20. BOTÓN CONTINUAR
+================================================================================
+
+Estado inicial:
+    oculto o deshabilitado.
+
+Estado durante capas:
+    puede estar oculto para reducir ruido.
+
+Estado después de capa 6:
+    visible y activo.
+
+Texto:
+    Continuar
+
+Al tocar:
+    - Lía hace gesto de cierre;
+    - la ruta violeta completa baja su brillo;
+    - transición pixelart hacia Mundo III.
+
+Texto de transición posterior:
+
+    Abriendo Mundo III: Cuaderno de pruebas...
+    Preparando recorrido...
+
+Si se toca antes de completar:
+    Lía responde:
+        Aún falta completar el recorrido de la señal.
+
+================================================================================
+21. INTERACCIÓN EN REVISIÓN LIBRE
+================================================================================
+
+Después de completar la estación o volver desde modo libre:
+
+- las seis capas pueden tocarse en cualquier orden;
+- no se bloquean capas;
+- Lía puede mostrar mensaje breve:
+
+    Puedes revisar cualquier capa del pulso invisible.
+
+El botón Continuar permanece disponible.
+
+No se repite la guía secuencial obligatoria.
+
+================================================================================
+22. ESTADOS FUNCIONALES
+================================================================================
+
+Estados sugeridos:
+
+station2_entering
+station2_idle
+station2_layer_1_active
+station2_layer_2_active
+station2_layer_3_active
+station2_layer_4_active
+station2_layer_5_active
+station2_layer_6_active
+station2_layer_completed
+station2_ready_to_continue
+station2_exiting
+station2_revisit_mode
+
+Reglas:
+- solo una capa activa a la vez;
+- solo una ventana de Lía visible a la vez;
+- no permitir saltos en primera pasada;
+- permitir revisión libre después de completar;
+- bloquear taps durante microanimaciones críticas.
+
+================================================================================
+23. ACCESIBILIDAD
+================================================================================
+
+Cada ícono debe ser botón accesible.
+
+Labels sugeridos:
+
+PLANTA VIVA:
+    Capa 1 de 6. Planta viva.
+
+SEÑAL:
+    Capa 2 de 6. Señal bioeléctrica.
+
+CAPTURA:
+    Capa 3 de 6. Captura.
+
+ACONDICIONAMIENTO:
+    Capa 4 de 6. Acondicionamiento.
+
+MAPEO:
+    Capa 5 de 6. Mapeo.
+
+RESULTADO MEDIADO:
+    Capa 6 de 6. Resultado mediado.
+
+Estados:
+    bloqueado
+    disponible
+    activo
+    completado
+
+La ventana de Lía debe anunciarse cuando cambia.
+
+No depender solo de color para indicar bloqueo o completado.
+
+================================================================================
+24. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no mover a Lía por trayectos largos;
+- no animar la ruta con trazos largos;
+- no usar pulsos continuos;
+- no usar partículas móviles;
+- mostrar estados activos mediante opacidad, borde o resalte fijo;
+- conservar diálogos y orden pedagógico.
+
+La comprensión debe mantenerse aunque el movimiento sea mínimo.
+
+================================================================================
+25. LO QUE NO ES NECESARIO EN ESTA ESTACIÓN
+================================================================================
+
+No es necesario:
+
+- explicar los 8 nodos completos;
+- mostrar router;
+- mostrar red UDP;
+- mostrar sistema central;
+- explicar toda la arquitectura técnica;
+- mostrar foto real del montaje;
+- usar pixelart;
+- usar múltiples modos visuales;
+- usar audio;
+- usar video;
+- usar AR;
+- usar scanner QR;
+- usar texto largo.
+
+================================================================================
+26. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- sugerir planta → música directa;
+- mostrar notas musicales saliendo de la planta;
+- hacer de la señal una melodía visual;
+- hacer que la planta cante;
+- saturar con burbujas y partículas;
+- mostrar muchas Lías compitiendo;
+- usar Lía solo como adorno;
+- permitir salto de capas en primera pasada;
+- mostrar todas las explicaciones simultáneamente;
+- convertir esta estación en Estación IV;
+- ocultar que hay mediación.
+
+================================================================================
+27. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La estación se considera correcta si:
+
+□ Se entiende que es Mundo II — Lía y el pulso invisible.
+□ Se entiende que trata de señales bioeléctricas.
+□ Lía guía activamente.
+□ La planta aparece como origen vivo.
+□ La señal se ve como dato, no como música.
+□ Hay seis capas claras.
+□ Cada capa tiene una explicación breve de Lía.
+□ La primera pasada es secuencial.
+□ Las capas bloqueadas no se pueden saltar.
+□ Al completar las seis capas se habilita Continuar.
+□ El resultado se entiende como mediado.
+□ No se explica toda la cadena de 8 nodos.
+□ No hay planta cantando.
+□ No hay notas musicales saliendo de la planta.
+□ La escena no está saturada.
+□ Reduced-motion conserva comprensión.
+□ La salida usa transición pixelart hacia Mundo III.
+
+================================================================================
+28. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Mundo II — Lía y el pulso invisible explica que una planta viva puede presentar una
+señal bioeléctrica real, pero que esa señal no es música por sí sola. A través de seis
+capas —planta viva, señal, captura, acondicionamiento, mapeo y resultado mediado— Lía
+guía al visitante para entender que la experiencia sonora de OKÚA surge de una
+mediación técnica y artística, no de una producción directa de la planta.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

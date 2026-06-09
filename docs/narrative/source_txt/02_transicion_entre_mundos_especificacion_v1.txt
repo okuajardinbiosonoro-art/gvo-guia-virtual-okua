@@ -1,0 +1,1321 @@
+================================================================================
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+VENTANA DE TRANSICIÓN ENTRE MUNDOS
+Versión: V1
+Fecha: 2026-05-13
+================================================================================
+
+0. PROPÓSITO DEL DOCUMENTO
+--------------------------------------------------------------------------------
+
+Este documento define de forma ultra detallada la ventana de transición entre
+mundos/estaciones de GVO — Guía Visual OKÚA.
+
+La ventana de transición es la pantalla breve que aparece cuando el visitante
+pasa de un mundo a otro, por ejemplo:
+
+- Intro → Mundo I: Raíz
+- Mundo I: Raíz → Mundo II: Lía y el pulso invisible
+- Mundo II → Mundo III: Cuaderno de pruebas
+- Mundo III → Mundo IV: Mesa de sistema
+- Mundo IV → Mundo V: Mapa del presente
+- Mundo V → Mirador final del jardín
+
+Esta pantalla NO es una estación.
+Esta pantalla NO es un contenido pedagógico principal.
+Esta pantalla NO debe introducir información nueva.
+Esta pantalla NO debe funcionar como menú.
+Esta pantalla NO debe permitir interacción adicional.
+
+Su función es:
+
+1. Dar continuidad narrativa entre estaciones.
+2. Hacer sentir que el visitante cruza de un mundo a otro.
+3. Usar a Lía como guía visual del cambio.
+4. Reforzar la identidad visual pixelart del sistema de transiciones.
+5. Ocultar de forma elegante el cambio de escena/ruta.
+6. Mantener la experiencia mobile-first, limpia y sin saturación.
+
+
+================================================================================
+1. PRINCIPIO GENERAL DE DISEÑO
+================================================================================
+
+La ventana de transición debe ser:
+
+- sobria;
+- minimalista;
+- clara;
+- breve;
+- bonita;
+- reutilizable;
+- fácil de animar;
+- coherente en todas las estaciones;
+- visualmente cómoda en móvil;
+- consistente con la identidad de OKÚA;
+- claramente pixelart;
+- guiada por Lía.
+
+Regla principal:
+
+    La transición no es una estación.
+    Es una pausa breve, bella y funcional entre mundos.
+
+Regla de saturación:
+
+    Máximo 1 foco visual principal:
+    el portal que se abre.
+
+    Máximo 1 personaje:
+    Lía.
+
+    Máximo 2 líneas de texto:
+    frase principal + frase secundaria.
+
+    Máximo 1 indicador de progreso:
+    barra o línea de carga.
+
+    Máximo 5 a 8 destellos pequeños.
+
+No debe tener:
+
+- varios portales;
+- fondos excesivamente detallados;
+- muchas flores;
+- muchos iconos;
+- muchas partículas;
+- diálogos largos;
+- botones;
+- instrucciones;
+- créditos;
+- múltiples ventanas;
+- menús;
+- efectos de fantasía exagerados;
+- elementos técnicos pesados.
+
+
+================================================================================
+2. FUNCIÓN DENTRO DE LA EXPERIENCIA GVO
+================================================================================
+
+La transición aparece cuando el usuario ya tomó una acción válida para avanzar.
+
+Ejemplos:
+
+- tocó “Entrar a Mundo I” en la Intro;
+- terminó Estación I y tocó “Continuar”;
+- terminó Estación II y tocó “Continuar”;
+- seleccionó una estación desbloqueada desde la pantalla final;
+- reinició o volvió a un mundo desde la revisión libre.
+
+Durante la transición:
+
+- se bloquean nuevos taps;
+- se evita doble navegación;
+- no se abre ningún diálogo;
+- no se puede cancelar;
+- no se permite saltar a otra estación;
+- no se muestra navegación global;
+- no se modifica el estado pedagógico del recorrido;
+- no se cambia el orden de desbloqueo;
+- solo se comunica que se está abriendo el siguiente mundo.
+
+La transición debe sentirse como:
+
+    “Lía me acompaña mientras se abre el siguiente mundo.”
+
+
+================================================================================
+3. ESTRUCTURA VISUAL BASE
+================================================================================
+
+La composición debe mantenerse igual para todas las transiciones.
+
+Formato:
+
+- vertical 9:16;
+- mobile-first;
+- centrado;
+- aire visual amplio;
+- fondo claro o suave;
+- portal central;
+- Lía pequeña al lado izquierdo o ligeramente inferior-lateral del portal;
+- texto principal debajo del portal;
+- texto secundario debajo del texto principal;
+- barra mínima debajo;
+- sin botones.
+
+Composición recomendada:
+
+    [zona superior libre / fondo suave]
+
+              PORTAL CENTRAL
+
+        Lía pixelart pequeña a un lado
+
+        “Abriendo Mundo X: Nombre...”
+
+             “Preparando recorrido...”
+
+              línea/barra de progreso
+
+    [zona inferior limpia]
+
+Jerarquía visual:
+
+1. Portal central.
+2. Lía.
+3. Texto principal.
+4. Barra de progreso.
+5. Texto secundario.
+6. Fondo.
+
+El fondo nunca debe competir con el portal ni con Lía.
+
+
+================================================================================
+4. ELEMENTOS OBLIGATORIOS
+================================================================================
+
+4.1 Fondo
+--------------------------------------------------------------------------------
+
+El fondo debe ser una atmósfera simple, no una escena completa.
+
+Debe tener:
+
+- textura suave pixelart;
+- muy pocos elementos;
+- color adaptado al mundo que se abre;
+- lectura limpia;
+- sin exceso de detalle.
+
+Ejemplos válidos:
+
+- degradado pixelado suave;
+- fondo crema con pequeñas marcas pixelart;
+- ambiente lavanda suave;
+- sombras muy sutiles;
+- algunos píxeles decorativos dispersos.
+
+No debe tener:
+
+- paisajes complejos;
+- arquitectura detallada;
+- muchas plantas;
+- muchos objetos;
+- profundidad excesiva;
+- saturación decorativa.
+
+
+4.2 Portal central
+--------------------------------------------------------------------------------
+
+El portal es la puerta simbólica al mundo.
+
+Debe ser:
+
+- pixelart;
+- vertical;
+- sencillo;
+- elegante;
+- con borde claro;
+- con brillo interior moderado;
+- con un símbolo mínimo del mundo que se abre.
+
+El portal tiene tres estados:
+
+1. Portal inactivo:
+   - borde tenue;
+   - centro con luz baja;
+   - símbolo casi transparente.
+
+2. Portal activándose:
+   - borde se ilumina por segmentos;
+   - centro se aclara;
+   - símbolo aparece;
+   - pocos píxeles de luz alrededor.
+
+3. Portal abierto:
+   - centro luminoso;
+   - borde con pulso suave;
+   - listo para transición.
+
+El portal NO debe:
+
+- explotar en partículas;
+- girar de forma compleja;
+- ocupar toda la pantalla;
+- tener detalles barrocos;
+- volverse un templo o escenario completo.
+
+
+4.3 Lía pixelart
+--------------------------------------------------------------------------------
+
+Lía debe aparecer en versión pixelart real.
+
+Esto es fundamental: Lía no debe verse como un render 3D pegado sobre un
+fondo pixelado.
+
+Debe parecer un sprite diseñado para la escena.
+
+Características obligatorias de Lía pixelart:
+
+- pequeña;
+- flotante;
+- integrada al pixelart;
+- silueta clara;
+- cabeza/visor redondeado;
+- ojos simples luminosos;
+- cinco pétalos principales simplificados;
+- pétalos crema/marfil;
+- puntas lavanda o lila-rosadas;
+- cuerpo inferior pequeño tipo semilla/capullo;
+- collar o aro ámbar simplificado;
+- apariencia amable, serena y útil;
+- escala reducida respecto al portal;
+- no protagonista excesiva.
+
+Lía en transición debe sentirse como:
+
+    “guía de paso entre mundos”
+
+No como:
+
+- hada;
+- insecto;
+- sprite genérico;
+- flor decorativa;
+- render 3D;
+- mascota animal;
+- personaje humano;
+- personaje anime genérico.
+
+Tamaño visual recomendado:
+
+- 12% a 18% del ancho de pantalla;
+- menor que el portal;
+- suficiente para reconocerse;
+- no tan grande que tape el portal o el texto.
+
+Ubicación recomendada:
+
+- a la izquierda del portal;
+- ligeramente abajo del centro del portal;
+- flotando en diagonal;
+- con una pequeña estela de 2 a 4 píxeles luminosos.
+
+En la referencia aprobada, Lía aparece a la izquierda del portal. Esa posición
+funciona bien y debe usarse como base.
+
+
+4.4 Texto principal
+--------------------------------------------------------------------------------
+
+Texto principal variable según el destino.
+
+Debe ir centrado debajo del portal.
+
+Debe ser:
+
+- pixelart;
+- legible;
+- tamaño alto;
+- máximo 1 línea si cabe;
+- máximo 2 líneas si el nombre es largo;
+- color en armonía con la paleta;
+- sin contornos excesivos.
+
+Formato recomendado:
+
+    Abriendo Mundo I: Raíz...
+
+O:
+
+    Abriendo Mundo II:
+    Lía y el pulso invisible...
+
+Se debe evitar una línea demasiado larga en móviles pequeños.
+
+
+4.5 Texto secundario
+--------------------------------------------------------------------------------
+
+Texto fijo:
+
+    Preparando recorrido...
+
+Debe ir debajo del texto principal.
+
+Debe ser:
+
+- más pequeño;
+- menos contrastado;
+- tranquilo;
+- sin animaciones llamativas.
+
+Alternativa si se quiere más corto:
+
+    Preparando...
+
+Pero se recomienda mantener:
+
+    Preparando recorrido...
+
+porque comunica mejor el contexto.
+
+
+4.6 Barra de progreso
+--------------------------------------------------------------------------------
+
+La barra debe ser mínima y elegante.
+
+Características:
+
+- horizontal;
+- delgada;
+- centrada;
+- pixelart;
+- sin porcentaje;
+- sin números;
+- sin texto adicional;
+- con un punto luminoso que avanza o una línea que se llena.
+
+Comportamiento:
+
+- inicia cerca de 0%;
+- avanza suavemente;
+- llega a 100% justo antes del cambio de escena.
+
+No debe parecer barra técnica de carga pesada.
+Debe sentirse como una línea de energía suave.
+
+
+================================================================================
+5. TEXTOS POR TRANSICIÓN
+================================================================================
+
+Se definen seis transiciones principales.
+
+5.1 Intro → Estación I
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mundo I: Raíz...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- crema;
+- dorado suave;
+- tierra clara;
+- lavanda tenue.
+
+Símbolo del portal:
+
+- raíz;
+- brote;
+- pequeña ramificación.
+
+Animación especial:
+
+- una raíz pixelada aparece o se enciende dentro del portal;
+- Lía se inclina suavemente hacia el portal;
+- la barra avanza con luz dorada.
+
+
+5.2 Estación I → Estación II
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mundo II: Lía y el pulso invisible...
+
+Si no cabe en una línea, usar:
+
+    Abriendo Mundo II:
+    Lía y el pulso invisible...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- lavanda;
+- violeta suave;
+- ámbar tenue;
+- crema.
+
+Símbolo del portal:
+
+- onda irregular;
+- pulso violeta;
+- línea bioeléctrica.
+
+Animación especial:
+
+- una mini onda aparece dentro del portal;
+- la barra puede tener pulso violeta;
+- Lía mira hacia el portal como si siguiera una señal.
+
+
+5.3 Estación II → Estación III
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mundo III: Cuaderno de pruebas...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- verde suave;
+- crema;
+- marrón claro;
+- azul pixelart.
+
+Símbolo del portal:
+
+- libreta;
+- hoja;
+- pequeño cartucho;
+- lápiz pixelart.
+
+Animación especial:
+
+- una página pixelada se abre dentro del portal;
+- Lía flota hacia un lado como guiando al mundo retro;
+- la barra puede llenarse por pequeños segmentos.
+
+
+5.4 Estación III → Estación IV
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mundo IV: Mesa de sistema...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- azul profundo;
+- cian suave;
+- gris técnico;
+- blanco tenue.
+
+Símbolo del portal:
+
+- nodo;
+- línea técnica;
+- circuito mínimo.
+
+Animación especial:
+
+- una línea técnica se enciende dentro del portal;
+- los destellos deben ser mínimos;
+- más sensación de sistema que de magia.
+
+
+5.5 Estación IV → Estación V
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mundo V: Mapa del presente...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- beige;
+- verde oliva;
+- dorado suave;
+- crema.
+
+Símbolo del portal:
+
+- mapa;
+- marcador de ubicación;
+- contorno de territorio.
+
+Animación especial:
+
+- un punto de mapa se enciende;
+- Lía se desplaza suavemente;
+- la barra usa tonos verdes/dorados.
+
+
+5.6 Estación V → Pantalla final
+--------------------------------------------------------------------------------
+
+Texto principal:
+
+    Abriendo Mirador final del jardín...
+
+Texto secundario:
+
+    Preparando recorrido...
+
+Paleta:
+
+- atardecer;
+- dorado;
+- verde suave;
+- lavanda tenue.
+
+Símbolo del portal:
+
+- mirador;
+- flor;
+- estrella suave;
+- horizonte pixelart mínimo.
+
+Animación especial:
+
+- portal se abre con luz cálida;
+- Lía hace un gesto de cierre o acompañamiento;
+- la barra se completa en dorado.
+
+
+================================================================================
+6. ANIMACIÓN GENERAL
+================================================================================
+
+La transición debe tener cuatro estados animados:
+
+1. Entrada.
+2. Apertura del portal.
+3. Preparación / carga visual.
+4. Salida hacia la estación.
+
+Duración total recomendada:
+
+    Ideal: 2.3 segundos
+    Mínimo: 1.5 segundos
+    Máximo: 3.0 segundos
+
+Distribución ideal:
+
+    Entrada: 0.4 s
+    Apertura del portal: 0.8 s
+    Carga visual: 0.8 s
+    Salida: 0.3 s
+
+No debe durar más de 3 segundos salvo que haya carga real.
+
+
+================================================================================
+7. ESTADO 1 — ENTRADA
+================================================================================
+
+Duración:
+
+    0.3 s a 0.5 s
+
+Secuencia:
+
+1. Fondo aparece con fade suave.
+2. Portal aparece tenue.
+3. Lía aparece desde un lateral o ligeramente desde abajo.
+4. Texto principal aparece en opacidad baja.
+5. Barra aparece vacía.
+
+Animación de Lía:
+
+- entra flotando;
+- desplazamiento máximo recomendado: 12 a 20 px;
+- opacidad 0 → 1;
+- pequeño movimiento vertical.
+
+No hacer:
+
+- zoom fuerte;
+- rebote exagerado;
+- entrada rápida;
+- exceso de destellos.
+
+
+================================================================================
+8. ESTADO 2 — APERTURA DEL PORTAL
+================================================================================
+
+Duración:
+
+    0.7 s a 1.0 s
+
+Secuencia:
+
+1. El borde del portal comienza a iluminarse.
+2. El centro gana luz.
+3. Aparece el símbolo del mundo.
+4. Lía se inclina o señala el portal.
+5. Texto principal queda completamente visible.
+
+Animación del portal:
+
+- brillo interior suave;
+- borde encendiéndose;
+- pequeño pulso central;
+- 3 a 5 píxeles luminosos máximo alrededor.
+
+Animación de Lía:
+
+- se inclina hacia el portal;
+- pétalo lateral puede levantarse 1 o 2 frames;
+- collar ámbar puede brillar.
+
+No hacer:
+
+- explosión;
+- rotación compleja;
+- partículas abundantes;
+- portal hiper detallado.
+
+
+================================================================================
+9. ESTADO 3 — PREPARACIÓN / CARGA VISUAL
+================================================================================
+
+Duración:
+
+    1.0 s a 1.5 s
+
+Secuencia:
+
+1. Texto secundario aparece:
+   “Preparando recorrido...”
+2. Barra de progreso avanza.
+3. Lía flota en idle.
+4. Portal mantiene pulso bajo.
+5. Símbolo interno permanece visible.
+
+Animación de barra:
+
+- punto de luz avanza de izquierda a derecha;
+- línea se llena de forma suave;
+- puede tener pequeños segmentos pixelados.
+
+Curva de avance sugerida:
+
+    0% → 40% durante apertura
+    40% → 85% durante preparación
+    85% → 100% justo antes de salida
+
+No usar:
+
+- porcentaje;
+- números;
+- loading técnico;
+- texto adicional.
+
+
+================================================================================
+10. ESTADO 4 — SALIDA HACIA LA ESTACIÓN
+================================================================================
+
+Duración:
+
+    0.4 s a 0.7 s
+
+Secuencia:
+
+1. Barra llega a 100%.
+2. Portal emite un último pulso.
+3. Lía se desplaza suavemente hacia el portal o hacia la dirección de avance.
+4. La pantalla hace fade suave.
+5. Se carga la estación.
+
+Animación recomendada:
+
+    barra completa
+    → portal pulsa
+    → Lía acompaña
+    → fade claro/lavanda/dorado
+    → nueva estación
+
+No hacer:
+
+- corte brusco;
+- pantalla negra larga;
+- zoom agresivo;
+- salida con demasiados efectos.
+
+
+================================================================================
+11. ANIMACIONES ESPECÍFICAS DE LÍA
+================================================================================
+
+11.1 Idle flotante
+--------------------------------------------------------------------------------
+
+Duración del ciclo:
+
+    1.2 s a 1.6 s
+
+Movimiento:
+
+- Lía sube 1 a 2 px;
+- baja 1 a 2 px;
+- vuelve al centro.
+
+Debe sentirse como flotación, no salto.
+
+11.2 Parpadeo
+--------------------------------------------------------------------------------
+
+Opcional.
+
+Duración:
+
+    0.1 s a 0.2 s
+
+Frecuencia:
+
+    máximo 1 vez por transición
+
+No hacer parpadeo constante.
+
+11.3 Señalar portal
+--------------------------------------------------------------------------------
+
+Lía puede:
+
+- inclinarse;
+- levantar un pétalo lateral;
+- activar un píxel de luz hacia el portal.
+
+No debe tener brazos humanos.
+
+11.4 Desplazamiento final
+--------------------------------------------------------------------------------
+
+Antes de cambiar de escena:
+
+- Lía se desplaza 8 a 16 px hacia el portal;
+- no necesita entrar completamente;
+- el movimiento debe ser suave y corto.
+
+11.5 Estela
+--------------------------------------------------------------------------------
+
+Puede tener:
+
+- 2 a 4 píxeles de luz;
+- muy suaves;
+- no deben convertirse en rastro largo.
+
+
+================================================================================
+12. ANIMACIONES DEL PORTAL
+================================================================================
+
+12.1 Pulso de borde
+--------------------------------------------------------------------------------
+
+El borde del portal debe respirar con luz tenue.
+
+Duración de pulso:
+
+    1.0 s a 1.4 s
+
+Intensidad:
+
+    baja / media-baja
+
+12.2 Iluminación interna
+--------------------------------------------------------------------------------
+
+El centro del portal aumenta gradualmente la luminosidad.
+
+No debe quemar el texto ni ocultar a Lía.
+
+12.3 Símbolo interno
+--------------------------------------------------------------------------------
+
+El símbolo cambia según mundo.
+
+Debe aparecer con:
+
+- fade;
+- pequeño pulso;
+- no más de un movimiento.
+
+12.4 Apertura final
+--------------------------------------------------------------------------------
+
+Antes de cambiar de escena:
+
+- centro más luminoso;
+- borde completo;
+- fade.
+
+
+================================================================================
+13. REGLAS DE INTERACCIÓN
+================================================================================
+
+Durante la transición:
+
+- no hay botones;
+- no se puede tocar el portal;
+- no se puede cancelar;
+- no se puede ir atrás;
+- no se puede abrir menú;
+- no se puede activar otra ruta;
+- no se muestran portales alternos;
+- no hay diálogos.
+
+El componente debe bloquear múltiples navegaciones.
+
+Si el usuario toca la pantalla:
+
+- no pasa nada;
+- no reinicia la animación;
+- no acelera el flujo;
+- no salta de estación.
+
+Excepción opcional futura:
+
+- si se requiere accesibilidad, puede permitirse “reducir duración” en
+  configuraciones especiales, pero no como botón visible.
+
+
+================================================================================
+14. COMPORTAMIENTO EN PRIMERA PASADA Y REVISIÓN LIBRE
+================================================================================
+
+14.1 Primera pasada
+--------------------------------------------------------------------------------
+
+La transición aparece solo cuando la ruta pedagógica permite avanzar.
+
+Ejemplo:
+
+- Intro → Mundo I
+- Mundo I → Mundo II
+- Mundo II → Mundo III
+- Mundo III → Mundo IV
+- Mundo IV → Mundo V
+- Mundo V → Final
+
+No se debe permitir transición hacia mundos bloqueados.
+
+14.2 Revisión libre
+--------------------------------------------------------------------------------
+
+Después de completar el recorrido, se puede usar la misma transición al volver a
+cualquier estación desde la pantalla final.
+
+Ejemplo:
+
+- Final → Mundo II
+- Final → Mundo IV
+- Intro → Mundo V, si el recorrido ya está completo y la lógica lo permite.
+
+La animación es la misma. Solo cambia la frase.
+
+
+================================================================================
+15. REDUCED MOTION
+================================================================================
+
+Si el usuario tiene reduced-motion activo:
+
+- no hacer desplazamientos laterales largos;
+- no hacer zoom;
+- no hacer pulso continuo;
+- no hacer estela;
+- no hacer animación de portal compleja.
+
+Versión reducida:
+
+1. Fondo aparece.
+2. Portal aparece estático.
+3. Lía aparece estática o con fade.
+4. Texto aparece.
+5. Barra aparece o se completa de forma simple.
+6. Fade a estación.
+
+Duración recomendada:
+
+    0.8 s a 1.2 s
+
+Debe conservar:
+
+- texto principal;
+- texto secundario;
+- portal;
+- Lía;
+- cambio claro de estación.
+
+No debe eliminar contenido.
+
+
+================================================================================
+16. ACCESIBILIDAD
+================================================================================
+
+La transición debe ser accesible.
+
+Recomendaciones:
+
+- `aria-live="polite"` para el texto principal si se actualiza dinámicamente.
+- Texto principal debe ser legible.
+- Contraste suficiente.
+- No depender solo de color para comunicar destino.
+- No usar parpadeos intensos.
+- No usar flashing.
+- No usar cambios de luz agresivos.
+- No superar 3 destellos por segundo.
+- Si hay lector de pantalla, anunciar:
+  “Abriendo Mundo I: Raíz. Preparando recorrido.”
+
+No debe atrapar foco de teclado si no hay interacción.
+No debe mostrar botones inactivos.
+
+
+================================================================================
+17. SONIDO
+================================================================================
+
+No debe haber audio.
+
+Prohibido:
+
+- sonido de portal;
+- campana;
+- música;
+- efecto de carga;
+- voz de Lía;
+- audio ambiental.
+
+La transición es visual y textual.
+
+
+================================================================================
+18. IMPLEMENTACIÓN RECOMENDADA
+================================================================================
+
+No implementar como video pesado si no es necesario.
+
+Implementar preferiblemente como:
+
+- componente React;
+- sprites PNG/WebP;
+- CSS;
+- GSAP si ya está disponible;
+- o animación CSS simple.
+
+Capas del componente:
+
+1. `TransitionBackground`
+2. `TransitionPortal`
+3. `TransitionLiaSprite`
+4. `TransitionText`
+5. `TransitionProgress`
+6. `TransitionFade`
+
+Assets recomendados:
+
+- Lía pixelart sprite idle;
+- Lía pixelart sprite pointing;
+- portal base;
+- portal glow;
+- símbolos por mundo;
+- fondo base por mundo o variación de color.
+
+No usar:
+
+- video MP4 salvo prueba rápida;
+- Three.js;
+- Blender;
+- GLB;
+- HyperFrames runtime;
+- audio;
+- CDN.
+
+
+================================================================================
+19. ESTRUCTURA DE DATOS PROPUESTA
+================================================================================
+
+Cada transición puede definirse así:
+
+TransitionWorldConfig:
+
+- id
+- fromRoute
+- toRoute
+- title
+- subtitle
+- palette
+- portalSymbol
+- backgroundTone
+- durationMs
+- reducedMotionDurationMs
+
+Ejemplo:
+
+id: "intro-to-station-1"
+title: "Abriendo Mundo I: Raíz..."
+subtitle: "Preparando recorrido..."
+palette: "root"
+portalSymbol: "root"
+durationMs: 2300
+reducedMotionDurationMs: 1000
+
+
+================================================================================
+20. CONFIGURACIÓN POR MUNDO
+================================================================================
+
+20.1 Mundo I: Raíz
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mundo I: Raíz...
+
+palette:
+    root
+
+colors:
+    crema, dorado, tierra clara, lavanda tenue
+
+portalSymbol:
+    root
+
+tone:
+    cálido, orgánico, tranquilo
+
+20.2 Mundo II: Lía y el pulso invisible
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mundo II: Lía y el pulso invisible...
+
+palette:
+    pulse
+
+colors:
+    lavanda, violeta suave, ámbar tenue
+
+portalSymbol:
+    wave
+
+tone:
+    suave, bioeléctrico, nocturno
+
+20.3 Mundo III: Cuaderno de pruebas
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mundo III: Cuaderno de pruebas...
+
+palette:
+    notebook
+
+colors:
+    crema, verde suave, marrón claro, azul pixel
+
+portalSymbol:
+    notebook
+
+tone:
+    retro, experimental, amable
+
+20.4 Mundo IV: Mesa de sistema
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mundo IV: Mesa de sistema...
+
+palette:
+    system
+
+colors:
+    azul profundo, cian suave, gris técnico
+
+portalSymbol:
+    node
+
+tone:
+    técnico, limpio, sobrio
+
+20.5 Mundo V: Mapa del presente
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mundo V: Mapa del presente...
+
+palette:
+    present-map
+
+colors:
+    beige, verde oliva, dorado suave
+
+portalSymbol:
+    map-pin
+
+tone:
+    calmado, documental, presente
+
+20.6 Mirador final del jardín
+--------------------------------------------------------------------------------
+
+title:
+    Abriendo Mirador final del jardín...
+
+palette:
+    final-view
+
+colors:
+    atardecer, dorado, verde suave, lavanda tenue
+
+portalSymbol:
+    flower-horizon
+
+tone:
+    cierre, calma, logro
+
+
+================================================================================
+21. CRITERIOS DE ACEPTACIÓN VISUAL
+================================================================================
+
+Una transición está bien si:
+
+□ Lía se ve pixelart real.
+□ Lía no parece render 3D pegado.
+□ La pantalla no está saturada.
+□ Hay mucho aire visual.
+□ El portal es claro.
+□ El texto principal se lee rápido.
+□ La barra de progreso es discreta.
+□ No hay botones ni menús.
+□ No hay más de un foco visual.
+□ La transición se entiende en menos de 1 segundo.
+□ La duración total no se siente lenta.
+□ La estética se siente parte de OKÚA.
+□ La transición no compite con las estaciones.
+□ La transición se puede reutilizar con diferentes frases.
+
+
+================================================================================
+22. CRITERIOS DE ACEPTACIÓN FUNCIONAL
+================================================================================
+
+Funcionalmente debe cumplir:
+
+□ Se activa solo al cambiar de mundo.
+□ Bloquea taps durante la transición.
+□ No altera el orden pedagógico.
+□ No altera QR/sesión/secuencia.
+□ No permite entrar a mundos bloqueados.
+□ No muestra errores si carga rápido.
+□ No se queda bloqueada si la ruta tarda.
+□ Tiene fallback si no carga sprite.
+□ Tiene reduced-motion.
+□ No tiene audio.
+□ No tiene dependencias externas por CDN.
+
+
+================================================================================
+23. CASOS DE BORDE
+================================================================================
+
+23.1 Carga instantánea
+--------------------------------------------------------------------------------
+
+Si la estación carga muy rápido, mantener transición mínima de 1.2 s para que no
+parpadee.
+
+23.2 Carga lenta
+--------------------------------------------------------------------------------
+
+Si la estación tarda más de 3 s, mantener la barra en 90% y mostrar:
+
+    Preparando recorrido...
+
+No mostrar error a menos que realmente falle la navegación.
+
+23.3 Error de navegación
+--------------------------------------------------------------------------------
+
+Si falla la navegación:
+
+- detener barra;
+- mostrar mensaje breve:
+  “No pudimos abrir este mundo. Intenta de nuevo.”
+- permitir volver a la pantalla anterior.
+
+Este caso no debe aparecer en uso normal.
+
+23.4 Recarga de página
+--------------------------------------------------------------------------------
+
+Si el usuario recarga durante transición, debe caer en la ruta destino o en la
+pantalla anterior según la lógica de navegación existente.
+
+
+================================================================================
+24. REGLAS DE COPY
+================================================================================
+
+No usar lenguaje técnico en la transición.
+
+Correcto:
+
+    Abriendo Mundo IV: Mesa de sistema...
+    Preparando recorrido...
+
+Incorrecto:
+
+    Cargando assets...
+    Sincronizando estado...
+    Inicializando componente...
+    Fetching station route...
+
+La transición es narrativa, no técnica.
+
+
+================================================================================
+25. RESUMEN FINAL
+================================================================================
+
+La ventana de transición entre mundos de GVO debe ser una pantalla pixelart breve,
+minimalista y reutilizable, donde Lía acompaña la apertura del siguiente mundo.
+
+Su estructura fija es:
+
+    Lía pequeña + portal central + frase de apertura + barra mínima.
+
+Su comportamiento fijo es:
+
+    entrar → abrir portal → cargar visualmente → salir.
+
+Su regla principal es:
+
+    belleza controlada, no saturación.
+
+Su función narrativa es:
+
+    hacer sentir que el visitante cruza de un mundo a otro acompañado por Lía.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

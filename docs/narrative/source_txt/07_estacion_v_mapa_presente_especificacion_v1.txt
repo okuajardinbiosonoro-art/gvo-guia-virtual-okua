@@ -1,0 +1,755 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+ESTACIÓN V — MUNDO V: MAPA DEL PRESENTE
+Versión: V1
+Estado: Definición visual, narrativa, funcional, interactiva y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Estación V
+
+Nombre visual:
+    Mundo V — Mapa del presente
+
+Título mostrado recomendado:
+    ESTACIÓN V
+    MUNDO V: MAPA DEL PRESENTE
+
+Tema oficial:
+    Estado actual
+
+Subtítulo conceptual:
+    Qué significa este montaje hoy
+
+Ubicación en el flujo general:
+    Estación IV — Mundo IV: Mesa de sistema
+    → Transición pixelart: “Abriendo Mundo V: Mapa del presente...”
+    → Estación V — Mundo V: Mapa del presente
+    → Transición pixelart hacia pantalla final
+
+Tipo de pantalla:
+    Estación de síntesis, aterrizaje espacial y cierre conceptual previo al final.
+
+No es:
+    - una explicación técnica completa;
+    - una repetición de la Estación IV;
+    - una pantalla de carga;
+    - una pantalla final;
+    - una portada;
+    - una estación de origen;
+    - una estación de prototipos;
+    - una explicación detallada de señal bioeléctrica.
+
+================================================================================
+1. PROPÓSITO DE LA ESTACIÓN
+================================================================================
+
+La Estación V debe mostrar que OKÚA no es una idea abstracta ni una propuesta
+futura. Debe expresar que OKÚA existe como montaje actual en un espacio real,
+donde plantas, sistema, espacio y visitante se relacionan.
+
+Su función principal es aterrizar todo lo aprendido:
+
+    lo que se entendió en las estaciones anteriores existe hoy como un montaje vivo.
+
+Esta estación debe ayudar al visitante a conectar:
+
+- el origen conceptual visto en Estación I;
+- la señal bioeléctrica y mediación inicial vista en Estación II;
+- el proceso de pruebas visto en Estación III;
+- la cadena técnica completa vista en Estación IV;
+- con el montaje real y presente de OKÚA.
+
+La idea central es:
+
+    OKÚA no termina en la planta ni en la máquina.
+    Ocurre en la relación entre plantas, sistema, espacio y visitante.
+
+================================================================================
+2. IDEA PEDAGÓGICA PRINCIPAL
+================================================================================
+
+La idea pedagógica es:
+
+    El montaje actual de OKÚA es una experiencia situada.
+
+Esto significa que OKÚA no debe entenderse solo como:
+
+- una planta;
+- un circuito;
+- un sonido;
+- una red;
+- una interfaz.
+
+Debe entenderse como un sistema situado en un espacio, donde el visitante completa
+la lectura de la experiencia.
+
+La estación debe enseñar que el presente de OKÚA se organiza en cuatro grandes
+áreas:
+
+1. Plantas
+2. Sistema
+3. Espacio
+4. Visitante
+
+Estas cuatro áreas no reemplazan la cadena técnica de 8 nodos.
+Son una síntesis espacial y experiencial posterior a esa explicación.
+
+================================================================================
+3. QUÉ QUEREMOS EXPRESAR EN MUNDO V
+================================================================================
+
+Mundo V debe expresar:
+
+1. Presente
+   OKÚA ya existe como montaje y no solo como idea.
+
+2. Lugar
+   La experiencia ocurre en un espacio concreto.
+
+3. Integración
+   Las plantas, el sistema técnico, el espacio físico y el visitante forman parte
+   de la experiencia.
+
+4. Síntesis
+   Después de entender el origen, la señal, los prototipos y el sistema, ahora se
+   observa el montaje como conjunto.
+
+5. Calma
+   Esta estación debe sentirse más limpia, clara y contemplativa que las anteriores.
+
+6. Cierre previo
+   Debe preparar al usuario para llegar al final del recorrido.
+
+================================================================================
+4. COMPOSICIÓN VISUAL BASE
+================================================================================
+
+La referencia visual aprobada muestra:
+
+- formato vertical mobile-first;
+- fondo beige claro, cálido y sobrio;
+- logotipo OKÚA Guía Visual en la zona superior;
+- título:
+    MUNDO V: MAPA DEL PRESENTE
+- una maqueta o mapa orgánico central;
+- cuatro zonas delimitadas:
+    Plantas
+    Sistema
+    Espacio
+    Visitante
+- Lía flotando en la parte superior derecha;
+- una línea punteada suave asociada al recorrido de Lía;
+- botón inferior:
+    Ir al cierre
+- paleta suave en crema, beige, verde oliva y dorado tenue;
+- estilo limpio, editorial, museográfico y no saturado.
+
+La estación debe sentirse como una maqueta del presente, no como un tablero técnico.
+
+================================================================================
+5. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+La estación debe contener:
+
+1. Mapa/maqueta central
+   - forma orgánica;
+   - vista superior o semi-superior;
+   - áreas claras y separadas;
+   - estilo limpio y cálido.
+
+2. Área PLANTAS
+   - grupo de plantas;
+   - representación de vida vegetal;
+   - no debe mostrar plantas cantando;
+   - puede tener luz suave o pulso mínimo.
+
+3. Área SISTEMA
+   - módulo técnico o pequeño circuito;
+   - representación del sistema de mediación;
+   - no debe repetir toda la Estación IV;
+   - debe ser comprensible como sistema actual.
+
+4. Área ESPACIO
+   - zona del entorno físico;
+   - puede incluir suelo, tapete, banca, textura, zona de recorrido;
+   - representa el lugar donde la experiencia se vive.
+
+5. Área VISITANTE
+   - figura humana simplificada o marcador de visitante;
+   - no protagonista excesivo;
+   - representa la presencia del usuario en la experiencia.
+
+6. Lía
+   - guía de cierre;
+   - aparece en la zona superior derecha o cercana al mapa;
+   - activa cada área;
+   - acompaña la síntesis.
+
+7. Botón “Ir al cierre”
+   - se habilita después de recorrer las cuatro áreas en primera pasada.
+
+================================================================================
+6. LAS CUATRO ÁREAS OBLIGATORIAS
+================================================================================
+
+La estación debe organizarse en cuatro áreas:
+
+1. Plantas
+2. Sistema
+3. Espacio
+4. Visitante
+
+Orden recomendado en primera pasada:
+
+    Plantas → Sistema → Espacio → Visitante → Ir al cierre
+
+Justificación del orden:
+
+- Plantas: se parte de lo vivo.
+- Sistema: se muestra la mediación técnica.
+- Espacio: se ubica la experiencia en el lugar.
+- Visitante: se reconoce que la persona completa el recorrido y la interpretación.
+
+No se recomienda iniciar por visitante porque primero debe verse qué existe en el
+montaje.
+
+================================================================================
+7. LO QUE NO DEBE APARECER
+================================================================================
+
+No debe aparecer:
+
+- cadena completa de 8 nodos;
+- explicación técnica extensa;
+- muchas tarjetas;
+- muchos menús;
+- nodos adicionales;
+- portales;
+- exceso de partículas;
+- muchos íconos;
+- planta cantando;
+- notas musicales saliendo de plantas;
+- repetición visual de Estación IV;
+- escena fantástica recargada;
+- paisaje épico que quite claridad;
+- demasiadas figuras humanas;
+- audio;
+- AR;
+- scanner QR interno.
+
+La Estación V debe ser síntesis y presente, no explicación técnica de detalle.
+
+================================================================================
+8. ROL DE LÍA EN LA ESTACIÓN
+================================================================================
+
+Lía debe actuar como guía de síntesis.
+
+En esta estación, Lía no debe ser tan activa como en Estación II ni tan técnica como
+en Estación IV. Su papel es ayudar al visitante a mirar el conjunto.
+
+Lía debe:
+
+- recorrer las cuatro áreas;
+- activar cada zona;
+- explicar qué significa cada una;
+- conectar las áreas con el montaje actual;
+- preparar el paso hacia la pantalla final.
+
+Lía debe transmitir:
+
+- calma;
+- claridad;
+- cierre;
+- acompañamiento;
+- mirada de conjunto.
+
+Acciones de Lía:
+
+1. Flotar cerca del mapa.
+2. Seguir una línea punteada suave.
+3. Acercarse a cada área activa.
+4. Señalar o iluminar el área.
+5. Abrir una ventana breve de explicación.
+6. Al final, ubicarse cerca del botón “Ir al cierre”.
+
+================================================================================
+9. ACCIONES DISPONIBLES PARA EL USUARIO
+================================================================================
+
+Acciones principales:
+
+1. Tocar área PLANTAS.
+2. Tocar área SISTEMA.
+3. Tocar área ESPACIO.
+4. Tocar área VISITANTE.
+5. Leer ventana de Lía.
+6. Avanzar o cerrar explicación.
+7. Completar las cuatro áreas.
+8. Tocar “Ir al cierre”.
+9. Abrir menú global, si existe.
+
+Primera pasada:
+    PLANTAS → SISTEMA → ESPACIO → VISITANTE → Ir al cierre
+
+Revisión posterior:
+    las cuatro áreas pueden tocarse en cualquier orden.
+
+No debe haber más de cuatro zonas principales.
+
+================================================================================
+10. PRIMERA PASADA SECUENCIAL
+================================================================================
+
+En primera pasada, la estación debe guiar al usuario en orden:
+
+1. Plantas.
+2. Sistema.
+3. Espacio.
+4. Visitante.
+
+Reglas:
+
+- al inicio solo Plantas está disponible;
+- Sistema se habilita después de completar Plantas;
+- Espacio se habilita después de completar Sistema;
+- Visitante se habilita después de completar Espacio;
+- “Ir al cierre” se habilita después de completar Visitante.
+
+Si el usuario toca un área bloqueada:
+
+Mensaje de Lía:
+    Miremos primero cómo se organiza este presente.
+
+O:
+    Esa parte tendrá más sentido después de revisar la anterior.
+
+No mostrar error agresivo.
+
+================================================================================
+11. ESTADOS VISUALES DE LAS ÁREAS
+================================================================================
+
+Cada área debe tener estos estados:
+
+1. Bloqueada
+   - baja intensidad;
+   - delimitación tenue;
+   - no activa en primera pasada.
+
+2. Disponible
+   - delimitación visible;
+   - texto legible;
+   - puede tocarse.
+
+3. Activa
+   - borde o halo suave;
+   - Lía cercana;
+   - ventana de explicación visible;
+   - ruta punteada iluminada hacia esa zona.
+
+4. Completada
+   - marca mínima;
+   - halo bajo;
+   - queda disponible en revisión posterior.
+
+Solo una zona debe estar activa a la vez.
+
+================================================================================
+12. ÁREA 1 — PLANTAS
+================================================================================
+
+Función:
+    Mostrar que el montaje actual parte de plantas reales y vivas.
+
+Qué se activa visualmente:
+    - grupo de plantas;
+    - zona “Plantas”;
+    - brillo suave en hojas o base;
+    - Lía se desplaza hacia esa área.
+
+Texto de Lía sugerido:
+
+    Aquí están las plantas del montaje.
+    No son decoración: son el origen vivo de la experiencia.
+
+Versión corta:
+
+    Las plantas son el origen vivo del montaje actual.
+
+Animación:
+    - luz suave sobre la zona;
+    - hojas reciben pulso mínimo;
+    - línea punteada de Lía apunta a Plantas;
+    - área queda marcada como revisada.
+
+Qué debe aprender el usuario:
+    El montaje actual conserva la planta como origen de la relación.
+
+================================================================================
+13. ÁREA 2 — SISTEMA
+================================================================================
+
+Función:
+    Mostrar que existe una mediación técnica operando en el presente.
+
+Qué se activa visualmente:
+    - módulo técnico;
+    - zona “Sistema”;
+    - línea suave desde el centro del mapa hacia el sistema;
+    - Lía se acerca al módulo.
+
+Texto de Lía sugerido:
+
+    Aquí está el sistema que sostiene la mediación.
+    No reemplaza a la planta: ayuda a volver perceptible su señal.
+
+Versión corta:
+
+    El sistema hace posible la mediación técnica del montaje.
+
+Animación:
+    - pequeño indicador del circuito se enciende;
+    - línea tenue conecta sistema con el centro;
+    - Lía señala el módulo;
+    - área queda marcada como revisada.
+
+Qué debe aprender el usuario:
+    El sistema técnico es parte del presente de OKÚA, pero no es el único protagonista.
+
+================================================================================
+14. ÁREA 3 — ESPACIO
+================================================================================
+
+Función:
+    Mostrar que OKÚA ocurre en un lugar, no solo en una pantalla o circuito.
+
+Qué se activa visualmente:
+    - zona “Espacio”;
+    - elementos de ambiente;
+    - luz cálida sobre área de recorrido;
+    - Lía se desplaza hacia la zona inferior izquierda.
+
+Texto de Lía sugerido:
+
+    El espacio también hace parte de OKÚA.
+    Aquí la mediación se vuelve experiencia para quien recorre el jardín.
+
+Versión corta:
+
+    El espacio convierte el sistema en una experiencia situada.
+
+Animación:
+    - zona se ilumina con luz cálida;
+    - sombra/recorrido se marca suavemente;
+    - Lía flota sobre el área;
+    - área queda marcada como revisada.
+
+Qué debe aprender el usuario:
+    OKÚA se vive en un espacio físico, no solo en sus componentes técnicos.
+
+================================================================================
+15. ÁREA 4 — VISITANTE
+================================================================================
+
+Función:
+    Reconocer que la persona que recorre también completa la experiencia.
+
+Qué se activa visualmente:
+    - figura o marcador de visitante;
+    - zona “Visitante”;
+    - luz circular tenue;
+    - Lía se acerca y cierra la explicación.
+
+Texto de Lía sugerido:
+
+    Tú también haces parte del presente de OKÚA.
+    La experiencia se completa cuando alguien la recorre, la escucha y la comprende.
+
+Versión corta:
+
+    El visitante completa la lectura del montaje.
+
+Animación:
+    - círculo del visitante se ilumina;
+    - líneas del mapa conectan con el centro;
+    - Lía hace gesto de cierre;
+    - botón “Ir al cierre” se habilita.
+
+Qué debe aprender el usuario:
+    La experiencia no es solo planta y sistema; también incluye la percepción del visitante.
+
+================================================================================
+16. VENTANAS DE DIÁLOGO DE LÍA
+================================================================================
+
+Cada área debe abrir una ventana breve asociada a Lía.
+
+Formato:
+- tarjeta o globo limpio;
+- tonos crema/verde/lavanda suaves;
+- borde mínimo;
+- máximo 2 o 3 líneas;
+- sin scroll;
+- sin texto técnico largo;
+- con botón “Siguiente” o “Cerrar”.
+
+Reglas:
+- una ventana a la vez;
+- no mostrar todas las explicaciones al tiempo;
+- no tapar completamente el mapa;
+- no saturar con globos.
+
+La ventana debe aparecer cerca de Lía o conectada con línea punteada al área activa.
+
+================================================================================
+17. ANIMACIÓN GENERAL DE LA ESCENA
+================================================================================
+
+Animación de fondo:
+    - casi estático;
+    - sin partículas excesivas;
+    - luz suave.
+
+Animación del mapa:
+    - áreas pueden iluminarse por turno;
+    - líneas internas pueden aparecer suavemente;
+    - no mover todo el mapa.
+
+Animación de Lía:
+    - flotación suave;
+    - desplazamientos cortos entre áreas;
+    - gesto de señalar;
+    - cierre al final.
+
+Animación de áreas:
+    - halo suave en área activa;
+    - marca mínima al completar;
+    - no usar pulsos fuertes.
+
+Animación de botón:
+    - se ilumina al final;
+    - sin rebote exagerado.
+
+================================================================================
+18. SECUENCIA DE ENTRADA A LA ESTACIÓN
+================================================================================
+
+Después de la transición pixelart:
+
+1. Fade desde transición.
+2. Fondo beige claro aparece.
+3. Logo y título se muestran.
+4. Mapa central aparece suavemente.
+5. Lía entra desde la zona superior derecha o aparece flotando.
+6. Las cuatro áreas aparecen en baja intensidad.
+7. Plantas queda disponible.
+8. Lía muestra mensaje inicial breve.
+
+Mensaje inicial sugerido:
+
+    Este es el presente de OKÚA.
+    Miremos cómo se encuentran plantas, sistema, espacio y visitante.
+
+O:
+
+    Ahora volvamos al montaje actual. Todo lo anterior vive aquí.
+
+================================================================================
+19. BOTÓN “IR AL CIERRE”
+================================================================================
+
+Estado inicial:
+    visible pero deshabilitado, o visible con baja intensidad.
+
+Estado durante áreas:
+    sin protagonismo.
+
+Estado después de completar Visitante:
+    activo.
+
+Texto:
+    Ir al cierre
+
+Al tocar:
+    - Lía hace gesto de cierre;
+    - las cuatro áreas quedan iluminadas de manera suave;
+    - aparece transición pixelart hacia la pantalla final.
+
+Texto de transición posterior:
+
+    Abriendo Mirador final del jardín...
+    Preparando recorrido...
+
+Si se toca antes de completar:
+    Lía responde:
+        Antes de cerrar, revisemos las partes del presente.
+
+================================================================================
+20. INTERACCIÓN EN REVISIÓN LIBRE
+================================================================================
+
+Después de completar la estación o volver desde modo libre:
+
+- las cuatro áreas están disponibles;
+- el botón “Ir al cierre” permanece activo;
+- el usuario puede tocar Plantas, Sistema, Espacio o Visitante en cualquier orden.
+
+Mensaje de Lía:
+
+    Puedes volver a mirar cualquier parte del mapa del presente.
+
+No se fuerza el orden en revisión libre.
+
+================================================================================
+21. ESTADOS FUNCIONALES
+================================================================================
+
+Estados sugeridos:
+
+station5_entering
+station5_idle
+station5_plants_active
+station5_system_active
+station5_space_active
+station5_visitor_active
+station5_area_completed
+station5_ready_to_close
+station5_exiting
+station5_revisit_mode
+
+Reglas:
+- una zona activa a la vez;
+- una ventana de Lía a la vez;
+- primera pasada secuencial;
+- revisión libre posterior;
+- bloquear taps durante cambios críticos.
+
+================================================================================
+22. ACCESIBILIDAD
+================================================================================
+
+Cada zona debe ser botón accesible.
+
+Labels sugeridos:
+
+PLANTAS:
+    Área 1 de 4. Plantas.
+
+SISTEMA:
+    Área 2 de 4. Sistema.
+
+ESPACIO:
+    Área 3 de 4. Espacio.
+
+VISITANTE:
+    Área 4 de 4. Visitante.
+
+Estados:
+    bloqueado
+    disponible
+    activo
+    completado
+
+Botón:
+    Ir al cierre.
+
+Si está deshabilitado:
+    Ir al cierre. Completa las cuatro áreas para continuar.
+
+La ventana de Lía debe anunciarse cuando cambia.
+No depender solo del color para indicar el área activa.
+
+================================================================================
+23. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no desplazar ampliamente a Lía;
+- no animar líneas punteadas;
+- no usar pulsos continuos;
+- usar cambios de opacidad y borde;
+- mantener las explicaciones;
+- transición de salida con fade simple.
+
+La comprensión debe conservarse aunque no haya movimiento.
+
+================================================================================
+24. LO QUE NO ES NECESARIO EN ESTA ESTACIÓN
+================================================================================
+
+No es necesario:
+
+- repetir la cadena de 8 nodos;
+- explicar ESP32, MIDI o router;
+- mostrar el bionosificador en detalle;
+- mostrar señal bioeléctrica;
+- mostrar prototipos;
+- mostrar raíz/origen;
+- usar muchas tarjetas;
+- usar pixelart;
+- usar video;
+- usar audio;
+- usar AR;
+- mostrar créditos finales;
+- permitir navegación libre si no ha completado.
+
+================================================================================
+25. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- saturar el mapa;
+- agregar más de cuatro áreas principales;
+- volver a explicar toda la técnica;
+- convertir el mapa en Estación IV;
+- sugerir planta → música directa;
+- usar notas musicales saliendo de plantas;
+- poner demasiado texto;
+- usar muchos humanos;
+- hacer que Lía sea decorativa;
+- permitir ir al cierre antes de completar las áreas en primera pasada;
+- transformar esta estación en pantalla final.
+
+================================================================================
+26. CRITERIOS DE ACEPTACIÓN VISUAL Y FUNCIONAL
+================================================================================
+
+La estación se considera correcta si:
+
+□ Se entiende que es Mundo V — Mapa del presente.
+□ Se entiende que corresponde al estado actual del montaje.
+□ Las cuatro áreas son claras: Plantas, Sistema, Espacio, Visitante.
+□ Lía guía la síntesis.
+□ La primera pasada es secuencial.
+□ Las zonas bloqueadas no se pueden saltar.
+□ Cada área tiene explicación breve de Lía.
+□ El botón “Ir al cierre” se habilita al completar las cuatro áreas.
+□ No se repite la cadena técnica completa.
+□ No se sugiere planta → música directa.
+□ La escena es limpia y no saturada.
+□ Se siente como cierre previo al final.
+□ Reduced-motion conserva comprensión.
+□ La salida usa transición pixelart hacia el Mirador final.
+
+================================================================================
+27. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+Mundo V — Mapa del presente sintetiza el estado actual de OKÚA como montaje vivo.
+A través de cuatro áreas —Plantas, Sistema, Espacio y Visitante— Lía guía al usuario
+para entender que la experiencia no existe solo en la planta ni solo en la técnica,
+sino en la relación situada entre vida vegetal, mediación, lugar y recorrido humano.
+Al completar el mapa, el usuario puede ir al cierre final.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

@@ -1,0 +1,721 @@
+GVO — GUÍA VISUAL OKÚA
+ESPECIFICACIÓN ULTRA DETALLADA
+PORTADA / INTRO — EL ARCHIVO VIVO DE OKÚA
+Versión: V1
+Estado: Definición visual, funcional, narrativa y de animaciones
+Uso previsto: base para diseño, implementación, animación, QA y tickets posteriores
+
+================================================================================
+0. IDENTIFICACIÓN DE LA PANTALLA
+================================================================================
+
+Nombre funcional:
+    Portada / Intro del recorrido
+
+Nombre visual:
+    El Archivo Vivo de OKÚA
+
+Ubicación en el flujo general:
+    Escaneo del primer QR
+    → Ventana de carga inicial previa a portada
+    → Portada / Intro: El Archivo Vivo de OKÚA
+    → Diálogos introductorios de Lía
+    → Portal I
+    → Transición pixelart entre mundos
+    → Estación I — Mundo I: Raíz
+
+Tipo de pantalla:
+    Pantalla de entrada, orientación y acceso al recorrido.
+
+No es:
+    - una estación técnica;
+    - una transición entre mundos;
+    - una pantalla de carga;
+    - una pantalla final;
+    - un menú libre completo en primera pasada.
+
+================================================================================
+1. PROPÓSITO DE LA PORTADA
+================================================================================
+
+La portada debe cumplir cuatro funciones principales:
+
+1. Presentar visualmente la experiencia OKÚA Guía Visual.
+2. Mostrar los cinco mundos/estaciones como portales.
+3. Introducir a Lía como guía del recorrido.
+4. Antes de entrar a la Estación I, hacer que Lía entregue mensajes
+   introductorios obligatorios.
+
+La portada no debe permitir que el visitante entre directamente a cualquier estación
+en la primera pasada. En primera pasada, solo el Portal I debe estar habilitado.
+
+La portada debe transmitir:
+
+    “Estás entrando a un archivo vivo de mundos, pero primero Lía debe explicarte
+    cómo entender OKÚA.”
+
+================================================================================
+2. CONCEPTO VISUAL GENERAL
+================================================================================
+
+La portada representa una sala o archivo vivo orgánico-tecnológico. En el centro
+aparecen cinco portales verticales, cada uno asociado a una estación/mundo.
+
+Lía flota sobre o cerca de los portales, actuando como anfitriona y guía.
+
+La composición de referencia incluye:
+
+- logo OKÚA Guía Visual en la parte superior;
+- cinco portales al centro;
+- pedestal o plataforma inferior;
+- texto “EL ARCHIVO VIVO DE OKÚA”;
+- botón “Comenzar recorrido”;
+- Lía grande, amable, luminosa y activa;
+- ambiente cálido, elegante, orgánico y biomimético.
+
+La portada debe sentirse como una puerta a la experiencia, no como una pantalla de
+menú genérica.
+
+================================================================================
+3. ELEMENTOS VISUALES OBLIGATORIOS
+================================================================================
+
+Elementos que deben estar presentes:
+
+1. Logo OKÚA Guía Visual
+   - situado en la parte superior;
+   - legible;
+   - limpio;
+   - sin saturación visual.
+
+2. Lía
+   - guía visual central;
+   - flotando;
+   - visible y reconocible;
+   - no como decoración, sino como agente que abre el recorrido.
+
+3. Cinco portales
+   - Portal I: habilitado en primera pasada.
+   - Portal II: bloqueado.
+   - Portal III: bloqueado.
+   - Portal IV: bloqueado.
+   - Portal V: bloqueado.
+
+4. Pedestal / base del archivo
+   - soporte visual de los portales;
+   - debe reforzar la idea de archivo vivo.
+
+5. Texto de sistema:
+   - “EL ARCHIVO VIVO DE OKÚA”.
+
+6. Botón principal:
+   - “Comenzar recorrido”.
+
+7. Candados o indicadores de bloqueo:
+   - en portales II, III, IV y V durante primera pasada.
+
+================================================================================
+4. NOMBRES DE PORTALES Y MUNDOS
+================================================================================
+
+Los portales deben representar las cinco estaciones:
+
+Portal I:
+    Estación I — Mundo I: Raíz
+    Estado inicial: habilitado
+
+Portal II:
+    Estación II — Mundo II: Lía y el pulso invisible
+    Estado inicial: bloqueado
+
+Portal III:
+    Estación III — Mundo III: Cuaderno de pruebas
+    Estado inicial: bloqueado
+
+Portal IV:
+    Estación IV — Mundo IV: Mesa de sistema
+    Estado inicial: bloqueado
+
+Portal V:
+    Estación V — Mundo V: Mapa del presente
+    Estado inicial: bloqueado
+
+La portada no necesita mostrar todos los nombres completos en pantalla si eso satura.
+Puede mostrar números romanos I, II, III, IV, V y una imagen/miniatura representativa.
+El nombre completo puede aparecer al tocar o enfocar un portal.
+
+================================================================================
+5. ESTADOS PRINCIPALES DE LA PORTADA
+================================================================================
+
+La portada debe manejar estos estados funcionales:
+
+1. portada_idle
+   Estado inicial. Lía flota, Portal I habilitado, otros portales bloqueados.
+
+2. intro_dialogue_started
+   El usuario tocó “Comenzar recorrido” o Portal I. Lía comienza los mensajes
+   introductorios.
+
+3. intro_dialogue_active
+   Se muestran ventanas de diálogo de Lía, una a la vez.
+
+4. intro_dialogue_completed
+   Lía terminó la introducción obligatoria.
+
+5. portal_1_ready
+   Portal I queda preparado para abrirse.
+
+6. portal_1_opening
+   Portal I ejecuta animación de apertura.
+
+7. transition_to_station_1
+   Se muestra la ventana de transición pixelart entre mundos.
+
+8. free_review_mode
+   Modo posterior al recorrido completo: todos los portales disponibles.
+
+================================================================================
+6. ESTADO INICIAL EN PRIMERA PASADA
+================================================================================
+
+Al cargar la portada por primera vez:
+
+- Lía está flotando en estado idle.
+- Portal I está iluminado o resaltado.
+- Portales II, III, IV y V están visibles pero bloqueados.
+- El botón “Comenzar recorrido” está disponible.
+- No hay diálogo abierto todavía.
+- No hay transición activa.
+- No hay animación de entrada a estación activa.
+
+Estados visuales:
+
+Portal I:
+    - brillo cálido;
+    - borde más activo;
+    - sin candado;
+    - puede tener pulso leve.
+
+Portales II–V:
+    - menor opacidad;
+    - candado visible;
+    - sin brillo activo;
+    - pueden reaccionar al toque, pero no abrir.
+
+================================================================================
+7. ACCIONES DISPONIBLES EN PRIMERA PASADA
+================================================================================
+
+Acciones principales disponibles:
+
+1. Tocar “Comenzar recorrido”.
+2. Tocar Portal I.
+3. Tocar Portal II bloqueado.
+4. Tocar Portal III bloqueado.
+5. Tocar Portal IV bloqueado.
+6. Tocar Portal V bloqueado.
+7. Avanzar diálogos de Lía.
+8. Confirmar entrada al Portal I después de diálogos.
+9. Abrir menú global, si el menú global existe.
+
+Única acción que permite avanzar:
+    “Comenzar recorrido” o Portal I, pero solo después de completar los diálogos.
+
+No debe permitirse:
+    - saltar a Portal II–V;
+    - entrar a Estación I sin diálogos introductorios en primera pasada;
+    - abrir dos diálogos a la vez;
+    - abrir transición antes de completar la introducción.
+
+================================================================================
+8. ACCIÓN: TOCAR “COMENZAR RECORRIDO”
+================================================================================
+
+Al tocar el botón “Comenzar recorrido”:
+
+Secuencia:
+
+1. El botón responde con un pulso suave.
+2. Lía cambia de estado idle a estado guía activa.
+3. Lía se desplaza levemente hacia el centro o hacia una posición de diálogo.
+4. Se deshabilitan temporalmente los portales como navegación.
+5. Aparece la primera ventana de diálogo de Lía.
+6. Inicia la secuencia introductoria.
+
+No debe ocurrir:
+    - salto inmediato a Estación I;
+    - apertura inmediata del Portal I;
+    - transición pixelart inmediata;
+    - navegación sin explicación.
+
+Animación del botón:
+
+- opacidad/escala muy leve;
+- brillo sutil en borde;
+- duración: 0.2 s a 0.35 s;
+- sin efecto explosivo.
+
+================================================================================
+9. ACCIÓN: TOCAR PORTAL I EN PRIMERA PASADA
+================================================================================
+
+Portal I debe comportarse igual que el botón “Comenzar recorrido”.
+
+Al tocar Portal I:
+
+1. Portal I responde con un brillo breve.
+2. Lía mira o se desplaza hacia Portal I.
+3. Se inicia la secuencia de diálogos introductorios.
+4. Portal I no se abre todavía.
+5. Al terminar los diálogos, Portal I entra en estado listo.
+
+Regla:
+    Tocar Portal I en primera pasada inicia la introducción, no abre directamente.
+
+================================================================================
+10. ACCIÓN: TOCAR PORTALES BLOQUEADOS
+================================================================================
+
+Portales bloqueados:
+    II, III, IV, V
+
+Al tocar un portal bloqueado:
+
+1. El portal responde con una vibración visual mínima o un pulso bloqueado.
+2. El candado se ilumina brevemente.
+3. Lía muestra un mensaje corto.
+4. No se cambia de estación.
+5. No se inicia transición.
+
+Mensajes sugeridos:
+
+Portal II:
+    Primero debemos entrar por Raíz. Después llegaremos al pulso invisible.
+
+Portal III:
+    Ese mundo se desbloquea más adelante. Antes necesitamos entender el origen y la señal.
+
+Portal IV:
+    La operación técnica tendrá sentido cuando ya conozcas la mediación.
+
+Portal V:
+    El presente se entiende mejor al final del recorrido.
+
+Reglas:
+- máximo una frase;
+- no mostrar diálogo largo;
+- no abrir ventana grande;
+- no bloquear la interacción demasiado tiempo;
+- duración visual: 1.5 s a 2.0 s.
+
+================================================================================
+11. DIÁLOGOS INTRODUCTORIOS OBLIGATORIOS DE LÍA
+================================================================================
+
+Lía debe entregar la introducción en varias ventanas breves.
+
+No usar un bloque largo.
+No mostrar todos los mensajes al tiempo.
+
+Secuencia recomendada:
+
+Diálogo 1 — Presentación:
+    Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.
+
+Diálogo 2 — Aclaración principal:
+    Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.
+
+Diálogo 3 — Mediación:
+    Lo que vas a recorrer es una mediación: una señal viva, una captura técnica
+    y una interpretación.
+
+Diálogo 4 — Orden del recorrido:
+    Primero seguiremos el orden de los mundos. Al final podrás volver libremente
+    a cualquier estación.
+
+Diálogo 5 — Entrada a Mundo I:
+    Empecemos por la raíz: el origen y el propósito de OKÚA.
+
+Los textos pueden ajustarse para caber mejor en pantalla, pero no deben perder
+estas ideas obligatorias:
+
+- Lía se presenta.
+- Las plantas no hacen música por sí solas.
+- La experiencia requiere mediación.
+- La primera pasada es secuencial.
+- Al final habrá revisión libre.
+- El primer mundo es Raíz.
+
+================================================================================
+12. VENTANAS DE DIÁLOGO DE LÍA
+================================================================================
+
+Formato de ventana:
+
+- globo o tarjeta asociada visualmente a Lía;
+- no ocupa toda la pantalla;
+- máximo 2 líneas principales si es posible;
+- fondo claro/translúcido;
+- borde suave;
+- tipografía legible;
+- botón o indicación pequeña para avanzar.
+
+Acciones de usuario:
+
+- tocar “Siguiente”;
+- tocar la ventana;
+- tocar una flecha pequeña;
+- opcional: avanzar con tap en la zona inferior.
+
+No incluir:
+- botón “Omitir” en primera pasada;
+- múltiples opciones;
+- menú de diálogo;
+- textos largos;
+- scroll interno.
+
+En revisión posterior, después de completar el recorrido, sí podría existir:
+    “Saltar introducción”
+pero no en primera pasada.
+
+================================================================================
+13. ANIMACIONES DE LÍA EN PORTADA
+================================================================================
+
+Lía debe tener estos estados:
+
+1. Idle
+   - flotación suave;
+   - pétalos con respiración mínima;
+   - ojos luminosos;
+   - pequeñas partículas discretas.
+
+2. Saludo
+   - Lía baja o se acerca un poco;
+   - aparece primer diálogo;
+   - gesto amable.
+
+3. Aclaración importante
+   - Lía se inclina suavemente;
+   - brillo un poco más sereno;
+   - enfatiza que las plantas no hacen música por sí solas.
+
+4. Explicación de mediación
+   - Lía señala los portales o el archivo;
+   - puede aparecer una línea sutil de conexión entre idea viva y recorrido.
+
+5. Activación del Portal I
+   - Lía se desplaza hacia Portal I;
+   - toca o señala el portal;
+   - el portal queda listo para abrir.
+
+Animaciones permitidas:
+- desplazamiento corto;
+- flotación;
+- inclinación;
+- brillo del collar;
+- gesto con pétalo;
+- mirada hacia portal.
+
+Animaciones no permitidas:
+- vuelos largos;
+- gestos exagerados;
+- efectos mágicos excesivos;
+- partículas densas;
+- rotación grande;
+- rebotes caricaturescos.
+
+================================================================================
+14. ANIMACIÓN DEL PORTAL I
+================================================================================
+
+El Portal I debe tener estos estados visuales:
+
+1. Habilitado
+   - brillo suave;
+   - borde activo;
+   - imagen interna visible;
+   - sin candado.
+
+2. Tocado
+   - pulso breve;
+   - borde se ilumina;
+   - conexión visual con Lía.
+
+3. Listo
+   - después de los diálogos;
+   - brillo un poco mayor;
+   - portal parece responder a Lía.
+
+4. Abriendo
+   - borde se dibuja o ilumina;
+   - interior se aclara;
+   - puede haber zoom mínimo;
+   - pantalla prepara transición.
+
+5. Entrando
+   - fade/zoom hacia el portal;
+   - luego se muestra la transición pixelart.
+
+Duración recomendada:
+
+- activación: 0.5 s
+- apertura: 0.8 s
+- salida hacia transición: 0.5 s
+- total visual antes de transición: 1.8 s aprox.
+
+================================================================================
+15. TRANSICIÓN DESPUÉS DE PORTAL I
+================================================================================
+
+Después de que Portal I se abre, debe aparecer la ventana de transición pixelart
+ya definida previamente.
+
+Texto de transición:
+
+    Abriendo Mundo I: Raíz...
+    Preparando recorrido...
+
+Secuencia:
+
+    Portal I abre
+    → fade suave
+    → transición pixelart
+    → Estación I
+
+Importante:
+Durante los diálogos introductorios NO debe aparecer la transición.
+La transición solo aparece después de terminar los diálogos y abrir Portal I.
+
+================================================================================
+16. ESTADOS DE LOS PORTALES EN MODO LIBRE
+================================================================================
+
+Después de completar el recorrido entero, la portada puede funcionar como menú de revisión.
+
+En modo libre:
+
+- todos los portales están desbloqueados;
+- no hay candados;
+- cada portal permite entrar a su estación;
+- Lía puede mostrar un mensaje breve de revisión libre.
+
+Mensaje sugerido:
+
+    Ahora puedes volver a cualquier mundo del recorrido.
+
+Portales:
+
+Portal I:
+    entra a Estación I — Mundo I: Raíz
+
+Portal II:
+    entra a Estación II — Mundo II: Lía y el pulso invisible
+
+Portal III:
+    entra a Estación III — Mundo III: Cuaderno de pruebas
+
+Portal IV:
+    entra a Estación IV — Mundo IV: Mesa de sistema
+
+Portal V:
+    entra a Estación V — Mundo V: Mapa del presente
+
+Cada entrada debe usar su transición pixelart correspondiente.
+
+================================================================================
+17. BOTÓN PRINCIPAL
+================================================================================
+
+Estados del botón:
+
+Primera visita:
+    Comenzar recorrido
+
+Durante diálogo:
+    deshabilitado o escondido
+
+Después de diálogos:
+    Entrar a Mundo I
+
+Recorrido completado:
+    Explorar mundos
+    o puede mantenerse oculto si los portales ya funcionan como menú.
+
+Animación:
+
+- pulso suave;
+- sin rebote exagerado;
+- sin glow fuerte;
+- duración breve;
+- no debe competir con Lía ni portales.
+
+================================================================================
+18. TEXTOS FIJOS EN PORTADA
+================================================================================
+
+Textos fijos principales:
+
+    OKÚA
+    GUÍA VISUAL
+    EL ARCHIVO VIVO DE OKÚA
+    Comenzar recorrido
+
+Textos de portales:
+    I, II, III, IV, V
+
+Opcional según espacio:
+    nombres completos de mundos solo al tocar/enfocar, no necesariamente visibles todo el tiempo.
+
+No agregar:
+- párrafos largos;
+- explicación técnica;
+- 8 nodos;
+- créditos;
+- texto de estaciones en exceso.
+
+================================================================================
+19. COMPORTAMIENTO EN REINGRESO
+================================================================================
+
+Si el usuario vuelve a la portada antes de completar el recorrido:
+
+- mantener el progreso real;
+- mostrar portales desbloqueados hasta su avance;
+- mantener bloqueados los que aún no correspondan;
+- no repetir obligatoriamente todos los diálogos de introducción si ya fueron vistos;
+- Lía puede mostrar mensaje corto:
+
+    Volvamos al archivo. Continuemos desde donde vas.
+
+Si el usuario vuelve después de completar:
+
+- todos los portales abiertos;
+- revisión libre disponible;
+- mensaje breve de Lía;
+- no repetir intro obligatoria.
+
+================================================================================
+20. BLOQUEO DE INTERACCIONES DURANTE ANIMACIONES
+================================================================================
+
+Durante estas fases deben bloquearse taps repetidos:
+
+- intro_dialogue_started;
+- cambio entre diálogos;
+- portal_1_opening;
+- transition_to_station_1.
+
+Reglas:
+
+- si el usuario toca varias veces Comenzar, no reiniciar diálogo;
+- si el usuario toca portales durante diálogo, no navegar;
+- si el portal está abriendo, ignorar nuevos taps;
+- si transición está activa, bloquear toda interacción.
+
+================================================================================
+21. ACCESIBILIDAD
+================================================================================
+
+La portada debe ser accesible.
+
+Requisitos:
+
+- botón Comenzar con label claro;
+- portales bloqueados con estado comunicado;
+- Portal I como disponible;
+- diálogos de Lía con aria-live o equivalente;
+- foco lógico en ventana de diálogo;
+- navegación táctil clara;
+- no depender solo del color para bloqueo;
+- candado o texto debe indicar bloqueo.
+
+Textos accesibles sugeridos:
+
+Portal I:
+    Estación I, Mundo Raíz, disponible.
+
+Portal II:
+    Estación II, bloqueada hasta completar Mundo I.
+
+Botón:
+    Comenzar recorrido.
+
+Diálogo:
+    Lía dice: [texto actual].
+
+================================================================================
+22. REDUCED MOTION
+================================================================================
+
+Si reduced-motion está activo:
+
+- no hacer zoom fuerte al portal;
+- no desplazar a Lía en recorridos amplios;
+- no usar partículas animadas;
+- no usar pulso continuo;
+- usar cambios de opacidad y estado;
+- transición a estación con fade simple.
+
+La secuencia pedagógica no debe eliminarse.
+Solo se reducen los movimientos.
+
+================================================================================
+23. LO QUE NO DEBE HACERSE
+================================================================================
+
+Prohibido:
+
+- entrar directo a Estación I sin diálogos en primera pasada;
+- habilitar portales II–V al inicio;
+- mostrar toda la cadena técnica de 8 nodos en la portada;
+- usar diálogos largos;
+- convertir la portada en pantalla técnica;
+- saturar con partículas;
+- crear varias Lías;
+- usar a Lía solo como decoración;
+- mostrar créditos en portada;
+- mostrar la pantalla de transición antes de terminar la intro;
+- permitir saltos no autorizados;
+- mezclar funciones de portada con pantalla final.
+
+================================================================================
+24. CRITERIOS DE ACEPTACIÓN
+================================================================================
+
+La portada se considera correcta si:
+
+□ Se ve como El Archivo Vivo de OKÚA.
+□ Lía aparece como guía principal.
+□ Hay cinco portales visibles.
+□ Portal I está habilitado en primera pasada.
+□ Portales II–V están bloqueados en primera pasada.
+□ Tocar Comenzar inicia diálogos de Lía.
+□ Tocar Portal I inicia diálogos si es primera vez.
+□ Lía dice las ideas obligatorias.
+□ No se entra a Estación I antes de terminar diálogos.
+□ Después de diálogos, Portal I se abre.
+□ Al abrir Portal I aparece la transición pixelart.
+□ No hay transición durante los diálogos.
+□ Los portales bloqueados responden sin abrir.
+□ En modo libre todos los portales permiten revisión.
+□ La pantalla no está saturada.
+□ Reduced-motion tiene alternativa.
+□ La navegación es mobile-first.
+
+================================================================================
+25. DESCRIPCIÓN CORTA PARA DOCUMENTACIÓN
+================================================================================
+
+La portada “El Archivo Vivo de OKÚA” funciona como entrada narrativa al recorrido.
+Muestra cinco portales correspondientes a las estaciones. En la primera pasada solo
+el Portal I está habilitado. Al tocar “Comenzar recorrido” o el Portal I, Lía presenta
+la experiencia mediante diálogos breves, aclarando que las plantas no hacen música por
+sí solas, que existe una mediación técnica y que el recorrido se sigue en orden. Al
+terminar la introducción, Lía activa el Portal I y se muestra la transición pixelart
+hacia Mundo I: Raíz.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================
