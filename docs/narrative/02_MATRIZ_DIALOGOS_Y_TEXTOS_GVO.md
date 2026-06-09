@@ -27,5 +27,9 @@ La matriz editable se entrega en:
 
 ## Conteo actual
 
-- Filas de texto: 86.
-- IDs únicos: 86.
+- Filas de texto: 96.
+- IDs únicos: 96.
+
+## Actualizacion 005B
+
+Las filas de `Estación I — Mundo Raíz` fueron refinadas como modelo de guionizacion por pantalla/estado. El bloque conserva columnas, deja vacios `Texto final`, `Alternativa corta` y `Notas escritor`, y mantiene `Estado de revisión` como `Pendiente escritor`.

@@ -1,9 +1,33 @@
 {
   "package": "GVO narrative package",
   "date": "2026-06-09",
+  "updated_at": "2026-06-09",
   "screens": 9,
-  "matrix_rows": 86,
-  "unique_ids": 86,
+  "matrix_rows": 96,
+  "unique_ids": 96,
   "visual_refs": 9,
-  "source_txt": 9
+  "source_txt": 9,
+  "updates": [
+    {
+      "ticket": "005A",
+      "date": "2026-06-09",
+      "summary": "Base documental narrativa inicial en docs/narrative."
+    },
+    {
+      "ticket": "005B",
+      "date": "2026-06-09",
+      "summary": "Estacion I elevada a ficha modelo de guionizacion por pantalla/estado.",
+      "files_created": [
+        "docs/narrative/estaciones/03_estacion_i_mundo_raiz_slots.md",
+        "docs/narrative/estaciones/03_estacion_i_mundo_raiz_revision.md"
+      ],
+      "files_updated": [
+        "docs/narrative/estaciones/03_estacion_i_mundo_raiz.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.csv",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.xlsx",
+        "docs/narrative/manifest_narrative_package.json"
+      ]
+    }
+  ]
 }
