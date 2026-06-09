@@ -1,0 +1,37 @@
+{
+  "packageId": "gvo-writer-handoff-v1",
+  "ticket": "005D",
+  "status": "ready_for_writer_review",
+  "sourceWorkspace": "docs/narrative",
+  "createdAt": "2026-06-09",
+  "matrixRowsExpected": 197,
+  "uniqueIdsExpected": 197,
+  "visualReferencesExpected": 9,
+  "runtimeModified": false,
+  "filesIncluded": [
+    "README_ENTREGA_ESCRITOR_GVO_v1.md",
+    "00_LEER_PRIMERO_ESCRITOR_GVO_v1.md",
+    "01_DOSSIER_VISUAL_GUIONIZACION_GVO_v1.md",
+    "02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO_PARA_ESCRITOR.csv",
+    "02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO_PARA_ESCRITOR.xlsx",
+    "03_GUIA_DILIGENCIAMIENTO_MATRIZ_GVO_v1.md",
+    "04_CONCEPTOS_PROTEGIDOS_Y_CUIDADOS_GVO_v1.md",
+    "05_CHECKLIST_ENTREGA_TEXTOS_GVO_v1.md",
+    "06_INDICE_VISUAL_REFERENCIAS_GVO_v1.md",
+    "manifest_entrega_escritor_gvo_v1.json",
+    "visual_refs/00_carga_inicial.png",
+    "visual_refs/01_portada_archivo_vivo.png",
+    "visual_refs/02_transicion_entre_mundos.png",
+    "visual_refs/03_estacion_i_mundo_raiz.png",
+    "visual_refs/04_estacion_ii_pulso_invisible.png",
+    "visual_refs/05_estacion_iii_cuaderno_pixel.png",
+    "visual_refs/06_estacion_iv_mesa_sistema.png",
+    "visual_refs/07_estacion_v_mapa_presente.png",
+    "visual_refs/08_pantalla_final_mirador.png"
+  ],
+  "notes": [
+    "Writer package for dialogue and screen text production.",
+    "Functional constraints only; literary tone remains authorial.",
+    "Do not edit runtime files."
+  ]
+}

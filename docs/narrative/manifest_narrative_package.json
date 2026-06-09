@@ -56,8 +56,39 @@
         "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.xlsx",
         "docs/narrative/manifest_narrative_package.json"
       ]
+    },
+    {
+      "ticket": "005D",
+      "date": "2026-06-09",
+      "summary": "Paquete entregable para escritor GVO v1 creado en docs/narrative/entrega_escritor_gvo_v1.",
+      "files_created": [
+        "docs/narrative/entrega_escritor_gvo_v1/README_ENTREGA_ESCRITOR_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/00_LEER_PRIMERO_ESCRITOR_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/01_DOSSIER_VISUAL_GUIONIZACION_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO_PARA_ESCRITOR.csv",
+        "docs/narrative/entrega_escritor_gvo_v1/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO_PARA_ESCRITOR.xlsx",
+        "docs/narrative/entrega_escritor_gvo_v1/03_GUIA_DILIGENCIAMIENTO_MATRIZ_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/04_CONCEPTOS_PROTEGIDOS_Y_CUIDADOS_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/05_CHECKLIST_ENTREGA_TEXTOS_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/06_INDICE_VISUAL_REFERENCIAS_GVO_v1.md",
+        "docs/narrative/entrega_escritor_gvo_v1/manifest_entrega_escritor_gvo_v1.json",
+        "docs/narrative/entrega_escritor_gvo_v1/visual_refs/"
+      ],
+      "files_updated": [
+        "docs/narrative/README.md",
+        "docs/narrative/manifest_narrative_package.json"
+      ]
     }
   ],
+  "writer_handoff": {
+    "packageId": "gvo-writer-handoff-v1",
+    "path": "docs/narrative/entrega_escritor_gvo_v1/",
+    "status": "ready_for_writer_review",
+    "matrix_rows": 197,
+    "unique_ids": 197,
+    "visual_refs": 9,
+    "runtimeModified": false
+  },
   "matrix_counts": {
     "Carga inicial": 3,
     "Portada": 13,

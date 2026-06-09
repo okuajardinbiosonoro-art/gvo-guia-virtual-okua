@@ -17,6 +17,7 @@ docs/narrative/
   04_CHECKLIST_ENTREGA_ESCRITOR.md
   05_TICKET_005A_CODEX.md
   estaciones/
+  entrega_escritor_gvo_v1/
   visual_refs/
   source_txt/
 ```
@@ -27,5 +28,9 @@ docs/narrative/
 2. Revisar las fichas dentro de `estaciones/`.
 3. Trabajar los textos en `02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.csv` o en la versión XLSX exportada.
 4. Validar con `04_CHECKLIST_ENTREGA_ESCRITOR.md`.
+
+## Entrega para escritor
+
+La carpeta `entrega_escritor_gvo_v1/` contiene el paquete documental listo para compartir con el escritor: dossier visual, guía de diligenciamiento, checklist, matriz de trabajo y copias de las 9 referencias visuales.
 
 Fecha de paquete: 2026-06-09.
