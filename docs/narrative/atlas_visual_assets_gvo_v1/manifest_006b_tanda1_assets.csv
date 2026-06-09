@@ -1,0 +1,18 @@
+archivo,categoria,origen,uso_atlas,estado
+gvo_atlas_006b_001_carga_actual.png,captura_actual,Playwright runtime,Carga inicial actual,aprobado
+gvo_atlas_006b_002_portada_inicio_actual.png,captura_actual,Playwright runtime,Portada estado inicial actual,aprobado
+gvo_atlas_006b_003_portada_dialogo_01_actual.png,captura_actual,Playwright runtime,Portada primer diálogo de Lía actual,aprobado
+gvo_atlas_006b_004_portada_dialogo_05_actual.png,captura_actual,Playwright runtime,Portada último diálogo de introducción actual,aprobado
+gvo_atlas_006b_005_portada_portal_bloqueado_actual.png,captura_actual,Playwright runtime,Portada portal bloqueado actual,aprobado
+gvo_atlas_006b_006_transicion_mundo_i_actual.png,captura_actual,Playwright runtime,Transición hacia Mundo I actual,aprobado
+gvo_atlas_006b_007_mundo_i_intro_actual.png,captura_actual,Playwright runtime,Mundo I estado inicial actual,aprobado
+gvo_atlas_006b_008_mundo_i_relacion_actual.png,captura_actual,Playwright runtime,Mundo I RELACIÓN activa actual,aprobado
+gvo_atlas_006b_009_mundo_i_percepcion_actual.png,captura_actual,Playwright runtime,Mundo I PERCEPCIÓN activa actual,aprobado
+gvo_atlas_006b_010_mundo_i_mediacion_actual.png,captura_actual,Playwright runtime,Mundo I MEDIACIÓN activa actual,aprobado
+gvo_atlas_006b_011_mundo_i_listo_actual.png,captura_actual,Playwright runtime,Mundo I listo/cierre actual,aprobado
+gvo_atlas_006b_012_mundo_i_bloqueo_actual.png,captura_actual,Playwright runtime,Mundo I bloqueo visual actual,aprobado
+gvo_atlas_006b_101_mundo_i_bloqueo_suave_mockup.png,mockup_aprobado,ChatGPT Images,Patrón visual de bloqueo suave,aprobado
+gvo_atlas_006b_102_mundo_i_cierre_esperado_mockup.png,mockup_aprobado,ChatGPT Images,Patrón visual de cierre esperado de Mundo I,aprobado
+gvo_atlas_006b_103_transicion_generica_entre_mundos_mockup.png,mockup_aprobado,ChatGPT Images,Transición genérica reutilizable entre estaciones,aprobado
+gvo_atlas_006b_104_mundo_ii_intro_conceptual_mockup.png,mockup_aprobado,ChatGPT Images,Concepto visual de entrada a Mundo II,aprobado
+gvo_atlas_006b_105_mundo_ii_capa_senal_mockup.png,mockup_aprobado,ChatGPT Images,Patrón visual de capa SEÑAL activa,aprobado
