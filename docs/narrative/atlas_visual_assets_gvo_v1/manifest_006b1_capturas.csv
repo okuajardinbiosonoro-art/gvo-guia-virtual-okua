@@ -1,0 +1,13 @@
+filename,tipo,origen,ruta,estado,capturado,observacion
+gvo_atlas_006b_001_carga_actual.png,captura_actual,runtime_playwright,/carga?resetIntro=1,carga_inicial,si,Captura de /carga?resetIntro=1; la ruta directa no redirige durante la captura.
+gvo_atlas_006b_002_portada_inicio_actual.png,captura_actual,runtime_playwright,/portada?resetIntro=1,portada_inicio,si,Estado inicial antes de presionar CTA.
+gvo_atlas_006b_003_portada_dialogo_01_actual.png,captura_actual,runtime_playwright,/portada?resetIntro=1,portada_dialogo_01,si,Primer diálogo de Lía tras CTA.
+gvo_atlas_006b_004_portada_dialogo_05_actual.png,captura_actual,runtime_playwright,/portada?resetIntro=1,portada_dialogo_05,si,Último diálogo introductorio que prepara Portal I / Mundo I.
+gvo_atlas_006b_005_portada_portal_bloqueado_actual.png,captura_actual,runtime_playwright,/portada?resetIntro=1,portada_portal_bloqueado,si,Feedback visible de Portal II bloqueado capturado.
+gvo_atlas_006b_006_transicion_mundo_i_actual.png,captura_actual,runtime_playwright,/transition/intro-to-station-1,transicion_mundo_i,si,Captura temprana de la transición runtime antes de redirigir a /estacion/1.
+gvo_atlas_006b_007_mundo_i_intro_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_intro,si,Estado inicial de Mundo I.
+gvo_atlas_006b_008_mundo_i_relacion_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_relacion_activa,si,Nodo RELACIÓN activo.
+gvo_atlas_006b_009_mundo_i_percepcion_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_percepcion_activa,si,Nodo PERCEPCIÓN activo.
+gvo_atlas_006b_010_mundo_i_mediacion_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_mediacion_activa,si,Nodo MEDIACIÓN activo.
+gvo_atlas_006b_011_mundo_i_listo_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_listo_cierre,si,Estado listo tras presionar Cerrar raíz.
+gvo_atlas_006b_012_mundo_i_bloqueo_actual.png,captura_actual,runtime_playwright,/estacion/1,mundo_i_bloqueo,si,"Estado inicial: PERCEPCIÓN y MEDIACIÓN aparecen como nodos bloqueados visuales; el runtime usa botones deshabilitados, sin feedback textual por intento de toque."
