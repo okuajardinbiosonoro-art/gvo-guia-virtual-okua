@@ -1,0 +1,41 @@
+filename,asset_id,asset_kind,screen,station,source,width_px,height_px,status,notes
+gvo_atlas_006b_001_carga_actual.png,GVO_ATLAS_006B_001,captura_actual,carga,carga_inicial,Playwright runtime,780,1688,aprobado,Carga inicial actual.
+gvo_atlas_006b_002_portada_inicio_actual.png,GVO_ATLAS_006B_002,captura_actual,portada,archivo_vivo,Playwright runtime,780,1688,aprobado,Portada estado inicial actual.
+gvo_atlas_006b_003_portada_dialogo_01_actual.png,GVO_ATLAS_006B_003,captura_actual,portada,archivo_vivo,Playwright runtime,780,1688,aprobado,Portada primer diálogo de Lía actual.
+gvo_atlas_006b_004_portada_dialogo_05_actual.png,GVO_ATLAS_006B_004,captura_actual,portada,archivo_vivo,Playwright runtime,780,1688,aprobado,Portada último diálogo introductorio actual.
+gvo_atlas_006b_005_portada_portal_bloqueado_actual.png,GVO_ATLAS_006B_005,captura_actual,portada,archivo_vivo,Playwright runtime,780,1688,aprobado,Portada portal bloqueado actual.
+gvo_atlas_006b_006_transicion_mundo_i_actual.png,GVO_ATLAS_006B_006,captura_actual,transicion,entre_mundos,Playwright runtime,780,1688,aprobado,Transición hacia Mundo I actual.
+gvo_atlas_006b_007_mundo_i_intro_actual.png,GVO_ATLAS_006B_007,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I intro actual.
+gvo_atlas_006b_008_mundo_i_relacion_actual.png,GVO_ATLAS_006B_008,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I relación activa actual.
+gvo_atlas_006b_009_mundo_i_percepcion_actual.png,GVO_ATLAS_006B_009,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I percepción activa actual.
+gvo_atlas_006b_010_mundo_i_mediacion_actual.png,GVO_ATLAS_006B_010,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I mediación activa actual.
+gvo_atlas_006b_011_mundo_i_listo_actual.png,GVO_ATLAS_006B_011,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I cierre actual.
+gvo_atlas_006b_012_mundo_i_bloqueo_actual.png,GVO_ATLAS_006B_012,captura_actual,estacion_i,mundo_i_raiz,Playwright runtime,780,1688,aprobado,Mundo I bloqueo actual.
+gvo_atlas_006b_101_mundo_i_bloqueo_suave_mockup.png,GVO_ATLAS_006B_101,mockup_aprobado,estacion_i,mundo_i_raiz,ChatGPT Images,941,1672,aprobado,Mockup aprobado de bloqueo suave Mundo I.
+gvo_atlas_006b_102_mundo_i_cierre_esperado_mockup.png,GVO_ATLAS_006B_102,mockup_aprobado,estacion_i,mundo_i_raiz,ChatGPT Images,941,1672,aprobado,Mockup aprobado de cierre Mundo I.
+gvo_atlas_006b_103_transicion_generica_entre_mundos_mockup.png,GVO_ATLAS_006B_103,mockup_aprobado,transicion,entre_mundos,ChatGPT Images,941,1672,aprobado,Mockup aprobado de transición genérica.
+gvo_atlas_006b_104_mundo_ii_intro_conceptual_mockup.png,GVO_ATLAS_006B_104,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de intro Mundo II.
+gvo_atlas_006b_105_mundo_ii_capa_senal_mockup.png,GVO_ATLAS_006B_105,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de capa señal Mundo II.
+gvo_atlas_006c_201_ref_carga_inicial.png,GVO_ATLAS_006C_201,referencia_base,carga,carga_inicial,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de carga inicial.
+gvo_atlas_006c_202_ref_portada_archivo_vivo.png,GVO_ATLAS_006C_202,referencia_base,portada,archivo_vivo,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de portada.
+gvo_atlas_006c_203_ref_transicion_entre_mundos.png,GVO_ATLAS_006C_203,referencia_base,transicion,entre_mundos,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de transición.
+gvo_atlas_006c_204_ref_estacion_i_mundo_raiz.png,GVO_ATLAS_006C_204,referencia_base,estacion_i,mundo_i_raiz,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de Mundo I.
+gvo_atlas_006c_205_ref_estacion_ii_pulso_invisible.png,GVO_ATLAS_006C_205,referencia_base,estacion_ii,mundo_ii_pulso_invisible,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de Mundo II.
+gvo_atlas_006c_206_ref_estacion_iii_cuaderno_pixel.png,GVO_ATLAS_006C_206,referencia_base,estacion_iii,mundo_iii_cuaderno_pixel,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de Mundo III.
+gvo_atlas_006c_207_ref_estacion_iv_mesa_sistema.png,GVO_ATLAS_006C_207,referencia_base,estacion_iv,mundo_iv_mesa_sistema,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de Mundo IV.
+gvo_atlas_006c_208_ref_estacion_v_mapa_presente.png,GVO_ATLAS_006C_208,referencia_base,estacion_v,mundo_v_mapa_presente,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de Mundo V.
+gvo_atlas_006c_209_ref_pantalla_final_mirador.png,GVO_ATLAS_006C_209,referencia_base,pantalla_final,mirador_final,docs/narrative/visual_refs,941,1672,aprobado,Referencia base de pantalla final.
+gvo_atlas_006d_201_mundo_ii_planta_viva_mockup.png,GVO_ATLAS_006D_201,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de planta viva Mundo II.
+gvo_atlas_006d_202_mundo_ii_captura_mockup.png,GVO_ATLAS_006D_202,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de captura Mundo II.
+gvo_atlas_006d_203_mundo_ii_acondicionamiento_mockup.png,GVO_ATLAS_006D_203,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de acondicionamiento Mundo II.
+gvo_atlas_006d_204_mundo_ii_mapeo_mockup.png,GVO_ATLAS_006D_204,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de mapeo Mundo II.
+gvo_atlas_006d_205_mundo_ii_resultado_mediado_mockup.png,GVO_ATLAS_006D_205,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de resultado mediado Mundo II.
+gvo_atlas_006d_206_mundo_ii_bloqueo_suave_mockup.png,GVO_ATLAS_006D_206,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de bloqueo Mundo II.
+gvo_atlas_006d_207_mundo_ii_cierre_esperado_mockup.png,GVO_ATLAS_006D_207,mockup_aprobado,estacion_ii,mundo_ii_pulso_invisible,ChatGPT Images,941,1672,aprobado,Mockup aprobado de cierre Mundo II.
+gvo_atlas_006f_301_mundo_iv_overview_cadena_tecnica_mockup.png,GVO_ATLAS_006F_301,mockup_aprobado,estacion_iv,mundo_iv_mesa_sistema,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de overview de cadena técnica Mundo IV.
+gvo_atlas_006f_302_mundo_iv_nodo_tecnico_activo_mockup.png,GVO_ATLAS_006F_302,mockup_aprobado,estacion_iv,mundo_iv_mesa_sistema,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de nodo técnico activo Mundo IV.
+gvo_atlas_006f_303_mundo_iv_cadena_completa_cierre_mockup.png,GVO_ATLAS_006F_303,mockup_aprobado,estacion_iv,mundo_iv_mesa_sistema,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de cierre Mundo IV.
+gvo_atlas_006f_304_mundo_iv_bloqueo_suave_mockup.png,GVO_ATLAS_006F_304,mockup_aprobado,estacion_iv,mundo_iv_mesa_sistema,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de bloqueo Mundo IV.
+gvo_atlas_006f_305_mundo_v_area_activa_mockup.png,GVO_ATLAS_006F_305,mockup_aprobado,estacion_v,mundo_v_mapa_presente,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de área activa Mundo V.
+gvo_atlas_006f_306_final_revision_libre_mockup.png,GVO_ATLAS_006F_306,mockup_aprobado,pantalla_final,mirador_final,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de revisión libre final.
+gvo_atlas_006f_307_final_confirmar_reinicio_mockup.png,GVO_ATLAS_006F_307,mockup_aprobado,pantalla_final,mirador_final,ChatGPT Images,941,1672,aprobado,Mockup aprobado Tanda 3 de confirmación de reinicio final.
