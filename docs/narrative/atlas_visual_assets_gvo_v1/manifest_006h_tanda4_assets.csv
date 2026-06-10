@@ -1,0 +1,8 @@
+asset_id,filename,station,visual_group,status,notes
+006h_401,gvo_atlas_006h_401_mundo_iii_prototipo_review_mockup.png,mundo_iii_cuaderno_pixel,w3_prototipo_review,aprobado,Registro de Tanda 4 para revision de prototipo.
+006h_402,gvo_atlas_006h_402_mundo_iii_senal_review_mockup.png,mundo_iii_cuaderno_pixel,w3_senal_review,aprobado,Registro de Tanda 4 para revision de senal.
+006h_403,gvo_atlas_006h_403_mundo_iii_ajustado_mockup.png,mundo_iii_cuaderno_pixel,w3_ajustado_active,aprobado,Registro de Tanda 4 para estado ajustado.
+006h_404,gvo_atlas_006h_404_mundo_iii_bloqueo_suave_mockup.png,mundo_iii_cuaderno_pixel,w3_soft_block,aprobado,Registro de Tanda 4 para bloqueo suave de Mundo III.
+006h_405,gvo_atlas_006h_405_mundo_iii_cierre_esperado_mockup.png,mundo_iii_cuaderno_pixel,w3_complete_closure,aprobado,Registro de Tanda 4 para cierre esperado de Mundo III.
+006h_406,gvo_atlas_006h_406_mundo_v_bloqueo_suave_mockup.png,mundo_v_mapa_presente,w5_soft_block,aprobado,Registro de Tanda 4 para bloqueo suave de Mundo V.
+006h_407,gvo_atlas_006h_407_mundo_v_cierre_esperado_mockup.png,mundo_v_mapa_presente,w5_complete_closure,aprobado,Registro de Tanda 4 para cierre esperado de Mundo V.

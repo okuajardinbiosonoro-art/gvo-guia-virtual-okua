@@ -1,0 +1,8 @@
+filename,asset_id,screen,station,asset_kind,visual_group,status,notes
+gvo_atlas_006h_401_mundo_iii_prototipo_review_mockup.png,006h_401,estacion_iii,mundo_iii_cuaderno_pixel,mockup_aprobado,w3_prototipo_review,aprobado,Mockup aprobado Tanda 4 para revision de prototipo en Mundo III.
+gvo_atlas_006h_402_mundo_iii_senal_review_mockup.png,006h_402,estacion_iii,mundo_iii_cuaderno_pixel,mockup_aprobado,w3_senal_review,aprobado,Mockup aprobado Tanda 4 para revision de senal en Mundo III.
+gvo_atlas_006h_403_mundo_iii_ajustado_mockup.png,006h_403,estacion_iii,mundo_iii_cuaderno_pixel,mockup_aprobado,w3_ajustado_active,aprobado,Mockup aprobado Tanda 4 para estado ajustado de Mundo III.
+gvo_atlas_006h_404_mundo_iii_bloqueo_suave_mockup.png,006h_404,estacion_iii,mundo_iii_cuaderno_pixel,mockup_aprobado,w3_soft_block,aprobado,Mockup aprobado Tanda 4 para bloqueo suave de Mundo III.
+gvo_atlas_006h_405_mundo_iii_cierre_esperado_mockup.png,006h_405,estacion_iii,mundo_iii_cuaderno_pixel,mockup_aprobado,w3_complete_closure,aprobado,Mockup aprobado Tanda 4 para cierre esperado de Mundo III.
+gvo_atlas_006h_406_mundo_v_bloqueo_suave_mockup.png,006h_406,estacion_v,mundo_v_mapa_presente,mockup_aprobado,w5_soft_block,aprobado,Mockup aprobado Tanda 4 para bloqueo suave de Mundo V.
+gvo_atlas_006h_407_mundo_v_cierre_esperado_mockup.png,006h_407,estacion_v,mundo_v_mapa_presente,mockup_aprobado,w5_complete_closure,aprobado,Mockup aprobado Tanda 4 para cierre esperado de Mundo V.
