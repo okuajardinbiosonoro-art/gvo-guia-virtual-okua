@@ -18,6 +18,7 @@ El recorrido se organiza como una secuencia de pantallas locales. El acceso prin
 - `/`
 - `/carga`
 - `/portada`
+- `/transition/intro-to-station-1`
 - `/estacion/1`
 - `/estacion/2`
 - `/estacion/3`
@@ -28,8 +29,10 @@ El recorrido se organiza como una secuencia de pantallas locales. El acceso prin
 
 ## Regla secuencial
 
-La estación 1 queda disponible desde portada. Cada estación siguiente requiere completar la estación anterior. El final requiere completar la estación 5.
+La Portada / Intro entrega el flujo a la transición runtime `/transition/intro-to-station-1`, y esta transición conduce a `/estacion/1`.
+
+La estación 1 ya está montada como Mundo I: Raíz mediante `World1RootScreen`. Cada estación siguiente requiere completar la estación anterior. Las estaciones II-V y el final real siguen pendientes de implementación funcional.
 
 ## Transición entre mundos
 
-La pantalla de transición es reutilizable y tendrá ticket propio. En este ticket solo existe placeholder técnico.
+La pantalla de transición reutilizable ya existe para el tramo Portada / Intro -> Mundo I. La preview técnica se conserva en `/dev/transition-world` y el runtime aprobado usa `/transition/intro-to-station-1`.

@@ -1,13 +1,13 @@
 # Estado actual del proyecto
 
-Fecha: 2026-06-02
+Fecha: 2026-06-11
 
-Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; Transición entre mundos aprobada para avanzar con calificación manual 7.9/10 y flujo funcional integrado; Mundo I sigue como placeholder técnico.
+Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; Transición entre mundos aprobada para avanzar con calificación manual 7.9/10 y flujo funcional integrado; Mundo I: Raíz montado en `/estacion/1` mediante `World1RootScreen`; Atlas Visual 006I cerrado para etapa pre-PDFs.
 
 ## Implementado
 
 - App Vite + React + TypeScript.
-- Router con rutas placeholder del recorrido.
+- Router con rutas runtime, rutas de desarrollo autorizadas y placeholders restantes del recorrido.
 - Pantalla de carga inicial animada V13 en `/` y `/carga`.
 - Assets runtime normalizados de carga inicial en `public/assets/runtime/loading-initial/`.
 - Capa mínima de progreso secuencial con `localStorage`.
@@ -45,10 +45,13 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Preview técnico aislado de Transición entre mundos en `/dev/transition-world`.
 - Flujo Portada / Intro -> Transición -> `/estacion/1`.
 - Cierre técnico T003E9 de Transición entre mundos como `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`.
+- Mundo I: Raíz montado en `/estacion/1` mediante `World1RootScreen`, con fondo aprobado, raíces, planta, Lía por estados, nodos RELACIÓN / PERCEPCIÓN / MEDIACIÓN y estado `ready_to_continue`.
+- Mundo I conserva deuda visual y de continuidad: el botón `Continuar` está visible en `ready_to_continue`, pero sin navegación de salida final.
+- Atlas Visual 006I cerrado para etapa pre-PDFs: 47 PNG en carpeta Atlas, 197/197 slots cubiertos y `manifest_006i_pending_visuals.csv` sin pendientes bloqueantes.
 
 ## No implementado todavía
 
-- Mundo I real; `/estacion/1` es placeholder técnico.
+- Navegación de salida final desde Mundo I hacia un siguiente tramo.
 - Estaciones reales II-V.
 - Final real.
 - Scanner interno con cámara.
@@ -60,7 +63,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Rama base estable esperada: main.
 - Rama del Ticket 000: feature/000-repo-base.
 - Commit base aprobado: 4f6fa03.
-- Estado de fase actual: Transición entre mundos integrada; Mundo I real no iniciado.
+- Estado de fase actual: Transición entre mundos integrada; Mundo I: Raíz con base runtime montada; estaciones II-V y final real pendientes.
 - Planificación posterior: la define el usuario con Ari; Codex no recomienda siguiente paso en cierres.
 - Repositorio público por decisión operativa consciente del usuario para permitir revisión desde ChatGPT.
 
@@ -70,6 +73,10 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Se creó PROMPT_NUEVO_CHAT_001_CARGA_INICIAL_GVO.txt.
 - El siguiente trabajo funcional preparado en ese cierre fue TICKET_001_CARGA_INICIAL_DEFINICION_Y_BASE_VISUAL.
 - La rama funcional preparada en ese cierre fue feature/001-carga-inicial.
+
+## Nota 007C sobre lectura histórica
+
+Las secciones por ticket que siguen conservan el estado de cada cierre en su momento. Cuando un bloque histórico dice que una ruta era placeholder o que una pantalla no estaba implementada, debe leerse como evidencia de esa etapa, no como estado vivo actual. La fuente viva queda resumida en la cabecera, la matriz de estados y esta nota 007C.
 
 ## Ticket 001 / 001B / 001C / 001D / 001E / 001F / 001G / 001H / 001I / 001J / 001K / 001L / 001M / 001N: Carga inicial
 
@@ -96,7 +103,7 @@ Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / I
 - Motivo de avance: el usuario Ing. José David aprobó avanzar con umbral visual aproximado 7.2/10 para evitar bloqueo excesivo en una sola pantalla.
 - Pendientes: conservar deuda visual para pulido global y no declarar cierre final hasta aprobación explícita.
 - La pantalla usa assets locales normalizados en `public/assets/runtime/loading-initial/`.
-- Portada, estaciones, transición y final siguen no implementados en runtime.
+- Portada, transición y Mundo I ya tienen bases runtime documentadas; estaciones II-V y final real siguen pendientes.
 - Rama consolidada: main.
 
 ## Ticket 002A: Portada / Intro handoff y preproducción
@@ -349,7 +356,7 @@ Resultado posterior de revisión manual:
 - No se modifican assets runtime.
 - No se regeneran capturas.
 - No se implementa transición pixelart final.
-- No se implementa Mundo I real.
+- En ese cierre todavía no se implementaba la base runtime posterior de Mundo I.
 - No se marca `CERRADA_APROBADA_FINAL`.
 
 ## Ticket T003E9: Transición entre mundos cierre técnico
@@ -361,13 +368,21 @@ Resultado posterior de revisión manual:
 - Ruta runtime: `/transition/intro-to-station-1`.
 - Destino técnico: `/estacion/1`.
 - Portada / Intro ya entrega el flujo real hacia TransitionWorld.
-- TransitionWorld navega automáticamente al placeholder técnico de Mundo I al completar.
-- `/estacion/1` sigue siendo placeholder técnico, no Mundo I real.
+- TransitionWorld navega automáticamente a `/estacion/1` al completar.
+- Nota 007C: al cierre T003E9 `/estacion/1` aún era destino técnico de continuidad; el estado vivo actual monta `World1RootScreen` en esa ruta.
 - Deuda principal: la animación de Lía todavía debe mejorar metodológicamente para futuras pantallas.
 - Aprendizaje metodológico: no animar placeholders, no usar assets fusionados para animaciones por piezas, y no recomendar siguiente paso en salidas finales de Codex.
-- No se implementa Mundo I real.
-- No se implementan estaciones.
+- No se implementan estaciones II-V.
 - No se marca `CERRADA_APROBADA_FINAL`.
+
+## Ticket 006I: Atlas visual cierre pre-PDFs
+
+- Estado: ATLAS_VISUAL_CERRADO_PRE_PDFS.
+- Commit de cierre en `main`: `d54cf46 docs: close atlas visual map after Tanda 4 006I`.
+- Carpeta Atlas con 47 PNG directamente en la raíz del paquete visual.
+- `manifest_006i_slot_image_map.csv` cubre 197/197 slots de la matriz base.
+- `manifest_006i_pending_visuals.csv` queda sin filas de pendientes bloqueantes.
+- Los README/manifests 006C, 006E y 006G quedan como hitos históricos superados por 006I, no como estado vivo actual.
 
 ## Matriz de estados por pantalla
 
@@ -376,7 +391,7 @@ Resultado posterior de revisión manual:
 | Carga inicial pre-portada | APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA                                    | Avance permitido; deuda a pulido global         |
 | Portada / Intro           | APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL                 | Avance permitido; deuda a pulido global         |
 | Transición entre mundos   | APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA             | Avance permitido; deuda a pulido global         |
-| Estación I                | PLACEHOLDER_TECNICO                                                                             | Mundo I real no iniciado                        |
+| Estación I                | WORLD1_ROOT_RUNTIME_BASE / READY_TO_CONTINUE_SIN_SALIDA_FINAL / DEUDA_VISUAL_DOCUMENTADA        | Base runtime montada; salida final pendiente    |
 | Estación II               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación III              | NO_INICIADA                                                                                     | BLOQUEADA                                       |
 | Estación IV               | NO_INICIADA                                                                                     | BLOQUEADA                                       |
@@ -387,7 +402,11 @@ Resultado posterior de revisión manual:
 
 La carga inicial V13 queda aprobada para avanzar, pero no cerrada como pantalla final 9/10. Portada / Intro ya tiene base visual, diálogos introductorios, gating narrativo, motion polish, QA visual, reaprobación, coreografía base de activación del Portal I y cierre documental 002M. La Portada / Intro queda `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`.
 
-La Transición entre mundos queda integrada funcionalmente entre `/portada` y `/estacion/1` mediante `/transition/intro-to-station-1`, con preview aislado en `/dev/transition-world`. Su estado es `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`. Mundo I real no está implementado; `/estacion/1` conserva solo un placeholder técnico.
+La Transición entre mundos queda integrada funcionalmente entre `/portada` y `/estacion/1` mediante `/transition/intro-to-station-1`, con preview aislado en `/dev/transition-world`. Su estado es `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`.
+
+Mundo I: Raíz está montado en `/estacion/1` mediante `World1RootScreen`. La pantalla tiene base runtime de la secuencia RELACIÓN / PERCEPCIÓN / MEDIACIÓN y estado `ready_to_continue`; no queda marcada como cierre final y mantiene pendiente la navegación de salida o continuidad hacia un siguiente tramo.
+
+El Atlas Visual 006I queda como estado editorial vivo para etapa pre-PDFs: 197/197 slots cubiertos y sin pendientes visuales bloqueantes.
 
 ## Regla de cierre operativo
 
