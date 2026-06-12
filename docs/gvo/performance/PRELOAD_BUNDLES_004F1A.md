@@ -316,4 +316,3 @@ No realizadas en este ticket:
 - barra de progreso real conectada al hook;
 - persistencia de estado de preload entre rutas;
 - service worker tuneado por bundles.
-

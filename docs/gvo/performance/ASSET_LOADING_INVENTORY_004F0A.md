@@ -117,4 +117,3 @@ Mantener un inventario versionado por pantalla con:
 - `notes`
 
 Esto permitiria que la pantalla de carga o cada transicion cargue solo lo necesario, sin inventar rutas ni depender de heuristicas DOM.
-
