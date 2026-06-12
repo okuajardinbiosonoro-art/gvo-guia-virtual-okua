@@ -80,4 +80,3 @@ Decisión posterior requerida:
 - `APROBADA_PARA_AVANZAR`, o
 - `AJUSTE_VISUAL_REQUERIDO`, o
 - `CERRADA_APROBADA_FINAL`.
-

@@ -160,4 +160,3 @@ Este ticket no implementa esas mejoras; solo deja la auditoria y la evidencia.
 - No se cambio el layout de Mundo I.
 - No se modificaron assets.
 - No se agregaron dependencias.
-

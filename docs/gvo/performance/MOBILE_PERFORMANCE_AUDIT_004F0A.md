@@ -129,4 +129,3 @@ Decision recomendada:
 - No se agrego video runtime.
 - No se usaron recursos externos.
 - No se uso CDN.
-

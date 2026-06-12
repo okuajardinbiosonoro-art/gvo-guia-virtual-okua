@@ -10,10 +10,21 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+build
+.next
+.vite
+coverage
 test-results
 playwright-report
 *.tsbuildinfo
 *.local
+
+# Local security/runtime artifacts
+.venv/
+.tool-reports/
+.security-reports/
+.pre-commit-cache/
+.npm-cache/
 
 # Editor directories and files
 .vscode/*

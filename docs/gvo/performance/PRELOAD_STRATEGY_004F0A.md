@@ -205,4 +205,3 @@ Evaluar WebP local para Portada y Mundo I, con comparacion visual y fallback PNG
 La estrategia aprobable para continuar es preload por bundles, no preload global.
 
 Este ticket no implementa esa estrategia; solo deja el contrato tecnico para un ticket funcional posterior.
-
