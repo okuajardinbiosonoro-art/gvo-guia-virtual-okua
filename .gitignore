@@ -15,6 +15,11 @@ playwright-report
 *.tsbuildinfo
 *.local
 
+# Local tooling caches / virtual environments
+/.npm-cache/
+/.pre-commit-cache/
+/.venv/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
