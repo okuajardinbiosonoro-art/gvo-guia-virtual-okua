@@ -10,8 +10,12 @@
   border: 1px solid rgb(245 205 120 / 18%);
   border-radius: 8px;
   background: #17100a;
+  clip-path: inset(0 round 8px);
   box-shadow: 0 20px 68px rgb(0 0 0 / 42%);
+  backface-visibility: hidden;
+  contain: paint;
   isolation: isolate;
+  transform: translateZ(0);
   --world1-stage-safe-block: 20px;
   --world1-stage-available-height: calc(100vh - var(--world1-stage-safe-block));
   --world1-stage-scale: 1;
@@ -73,6 +77,18 @@
   --world1-lia-readyContinue-width: 25%;
 }
 
+.world1-root-stage-frame::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  height: 18%;
+  background: #0a0604;
+  pointer-events: none;
+}
+
 @supports (height: 100svh) {
   .world1-root-stage-frame {
     --world1-stage-available-height: calc(
@@ -92,9 +108,34 @@
 .world1-root-stage-coordinate-layer {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background-image: var(--world1-root-background);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   transform: translateY(var(--world1-stage-offset-y))
     scale(var(--world1-stage-scale));
   transform-origin: 50% 50%;
+}
+
+.world1-root-stage-coordinate-layer::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  height: 17%;
+  background: linear-gradient(
+    180deg,
+    rgb(15 10 7 / 0%) 0%,
+    rgb(13 8 5 / 88%) 44%,
+    rgb(10 6 4 / 98%) 100%
+  );
+  pointer-events: none;
 }
 
 @media (width <= 374px) {

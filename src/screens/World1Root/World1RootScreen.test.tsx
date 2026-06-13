@@ -1,11 +1,28 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { worldTwoPlaceholderRoute } from "../../app/routes";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
 import { World1RootScreen } from "./World1RootScreen";
 import { world1RootAssets } from "./world1RootAssets";
+
+function LocationProbe() {
+  const location = useLocation();
+
+  return <span data-testid="current-route">{location.pathname}</span>;
+}
+
+function renderWorld1RootScreen() {
+  return render(
+    <MemoryRouter initialEntries={["/estacion/1"]}>
+      <World1RootScreen />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
+}
 
 describe("World1RootScreen", () => {
   afterEach(() => {
@@ -13,7 +30,7 @@ describe("World1RootScreen", () => {
   });
 
   it("renderiza la base estatica de Mundo I con textos DOM y assets reales", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     expect(
       screen.getByRole("heading", {
@@ -69,7 +86,7 @@ describe("World1RootScreen", () => {
   });
 
   it("no renderiza assets fuera de fase, controles interactivos ni medios runtime", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     expect(
       container.querySelector(
@@ -111,7 +128,7 @@ describe("World1RootScreen", () => {
   });
 
   it("mantiene el boton Continuar sin navegacion ni handler", () => {
-    render(<World1RootScreen />);
+    renderWorld1RootScreen();
 
     const button = screen.getByRole("button", { name: "Continuar" });
 
@@ -120,7 +137,7 @@ describe("World1RootScreen", () => {
   });
 
   it("activa RELACIÓN y deja PERCEPCIÓN disponible sin habilitar MEDIACIÓN", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     const relation = screen.getByRole("button", {
       name: "Explorar RELACIÓN",
@@ -181,7 +198,7 @@ describe("World1RootScreen", () => {
   });
 
   it("activa PERCEPCIÓN despues de RELACIÓN y deja MEDIACIÓN disponible", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
     fireEvent.click(
@@ -240,7 +257,7 @@ describe("World1RootScreen", () => {
   });
 
   it("activa MEDIACIÓN solo después de PERCEPCIÓN con raíz, Lía y copy propios", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
     fireEvent.click(
@@ -304,9 +321,8 @@ describe("World1RootScreen", () => {
     expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
   });
 
-  it("cierra MEDIACIÓN en ready_to_continue sin navegar", () => {
-    const { container } = render(<World1RootScreen />);
-    const initialLocation = window.location.href;
+  it("cierra MEDIACIÓN en ready_to_continue y navega a la salida controlada", () => {
+    const { container } = renderWorld1RootScreen();
 
     fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
     fireEvent.click(
@@ -367,13 +383,16 @@ describe("World1RootScreen", () => {
     const continueButton = screen.getByRole("button", { name: "Continuar" });
     expect(continueButton).not.toBeDisabled();
     expect(continueButton).toHaveAttribute("aria-disabled", "false");
+    expect(continueButton).toHaveAttribute(
+      "data-world1-exit-target",
+      worldTwoPlaceholderRoute,
+    );
 
     fireEvent.click(continueButton);
 
-    expect(window.location.href).toBe(initialLocation);
-    expect(
-      screen.getByText("La salida se activará en una fase posterior."),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("current-route")).toHaveTextContent(
+      worldTwoPlaceholderRoute,
+    );
   });
 
   it("mantiene el asset de salida fuera del preload critico ready", () => {
@@ -393,7 +412,7 @@ describe("World1RootScreen", () => {
   });
 
   it("PERCEPCIÓN no se activa desde intro y MEDIACIÓN no se activa antes de PERCEPCIÓN", () => {
-    const { container } = render(<World1RootScreen />);
+    const { container } = renderWorld1RootScreen();
 
     fireEvent.click(
       screen.getByRole("button", {
@@ -433,7 +452,7 @@ describe("World1RootScreen", () => {
   });
 
   it("no muestra controles ni guias de calibracion en runtime", () => {
-    render(<World1RootScreen />);
+    renderWorld1RootScreen();
 
     expect(screen.queryByText("Calibración Mundo I")).not.toBeInTheDocument();
     expect(

@@ -1,4 +1,5 @@
 .world1-root-screen {
+  position: relative;
   min-width: 320px;
   min-height: 100vh;
   min-height: 100svh;
@@ -7,7 +8,9 @@
   place-items: center;
   padding: max(10px, env(safe-area-inset-top)) 10px
     max(10px, env(safe-area-inset-bottom));
-  overflow-x: hidden;
+  overflow: hidden;
+  contain: paint;
+  isolation: isolate;
   color: #fff7db;
   background:
     radial-gradient(circle at 50% 12%, rgb(179 117 43 / 32%), transparent 42%),
@@ -45,13 +48,8 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   pointer-events: none;
   user-select: none;
-}
-
-.world1-root-layer--background {
-  z-index: 0;
 }
 
 .world1-root-layer--ambient {
@@ -382,22 +380,6 @@
 
 .world1-root-continue:disabled {
   opacity: 1;
-}
-
-.world1-root-continue-note {
-  position: absolute;
-  z-index: 8;
-  right: 18px;
-  bottom: 0;
-  left: 18px;
-  min-height: 10px;
-  margin: 0;
-  color: rgb(255 226 165 / 78%);
-  font-family: var(--gvo-font-ui);
-  font-size: 0.68rem;
-  line-height: 1;
-  text-align: right;
-  pointer-events: none;
 }
 
 @media (width <= 374px) {

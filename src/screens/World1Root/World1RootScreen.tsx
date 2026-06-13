@@ -2,7 +2,9 @@ import "./World1RootScreen.css";
 
 import type { CSSProperties } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { worldTwoPlaceholderRoute } from "../../app/routes";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { World1RootStageFrame } from "./layout";
@@ -12,9 +14,17 @@ type NodeOrbStyle = CSSProperties & {
   "--world1-node-kit": string;
 };
 
+type BackgroundLayerStyle = CSSProperties & {
+  "--world1-root-background": string;
+};
+
 const nodeOrbStyle = {
   "--world1-node-kit": `url(${world1RootAssets.nodeKit})`,
 } as NodeOrbStyle;
+
+const backgroundLayerStyle = {
+  "--world1-root-background": `url(${world1RootAssets.background})`,
+} as BackgroundLayerStyle;
 
 type World1Concept =
   | "intro"
@@ -83,7 +93,7 @@ const copyByConcept: Record<
     title:
       "Ya recorriste las tres raíces de esta pregunta: relación, percepción y mediación.",
     body: "Ahora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir.",
-    secondary: "La salida quedará conectada en una fase posterior.",
+    secondary: "La raíz queda lista para continuar el recorrido con calma.",
   },
 };
 
@@ -119,8 +129,8 @@ function getNodeState(
 }
 
 export function World1RootScreen() {
+  const navigate = useNavigate();
   const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
-  const [continueNote, setContinueNote] = useState("");
   const initialPreload = useAssetPreloader(
     screenAssetBundles.world1RootInitial,
     {
@@ -214,14 +224,9 @@ export function World1RootScreen() {
         <div
           className="world1-root-stage-coordinate-layer"
           data-world1-stage-coordinate-layer="true"
+          data-runtime-asset={world1RootAssets.background}
+          style={backgroundLayerStyle}
         >
-          <img
-            className="world1-root-layer world1-root-layer--background"
-            src={world1RootAssets.background}
-            alt=""
-            aria-hidden="true"
-            data-runtime-asset={world1RootAssets.background}
-          />
           <img
             className="world1-root-layer world1-root-layer--ambient"
             src={world1RootAssets.ambientLight}
@@ -326,7 +331,6 @@ export function World1RootScreen() {
                 className="world1-root-copy__action"
                 type="button"
                 onClick={() => {
-                  setContinueNote("");
                   setActiveConcept("ready_to_continue");
                 }}
               >
@@ -340,21 +344,17 @@ export function World1RootScreen() {
             type="button"
             disabled={!isReadyToContinue}
             aria-disabled={isReadyToContinue ? "false" : "true"}
+            data-world1-exit-target={
+              isReadyToContinue ? worldTwoPlaceholderRoute : undefined
+            }
             onClick={
               isReadyToContinue
-                ? () => {
-                    setContinueNote(
-                      "La salida se activará en una fase posterior.",
-                    );
-                  }
+                ? () => navigate(worldTwoPlaceholderRoute)
                 : undefined
             }
           >
             Continuar
           </button>
-          <p className="world1-root-continue-note" aria-live="polite">
-            {continueNote}
-          </p>
         </div>
       </World1RootStageFrame>
     </main>
