@@ -5,4 +5,6 @@ export const coverToWorldOneTransitionRoute =
 
 export const worldOneEntryRoute = "/estacion/1";
 
-export const worldTwoPlaceholderRoute = "/estacion/2";
+export const worldTwoEntryRoute = "/estacion/2";
+
+export const worldTwoPlaceholderRoute = worldTwoEntryRoute;

@@ -17,9 +17,13 @@ import { TransitionWorld } from "../screens/TransitionWorld";
 import { introToStationOneTransition } from "../screens/TransitionWorld/transitionWorld.config";
 import { World1RootScreen } from "../screens/World1Root";
 import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
+import { World2RootScreen } from "../screens/World2Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
-import { coverToWorldOneTransitionRoute } from "./routes";
+import {
+  coverToWorldOneTransitionRoute,
+  worldTwoEntryRoute,
+} from "./routes";
 
 function QrRoute() {
   const { stationId } = useParams();
@@ -124,6 +128,10 @@ export const router = createBrowserRouter([
   {
     path: "/estacion/1",
     element: <World1RootScreen />,
+  },
+  {
+    path: worldTwoEntryRoute,
+    element: <World2RootScreen />,
   },
   {
     path: "/estacion/:stationId",
