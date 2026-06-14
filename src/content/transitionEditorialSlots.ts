@@ -1,6 +1,8 @@
+import { resolveEditorialText } from "./editorial";
+import type { EditorialSlotId } from "./editorial";
+
 export type TransitionEditorialSlotId =
-  | "TRANS_W1_W2_TITLE_01"
-  | "TRANS_W1_W2_SUB_01";
+  Extract<EditorialSlotId, "TRANS_W1_W2_TITLE_01" | "TRANS_W1_W2_SUB_01">;
 
 type TemporaryTransitionSlot = {
   id: TransitionEditorialSlotId;
@@ -9,19 +11,24 @@ type TemporaryTransitionSlot = {
   text: string;
 };
 
+function resolveTemporaryTransitionSlot(
+  slotId: TransitionEditorialSlotId,
+): TemporaryTransitionSlot {
+  const resolvedSlot = resolveEditorialText(slotId);
+
+  return {
+    id: resolvedSlot.slotId,
+    replacement: "editorial_matrix_pending",
+    status: "temporary",
+    text: resolvedSlot.text,
+  };
+}
+
 export const temporaryTransitionEditorialSlots = {
-  TRANS_W1_W2_TITLE_01: {
-    id: "TRANS_W1_W2_TITLE_01",
-    replacement: "editorial_matrix_pending",
-    status: "temporary",
-    text: "Abriendo Mundo II",
-  },
-  TRANS_W1_W2_SUB_01: {
-    id: "TRANS_W1_W2_SUB_01",
-    replacement: "editorial_matrix_pending",
-    status: "temporary",
-    text: "Preparando el pulso invisible.",
-  },
+  TRANS_W1_W2_TITLE_01: resolveTemporaryTransitionSlot(
+    "TRANS_W1_W2_TITLE_01",
+  ),
+  TRANS_W1_W2_SUB_01: resolveTemporaryTransitionSlot("TRANS_W1_W2_SUB_01"),
 } as const satisfies Record<TransitionEditorialSlotId, TemporaryTransitionSlot>;
 
 export const worldOneToWorldTwoTransitionCopy = {
