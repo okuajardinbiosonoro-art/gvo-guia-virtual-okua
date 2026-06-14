@@ -75,18 +75,18 @@ export const editorialRegistry = {
     es: temporaryEsEntry({
       emitter: "interfaz",
       notes: "TEMP de transición W3→W4; reemplazar por Excel editorial.",
-      shortText: "Salida preparada",
+      shortText: "Abriendo Mundo IV",
       slotId: "TRANS_W3_W4_TITLE_01",
-      text: "TEMP — Salida preparada de Mundo III",
+      text: "TEMP — Abriendo Mundo IV",
     }),
   },
   TRANS_W3_W4_SUB_01: {
     es: temporaryEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W3→W4; no construye Mundo IV.",
-      shortText: "Placeholder Mundo IV",
+      notes: "TEMP de transición W3→W4; prepara entrada base de Mundo IV.",
+      shortText: "Mesa del sistema",
       slotId: "TRANS_W3_W4_SUB_01",
-      text: "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
+      text: "TEMP — Preparando la mesa del sistema.",
     }),
   },
   W2_INTRO_LIA_01: {
@@ -527,6 +527,30 @@ export const editorialRegistry = {
       shortText: "Continuar",
       slotId: "W3_CONTINUE_BTN_01",
       text: "Continuar",
+    }),
+  },
+  W4_INTRO_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Intro Mundo IV",
+      slotId: "W4_INTRO_LIA_01",
+      text: "TEMP — Aquí veremos cómo la señal recorre el sistema completo.",
+    }),
+  },
+  W4_INTRO_SYS_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Cadena técnica",
+      slotId: "W4_INTRO_SYS_01",
+      text: "TEMP — La cadena conecta planta, bionosificador, ESP32, MIDI, Wi-Fi/UDP, router, sistema central y sonido.",
+    }),
+  },
+  W4_ACCESSIBLE_SCENE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Escena accesible Mundo IV",
+      slotId: "W4_ACCESSIBLE_SCENE_01",
+      text: "TEMP — Entrada visual a Mundo IV, presentada como una mesa técnica con ocho nodos ordenados.",
     }),
   },
 } as const satisfies EditorialRegistry;

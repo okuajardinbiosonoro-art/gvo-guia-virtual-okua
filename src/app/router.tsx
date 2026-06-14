@@ -25,12 +25,14 @@ import { World1RootScreen } from "../screens/World1Root";
 import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
 import { World2RootScreen } from "../screens/World2Root";
 import { World3RootScreen } from "../screens/World3Root";
+import { World4RootScreen } from "../screens/World4Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
   worldThreeEntryRoute,
   worldThreeToWorldFourTransitionRoute,
+  worldFourEntryRoute,
   worldOneToWorldTwoTransitionRoute,
   worldTwoToWorldThreeTransitionRoute,
   worldTwoEntryRoute,
@@ -169,6 +171,10 @@ export const router = createBrowserRouter([
   {
     path: worldThreeEntryRoute,
     element: <World3RootScreen />,
+  },
+  {
+    path: worldFourEntryRoute,
+    element: <World4RootScreen />,
   },
   {
     path: "/estacion/:stationId",

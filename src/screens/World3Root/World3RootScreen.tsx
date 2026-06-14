@@ -102,7 +102,7 @@ export function World3RootScreen() {
           isReadyToContinue ? preparedExitTarget : undefined
         }
         data-world3-exit-mode={
-          isReadyToContinue ? "prepared_transition_placeholder" : undefined
+          isReadyToContinue ? "prepared_transition_world4_entry" : undefined
         }
       >
         <section
@@ -275,15 +275,15 @@ export function World3RootScreen() {
                 className="world3-root-primary-action world3-root-primary-action--continue"
                 type="button"
                 data-world3-slot-id="W3_CONTINUE_BTN_01"
-                data-world3-exit-action="navigate_to_transition_placeholder"
+                data-world3-exit-action="navigate_to_world4_transition"
                 data-editorial-status="TEMP"
                 onClick={() => navigate(worldThreeToWorldFourTransitionRoute)}
               >
                 {world3EditorialSlots.W3_CONTINUE_BTN_01.text}
               </button>
               <p className="world3-root-note">
-                Salida preparada hacia transición temporal; Mundo IV permanece
-                como placeholder.
+                Salida preparada hacia transición temporal; Mundo IV abre una
+                entrada base.
               </p>
             </>
           ) : (

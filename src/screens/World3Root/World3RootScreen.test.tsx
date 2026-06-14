@@ -121,7 +121,7 @@ describe("World3RootScreen", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Salida preparada hacia transición temporal; Mundo IV permanece como placeholder.",
+        "Salida preparada hacia transición temporal; Mundo IV abre una entrada base.",
       ),
     ).toBeInTheDocument();
 
@@ -131,7 +131,7 @@ describe("World3RootScreen", () => {
 
     expect(continueButton).toHaveAttribute(
       "data-world3-exit-action",
-      "navigate_to_transition_placeholder",
+      "navigate_to_world4_transition",
     );
     fireEvent.click(continueButton);
     expect(screen.getByTestId("current-location")).toHaveTextContent(

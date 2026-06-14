@@ -103,7 +103,7 @@ export const worldThreeToWorldFourTransition: TransitionWorldConfig = {
   subtitleSlotId: worldThreeToWorldFourTransitionCopy.subtitle.id,
   durationMs: 2300,
   reducedMotionDurationMs: 1000,
-  portalLabel: "Portal de transicion hacia placeholder Mundo IV",
+  portalLabel: "Portal de transicion hacia Mundo IV",
   portalState: "open",
   portalSymbol: "root",
   palette: {

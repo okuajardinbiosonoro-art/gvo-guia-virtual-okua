@@ -40,7 +40,7 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
-  it("resuelve los slots temporales W2 W3, W3 W4 y Mundo III", () => {
+  it("resuelve los slots temporales W2 W3, W3 W4, Mundo III y Mundo IV", () => {
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
       "TEMP — Abriendo Mundo III",
     );
@@ -48,10 +48,10 @@ describe("editorialRegistry", () => {
       "TEMP — Preparando el cuaderno de pruebas y ajustes.",
     );
     expect(resolveEditorialText("TRANS_W3_W4_TITLE_01").text).toBe(
-      "TEMP — Salida preparada de Mundo III",
+      "TEMP — Abriendo Mundo IV",
     );
     expect(resolveEditorialText("TRANS_W3_W4_SUB_01").text).toBe(
-      "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
+      "TEMP — Preparando la mesa del sistema.",
     );
     expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
       "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
@@ -67,6 +67,15 @@ describe("editorialRegistry", () => {
     );
     expect(resolveEditorialText("W3_COMPLETE_LIA_01").text).toBe(
       "TEMP — El cuaderno ya muestra cómo una prueba se transforma en ajuste.",
+    );
+    expect(resolveEditorialText("W4_INTRO_LIA_01").text).toBe(
+      "TEMP — Aquí veremos cómo la señal recorre el sistema completo.",
+    );
+    expect(resolveEditorialText("W4_INTRO_SYS_01").text).toBe(
+      "TEMP — La cadena conecta planta, bionosificador, ESP32, MIDI, Wi-Fi/UDP, router, sistema central y sonido.",
+    );
+    expect(resolveEditorialText("W4_ACCESSIBLE_SCENE_01").text).toBe(
+      "TEMP — Entrada visual a Mundo IV, presentada como una mesa técnica con ocho nodos ordenados.",
     );
   });
 

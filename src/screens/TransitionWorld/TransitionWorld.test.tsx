@@ -231,7 +231,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion temporal de la transicion Mundo III a placeholder Mundo IV", () => {
+  it("expone configuracion temporal de la transicion Mundo III a entrada base Mundo IV", () => {
     const { container } = render(
       <TransitionWorld config={worldThreeToWorldFourTransition} />,
     );
@@ -248,13 +248,11 @@ describe("TransitionWorld", () => {
     );
     expect(
       screen.getByRole("heading", {
-        name: "TEMP — Salida preparada de Mundo III",
+        name: "TEMP — Abriendo Mundo IV",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(
-        "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
-      ),
+      screen.getByText("TEMP — Preparando la mesa del sistema."),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
       "data-title-slot",
