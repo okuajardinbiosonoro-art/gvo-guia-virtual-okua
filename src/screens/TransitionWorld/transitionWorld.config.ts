@@ -1,11 +1,13 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 import {
+  worldFourEntryRoute,
   worldOneEntryRoute,
   worldThreeEntryRoute,
   worldTwoEntryRoute,
 } from "../../app/routes";
 import {
   worldOneToWorldTwoTransitionCopy,
+  worldThreeToWorldFourTransitionCopy,
   worldTwoToWorldThreeTransitionCopy,
 } from "../../content/transitionEditorialSlots";
 
@@ -90,8 +92,36 @@ export const worldTwoToWorldThreeTransition: TransitionWorldConfig = {
   },
 };
 
+export const worldThreeToWorldFourTransition: TransitionWorldConfig = {
+  id: "world-3-to-world-4",
+  fromRoute: worldThreeEntryRoute,
+  toRoute: worldFourEntryRoute,
+  targetPreload: "none",
+  title: worldThreeToWorldFourTransitionCopy.title.text,
+  titleSlotId: worldThreeToWorldFourTransitionCopy.title.id,
+  subtitle: worldThreeToWorldFourTransitionCopy.subtitle.text,
+  subtitleSlotId: worldThreeToWorldFourTransitionCopy.subtitle.id,
+  durationMs: 2300,
+  reducedMotionDurationMs: 1000,
+  portalLabel: "Portal de transicion hacia placeholder Mundo IV",
+  portalState: "open",
+  portalSymbol: "root",
+  palette: {
+    background: "#F7EFD8",
+    mist: "#E6DCF7",
+    portalCore: "#FFF5C8",
+    portalEdge: "#C9B8E8",
+    portalGlow: "#E3A33E",
+    text: "#4E3F35",
+    textSoft: "#7E6248",
+    progressTrack: "#D7C9A8",
+    progressFill: "#E3A33E",
+  },
+};
+
 export const transitionWorldConfigs = {
   introToStationOne: introToStationOneTransition,
   worldOneToWorldTwo: worldOneToWorldTwoTransition,
   worldTwoToWorldThree: worldTwoToWorldThreeTransition,
+  worldThreeToWorldFour: worldThreeToWorldFourTransition,
 } as const;

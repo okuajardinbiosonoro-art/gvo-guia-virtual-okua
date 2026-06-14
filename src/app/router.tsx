@@ -16,6 +16,7 @@ import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import { TransitionWorld } from "../screens/TransitionWorld";
 import {
   introToStationOneTransition,
+  worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
   worldOneToWorldTwoTransition,
 } from "../screens/TransitionWorld/transitionWorld.config";
@@ -29,6 +30,7 @@ import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
   worldThreeEntryRoute,
+  worldThreeToWorldFourTransitionRoute,
   worldOneToWorldTwoTransitionRoute,
   worldTwoToWorldThreeTransitionRoute,
   worldTwoEntryRoute,
@@ -148,6 +150,12 @@ export const router = createBrowserRouter([
     path: worldTwoToWorldThreeTransitionRoute,
     element: (
       <TransitionWorldRuntimeRoute config={worldTwoToWorldThreeTransition} />
+    ),
+  },
+  {
+    path: worldThreeToWorldFourTransitionRoute,
+    element: (
+      <TransitionWorldRuntimeRoute config={worldThreeToWorldFourTransition} />
     ),
   },
   {

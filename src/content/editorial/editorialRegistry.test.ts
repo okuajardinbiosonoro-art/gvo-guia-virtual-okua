@@ -40,12 +40,18 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
-  it("resuelve los nuevos slots temporales W2 W3 y Mundo III", () => {
+  it("resuelve los slots temporales W2 W3, W3 W4 y Mundo III", () => {
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
       "TEMP — Abriendo Mundo III",
     );
     expect(resolveEditorialText("TRANS_W2_W3_SUB_01").text).toBe(
       "TEMP — Preparando el cuaderno de pruebas y ajustes.",
+    );
+    expect(resolveEditorialText("TRANS_W3_W4_TITLE_01").text).toBe(
+      "TEMP — Salida preparada de Mundo III",
+    );
+    expect(resolveEditorialText("TRANS_W3_W4_SUB_01").text).toBe(
+      "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
     );
     expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
       "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
@@ -55,6 +61,12 @@ describe("editorialRegistry", () => {
     );
     expect(resolveEditorialText("W3_ACCESSIBLE_SCENE_01").text).toBe(
       "TEMP — Entrada visual a Mundo III, presentado como un cuaderno de revisión y prototipos.",
+    );
+    expect(resolveEditorialText("W3_PROTOTIPO_NOTE_01").text).toBe(
+      "TEMP — Un prototipo no demuestra perfección: permite probar.",
+    );
+    expect(resolveEditorialText("W3_COMPLETE_LIA_01").text).toBe(
+      "TEMP — El cuaderno ya muestra cómo una prueba se transforma en ajuste.",
     );
   });
 

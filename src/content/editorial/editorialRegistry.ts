@@ -71,6 +71,24 @@ export const editorialRegistry = {
       text: "TEMP — Preparando el cuaderno de pruebas y ajustes.",
     }),
   },
+  TRANS_W3_W4_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP de transición W3→W4; reemplazar por Excel editorial.",
+      shortText: "Salida preparada",
+      slotId: "TRANS_W3_W4_TITLE_01",
+      text: "TEMP — Salida preparada de Mundo III",
+    }),
+  },
+  TRANS_W3_W4_SUB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de transición W3→W4; no construye Mundo IV.",
+      shortText: "Placeholder Mundo IV",
+      slotId: "TRANS_W3_W4_SUB_01",
+      text: "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
+    }),
+  },
   W2_INTRO_LIA_01: {
     es: temporaryEsEntry({
       emitter: "lia",
@@ -343,12 +361,172 @@ export const editorialRegistry = {
       text: "TEMP — Nada aparece terminado desde el inicio: cada señal deja una pista.",
     }),
   },
+  W3_PLANTA_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Planta inicial",
+      slotId: "W3_PLANTA_HINT_01",
+      text: "TEMP — Empieza por la planta que originó la prueba.",
+    }),
+  },
+  W3_PLANTA_NOTE_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Observación inicial",
+      slotId: "W3_PLANTA_NOTE_01",
+      text: "TEMP — La observación inicial muestra dónde puede comenzar el ajuste.",
+    }),
+  },
+  W3_PLANTA_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Abrir registro",
+      slotId: "W3_PLANTA_CONFIRM_01",
+      text: "TEMP — Primer registro abierto.",
+    }),
+  },
   W3_ACCESSIBLE_SCENE_01: {
     es: temporaryEsEntry({
       emitter: "interfaz",
       shortText: "Escena accesible Mundo III",
       slotId: "W3_ACCESSIBLE_SCENE_01",
       text: "TEMP — Entrada visual a Mundo III, presentado como un cuaderno de revisión y prototipos.",
+    }),
+  },
+  W3_ACCESSIBLE_PLANTA_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible planta",
+      slotId: "W3_ACCESSIBLE_PLANTA_01",
+      text: "TEMP — Bloque planta: observación inicial que abre una prueba ajustable.",
+    }),
+  },
+  W3_PROTOTIPO_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Prototipo",
+      slotId: "W3_PROTOTIPO_HINT_01",
+      text: "TEMP — Revisa el prototipo como una versión en construcción.",
+    }),
+  },
+  W3_PROTOTIPO_NOTE_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Versión en prueba",
+      slotId: "W3_PROTOTIPO_NOTE_01",
+      text: "TEMP — Un prototipo no demuestra perfección: permite probar.",
+    }),
+  },
+  W3_PROTOTIPO_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Prototipo revisado",
+      slotId: "W3_PROTOTIPO_CONFIRM_01",
+      text: "TEMP — Prototipo revisado.",
+    }),
+  },
+  W3_ACCESSIBLE_PROTOTIPO_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible prototipo",
+      slotId: "W3_ACCESSIBLE_PROTOTIPO_01",
+      text: "TEMP — Bloque prototipo: versión temporal que se revisa antes de corregir.",
+    }),
+  },
+  W3_SENAL_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Señal",
+      slotId: "W3_SENAL_HINT_01",
+      text: "TEMP — Mira cómo la señal obliga a corregir el camino.",
+    }),
+  },
+  W3_SENAL_NOTE_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Escucha conceptual",
+      slotId: "W3_SENAL_NOTE_01",
+      text: "TEMP — La lectura cambia cuando el sistema aprende a escuchar mejor.",
+    }),
+  },
+  W3_SENAL_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Señal registrada",
+      slotId: "W3_SENAL_CONFIRM_01",
+      text: "TEMP — Señal registrada.",
+    }),
+  },
+  W3_ACCESSIBLE_SENAL_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible señal",
+      slotId: "W3_ACCESSIBLE_SENAL_01",
+      text: "TEMP — Bloque señal: registro que muestra por qué el prototipo necesita ajuste.",
+    }),
+  },
+  W3_AJUSTADO_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Ajustado",
+      slotId: "W3_AJUSTADO_HINT_01",
+      text: "TEMP — Observa el ajuste que ordena la prueba.",
+    }),
+  },
+  W3_AJUSTADO_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Error integrado",
+      slotId: "W3_AJUSTADO_AMB_01",
+      text: "TEMP — El sistema mejora porque acepta el error como parte del recorrido.",
+    }),
+  },
+  W3_AJUSTADO_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Ajuste integrado",
+      slotId: "W3_AJUSTADO_CONFIRM_01",
+      text: "TEMP — Ajuste integrado.",
+    }),
+  },
+  W3_ACCESSIBLE_AJUSTADO_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible ajustado",
+      slotId: "W3_ACCESSIBLE_AJUSTADO_01",
+      text: "TEMP — Bloque ajustado: cierre temporal de una prueba que incorpora error y corrección.",
+    }),
+  },
+  W3_BLOCK_LOCKED_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Bloque bloqueado",
+      slotId: "W3_BLOCK_LOCKED_01",
+      text: "TEMP — Antes de abrir este bloque, revisa el paso anterior.",
+    }),
+  },
+  W3_BLOCK_REPEAT_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Repetir registro",
+      slotId: "W3_BLOCK_REPEAT_01",
+      text: "TEMP — Puedes volver a mirar este registro antes de continuar.",
+    }),
+  },
+  W3_COMPLETE_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Cierre Mundo III",
+      slotId: "W3_COMPLETE_LIA_01",
+      text: "TEMP — El cuaderno ya muestra cómo una prueba se transforma en ajuste.",
+    }),
+  },
+  W3_CONTINUE_BTN_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Continuar",
+      slotId: "W3_CONTINUE_BTN_01",
+      text: "Continuar",
     }),
   },
 } as const satisfies EditorialRegistry;

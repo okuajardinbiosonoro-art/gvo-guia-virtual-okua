@@ -8,6 +8,7 @@ import {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
   worldOneToWorldTwoTransition,
+  worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
 } from "./transitionWorld.config";
 
@@ -227,6 +228,45 @@ describe("TransitionWorld", () => {
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-gvo-progress-bar",
       "transition-world",
+    );
+  });
+
+  it("expone configuracion temporal de la transicion Mundo III a placeholder Mundo IV", () => {
+    const { container } = render(
+      <TransitionWorld config={worldThreeToWorldFourTransition} />,
+    );
+
+    expect(worldThreeToWorldFourTransition.id).toBe("world-3-to-world-4");
+    expect(worldThreeToWorldFourTransition.fromRoute).toBe("/estacion/3");
+    expect(worldThreeToWorldFourTransition.toRoute).toBe("/estacion/4");
+    expect(worldThreeToWorldFourTransition.targetPreload).toBe("none");
+    expect(worldThreeToWorldFourTransition.titleSlotId).toBe(
+      "TRANS_W3_W4_TITLE_01",
+    );
+    expect(worldThreeToWorldFourTransition.subtitleSlotId).toBe(
+      "TRANS_W3_W4_SUB_01",
+    );
+    expect(
+      screen.getByRole("heading", {
+        name: "TEMP — Salida preparada de Mundo III",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "TEMP — El siguiente espacio queda como placeholder, no como Mundo IV real.",
+      ),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
+      "data-title-slot",
+      "TRANS_W3_W4_TITLE_01",
+    );
+    expect(container.querySelector("[data-subtitle-slot]")).toHaveAttribute(
+      "data-subtitle-slot",
+      "TRANS_W3_W4_SUB_01",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-transition-world-id",
+      "world-3-to-world-4",
     );
   });
 
