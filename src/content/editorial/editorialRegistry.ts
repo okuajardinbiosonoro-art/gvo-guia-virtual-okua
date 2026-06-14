@@ -534,7 +534,7 @@ export const editorialRegistry = {
       emitter: "lia",
       shortText: "Intro Mundo IV",
       slotId: "W4_INTRO_LIA_01",
-      text: "TEMP — Aquí veremos cómo la señal recorre el sistema completo.",
+      text: "TEMP — Esta mesa muestra cómo la señal recorre el sistema completo.",
     }),
   },
   W4_INTRO_SYS_01: {
@@ -542,7 +542,7 @@ export const editorialRegistry = {
       emitter: "sistema",
       shortText: "Cadena técnica",
       slotId: "W4_INTRO_SYS_01",
-      text: "TEMP — La cadena conecta planta, bionosificador, ESP32, MIDI, Wi-Fi/UDP, router, sistema central y sonido.",
+      text: "TEMP — La cadena ordena ocho pasos: PLANTA, BIONOSIFICADOR, ESP32, MIDI, WI-FI/UDP, ROUTER, SISTEMA CENTRAL y SONIDO.",
     }),
   },
   W4_ACCESSIBLE_SCENE_01: {
@@ -551,6 +551,302 @@ export const editorialRegistry = {
       shortText: "Escena accesible Mundo IV",
       slotId: "W4_ACCESSIBLE_SCENE_01",
       text: "TEMP — Entrada visual a Mundo IV, presentada como una mesa técnica con ocho nodos ordenados.",
+    }),
+  },
+  W4_PLANTA_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Planta",
+      slotId: "W4_PLANTA_HINT_01",
+      text: "TEMP — Comienza por la planta como origen vivo de la señal.",
+    }),
+  },
+  W4_PLANTA_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Origen vivo",
+      slotId: "W4_PLANTA_CARD_01",
+      text: "TEMP — La planta inicia el recorrido: no produce música directa, genera una señal que debe ser mediada.",
+    }),
+  },
+  W4_PLANTA_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar planta",
+      slotId: "W4_PLANTA_CONFIRM_01",
+      text: "TEMP — Nodo PLANTA registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_PLANTA_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible planta",
+      slotId: "W4_ACCESSIBLE_PLANTA_01",
+      text: "TEMP — Nodo PLANTA: origen vivo de una señal que requiere mediación técnica.",
+    }),
+  },
+  W4_BIONOSIFICADOR_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Bionosificador",
+      slotId: "W4_BIONOSIFICADOR_HINT_01",
+      text: "TEMP — Revisa el BIONOSIFICADOR como primer mediador técnico.",
+    }),
+  },
+  W4_BIONOSIFICADOR_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Primer mediador",
+      slotId: "W4_BIONOSIFICADOR_CARD_01",
+      text: "TEMP — El BIONOSIFICADOR prepara la señal para que el sistema pueda interpretarla.",
+    }),
+  },
+  W4_BIONOSIFICADOR_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar bionosificador",
+      slotId: "W4_BIONOSIFICADOR_CONFIRM_01",
+      text: "TEMP — Nodo BIONOSIFICADOR registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_BIONOSIFICADOR_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible bionosificador",
+      slotId: "W4_ACCESSIBLE_BIONOSIFICADOR_01",
+      text: "TEMP — Nodo BIONOSIFICADOR: mediación inicial que prepara la señal para interpretación.",
+    }),
+  },
+  W4_ESP32_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "ESP32",
+      slotId: "W4_ESP32_HINT_01",
+      text: "TEMP — Sigue la señal hacia el ESP32.",
+    }),
+  },
+  W4_ESP32_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Entrada digital",
+      slotId: "W4_ESP32_CARD_01",
+      text: "TEMP — El ESP32 recibe datos y permite que la señal entre al flujo digital.",
+    }),
+  },
+  W4_ESP32_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar ESP32",
+      slotId: "W4_ESP32_CONFIRM_01",
+      text: "TEMP — Nodo ESP32 registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_ESP32_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible ESP32",
+      slotId: "W4_ACCESSIBLE_ESP32_01",
+      text: "TEMP — Nodo ESP32: entrada digital de datos dentro de la cadena técnica.",
+    }),
+  },
+  W4_MIDI_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "MIDI",
+      slotId: "W4_MIDI_HINT_01",
+      text: "TEMP — Observa el paso hacia MIDI.",
+    }),
+  },
+  W4_MIDI_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Eventos MIDI",
+      slotId: "W4_MIDI_CARD_01",
+      text: "TEMP — MIDI organiza la información como eventos que el sistema puede usar.",
+    }),
+  },
+  W4_MIDI_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar MIDI",
+      slotId: "W4_MIDI_CONFIRM_01",
+      text: "TEMP — Nodo MIDI registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_MIDI_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible MIDI",
+      slotId: "W4_ACCESSIBLE_MIDI_01",
+      text: "TEMP — Nodo MIDI: organización de datos como eventos utilizables por el sistema.",
+    }),
+  },
+  W4_WIFI_UDP_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "WI-FI/UDP",
+      slotId: "W4_WIFI_UDP_HINT_01",
+      text: "TEMP — Revisa el envío por WI-FI/UDP.",
+    }),
+  },
+  W4_WIFI_UDP_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Transporte",
+      slotId: "W4_WIFI_UDP_CARD_01",
+      text: "TEMP — WI-FI/UDP transporta los datos para mantener la cadena en movimiento.",
+    }),
+  },
+  W4_WIFI_UDP_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar WI-FI/UDP",
+      slotId: "W4_WIFI_UDP_CONFIRM_01",
+      text: "TEMP — Nodo WI-FI/UDP registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_WIFI_UDP_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible WI-FI/UDP",
+      slotId: "W4_ACCESSIBLE_WIFI_UDP_01",
+      text: "TEMP — Nodo WI-FI/UDP: transporte de datos dentro de la cadena temporal.",
+    }),
+  },
+  W4_ROUTER_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Router",
+      slotId: "W4_ROUTER_HINT_01",
+      text: "TEMP — Ubica el ROUTER dentro del recorrido.",
+    }),
+  },
+  W4_ROUTER_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Ruta de datos",
+      slotId: "W4_ROUTER_CARD_01",
+      text: "TEMP — El ROUTER sostiene el paso de datos entre los puntos del sistema.",
+    }),
+  },
+  W4_ROUTER_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar router",
+      slotId: "W4_ROUTER_CONFIRM_01",
+      text: "TEMP — Nodo ROUTER registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_ROUTER_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible router",
+      slotId: "W4_ACCESSIBLE_ROUTER_01",
+      text: "TEMP — Nodo ROUTER: punto que sostiene el paso de datos en el recorrido.",
+    }),
+  },
+  W4_SISTEMA_CENTRAL_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Sistema central",
+      slotId: "W4_SISTEMA_CENTRAL_HINT_01",
+      text: "TEMP — Revisa cómo llega la señal al SISTEMA CENTRAL.",
+    }),
+  },
+  W4_SISTEMA_CENTRAL_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Organización central",
+      slotId: "W4_SISTEMA_CENTRAL_CARD_01",
+      text: "TEMP — El SISTEMA CENTRAL reúne la información y organiza la respuesta.",
+    }),
+  },
+  W4_SISTEMA_CENTRAL_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar sistema central",
+      slotId: "W4_SISTEMA_CENTRAL_CONFIRM_01",
+      text: "TEMP — Nodo SISTEMA CENTRAL registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_SISTEMA_CENTRAL_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible sistema central",
+      slotId: "W4_ACCESSIBLE_SISTEMA_CENTRAL_01",
+      text: "TEMP — Nodo SISTEMA CENTRAL: reunión de datos y organización de la respuesta.",
+    }),
+  },
+  W4_SONIDO_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Sonido",
+      slotId: "W4_SONIDO_HINT_01",
+      text: "TEMP — Cierra la cadena observando el SONIDO.",
+    }),
+  },
+  W4_SONIDO_CARD_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Resultado mediado",
+      slotId: "W4_SONIDO_CARD_01",
+      text: "TEMP — El SONIDO es el resultado mediado de la cadena, no una voz directa de la planta.",
+    }),
+  },
+  W4_SONIDO_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar sonido",
+      slotId: "W4_SONIDO_CONFIRM_01",
+      text: "TEMP — Nodo SONIDO registrado.",
+    }),
+  },
+  W4_ACCESSIBLE_SONIDO_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible sonido",
+      slotId: "W4_ACCESSIBLE_SONIDO_01",
+      text: "TEMP — Nodo SONIDO: resultado mediado de la cadena técnica completa.",
+    }),
+  },
+  W4_NODE_LOCKED_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Nodo bloqueado",
+      slotId: "W4_NODE_LOCKED_01",
+      text: "TEMP — Antes de abrir este nodo, revisa el paso anterior.",
+    }),
+  },
+  W4_NODE_REPEAT_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Releer nodo",
+      slotId: "W4_NODE_REPEAT_01",
+      text: "TEMP — Puedes volver a leer este nodo antes de continuar.",
+    }),
+  },
+  W4_COMPLETE_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Cierre Mundo IV",
+      slotId: "W4_COMPLETE_LIA_01",
+      text: "TEMP — La cadena ya muestra cómo una señal se convierte en experiencia organizada.",
+    }),
+  },
+  W4_COMPLETE_SYS_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Recorrido completo",
+      slotId: "W4_COMPLETE_SYS_01",
+      text: "TEMP — Recorrido técnico completo registrado.",
+    }),
+  },
+  W4_CONTINUE_BTN_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Continuar",
+      slotId: "W4_CONTINUE_BTN_01",
+      text: "Continuar",
     }),
   },
 } as const satisfies EditorialRegistry;

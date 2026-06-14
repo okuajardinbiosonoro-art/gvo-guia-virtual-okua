@@ -9,51 +9,6 @@
   gap: 16px;
 }
 
-.world4-root-system-table {
-  display: grid;
-  gap: 8px;
-  padding: 12px;
-  margin: 0;
-  overflow: hidden;
-  list-style: none;
-  border: 1px solid rgb(47 111 94 / 24%);
-  border-radius: var(--gvo-radius);
-  background:
-    linear-gradient(135deg, rgb(47 111 94 / 8%), rgb(191 126 48 / 10%)),
-    rgb(255 255 255 / 54%);
-}
-
-.world4-root-node {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 8px;
-  align-items: center;
-  min-height: 42px;
-  padding: 8px 10px;
-  border: 1px solid rgb(47 111 94 / 30%);
-  border-radius: var(--gvo-radius);
-  color: var(--gvo-text);
-  background: rgb(255 255 255 / 58%);
-}
-
-.world4-root-node__order,
-.world4-root-node__label {
-  font-family: var(--gvo-font-ui);
-  font-size: var(--gvo-text-ui-size);
-  line-height: var(--gvo-line-height-ui);
-}
-
-.world4-root-node__order {
-  color: var(--gvo-accent);
-  font-weight: var(--gvo-font-weight-bold);
-}
-
-.world4-root-node__label {
-  min-width: 0;
-  font-weight: var(--gvo-font-weight-semibold);
-  overflow-wrap: anywhere;
-}
-
 .world4-root-copy {
   display: grid;
   gap: 10px;
@@ -89,7 +44,121 @@
   font-weight: var(--gvo-font-weight-semibold);
 }
 
-.world4-root-status {
+.world4-root-copy__text--system {
+  padding-left: 10px;
+  border-left: 3px solid rgb(191 126 48 / 42%);
+}
+
+.world4-root-nodes {
+  display: grid;
+  gap: 8px;
+}
+
+.world4-root-node {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+  border: 1px solid var(--gvo-border);
+  border-radius: var(--gvo-radius);
+  color: var(--gvo-text);
+  text-align: left;
+  background: rgb(255 255 255 / 58%);
+  cursor: pointer;
+}
+
+.world4-root-node:disabled {
+  color: rgb(88 102 95 / 68%);
+  cursor: not-allowed;
+  background: rgb(88 102 95 / 7%);
+}
+
+.world4-root-node--active {
+  border-color: rgb(47 111 94 / 70%);
+  background: rgb(47 111 94 / 10%);
+}
+
+.world4-root-node--completed {
+  border-color: rgb(191 126 48 / 42%);
+}
+
+.world4-root-node__order,
+.world4-root-node__label,
+.world4-root-node__state {
+  font-family: var(--gvo-font-ui);
+  font-size: var(--gvo-text-ui-size);
+  line-height: var(--gvo-line-height-ui);
+}
+
+.world4-root-node__order,
+.world4-root-node__state {
+  font-weight: var(--gvo-font-weight-bold);
+}
+
+.world4-root-node__order {
+  color: var(--gvo-accent);
+}
+
+.world4-root-node__label {
+  min-width: 0;
+  font-weight: var(--gvo-font-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.world4-root-node__state {
+  color: var(--gvo-muted);
+}
+
+.world4-root-detail {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gvo-border);
+}
+
+.world4-root-detail__eyebrow {
+  margin: 0;
+  color: var(--gvo-accent);
+  font-family: var(--gvo-font-ui);
+  font-size: var(--gvo-text-ui-size);
+  font-weight: var(--gvo-font-weight-bold);
+  line-height: var(--gvo-line-height-ui);
+}
+
+.world4-root-detail h2 {
+  margin: 0;
+  color: var(--gvo-text);
+  font-family: var(--gvo-font-heading);
+  font-size: var(--gvo-text-heading-size);
+  font-weight: var(--gvo-font-weight-semibold);
+  line-height: var(--gvo-line-height-heading);
+}
+
+.world4-root-primary-action {
+  justify-self: start;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgb(47 111 94 / 54%);
+  border-radius: var(--gvo-radius);
+  color: var(--gvo-surface);
+  font-family: var(--gvo-font-ui);
+  font-size: var(--gvo-text-ui-size);
+  font-weight: var(--gvo-font-weight-bold);
+  line-height: var(--gvo-line-height-ui);
+  background: var(--gvo-accent);
+  cursor: pointer;
+}
+
+.world4-root-primary-action--continue {
+  background: var(--gvo-amber);
+  border-color: rgb(191 126 48 / 70%);
+}
+
+.world4-root-note {
+  margin: 0;
   display: grid;
   gap: 8px;
   padding: 10px;
@@ -101,8 +170,16 @@
   line-height: var(--gvo-line-height-dialog);
 }
 
-.world4-root-status p {
-  margin: 0;
+.world4-root-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
 }
 
 @media (width >= 720px) {
@@ -110,7 +187,7 @@
     gap: 20px;
   }
 
-  .world4-root-system-table {
+  .world4-root-nodes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

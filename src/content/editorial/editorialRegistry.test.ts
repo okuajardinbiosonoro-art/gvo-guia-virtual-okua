@@ -69,14 +69,24 @@ describe("editorialRegistry", () => {
       "TEMP — El cuaderno ya muestra cómo una prueba se transforma en ajuste.",
     );
     expect(resolveEditorialText("W4_INTRO_LIA_01").text).toBe(
-      "TEMP — Aquí veremos cómo la señal recorre el sistema completo.",
+      "TEMP — Esta mesa muestra cómo la señal recorre el sistema completo.",
     );
     expect(resolveEditorialText("W4_INTRO_SYS_01").text).toBe(
-      "TEMP — La cadena conecta planta, bionosificador, ESP32, MIDI, Wi-Fi/UDP, router, sistema central y sonido.",
+      "TEMP — La cadena ordena ocho pasos: PLANTA, BIONOSIFICADOR, ESP32, MIDI, WI-FI/UDP, ROUTER, SISTEMA CENTRAL y SONIDO.",
     );
     expect(resolveEditorialText("W4_ACCESSIBLE_SCENE_01").text).toBe(
       "TEMP — Entrada visual a Mundo IV, presentada como una mesa técnica con ocho nodos ordenados.",
     );
+    expect(resolveEditorialText("W4_BIONOSIFICADOR_CARD_01").text).toBe(
+      "TEMP — El BIONOSIFICADOR prepara la señal para que el sistema pueda interpretarla.",
+    );
+    expect(resolveEditorialText("W4_WIFI_UDP_CONFIRM_01").text).toBe(
+      "TEMP — Nodo WI-FI/UDP registrado.",
+    );
+    expect(resolveEditorialText("W4_SONIDO_CARD_01").text).toBe(
+      "TEMP — El SONIDO es el resultado mediado de la cadena, no una voz directa de la planta.",
+    );
+    expect(resolveEditorialText("W4_CONTINUE_BTN_01").text).toBe("Continuar");
   });
 
   it("rechaza slots editoriales no registrados", () => {
