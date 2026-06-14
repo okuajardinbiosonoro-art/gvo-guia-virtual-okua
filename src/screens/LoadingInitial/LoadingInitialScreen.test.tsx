@@ -166,6 +166,7 @@ describe("LoadingInitialScreen", () => {
     const { container } = render(<LoadingInitialScreen />);
     const progress = screen.getByRole("progressbar");
 
+    expect(progress).toHaveAttribute("data-gvo-progress-bar", "loading-initial");
     expect(
       container.querySelector(".loading-initial__progress-track"),
     ).toBeInTheDocument();

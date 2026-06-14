@@ -3,6 +3,7 @@ export {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
   transitionWorldConfigs,
+  worldOneToWorldTwoTransition,
 } from "./transitionWorld.config";
 export type {
   TransitionPortalState,

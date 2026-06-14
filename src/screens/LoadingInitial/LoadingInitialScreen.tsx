@@ -2,6 +2,9 @@ import "./LoadingInitialScreen.css";
 
 import type { CSSProperties } from "react";
 
+import { GvoProgressBar } from "../../components/progress";
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { loadingInitialAssets } from "./loadingInitialAssets";
 import { loadingInitialCopy } from "./loadingInitialCopy";
 import {
@@ -16,8 +19,6 @@ import {
   LIA_FRAME_REGISTRATION_VERSION,
   liaFrameRegistrationCssVariables,
 } from "./liaFrameRegistration";
-import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
-import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 
 const sceneAssetStyle = {
   "--loading-lia-sprite": `url("${loadingInitialAssets.lia.src}")`,
@@ -167,19 +168,17 @@ export function LoadingInitialScreen({
           <p id="loading-initial-description">{loadingInitialCopy.subtitle}</p>
         </div>
 
-        <div
+        <GvoProgressBar
+          variant="loading-initial"
           className="loading-initial__progress"
-          role="progressbar"
-          aria-labelledby="loading-initial-title"
-          aria-valuetext={loadingInitialCopy.title}
-          aria-valuemin={0}
-          aria-valuemax={100}
+          ariaLabelledBy="loading-initial-title"
+          ariaValueText={loadingInitialCopy.title}
         >
           <span className="loading-initial__progress-track" aria-hidden="true">
             <span className="loading-initial__progress-fill" />
             <span className="loading-initial__progress-marker" />
           </span>
-        </div>
+        </GvoProgressBar>
       </section>
     </main>
   );

@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { worldTwoPlaceholderRoute } from "../../app/routes";
+import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { World1RootStageFrame } from "./layout";
@@ -345,11 +345,11 @@ export function World1RootScreen() {
             disabled={!isReadyToContinue}
             aria-disabled={isReadyToContinue ? "false" : "true"}
             data-world1-exit-target={
-              isReadyToContinue ? worldTwoPlaceholderRoute : undefined
+              isReadyToContinue ? worldOneToWorldTwoTransitionRoute : undefined
             }
             onClick={
               isReadyToContinue
-                ? () => navigate(worldTwoPlaceholderRoute)
+                ? () => navigate(worldOneToWorldTwoTransitionRoute)
                 : undefined
             }
           >

@@ -2,7 +2,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { worldTwoPlaceholderRoute } from "../../app/routes";
+import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
@@ -385,13 +385,13 @@ describe("World1RootScreen", () => {
     expect(continueButton).toHaveAttribute("aria-disabled", "false");
     expect(continueButton).toHaveAttribute(
       "data-world1-exit-target",
-      worldTwoPlaceholderRoute,
+      worldOneToWorldTwoTransitionRoute,
     );
 
     fireEvent.click(continueButton);
 
     expect(screen.getByTestId("current-route")).toHaveTextContent(
-      worldTwoPlaceholderRoute,
+      worldOneToWorldTwoTransitionRoute,
     );
   });
 

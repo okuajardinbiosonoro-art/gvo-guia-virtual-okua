@@ -7,6 +7,7 @@ import { TransitionWorld } from "./TransitionWorld";
 import {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
+  worldOneToWorldTwoTransition,
 } from "./transitionWorld.config";
 
 describe("TransitionWorld", () => {
@@ -116,6 +117,10 @@ describe("TransitionWorld", () => {
       "transition_root_progress_spark",
     );
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-gvo-progress-bar",
+      "transition-world",
+    );
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-progress-spark-alignment",
       "channel-centered",
     );
@@ -149,6 +154,40 @@ describe("TransitionWorld", () => {
     expect(introToStationOneTransition.reducedMotionDurationMs).toBe(1000);
     expect(introToStationOneTransition.fromRoute).toBe("/portada");
     expect(introToStationOneTransition.toRoute).toBe("/estacion/1");
+    expect(introToStationOneTransition.targetPreload).toBe("world1RootInitial");
+  });
+
+  it("expone configuracion temporal de la transicion Mundo I a Mundo II", () => {
+    const { container } = render(
+      <TransitionWorld config={worldOneToWorldTwoTransition} />,
+    );
+
+    expect(worldOneToWorldTwoTransition.id).toBe("world-1-to-world-2");
+    expect(worldOneToWorldTwoTransition.fromRoute).toBe("/estacion/1");
+    expect(worldOneToWorldTwoTransition.toRoute).toBe("/estacion/2");
+    expect(worldOneToWorldTwoTransition.targetPreload).toBe("none");
+    expect(worldOneToWorldTwoTransition.titleSlotId).toBe(
+      "TRANS_W1_W2_TITLE_01",
+    );
+    expect(worldOneToWorldTwoTransition.subtitleSlotId).toBe(
+      "TRANS_W1_W2_SUB_01",
+    );
+    expect(
+      screen.getByRole("heading", { name: "Abriendo Mundo II" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Preparando el pulso invisible.")).toBeInTheDocument();
+    expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
+      "data-title-slot",
+      "TRANS_W1_W2_TITLE_01",
+    );
+    expect(container.querySelector("[data-subtitle-slot]")).toHaveAttribute(
+      "data-subtitle-slot",
+      "TRANS_W1_W2_SUB_01",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-transition-world-id",
+      "world-1-to-world-2",
+    );
   });
 
   it("preview no ejecuta onComplete aunque termine la duracion", () => {

@@ -14,7 +14,11 @@ import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import { TransitionWorld } from "../screens/TransitionWorld";
-import { introToStationOneTransition } from "../screens/TransitionWorld/transitionWorld.config";
+import {
+  introToStationOneTransition,
+  worldOneToWorldTwoTransition,
+} from "../screens/TransitionWorld/transitionWorld.config";
+import type { TransitionWorldConfig } from "../screens/TransitionWorld/transitionWorld.types";
 import { World1RootScreen } from "../screens/World1Root";
 import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
 import { World2RootScreen } from "../screens/World2Root";
@@ -22,6 +26,7 @@ import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
+  worldOneToWorldTwoTransitionRoute,
   worldTwoEntryRoute,
 } from "./routes";
 
@@ -81,18 +86,22 @@ function JourneyLoadingRoute() {
   );
 }
 
-function TransitionWorldRuntimeRoute() {
+function TransitionWorldRuntimeRoute({
+  config,
+}: {
+  config: TransitionWorldConfig;
+}) {
   const navigate = useNavigate();
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const handleComplete = useCallback(() => {
-    navigate(introToStationOneTransition.toRoute, { replace: true });
-  }, [navigate]);
+    navigate(config.toRoute, { replace: true });
+  }, [config.toRoute, navigate]);
 
   return (
     <TransitionWorld
-      config={introToStationOneTransition}
+      config={config}
       variant="runtime"
       isReducedMotion={prefersReducedMotion}
       onComplete={handleComplete}
@@ -123,7 +132,13 @@ export const router = createBrowserRouter([
   },
   {
     path: coverToWorldOneTransitionRoute,
-    element: <TransitionWorldRuntimeRoute />,
+    element: <TransitionWorldRuntimeRoute config={introToStationOneTransition} />,
+  },
+  {
+    path: worldOneToWorldTwoTransitionRoute,
+    element: (
+      <TransitionWorldRuntimeRoute config={worldOneToWorldTwoTransition} />
+    ),
   },
   {
     path: "/estacion/1",

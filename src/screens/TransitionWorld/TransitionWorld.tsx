@@ -25,17 +25,21 @@ export function TransitionWorld({
 }: TransitionWorldProps) {
   const completionCalledRef = useRef(false);
   const durationCompleteRef = useRef(false);
-  const targetAssetsReadyRef = useRef(variant !== "runtime");
+  const targetAssetsReadyRef = useRef(
+    variant !== "runtime" || config.targetPreload === "none",
+  );
   const transitionRootPreload = useAssetPreloader(
     screenAssetBundles.transitionRootCritical,
     {
       timeoutMs: 8000,
     },
   );
+  const shouldPreloadWorld1RootInitial =
+    variant === "runtime" && config.targetPreload === "world1RootInitial";
   const world1RootInitialPreload = useAssetPreloader(
     screenAssetBundles.world1RootInitial,
     {
-      enabled: variant === "runtime",
+      enabled: shouldPreloadWorld1RootInitial,
       timeoutMs: 9000,
     },
   );
@@ -50,8 +54,10 @@ export function TransitionWorld({
 
   useEffect(() => {
     targetAssetsReadyRef.current =
-      variant !== "runtime" || world1RootInitialPreload.ready;
-  }, [variant, world1RootInitialPreload.ready]);
+      variant !== "runtime" ||
+      config.targetPreload === "none" ||
+      world1RootInitialPreload.ready;
+  }, [config.targetPreload, variant, world1RootInitialPreload.ready]);
 
   useEffect(() => {
     if (
@@ -87,6 +93,7 @@ export function TransitionWorld({
     if (
       variant !== "runtime" ||
       !onComplete ||
+      config.targetPreload !== "world1RootInitial" ||
       !durationCompleteRef.current ||
       !world1RootInitialPreload.ready ||
       completionCalledRef.current
@@ -96,7 +103,7 @@ export function TransitionWorld({
 
     completionCalledRef.current = true;
     onComplete();
-  }, [onComplete, variant, world1RootInitialPreload.ready]);
+  }, [config.targetPreload, onComplete, variant, world1RootInitialPreload.ready]);
 
   return (
     <main
@@ -116,9 +123,10 @@ export function TransitionWorld({
       data-navigation-locked={variant === "runtime" ? "true" : "false"}
       data-critical-assets-ready={transitionRootPreload.ready ? "true" : "false"}
       data-critical-assets-status={transitionRootPreload.status}
+      data-target-preload={config.targetPreload}
       data-target-assets-ready={
         variant === "runtime"
-          ? world1RootInitialPreload.ready
+          ? config.targetPreload === "none" || world1RootInitialPreload.ready
             ? "true"
             : "false"
           : undefined
@@ -153,7 +161,12 @@ export function TransitionWorld({
           />
           <TransitionLiaSprite />
         </div>
-        <TransitionText title={config.title} subtitle={config.subtitle} />
+        <TransitionText
+          title={config.title}
+          titleSlotId={config.titleSlotId}
+          subtitle={config.subtitle}
+          subtitleSlotId={config.subtitleSlotId}
+        />
         <TransitionProgress
           durationMs={effectiveDurationMs}
           isReducedMotion={isReducedMotion}

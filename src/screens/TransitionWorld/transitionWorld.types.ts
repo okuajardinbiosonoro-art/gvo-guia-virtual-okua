@@ -17,8 +17,11 @@ export type TransitionWorldPalette = {
 export type TransitionWorldConfig = {
   id: string;
   fromRoute: string;
+  subtitleSlotId?: string;
+  targetPreload: "none" | "world1RootInitial";
   toRoute: string;
   title: string;
+  titleSlotId?: string;
   subtitle: string;
   durationMs: number;
   reducedMotionDurationMs: number;

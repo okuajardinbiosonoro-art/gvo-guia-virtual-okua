@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
 import { transitionRootAssetUrlsById } from "../../../assets/transition-world/root/transition-root-assets";
+import { GvoProgressBar } from "../../../components/progress";
 import styles from "../TransitionWorld.module.css";
 import type { TransitionWorldPalette } from "../transitionWorld.types";
 
@@ -27,20 +28,18 @@ export function TransitionProgress({
   } as CSSProperties;
 
   return (
-    <div
+    <GvoProgressBar
+      variant="transition-world"
       className={styles.progress}
-      data-testid="transition-world-progress"
-      data-motion-layer="progress"
-      data-progress-motion="fill-and-spark"
-      data-progress-spark-alignment="channel-centered"
-      data-reduced-motion={isReducedMotion ? "true" : "false"}
-      role="progressbar"
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={72}
-      aria-valuetext="Preparando recorrido"
+      testId="transition-world-progress"
+      dataMotionLayer="progress"
+      dataProgressMotion="fill-and-spark"
+      dataProgressSparkAlignment="channel-centered"
+      isReducedMotion={isReducedMotion}
+      ariaValueNow={72}
+      ariaValueText="Preparando recorrido"
       style={style}
-      data-progress-preview="motion"
+      dataProgressPreview="motion"
     >
       <span
         className={styles.progressTrackFrame}
@@ -89,6 +88,6 @@ export function TransitionProgress({
           />
         </picture>
       </span>
-    </div>
+    </GvoProgressBar>
   );
 }

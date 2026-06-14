@@ -1,0 +1,9 @@
+.gvo-progress-bar {
+  box-sizing: border-box;
+}
+
+.gvo-progress-bar *,
+.gvo-progress-bar *::before,
+.gvo-progress-bar *::after {
+  box-sizing: border-box;
+}
