@@ -1,7 +1,12 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
+import {
+  WORLD2_REQUIRED_SLOT_COUNT,
+  world2EditorialSlots,
+  world2LayerDefinitions,
+} from "../../content/world2EditorialSlots";
 import { World2RootScreen } from "./World2RootScreen";
 
 function renderWorld2RootScreen() {
@@ -17,7 +22,7 @@ describe("World2RootScreen", () => {
     cleanup();
   });
 
-  it("renderiza una entrada preliminar de Mundo II sin assets ni permisos sensibles", () => {
+  it("renderiza Mundo II temporal con los 32 slots editoriales y sin permisos sensibles", () => {
     const { container } = renderWorld2RootScreen();
 
     expect(
@@ -25,23 +30,104 @@ describe("World2RootScreen", () => {
         name: "Mundo II: Lía y el pulso invisible",
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Estación II en preparación")).toBeInTheDocument();
+    expect(
+      screen.getByText("TEMP — Entremos al pulso invisible de la planta."),
+    ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "La ruta desde Mundo I ya está conectada. La experiencia completa de este mundo se construirá en una fase posterior.",
+        "TEMP — Aquí la señal aún no es sonido: primero debe ser cuidada.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText("QR y cámara")).toBeInTheDocument();
-    expect(screen.getByText("Bloqueados en esta fase.")).toBeInTheDocument();
-    expect(container.querySelector("[data-world2-entry]")).toHaveAttribute(
-      "data-world2-entry",
-      "prepared",
+    expect(Object.keys(world2EditorialSlots)).toHaveLength(
+      WORLD2_REQUIRED_SLOT_COUNT,
+    );
+    expect(
+      Object.values(world2EditorialSlots).every((slot) => slot.status === "TEMP"),
+    ).toBe(true);
+    expect(container.querySelector("[data-world2-experience]")).toHaveAttribute(
+      "data-world2-experience",
+      "temporary",
+    );
+    expect(container.querySelector("[data-world2-state]")).toHaveAttribute(
+      "data-world2-state",
+      "intro",
+    );
+    expect(container.querySelector("[data-world2-slot-count]")).toHaveAttribute(
+      "data-world2-slot-count",
+      "32",
     );
     expect(container.querySelector("[data-sensitive-permissions]"))
       .toHaveAttribute("data-sensitive-permissions", "blocked");
+    expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
+      "data-qr-camera",
+      "blocked",
+    );
     expect(container.querySelectorAll("img")).toHaveLength(0);
     expect(container.querySelectorAll("audio")).toHaveLength(0);
     expect(container.querySelectorAll("video")).toHaveLength(0);
     expect(container.querySelectorAll("canvas")).toHaveLength(0);
+  });
+
+  it("avanza por las capas en orden, permite relectura y llega a ready_to_continue", () => {
+    const { container } = renderWorld2RootScreen();
+    const getState = () =>
+      container
+        .querySelector("[data-world2-state]")
+        ?.getAttribute("data-world2-state");
+
+    fireEvent.click(screen.getByRole("button", { name: "Iniciar lectura temporal" }));
+    expect(getState()).toBe("planta_viva");
+    expect(
+      container.querySelector('[data-world2-layer="senal"]'),
+    ).toHaveAttribute("data-layer-state", "locked");
+
+    for (const [index, layer] of world2LayerDefinitions.entries()) {
+      expect(getState()).toBe(layer.id);
+      expect(
+        screen.getByText(world2EditorialSlots[layer.hintSlot].text),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(world2EditorialSlots[layer.ambientSlot].text),
+      ).toBeInTheDocument();
+
+      if (index === 1) {
+        fireEvent.click(
+          container.querySelector(
+            '[data-world2-layer="planta_viva"]',
+          ) as HTMLButtonElement,
+        );
+        expect(
+          screen.getByText(world2EditorialSlots.W2_LAYER_REPEAT_01.text),
+        ).toBeInTheDocument();
+        expect(getState()).toBe("senal");
+        fireEvent.click(
+          container.querySelector(
+            '[data-world2-layer="senal"]',
+          ) as HTMLButtonElement,
+        );
+      }
+
+      fireEvent.click(screen.getByText(world2EditorialSlots[layer.confirmSlot].text));
+    }
+
+    expect(getState()).toBe("ready_to_continue");
+    expect(
+      screen.getByText(world2EditorialSlots.W2_COMPLETE_LIA_01.text),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", {
+        name: world2EditorialSlots.W2_CONTINUE_BTN_01.text,
+      }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: world2EditorialSlots.W2_CONTINUE_BTN_01.text,
+      }),
+    );
+    expect(
+      screen.getByText("Salida preparada: Mundo III no se construye en 009A."),
+    ).toBeInTheDocument();
+    expect(getState()).toBe("ready_to_continue");
   });
 });
