@@ -1,5 +1,5 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
 import {
@@ -9,10 +9,17 @@ import {
 } from "../../content/world2EditorialSlots";
 import { World2RootScreen } from "./World2RootScreen";
 
+function LocationProbe() {
+  const location = useLocation();
+
+  return <span data-testid="current-location">{location.pathname}</span>;
+}
+
 function renderWorld2RootScreen() {
   return render(
     <MemoryRouter initialEntries={["/estacion/2"]}>
       <World2RootScreen />
+      <LocationProbe />
     </MemoryRouter>,
   );
 }
@@ -120,14 +127,17 @@ describe("World2RootScreen", () => {
       }),
     ).toBeInTheDocument();
 
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: world2EditorialSlots.W2_CONTINUE_BTN_01.text,
-      }),
+    const continueButton = screen.getByRole("button", {
+      name: world2EditorialSlots.W2_CONTINUE_BTN_01.text,
+    });
+
+    expect(continueButton).toHaveAttribute(
+      "data-world2-exit-action",
+      "navigate_to_transition",
     );
-    expect(
-      screen.getByText("Salida preparada: Mundo III no se construye en 009A."),
-    ).toBeInTheDocument();
-    expect(getState()).toBe("ready_to_continue");
+    fireEvent.click(continueButton);
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-2-to-world-3",
+    );
   });
 });

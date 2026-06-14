@@ -1,6 +1,13 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
-import { worldOneEntryRoute, worldTwoEntryRoute } from "../../app/routes";
-import { worldOneToWorldTwoTransitionCopy } from "../../content/transitionEditorialSlots";
+import {
+  worldOneEntryRoute,
+  worldThreeEntryRoute,
+  worldTwoEntryRoute,
+} from "../../app/routes";
+import {
+  worldOneToWorldTwoTransitionCopy,
+  worldTwoToWorldThreeTransitionCopy,
+} from "../../content/transitionEditorialSlots";
 
 export const TRANSITION_WORLD_VERSION = "T003E7C_TYPOGRAPHY_TOKENS";
 
@@ -56,7 +63,35 @@ export const worldOneToWorldTwoTransition: TransitionWorldConfig = {
   },
 };
 
+export const worldTwoToWorldThreeTransition: TransitionWorldConfig = {
+  id: "world-2-to-world-3",
+  fromRoute: worldTwoEntryRoute,
+  toRoute: worldThreeEntryRoute,
+  targetPreload: "none",
+  title: worldTwoToWorldThreeTransitionCopy.title.text,
+  titleSlotId: worldTwoToWorldThreeTransitionCopy.title.id,
+  subtitle: worldTwoToWorldThreeTransitionCopy.subtitle.text,
+  subtitleSlotId: worldTwoToWorldThreeTransitionCopy.subtitle.id,
+  durationMs: 2300,
+  reducedMotionDurationMs: 1000,
+  portalLabel: "Portal de transicion hacia Mundo III",
+  portalState: "open",
+  portalSymbol: "root",
+  palette: {
+    background: "#F7EFD8",
+    mist: "#E6DCF7",
+    portalCore: "#FFF5C8",
+    portalEdge: "#C9B8E8",
+    portalGlow: "#E3A33E",
+    text: "#4E3F35",
+    textSoft: "#7E6248",
+    progressTrack: "#D7C9A8",
+    progressFill: "#E3A33E",
+  },
+};
+
 export const transitionWorldConfigs = {
   introToStationOne: introToStationOneTransition,
   worldOneToWorldTwo: worldOneToWorldTwoTransition,
+  worldTwoToWorldThree: worldTwoToWorldThreeTransition,
 } as const;

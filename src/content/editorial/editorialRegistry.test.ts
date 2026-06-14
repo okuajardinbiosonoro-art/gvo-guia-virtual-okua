@@ -40,6 +40,24 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
+  it("resuelve los nuevos slots temporales W2 W3 y Mundo III", () => {
+    expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
+      "TEMP — Abriendo Mundo III",
+    );
+    expect(resolveEditorialText("TRANS_W2_W3_SUB_01").text).toBe(
+      "TEMP — Preparando el cuaderno de pruebas y ajustes.",
+    );
+    expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
+      "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
+    );
+    expect(resolveEditorialText("W3_INTRO_AMB_01").text).toBe(
+      "TEMP — Nada aparece terminado desde el inicio: cada señal deja una pista.",
+    );
+    expect(resolveEditorialText("W3_ACCESSIBLE_SCENE_01").text).toBe(
+      "TEMP — Entrada visual a Mundo III, presentado como un cuaderno de revisión y prototipos.",
+    );
+  });
+
   it("rechaza slots editoriales no registrados", () => {
     expect(() =>
       resolveEditorialText("W2_SLOT_INEXISTENTE" as EditorialSlotId),

@@ -8,6 +8,7 @@ import {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
   worldOneToWorldTwoTransition,
+  worldTwoToWorldThreeTransition,
 } from "./transitionWorld.config";
 
 describe("TransitionWorld", () => {
@@ -187,6 +188,45 @@ describe("TransitionWorld", () => {
     expect(container.querySelector("main")).toHaveAttribute(
       "data-transition-world-id",
       "world-1-to-world-2",
+    );
+  });
+
+  it("expone configuracion temporal de la transicion Mundo II a Mundo III", () => {
+    const { container } = render(
+      <TransitionWorld config={worldTwoToWorldThreeTransition} />,
+    );
+
+    expect(worldTwoToWorldThreeTransition.id).toBe("world-2-to-world-3");
+    expect(worldTwoToWorldThreeTransition.fromRoute).toBe("/estacion/2");
+    expect(worldTwoToWorldThreeTransition.toRoute).toBe("/estacion/3");
+    expect(worldTwoToWorldThreeTransition.targetPreload).toBe("none");
+    expect(worldTwoToWorldThreeTransition.titleSlotId).toBe(
+      "TRANS_W2_W3_TITLE_01",
+    );
+    expect(worldTwoToWorldThreeTransition.subtitleSlotId).toBe(
+      "TRANS_W2_W3_SUB_01",
+    );
+    expect(
+      screen.getByRole("heading", { name: "TEMP — Abriendo Mundo III" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("TEMP — Preparando el cuaderno de pruebas y ajustes."),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
+      "data-title-slot",
+      "TRANS_W2_W3_TITLE_01",
+    );
+    expect(container.querySelector("[data-subtitle-slot]")).toHaveAttribute(
+      "data-subtitle-slot",
+      "TRANS_W2_W3_SUB_01",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-transition-world-id",
+      "world-2-to-world-3",
+    );
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-gvo-progress-bar",
+      "transition-world",
     );
   });
 

@@ -16,17 +16,21 @@ import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import { TransitionWorld } from "../screens/TransitionWorld";
 import {
   introToStationOneTransition,
+  worldTwoToWorldThreeTransition,
   worldOneToWorldTwoTransition,
 } from "../screens/TransitionWorld/transitionWorld.config";
 import type { TransitionWorldConfig } from "../screens/TransitionWorld/transitionWorld.types";
 import { World1RootScreen } from "../screens/World1Root";
 import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
 import { World2RootScreen } from "../screens/World2Root";
+import { World3RootScreen } from "../screens/World3Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
+  worldThreeEntryRoute,
   worldOneToWorldTwoTransitionRoute,
+  worldTwoToWorldThreeTransitionRoute,
   worldTwoEntryRoute,
 } from "./routes";
 
@@ -141,12 +145,22 @@ export const router = createBrowserRouter([
     ),
   },
   {
+    path: worldTwoToWorldThreeTransitionRoute,
+    element: (
+      <TransitionWorldRuntimeRoute config={worldTwoToWorldThreeTransition} />
+    ),
+  },
+  {
     path: "/estacion/1",
     element: <World1RootScreen />,
   },
   {
     path: worldTwoEntryRoute,
     element: <World2RootScreen />,
+  },
+  {
+    path: worldThreeEntryRoute,
+    element: <World3RootScreen />,
   },
   {
     path: "/estacion/:stationId",

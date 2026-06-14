@@ -1,15 +1,17 @@
 import "./World2RootScreen.css";
 
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { MobileShell } from "../../components/layout/MobileShell";
+import { worldTwoToWorldThreeTransitionRoute } from "../../app/routes";
 import { world2EditorialSlots, world2LayerDefinitions } from "../../content/world2EditorialSlots";
 import type { World2LayerId } from "../../content/world2EditorialSlots";
 import { getStationById } from "../../data/stations";
 
 const worldTwoStation = getStationById(2);
 const world2LayerCount = world2LayerDefinitions.length;
-const preparedExitTarget = "/transition/world-2-to-world-3";
+const preparedExitTarget = worldTwoToWorldThreeTransitionRoute;
 
 type LayerInteractionState = "available" | "completed" | "locked";
 
@@ -29,9 +31,9 @@ function getLayerInteractionState(
 }
 
 export function World2RootScreen() {
+  const navigate = useNavigate();
   const [currentLayerIndex, setCurrentLayerIndex] = useState(-1);
   const [activeLayerId, setActiveLayerId] = useState<World2LayerId | null>(null);
-  const [exitNoticeVisible, setExitNoticeVisible] = useState(false);
   const activeLayer = useMemo(
     () =>
       world2LayerDefinitions.find((layer) => layer.id === activeLayerId) ??
@@ -56,7 +58,6 @@ export function World2RootScreen() {
   function startExperience() {
     setCurrentLayerIndex(0);
     setActiveLayerId(world2LayerDefinitions[0].id);
-    setExitNoticeVisible(false);
   }
 
   function selectLayer(layerId: World2LayerId, layerIndex: number) {
@@ -67,7 +68,6 @@ export function World2RootScreen() {
     }
 
     setActiveLayerId(layerId);
-    setExitNoticeVisible(false);
   }
 
   function confirmActiveLayer() {
@@ -276,17 +276,12 @@ export function World2RootScreen() {
                 className="world2-root-primary-action world2-root-primary-action--continue"
                 type="button"
                 data-world2-slot-id="W2_CONTINUE_BTN_01"
-                data-world2-exit-action="prepared_no_navigation"
+                data-world2-exit-action="navigate_to_transition"
                 data-editorial-status="TEMP"
-                onClick={() => setExitNoticeVisible(true)}
+                onClick={() => navigate(worldTwoToWorldThreeTransitionRoute)}
               >
                 {world2EditorialSlots.W2_CONTINUE_BTN_01.text}
               </button>
-              {exitNoticeVisible ? (
-                <p className="world2-root-exit-note" role="status">
-                  Salida preparada: Mundo III no se construye en 009A.
-                </p>
-              ) : null}
             </>
           ) : (
             <>

@@ -53,6 +53,24 @@ export const editorialRegistry = {
       text: "Preparando el pulso invisible.",
     }),
   },
+  TRANS_W2_W3_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP de transición W2→W3; reemplazar por Excel editorial.",
+      shortText: "Abriendo Mundo III",
+      slotId: "TRANS_W2_W3_TITLE_01",
+      text: "TEMP — Abriendo Mundo III",
+    }),
+  },
+  TRANS_W2_W3_SUB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de transición W2→W3; reemplazar por Excel editorial.",
+      shortText: "Cuaderno de pruebas",
+      slotId: "TRANS_W2_W3_SUB_01",
+      text: "TEMP — Preparando el cuaderno de pruebas y ajustes.",
+    }),
+  },
   W2_INTRO_LIA_01: {
     es: temporaryEsEntry({
       emitter: "lia",
@@ -307,6 +325,30 @@ export const editorialRegistry = {
       shortText: "Continuar",
       slotId: "W2_CONTINUE_BTN_01",
       text: "Continuar",
+    }),
+  },
+  W3_INTRO_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Intro Mundo III",
+      slotId: "W3_INTRO_LIA_01",
+      text: "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
+    }),
+  },
+  W3_INTRO_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Pruebas y pistas",
+      slotId: "W3_INTRO_AMB_01",
+      text: "TEMP — Nada aparece terminado desde el inicio: cada señal deja una pista.",
+    }),
+  },
+  W3_ACCESSIBLE_SCENE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Escena accesible Mundo III",
+      slotId: "W3_ACCESSIBLE_SCENE_01",
+      text: "TEMP — Entrada visual a Mundo III, presentado como un cuaderno de revisión y prototipos.",
     }),
   },
 } as const satisfies EditorialRegistry;
