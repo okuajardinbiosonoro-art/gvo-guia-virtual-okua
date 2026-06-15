@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
 import {
@@ -9,13 +10,28 @@ import {
 } from "../../content/world4EditorialSlots";
 import { World4RootScreen } from "./World4RootScreen";
 
+function LocationProbe() {
+  const location = useLocation();
+
+  return <span data-testid="current-location">{location.pathname}</span>;
+}
+
+function renderWorld4RootScreen() {
+  return render(
+    <MemoryRouter initialEntries={["/estacion/4"]}>
+      <World4RootScreen />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
+}
+
 describe("World4RootScreen", () => {
   afterEach(() => {
     cleanup();
   });
 
   it("renderiza Mundo IV temporal con 40 slots editoriales y sin permisos sensibles", () => {
-    const { container } = render(<World4RootScreen />);
+    const { container } = renderWorld4RootScreen();
 
     expect(
       screen.getByRole("heading", { name: "Mundo IV: Mesa de Sistema" }),
@@ -63,7 +79,7 @@ describe("World4RootScreen", () => {
   });
 
   it("avanza por los nodos en orden, permite relectura y llega a ready_to_continue", () => {
-    const { container } = render(<World4RootScreen />);
+    const { container } = renderWorld4RootScreen();
     const getState = () =>
       container
         .querySelector("[data-world4-state]")
@@ -117,7 +133,7 @@ describe("World4RootScreen", () => {
     );
     expect(container.querySelector("[data-world4-exit-mode]")).toHaveAttribute(
       "data-world4-exit-mode",
-      "prepared_no_navigation",
+      "prepared_transition_world5_entry",
     );
     fireEvent.click(
       container.querySelector('[data-world4-node="planta"]') as HTMLButtonElement,
@@ -132,18 +148,16 @@ describe("World4RootScreen", () => {
 
     expect(continueButton).toHaveAttribute(
       "data-world4-exit-action",
-      "prepared_for_011b",
+      "navigate_to_world5_transition",
     );
     fireEvent.click(continueButton);
-    expect(
-      screen.getByText(
-        "Continuidad registrada: falta ticket específico para transición W4→W5.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-4-to-world-5",
+    );
   });
 
   it("preserva los ocho nodos tecnicos protegidos y no usa medios", () => {
-    const { container } = render(<World4RootScreen />);
+    const { container } = renderWorld4RootScreen();
 
     expect(
       screen

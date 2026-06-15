@@ -1,7 +1,9 @@
 import "./World4RootScreen.css";
 
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { worldFourToWorldFiveTransitionRoute } from "../../app/routes";
 import { MobileShell } from "../../components/layout/MobileShell";
 import {
   WORLD4_REQUIRED_SLOT_COUNT,
@@ -11,7 +13,7 @@ import {
 import type { World4NodeId } from "../../content/world4EditorialSlots";
 
 const world4NodeCount = world4NodeDefinitions.length;
-const preparedExitTarget = "/transition/world-4-to-world-5";
+const preparedExitTarget = worldFourToWorldFiveTransitionRoute;
 
 type NodeInteractionState = "available" | "completed" | "locked";
 
@@ -31,9 +33,9 @@ function getNodeInteractionState(
 }
 
 export function World4RootScreen() {
+  const navigate = useNavigate();
   const [currentNodeIndex, setCurrentNodeIndex] = useState(-1);
   const [activeNodeId, setActiveNodeId] = useState<World4NodeId | null>(null);
-  const [exitAcknowledged, setExitAcknowledged] = useState(false);
   const activeNode = useMemo(
     () =>
       world4NodeDefinitions.find((node) => node.id === activeNodeId) ?? null,
@@ -57,7 +59,6 @@ export function World4RootScreen() {
   function startExperience() {
     setCurrentNodeIndex(0);
     setActiveNodeId(world4NodeDefinitions[0].id);
-    setExitAcknowledged(false);
   }
 
   function selectNode(nodeId: World4NodeId, nodeIndex: number) {
@@ -100,7 +101,7 @@ export function World4RootScreen() {
         data-daily-counter="not_implemented"
         data-world4-exit-target={isReadyToContinue ? preparedExitTarget : undefined}
         data-world4-exit-mode={
-          isReadyToContinue ? "prepared_no_navigation" : undefined
+          isReadyToContinue ? "prepared_transition_world5_entry" : undefined
         }
       >
         <section
@@ -254,22 +255,16 @@ export function World4RootScreen() {
                     className="world4-root-primary-action world4-root-primary-action--continue"
                     type="button"
                     data-world4-slot-id="W4_CONTINUE_BTN_01"
-                    data-world4-exit-action="prepared_for_011b"
+                    data-world4-exit-action="navigate_to_world5_transition"
                     data-editorial-status="TEMP"
-                    onClick={() => setExitAcknowledged(true)}
+                    onClick={() => navigate(worldFourToWorldFiveTransitionRoute)}
                   >
                     {world4EditorialSlots.W4_CONTINUE_BTN_01.text}
                   </button>
                   <p className="world4-root-note">
-                    Salida W4→W5 preparada para 011B; Mundo V no se construye
-                    en 011A.
+                    Salida temporal hacia entrada base Mundo V; la experiencia
+                    completa queda pendiente.
                   </p>
-                  {exitAcknowledged ? (
-                    <p className="world4-root-note" role="status">
-                      Continuidad registrada: falta ticket específico para
-                      transición W4→W5.
-                    </p>
-                  ) : null}
                 </>
               ) : null}
             </>
@@ -297,22 +292,16 @@ export function World4RootScreen() {
                 className="world4-root-primary-action world4-root-primary-action--continue"
                 type="button"
                 data-world4-slot-id="W4_CONTINUE_BTN_01"
-                data-world4-exit-action="prepared_for_011b"
+                data-world4-exit-action="navigate_to_world5_transition"
                 data-editorial-status="TEMP"
-                onClick={() => setExitAcknowledged(true)}
+                onClick={() => navigate(worldFourToWorldFiveTransitionRoute)}
               >
                 {world4EditorialSlots.W4_CONTINUE_BTN_01.text}
               </button>
               <p className="world4-root-note">
-                Salida W4→W5 preparada para 011B; Mundo V no se construye en
-                011A.
+                Salida temporal hacia entrada base Mundo V; la experiencia
+                completa queda pendiente.
               </p>
-              {exitAcknowledged ? (
-                <p className="world4-root-note" role="status">
-                  Continuidad registrada: falta ticket específico para
-                  transición W4→W5.
-                </p>
-              ) : null}
             </>
           ) : (
             <>

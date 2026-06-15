@@ -16,6 +16,7 @@ import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import { TransitionWorld } from "../screens/TransitionWorld";
 import {
   introToStationOneTransition,
+  worldFourToWorldFiveTransition,
   worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
   worldOneToWorldTwoTransition,
@@ -26,10 +27,13 @@ import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
 import { World2RootScreen } from "../screens/World2Root";
 import { World3RootScreen } from "../screens/World3Root";
 import { World4RootScreen } from "../screens/World4Root";
+import { World5RootScreen } from "../screens/World5Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
+  worldFiveEntryRoute,
+  worldFourToWorldFiveTransitionRoute,
   worldThreeEntryRoute,
   worldThreeToWorldFourTransitionRoute,
   worldFourEntryRoute,
@@ -161,6 +165,12 @@ export const router = createBrowserRouter([
     ),
   },
   {
+    path: worldFourToWorldFiveTransitionRoute,
+    element: (
+      <TransitionWorldRuntimeRoute config={worldFourToWorldFiveTransition} />
+    ),
+  },
+  {
     path: "/estacion/1",
     element: <World1RootScreen />,
   },
@@ -175,6 +185,10 @@ export const router = createBrowserRouter([
   {
     path: worldFourEntryRoute,
     element: <World4RootScreen />,
+  },
+  {
+    path: worldFiveEntryRoute,
+    element: <World5RootScreen />,
   },
   {
     path: "/estacion/:stationId",

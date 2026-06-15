@@ -1,11 +1,13 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 import {
+  worldFiveEntryRoute,
   worldFourEntryRoute,
   worldOneEntryRoute,
   worldThreeEntryRoute,
   worldTwoEntryRoute,
 } from "../../app/routes";
 import {
+  worldFourToWorldFiveTransitionCopy,
   worldOneToWorldTwoTransitionCopy,
   worldThreeToWorldFourTransitionCopy,
   worldTwoToWorldThreeTransitionCopy,
@@ -119,9 +121,37 @@ export const worldThreeToWorldFourTransition: TransitionWorldConfig = {
   },
 };
 
+export const worldFourToWorldFiveTransition: TransitionWorldConfig = {
+  id: "world-4-to-world-5",
+  fromRoute: worldFourEntryRoute,
+  toRoute: worldFiveEntryRoute,
+  targetPreload: "none",
+  title: worldFourToWorldFiveTransitionCopy.title.text,
+  titleSlotId: worldFourToWorldFiveTransitionCopy.title.id,
+  subtitle: worldFourToWorldFiveTransitionCopy.subtitle.text,
+  subtitleSlotId: worldFourToWorldFiveTransitionCopy.subtitle.id,
+  durationMs: 2300,
+  reducedMotionDurationMs: 1000,
+  portalLabel: "Portal de transicion hacia Mundo V",
+  portalState: "open",
+  portalSymbol: "root",
+  palette: {
+    background: "#F7EFD8",
+    mist: "#E6DCF7",
+    portalCore: "#FFF5C8",
+    portalEdge: "#C9B8E8",
+    portalGlow: "#E3A33E",
+    text: "#4E3F35",
+    textSoft: "#7E6248",
+    progressTrack: "#D7C9A8",
+    progressFill: "#E3A33E",
+  },
+};
+
 export const transitionWorldConfigs = {
   introToStationOne: introToStationOneTransition,
   worldOneToWorldTwo: worldOneToWorldTwoTransition,
   worldTwoToWorldThree: worldTwoToWorldThreeTransition,
   worldThreeToWorldFour: worldThreeToWorldFourTransition,
+  worldFourToWorldFive: worldFourToWorldFiveTransition,
 } as const;

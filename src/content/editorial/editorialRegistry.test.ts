@@ -40,7 +40,7 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
-  it("resuelve los slots temporales W2 W3, W3 W4, Mundo III y Mundo IV", () => {
+  it("resuelve los slots temporales W2 W3, W3 W4, W4 W5, Mundo III, Mundo IV y entrada Mundo V", () => {
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
       "TEMP — Abriendo Mundo III",
     );
@@ -52,6 +52,12 @@ describe("editorialRegistry", () => {
     );
     expect(resolveEditorialText("TRANS_W3_W4_SUB_01").text).toBe(
       "TEMP — Preparando la mesa del sistema.",
+    );
+    expect(resolveEditorialText("TRANS_W4_W5_TITLE_01").text).toBe(
+      "TEMP — Abriendo Mundo V",
+    );
+    expect(resolveEditorialText("TRANS_W4_W5_SUB_01").text).toBe(
+      "TEMP — Preparando el mapa del presente.",
     );
     expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
       "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
@@ -87,6 +93,15 @@ describe("editorialRegistry", () => {
       "TEMP — El SONIDO es el resultado mediado de la cadena, no una voz directa de la planta.",
     );
     expect(resolveEditorialText("W4_CONTINUE_BTN_01").text).toBe("Continuar");
+    expect(resolveEditorialText("W5_INTRO_LIA_01").text).toBe(
+      "TEMP — Este mapa reúne lo que ya viste: plantas, sistema, espacio y visitante.",
+    );
+    expect(resolveEditorialText("W5_INTRO_AMB_01").text).toBe(
+      "TEMP — El presente de OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
+    );
+    expect(resolveEditorialText("W5_ACCESSIBLE_SCENE_01").text).toBe(
+      "TEMP — Entrada visual a Mundo V, presentada como un mapa del presente con cuatro áreas: plantas, sistema, espacio y visitante.",
+    );
   });
 
   it("rechaza slots editoriales no registrados", () => {

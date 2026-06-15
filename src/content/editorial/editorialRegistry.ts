@@ -89,6 +89,24 @@ export const editorialRegistry = {
       text: "TEMP — Preparando la mesa del sistema.",
     }),
   },
+  TRANS_W4_W5_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP de transición W4→W5; prepara entrada base de Mundo V.",
+      shortText: "Abriendo Mundo V",
+      slotId: "TRANS_W4_W5_TITLE_01",
+      text: "TEMP — Abriendo Mundo V",
+    }),
+  },
+  TRANS_W4_W5_SUB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de transición W4→W5; reemplazar por Excel editorial.",
+      shortText: "Mapa del presente",
+      slotId: "TRANS_W4_W5_SUB_01",
+      text: "TEMP — Preparando el mapa del presente.",
+    }),
+  },
   W2_INTRO_LIA_01: {
     es: temporaryEsEntry({
       emitter: "lia",
@@ -847,6 +865,30 @@ export const editorialRegistry = {
       shortText: "Continuar",
       slotId: "W4_CONTINUE_BTN_01",
       text: "Continuar",
+    }),
+  },
+  W5_INTRO_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Intro Mundo V",
+      slotId: "W5_INTRO_LIA_01",
+      text: "TEMP — Este mapa reúne lo que ya viste: plantas, sistema, espacio y visitante.",
+    }),
+  },
+  W5_INTRO_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Mapa del presente",
+      slotId: "W5_INTRO_AMB_01",
+      text: "TEMP — El presente de OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
+    }),
+  },
+  W5_ACCESSIBLE_SCENE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Escena accesible Mundo V",
+      slotId: "W5_ACCESSIBLE_SCENE_01",
+      text: "TEMP — Entrada visual a Mundo V, presentada como un mapa del presente con cuatro áreas: plantas, sistema, espacio y visitante.",
     }),
   },
 } as const satisfies EditorialRegistry;

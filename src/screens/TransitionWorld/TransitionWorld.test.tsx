@@ -7,6 +7,7 @@ import { TransitionWorld } from "./TransitionWorld";
 import {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
+  worldFourToWorldFiveTransition,
   worldOneToWorldTwoTransition,
   worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
@@ -265,6 +266,43 @@ describe("TransitionWorld", () => {
     expect(container.querySelector("main")).toHaveAttribute(
       "data-transition-world-id",
       "world-3-to-world-4",
+    );
+  });
+
+  it("expone configuracion temporal de la transicion Mundo IV a entrada base Mundo V", () => {
+    const { container } = render(
+      <TransitionWorld config={worldFourToWorldFiveTransition} />,
+    );
+
+    expect(worldFourToWorldFiveTransition.id).toBe("world-4-to-world-5");
+    expect(worldFourToWorldFiveTransition.fromRoute).toBe("/estacion/4");
+    expect(worldFourToWorldFiveTransition.toRoute).toBe("/estacion/5");
+    expect(worldFourToWorldFiveTransition.targetPreload).toBe("none");
+    expect(worldFourToWorldFiveTransition.titleSlotId).toBe(
+      "TRANS_W4_W5_TITLE_01",
+    );
+    expect(worldFourToWorldFiveTransition.subtitleSlotId).toBe(
+      "TRANS_W4_W5_SUB_01",
+    );
+    expect(
+      screen.getByRole("heading", {
+        name: "TEMP — Abriendo Mundo V",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("TEMP — Preparando el mapa del presente."),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
+      "data-title-slot",
+      "TRANS_W4_W5_TITLE_01",
+    );
+    expect(container.querySelector("[data-subtitle-slot]")).toHaveAttribute(
+      "data-subtitle-slot",
+      "TRANS_W4_W5_SUB_01",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-transition-world-id",
+      "world-4-to-world-5",
     );
   });
 
