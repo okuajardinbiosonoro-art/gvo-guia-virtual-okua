@@ -2,7 +2,8 @@ import "./LoadingInitialScreen.css";
 
 import type { CSSProperties } from "react";
 
-import { GvoProgressBar } from "../../components/progress";
+import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/transition-root-assets";
+import { GvoProgressBar, GvoProgressFrame } from "../../components/progress";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { loadingInitialAssets } from "./loadingInitialAssets";
@@ -19,6 +20,12 @@ import {
   LIA_FRAME_REGISTRATION_VERSION,
   liaFrameRegistrationCssVariables,
 } from "./liaFrameRegistration";
+
+const loadingProgressAssets = {
+  fill: transitionRootAssetUrlsById.transition_root_progress_fill_segment,
+  spark: transitionRootAssetUrlsById.transition_root_progress_spark,
+  track: transitionRootAssetUrlsById.transition_root_progress_track_base,
+};
 
 const sceneAssetStyle = {
   "--loading-lia-sprite": `url("${loadingInitialAssets.lia.src}")`,
@@ -171,13 +178,19 @@ export function LoadingInitialScreen({
         <GvoProgressBar
           variant="loading-initial"
           className="loading-initial__progress"
+          dataMotionLayer="progress"
+          dataProgressMotion="fill-and-spark"
+          dataProgressPreview="motion"
+          dataProgressSparkAlignment="channel-centered"
           ariaLabelledBy="loading-initial-title"
           ariaValueText={loadingInitialCopy.title}
         >
-          <span className="loading-initial__progress-track" aria-hidden="true">
-            <span className="loading-initial__progress-fill" />
-            <span className="loading-initial__progress-marker" />
-          </span>
+          <GvoProgressFrame
+            fillAsset={loadingProgressAssets.fill}
+            sparkAsset={loadingProgressAssets.spark}
+            testIdPrefix="loading-initial-progress"
+            trackAsset={loadingProgressAssets.track}
+          />
         </GvoProgressBar>
       </section>
     </main>

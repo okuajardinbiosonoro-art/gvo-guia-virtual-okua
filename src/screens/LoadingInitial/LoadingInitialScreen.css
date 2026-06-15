@@ -5,11 +5,6 @@
   --loading-subtitle: #9a79bd;
   --loading-amber: #e7a75d;
   --loading-visual-scale: 0.9;
-  --loading-progress-track-height: 2px;
-  --loading-progress-cap-size: 9px;
-  --loading-progress-marker-size: 9px;
-  --loading-progress-cap-gap: 14px;
-  --loading-progress-pixel-size: 3px;
   --loading-ease-arrive: cubic-bezier(0.22, 1, 0.36, 1);
   --loading-ease-soft: cubic-bezier(0.33, 0, 0.2, 1);
   min-height: 100svh;
@@ -289,106 +284,38 @@
 }
 
 .loading-initial__progress {
-  position: relative;
-  box-sizing: border-box;
-  width: min(70%, 262px);
-  height: 14px;
+  --gvo-progress-width: min(74%, 286px);
+  --gvo-progress-duration: var(--loading-duration);
+  --gvo-progress-track-inset-left: 3.6%;
+  --gvo-progress-track-inset-right: 5.2%;
+  --gvo-progress-channel-inset-y: 17%;
+  --gvo-progress-fill-offset-x: var(--gvo-progress-track-inset-left);
+  --gvo-progress-fill-scale: 1;
+  --gvo-progress-preview-fill-width: 58.6%;
+  --gvo-progress-preview-spark-x: 62.2%;
+  --gvo-progress-channel-center-y: 46%;
+  --gvo-progress-spark-y: var(--gvo-progress-channel-center-y);
+  --gvo-progress-fill-start-width: 2.4%;
+  --gvo-progress-fill-first-width: 38%;
+  --gvo-progress-fill-second-width: 76%;
+  --gvo-progress-fill-final-width: calc(
+    100% - var(--gvo-progress-track-inset-left) -
+      var(--gvo-progress-track-inset-right)
+  );
+  --gvo-progress-spark-start-x: 7.2%;
+  --gvo-progress-spark-first-x: 43%;
+  --gvo-progress-spark-second-x: 80%;
+  --gvo-progress-spark-final-x: calc(
+    100% - var(--gvo-progress-track-inset-right)
+  );
+  display: block;
+  width: var(--gvo-progress-width);
   margin: 6px auto 0;
-  padding: 0 var(--loading-progress-cap-gap);
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   image-rendering: pixelated;
-}
-
-.loading-initial__progress::before,
-.loading-initial__progress::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: var(--loading-progress-cap-size);
-  height: var(--loading-progress-cap-size);
-  border: 0;
-  background:
-    linear-gradient(#8461ac 0 0) 50% 0 / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 0 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#fff8ee 0 0) 50% 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 100% 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 50% 100% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat;
-  box-shadow: none;
-  transform: translateY(-50%);
-}
-
-.loading-initial__progress::before {
-  left: 0;
-}
-
-.loading-initial__progress::after {
-  right: 0;
-}
-
-.loading-initial__progress-track {
-  position: relative;
-  top: 50%;
-  display: block;
-  width: 100%;
-  height: var(--loading-progress-track-height);
-  background: #bda3d8;
-  transform: translateY(-50%);
-}
-
-.loading-initial__progress-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: var(--loading-progress-track-height);
-  background: linear-gradient(
-    90deg,
-    var(--loading-amber) 0%,
-    #f6c47e 45%,
-    #b892d2 100%
-  );
-  box-shadow:
-    0 0 3px rgb(230 166 91 / 14%),
-    inset 0 1px 0 rgb(255 255 255 / 38%);
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: loading-progress-fill-v12 var(--loading-duration)
-    var(--loading-ease-soft) both;
-}
-
-.loading-initial__progress-marker {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  z-index: 3;
-  width: var(--loading-progress-marker-size);
-  height: var(--loading-progress-marker-size);
-  background:
-    linear-gradient(#8461ac 0 0) 50% 0 / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 0 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#fff0b5 0 0) 50% 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 100% 50% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat,
-    linear-gradient(#8461ac 0 0) 50% 100% / var(--loading-progress-pixel-size)
-      var(--loading-progress-pixel-size) no-repeat;
-  opacity: 0;
-  box-shadow: none;
-  transform: translate(-50%, -50%) scale(0.86);
-  animation: loading-progress-marker-v12 var(--loading-duration)
-    var(--loading-ease-soft) both;
 }
 
 @media (max-width: 374px) {
@@ -493,9 +420,7 @@
   .loading-initial__lia,
   .loading-initial__water-field,
   .loading-initial__water-stream,
-  .loading-initial__sparkle,
-  .loading-initial__progress-fill,
-  .loading-initial__progress-marker {
+  .loading-initial__sparkle {
     animation-duration: var(--loading-reduced-duration);
     animation-iteration-count: 1;
   }
@@ -1168,81 +1093,5 @@
 
   50% {
     opacity: 0.9;
-  }
-}
-
-@keyframes loading-progress-fill-v12 {
-  0%,
-  6.667% {
-    transform: scaleX(0);
-  }
-
-  10% {
-    transform: scaleX(0.08);
-  }
-
-  43.333% {
-    transform: scaleX(0.38);
-  }
-
-  68.333% {
-    transform: scaleX(0.72);
-  }
-
-  86.667% {
-    transform: scaleX(0.92);
-  }
-
-  96% {
-    transform: scaleX(0.985);
-  }
-
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes loading-progress-marker-v12 {
-  0%,
-  6.667% {
-    left: 0;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.86);
-  }
-
-  10% {
-    left: 8%;
-    opacity: 0.72;
-    transform: translate(-50%, -50%) scale(0.92);
-  }
-
-  43.333% {
-    left: 38%;
-    opacity: 0.86;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  68.333% {
-    left: 72%;
-    opacity: 0.86;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-
-  86.667% {
-    left: 92%;
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  96% {
-    left: 98.5%;
-    opacity: 0.82;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-
-  100% {
-    left: 100%;
-    opacity: 0.78;
-    transform: translate(-50%, -50%) scale(0.9);
   }
 }

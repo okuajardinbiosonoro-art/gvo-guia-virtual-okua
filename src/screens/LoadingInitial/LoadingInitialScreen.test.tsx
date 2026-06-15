@@ -162,20 +162,32 @@ describe("LoadingInitialScreen", () => {
     expect(container.querySelector("video")).not.toBeInTheDocument();
   });
 
-  it("renderiza barra pixelart separada en track, fill y marker sin texto numerico", () => {
-    const { container } = render(<LoadingInitialScreen />);
+  it("renderiza barra asset-based unificada con transiciones sin texto numerico", () => {
+    render(<LoadingInitialScreen />);
     const progress = screen.getByRole("progressbar");
 
     expect(progress).toHaveAttribute("data-gvo-progress-bar", "loading-initial");
-    expect(
-      container.querySelector(".loading-initial__progress-track"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(".loading-initial__progress-fill"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(".loading-initial__progress-marker"),
-    ).toBeInTheDocument();
+    expect(progress).toHaveAttribute("data-progress-motion", "fill-and-spark");
+    expect(progress).toHaveAttribute(
+      "data-progress-spark-alignment",
+      "channel-centered",
+    );
+    expect(screen.getByTestId("loading-initial-progress-real")).toHaveAttribute(
+      "data-progress-family",
+      "transition-root-assets",
+    );
+    expect(screen.getByTestId("loading-initial-progress-track")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_track_base",
+    );
+    expect(screen.getByTestId("loading-initial-progress-fill")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_fill_segment",
+    );
+    expect(screen.getByTestId("loading-initial-progress-spark")).toHaveAttribute(
+      "data-asset-id",
+      "transition_root_progress_spark",
+    );
     expect(progress).not.toHaveTextContent(/[\d%]/);
     expect(progress.textContent).toBe("");
   });
