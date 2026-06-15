@@ -131,13 +131,88 @@ describe("editorialRegistry", () => {
       "TEMP — El recorrido queda reunido para volver a mirar.",
     );
     expect(resolveEditorialText("FINAL_LIA_MESSAGE_01").text).toBe(
-      "TEMP — Desde aquí podrás revisar lo vivido, volver al inicio o reiniciar.",
+      "TEMP — Desde aquí puedes revisar los mundos completados, volver al inicio o reiniciar el recorrido.",
     );
     expect(resolveEditorialText("FINAL_AMB_01").text).toBe(
-      "TEMP — Los mundos quedan abiertos como memoria temporal del recorrido.",
+      "TEMP — Los mundos quedan abiertos como memoria temporal del camino.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_I_LABEL_01").text).toBe(
+      "TEMP — Mundo I — Raíz",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_I_CONFIRM_01").text).toBe(
+      "TEMP — Revisión de Mundo I preparada.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_II_LABEL_01").text).toBe(
+      "TEMP — Mundo II — Pulso invisible",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_II_CONFIRM_01").text).toBe(
+      "TEMP — Revisión de Mundo II preparada.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_III_LABEL_01").text).toBe(
+      "TEMP — Mundo III — Cuaderno Pixel",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_III_CONFIRM_01").text).toBe(
+      "TEMP — Revisión de Mundo III preparada.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_IV_LABEL_01").text).toBe(
+      "TEMP — Mundo IV — Mesa de Sistema",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_IV_CONFIRM_01").text).toBe(
+      "TEMP — Revisión de Mundo IV preparada.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_V_LABEL_01").text).toBe(
+      "TEMP — Mundo V — Mapa del Presente",
+    );
+    expect(resolveEditorialText("FINAL_ACCESS_V_CONFIRM_01").text).toBe(
+      "TEMP — Revisión de Mundo V preparada.",
+    );
+    expect(resolveEditorialText("FINAL_HELP_01").text).toBe(
+      "TEMP — Puedes volver a mirar cualquier mundo completado sin agregar una nueva estación.",
+    );
+    expect(resolveEditorialText("FINAL_BACK_HOME_BTN_01").text).toBe(
+      "TEMP — Volver al inicio",
+    );
+    expect(resolveEditorialText("FINAL_BACK_HOME_HELP_01").text).toBe(
+      "TEMP — Esta acción regresa al inicio visible del recorrido.",
+    );
+    expect(resolveEditorialText("FINAL_RESTART_BTN_01").text).toBe(
+      "TEMP — Reiniciar",
+    );
+    expect(resolveEditorialText("FINAL_RESTART_CONFIRM_01").text).toBe(
+      "TEMP — ¿Quieres reiniciar el recorrido desde el comienzo?",
+    );
+    expect(resolveEditorialText("FINAL_RESTART_CANCEL_BTN_01").text).toBe(
+      "TEMP — Cancelar",
+    );
+    expect(resolveEditorialText("FINAL_RESTART_CONFIRM_BTN_01").text).toBe(
+      "TEMP — Confirmar reinicio",
+    );
+    expect(resolveEditorialText("FINAL_CREDITS_01").text).toBe(
+      "TEMP — OKÚA Jardín Biosonoro · Guía Virtual OKÚA",
     );
     expect(resolveEditorialText("FINAL_ACCESSIBLE_SCENE_01").text).toBe(
-      "TEMP — Entrada visual a la pantalla final, presentada como un mirador para revisar mundos, volver al inicio o reiniciar.",
+      "TEMP — Pantalla final tipo mirador con cierre, accesos a mundos, regreso al inicio y reinicio preparado.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_I_01").text).toBe(
+      "TEMP — Acceso de revisión a Mundo I.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_II_01").text).toBe(
+      "TEMP — Acceso de revisión a Mundo II.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_III_01").text).toBe(
+      "TEMP — Acceso de revisión a Mundo III.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_IV_01").text).toBe(
+      "TEMP — Acceso de revisión a Mundo IV.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_V_01").text).toBe(
+      "TEMP — Acceso de revisión a Mundo V.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_BACK_HOME_01").text).toBe(
+      "TEMP — Botón para volver al inicio del recorrido.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_RESTART_01").text).toBe(
+      "TEMP — Acción crítica de reinicio con confirmación.",
     );
   });
 
