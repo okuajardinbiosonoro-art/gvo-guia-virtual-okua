@@ -7,7 +7,7 @@ interface LoadingInitialTimelineStep {
 }
 
 export const TOTAL_DURATION_MS = 12000;
-export const REDUCED_MOTION_DURATION_MS = 1300;
+export const REDUCED_MOTION_DURATION_MS = 12000;
 
 export const loadingInitialTimeline = {
   durationMs: TOTAL_DURATION_MS,

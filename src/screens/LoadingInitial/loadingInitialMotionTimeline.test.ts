@@ -7,10 +7,10 @@ import {
 import { LIA_FRAME_REGISTRATION } from "./liaFrameRegistration";
 
 describe("loadingInitialMotionTimeline", () => {
-  it("mantiene timeline V13 de 12000ms y reduced motion de 1300ms", () => {
+  it("mantiene timeline V13 de 12000ms sin bypass reduced motion", () => {
     expect(loadingInitialMotionTimeline.version).toBe("v13");
     expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
-    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1300);
+    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(12000);
     expect(loadingInitialMotionTimeline.phases.at(0)?.startMs).toBe(0);
     expect(loadingInitialMotionTimeline.phases.at(-1)?.endMs).toBe(12000);
   });

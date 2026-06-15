@@ -80,13 +80,31 @@ describe("LoadingInitialScreen", () => {
     ).parentElement;
 
     expect(TOTAL_DURATION_MS).toBeGreaterThanOrEqual(12000);
-    expect(REDUCED_MOTION_DURATION_MS).toBeGreaterThanOrEqual(1000);
-    expect(REDUCED_MOTION_DURATION_MS).toBeLessThanOrEqual(1500);
+    expect(REDUCED_MOTION_DURATION_MS).toBe(12000);
     expect(loadingInitialTimeline.durationMs).toBe(12000);
     expect(stage).toHaveAttribute("data-loading-layout-version", "v13");
     expect(stage).toHaveAttribute("data-motion-timeline-version", "v13");
     expect(stage).toHaveAttribute("data-duration-ms", "12000");
-    expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1300");
+    expect(stage).toHaveAttribute("data-progress-duration-ms", "12000");
+    expect(stage).toHaveAttribute(
+      "data-preload-contract",
+      "first-paint-before-critical-preload",
+    );
+    expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "12000");
+  });
+
+  it("expone contrato de primer paint antes de precarga critica", () => {
+    render(<LoadingInitialScreen />);
+
+    const main = screen.getByRole("main");
+
+    expect(main).toHaveAttribute(
+      "data-first-paint-contract",
+      "shell-before-preload",
+    );
+    expect(main).toHaveAttribute("data-first-paint-ready", "false");
+    expect(main).toHaveAttribute("data-loading-preload-status", "idle");
+    expect(main).toHaveAttribute("data-loading-preload-progress", "0");
   });
 
   it("renderiza entrada lateral, streams de agua y sparkles determinísticos", () => {
@@ -211,7 +229,7 @@ describe("LoadingInitialScreen", () => {
     }
     expect(loadingInitialMotionTimeline.version).toBe("v13");
     expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
-    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1300);
+    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(12000);
     expect(
       loadingInitialMotionTimeline.phases.map((phase) => phase.id),
     ).toEqual([

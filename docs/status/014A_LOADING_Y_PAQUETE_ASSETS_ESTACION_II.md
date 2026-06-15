@@ -1,5 +1,25 @@
 # 014A - Loading pre-portada y paquete de assets Estacion II
 
+## Correccion 014A-FIX1
+
+El criterio operativo fue corregido antes del push: la barra de pre-portada no debe durar `2300ms`. Debe conservar la composicion visual alineada con `TransitionWorld`, pero su duracion minima visible debe ser `12000ms` y debe operar como pantalla real de precarga.
+
+La correccion queda documentada en:
+
+```text
+docs/status/014A_FIX1_PREPORTADA_PRELOAD_ASSETS_ESTACION_II.md
+```
+
+Resumen de la correccion:
+
+- `LoadingInitial` conserva el ancho visual compartido con `TransitionWorld`.
+- `LoadingInitial` usa `--loading-progress-duration: var(--loading-duration)`, equivalente a `12000ms`.
+- La precarga interna de `LoadingInitial` se difiere hasta despues del primer frame del shell.
+- El flujo `/` conserva contrato real: navegar a portada solo cuando se cumplan duracion minima y `coverIntroCritical.ready`.
+- No se produjeron assets.
+- No se copiaron assets desde Descargas.
+- No se modificaron assets existentes.
+
 ## 1. Proposito
 
 Corregir la fluidez visual de la barra de carga de pre-portada (`LoadingInitial`) para que pertenezca a la misma familia operativa que las transiciones `TransitionWorld`, y preparar un paquete documental exhaustivo para producir assets de Estacion II / Mundo II - Pulso invisible en un ticket posterior.
@@ -77,7 +97,7 @@ Diagnostico tecnico:
 
 Fix aplicado en `src/screens/LoadingInitial/LoadingInitialScreen.css`:
 
-- Se agrego `--loading-progress-duration: 2300ms`.
+- 014A agrego `--loading-progress-duration: 2300ms`; 014A-FIX1 corrigio el criterio vigente a `--loading-progress-duration: var(--loading-duration)`, equivalente a `12000ms`.
 - Se agrego `--loading-progress-width: clamp(282px, 80vw, 360px)`.
 - `.loading-initial__progress` ahora usa:
   - `--gvo-progress-width: var(--loading-progress-width)`;
@@ -93,7 +113,7 @@ Razon: la barra de pre-portada necesitaba heredar el mismo comportamiento visual
 Resultado validado:
 
 - Viewport: `390x844`.
-- `/`: barra `loading-initial`, familia `transition-root-assets`, ancho `312px`, duracion `2300ms`.
+- `/`: barra `loading-initial`, familia `transition-root-assets`, ancho `312px`, duracion vigente corregida `12000ms`.
 - `/transition/intro-to-station-1`: barra `transition-world`, ancho `312px`, duracion `2300ms`.
 - `/transition/world-1-to-world-2`: barra `transition-world`, ancho `312px`, duracion `2300ms`.
 - Movimiento no-reduced verificado en Chrome local:
@@ -111,7 +131,7 @@ Resultado validado:
 Resultado validado:
 
 - Viewport: `1365x768`.
-- `/`: barra `loading-initial`, familia `transition-root-assets`, ancho `360px`, duracion `2300ms`.
+- `/`: barra `loading-initial`, familia `transition-root-assets`, ancho `360px`, duracion vigente corregida `12000ms`.
 - `/transition/intro-to-station-1`: barra `transition-world`, ancho `360px`, duracion `2300ms`.
 - `/transition/world-1-to-world-2`: barra `transition-world`, ancho `360px`, duracion `2300ms`.
 - Movimiento no-reduced verificado en Chrome local:
@@ -481,7 +501,7 @@ Estado permitido sugerido:
 
 | Pantalla | Componente | Assets usados | Problema observado | Fix aplicado | Resultado mobile | Resultado desktop |
 | --- | --- | --- | --- | --- | --- | --- |
-| `/` LoadingInitial | `GvoProgressBar` + `GvoProgressFrame` | `transition_root_progress_track_base`, `transition_root_progress_fill_segment`, `transition_root_progress_spark` | Barra visualmente correcta pero mas lenta y estrecha que TransitionWorld | Separar `--loading-progress-duration: 2300ms` y alinear ancho `clamp(282px, 80vw, 360px)` | PASO: ancho `312px`, duracion `2300ms`, fill `7.48px -> 84.95px`, sin overflow | PASO: ancho `360px`, duracion `2300ms`, fill `8.63px -> 98.02px`, sin overflow |
+| `/` LoadingInitial | `GvoProgressBar` + `GvoProgressFrame` | `transition_root_progress_track_base`, `transition_root_progress_fill_segment`, `transition_root_progress_spark` | Barra visualmente correcta pero el criterio 014A de `2300ms` fue corregido por 014A-FIX1 | 014A-FIX1: `--loading-progress-duration: var(--loading-duration)` y ancho `clamp(282px, 80vw, 360px)` | PASO corregido: ancho `312px`, duracion `12000ms`, visible `774ms`, portada `12747ms`, sin overflow | PASO corregido: ancho `360px`, duracion `12000ms`, visible `452ms`, portada `12415ms`, sin overflow |
 | `/portada` Cover | No aplica barra de loading | No aplica | Debe seguir accesible despues de loading | No se modifica | PASO: sin overflow, sin audio/video/iframe, sin assets remotos | PASO: sin overflow, sin audio/video/iframe, sin assets remotos |
 | `/transition/intro-to-station-1` | `TransitionProgress` | Misma familia progress root | Referencia de fluidez | No se modifica | PASO: ancho `312px`, duracion `2300ms`, fill `7.48px -> 60.16px`, sin overflow | PASO: ancho `360px`, duracion `2300ms`, fill `8.73px -> 101.11px`, sin overflow |
 | `/transition/world-1-to-world-2` | `TransitionProgress` | Misma familia progress root | Referencia de fluidez | No se modifica | PASO: ancho `312px`, duracion `2300ms`, fill `10.27px -> 96.64px`, sin overflow | PASO: ancho `360px`, duracion `2300ms`, fill `10.59px -> 109.16px`, sin overflow |
@@ -621,8 +641,8 @@ Performance:
 | `npm run dev -- --host 127.0.0.1 --port 5173` | PASO: servidor levantado tras detener un Vite previo del mismo repo en 5173 |
 | Browser in-app mobile `390x844` | PASO para layout, overflow, media y remotos; entorno reporto `prefers-reduced-motion`, por lo que la animacion se observo desactivada |
 | Browser in-app desktop `1365x768` | PASO para layout, overflow, media y remotos; entorno reporto `prefers-reduced-motion`, por lo que la animacion se observo desactivada |
-| Chrome local headless no-reduced mobile `390x844` | PASO: `/`, `/portada`, `/transition/intro-to-station-1`, `/transition/world-1-to-world-2`; barra loading y transiciones con `2300ms`, fill avanza, sin overflow |
-| Chrome local headless no-reduced desktop `1365x768` | PASO: `/`, `/portada`, `/transition/intro-to-station-1`, `/transition/world-1-to-world-2`; barra loading y transiciones con `2300ms`, fill avanza, sin overflow |
+| Chrome local headless no-reduced mobile `390x844` | 014A-FIX1 corrige loading a `12000ms`; transiciones conservan `2300ms`; fill avanza, sin overflow |
+| Chrome local headless no-reduced desktop `1365x768` | 014A-FIX1 corrige loading a `12000ms`; transiciones conservan `2300ms`; fill avanza, sin overflow |
 | `pageerror` | PASO: ninguno detectado |
 | Errores JS | PASO: ninguno detectado; un mensaje generico de recurso 404 aparecio una vez en consola headless, sin `pageerror` y sin respuestas HTTP >= 400 en verificacion posterior |
 | Recursos remotos | PASO: ninguno detectado |

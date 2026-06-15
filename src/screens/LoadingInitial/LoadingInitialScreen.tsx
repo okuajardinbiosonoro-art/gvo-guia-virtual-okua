@@ -1,6 +1,6 @@
 import "./LoadingInitialScreen.css";
 
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/transition-root-assets";
 import { GvoProgressBar, GvoProgressFrame } from "../../components/progress";
@@ -47,9 +47,40 @@ export function LoadingInitialScreen({
   preloadStatus = "idle",
   preloadTarget = "loadingInitialCritical",
 }: LoadingInitialScreenProps = {}) {
-  useAssetPreloader(screenAssetBundles.loadingInitialCritical, {
-    timeoutMs: 5000,
-  });
+  const [firstPaintReady, setFirstPaintReady] = useState(false);
+  const loadingInitialPreload = useAssetPreloader(
+    screenAssetBundles.loadingInitialCritical,
+    {
+      enabled: firstPaintReady,
+      timeoutMs: 5000,
+    },
+  );
+
+  useEffect(() => {
+    const requestFrame =
+      typeof window !== "undefined" &&
+      typeof window.requestAnimationFrame === "function"
+        ? window.requestAnimationFrame
+        : undefined;
+    const cancelFrame =
+      typeof window !== "undefined" &&
+      typeof window.cancelAnimationFrame === "function"
+        ? window.cancelAnimationFrame
+        : undefined;
+
+    if (!requestFrame) {
+      setFirstPaintReady(true);
+      return undefined;
+    }
+
+    const frameId = requestFrame(() => {
+      setFirstPaintReady(true);
+    });
+
+    return () => {
+      cancelFrame?.(frameId);
+    };
+  }, []);
 
   return (
     <main
@@ -63,12 +94,20 @@ export function LoadingInitialScreen({
           ? Math.round(preloadProgress * 100).toString()
           : undefined
       }
+      data-first-paint-contract="shell-before-preload"
+      data-first-paint-ready={firstPaintReady ? "true" : "false"}
+      data-loading-preload-status={loadingInitialPreload.status}
+      data-loading-preload-progress={Math.round(
+        loadingInitialPreload.progress * 100,
+      ).toString()}
     >
       <section
         className="loading-initial__stage"
         data-loading-layout-version="v13"
         data-motion-timeline-version={loadingInitialMotionTimeline.version}
         data-duration-ms={loadingInitialTimeline.durationMs}
+        data-progress-duration-ms={loadingInitialTimeline.durationMs}
+        data-preload-contract="first-paint-before-critical-preload"
         data-reduced-motion-duration-ms={
           loadingInitialTimeline.reducedMotionDurationMs
         }

@@ -4,7 +4,7 @@ export const WATER_DELAY_AFTER_TILT_MS = 160;
 export const loadingInitialMotionTimeline = {
   version: LOADING_INITIAL_MOTION_TIMELINE_VERSION,
   totalDurationMs: 12000,
-  reducedMotionDurationMs: 1300,
+  reducedMotionDurationMs: 12000,
   phases: [
     { id: "initial_enter", startMs: 0, endMs: 900 },
     { id: "lia_entry_idle", startMs: 900, endMs: 3100 },

@@ -1,11 +1,11 @@
 .loading-initial {
   --loading-duration: 12000ms;
-  --loading-reduced-duration: 1300ms;
+  --loading-reduced-duration: 12000ms;
   --loading-text-lavender: #7352a3;
   --loading-subtitle: #9a79bd;
   --loading-amber: #e7a75d;
   --loading-visual-scale: 0.9;
-  --loading-progress-duration: 2300ms;
+  --loading-progress-duration: var(--loading-duration);
   --loading-progress-width: clamp(282px, 80vw, 360px);
   --loading-ease-arrive: cubic-bezier(0.22, 1, 0.36, 1);
   --loading-ease-soft: cubic-bezier(0.33, 0, 0.2, 1);
