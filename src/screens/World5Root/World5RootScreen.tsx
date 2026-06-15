@@ -1,7 +1,9 @@
 import "./World5RootScreen.css";
 
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { worldFiveToFinalTransitionRoute } from "../../app/routes";
 import { MobileShell } from "../../components/layout/MobileShell";
 import {
   WORLD5_REQUIRED_SLOT_COUNT,
@@ -11,7 +13,7 @@ import {
 import type { World5AreaId } from "../../content/world5EditorialSlots";
 
 const world5AreaCount = world5AreaDefinitions.length;
-const preparedExitTarget = "/transition/world-5-to-final";
+const preparedExitTarget = worldFiveToFinalTransitionRoute;
 
 type AreaInteractionState = "available" | "completed" | "locked";
 
@@ -31,9 +33,9 @@ function getAreaInteractionState(
 }
 
 export function World5RootScreen() {
+  const navigate = useNavigate();
   const [currentAreaIndex, setCurrentAreaIndex] = useState(-1);
   const [activeAreaId, setActiveAreaId] = useState<World5AreaId | null>(null);
-  const [exitAcknowledged, setExitAcknowledged] = useState(false);
   const activeArea = useMemo(
     () => world5AreaDefinitions.find((area) => area.id === activeAreaId) ?? null,
     [activeAreaId],
@@ -56,7 +58,6 @@ export function World5RootScreen() {
   function startExperience() {
     setCurrentAreaIndex(0);
     setActiveAreaId(world5AreaDefinitions[0].id);
-    setExitAcknowledged(false);
   }
 
   function selectArea(areaId: World5AreaId, areaIndex: number) {
@@ -67,7 +68,6 @@ export function World5RootScreen() {
     }
 
     setActiveAreaId(areaId);
-    setExitAcknowledged(false);
   }
 
   function confirmActiveArea() {
@@ -98,11 +98,11 @@ export function World5RootScreen() {
         data-sensitive-permissions="blocked"
         data-qr-camera="blocked"
         data-daily-counter="not_implemented"
-        data-final-screen="not_implemented"
+        data-final-screen="base_entry_prepared"
         data-review-free-mode="not_implemented"
         data-world5-exit-target={isReadyToContinue ? preparedExitTarget : undefined}
         data-world5-exit-mode={
-          isReadyToContinue ? "prepared_no_navigation" : undefined
+          isReadyToContinue ? "prepared_transition_final_entry" : undefined
         }
       >
         <section
@@ -284,22 +284,16 @@ export function World5RootScreen() {
                 className="world5-root-primary-action world5-root-primary-action--continue"
                 type="button"
                 data-world5-slot-id="W5_FINAL_BTN_01"
-                data-world5-exit-action="prepared_for_012b"
+                data-world5-exit-action="navigate_to_final_transition"
                 data-editorial-status="TEMP"
-                onClick={() => setExitAcknowledged(true)}
+                onClick={() => navigate(worldFiveToFinalTransitionRoute)}
               >
                 {world5EditorialSlots.W5_FINAL_BTN_01.text}
               </button>
               <p className="world5-root-note">
-                Salida preparada hacia el siguiente tramo; no se construye el
-                cierre completo en 012A.
+                Salida temporal hacia Mirador Final; la pantalla completa queda
+                pendiente.
               </p>
-              {exitAcknowledged ? (
-                <p className="world5-root-note" role="status">
-                  Continuidad registrada: falta ticket específico para la
-                  transición posterior.
-                </p>
-              ) : null}
             </>
           ) : (
             <>

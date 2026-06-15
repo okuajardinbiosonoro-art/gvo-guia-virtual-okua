@@ -59,6 +59,12 @@ describe("editorialRegistry", () => {
     expect(resolveEditorialText("TRANS_W4_W5_SUB_01").text).toBe(
       "TEMP — Preparando el mapa del presente.",
     );
+    expect(resolveEditorialText("TRANS_W5_FINAL_TITLE_01").text).toBe(
+      "TEMP — Abriendo el Mirador",
+    );
+    expect(resolveEditorialText("TRANS_W5_FINAL_SUB_01").text).toBe(
+      "TEMP — Preparando el cierre del recorrido.",
+    );
     expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
       "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
     );
@@ -118,6 +124,21 @@ describe("editorialRegistry", () => {
       "TEMP — El mapa ya muestra cómo OKÚA reúne plantas, sistema, espacio y visitante.",
     );
     expect(resolveEditorialText("W5_FINAL_BTN_01").text).toBe("Continuar");
+    expect(resolveEditorialText("FINAL_TITLE_01").text).toBe(
+      "TEMP — Mirador Final",
+    );
+    expect(resolveEditorialText("FINAL_SUBTITLE_01").text).toBe(
+      "TEMP — El recorrido queda reunido para volver a mirar.",
+    );
+    expect(resolveEditorialText("FINAL_LIA_MESSAGE_01").text).toBe(
+      "TEMP — Desde aquí podrás revisar lo vivido, volver al inicio o reiniciar.",
+    );
+    expect(resolveEditorialText("FINAL_AMB_01").text).toBe(
+      "TEMP — Los mundos quedan abiertos como memoria temporal del recorrido.",
+    );
+    expect(resolveEditorialText("FINAL_ACCESSIBLE_SCENE_01").text).toBe(
+      "TEMP — Entrada visual a la pantalla final, presentada como un mirador para revisar mundos, volver al inicio o reiniciar.",
+    );
   });
 
   it("rechaza slots editoriales no registrados", () => {

@@ -1,5 +1,6 @@
 import type { TransitionWorldConfig } from "./transitionWorld.types";
 import {
+  finalEntryRoute,
   worldFiveEntryRoute,
   worldFourEntryRoute,
   worldOneEntryRoute,
@@ -7,6 +8,7 @@ import {
   worldTwoEntryRoute,
 } from "../../app/routes";
 import {
+  worldFiveToFinalTransitionCopy,
   worldFourToWorldFiveTransitionCopy,
   worldOneToWorldTwoTransitionCopy,
   worldThreeToWorldFourTransitionCopy,
@@ -148,10 +150,38 @@ export const worldFourToWorldFiveTransition: TransitionWorldConfig = {
   },
 };
 
+export const worldFiveToFinalTransition: TransitionWorldConfig = {
+  id: "world-5-to-final",
+  fromRoute: worldFiveEntryRoute,
+  toRoute: finalEntryRoute,
+  targetPreload: "none",
+  title: worldFiveToFinalTransitionCopy.title.text,
+  titleSlotId: worldFiveToFinalTransitionCopy.title.id,
+  subtitle: worldFiveToFinalTransitionCopy.subtitle.text,
+  subtitleSlotId: worldFiveToFinalTransitionCopy.subtitle.id,
+  durationMs: 2300,
+  reducedMotionDurationMs: 1000,
+  portalLabel: "Portal de transicion hacia Pantalla Final",
+  portalState: "open",
+  portalSymbol: "root",
+  palette: {
+    background: "#F5F1E7",
+    mist: "#DDE8DD",
+    portalCore: "#FFF5C8",
+    portalEdge: "#9AB8A8",
+    portalGlow: "#BF7E30",
+    text: "#17241F",
+    textSoft: "#58665F",
+    progressTrack: "#CDD6CA",
+    progressFill: "#2F6F5E",
+  },
+};
+
 export const transitionWorldConfigs = {
   introToStationOne: introToStationOneTransition,
   worldOneToWorldTwo: worldOneToWorldTwoTransition,
   worldTwoToWorldThree: worldTwoToWorldThreeTransition,
   worldThreeToWorldFour: worldThreeToWorldFourTransition,
   worldFourToWorldFive: worldFourToWorldFiveTransition,
+  worldFiveToFinal: worldFiveToFinalTransition,
 } as const;

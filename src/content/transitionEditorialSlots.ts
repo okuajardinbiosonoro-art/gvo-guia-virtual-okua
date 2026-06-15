@@ -12,6 +12,8 @@ export type TransitionEditorialSlotId =
     | "TRANS_W3_W4_SUB_01"
     | "TRANS_W4_W5_TITLE_01"
     | "TRANS_W4_W5_SUB_01"
+    | "TRANS_W5_FINAL_TITLE_01"
+    | "TRANS_W5_FINAL_SUB_01"
   >;
 
 type TemporaryTransitionSlot = {
@@ -51,6 +53,12 @@ export const temporaryTransitionEditorialSlots = {
     "TRANS_W4_W5_TITLE_01",
   ),
   TRANS_W4_W5_SUB_01: resolveTemporaryTransitionSlot("TRANS_W4_W5_SUB_01"),
+  TRANS_W5_FINAL_TITLE_01: resolveTemporaryTransitionSlot(
+    "TRANS_W5_FINAL_TITLE_01",
+  ),
+  TRANS_W5_FINAL_SUB_01: resolveTemporaryTransitionSlot(
+    "TRANS_W5_FINAL_SUB_01",
+  ),
 } as const satisfies Record<TransitionEditorialSlotId, TemporaryTransitionSlot>;
 
 export const worldOneToWorldTwoTransitionCopy = {
@@ -71,4 +79,9 @@ export const worldThreeToWorldFourTransitionCopy = {
 export const worldFourToWorldFiveTransitionCopy = {
   subtitle: temporaryTransitionEditorialSlots.TRANS_W4_W5_SUB_01,
   title: temporaryTransitionEditorialSlots.TRANS_W4_W5_TITLE_01,
+} as const;
+
+export const worldFiveToFinalTransitionCopy = {
+  subtitle: temporaryTransitionEditorialSlots.TRANS_W5_FINAL_SUB_01,
+  title: temporaryTransitionEditorialSlots.TRANS_W5_FINAL_TITLE_01,
 } as const;

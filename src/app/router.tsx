@@ -7,9 +7,8 @@ import {
 } from "react-router-dom";
 
 import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
-import { flowSteps } from "../data/flow";
 import { CoverIntroScreen } from "../screens/Cover";
-import { FinalPlaceholder } from "../screens/Final/FinalPlaceholder";
+import { FinalRootScreen } from "../screens/FinalRoot";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
@@ -17,6 +16,7 @@ import { TransitionWorld } from "../screens/TransitionWorld";
 import {
   introToStationOneTransition,
   worldFourToWorldFiveTransition,
+  worldFiveToFinalTransition,
   worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
   worldOneToWorldTwoTransition,
@@ -32,7 +32,9 @@ import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
   coverToWorldOneTransitionRoute,
+  finalEntryRoute,
   worldFiveEntryRoute,
+  worldFiveToFinalTransitionRoute,
   worldFourToWorldFiveTransitionRoute,
   worldThreeEntryRoute,
   worldThreeToWorldFourTransitionRoute,
@@ -171,6 +173,10 @@ export const router = createBrowserRouter([
     ),
   },
   {
+    path: worldFiveToFinalTransitionRoute,
+    element: <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />,
+  },
+  {
     path: "/estacion/1",
     element: <World1RootScreen />,
   },
@@ -195,8 +201,8 @@ export const router = createBrowserRouter([
     element: <StationPlaceholder />,
   },
   {
-    path: "/final",
-    element: <FinalPlaceholder flowSteps={flowSteps} />,
+    path: finalEntryRoute,
+    element: <FinalRootScreen />,
   },
   {
     path: "/qr/:stationId",

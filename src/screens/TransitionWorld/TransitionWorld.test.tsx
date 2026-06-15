@@ -8,6 +8,7 @@ import {
   introToStationOneTransition,
   TRANSITION_WORLD_VERSION,
   worldFourToWorldFiveTransition,
+  worldFiveToFinalTransition,
   worldOneToWorldTwoTransition,
   worldThreeToWorldFourTransition,
   worldTwoToWorldThreeTransition,
@@ -303,6 +304,43 @@ describe("TransitionWorld", () => {
     expect(container.querySelector("main")).toHaveAttribute(
       "data-transition-world-id",
       "world-4-to-world-5",
+    );
+  });
+
+  it("expone configuracion temporal de la transicion Mundo V a Pantalla Final", () => {
+    const { container } = render(
+      <TransitionWorld config={worldFiveToFinalTransition} />,
+    );
+
+    expect(worldFiveToFinalTransition.id).toBe("world-5-to-final");
+    expect(worldFiveToFinalTransition.fromRoute).toBe("/estacion/5");
+    expect(worldFiveToFinalTransition.toRoute).toBe("/final");
+    expect(worldFiveToFinalTransition.targetPreload).toBe("none");
+    expect(worldFiveToFinalTransition.titleSlotId).toBe(
+      "TRANS_W5_FINAL_TITLE_01",
+    );
+    expect(worldFiveToFinalTransition.subtitleSlotId).toBe(
+      "TRANS_W5_FINAL_SUB_01",
+    );
+    expect(
+      screen.getByRole("heading", {
+        name: "TEMP — Abriendo el Mirador",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("TEMP — Preparando el cierre del recorrido."),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
+      "data-title-slot",
+      "TRANS_W5_FINAL_TITLE_01",
+    );
+    expect(container.querySelector("[data-subtitle-slot]")).toHaveAttribute(
+      "data-subtitle-slot",
+      "TRANS_W5_FINAL_SUB_01",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-transition-world-id",
+      "world-5-to-final",
     );
   });
 

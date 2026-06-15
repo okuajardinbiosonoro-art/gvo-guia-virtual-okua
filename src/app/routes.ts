@@ -15,6 +15,9 @@ export const worldThreeToWorldFourTransitionRoute =
 export const worldFourToWorldFiveTransitionRoute =
   "/transition/world-4-to-world-5";
 
+export const worldFiveToFinalTransitionRoute =
+  "/transition/world-5-to-final";
+
 export const worldOneEntryRoute = "/estacion/1";
 
 export const worldTwoEntryRoute = "/estacion/2";
@@ -26,3 +29,5 @@ export const worldThreeEntryRoute = "/estacion/3";
 export const worldFourEntryRoute = "/estacion/4";
 
 export const worldFiveEntryRoute = "/estacion/5";
+
+export const finalEntryRoute = "/final";

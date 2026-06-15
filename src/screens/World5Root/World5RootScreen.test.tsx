@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
 import {
@@ -9,13 +10,28 @@ import {
 } from "../../content/world5EditorialSlots";
 import { World5RootScreen } from "./World5RootScreen";
 
+function LocationProbe() {
+  const location = useLocation();
+
+  return <span data-testid="current-location">{location.pathname}</span>;
+}
+
+function renderWorld5RootScreen() {
+  return render(
+    <MemoryRouter initialEntries={["/estacion/5"]}>
+      <World5RootScreen />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
+}
+
 describe("World5RootScreen", () => {
   afterEach(() => {
     cleanup();
   });
 
   it("renderiza Mundo V temporal con 24 slots editoriales y sin permisos sensibles", () => {
-    const { container } = render(<World5RootScreen />);
+    const { container } = renderWorld5RootScreen();
 
     expect(
       screen.getByRole("heading", { name: "Mundo V: Mapa del Presente" }),
@@ -63,7 +79,7 @@ describe("World5RootScreen", () => {
     );
     expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
       "data-final-screen",
-      "not_implemented",
+      "base_entry_prepared",
     );
     expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
       "data-review-free-mode",
@@ -72,7 +88,7 @@ describe("World5RootScreen", () => {
   });
 
   it("preserva las cuatro areas protegidas sin repetir la cadena tecnica de Mundo IV", () => {
-    const { container } = render(<World5RootScreen />);
+    const { container } = renderWorld5RootScreen();
 
     expect(
       Array.from(container.querySelectorAll("[data-world5-protected-area]")).map(
@@ -89,7 +105,7 @@ describe("World5RootScreen", () => {
   });
 
   it("avanza por las areas en orden, permite relectura y llega a ready_to_continue", () => {
-    const { container } = render(<World5RootScreen />);
+    const { container } = renderWorld5RootScreen();
     const getState = () =>
       container
         .querySelector("[data-world5-state]")
@@ -143,7 +159,7 @@ describe("World5RootScreen", () => {
     );
     expect(container.querySelector("[data-world5-exit-mode]")).toHaveAttribute(
       "data-world5-exit-mode",
-      "prepared_no_navigation",
+      "prepared_transition_final_entry",
     );
 
     const finalButton = screen.getByRole("button", {
@@ -152,18 +168,16 @@ describe("World5RootScreen", () => {
 
     expect(finalButton).toHaveAttribute(
       "data-world5-exit-action",
-      "prepared_for_012b",
+      "navigate_to_final_transition",
     );
     fireEvent.click(finalButton);
-    expect(
-      screen.getByText(
-        "Continuidad registrada: falta ticket específico para la transición posterior.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-5-to-final",
+    );
   });
 
-  it("no implementa medios, QR, contador, revision libre ni salida final real", () => {
-    const { container } = render(<World5RootScreen />);
+  it("no implementa medios, QR, contador ni revision libre completa", () => {
+    const { container } = renderWorld5RootScreen();
 
     expect(container.querySelectorAll("img")).toHaveLength(0);
     expect(container.querySelectorAll("audio")).toHaveLength(0);
@@ -180,7 +194,7 @@ describe("World5RootScreen", () => {
     );
     expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
       "data-final-screen",
-      "not_implemented",
+      "base_entry_prepared",
     );
     expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
       "data-review-free-mode",
@@ -188,6 +202,5 @@ describe("World5RootScreen", () => {
     );
     expect(container).not.toHaveTextContent(/QR/i);
     expect(container).not.toHaveTextContent(/contador diario/i);
-    expect(container).not.toHaveTextContent(/pantalla final/i);
   });
 });

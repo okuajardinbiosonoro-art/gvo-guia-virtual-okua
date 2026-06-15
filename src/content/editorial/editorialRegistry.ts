@@ -107,6 +107,24 @@ export const editorialRegistry = {
       text: "TEMP — Preparando el mapa del presente.",
     }),
   },
+  TRANS_W5_FINAL_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP de transición W5→Final; prepara entrada base Mirador.",
+      shortText: "Abriendo el Mirador",
+      slotId: "TRANS_W5_FINAL_TITLE_01",
+      text: "TEMP — Abriendo el Mirador",
+    }),
+  },
+  TRANS_W5_FINAL_SUB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de transición W5→Final; reemplazar por Excel editorial.",
+      shortText: "Cierre del recorrido",
+      slotId: "TRANS_W5_FINAL_SUB_01",
+      text: "TEMP — Preparando el cierre del recorrido.",
+    }),
+  },
   W2_INTRO_LIA_01: {
     es: temporaryEsEntry({
       emitter: "lia",
@@ -1057,6 +1075,51 @@ export const editorialRegistry = {
       shortText: "Continuar",
       slotId: "W5_FINAL_BTN_01",
       text: "Continuar",
+    }),
+  },
+  FINAL_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP de entrada base Pantalla Final — Mirador.",
+      shortText: "Mirador Final",
+      slotId: "FINAL_TITLE_01",
+      text: "TEMP — Mirador Final",
+    }),
+  },
+  FINAL_SUBTITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de entrada base Pantalla Final; reemplazar por Excel editorial.",
+      shortText: "Recorrido reunido",
+      slotId: "FINAL_SUBTITLE_01",
+      text: "TEMP — El recorrido queda reunido para volver a mirar.",
+    }),
+  },
+  FINAL_LIA_MESSAGE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      notes: "TEMP de mensaje de Lía para entrada base del Mirador.",
+      shortText: "Revisar lo vivido",
+      slotId: "FINAL_LIA_MESSAGE_01",
+      text: "TEMP — Desde aquí podrás revisar lo vivido, volver al inicio o reiniciar.",
+    }),
+  },
+  FINAL_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      notes: "TEMP de ambiente para entrada base del Mirador.",
+      shortText: "Memoria temporal",
+      slotId: "FINAL_AMB_01",
+      text: "TEMP — Los mundos quedan abiertos como memoria temporal del recorrido.",
+    }),
+  },
+  FINAL_ACCESSIBLE_SCENE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      notes: "TEMP accesible de entrada base Pantalla Final — Mirador.",
+      shortText: "Escena accesible final",
+      slotId: "FINAL_ACCESSIBLE_SCENE_01",
+      text: "TEMP — Entrada visual a la pantalla final, presentada como un mirador para revisar mundos, volver al inicio o reiniciar.",
     }),
   },
 } as const satisfies EditorialRegistry;
