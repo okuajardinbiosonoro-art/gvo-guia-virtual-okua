@@ -78,15 +78,7 @@
 }
 
 .world1-root-stage-frame::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-  height: 18%;
-  background: #0a0604;
-  pointer-events: none;
+  content: none;
 }
 
 @supports (height: 100svh) {
