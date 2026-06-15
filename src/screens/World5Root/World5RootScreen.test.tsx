@@ -1,8 +1,9 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import {
-  WORLD5_BASE_SLOT_COUNT,
+  WORLD5_REQUIRED_SLOT_COUNT,
+  world5AreaDefinitions,
   world5ConceptAreas,
   world5EditorialSlots,
 } from "../../content/world5EditorialSlots";
@@ -13,7 +14,7 @@ describe("World5RootScreen", () => {
     cleanup();
   });
 
-  it("renderiza la entrada base de Mundo V con tres slots temporales", () => {
+  it("renderiza Mundo V temporal con 24 slots editoriales y sin permisos sensibles", () => {
     const { container } = render(<World5RootScreen />);
 
     expect(
@@ -31,25 +32,25 @@ describe("World5RootScreen", () => {
       screen.getByLabelText(world5EditorialSlots.W5_ACCESSIBLE_SCENE_01.text),
     ).toBeInTheDocument();
     expect(Object.keys(world5EditorialSlots)).toHaveLength(
-      WORLD5_BASE_SLOT_COUNT,
+      WORLD5_REQUIRED_SLOT_COUNT,
     );
     expect(
       Object.values(world5EditorialSlots).every((slot) => slot.status === "TEMP"),
     ).toBe(true);
     expect(container.querySelector("[data-world5-experience]")).toHaveAttribute(
       "data-world5-experience",
-      "base_entry",
+      "temporary",
     );
     expect(container.querySelector("[data-world5-state]")).toHaveAttribute(
       "data-world5-state",
-      "entry_preliminary",
+      "intro",
     );
     expect(container.querySelector("[data-world5-slot-count]")).toHaveAttribute(
       "data-world5-slot-count",
-      String(WORLD5_BASE_SLOT_COUNT),
+      String(WORLD5_REQUIRED_SLOT_COUNT),
     );
     expect(container.querySelector("[data-world5-full-experience]"))
-      .toHaveAttribute("data-world5-full-experience", "not_implemented");
+      .toHaveAttribute("data-world5-full-experience", "temporary_complete");
     expect(container.querySelector("[data-sensitive-permissions]"))
       .toHaveAttribute("data-sensitive-permissions", "blocked");
     expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
@@ -58,6 +59,14 @@ describe("World5RootScreen", () => {
     );
     expect(container.querySelector("[data-daily-counter]")).toHaveAttribute(
       "data-daily-counter",
+      "not_implemented",
+    );
+    expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
+      "data-final-screen",
+      "not_implemented",
+    );
+    expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
+      "data-review-free-mode",
       "not_implemented",
     );
   });
@@ -79,7 +88,81 @@ describe("World5RootScreen", () => {
     expect(container).not.toHaveTextContent(/SONIDO/);
   });
 
-  it("no implementa experiencia completa, medios, QR, contador ni acciones finales", () => {
+  it("avanza por las areas en orden, permite relectura y llega a ready_to_continue", () => {
+    const { container } = render(<World5RootScreen />);
+    const getState = () =>
+      container
+        .querySelector("[data-world5-state]")
+        ?.getAttribute("data-world5-state");
+
+    fireEvent.click(screen.getByRole("button", { name: "Iniciar mapa temporal" }));
+    expect(getState()).toBe("plantas");
+    expect(
+      container.querySelector('[data-world5-area-id="sistema"]'),
+    ).toHaveAttribute("data-area-state", "locked");
+
+    for (const [index, area] of world5AreaDefinitions.entries()) {
+      expect(getState()).toBe(area.id);
+      expect(
+        screen.getByText(world5EditorialSlots[area.hintSlot].text),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(world5EditorialSlots[area.ambientSlot].text),
+      ).toBeInTheDocument();
+
+      if (index === 1) {
+        fireEvent.click(
+          container.querySelector(
+            '[data-world5-area-id="plantas"]',
+          ) as HTMLButtonElement,
+        );
+        expect(
+          screen.getByText(world5EditorialSlots.W5_AREA_REPEAT_01.text),
+        ).toBeInTheDocument();
+        expect(getState()).toBe("sistema");
+        fireEvent.click(
+          container.querySelector(
+            '[data-world5-area-id="sistema"]',
+          ) as HTMLButtonElement,
+        );
+      }
+
+      fireEvent.click(screen.getByText(world5EditorialSlots[area.confirmSlot].text));
+    }
+
+    expect(getState()).toBe("ready_to_continue");
+    expect(
+      screen.getByText(world5EditorialSlots.W5_COMPLETE_LIA_01.text),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(world5EditorialSlots.W5_COMPLETE_AMB_01.text),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-world5-exit-target]")).toHaveAttribute(
+      "data-world5-exit-target",
+      "/transition/world-5-to-final",
+    );
+    expect(container.querySelector("[data-world5-exit-mode]")).toHaveAttribute(
+      "data-world5-exit-mode",
+      "prepared_no_navigation",
+    );
+
+    const finalButton = screen.getByRole("button", {
+      name: world5EditorialSlots.W5_FINAL_BTN_01.text,
+    });
+
+    expect(finalButton).toHaveAttribute(
+      "data-world5-exit-action",
+      "prepared_for_012b",
+    );
+    fireEvent.click(finalButton);
+    expect(
+      screen.getByText(
+        "Continuidad registrada: falta ticket específico para la transición posterior.",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("no implementa medios, QR, contador, revision libre ni salida final real", () => {
     const { container } = render(<World5RootScreen />);
 
     expect(container.querySelectorAll("img")).toHaveLength(0);
@@ -87,7 +170,22 @@ describe("World5RootScreen", () => {
     expect(container.querySelectorAll("video")).toHaveLength(0);
     expect(container.querySelectorAll("canvas")).toHaveLength(0);
     expect(container.querySelectorAll("iframe")).toHaveLength(0);
-    expect(container.querySelectorAll("button")).toHaveLength(0);
+    expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
+      "data-qr-camera",
+      "blocked",
+    );
+    expect(container.querySelector("[data-daily-counter]")).toHaveAttribute(
+      "data-daily-counter",
+      "not_implemented",
+    );
+    expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
+      "data-final-screen",
+      "not_implemented",
+    );
+    expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
+      "data-review-free-mode",
+      "not_implemented",
+    );
     expect(container).not.toHaveTextContent(/QR/i);
     expect(container).not.toHaveTextContent(/contador diario/i);
     expect(container).not.toHaveTextContent(/pantalla final/i);

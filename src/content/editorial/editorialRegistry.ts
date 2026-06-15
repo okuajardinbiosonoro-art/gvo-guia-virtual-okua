@@ -880,7 +880,7 @@ export const editorialRegistry = {
       emitter: "ambiente",
       shortText: "Mapa del presente",
       slotId: "W5_INTRO_AMB_01",
-      text: "TEMP — El presente de OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
+      text: "TEMP — OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
     }),
   },
   W5_ACCESSIBLE_SCENE_01: {
@@ -889,6 +889,174 @@ export const editorialRegistry = {
       shortText: "Escena accesible Mundo V",
       slotId: "W5_ACCESSIBLE_SCENE_01",
       text: "TEMP — Entrada visual a Mundo V, presentada como un mapa del presente con cuatro áreas: plantas, sistema, espacio y visitante.",
+    }),
+  },
+  W5_PLANTAS_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Plantas",
+      slotId: "W5_PLANTAS_HINT_01",
+      text: "TEMP — Comienza por las plantas como presencia viva del recorrido.",
+    }),
+  },
+  W5_PLANTAS_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Presencia viva",
+      slotId: "W5_PLANTAS_AMB_01",
+      text: "TEMP — Las plantas no aparecen como símbolo aislado: sostienen el origen de la experiencia.",
+    }),
+  },
+  W5_PLANTAS_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar plantas",
+      slotId: "W5_PLANTAS_CONFIRM_01",
+      text: "TEMP — Área PLANTAS registrada.",
+    }),
+  },
+  W5_ACCESSIBLE_PLANTAS_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible plantas",
+      slotId: "W5_ACCESSIBLE_PLANTAS_01",
+      text: "TEMP — Área del mapa dedicada a las plantas y su presencia viva en OKÚA.",
+    }),
+  },
+  W5_SISTEMA_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Sistema",
+      slotId: "W5_SISTEMA_HINT_01",
+      text: "TEMP — Revisa el sistema como mediación, sin repetir toda la cadena técnica.",
+    }),
+  },
+  W5_SISTEMA_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Mediación general",
+      slotId: "W5_SISTEMA_AMB_01",
+      text: "TEMP — El sistema organiza señales y decisiones, pero aquí aparece como parte del montaje completo.",
+    }),
+  },
+  W5_SISTEMA_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar sistema",
+      slotId: "W5_SISTEMA_CONFIRM_01",
+      text: "TEMP — Área SISTEMA registrada.",
+    }),
+  },
+  W5_ACCESSIBLE_SISTEMA_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible sistema",
+      slotId: "W5_ACCESSIBLE_SISTEMA_01",
+      text: "TEMP — Área del mapa dedicada al sistema como mediador técnico general.",
+    }),
+  },
+  W5_ESPACIO_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Espacio",
+      slotId: "W5_ESPACIO_HINT_01",
+      text: "TEMP — Observa el espacio donde la experiencia ocurre.",
+    }),
+  },
+  W5_ESPACIO_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Lugar del recorrido",
+      slotId: "W5_ESPACIO_AMB_01",
+      text: "TEMP — El jardín, el recorrido y la disposición física también forman parte del presente de OKÚA.",
+    }),
+  },
+  W5_ESPACIO_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar espacio",
+      slotId: "W5_ESPACIO_CONFIRM_01",
+      text: "TEMP — Área ESPACIO registrada.",
+    }),
+  },
+  W5_ACCESSIBLE_ESPACIO_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible espacio",
+      slotId: "W5_ACCESSIBLE_ESPACIO_01",
+      text: "TEMP — Área del mapa dedicada al espacio físico y sensible de la experiencia.",
+    }),
+  },
+  W5_VISITANTE_HINT_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Visitante",
+      slotId: "W5_VISITANTE_HINT_01",
+      text: "TEMP — Cierra el mapa con la presencia del visitante.",
+    }),
+  },
+  W5_VISITANTE_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Presencia activa",
+      slotId: "W5_VISITANTE_AMB_01",
+      text: "TEMP — La experiencia termina de tomar forma cuando alguien la recorre, mira y escucha.",
+    }),
+  },
+  W5_VISITANTE_CONFIRM_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Confirmar visitante",
+      slotId: "W5_VISITANTE_CONFIRM_01",
+      text: "TEMP — Área VISITANTE registrada.",
+    }),
+  },
+  W5_ACCESSIBLE_VISITANTE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Accesible visitante",
+      slotId: "W5_ACCESSIBLE_VISITANTE_01",
+      text: "TEMP — Área del mapa dedicada al visitante como parte activa del recorrido.",
+    }),
+  },
+  W5_AREA_LOCKED_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Área bloqueada",
+      slotId: "W5_AREA_LOCKED_01",
+      text: "TEMP — Antes de abrir esta área, revisa el paso anterior.",
+    }),
+  },
+  W5_AREA_REPEAT_01: {
+    es: temporaryEsEntry({
+      emitter: "sistema",
+      shortText: "Releer área",
+      slotId: "W5_AREA_REPEAT_01",
+      text: "TEMP — Puedes volver a mirar esta área antes de continuar.",
+    }),
+  },
+  W5_COMPLETE_LIA_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Cierre Mundo V",
+      slotId: "W5_COMPLETE_LIA_01",
+      text: "TEMP — El mapa ya muestra cómo OKÚA reúne plantas, sistema, espacio y visitante.",
+    }),
+  },
+  W5_COMPLETE_AMB_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Presente armado",
+      slotId: "W5_COMPLETE_AMB_01",
+      text: "TEMP — El presente queda armado como una experiencia compartida.",
+    }),
+  },
+  W5_FINAL_BTN_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Continuar",
+      slotId: "W5_FINAL_BTN_01",
+      text: "Continuar",
     }),
   },
 } as const satisfies EditorialRegistry;

@@ -97,11 +97,27 @@ describe("editorialRegistry", () => {
       "TEMP — Este mapa reúne lo que ya viste: plantas, sistema, espacio y visitante.",
     );
     expect(resolveEditorialText("W5_INTRO_AMB_01").text).toBe(
-      "TEMP — El presente de OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
+      "TEMP — OKÚA aparece como un montaje vivo, no como una sola pieza aislada.",
     );
     expect(resolveEditorialText("W5_ACCESSIBLE_SCENE_01").text).toBe(
       "TEMP — Entrada visual a Mundo V, presentada como un mapa del presente con cuatro áreas: plantas, sistema, espacio y visitante.",
     );
+    expect(resolveEditorialText("W5_PLANTAS_HINT_01").text).toBe(
+      "TEMP — Comienza por las plantas como presencia viva del recorrido.",
+    );
+    expect(resolveEditorialText("W5_SISTEMA_HINT_01").text).toBe(
+      "TEMP — Revisa el sistema como mediación, sin repetir toda la cadena técnica.",
+    );
+    expect(resolveEditorialText("W5_ESPACIO_CONFIRM_01").text).toBe(
+      "TEMP — Área ESPACIO registrada.",
+    );
+    expect(resolveEditorialText("W5_VISITANTE_AMB_01").text).toBe(
+      "TEMP — La experiencia termina de tomar forma cuando alguien la recorre, mira y escucha.",
+    );
+    expect(resolveEditorialText("W5_COMPLETE_LIA_01").text).toBe(
+      "TEMP — El mapa ya muestra cómo OKÚA reúne plantas, sistema, espacio y visitante.",
+    );
+    expect(resolveEditorialText("W5_FINAL_BTN_01").text).toBe("Continuar");
   });
 
   it("rechaza slots editoriales no registrados", () => {
