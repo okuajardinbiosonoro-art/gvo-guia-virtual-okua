@@ -5,6 +5,8 @@
   --loading-subtitle: #9a79bd;
   --loading-amber: #e7a75d;
   --loading-visual-scale: 0.9;
+  --loading-progress-duration: 2300ms;
+  --loading-progress-width: clamp(282px, 80vw, 360px);
   --loading-ease-arrive: cubic-bezier(0.22, 1, 0.36, 1);
   --loading-ease-soft: cubic-bezier(0.33, 0, 0.2, 1);
   min-height: 100svh;
@@ -284,8 +286,8 @@
 }
 
 .loading-initial__progress {
-  --gvo-progress-width: min(74%, 286px);
-  --gvo-progress-duration: var(--loading-duration);
+  --gvo-progress-width: var(--loading-progress-width);
+  --gvo-progress-duration: var(--loading-progress-duration);
   --gvo-progress-track-inset-left: 3.6%;
   --gvo-progress-track-inset-right: 5.2%;
   --gvo-progress-channel-inset-y: 17%;
