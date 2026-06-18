@@ -34,6 +34,7 @@ type LayerCopy = {
 type LayerGlyphStyle = CSSProperties & {
   "--world2-layer-glyph": string;
   "--world2-layer-glyph-position": string;
+  "--world2-layer-frame": string;
 };
 
 const layerCopy: Record<World2LayerId, LayerCopy> = {
@@ -122,11 +123,17 @@ const layerVisuals: Record<World2LayerId, LayerVisual> = {
 const liaPoseByLayer: Record<World2LayerId, string> = {
   planta_viva: world2RuntimeAssets.liaIdle,
   senal: world2RuntimeAssets.liaPoint,
-  captura: world2RuntimeAssets.liaActivate,
+  captura: world2RuntimeAssets.liaExplainCalm,
   acondicionamiento: world2RuntimeAssets.liaExplainCalm,
   mapeo: world2RuntimeAssets.liaPoint,
   resultado_mediado: world2RuntimeAssets.liaGreeting,
 };
+
+const microSceneLayers = new Set<World2LayerId>([
+  "captura",
+  "mapeo",
+  "resultado_mediado",
+]);
 
 function getLayerIndex(layerId: World2LayerId) {
   return world2LayerDefinitions.findIndex((layer) => layer.id === layerId);
@@ -167,6 +174,7 @@ function getLayerGlyphStyle(index: number): LayerGlyphStyle {
   return {
     "--world2-layer-glyph": `url(${world2RuntimeAssets.layerGlyphAtlas})`,
     "--world2-layer-glyph-position": `${index * 20}% 0%`,
+    "--world2-layer-frame": `url(${world2RuntimeAssets.layerNavFrame})`,
   };
 }
 
@@ -205,12 +213,13 @@ export function World2RootScreen() {
     ? world2RuntimeAssets.liaGreeting
     : liaPoseByLayer[activeLayer.id];
   const layerVisual = layerVisuals[activeLayer.id];
+  const showRouteBase = activeLayer.id !== "planta_viva" || completedCount > 0;
   const showWaveform =
     activeLayer.id !== "planta_viva" || completedCount >= 2;
-  const showMicroScene =
-    activeLayer.id === "captura" ||
-    activeLayer.id === "mapeo" ||
-    activeLayer.id === "resultado_mediado";
+  const showMicroScene = microSceneLayers.has(activeLayer.id) && !isReadyToContinue;
+  const showLiaHalo = activeLayer.id !== "planta_viva" && !isReadyToContinue;
+  const showRouteActive =
+    completedCount > 0 && activeLayer.id !== "planta_viva";
 
   function selectLayer(layerId: World2LayerId, layerIndex: number) {
     const status = getLayerStatus(layerIndex, activeLayerId, completedCount);
@@ -244,8 +253,8 @@ export function World2RootScreen() {
   return (
     <main
       className="world2-root-screen"
-      data-world2-experience="immersive-rebuild"
-      data-world2-runtime-version="015B"
+      data-world2-experience="visual-composition-reset"
+      data-world2-runtime-version="015C"
       data-world2-editorial-source="excel_pending"
       data-world2-state={world2State}
       data-world2-active-layer={activeLayer.id}
@@ -302,14 +311,16 @@ export function World2RootScreen() {
         </header>
 
         <div className="world2-route-field" aria-hidden="true">
-          <img
-            className="world2-scene-asset world2-scene-asset--route-base"
-            src={world2RuntimeAssets.routeBase}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.routeBase}
-            loading="lazy"
-          />
-          {completedCount > 0 || activeLayer.id !== "planta_viva" ? (
+          {showRouteBase ? (
+            <img
+              className="world2-scene-asset world2-scene-asset--route-base"
+              src={world2RuntimeAssets.routeBase}
+              alt=""
+              data-runtime-asset={world2RuntimeAssets.routeBase}
+              loading="lazy"
+            />
+          ) : null}
+          {showRouteActive ? (
             <img
               className="world2-scene-asset world2-scene-asset--route-active"
               src={
@@ -357,56 +368,49 @@ export function World2RootScreen() {
           />
         ) : null}
 
-        <div
-          className={`world2-micro-scene${showMicroScene ? " world2-micro-scene--visible" : ""}`}
-          data-world2-micro-scene={showMicroScene ? activeLayer.id : "hidden"}
-          aria-hidden="true"
-        >
-          <img
-            className="world2-micro-scene__asset world2-micro-scene__asset--frame"
-            src={world2RuntimeAssets.microFrame}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.microFrame}
-            loading="lazy"
-          />
-          <img
-            className="world2-micro-scene__asset world2-micro-scene__asset--base"
-            src={world2RuntimeAssets.microBase}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.microBase}
-            loading="lazy"
-          />
-          <img
-            className="world2-micro-scene__asset world2-micro-scene__asset--focus"
-            src={world2RuntimeAssets.microFocusGlow}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.microFocusGlow}
-            loading="lazy"
-          />
-          <img
-            className="world2-micro-scene__asset world2-micro-scene__asset--reticle"
-            src={world2RuntimeAssets.microCaptureReticle}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.microCaptureReticle}
-            loading="lazy"
-          />
-          <img
-            className="world2-micro-scene__asset world2-micro-scene__asset--connector"
-            src={world2RuntimeAssets.microConnector}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.microConnector}
-            loading="lazy"
-          />
-        </div>
+        {showMicroScene ? (
+          <div
+            className="world2-micro-scene world2-micro-scene--visible"
+            data-world2-micro-scene={activeLayer.id}
+            aria-hidden="true"
+          >
+            <img
+              className="world2-micro-scene__asset world2-micro-scene__asset--frame"
+              src={world2RuntimeAssets.microFrame}
+              alt=""
+              data-runtime-asset={world2RuntimeAssets.microFrame}
+              loading="lazy"
+            />
+            {activeLayer.id === "captura" ? (
+              <img
+                className="world2-micro-scene__asset world2-micro-scene__asset--reticle"
+                src={world2RuntimeAssets.microCaptureReticle}
+                alt=""
+                data-runtime-asset={world2RuntimeAssets.microCaptureReticle}
+                loading="lazy"
+              />
+            ) : (
+              <img
+                className="world2-micro-scene__asset world2-micro-scene__asset--base"
+                src={world2RuntimeAssets.microBase}
+                alt=""
+                data-runtime-asset={world2RuntimeAssets.microBase}
+                loading="lazy"
+              />
+            )}
+          </div>
+        ) : null}
 
         <div className="world2-lia-field" aria-hidden="true">
-          <img
-            className="world2-scene-asset world2-scene-asset--lia-halo"
-            src={world2RuntimeAssets.liaHalo}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.liaHalo}
-            loading="lazy"
-          />
+          {showLiaHalo ? (
+            <img
+              className="world2-scene-asset world2-scene-asset--lia-halo"
+              src={world2RuntimeAssets.liaHalo}
+              alt=""
+              data-runtime-asset={world2RuntimeAssets.liaHalo}
+              loading="lazy"
+            />
+          ) : null}
           <img
             className="world2-scene-asset world2-scene-asset--lia"
             src={activeLiaPose}
@@ -415,13 +419,15 @@ export function World2RootScreen() {
             data-lia-source="repo-existing-2-5d"
             fetchPriority="high"
           />
-          <img
-            className="world2-scene-asset world2-scene-asset--lia-wisps"
-            src={world2RuntimeAssets.liaWisps}
-            alt=""
-            data-runtime-asset={world2RuntimeAssets.liaWisps}
-            loading="lazy"
-          />
+          {activeLayer.id === "senal" ? (
+            <img
+              className="world2-scene-asset world2-scene-asset--lia-wisps"
+              src={world2RuntimeAssets.liaWisps}
+              alt=""
+              data-runtime-asset={world2RuntimeAssets.liaWisps}
+              loading="lazy"
+            />
+          ) : null}
         </div>
 
         <article
@@ -435,14 +441,6 @@ export function World2RootScreen() {
             alt=""
             aria-hidden="true"
             data-runtime-asset={world2RuntimeAssets.dialogueBackplate}
-          />
-          <img
-            className="world2-dialogue__asset world2-dialogue__asset--glow"
-            src={world2RuntimeAssets.dialogueGlow}
-            alt=""
-            aria-hidden="true"
-            data-runtime-asset={world2RuntimeAssets.dialogueGlow}
-            loading="lazy"
           />
           <img
             className="world2-dialogue__asset world2-dialogue__asset--tail"
@@ -509,7 +507,6 @@ export function World2RootScreen() {
             const status = getLayerStatus(index, activeLayerId, completedCount);
             const accessibleSlot = world2EditorialSlots[layer.accessibleSlot];
             const isLocked = status === "locked";
-            const isCompleted = status === "completed";
             const copy = layerCopy[layer.id];
 
             return (
@@ -526,6 +523,16 @@ export function World2RootScreen() {
                 onClick={() => selectLayer(layer.id, index)}
               >
                 <span className="world2-layer-button__frame" aria-hidden="true" />
+                {status === "active" ? (
+                  <img
+                    className="world2-layer-button__active"
+                    src={world2RuntimeAssets.layerActiveGlow}
+                    alt=""
+                    aria-hidden="true"
+                    data-runtime-asset={world2RuntimeAssets.layerActiveGlow}
+                    loading="lazy"
+                  />
+                ) : null}
                 <span
                   className="world2-layer-button__glyph"
                   aria-hidden="true"
@@ -538,23 +545,21 @@ export function World2RootScreen() {
                 <span className="world2-layer-button__label">
                   {copy.navLabel}
                 </span>
-                {isLocked || isCompleted ? (
-                  <img
+                {isLocked ? (
+                  <span
                     className="world2-layer-button__state-icon"
-                    src={
-                      isCompleted
-                        ? world2RuntimeAssets.layerCompleteGlyph
-                        : world2RuntimeAssets.layerLockGlyph
-                    }
-                    alt=""
                     aria-hidden="true"
-                    data-runtime-asset={
-                      isCompleted
-                        ? world2RuntimeAssets.layerCompleteGlyph
-                        : world2RuntimeAssets.layerLockGlyph
-                    }
-                    loading="lazy"
-                  />
+                  >
+                    ·
+                  </span>
+                ) : null}
+                {status === "completed" ? (
+                  <span
+                    className="world2-layer-button__state-icon world2-layer-button__state-icon--complete"
+                    aria-hidden="true"
+                  >
+                    ✓
+                  </span>
                 ) : null}
                 <span
                   className="world2-root-sr-only"

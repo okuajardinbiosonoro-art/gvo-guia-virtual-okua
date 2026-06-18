@@ -1,8 +1,14 @@
 .world2-root-screen {
-  --world2-gold: #e3b766;
-  --world2-lavender: #c6b2ff;
-  --world2-cyan: #9ce8f0;
+  --world2-fx-soft: 0.18;
+  --world2-fx-mid: 0.38;
+  --world2-fx-strong: 0.72;
+  --world2-gold: #f3c677;
+  --world2-lavender: #cdbbff;
+  --world2-cyan: #a7edf0;
   --world2-ink: #05020c;
+  --world2-text-primary: #fff7dc;
+  --world2-text-secondary: rgb(255 247 220 / 82%);
+  --world2-violet: #9b5cff;
 
   display: grid;
   min-height: 100svh;
@@ -10,10 +16,10 @@
   overflow: hidden;
   place-items: center;
   background:
-    radial-gradient(circle at 28% 18%, rgb(88 64 133 / 34%), transparent 28%),
-    radial-gradient(circle at 70% 58%, rgb(42 132 141 / 18%), transparent 36%),
+    radial-gradient(circle at 34% 18%, rgb(85 59 115 / 20%), transparent 28%),
+    radial-gradient(circle at 62% 52%, rgb(32 92 94 / 16%), transparent 34%),
     var(--world2-ink);
-  color: #fff;
+  color: var(--world2-text-primary);
 }
 
 .world2-stage {
@@ -25,6 +31,10 @@
   background: var(--world2-ink);
   isolation: isolate;
 }
+
+/* z-index map: 0 background, 1 ambient, 2 route, 3 plant, 4 active signal,
+   5 Lia support FX, 6 Lia, 7 micro-scene, 8 dialogue, 9 lower navigation,
+   10 hit targets / accessibility helpers. */
 
 .world2-scene-asset,
 .world2-layer-asset,
@@ -52,29 +62,30 @@
 }
 
 .world2-scene-asset--haze {
-  inset: -4%;
+  inset: -2%;
   z-index: 1;
-  width: 108%;
-  height: 108%;
+  width: 104%;
+  height: 104%;
   object-fit: cover;
-  opacity: 0.34;
+  opacity: var(--world2-fx-soft);
 }
 
 .world2-scene-asset--silhouette {
-  right: -27%;
-  bottom: 9%;
+  right: -20%;
+  bottom: 12%;
   z-index: 2;
-  width: 72%;
-  opacity: 0.18;
+  width: 58%;
+  opacity: 0.11;
 }
 
 .world2-scene-title {
   position: absolute;
   top: 3.7%;
-  left: 7.4%;
+  right: 10%;
+  left: 10%;
   z-index: 20;
-  width: 68%;
-  color: #fff8f4;
+  color: var(--world2-text-primary);
+  text-align: center;
   text-shadow: 0 2px 14px rgb(5 2 12 / 58%);
 }
 
@@ -102,7 +113,6 @@
 }
 
 .world2-scene-title h1 {
-  max-width: 10.5em;
   margin-top: 0.34rem;
   font-family: var(--gvo-font-heading);
   font-size: clamp(1.16rem, 5.8vw, 1.58rem);
@@ -119,32 +129,35 @@
 
 .world2-scene-asset--route-base,
 .world2-scene-asset--route-active {
-  left: 25%;
-  bottom: 34%;
-  width: 58%;
+  left: 24%;
+  bottom: 36.5%;
+  z-index: 2;
+  width: 51%;
   object-fit: contain;
-  transform: rotate(-4deg);
+  transform: rotate(-6deg);
 }
 
 .world2-scene-asset--route-base {
-  opacity: 0.22;
+  opacity: 0.2;
 }
 
 .world2-scene-asset--route-active {
-  opacity: 0.58;
-  filter: drop-shadow(0 0 18px rgb(156 232 240 / 50%));
+  opacity: 0.48;
+  filter: drop-shadow(0 0 12px rgb(156 232 240 / 34%));
 }
 
 .world2-scene-asset--plant {
-  left: 4%;
-  bottom: 20.2%;
-  z-index: 12;
+  top: 22.5%;
+  left: 7%;
+  z-index: 3;
   width: 50%;
-  filter: drop-shadow(0 24px 32px rgb(4 2 13 / 48%));
+  filter:
+    drop-shadow(0 22px 28px rgb(4 2 13 / 42%))
+    drop-shadow(0 0 10px rgb(243 198 119 / 12%));
 }
 
 .world2-layer-asset {
-  z-index: 13;
+  z-index: 4;
   object-fit: contain;
   transition:
     opacity 240ms ease,
@@ -152,63 +165,63 @@
 }
 
 .world2-layer-asset--plant-aura {
-  left: 1%;
-  bottom: 22.2%;
-  width: 56%;
-  opacity: 0.42;
+  top: 24%;
+  left: 4%;
+  width: 54%;
+  opacity: 0.24;
 }
 
 .world2-layer-asset--signal-threads,
 .world2-layer-asset--waveform {
-  left: 21%;
-  bottom: 43.4%;
-  width: 50%;
-  opacity: 0.7;
-  filter: drop-shadow(0 0 18px rgb(198 178 255 / 48%));
+  left: 28%;
+  top: 43%;
+  width: 43%;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 10px rgb(167 237 240 / 34%));
 }
 
 .world2-layer-asset--waveform {
-  z-index: 14;
-  left: 23%;
-  bottom: 40.8%;
-  width: 44%;
-  opacity: 0.54;
-}
-
-.world2-layer-asset--capture-contact {
-  left: 31%;
-  bottom: 44.8%;
-  width: 31%;
+  z-index: 4;
+  top: 44.8%;
+  left: 29%;
+  width: 40%;
   opacity: 0.78;
 }
 
+.world2-layer-asset--capture-contact {
+  top: 43.2%;
+  left: 35%;
+  width: 28%;
+  opacity: 0.72;
+}
+
 .world2-layer-asset--conditioning {
-  left: 29%;
-  bottom: 39.5%;
-  width: 48%;
-  opacity: 0.66;
+  top: 41.5%;
+  left: 33%;
+  width: 38%;
+  opacity: 0.48;
 }
 
 .world2-layer-asset--mapping {
-  left: 32%;
-  bottom: 38.2%;
-  width: 53%;
-  opacity: 0.62;
+  top: 40.8%;
+  left: 37%;
+  width: 40%;
+  opacity: 0.56;
 }
 
 .world2-layer-asset--result {
-  left: 31%;
-  bottom: 35.2%;
-  width: 55%;
-  opacity: 0.66;
+  top: 40.2%;
+  left: 38%;
+  width: 39%;
+  opacity: 0.52;
 }
 
 .world2-micro-scene {
   position: absolute;
-  top: 20.5%;
-  right: 4.6%;
-  z-index: 15;
-  width: 28%;
+  top: 23%;
+  right: 7.5%;
+  z-index: 7;
+  width: 22%;
   aspect-ratio: 1;
   opacity: 0;
   transform: translateY(5%) scale(0.9);
@@ -218,7 +231,7 @@
 }
 
 .world2-micro-scene--visible {
-  opacity: 0.76;
+  opacity: 0.7;
   transform: none;
 }
 
@@ -234,48 +247,46 @@
   opacity: 0.7;
 }
 
-.world2-micro-scene__asset--connector {
-  opacity: 0.48;
-  transform: translate(-42%, 44%) scale(0.68);
-}
-
 .world2-lia-field {
   position: absolute;
   inset: 0;
-  z-index: 18;
+  z-index: 6;
   pointer-events: none;
 }
 
 .world2-scene-asset--lia-halo {
-  right: -6%;
-  bottom: 23.5%;
-  width: 47%;
-  opacity: 0.38;
+  top: 33.5%;
+  right: 5.5%;
+  z-index: 5;
+  width: 36%;
+  opacity: 0.2;
 }
 
 .world2-scene-asset--lia {
-  right: 2.6%;
-  bottom: 24.4%;
-  width: 35%;
-  max-height: 35%;
+  top: 34.5%;
+  right: 8%;
+  z-index: 6;
+  width: 31%;
+  max-height: 28%;
   object-fit: contain;
-  filter: drop-shadow(0 20px 28px rgb(4 2 13 / 58%));
+  filter: drop-shadow(0 18px 22px rgb(4 2 13 / 54%));
 }
 
 .world2-scene-asset--lia-wisps {
-  right: -8%;
-  bottom: 31%;
-  width: 52%;
-  opacity: 0.27;
+  top: 41%;
+  right: 1%;
+  z-index: 5;
+  width: 40%;
+  opacity: 0.18;
 }
 
 .world2-dialogue {
   position: absolute;
-  right: 5.2%;
-  bottom: 15.8%;
-  left: 5.2%;
-  z-index: 30;
-  min-height: 16.4%;
+  right: 6%;
+  bottom: 16.9%;
+  left: 6%;
+  z-index: 8;
+  height: 17.6%;
 }
 
 .world2-dialogue__asset {
@@ -286,32 +297,33 @@
 }
 
 .world2-dialogue__asset--backplate {
-  opacity: 0.86;
+  opacity: 0.92;
 }
 
 .world2-dialogue__asset--glow {
-  opacity: 0.42;
+  opacity: 0.24;
 }
 
 .world2-dialogue__asset--tail {
-  top: -35%;
-  right: 14%;
+  top: -28%;
+  right: 17%;
   bottom: auto;
   left: auto;
   width: 22%;
   height: auto;
-  opacity: 0.62;
+  opacity: 0.42;
 }
 
 .world2-dialogue__content {
-  position: relative;
+  position: absolute;
+  inset: 11% 7% 11% 7%;
   z-index: 2;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  gap: 0.36rem;
-  min-height: 138px;
-  padding: clamp(0.8rem, 3.2vw, 1rem) clamp(1rem, 4.2vw, 1.24rem);
-  color: #fff8ff;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.25rem;
+  min-height: 0;
+  padding: 0;
+  color: var(--world2-text-primary);
 }
 
 .world2-dialogue__eyebrow,
@@ -321,7 +333,7 @@
 }
 
 .world2-dialogue__eyebrow {
-  color: var(--world2-cyan);
+  color: var(--world2-gold);
   font-family: var(--gvo-font-ui);
   font-size: clamp(0.62rem, 2.7vw, 0.72rem);
   font-weight: var(--gvo-font-weight-bold);
@@ -330,15 +342,15 @@
 }
 
 .world2-dialogue__copy {
-  max-width: 24em;
-  font-size: clamp(0.84rem, 3.75vw, 1rem);
+  max-width: 22em;
+  font-size: clamp(0.78rem, 3.25vw, 0.92rem);
   font-weight: var(--gvo-font-weight-semibold);
-  line-height: 1.22;
+  line-height: 1.18;
 }
 
 .world2-dialogue__ambient {
-  color: rgb(255 248 255 / 72%);
-  font-size: clamp(0.68rem, 3vw, 0.78rem);
+  color: var(--world2-text-secondary);
+  font-size: clamp(0.62rem, 2.65vw, 0.72rem);
   line-height: 1.18;
 }
 
@@ -352,8 +364,8 @@
 .world2-action {
   position: relative;
   display: inline-grid;
-  min-width: 104px;
-  min-height: 34px;
+  min-width: 96px;
+  min-height: 31px;
   place-items: center;
   padding: 0.54rem 1rem;
   overflow: hidden;
@@ -364,8 +376,8 @@
   font-size: clamp(0.76rem, 3.2vw, 0.84rem);
   font-weight: var(--gvo-font-weight-bold);
   line-height: 1;
-  background: linear-gradient(135deg, rgb(82 48 112 / 86%), rgb(23 73 92 / 82%));
-  box-shadow: 0 0 18px rgb(198 178 255 / 22%);
+  background: linear-gradient(135deg, rgb(48 35 65 / 92%), rgb(24 65 72 / 88%));
+  box-shadow: 0 0 12px rgb(243 198 119 / 18%);
   cursor: pointer;
 }
 
@@ -393,12 +405,12 @@
   right: 3.8%;
   bottom: 1.5%;
   left: 3.8%;
-  z-index: 34;
+  z-index: 9;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(0.18rem, 1vw, 0.34rem);
-  min-height: 10.7%;
-  padding: 0.34rem 0.1rem;
+  gap: clamp(0.12rem, 0.72vw, 0.24rem);
+  min-height: 10.4%;
+  padding: 0.28rem 0.05rem;
 }
 
 .world2-layer-button {
@@ -408,8 +420,8 @@
   align-content: center;
   justify-items: center;
   min-width: 0;
-  min-height: 78px;
-  padding: 0.28rem 0.12rem 0.36rem;
+  min-height: 72px;
+  padding: 0.28rem 0.1rem 0.34rem;
   border: 0;
   color: #fff9ff;
   text-align: center;
@@ -420,23 +432,34 @@
 .world2-layer-button__frame {
   position: absolute;
   inset: 0;
-  border: 1px solid rgb(198 178 255 / 22%);
+  border: 1px solid rgb(243 198 119 / 18%);
   border-radius: 12px;
   background:
-    linear-gradient(180deg, rgb(22 15 45 / 64%), rgb(7 5 21 / 74%)),
+    linear-gradient(180deg, rgb(18 15 31 / 72%), rgb(6 5 16 / 82%)),
+    var(--world2-layer-frame) center / 100% 100% no-repeat,
     rgb(9 5 22 / 72%);
-  box-shadow: inset 0 0 18px rgb(156 232 240 / 10%);
+  box-shadow: inset 0 0 12px rgb(156 232 240 / 8%);
 }
 
 .world2-layer-button--active .world2-layer-button__frame {
-  border-color: rgb(156 232 240 / 74%);
+  border-color: rgb(243 198 119 / 70%);
   box-shadow:
-    inset 0 0 20px rgb(156 232 240 / 24%),
-    0 0 16px rgb(156 232 240 / 22%);
+    inset 0 0 16px rgb(243 198 119 / 22%),
+    0 0 12px rgb(243 198 119 / 18%);
 }
 
 .world2-layer-button--locked {
-  opacity: 0.58;
+  opacity: 0.5;
+}
+
+.world2-layer-button__active {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0.34;
 }
 
 .world2-layer-button__glyph,
@@ -448,14 +471,14 @@
 }
 
 .world2-layer-button__glyph {
-  width: clamp(1.34rem, 6vw, 1.58rem);
+  width: clamp(1.1rem, 5.2vw, 1.38rem);
   aspect-ratio: 1;
   border-radius: 999px;
   background-image: var(--world2-layer-glyph);
   background-position: var(--world2-layer-glyph-position);
   background-repeat: no-repeat;
   background-size: 600% 100%;
-  opacity: 0.82;
+  opacity: 0.76;
 }
 
 .world2-layer-button__order {
@@ -485,7 +508,23 @@
   position: absolute;
   right: 0.24rem;
   bottom: 0.28rem;
-  width: 0.78rem;
+  display: grid;
+  width: 0.72rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(255 247 220 / 24%);
+  border-radius: 999px;
+  color: rgb(255 247 220 / 62%);
+  font-family: var(--gvo-font-ui);
+  font-size: 0.64rem;
+  font-weight: var(--gvo-font-weight-bold);
+  line-height: 1;
+  background: rgb(5 2 12 / 52%);
+}
+
+.world2-layer-button__state-icon--complete {
+  border-color: rgb(167 237 240 / 44%);
+  color: var(--world2-cyan);
 }
 
 .world2-root-preload-status {
@@ -519,7 +558,7 @@
   .world2-layer-asset--signal-threads,
   .world2-layer-asset--waveform,
   .world2-scene-asset--lia-wisps {
-    animation: world2-soft-pulse 3800ms ease-in-out infinite alternate;
+    animation: world2-soft-pulse 4200ms ease-in-out infinite alternate;
   }
 
   .world2-scene-asset--route-active {

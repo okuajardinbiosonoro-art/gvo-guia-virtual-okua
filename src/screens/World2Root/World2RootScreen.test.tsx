@@ -53,7 +53,7 @@ describe("World2RootScreen", () => {
     ).toBe(true);
     expect(container.querySelector("[data-world2-experience]")).toHaveAttribute(
       "data-world2-experience",
-      "immersive-rebuild",
+      "visual-composition-reset",
     );
     expect(container.querySelector("[data-world2-state]")).toHaveAttribute(
       "data-world2-state",
@@ -88,6 +88,12 @@ describe("World2RootScreen", () => {
         `[data-runtime-asset="${world2RuntimeAssets.plant}"]`,
       ),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaActivate}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector(".world2-micro-scene")).not.toBeInTheDocument();
   });
 
   it("inicia con solo capa 1 activa y muestra mensaje suave al tocar una capa bloqueada", () => {
@@ -159,6 +165,11 @@ describe("World2RootScreen", () => {
         "El pulso invisible ya está mediado. Podemos continuar con el recorrido.",
       ),
     ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaActivate}"]`,
+      ),
+    ).not.toBeInTheDocument();
 
     fireEvent.click(
       screen.getByRole("button", {
