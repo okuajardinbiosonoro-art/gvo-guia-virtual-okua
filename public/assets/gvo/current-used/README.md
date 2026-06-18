@@ -22,6 +22,7 @@ current-used/
   cover-intro/
   transition-world/
   world-1-root/
+  world-2-root/
   global/
 ```
 
@@ -45,6 +46,7 @@ Se agregaron copias de los assets usados que faltaban antes de continuar con Est
 - Portada intro.
 - Transición entre mundos.
 - Estación I / Mundo Raíz.
+- Estación II / Mundo II: Pulso invisible.
 - Assets globales runtime.
 
 ## Reglas

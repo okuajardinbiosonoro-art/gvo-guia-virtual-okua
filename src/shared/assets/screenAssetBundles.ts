@@ -2,6 +2,7 @@ import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/
 import { coverIntroAssets } from "../../screens/Cover/coverIntroAssets";
 import { loadingInitialAssets } from "../../screens/LoadingInitial/loadingInitialAssets";
 import { world1RootAssets } from "../../screens/World1Root/world1RootAssets";
+import { world2InitialRuntimeAssetSources } from "../../screens/World2Root/world2RuntimeAssets";
 
 export type ScreenAssetBundleId =
   | "loadingInitialCritical"
@@ -11,7 +12,8 @@ export type ScreenAssetBundleId =
   | "world1RootRelation"
   | "world1RootPerception"
   | "world1RootMediation"
-  | "world1RootReady";
+  | "world1RootReady"
+  | "world2RootInitial";
 
 export type ScreenAssetPreloadItem = {
   id: string;
@@ -215,6 +217,15 @@ export const screenAssetBundles = {
         820,
       ),
     ],
+  },
+  world2RootInitial: {
+    id: "world2RootInitial",
+    route: "/estacion/2",
+    description:
+      "Assets criticos iniciales de Mundo II: fondo, planta, Lia, dialogo y navegacion.",
+    assets: world2InitialRuntimeAssetSources.map((src, index) =>
+      image(`world2_initial_${index + 1}`, src),
+    ),
   },
 } as const satisfies Record<ScreenAssetBundleId, ScreenAssetBundle>;
 
