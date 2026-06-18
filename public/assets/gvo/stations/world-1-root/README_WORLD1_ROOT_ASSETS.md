@@ -12,6 +12,7 @@ Estos assets fueron copiados desde la fuente local del usuario para preparar una
 - Los textos, labels, dialogos y botones deben ir por DOM/CSS con la tipografia oficial del proyecto.
 - No redisenar, reexportar, comprimir, optimizar ni limpiar estos assets sin ticket especifico.
 - Los assets de Lia tienen copia adicional en la biblioteca central: `public/assets/gvo/shared/lia/future/mundo-i-raiz/`.
+- Los assets usados por Estacion I tambien deben existir como espejo organizado en `public/assets/gvo/current-used/world-1-root/`.
 - El fondo base es el unico asset que puede no tener alpha.
 - Cualquier advertencia de alpha esta registrada en `manifests/world1_root_asset_manifest_v1.json`.
 - La implementacion futura debe usar el manifest y no inventar rutas.

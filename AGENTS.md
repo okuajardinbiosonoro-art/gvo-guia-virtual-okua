@@ -32,5 +32,7 @@ Cada ticket debe quedar pequeño, cerrable, documentado y probado. Si el alcance
 - No animar placeholders como si fueran resultado final.
 - Si un asset debe animarse, pedirlo o usarlo por piezas, estados o frames.
 - Mantener textos finales en DOM/CSS, no incrustados en imagen, salvo ticket explícito.
+- Antes de cualquier ticket que cree, integre, mueva, reemplace o documente assets runtime, revisar `docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md` y `public/assets/gvo/current-used/README.md`.
+- Todo asset runtime usado por una pantalla debe quedar copiado o registrado en `public/assets/gvo/current-used/<pantalla>/`, organizado por pantalla, aunque el ticket no lo pida explícitamente. El Atlas visual en `docs/narrative/atlas_visual_assets_gvo_v1/` es referencia documental y no sustituye este registro de assets utilizados.
 - No usar CDN, audio, video runtime pesado, Three.js ni dependencias pesadas sin autorización explícita.
 - Al cerrar una pantalla aprobada por el usuario, generar documento de cierre, handoff para nuevo chat, prompt base de auditoría para la fase siguiente, validación técnica final y merge/checkpoint cuando el ticket lo autorice.

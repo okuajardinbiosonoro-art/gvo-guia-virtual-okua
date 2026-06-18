@@ -4,6 +4,15 @@ Estado: `004D-8A_LIBRARY_CREATED / COPY_ONLY / NO_RUNTIME_CHANGES`
 
 Esta carpeta reune copias de assets existentes de Lia usados o documentados en GVO. No reemplaza automaticamente los assets originales y no cambia imports runtime.
 
+Para el registro global de todos los assets runtime usados por pantalla, revisar:
+
+```txt
+public/assets/gvo/current-used/
+docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md
+```
+
+`shared/lia/current-used/` es solo la biblioteca especializada de Lia. No debe usarse como carpeta general para fondos, nodos, portales, raices ni assets de otras pantallas.
+
 ## Reglas
 
 1. Los originales no deben moverse ni borrarse sin ticket especifico.
@@ -30,6 +39,7 @@ future/mundo-i-raiz/
 - Candidato aprobado: mover o copiar mediante ticket a `approved/` y registrar estado.
 - Limpieza/exportacion: asegurar alfa real, nombre estable y hash documentado.
 - Uso por pantalla: registrar ruta runtime especifica y referencia en `docs/gvo/lia/LIA_USAGE_MAP_004D8A.md`.
+- Uso global por pantalla: asegurar tambien copia o registro en `public/assets/gvo/current-used/<pantalla>/` cuando Lia se use en runtime.
 - Mundo I: Raiz: usar `future/mundo-i-raiz/` solo cuando exista ticket de assets aprobado. Por ahora queda vacia salvo `.gitkeep`.
 
 ## Estado 004D-8A
