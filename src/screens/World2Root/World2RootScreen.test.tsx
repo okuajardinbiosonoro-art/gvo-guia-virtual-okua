@@ -53,7 +53,7 @@ describe("World2RootScreen", () => {
     ).toBe(true);
     expect(container.querySelector("[data-world2-experience]")).toHaveAttribute(
       "data-world2-experience",
-      "visual-composition-reset",
+      "curated-layer-1-2-semantic-base",
     );
     expect(container.querySelector("[data-world2-state]")).toHaveAttribute(
       "data-world2-state",
@@ -90,10 +90,45 @@ describe("World2RootScreen", () => {
     ).toBeInTheDocument();
     expect(
       container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.plantStageAnchor}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.dialogueCard}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.layerNavTokenBase}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.layerNavFrame}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.routeBase}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
         `[data-runtime-asset="${world2RuntimeAssets.liaActivate}"]`,
       ),
     ).not.toBeInTheDocument();
     expect(container.querySelector(".world2-micro-scene")).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.signalOriginContact}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaGestureSpark}"]`,
+      ),
+    ).not.toBeInTheDocument();
   });
 
   it("inicia con solo capa 1 activa y muestra mensaje suave al tocar una capa bloqueada", () => {
@@ -134,7 +169,7 @@ describe("World2RootScreen", () => {
         ?.getAttribute("data-world2-state");
 
     const expectedDialogueByLayer = [
-      "Aquí empieza el pulso invisible. Vamos capa por capa.",
+      "Esta es la planta viva. Antes de cualquier sonido, hay vida y relación.",
       "Esto es señal. No es música todavía.",
       "El sistema capta la señal para que pueda ser leída.",
       "La señal se prepara antes de interpretarse.",
@@ -194,5 +229,47 @@ describe("World2RootScreen", () => {
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-2-to-world-3",
     );
+  });
+
+  it("muestra origen de señal, waveform y spark solo al activar la capa 2", () => {
+    const { container } = renderWorld2RootScreen();
+
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.signalOriginContact}"]`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaGestureSpark}"]`,
+      ),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Siguiente" }));
+
+    expect(container.querySelector("[data-world2-state]")).toHaveAttribute(
+      "data-world2-state",
+      "senal",
+    );
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.signalOriginContact}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.rawWaveform}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaGestureSpark}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        `[data-runtime-asset="${world2RuntimeAssets.liaWisps}"]`,
+      ),
+    ).not.toBeInTheDocument();
   });
 });

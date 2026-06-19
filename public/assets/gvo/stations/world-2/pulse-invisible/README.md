@@ -2,9 +2,9 @@
 
 ## Estado
 
-`015A_WORLD2_RUNTIME_BASE / RUNTIME_INTEGRADO / MOBILE_ONLY`
+`015E_WORLD2_LAYER1_2_SEMANTIC_BASE / RUNTIME_INTEGRADO / MOBILE_ONLY`
 
-Esta carpeta contiene los assets aprobados por el usuario e integrados en la primera base runtime de Estacion II.
+Esta carpeta contiene los assets aprobados por el usuario e integrados en la base runtime de Estacion II.
 
 Los archivos fueron copiados desde Descargas sin reexportar, optimizar, renombrar ni convertir formatos.
 
@@ -35,6 +35,24 @@ Esto cumple `docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md`.
 - `navigation/`: CTA y barra inferior de capas.
 - `micro-scenes/`: burbuja lateral y reticula de captura.
 - `lia-fx/`: halo, glow, wisps y trail para acompanar a Lia existente.
+
+## Assets agregados en 015E
+
+En `015E` se agregaron 7 assets curados para recomponer las capas 1-2 sin acumulacion visual:
+
+- `dialogue/world2_dialogue_card_mobile_safe_v01.png`
+- `plant/world2_plant_stage_anchor_v01.png`
+- `signal/world2_signal_origin_contact_v01.png`
+- `navigation/world2_layer_nav_token_base_v01.png`
+- `navigation/world2_layer_nav_token_active_v01.png`
+- `navigation/world2_layer_nav_connector_inactive_v01.png`
+- `lia-fx/world2_lia_gesture_signal_spark_v01.png`
+
+Los mismos 7 archivos fueron copiados byte-identicos al espejo obligatorio:
+
+```text
+public/assets/gvo/current-used/world-2-root/
+```
 
 ## Assets deliberadamente no integrados en 015A
 
