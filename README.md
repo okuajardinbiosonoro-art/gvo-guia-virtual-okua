@@ -66,7 +66,9 @@ npm run test:e2e
 
 ## Estado actual
 
-Repositorio con carga inicial animada V13 consolidada en `main` como base estable de avance. La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
+La Estación II está implementada en `/estacion/2` como una experiencia secuencial de seis capas sobre mediación de señal bioeléctrica. El runtime `016V-R2` incluye señal, captura, acondicionamiento, mapeo, convergencia sónica, cierre centrado y revisita posterior a la finalización. El estado canónico se mantiene en [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md).
+
+La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
 
 La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo integrado sin conector ordinario, progreso legible `Paso X de 5`, Portal I protagonista, rig facial seguro en idle y diálogos 1-4, y una activación del Portal I por capas con Lía anclada al portal, frame frontal duplicado y luz de contacto CSS antes de entregar el flujo a la transición real. Para revisar primera pasada, usar `/portada?resetIntro=1` o `/?resetIntro=1`.
 
@@ -90,6 +92,9 @@ Estado actual:
 - Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
 - Portada: APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL
 - Transición: APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA
-- Estación I: WORLD1_ROOT_RUNTIME_BASE / READY_TO_CONTINUE_SIN_SALIDA_FINAL / DEUDA_VISUAL_DOCUMENTADA
-- Estaciones II-V: NO_INICIADAS / BLOQUEADAS
+- Estación I: RUNTIME ACTIVO / INTERACCION REFINADA / DEUDA VISUAL DOCUMENTADA
+- Estación II: FINALIZADA PARA EL ALCANCE ACTUAL / RUNTIME 016V-R2
+- Estaciones III-V: BASE TEMPORAL / PENDIENTES DE DESARROLLO FINAL
 - Final: NO_INICIADA / BLOQUEADO
+
+Consulta el [índice documental](docs/README.md), el [contrato final de Estación II](docs/worlds/WORLD_II_FINAL.md) y el [inventario de assets](docs/assets/ASSET_INVENTORY.md).

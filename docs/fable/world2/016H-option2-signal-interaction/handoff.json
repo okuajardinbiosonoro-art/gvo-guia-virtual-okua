@@ -1,0 +1,76 @@
+{
+  "ticket": "016H",
+  "station": "World II / Option 2 / Signal",
+  "status": "handoff_pack_for_fable",
+  "runtimeRoute": "/estacion/2",
+  "liveRepo": "E:\\OKUA\\04_DESARROLLO_REPOS\\gvo-guia-virtual-okua",
+  "branch": "main",
+  "head": "2ba3a30bf48f3282ed701aeb3568390fb2a18bac",
+  "originMain": "ed62302e733e575b868ee3862f17aafc25016bad",
+  "aheadBehind": {
+    "ahead": 6,
+    "behind": 0
+  },
+  "approvedFoundation": ["015O", "015J", "015V", "016D", "016F"],
+  "rejectedCurrent": ["016G"],
+  "methodology": "documentation_only_no_runtime_implementation",
+  "keyAssets": {
+    "staticBase": {
+      "fileName": "world2_signal_probe_cable_waveform_unified_v01.png",
+      "runtimePath": "public/assets/gvo/stations/world-2/pulse-invisible/runtime/signal/world2_signal_probe_cable_waveform_unified_v01.png",
+      "currentUsedPath": "public/assets/gvo/current-used/world-2-root/signal/world2_signal_probe_cable_waveform_unified_v01.png",
+      "role": "small static unified electrode cable waveform asset on plant leaf",
+      "sha256": "2FFD7534139A92C5A9B6E97BDEDE4D157959B39BE110F343942EA944A38813E7",
+      "dimensions": "1600x900"
+    },
+    "expandedWaveform": {
+      "fileName": "world2_signal_waveform_clean_technical_v01.png",
+      "runtimePath": "public/assets/gvo/stations/world-2/pulse-invisible/runtime/signal/world2_signal_waveform_clean_technical_v01.png",
+      "currentUsedPath": "public/assets/gvo/current-used/world-2-root/signal/world2_signal_waveform_clean_technical_v01.png",
+      "role": "large clean waveform projection with moving alpha mask",
+      "sha256": "4B2F45093A6FB6DFB5373CD49403A0A5BCA00F7CEA830837D501C0565A898EA6",
+      "dimensions": "1600x900"
+    }
+  },
+  "targetStates": ["idle", "expanded"],
+  "editableFilesForNextImplementation": [
+    "src/screens/World2Root/World2RootScreen.tsx",
+    "src/screens/World2Root/World2RootScreen.css",
+    "src/screens/World2Root/World2RootScreen.test.tsx"
+  ],
+  "preserve": [
+    "stable visible bottom nav",
+    "main dialogue copy",
+    "layer unlocking state machine",
+    "data-sensitive-permissions blocked",
+    "data-qr-camera blocked",
+    "current-used asset mirror",
+    "no new assets"
+  ],
+  "forbidden": [
+    "collapsible nav",
+    "data-world2-nav-state",
+    "separate css cable",
+    "separate svg cable",
+    "separate css electrode",
+    "signalOriginContact",
+    "contact node png in option 2",
+    "pulseCore as origin visual",
+    "microblink",
+    "external tracer",
+    "external cursor",
+    "external point",
+    "bead",
+    "old 015Y 015Z 016B cable",
+    "generated mapping png",
+    "new generated assets"
+  ],
+  "visualReferences": {
+    "folder": "docs/fable/world2/016H-option2-signal-interaction/visual",
+    "negativeReference": ["016G"],
+    "scaleReferences": ["015S", "015T"],
+    "implementationHistory": ["016D", "016F"]
+  },
+  "validationForThisHandoff": ["git diff --check"],
+  "finalFlag": "READY_FOR_016H_FABLE_HANDOFF_REVIEW"
+}

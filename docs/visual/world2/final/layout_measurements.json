@@ -1,0 +1,3152 @@
+{
+  "ticket": "016V-R2",
+  "generatedAt": "2026-07-11T18:28:06.908Z",
+  "baseUrl": "http://127.0.0.1:5185/estacion/2",
+  "viewports": [
+    "360x560",
+    "360x640",
+    "375x559",
+    "375x667",
+    "390x650",
+    "390x844",
+    "430x740",
+    "430x932",
+    "768x1024",
+    "1024x768"
+  ],
+  "result": {
+    "passed": 56,
+    "total": 56,
+    "failed": 0
+  },
+  "option6Measurements": [
+    {
+      "viewport": "360x560",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 24.89,
+          "y": 88.14,
+          "width": 303.31,
+          "height": 349.58
+        },
+        "lia": {
+          "x": 274.45,
+          "y": 252.82,
+          "width": 68.95,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 426.3
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 19.23,
+          "y": 68.85,
+          "width": 324.31,
+          "height": 373.78
+        },
+        "lia": {
+          "x": 287.1,
+          "y": 244.23,
+          "width": 74.15,
+          "height": 254.99
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 426.3
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 17.04,
+          "y": 61.4,
+          "width": 332.42,
+          "height": 383.13
+        },
+        "lia": {
+          "x": 290.87,
+          "y": 241.67,
+          "width": 75.69,
+          "height": 260.32
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 426.3
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 16.31,
+          "y": 58.92,
+          "width": 335.11,
+          "height": 374.3
+        },
+        "lia": {
+          "x": 292.17,
+          "y": 240.79,
+          "width": 76.23,
+          "height": 262.15
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 426.3
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x640",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 24.89,
+          "y": 94.55,
+          "width": 303.31,
+          "height": 415.17
+        },
+        "lia": {
+          "x": 278.15,
+          "y": 332.42,
+          "width": 70.47,
+          "height": 242.35
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 566.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 506.3
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x640",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 16.54,
+          "y": 60.78,
+          "width": 334.26,
+          "height": 457.54
+        },
+        "lia": {
+          "x": 291.75,
+          "y": 325.04,
+          "width": 76.06,
+          "height": 261.57
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 566.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 506.3
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x640",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 15.92,
+          "y": 58.27,
+          "width": 336.56,
+          "height": 460.69
+        },
+        "lia": {
+          "x": 292.87,
+          "y": 324.44,
+          "width": 76.51,
+          "height": 263.14
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 566.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 506.3
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x640",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 15.89,
+          "y": 58.14,
+          "width": 336.68,
+          "height": 448.86
+        },
+        "lia": {
+          "x": 292.91,
+          "y": 324.41,
+          "width": 76.53,
+          "height": 263.2
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 566.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 54.05,
+          "width": 344.66,
+          "height": 506.3
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 360,
+        "viewportWidth": 360,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 25.64,
+          "y": 89.94,
+          "width": 316.52,
+          "height": 347.09
+        },
+        "lia": {
+          "x": 289.92,
+          "y": 249.23,
+          "width": 73.53,
+          "height": 242.33
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 423.27
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 19.21,
+          "y": 69.09,
+          "width": 340.37,
+          "height": 373.25
+        },
+        "lia": {
+          "x": 299.27,
+          "y": 243.1,
+          "width": 77.37,
+          "height": 254.99
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 423.27
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 17.45,
+          "y": 63.38,
+          "width": 346.89,
+          "height": 380.41
+        },
+        "lia": {
+          "x": 303.2,
+          "y": 240.52,
+          "width": 78.99,
+          "height": 260.32
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 423.27
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 16.84,
+          "y": 61.41,
+          "width": 349.15,
+          "height": 370.97
+        },
+        "lia": {
+          "x": 304.29,
+          "y": 239.81,
+          "width": 79.43,
+          "height": 261.79
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 423.27
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 25.64,
+          "y": 98.58,
+          "width": 316.52,
+          "height": 435.64
+        },
+        "lia": {
+          "x": 286.07,
+          "y": 361.93,
+          "width": 71.95,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 531.27
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 22.82,
+          "y": 87.1,
+          "width": 326.98,
+          "height": 450.04
+        },
+        "lia": {
+          "x": 293.71,
+          "y": 358.27,
+          "width": 75.08,
+          "height": 247.46
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 531.27
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 18.77,
+          "y": 70.62,
+          "width": 341.99,
+          "height": 470.71
+        },
+        "lia": {
+          "x": 300.91,
+          "y": 354.82,
+          "width": 78.04,
+          "height": 257.22
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 531.27
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 17.45,
+          "y": 65.25,
+          "width": 346.89,
+          "height": 465.62
+        },
+        "lia": {
+          "x": 303.2,
+          "y": 353.72,
+          "width": 78.98,
+          "height": 260.32
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 56.08,
+          "width": 359.66,
+          "height": 531.27
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 375,
+        "viewportWidth": 375,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 26.39,
+          "y": 98.45,
+          "width": 329.72,
+          "height": 420.61
+        },
+        "lia": {
+          "x": 297.66,
+          "y": 344.56,
+          "width": 74.96,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 57.42,
+          "width": 374.66,
+          "height": 512.92
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 20.24,
+          "y": 75.24,
+          "width": 352.55,
+          "height": 449.73
+        },
+        "lia": {
+          "x": 311.41,
+          "y": 337.83,
+          "width": 80.61,
+          "height": 254.99
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 57.42,
+          "width": 374.66,
+          "height": 512.92
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 18.27,
+          "y": 67.85,
+          "width": 359.82,
+          "height": 459
+        },
+        "lia": {
+          "x": 314.77,
+          "y": 336.19,
+          "width": 81.99,
+          "height": 259.37
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 57.42,
+          "width": 374.66,
+          "height": 512.92
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 17.32,
+          "y": 64.24,
+          "width": 363.36,
+          "height": 451.63
+        },
+        "lia": {
+          "x": 316.47,
+          "y": 335.36,
+          "width": 82.68,
+          "height": 261.57
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        },
+        "sceneZone": {
+          "x": 7.67,
+          "y": 57.42,
+          "width": 374.66,
+          "height": 512.92
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 25.83,
+          "y": 118.39,
+          "width": 330.83,
+          "height": 531.41
+        },
+        "lia": {
+          "x": 298.02,
+          "y": 491.51,
+          "width": 75.21,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        },
+        "sceneZone": {
+          "x": 7.03,
+          "y": 66.55,
+          "width": 375.94,
+          "height": 648.05
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 21.07,
+          "y": 95.82,
+          "width": 348.46,
+          "height": 559.73
+        },
+        "lia": {
+          "x": 309.34,
+          "y": 488.39,
+          "width": 79.87,
+          "height": 251.79
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        },
+        "sceneZone": {
+          "x": 7.03,
+          "y": 66.55,
+          "width": 375.94,
+          "height": 648.05
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 17.95,
+          "y": 80.99,
+          "width": 360.04,
+          "height": 578.32
+        },
+        "lia": {
+          "x": 314.72,
+          "y": 486.9,
+          "width": 82.08,
+          "height": 258.76
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        },
+        "sceneZone": {
+          "x": 7.03,
+          "y": 66.55,
+          "width": 375.94,
+          "height": 648.05
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 16.83,
+          "y": 75.68,
+          "width": 364.18,
+          "height": 573.1
+        },
+        "lia": {
+          "x": 316.69,
+          "y": 486.36,
+          "width": 82.89,
+          "height": 261.32
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        },
+        "sceneZone": {
+          "x": 7.03,
+          "y": 66.55,
+          "width": 375.94,
+          "height": 648.05
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 28.45,
+          "y": 116.13,
+          "width": 364.8,
+          "height": 453.56
+        },
+        "lia": {
+          "x": 328.6,
+          "y": 399.99,
+          "width": 82.93,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 71.89,
+          "width": 414.53,
+          "height": 553.09
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 24.16,
+          "y": 100.36,
+          "width": 380.7,
+          "height": 473.34
+        },
+        "lia": {
+          "x": 339.36,
+          "y": 395.85,
+          "width": 87.36,
+          "height": 249.76
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 71.89,
+          "width": 414.53,
+          "height": 553.09
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 20.54,
+          "y": 87.03,
+          "width": 394.16,
+          "height": 490.07
+        },
+        "lia": {
+          "x": 345.7,
+          "y": 393.41,
+          "width": 89.96,
+          "height": 257.21
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 71.89,
+          "width": 414.53,
+          "height": 553.09
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 18.83,
+          "y": 80.76,
+          "width": 400.49,
+          "height": 485.24
+        },
+        "lia": {
+          "x": 348.66,
+          "y": 392.27,
+          "width": 91.18,
+          "height": 260.7
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 71.89,
+          "width": 414.53,
+          "height": 553.09
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 28.45,
+          "y": 131.39,
+          "width": 364.8,
+          "height": 590.28
+        },
+        "lia": {
+          "x": 328.6,
+          "y": 571.99,
+          "width": 82.93,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 73.81,
+          "width": 414.53,
+          "height": 719.83
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 25.2,
+          "y": 115.84,
+          "width": 376.85,
+          "height": 609.79
+        },
+        "lia": {
+          "x": 337.4,
+          "y": 570.69,
+          "width": 86.55,
+          "height": 247.46
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 73.81,
+          "width": 414.53,
+          "height": 719.83
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 20.54,
+          "y": 93.52,
+          "width": 394.16,
+          "height": 637.79
+        },
+        "lia": {
+          "x": 345.7,
+          "y": 569.46,
+          "width": 89.96,
+          "height": 257.21
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 73.81,
+          "width": 414.53,
+          "height": 719.83
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 18.83,
+          "y": 85.36,
+          "width": 400.49,
+          "height": 635.34
+        },
+        "lia": {
+          "x": 348.34,
+          "y": 569.07,
+          "width": 91.05,
+          "height": 260.32
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        },
+        "sceneZone": {
+          "x": 7.73,
+          "y": 73.81,
+          "width": 414.53,
+          "height": 719.83
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 430,
+        "viewportWidth": 430,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 86.77,
+          "y": 156.22,
+          "width": 581.25,
+          "height": 623.19
+        },
+        "lia": {
+          "x": 597.8,
+          "y": 634.54,
+          "width": 104.33,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        },
+        "sceneZone": {
+          "x": 53.75,
+          "y": 95.42,
+          "width": 660.5,
+          "height": 759.97
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 86.77,
+          "y": 156.22,
+          "width": 581.25,
+          "height": 623.19
+        },
+        "lia": {
+          "x": 597.8,
+          "y": 634.54,
+          "width": 104.33,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        },
+        "sceneZone": {
+          "x": 53.75,
+          "y": 95.42,
+          "width": 660.5,
+          "height": 759.97
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 75.92,
+          "y": 121.84,
+          "width": 621.48,
+          "height": 666.32
+        },
+        "lia": {
+          "x": 624.51,
+          "y": 633.15,
+          "width": 112.19,
+          "height": 254.99
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        },
+        "sceneZone": {
+          "x": 53.75,
+          "y": 95.42,
+          "width": 660.5,
+          "height": 759.97
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 72.06,
+          "y": 109.62,
+          "width": 635.78,
+          "height": 665.24
+        },
+        "lia": {
+          "x": 631.81,
+          "y": 632.77,
+          "width": 114.34,
+          "height": 259.88
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        },
+        "sceneZone": {
+          "x": 53.75,
+          "y": 95.42,
+          "width": 660.5,
+          "height": 759.97
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "stage": "intensity",
+      "boxes": {
+        "primaryScene": {
+          "x": 54.88,
+          "y": 146.97,
+          "width": 515.64,
+          "height": 538.94
+        },
+        "lia": {
+          "x": 494.32,
+          "y": 528.73,
+          "width": 104.33,
+          "height": 237.12
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        },
+        "sceneZone": {
+          "x": 25.59,
+          "y": 94.39,
+          "width": 585.92,
+          "height": 657.23
+        }
+      },
+      "state": {
+        "stage": "intensity",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 1024,
+        "viewportWidth": 1024,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "stage": "rhythm",
+      "boxes": {
+        "primaryScene": {
+          "x": 47.46,
+          "y": 124.06,
+          "width": 543.14,
+          "height": 567.68
+        },
+        "lia": {
+          "x": 512.92,
+          "y": 525.77,
+          "width": 110.79,
+          "height": 251.8
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        },
+        "sceneZone": {
+          "x": 25.59,
+          "y": 94.39,
+          "width": 585.92,
+          "height": 657.23
+        }
+      },
+      "state": {
+        "stage": "rhythm",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 1024,
+        "viewportWidth": 1024,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "stage": "pitch",
+      "boxes": {
+        "primaryScene": {
+          "x": 43.09,
+          "y": 110.56,
+          "width": 559.34,
+          "height": 584.61
+        },
+        "lia": {
+          "x": 520.85,
+          "y": 524.5,
+          "width": 113.54,
+          "height": 258.06
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        },
+        "sceneZone": {
+          "x": 25.59,
+          "y": 94.39,
+          "width": 585.92,
+          "height": 657.23
+        }
+      },
+      "state": {
+        "stage": "pitch",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 1,
+        "documentWidth": 1024,
+        "viewportWidth": 1024,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "stage": "resolved",
+      "boxes": {
+        "primaryScene": {
+          "x": 41.05,
+          "y": 104.25,
+          "width": 566.92,
+          "height": 576.04
+        },
+        "lia": {
+          "x": 524.61,
+          "y": 523.9,
+          "width": 114.85,
+          "height": 261.03
+        },
+        "dialogue": null,
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        },
+        "sceneZone": {
+          "x": 25.59,
+          "y": 94.39,
+          "width": 585.92,
+          "height": 657.23
+        }
+      },
+      "state": {
+        "stage": "resolved",
+        "complete": "false",
+        "simultaneousMarker": "1",
+        "primarySceneCount": 1,
+        "legacyPanelCount": 0,
+        "visibleTextCount": 2,
+        "documentWidth": 1024,
+        "viewportWidth": 1024,
+        "journeyState": "resultado_mediado"
+      },
+      "checks": {
+        "expectedStage": true,
+        "onePrimaryScene": true,
+        "noLegacyPanel": true,
+        "lowTextLoad": true,
+        "sceneInsideZone": true,
+        "clearOfDialogue": true,
+        "clearOfNav": true,
+        "liaDoesNotCoverCore": true,
+        "noHorizontalOverflow": true,
+        "gateStillClosed": true
+      },
+      "pass": true
+    }
+  ],
+  "closureMeasurements": [
+    {
+      "viewport": "360x560",
+      "boxes": {
+        "panel": {
+          "x": 7.67,
+          "y": 267.53,
+          "width": 344.66,
+          "height": 216
+        },
+        "title": {
+          "x": 98,
+          "y": 323.98,
+          "width": 164,
+          "height": 19.19
+        },
+        "message": {
+          "x": 32.86,
+          "y": 350.36,
+          "width": 294.28,
+          "height": 32.06
+        },
+        "button": {
+          "x": 60,
+          "y": 396.02,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 32.86,
+          "y": 287.53,
+          "width": 294.28,
+          "height": 177.61
+        },
+        "lia": {
+          "x": 306.34,
+          "y": 136.43,
+          "width": 76.53,
+          "height": 145.29
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "block": {
+          "x": 32.86,
+          "y": 323.98,
+          "width": 294.28,
+          "height": 120.04
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 360,
+        "viewportWidth": 360
+      },
+      "titleMessageGap": 7.19,
+      "messageButtonGap": 13.6,
+      "verticalCenterOffsetRatio": 0.0392,
+      "panelContentHeightRatio": 0.8223,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x640",
+      "boxes": {
+        "panel": {
+          "x": 7.67,
+          "y": 347.53,
+          "width": 344.66,
+          "height": 216
+        },
+        "title": {
+          "x": 98,
+          "y": 403.75,
+          "width": 164,
+          "height": 19.19
+        },
+        "message": {
+          "x": 32.86,
+          "y": 430.94,
+          "width": 294.28,
+          "height": 32.06
+        },
+        "button": {
+          "x": 60,
+          "y": 477.08,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 32.86,
+          "y": 367.53,
+          "width": 294.28,
+          "height": 177.61
+        },
+        "lia": {
+          "x": 306.34,
+          "y": 167.75,
+          "width": 76.53,
+          "height": 200.56
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 566.72,
+          "width": 344.66,
+          "height": 68.81
+        },
+        "block": {
+          "x": 32.86,
+          "y": 403.75,
+          "width": 294.28,
+          "height": 121.33
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 360,
+        "viewportWidth": 360
+      },
+      "titleMessageGap": 8,
+      "messageButtonGap": 14.08,
+      "verticalCenterOffsetRatio": 0.0411,
+      "panelContentHeightRatio": 0.8223,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "boxes": {
+        "panel": {
+          "x": 7.67,
+          "y": 266.53,
+          "width": 359.66,
+          "height": 216
+        },
+        "title": {
+          "x": 105.5,
+          "y": 323.02,
+          "width": 164,
+          "height": 19.19
+        },
+        "message": {
+          "x": 33.92,
+          "y": 349.39,
+          "width": 307.16,
+          "height": 32.06
+        },
+        "button": {
+          "x": 67.5,
+          "y": 395.05,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 33.92,
+          "y": 286.53,
+          "width": 307.16,
+          "height": 177.61
+        },
+        "lia": {
+          "x": 319.34,
+          "y": 137.27,
+          "width": 79.86,
+          "height": 143.19
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "block": {
+          "x": 33.92,
+          "y": 323.02,
+          "width": 307.16,
+          "height": 120.03
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 375,
+        "viewportWidth": 375
+      },
+      "titleMessageGap": 7.18,
+      "messageButtonGap": 13.6,
+      "verticalCenterOffsetRatio": 0.0394,
+      "panelContentHeightRatio": 0.8223,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "boxes": {
+        "panel": {
+          "x": 7.67,
+          "y": 370.42,
+          "width": 359.66,
+          "height": 220.11
+        },
+        "title": {
+          "x": 105.5,
+          "y": 428.42,
+          "width": 164,
+          "height": 19.19
+        },
+        "message": {
+          "x": 33.92,
+          "y": 455.94,
+          "width": 307.16,
+          "height": 32.06
+        },
+        "button": {
+          "x": 67.5,
+          "y": 502.67,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 33.92,
+          "y": 390.42,
+          "width": 307.16,
+          "height": 181.72
+        },
+        "lia": {
+          "x": 319.34,
+          "y": 177.97,
+          "width": 79.86,
+          "height": 214.97
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        },
+        "block": {
+          "x": 33.92,
+          "y": 428.42,
+          "width": 307.16,
+          "height": 122.25
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 375,
+        "viewportWidth": 375
+      },
+      "titleMessageGap": 8.33,
+      "messageButtonGap": 14.67,
+      "verticalCenterOffsetRatio": 0.0412,
+      "panelContentHeightRatio": 0.8256,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "boxes": {
+        "panel": {
+          "x": 7.67,
+          "y": 357.53,
+          "width": 374.66,
+          "height": 216
+        },
+        "title": {
+          "x": 113,
+          "y": 413.61,
+          "width": 164,
+          "height": 19.64
+        },
+        "message": {
+          "x": 34.97,
+          "y": 441.38,
+          "width": 320.06,
+          "height": 32.06
+        },
+        "button": {
+          "x": 75,
+          "y": 487.73,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 34.97,
+          "y": 377.53,
+          "width": 320.06,
+          "height": 177.61
+        },
+        "lia": {
+          "x": 332.32,
+          "y": 173.74,
+          "width": 83.2,
+          "height": 205.14
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        },
+        "block": {
+          "x": 34.97,
+          "y": 413.61,
+          "width": 320.06,
+          "height": 122.12
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 390,
+        "viewportWidth": 390
+      },
+      "titleMessageGap": 8.13,
+      "messageButtonGap": 14.29,
+      "verticalCenterOffsetRatio": 0.0423,
+      "panelContentHeightRatio": 0.8223,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "boxes": {
+        "panel": {
+          "x": 7.03,
+          "y": 451.03,
+          "width": 375.94,
+          "height": 272
+        },
+        "title": {
+          "x": 113,
+          "y": 534.48,
+          "width": 164,
+          "height": 19.64
+        },
+        "message": {
+          "x": 34.33,
+          "y": 564.67,
+          "width": 321.34,
+          "height": 32.06
+        },
+        "button": {
+          "x": 75,
+          "y": 615.3,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 34.33,
+          "y": 476.34,
+          "width": 321.34,
+          "height": 224.75
+        },
+        "lia": {
+          "x": 332.8,
+          "y": 213.85,
+          "width": 83.48,
+          "height": 259.81
+        },
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        },
+        "block": {
+          "x": 34.33,
+          "y": 534.48,
+          "width": 321.34,
+          "height": 128.82
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 390,
+        "viewportWidth": 390
+      },
+      "titleMessageGap": 10.55,
+      "messageButtonGap": 18.57,
+      "verticalCenterOffsetRatio": 0.0436,
+      "panelContentHeightRatio": 0.8263,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "boxes": {
+        "panel": {
+          "x": 7.73,
+          "y": 388.19,
+          "width": 414.53,
+          "height": 244.19
+        },
+        "title": {
+          "x": 126.5,
+          "y": 457.75,
+          "width": 177,
+          "height": 21.67
+        },
+        "message": {
+          "x": 37.83,
+          "y": 488.67,
+          "width": 354.34,
+          "height": 32.91
+        },
+        "button": {
+          "x": 95,
+          "y": 537.84,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 37.83,
+          "y": 410.38,
+          "width": 354.34,
+          "height": 202.77
+        },
+        "lia": {
+          "x": 366.95,
+          "y": 192.9,
+          "width": 92.06,
+          "height": 213.42
+        },
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        },
+        "block": {
+          "x": 37.83,
+          "y": 457.75,
+          "width": 354.34,
+          "height": 128.09
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 430,
+        "viewportWidth": 430
+      },
+      "titleMessageGap": 9.25,
+      "messageButtonGap": 16.26,
+      "verticalCenterOffsetRatio": 0.0471,
+      "panelContentHeightRatio": 0.8304,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "boxes": {
+        "panel": {
+          "x": 7.73,
+          "y": 530.95,
+          "width": 414.53,
+          "height": 272
+        },
+        "title": {
+          "x": 126.5,
+          "y": 612.67,
+          "width": 177,
+          "height": 21.67
+        },
+        "message": {
+          "x": 37.83,
+          "y": 645.86,
+          "width": 354.34,
+          "height": 32.91
+        },
+        "button": {
+          "x": 95,
+          "y": 698.77,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 37.83,
+          "y": 558.14,
+          "width": 354.34,
+          "height": 220.81
+        },
+        "lia": {
+          "x": 366.95,
+          "y": 293.35,
+          "width": 92.06,
+          "height": 263.2
+        },
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        },
+        "block": {
+          "x": 37.83,
+          "y": 612.67,
+          "width": 354.34,
+          "height": 134.1
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 430,
+        "viewportWidth": 430
+      },
+      "titleMessageGap": 11.52,
+      "messageButtonGap": 20,
+      "verticalCenterOffsetRatio": 0.0469,
+      "panelContentHeightRatio": 0.8118,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "boxes": {
+        "panel": {
+          "x": 53.75,
+          "y": 594.91,
+          "width": 660.5,
+          "height": 272
+        },
+        "title": {
+          "x": 278.5,
+          "y": 670.33,
+          "width": 211,
+          "height": 26.88
+        },
+        "message": {
+          "x": 144,
+          "y": 708.72,
+          "width": 480,
+          "height": 42.22
+        },
+        "button": {
+          "x": 264,
+          "y": 770.94,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 98.55,
+          "y": 622.09,
+          "width": 570.91,
+          "height": 220.81
+        },
+        "lia": {
+          "x": 657.1,
+          "y": 357.16,
+          "width": 115.81,
+          "height": 263.2
+        },
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        },
+        "block": {
+          "x": 144,
+          "y": 670.33,
+          "width": 480,
+          "height": 148.61
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 768,
+        "viewportWidth": 768
+      },
+      "titleMessageGap": 11.51,
+      "messageButtonGap": 20,
+      "verticalCenterOffsetRatio": 0.0505,
+      "panelContentHeightRatio": 0.8118,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "boxes": {
+        "panel": {
+          "x": 623.8,
+          "y": 286.39,
+          "width": 374.61,
+          "height": 253.44
+        },
+        "title": {
+          "x": 705.59,
+          "y": 343.47,
+          "width": 211,
+          "height": 26.88
+        },
+        "message": {
+          "x": 668.59,
+          "y": 379.94,
+          "width": 285.02,
+          "height": 63.33
+        },
+        "button": {
+          "x": 691.09,
+          "y": 460.16,
+          "width": 240,
+          "height": 48
+        },
+        "content": {
+          "x": 668.59,
+          "y": 309.42,
+          "width": 285.02,
+          "height": 210.45
+        },
+        "lia": {
+          "x": 547.68,
+          "y": 534.12,
+          "width": 115.81,
+          "height": 263.2
+        },
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        },
+        "block": {
+          "x": 668.59,
+          "y": 343.47,
+          "width": 285.02,
+          "height": 164.69
+        }
+      },
+      "state": {
+        "layout": "centered-balanced",
+        "titleCountMarker": "1",
+        "titleCount": 1,
+        "titleClipped": false,
+        "internalOverflow": false,
+        "state": "ready_to_continue",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "documentWidth": 1024,
+        "viewportWidth": 1024
+      },
+      "titleMessageGap": 9.59,
+      "messageButtonGap": 16.89,
+      "verticalCenterOffsetRatio": 0.0501,
+      "panelContentHeightRatio": 0.8304,
+      "checks": {
+        "readyState": true,
+        "centeredLayout": true,
+        "closureContentMarker": true,
+        "oneTitle": true,
+        "titleLegible": true,
+        "noInternalOverflow": true,
+        "separatedZones": true,
+        "buttonInsideViewport": true,
+        "buttonInsidePanel": true,
+        "noOverlap": true,
+        "noHorizontalOverflow": true
+      },
+      "pass": true
+    }
+  ],
+  "revisitMeasurements": [
+    {
+      "option": 1,
+      "layerId": "planta_viva",
+      "state": {
+        "activeLayer": "planta_viva",
+        "activeLayerContent": "plant",
+        "overlayVisible": "false",
+        "highestUnlocked": "6",
+        "visitedLayers": "1,2,3,4,5,6",
+        "closureCount": 0,
+        "option6Count": 0,
+        "lockedCount": 0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "option": 2,
+      "layerId": "senal",
+      "state": {
+        "activeLayer": "senal",
+        "activeLayerContent": "signal",
+        "overlayVisible": "false",
+        "highestUnlocked": "6",
+        "visitedLayers": "1,2,3,4,5,6",
+        "closureCount": 0,
+        "option6Count": 0,
+        "lockedCount": 0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "option": 3,
+      "layerId": "captura",
+      "state": {
+        "activeLayer": "captura",
+        "activeLayerContent": "capture",
+        "overlayVisible": "false",
+        "highestUnlocked": "6",
+        "visitedLayers": "1,2,3,4,5,6",
+        "closureCount": 0,
+        "option6Count": 0,
+        "lockedCount": 0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "option": 4,
+      "layerId": "acondicionamiento",
+      "state": {
+        "activeLayer": "acondicionamiento",
+        "activeLayerContent": "conditioning",
+        "overlayVisible": "false",
+        "highestUnlocked": "6",
+        "visitedLayers": "1,2,3,4,5,6",
+        "closureCount": 0,
+        "option6Count": 0,
+        "lockedCount": 0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "option": 5,
+      "layerId": "mapeo",
+      "state": {
+        "activeLayer": "mapeo",
+        "activeLayerContent": "mapping",
+        "overlayVisible": "false",
+        "highestUnlocked": "6",
+        "visitedLayers": "1,2,3,4,5,6",
+        "closureCount": 0,
+        "option6Count": 0,
+        "lockedCount": 0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "option": 6,
+      "layerId": "resultado_mediado",
+      "state": {
+        "activeLayer": "resultado_mediado",
+        "activeLayerContent": "closure",
+        "overlayVisible": "true",
+        "option6Complete": true,
+        "closureVisible": true,
+        "continueVisible": true,
+        "pass": true
+      },
+      "pass": true
+    }
+  ]
+}

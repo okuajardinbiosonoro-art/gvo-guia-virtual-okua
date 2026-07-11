@@ -1,8 +1,19 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
+import {
+  WORLD1_REQUIRED_SLOT_COUNT,
+  world1ConceptCopy,
+  world1EditorialSlots,
+} from "../../content/world1EditorialSlots";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
@@ -24,9 +35,128 @@ function renderWorld1RootScreen() {
   );
 }
 
+function configureSmallViewport(width: number, height: number) {
+  vi.stubGlobal("innerWidth", width);
+  vi.stubGlobal("innerHeight", height);
+  vi.stubGlobal("visualViewport", {
+    addEventListener: vi.fn(),
+    height,
+    removeEventListener: vi.fn(),
+    scrollTop: 0,
+    width,
+  });
+}
+
+function configureNarrativeOverflow(
+  viewport: HTMLElement,
+  scrollHeight = 244,
+  clientHeight = 163,
+) {
+  Object.defineProperty(viewport, "scrollHeight", {
+    configurable: true,
+    get: () => scrollHeight,
+  });
+  Object.defineProperty(viewport, "clientHeight", {
+    configurable: true,
+    get: () => clientHeight,
+  });
+}
+
 describe("World1RootScreen", () => {
   afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
     cleanup();
+  });
+
+  it("016S5 muestra swipe vertical solo con overflow móvil y lo descarta por estado", () => {
+    vi.useFakeTimers();
+    configureSmallViewport(360, 560);
+    const { container } = renderWorld1RootScreen();
+    const root = container.querySelector(".world1-root-screen");
+    const viewport = container.querySelector<HTMLElement>(
+      '[data-world1-scroll-viewport="manual"]',
+    );
+
+    configureNarrativeOverflow(viewport as HTMLElement);
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
+      vi.advanceTimersByTime(20);
+    });
+
+    let hint = document.querySelector(
+      '[data-gvo-gesture-hint="swipe-vertical"]',
+    );
+    expect(root).toHaveAttribute("data-world1-swipe-hint-system", "016S5");
+    expect(root).toHaveAttribute("data-world1-swipe-hint-state", "pending");
+    expect(
+      container.querySelector('[data-world1-swipe-hint-anchor="intro"]'),
+    ).toBeInTheDocument();
+    expect(hint).toHaveAttribute("data-gvo-gesture-direction", "up");
+    expect(hint).toHaveAttribute(
+      "data-gvo-gesture-animation",
+      "unidirectional-trail-r7",
+    );
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
+
+    act(() => vi.advanceTimersByTime(2800));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
+
+    (viewport as HTMLElement).scrollTop = 12;
+    fireEvent.scroll(viewport as HTMLElement);
+    expect(root).toHaveAttribute("data-world1-swipe-hint-state", "completed");
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "completed");
+
+    const conceptLabels = {
+      mediation: "MEDIACIÓN",
+      perception: "PERCEPCIÓN",
+      relation: "RELACIÓN",
+    } as const;
+    for (const concept of ["relation", "perception", "mediation"] as const) {
+      fireEvent.click(
+        screen.getByRole("button", {
+          name: `Explorar ${conceptLabels[concept]}`,
+        }),
+      );
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+        vi.advanceTimersByTime(20);
+      });
+
+      hint = document.querySelector('[data-gvo-gesture-hint="swipe-vertical"]');
+      expect(root).toHaveAttribute("data-world1-swipe-hint-state", "pending");
+      expect(
+        container.querySelector(`[data-world1-swipe-hint-anchor="${concept}"]`),
+      ).toBeInTheDocument();
+      expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
+
+      (viewport as HTMLElement).scrollTop = 12;
+      fireEvent.scroll(viewport as HTMLElement);
+      expect(root).toHaveAttribute("data-world1-swipe-hint-state", "completed");
+    }
+  });
+
+  it("016S5 no fuerza el hint en una altura móvil cómoda", () => {
+    vi.useFakeTimers();
+    configureSmallViewport(430, 932);
+    const { container } = renderWorld1RootScreen();
+    const viewport = container.querySelector<HTMLElement>(
+      '[data-world1-scroll-viewport="manual"]',
+    );
+
+    configureNarrativeOverflow(viewport as HTMLElement, 237, 224);
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
+      vi.advanceTimersByTime(20);
+    });
+
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-swipe-hint-state",
+      "inactive",
+    );
+    expect(
+      document.querySelector('[data-gvo-gesture-hint="swipe-vertical"]'),
+    ).not.toBeInTheDocument();
   });
 
   it("renderiza la base estatica de Mundo I con textos DOM y assets reales", () => {
@@ -34,13 +164,18 @@ describe("World1RootScreen", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: "Antes de escuchar, necesitamos aprender a mirar.",
+        name: world1ConceptCopy.intro.title.text,
       }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(world1ConceptCopy.intro.body.text),
     ).toBeInTheDocument();
     expect(screen.getByText("RELACIÓN")).toBeInTheDocument();
     expect(screen.getByText("PERCEPCIÓN")).toBeInTheDocument();
     expect(screen.getByText("MEDIACIÓN")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "Continuar" }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "Lía, guía visual de OKÚA" }),
     ).toHaveAttribute("src", world1RootAssets.liaIdle);
@@ -79,10 +214,82 @@ describe("World1RootScreen", () => {
       "data-world1-mobile-stabilization",
       "004F-1C",
     );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-layout-mode",
+      "full-bleed-prudent",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-narrative-motion",
+      "manual-scroll",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-narrative-control",
+      "vertical-manual",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-motion-driver",
+      "js-raf-css-vars",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-motion-layer",
+      "css-js-procedural",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-slot-count",
+      String(WORLD1_REQUIRED_SLOT_COUNT),
+    );
     expect(screen.getByTestId("world1-root-stage")).toHaveAttribute(
       "data-world1-coordinate-system",
       WORLD1_ROOT_COORDINATE_SYSTEM_ID,
     );
+    expect(screen.getByTestId("world1-root-stage")).toHaveAttribute(
+      "aria-label",
+      world1EditorialSlots.W1_ACCESSIBLE_SCENE_01.text,
+    );
+    expect(screen.getByTestId("world1-root-stage")).toHaveAttribute(
+      "data-world1-slot-id",
+      "W1_ACCESSIBLE_SCENE_01",
+    );
+    expect(screen.getByTestId("world1-root-stage")).toHaveAttribute(
+      "data-editorial-status",
+      "TEMP",
+    );
+    expect(
+      container.querySelector(".world1-root-copy"),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector(".world1-root-narrative")).toHaveAttribute(
+      "data-world1-narrative-duration-ms",
+      String(world1ConceptCopy.intro.durationMs),
+    );
+    expect(
+      container.querySelector('[data-world1-slot-id="W1_INTRO_TITLE_01"]'),
+    ).toHaveAttribute("data-editorial-status", "TEMP");
+    expect(
+      container.querySelectorAll("[data-world1-motion-element]"),
+    ).toHaveLength(16);
+    expect(
+      container.querySelectorAll(
+        '[data-world1-motion-element="plant-leaf-light"]',
+      ),
+    ).toHaveLength(2);
+    expect(
+      container.querySelector('[data-world1-motion-element="lia-presence"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-motion-element="lia-expression"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-world1-scroll-viewport="manual"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelectorAll(".world1-root-node__orb-shell"),
+    ).toHaveLength(3);
+    expect(
+      container.querySelectorAll(".world1-root-node__particle"),
+    ).toHaveLength(9);
+    expect(
+      container.querySelectorAll(".world1-root-energy-field__spark"),
+    ).toHaveLength(6);
   });
 
   it("no renderiza assets fuera de fase, controles interactivos ni medios runtime", () => {
@@ -127,13 +334,12 @@ describe("World1RootScreen", () => {
     expect(container.querySelectorAll("video")).toHaveLength(0);
   });
 
-  it("mantiene el boton Continuar sin navegacion ni handler", () => {
+  it("mantiene el boton Continuar fuera del DOM hasta que pueda usarse", () => {
     renderWorld1RootScreen();
 
-    const button = screen.getByRole("button", { name: "Continuar" });
-
-    expect(button).toBeDisabled();
-    expect((button as HTMLButtonElement).onclick).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "Continuar" }),
+    ).not.toBeInTheDocument();
   });
 
   it("activa RELACIÓN y deja PERCEPCIÓN disponible sin habilitar MEDIACIÓN", () => {
@@ -190,11 +396,15 @@ describe("World1RootScreen", () => {
     ).toBeInTheDocument();
     expect(screen.getAllByText("RELACIÓN").length).toBeGreaterThanOrEqual(2);
     expect(
-      screen.getByText(
-        "La planta no está aislada: vive en relación con la tierra, la luz, el agua y quienes se acercan a cuidarla.",
-      ),
+      screen.getByText(world1ConceptCopy.relation.title.text),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+    expect(container.querySelector(".world1-root-narrative")).toHaveAttribute(
+      "data-world1-narrative-duration-ms",
+      String(world1ConceptCopy.relation.durationMs),
+    );
+    expect(
+      screen.queryByRole("button", { name: "Continuar" }),
+    ).not.toBeInTheDocument();
   });
 
   it("activa PERCEPCIÓN despues de RELACIÓN y deja MEDIACIÓN disponible", () => {
@@ -223,9 +433,7 @@ describe("World1RootScreen", () => {
     ).not.toBeDisabled();
 
     expect(
-      screen.getByText(
-        "Una planta puede parecer quieta, pero eso no significa que esté inactiva.",
-      ),
+      screen.getByText(world1ConceptCopy.perception.title.text),
     ).toBeInTheDocument();
     expect(
       container.querySelector(
@@ -253,7 +461,9 @@ describe("World1RootScreen", () => {
     expect(
       container.querySelector('[data-world1-lia-pose="look_perception"]'),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "Continuar" }),
+    ).not.toBeInTheDocument();
   });
 
   it("activa MEDIACIÓN solo después de PERCEPCIÓN con raíz, Lía y copy propios", () => {
@@ -278,9 +488,7 @@ describe("World1RootScreen", () => {
       screen.getByRole("button", { name: "Explorar MEDIACIÓN" }),
     ).toHaveAttribute("aria-pressed", "true");
     expect(
-      screen.getByText(
-        "Mediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.",
-      ),
+      screen.getByText(world1ConceptCopy.mediation.title.text),
     ).toBeInTheDocument();
     expect(
       container.querySelector(
@@ -318,7 +526,9 @@ describe("World1RootScreen", () => {
         `[data-runtime-asset="${world1RootAssets.liaTeleportOut}"]`,
       ),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "Continuar" }),
+    ).not.toBeInTheDocument();
   });
 
   it("cierra MEDIACIÓN en ready_to_continue y navega a la salida controlada", () => {
@@ -346,9 +556,10 @@ describe("World1RootScreen", () => {
     ).toHaveAttribute("data-node-state", "completed");
     expect(screen.getByText("LISTO PARA CONTINUAR")).toBeInTheDocument();
     expect(
-      screen.getByText(
-        "Ya recorriste las tres raíces de esta pregunta: relación, percepción y mediación.",
-      ),
+      screen.getByText(world1ConceptCopy.ready_to_continue.title.text),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(world1ConceptCopy.ready_to_continue.body.text),
     ).toBeInTheDocument();
     expect(
       container.querySelector(
@@ -383,6 +594,11 @@ describe("World1RootScreen", () => {
     const continueButton = screen.getByRole("button", { name: "Continuar" });
     expect(continueButton).not.toBeDisabled();
     expect(continueButton).toHaveAttribute("aria-disabled", "false");
+    expect(continueButton).toHaveAttribute(
+      "data-world1-slot-id",
+      "W1_CONTINUE_BTN_01",
+    );
+    expect(continueButton).toHaveAttribute("data-editorial-status", "TEMP");
     expect(continueButton).toHaveAttribute(
       "data-world1-exit-target",
       worldOneToWorldTwoTransitionRoute,
@@ -426,7 +642,7 @@ describe("World1RootScreen", () => {
     );
 
     expect(
-      screen.getByText("Antes de escuchar, necesitamos aprender a mirar."),
+      screen.getByText(world1ConceptCopy.intro.title.text),
     ).toBeInTheDocument();
     expect(
       container.querySelector("[data-world1-root-active]"),

@@ -4,6 +4,10 @@ import { EDITORIAL_DEFAULT_LOCALE } from "./editorialLocales";
 import { editorialRegistry } from "./editorialRegistry";
 import type { EditorialSlotId } from "./editorialRegistry";
 import { resolveEditorialText } from "./resolveEditorialText";
+import {
+  WORLD1_REQUIRED_SLOT_COUNT,
+  world1EditorialSlots,
+} from "../world1EditorialSlots";
 
 describe("editorialRegistry", () => {
   it("resuelve textos temporales en es sin fallback", () => {
@@ -214,6 +218,23 @@ describe("editorialRegistry", () => {
     expect(resolveEditorialText("FINAL_ACCESSIBLE_RESTART_01").text).toBe(
       "TEMP — Acción crítica de reinicio con confirmación.",
     );
+  });
+
+  it("registra los 18 slots temporales de Mundo I sin prefijo visual TEMP", () => {
+    expect(Object.keys(world1EditorialSlots)).toHaveLength(
+      WORLD1_REQUIRED_SLOT_COUNT,
+    );
+    expect(WORLD1_REQUIRED_SLOT_COUNT).toBe(18);
+    expect(world1EditorialSlots.W1_INTRO_TITLE_01.text).toBe(
+      "Antes de escuchar, necesitamos aprender a mirar.",
+    );
+    expect(world1EditorialSlots.W1_CONTINUE_BTN_01.text).toBe("Continuar");
+
+    for (const slot of Object.values(world1EditorialSlots)) {
+      expect(slot.status).toBe("TEMP");
+      expect(slot.source).toBe("temporary");
+      expect(slot.text).not.toMatch(/^TEMP\s+—/);
+    }
   });
 
   it("rechaza slots editoriales no registrados", () => {

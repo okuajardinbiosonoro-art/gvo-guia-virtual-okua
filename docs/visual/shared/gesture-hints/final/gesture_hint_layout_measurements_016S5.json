@@ -1,0 +1,5809 @@
+{
+  "ticket": "016S5",
+  "generatedAt": "2026-07-11T00:07:26.548Z",
+  "viewportPolicy": {
+    "world1MaxWidth": 480,
+    "world1MaxEffectiveHeight": 844,
+    "requiresRealOverflow": true
+  },
+  "baselineComparison": {
+    "trailLengthRem": {
+      "ticket016S4": 1.8,
+      "ticket016S5": 3.5,
+      "increasePercent": 94.44
+    },
+    "cycleDurationMs": {
+      "ticket016S4": 2800,
+      "ticket016S5": 1680,
+      "reductionPercent": 40
+    },
+    "visibleTravelDurationMs": {
+      "ticket016S4": 1428,
+      "ticket016S5": 856.8,
+      "reductionPercent": 40
+    }
+  },
+  "result": {
+    "world2Passed": 9,
+    "world2Total": 9,
+    "world1Passed": 36,
+    "world1Total": 36,
+    "failed": 0
+  },
+  "world2": [
+    {
+      "viewport": "360x560",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 174.01,
+          "y": 157.57,
+          "width": 54,
+          "height": 54
+        },
+        "zone": {
+          "x": 15.94,
+          "y": 83.22,
+          "width": 328.13,
+          "height": 192.45
+        },
+        "readout": {
+          "x": 15.94,
+          "y": 278.22,
+          "width": 249.38,
+          "height": 47.64
+        },
+        "lia": {
+          "x": 286.05,
+          "y": 148.69,
+          "width": 48.4,
+          "height": 173.42
+        },
+        "dialogue": {
+          "x": 7.67,
+          "y": 365.94,
+          "width": 344.66,
+          "height": 117.59
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 486.72,
+          "width": 344.66,
+          "height": 68.81
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 172.67819213867188,
+          "y": 179.4268798828125
+        },
+        "trailOrigin": {
+          "x": 172.67819213867188,
+          "y": 179.4190673828125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 180.086,
+            "y": 157.568,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 174.742,
+            "y": 157.568,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 166.694,
+            "y": 157.568,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 164.323,
+            "y": 157.568,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 164.086,
+            "y": 157.568,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 164.626,
+            "y": 158.107,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 164.626,
+            "y": 158.107,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 164.626,
+            "y": 158.107,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 181.166,
+          "y": 158.648,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.08,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 181.26,
+          "y": 157.17,
+          "width": 56.25,
+          "height": 56.25
+        },
+        "zone": {
+          "x": 16.3,
+          "y": 85.2,
+          "width": 342.41,
+          "height": 189.52
+        },
+        "readout": {
+          "x": 16.3,
+          "y": 277.27,
+          "width": 260.22,
+          "height": 47.64
+        },
+        "lia": {
+          "x": 298.17,
+          "y": 149.8,
+          "width": 50.5,
+          "height": 171.71
+        },
+        "dialogue": {
+          "x": 7.67,
+          "y": 364.94,
+          "width": 359.66,
+          "height": 117.59
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 485.72,
+          "width": 359.66,
+          "height": 68.81
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 180.17845153808594,
+          "y": 179.953125
+        },
+        "trailOrigin": {
+          "x": 180.17845153808594,
+          "y": 179.9453125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 187.336,
+            "y": 157.172,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 181.992,
+            "y": 157.172,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 173.944,
+            "y": 157.172,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 171.574,
+            "y": 157.172,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 171.336,
+            "y": 157.172,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 171.899,
+            "y": 157.734,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 171.899,
+            "y": 157.734,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 171.899,
+            "y": 157.734,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 188.461,
+          "y": 158.297,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.125,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 181.26,
+          "y": 205.14,
+          "width": 56.25,
+          "height": 56.25
+        },
+        "zone": {
+          "x": 16.3,
+          "y": 86.64,
+          "width": 342.41,
+          "height": 282.56
+        },
+        "readout": {
+          "x": 16.3,
+          "y": 371.75,
+          "width": 260.22,
+          "height": 47.64
+        },
+        "lia": {
+          "x": 298.17,
+          "y": 191.9,
+          "width": 50.5,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 7.67,
+          "y": 461.14,
+          "width": 359.66,
+          "height": 129.39
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 593.72,
+          "width": 359.66,
+          "height": 68.81
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 180.17845153808594,
+          "y": 227.921875
+        },
+        "trailOrigin": {
+          "x": 180.17845153808594,
+          "y": 227.9140625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 187.336,
+            "y": 205.141,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 181.992,
+            "y": 205.141,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 173.944,
+            "y": 205.141,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 171.574,
+            "y": 205.141,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 171.336,
+            "y": 205.141,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 171.899,
+            "y": 205.703,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 171.899,
+            "y": 205.703,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 171.899,
+            "y": 205.703,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 188.461,
+          "y": 206.266,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.125,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 188.51,
+          "y": 198.07,
+          "width": 58.5,
+          "height": 58.5
+        },
+        "zone": {
+          "x": 16.66,
+          "y": 87.77,
+          "width": 356.69,
+          "height": 268
+        },
+        "readout": {
+          "x": 16.66,
+          "y": 358.31,
+          "width": 271.08,
+          "height": 47.64
+        },
+        "lia": {
+          "x": 310.28,
+          "y": 179.54,
+          "width": 52.62,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 7.67,
+          "y": 447.44,
+          "width": 374.66,
+          "height": 126.09
+        },
+        "nav": {
+          "x": 7.67,
+          "y": 576.72,
+          "width": 374.66,
+          "height": 68.81
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 187.67869567871094,
+          "y": 221.7606201171875
+        },
+        "trailOrigin": {
+          "x": 187.67869567871094,
+          "y": 221.7528076171875
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 194.586,
+            "y": 198.073,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 189.243,
+            "y": 198.073,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 181.194,
+            "y": 198.073,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 178.824,
+            "y": 198.073,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 178.587,
+            "y": 198.073,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 179.171,
+            "y": 198.658,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 179.171,
+            "y": 198.658,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 179.171,
+            "y": 198.658,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 195.757,
+          "y": 199.243,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.17,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 188.51,
+          "y": 236.24,
+          "width": 58.5,
+          "height": 58.5
+        },
+        "zone": {
+          "x": 16.05,
+          "y": 104.38,
+          "width": 357.91,
+          "height": 311.13
+        },
+        "readout": {
+          "x": 16.05,
+          "y": 419.78,
+          "width": 272,
+          "height": 56
+        },
+        "lia": {
+          "x": 310.68,
+          "y": 257.5,
+          "width": 52.79,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 7.03,
+          "y": 537.44,
+          "width": 375.94,
+          "height": 185.59
+        },
+        "nav": {
+          "x": 7.03,
+          "y": 731.47,
+          "width": 375.94,
+          "height": 105.5
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 187.67869567871094,
+          "y": 259.9324951171875
+        },
+        "trailOrigin": {
+          "x": 187.67869567871094,
+          "y": 259.9246826171875
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.231386",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.32",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 194.586,
+            "y": 236.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 189.243,
+            "y": 236.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 181.194,
+            "y": 236.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 178.824,
+            "y": 236.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 178.587,
+            "y": 236.245,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 179.171,
+            "y": 236.83,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 179.171,
+            "y": 236.83,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 179.171,
+            "y": 236.83,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 195.757,
+          "y": 237.415,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.17,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 207.84,
+          "y": 202.97,
+          "width": 64.5,
+          "height": 64.5
+        },
+        "zone": {
+          "x": 17.67,
+          "y": 108.36,
+          "width": 394.66,
+          "height": 241.47
+        },
+        "readout": {
+          "x": 17.67,
+          "y": 354.55,
+          "width": 299.94,
+          "height": 56
+        },
+        "lia": {
+          "x": 342.55,
+          "y": 197.17,
+          "width": 58.22,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 7.73,
+          "y": 469.58,
+          "width": 414.53,
+          "height": 162.8
+        },
+        "nav": {
+          "x": 7.73,
+          "y": 639.77,
+          "width": 414.53,
+          "height": 92.5
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 207.6845703125,
+          "y": 229.08062744140625
+        },
+        "trailOrigin": {
+          "x": 207.6845703125,
+          "y": 229.07281494140625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 213.92,
+            "y": 202.971,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 208.577,
+            "y": 202.971,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 200.528,
+            "y": 202.971,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 198.158,
+            "y": 202.971,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 197.921,
+            "y": 202.971,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 198.565,
+            "y": 203.616,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 198.565,
+            "y": 203.616,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 198.565,
+            "y": 203.616,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 215.211,
+          "y": 204.261,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.29,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 207.84,
+          "y": 276.64,
+          "width": 64.5,
+          "height": 64.5
+        },
+        "zone": {
+          "x": 17.67,
+          "y": 113.88,
+          "width": 394.66,
+          "height": 377.78
+        },
+        "readout": {
+          "x": 17.67,
+          "y": 496.38,
+          "width": 299.94,
+          "height": 56
+        },
+        "lia": {
+          "x": 342.55,
+          "y": 330.08,
+          "width": 58.22,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 7.73,
+          "y": 617.36,
+          "width": 414.53,
+          "height": 185.59
+        },
+        "nav": {
+          "x": 7.73,
+          "y": 812.27,
+          "width": 414.53,
+          "height": 112
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 207.6845703125,
+          "y": 302.75250244140625
+        },
+        "trailOrigin": {
+          "x": 207.6845703125,
+          "y": 302.74468994140625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 213.92,
+            "y": 276.643,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 208.577,
+            "y": 276.643,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 200.528,
+            "y": 276.643,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 198.158,
+            "y": 276.643,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 197.921,
+            "y": 276.643,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 198.565,
+            "y": 277.288,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 198.565,
+            "y": 277.288,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 198.565,
+            "y": 277.288,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 215.211,
+          "y": 277.933,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.29,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 377.89,
+          "y": 299.07,
+          "width": 55.03,
+          "height": 55.03
+        },
+        "zone": {
+          "x": 76.86,
+          "y": 145.34,
+          "width": 614.28,
+          "height": 352.05
+        },
+        "readout": {
+          "x": 76.86,
+          "y": 504.11,
+          "width": 417.7,
+          "height": 75.44
+        },
+        "lia": {
+          "x": 601.29,
+          "y": 364.93,
+          "width": 83.46,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 53.75,
+          "y": 655.72,
+          "width": 660.5,
+          "height": 211.19
+        },
+        "nav": {
+          "x": 53.75,
+          "y": 878.42,
+          "width": 660.5,
+          "height": 133.11
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 376.673095703125,
+          "y": 321.35296630859375
+        },
+        "trailOrigin": {
+          "x": 376.673095703125,
+          "y": 321.34515380859375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 383.971,
+            "y": 299.072,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 378.628,
+            "y": 299.072,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 370.579,
+            "y": 299.072,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 368.209,
+            "y": 299.072,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 367.972,
+            "y": 299.072,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 368.522,
+            "y": 299.622,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 368.522,
+            "y": 299.622,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 368.522,
+            "y": 299.622,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 385.072,
+          "y": 300.172,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.1,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "typography": {
+        "stepLabel": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutTitle": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "readoutBody": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif",
+        "control": "\"Pixelify Sans Variable\", \"Pixelify Sans\", system-ui, sans-serif"
+      },
+      "boxes": {
+        "hint": {
+          "x": 310.59,
+          "y": 345.25,
+          "width": 71.67,
+          "height": 71.67
+        },
+        "zone": {
+          "x": 46.09,
+          "y": 148.11,
+          "width": 544.92,
+          "height": 452.36
+        },
+        "readout": {
+          "x": 46.09,
+          "y": 607.19,
+          "width": 370.55,
+          "height": 75.44
+        },
+        "lia": {
+          "x": 498.84,
+          "y": 462.59,
+          "width": 82.28,
+          "height": 214.02
+        },
+        "dialogue": {
+          "x": 623.8,
+          "y": 278.72,
+          "width": 374.61,
+          "height": 261.11
+        },
+        "nav": {
+          "x": 623.8,
+          "y": 552.11,
+          "width": 374.61,
+          "height": 199.52
+        }
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "left",
+        "marker": "left",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "trailGeometry": {
+        "profile": "horizontal-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 311.23223876953125,
+          "y": 374.269775390625
+        },
+        "trailOrigin": {
+          "x": 311.23223876953125,
+          "y": 374.261962890625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 58.234,
+          "height": 11.516
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "0deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "cycleContract": {
+        "axis": "x",
+        "direction": "left",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 316.671,
+            "y": 345.254,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 311.327,
+            "y": 345.254,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 303.279,
+            "y": 345.254,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 300.909,
+            "y": 345.254,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 300.671,
+            "y": 345.254,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 301.388,
+            "y": 345.971,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 301.388,
+            "y": 345.971,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 301.388,
+            "y": 345.971,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 318.105,
+          "y": 346.688,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 17.434,
+        "pass": true
+      },
+      "checks": {
+        "hintInsideViewport": true,
+        "hintClearOfLia": true,
+        "hintClearOfDialogue": true,
+        "hintClearOfNav": true,
+        "hiddenAfterSwipe": true,
+        "refinedTrailContract": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "unidirectionalCycle": true,
+        "typographyMatchesApp": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "step3Complete": true
+      },
+      "pass": true
+    }
+  ],
+  "world1": [
+    {
+      "viewport": "360x560",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 231,
+        "clientHeight": 163,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 304.3,
+        "y": 385.65,
+        "width": 40.8,
+        "height": 40.8
+      },
+      "textOverlapRatio": 0.006,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 304.295,
+            "y": 391.727,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 304.295,
+            "y": 386.384,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 304.295,
+            "y": 378.335,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 304.295,
+            "y": 375.965,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 304.295,
+            "y": 375.728,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 305.111,
+          "y": 392.544,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.816,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 322.5294189453125,
+          "y": 381.1011047363281
+        },
+        "trailOrigin": {
+          "x": 322.5372314453125,
+          "y": 381.1011047363281
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 244,
+        "clientHeight": 163,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 304.3,
+        "y": 385.65,
+        "width": 40.8,
+        "height": 40.8
+      },
+      "textOverlapRatio": 0.0056,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 304.295,
+            "y": 391.727,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 304.295,
+            "y": 386.384,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 304.295,
+            "y": 378.335,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 304.295,
+            "y": 375.965,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 304.295,
+            "y": 375.728,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 305.111,
+          "y": 392.544,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.816,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 322.5294189453125,
+          "y": 381.1011047363281
+        },
+        "trailOrigin": {
+          "x": 322.5372314453125,
+          "y": 381.1011047363281
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 258,
+        "clientHeight": 163,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 304.3,
+        "y": 385.65,
+        "width": 40.8,
+        "height": 40.8
+      },
+      "textOverlapRatio": 0.0053,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 304.295,
+            "y": 391.727,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 304.295,
+            "y": 386.384,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 304.295,
+            "y": 378.335,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 304.295,
+            "y": 375.965,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 304.295,
+            "y": 375.728,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 304.703,
+            "y": 376.136,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 305.111,
+          "y": 392.544,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.816,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 322.5294189453125,
+          "y": 381.1011047363281
+        },
+        "trailOrigin": {
+          "x": 322.5372314453125,
+          "y": 381.1011047363281
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "360x560",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 245,
+        "clientHeight": 163,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 304.3,
+        "y": 380.4,
+        "width": 40.8,
+        "height": 40.8
+      },
+      "textOverlapRatio": 0.0056,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 304.295,
+            "y": 386.477,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 304.295,
+            "y": 381.134,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 304.295,
+            "y": 373.085,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 304.295,
+            "y": 370.715,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 304.295,
+            "y": 370.478,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 304.703,
+            "y": 370.886,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 304.703,
+            "y": 370.886,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 304.703,
+            "y": 370.886,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 305.111,
+          "y": 387.294,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.816,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 322.5294189453125,
+          "y": 375.8511047363281
+        },
+        "trailOrigin": {
+          "x": 322.5372314453125,
+          "y": 375.8511047363281
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 279,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 307.84,
+        "y": 383.55,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0032,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 307.842,
+            "y": 389.634,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 307.842,
+            "y": 384.29,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 307.842,
+            "y": 376.242,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 307.842,
+            "y": 373.872,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 307.842,
+            "y": 373.634,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 308.668,
+          "y": 390.459,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 326.2799987792969,
+          "y": 379.0390625
+        },
+        "trailOrigin": {
+          "x": 326.2878112792969,
+          "y": 379.0390625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 293,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 307.84,
+        "y": 383.55,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.003,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 307.842,
+            "y": 389.634,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 307.842,
+            "y": 384.29,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 307.842,
+            "y": 376.242,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 307.842,
+            "y": 373.872,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 307.842,
+            "y": 373.634,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 308.668,
+          "y": 390.459,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 326.2799987792969,
+          "y": 379.0390625
+        },
+        "trailOrigin": {
+          "x": 326.2878112792969,
+          "y": 379.0390625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 279,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 307.84,
+        "y": 383.55,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0032,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 307.842,
+            "y": 389.634,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 307.842,
+            "y": 384.29,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 307.842,
+            "y": 376.242,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 307.842,
+            "y": 373.872,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 307.842,
+            "y": 373.634,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 308.255,
+            "y": 374.047,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 308.668,
+          "y": 390.459,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 326.2799987792969,
+          "y": 379.0390625
+        },
+        "trailOrigin": {
+          "x": 326.2878112792969,
+          "y": 379.0390625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x559",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 281,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 307.84,
+        "y": 378.3,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0032,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 307.842,
+            "y": 384.384,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 307.842,
+            "y": 379.04,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 307.842,
+            "y": 370.992,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 307.842,
+            "y": 368.622,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 307.842,
+            "y": 368.384,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 308.255,
+            "y": 368.797,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 308.255,
+            "y": 368.797,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 308.255,
+            "y": 368.797,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 308.668,
+          "y": 385.209,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 326.2799987792969,
+          "y": 373.7890625
+        },
+        "trailOrigin": {
+          "x": 326.2878112792969,
+          "y": 373.7890625
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 248,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 332.19,
+        "y": 459.71,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0031,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 332.186,
+            "y": 465.79,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 332.186,
+            "y": 460.447,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 332.186,
+            "y": 452.398,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 332.186,
+            "y": 450.028,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 332.186,
+            "y": 449.791,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 333.011,
+          "y": 466.616,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 350.6237487792969,
+          "y": 455.1953125
+        },
+        "trailOrigin": {
+          "x": 350.6315612792969,
+          "y": 455.1953125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 248,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 332.19,
+        "y": 459.71,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0031,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 332.186,
+            "y": 465.79,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 332.186,
+            "y": 460.447,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 332.186,
+            "y": 452.398,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 332.186,
+            "y": 450.028,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 332.186,
+            "y": 449.791,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 333.011,
+          "y": 466.616,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 350.6237487792969,
+          "y": 455.1953125
+        },
+        "trailOrigin": {
+          "x": 350.6315612792969,
+          "y": 455.1953125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 265,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 332.19,
+        "y": 459.71,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.0029,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 332.186,
+            "y": 465.79,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 332.186,
+            "y": 460.447,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 332.186,
+            "y": 452.398,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 332.186,
+            "y": 450.028,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 332.186,
+            "y": 449.791,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 332.599,
+            "y": 450.203,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 333.011,
+          "y": 466.616,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 350.6237487792969,
+          "y": 455.1953125
+        },
+        "trailOrigin": {
+          "x": 350.6315612792969,
+          "y": 455.1953125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 250,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 327.19,
+        "y": 454.46,
+        "width": 41.25,
+        "height": 41.25
+      },
+      "textOverlapRatio": 0.003,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 327.186,
+            "y": 460.54,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 327.186,
+            "y": 455.197,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 327.186,
+            "y": 447.148,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 327.186,
+            "y": 444.778,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 327.186,
+            "y": 444.541,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 327.599,
+            "y": 444.953,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 327.599,
+            "y": 444.953,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 327.599,
+            "y": 444.953,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 328.011,
+          "y": 461.366,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.825,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 345.6237487792969,
+          "y": 449.9453125
+        },
+        "trailOrigin": {
+          "x": 345.6315612792969,
+          "y": 449.9453125
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 248,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 338.75,
+        "y": 450.93,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 338.75,
+            "y": 457.007,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 338.75,
+            "y": 451.663,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 338.75,
+            "y": 443.615,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 338.75,
+            "y": 441.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 338.75,
+            "y": 441.007,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 339.608,
+          "y": 457.865,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 357.921630859375,
+          "y": 446.521240234375
+        },
+        "trailOrigin": {
+          "x": 357.929443359375,
+          "y": 446.521240234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 248,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 338.75,
+        "y": 450.93,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 338.75,
+            "y": 457.007,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 338.75,
+            "y": 451.663,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 338.75,
+            "y": 443.615,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 338.75,
+            "y": 441.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 338.75,
+            "y": 441.007,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 339.608,
+          "y": 457.865,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 357.921630859375,
+          "y": 446.521240234375
+        },
+        "trailOrigin": {
+          "x": 357.929443359375,
+          "y": 446.521240234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 265,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 338.75,
+        "y": 450.93,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0034,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 338.75,
+            "y": 457.007,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 338.75,
+            "y": 451.663,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 338.75,
+            "y": 443.615,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 338.75,
+            "y": 441.245,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 338.75,
+            "y": 441.007,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 339.179,
+            "y": 441.436,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 339.608,
+          "y": 457.865,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 357.921630859375,
+          "y": 446.521240234375
+        },
+        "trailOrigin": {
+          "x": 357.929443359375,
+          "y": 446.521240234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x650",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 250,
+        "clientHeight": 173,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 338.75,
+        "y": 445.68,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 338.75,
+            "y": 451.757,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 338.75,
+            "y": 446.413,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 338.75,
+            "y": 438.365,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 338.75,
+            "y": 435.995,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 338.75,
+            "y": 435.757,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 339.179,
+            "y": 436.186,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 339.179,
+            "y": 436.186,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 339.179,
+            "y": 436.186,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 339.608,
+          "y": 452.615,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 357.921630859375,
+          "y": 441.271240234375
+        },
+        "trailOrigin": {
+          "x": 357.929443359375,
+          "y": 441.271240234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 236,
+        "clientHeight": 203,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 346.03,
+        "y": 550.44,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 346.031,
+            "y": 556.522,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 346.031,
+            "y": 551.179,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 346.031,
+            "y": 543.131,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 346.031,
+            "y": 540.76,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 346.031,
+            "y": 540.523,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 346.889,
+          "y": 557.381,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 365.202880859375,
+          "y": 546.036865234375
+        },
+        "trailOrigin": {
+          "x": 365.210693359375,
+          "y": 546.036865234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 236,
+        "clientHeight": 203,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 346.03,
+        "y": 550.44,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 346.031,
+            "y": 556.522,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 346.031,
+            "y": 551.179,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 346.031,
+            "y": 543.131,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 346.031,
+            "y": 540.76,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 346.031,
+            "y": 540.523,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 346.889,
+          "y": 557.381,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 365.202880859375,
+          "y": 546.036865234375
+        },
+        "trailOrigin": {
+          "x": 365.210693359375,
+          "y": 546.036865234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 236,
+        "clientHeight": 203,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 346.03,
+        "y": 550.44,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0036,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 346.031,
+            "y": 556.522,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 346.031,
+            "y": 551.179,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 346.031,
+            "y": 543.131,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 346.031,
+            "y": 540.76,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 346.031,
+            "y": 540.523,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 346.46,
+            "y": 540.952,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 346.889,
+          "y": 557.381,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 365.202880859375,
+          "y": 546.036865234375
+        },
+        "trailOrigin": {
+          "x": 365.210693359375,
+          "y": 546.036865234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 253,
+        "clientHeight": 203,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 342.03,
+        "y": 545.21,
+        "width": 42.89,
+        "height": 42.89
+      },
+      "textOverlapRatio": 0.0034,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 342.031,
+            "y": 551.288,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 342.031,
+            "y": 545.945,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 342.031,
+            "y": 537.896,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 342.031,
+            "y": 535.526,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 342.031,
+            "y": 535.288,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 342.46,
+            "y": 535.717,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 342.46,
+            "y": 535.717,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 342.46,
+            "y": 535.717,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 342.889,
+          "y": 552.146,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.858,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 361.202880859375,
+          "y": 540.802490234375
+        },
+        "trailOrigin": {
+          "x": 361.210693359375,
+          "y": 540.802490234375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 220,
+        "clientHeight": 178,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 381.4,
+        "y": 516.82,
+        "width": 45.59,
+        "height": 45.59
+      },
+      "textOverlapRatio": 0.0045,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 381.401,
+            "y": 522.901,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 381.401,
+            "y": 517.558,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 381.401,
+            "y": 509.509,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 381.401,
+            "y": 507.139,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 381.401,
+            "y": 506.901,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 382.313,
+          "y": 523.813,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.912,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 401.7758483886719,
+          "y": 512.60302734375
+        },
+        "trailOrigin": {
+          "x": 401.7836608886719,
+          "y": 512.60302734375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 234,
+        "clientHeight": 178,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 381.4,
+        "y": 516.82,
+        "width": 45.59,
+        "height": 45.59
+      },
+      "textOverlapRatio": 0.0042,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 381.401,
+            "y": 522.901,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 381.401,
+            "y": 517.558,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 381.401,
+            "y": 509.509,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 381.401,
+            "y": 507.139,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 381.401,
+            "y": 506.901,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 382.313,
+          "y": 523.813,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.912,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 401.7758483886719,
+          "y": 512.60302734375
+        },
+        "trailOrigin": {
+          "x": 401.7836608886719,
+          "y": 512.60302734375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 234,
+        "clientHeight": 178,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 381.4,
+        "y": 516.82,
+        "width": 45.59,
+        "height": 45.59
+      },
+      "textOverlapRatio": 0.0042,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 381.401,
+            "y": 522.901,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 381.401,
+            "y": 517.558,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 381.401,
+            "y": 509.509,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 381.401,
+            "y": 507.139,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 381.401,
+            "y": 506.901,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 381.857,
+            "y": 507.357,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 382.313,
+          "y": 523.813,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.912,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 401.7758483886719,
+          "y": 512.60302734375
+        },
+        "trailOrigin": {
+          "x": 401.7836608886719,
+          "y": 512.60302734375
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x740",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 237,
+        "clientHeight": 178,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": true,
+      "hintBox": {
+        "x": 381.4,
+        "y": 511.57,
+        "width": 45.59,
+        "height": 45.59
+      },
+      "textOverlapRatio": 0.0041,
+      "trailContract": {
+        "system": "016S5",
+        "animation": "unidirectional-trail-r7",
+        "cycle": "unidirectional-reset",
+        "direction": "up",
+        "marker": "up",
+        "attached": true,
+        "oldArtifactCount": 0
+      },
+      "cycleContract": {
+        "axis": "y",
+        "direction": "up",
+        "visibleSamples": [
+          {
+            "timeMs": 286,
+            "x": 381.401,
+            "y": 517.651,
+            "opacity": 1
+          },
+          {
+            "timeMs": 504,
+            "x": 381.401,
+            "y": 512.308,
+            "opacity": 1
+          },
+          {
+            "timeMs": 756,
+            "x": 381.401,
+            "y": 504.259,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1008,
+            "x": 381.401,
+            "y": 501.889,
+            "opacity": 1
+          },
+          {
+            "timeMs": 1142,
+            "x": 381.401,
+            "y": 501.651,
+            "opacity": 1
+          }
+        ],
+        "hiddenSamples": [
+          {
+            "timeMs": 1310,
+            "x": 381.857,
+            "y": 502.107,
+            "opacity": 0.00000304866
+          },
+          {
+            "timeMs": 1445,
+            "x": 381.857,
+            "y": 502.107,
+            "opacity": 0
+          },
+          {
+            "timeMs": 1674,
+            "x": 381.857,
+            "y": 502.107,
+            "opacity": 0
+          }
+        ],
+        "resetSample": {
+          "timeMs": 0,
+          "x": 382.313,
+          "y": 518.563,
+          "opacity": 0
+        },
+        "noVisibleReverse": true,
+        "hiddenAtDestination": true,
+        "resetIsInvisible": true,
+        "resetJumpDistance": 16.912,
+        "pass": true
+      },
+      "trailGeometry": {
+        "profile": "vertical-index-alpha-v1",
+        "alignment": "fingertip-calibrated",
+        "visibility": "extended",
+        "lengthMarker": "194-percent",
+        "durationMarker": "1680ms",
+        "fingertipAnchor": {
+          "x": 401.7758483886719,
+          "y": 507.3530578613281
+        },
+        "trailOrigin": {
+          "x": 401.7836608886719,
+          "y": 507.3530578613281
+        },
+        "distancePx": 0.0078,
+        "trailSize": {
+          "width": 11.516,
+          "height": 58.234
+        },
+        "tailComputed": {
+          "width": "56px",
+          "height": "5.75px",
+          "opacity": "0.741332",
+          "backgroundImage": "linear-gradient(90deg, rgba(250, 255, 255, 0.94) 0%, rgba(167, 237, 240, 0.84) 20%, rgba(190, 205, 247, 0.52) 56%, rgba(167, 237, 240, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+          "boxShadow": "rgba(167, 237, 240, 0.54) 0px 0px 4.48px 0px, rgba(159, 178, 241, 0.28) 0px 0px 7.36px 0px"
+        },
+        "glowComputed": {
+          "opacity": "0.829689",
+          "backgroundImage": "radial-gradient(at 30% 50%, rgba(250, 255, 255, 0.96) 0px, rgba(250, 255, 255, 0.96) 12%, rgba(167, 237, 240, 0.66) 42%, rgba(0, 0, 0, 0) 76%)",
+          "boxShadow": "rgba(167, 237, 240, 0.58) 0px 0px 4.8px 0px, rgba(243, 198, 119, 0.24) 0px 0px 8.32px 0px"
+        },
+        "trailAngle": "90deg",
+        "cycleDurationMs": 1680,
+        "visibleTravelDurationMs": 856.8,
+        "insideViewport": true,
+        "clipped": false,
+        "ancestorClips": []
+      },
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 224,
+        "clientHeight": 224,
+        "scrollTop": 0
+      },
+      "needsScroll": false,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 237,
+        "clientHeight": 224,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 237,
+        "clientHeight": 224,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 240,
+        "clientHeight": 224,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 252,
+        "clientHeight": 246,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 269,
+        "clientHeight": 246,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 290,
+        "clientHeight": 246,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "768x1024",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 273,
+        "clientHeight": 246,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "state": "intro",
+      "scrollMetrics": {
+        "scrollHeight": 265,
+        "clientHeight": 184,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "state": "relation",
+      "scrollMetrics": {
+        "scrollHeight": 286,
+        "clientHeight": 184,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "state": "perception",
+      "scrollMetrics": {
+        "scrollHeight": 303,
+        "clientHeight": 184,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "1024x768",
+      "state": "mediation",
+      "scrollMetrics": {
+        "scrollHeight": 286,
+        "clientHeight": 184,
+        "scrollTop": 0
+      },
+      "needsScroll": true,
+      "expectedHint": false,
+      "hintBox": null,
+      "textOverlapRatio": 0,
+      "trailContract": null,
+      "cycleContract": null,
+      "trailGeometry": null,
+      "rootOverflow": {
+        "width": 0,
+        "height": 0
+      },
+      "checks": {
+        "correctEligibility": true,
+        "hintInsideViewport": true,
+        "textOverlapAcceptable": true,
+        "hiddenAfterScroll": true,
+        "refinedTrailContract": true,
+        "unidirectionalCycle": true,
+        "calibratedAnchor": true,
+        "extendedTrail": true,
+        "acceleratedCycle": true,
+        "trailBehindMotion": true,
+        "trailNotClipped": true,
+        "noHorizontalOverflow": true,
+        "noVerticalOverflow": true,
+        "rootStateConsistent": true
+      },
+      "pass": true
+    }
+  ]
+}

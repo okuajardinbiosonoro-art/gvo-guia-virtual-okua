@@ -1,0 +1,483 @@
+.gvo-gesture-hint {
+  --gvo-gesture-size: clamp(3.3rem, 15vw, 4.15rem);
+  --gvo-gesture-approach-x: 0;
+  --gvo-gesture-approach-y: -0.5rem;
+  --gvo-gesture-press-x: 0;
+  --gvo-gesture-press-y: 0.25rem;
+  --gvo-gesture-swipe-start-x: 0;
+  --gvo-gesture-swipe-start-y: 0.38rem;
+  --gvo-gesture-swipe-end-x: 0;
+  --gvo-gesture-swipe-end-y: -0.62rem;
+  --gvo-gesture-trail-angle: 90deg;
+  --gvo-gesture-swipe-duration: 1680ms;
+
+  position: absolute;
+  z-index: 52;
+  display: block;
+  width: var(--gvo-gesture-size);
+  height: var(--gvo-gesture-size);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-anchor="target-ref"] {
+  position: fixed;
+  margin: 0;
+  transform: translate(
+    var(--gvo-gesture-anchor-translate-x),
+    var(--gvo-gesture-anchor-translate-y)
+  );
+}
+
+.gvo-gesture-hint[data-gvo-gesture-anchor-state="measuring"] {
+  visibility: hidden;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-state="visible"] {
+  opacity: 0.9;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-state="completed"] {
+  opacity: 0;
+  transition: none;
+}
+
+.gvo-gesture-hint__direction,
+.gvo-gesture-hint__motion,
+.gvo-gesture-hint__hand {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gvo-gesture-hint__direction,
+.gvo-gesture-hint__motion {
+  transform-origin: center;
+}
+
+.gvo-gesture-hint__hand {
+  object-fit: contain;
+  filter: drop-shadow(0 0.16rem 0.24rem rgb(5 2 12 / 46%));
+  user-select: none;
+}
+
+.gvo-gesture-hint__fingertip,
+.gvo-gesture-hint__ripple {
+  position: absolute;
+  top: var(--gvo-gesture-fingertip-y);
+  left: var(--gvo-gesture-fingertip-x);
+  transform: translate(-50%, -50%);
+}
+
+.gvo-gesture-hint__fingertip {
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.gvo-gesture-hint__fingertip-trail {
+  position: absolute;
+  top: var(--gvo-gesture-trail-origin-y);
+  left: var(--gvo-gesture-trail-origin-x);
+  width: 3.64rem;
+  height: 0.72rem;
+  transform: translateY(-50%) rotate(var(--gvo-gesture-trail-angle));
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+.gvo-gesture-hint__fingertip-trail-origin {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.gvo-gesture-hint__fingertip-trail-glow,
+.gvo-gesture-hint__fingertip-trail-tail,
+.gvo-gesture-hint__fingertip-trail-shimmer {
+  position: absolute;
+  top: 50%;
+  display: block;
+  pointer-events: none;
+}
+
+.gvo-gesture-hint__fingertip-trail-glow {
+  left: 0;
+  width: 0.48rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgb(250 255 255 / 96%) 0 12%,
+    rgb(167 237 240 / 66%) 42%,
+    transparent 76%
+  );
+  box-shadow:
+    0 0 0.3rem rgb(167 237 240 / 58%),
+    0 0 0.52rem rgb(243 198 119 / 24%);
+  filter: blur(0.02rem);
+  transform: translate(-24%, -50%);
+}
+
+.gvo-gesture-hint__fingertip-trail-tail {
+  left: 0;
+  width: 3.5rem;
+  height: 0.36rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgb(250 255 255 / 94%) 0%,
+    rgb(167 237 240 / 84%) 20%,
+    rgb(190 205 247 / 52%) 56%,
+    rgb(167 237 240 / 24%) 82%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 0.28rem rgb(167 237 240 / 54%),
+    0 0 0.46rem rgb(159 178 241 / 28%);
+  clip-path: polygon(0 28%, 16% 8%, 100% 46%, 100% 54%, 16% 92%, 0 72%);
+  filter: blur(0.025rem);
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.gvo-gesture-hint__fingertip-trail-shimmer {
+  left: 0.13rem;
+  width: 1.7rem;
+  height: 0.11rem;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgb(255 247 218 / 90%), transparent);
+  box-shadow: 0 0 0.22rem rgb(243 198 119 / 56%);
+  opacity: 0.72;
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.gvo-gesture-hint__ripple {
+  width: 0.8rem;
+  aspect-ratio: 1;
+  border: 1px solid rgb(167 237 240 / 64%);
+  border-radius: 50%;
+  box-shadow: 0 0 0.35rem rgb(243 198 119 / 16%);
+  opacity: 0;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="tap"][data-gvo-gesture-direction="down"] {
+  --gvo-gesture-approach-y: -0.5rem;
+  --gvo-gesture-press-y: 0.25rem;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="tap"][data-gvo-gesture-direction="up"] {
+  --gvo-gesture-approach-y: 0.5rem;
+  --gvo-gesture-press-y: -0.25rem;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="tap"][data-gvo-gesture-direction="left"] {
+  --gvo-gesture-approach-x: 0.5rem;
+  --gvo-gesture-approach-y: 0;
+  --gvo-gesture-press-x: -0.25rem;
+  --gvo-gesture-press-y: 0;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="tap"][data-gvo-gesture-direction="right"] {
+  --gvo-gesture-approach-x: -0.5rem;
+  --gvo-gesture-approach-y: 0;
+  --gvo-gesture-press-x: 0.25rem;
+  --gvo-gesture-press-y: 0;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="down"]
+  .gvo-gesture-hint__direction {
+  transform: rotate(180deg);
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="left"]
+  .gvo-gesture-hint__direction {
+  transform: rotate(-90deg);
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="right"]
+  .gvo-gesture-hint__direction {
+  transform: rotate(90deg);
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="swipe-horizontal"][data-gvo-gesture-direction="left"]
+  .gvo-gesture-hint__direction {
+  transform: none;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-hint="swipe-horizontal"][data-gvo-gesture-direction="right"]
+  .gvo-gesture-hint__direction {
+  transform: rotate(180deg);
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="down"] {
+  --gvo-gesture-swipe-start-y: -0.38rem;
+  --gvo-gesture-swipe-end-y: 0.62rem;
+  --gvo-gesture-trail-angle: -90deg;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="left"] {
+  --gvo-gesture-swipe-start-x: 0.38rem;
+  --gvo-gesture-swipe-start-y: 0;
+  --gvo-gesture-swipe-end-x: -0.62rem;
+  --gvo-gesture-swipe-end-y: 0;
+  --gvo-gesture-trail-angle: 0deg;
+}
+
+.gvo-gesture-hint[data-gvo-gesture-direction="right"] {
+  --gvo-gesture-swipe-start-x: -0.38rem;
+  --gvo-gesture-swipe-start-y: 0;
+  --gvo-gesture-swipe-end-x: 0.62rem;
+  --gvo-gesture-swipe-end-y: 0;
+  --gvo-gesture-trail-angle: 180deg;
+}
+
+[data-gvo-gesture-target][data-gvo-gesture-attention="waiting"] {
+  filter: brightness(1.08) saturate(1.06);
+}
+
+[data-gvo-gesture-target][data-gvo-gesture-attention="completed"] {
+  animation: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"][data-gvo-gesture-hint="tap"]
+    .gvo-gesture-hint__motion {
+    animation: gvo-gesture-tap-r2 2600ms cubic-bezier(0.2, 0.72, 0.18, 1)
+      infinite;
+  }
+
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"][data-gvo-gesture-hint="tap"]
+    .gvo-gesture-hint__ripple {
+    animation: gvo-gesture-ripple-r2 2600ms ease-out infinite;
+  }
+
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"][data-gvo-gesture-hint="swipe-vertical"]
+    .gvo-gesture-hint__motion,
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"][data-gvo-gesture-hint="swipe-horizontal"]
+    .gvo-gesture-hint__motion {
+    animation: gvo-gesture-swipe-unidirectional-r3
+      var(--gvo-gesture-swipe-duration)
+      cubic-bezier(0.32, 0.02, 0.22, 1) infinite;
+  }
+
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"]
+    .gvo-gesture-hint__fingertip-trail-tail {
+    animation: gvo-gesture-trail-tail-r4 var(--gvo-gesture-swipe-duration)
+      ease-in-out infinite;
+  }
+
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"]
+    .gvo-gesture-hint__fingertip-trail-shimmer {
+    animation: gvo-gesture-trail-shimmer-r4 var(--gvo-gesture-swipe-duration)
+      ease-in-out infinite;
+  }
+
+  .gvo-gesture-hint[data-gvo-gesture-state="visible"]
+    .gvo-gesture-hint__fingertip-trail-glow {
+    animation: gvo-gesture-trail-glow-r4 var(--gvo-gesture-swipe-duration)
+      ease-in-out infinite;
+  }
+
+  [data-gvo-gesture-target][data-gvo-gesture-attention="visible"] {
+    animation: gvo-gesture-target-attention-r2 2600ms ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gvo-gesture-hint,
+  .gvo-gesture-hint__direction,
+  .gvo-gesture-hint__motion,
+  .gvo-gesture-hint__ripple,
+  .gvo-gesture-hint__fingertip-trail-tail,
+  .gvo-gesture-hint__fingertip-trail-shimmer,
+  .gvo-gesture-hint__fingertip-trail-glow,
+  [data-gvo-gesture-target] {
+    animation: none;
+    transition: none;
+  }
+
+  .gvo-gesture-hint__ripple {
+    display: none;
+  }
+
+  .gvo-gesture-hint__fingertip-trail {
+    opacity: 0.68;
+  }
+}
+
+@media (min-width: 700px) {
+  .gvo-gesture-hint {
+    --gvo-gesture-size: clamp(3.44rem, 7vw, 4.625rem);
+  }
+}
+
+@keyframes gvo-gesture-tap-r2 {
+  0%,
+  12% {
+    opacity: 0;
+    translate: var(--gvo-gesture-approach-x) var(--gvo-gesture-approach-y);
+    scale: 0.94;
+  }
+
+  24% {
+    opacity: 1;
+    translate: var(--gvo-gesture-approach-x) var(--gvo-gesture-approach-y);
+    scale: 1;
+  }
+
+  48% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  55% {
+    opacity: 1;
+    translate: var(--gvo-gesture-press-x) var(--gvo-gesture-press-y);
+    scale: 0.98;
+  }
+
+  62% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  74%,
+  100% {
+    opacity: 0.82;
+    translate: var(--gvo-gesture-approach-x) var(--gvo-gesture-approach-y);
+    scale: 0.97;
+  }
+}
+
+@keyframes gvo-gesture-ripple-r2 {
+  0%,
+  47% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.42);
+  }
+
+  54% {
+    opacity: 0.58;
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45);
+  }
+}
+
+@keyframes gvo-gesture-target-attention-r2 {
+  0%,
+  36%,
+  76%,
+  100% {
+    filter: brightness(1.08) saturate(1.06);
+  }
+
+  52%,
+  60% {
+    filter: brightness(1.22) saturate(1.12);
+  }
+}
+
+@keyframes gvo-gesture-swipe-unidirectional-r3 {
+  0%,
+  10% {
+    opacity: 0;
+    translate: var(--gvo-gesture-swipe-start-x)
+      var(--gvo-gesture-swipe-start-y);
+    scale: 0.96;
+  }
+
+  17% {
+    opacity: 1;
+    translate: var(--gvo-gesture-swipe-start-x)
+      var(--gvo-gesture-swipe-start-y);
+    scale: 1;
+  }
+
+  68% {
+    opacity: 1;
+    translate: var(--gvo-gesture-swipe-end-x) var(--gvo-gesture-swipe-end-y);
+    scale: 1;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    translate: var(--gvo-gesture-swipe-end-x) var(--gvo-gesture-swipe-end-y);
+    scale: 0.98;
+  }
+}
+
+@keyframes gvo-gesture-trail-tail-r4 {
+  0%,
+  24%,
+  100% {
+    opacity: 0.16;
+    scale: 0.18 0.72;
+  }
+
+  48%,
+  70% {
+    opacity: 0.76;
+    scale: 1 1;
+  }
+}
+
+@keyframes gvo-gesture-trail-shimmer-r4 {
+  0%,
+  24% {
+    opacity: 0;
+    translate: 0 0;
+    scale: 0.32 1;
+  }
+
+  44% {
+    opacity: 0.64;
+    scale: 1 1;
+  }
+
+  68% {
+    opacity: 0.34;
+    translate: 0.48rem 0;
+    scale: 0.72 1;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    translate: 0.68rem 0;
+    scale: 0.44 1;
+  }
+}
+
+@keyframes gvo-gesture-trail-glow-r4 {
+  0%,
+  30%,
+  100% {
+    opacity: 0.32;
+    scale: 0.72;
+  }
+
+  48%,
+  64% {
+    opacity: 0.86;
+    scale: 1;
+  }
+}

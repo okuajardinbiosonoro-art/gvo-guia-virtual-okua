@@ -125,6 +125,150 @@ export const editorialRegistry = {
       text: "TEMP — Preparando el cierre del recorrido.",
     }),
   },
+  W1_ACCESSIBLE_SCENE_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Escena accesible Mundo I",
+      slotId: "W1_ACCESSIBLE_SCENE_01",
+      text: "Escena interactiva de Mundo I: Raíz, con tres nodos conceptuales: relación, percepción y mediación.",
+    }),
+  },
+  W1_INTRO_EYEBROW_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Mundo I",
+      slotId: "W1_INTRO_EYEBROW_01",
+      text: "Mundo I: Raíz",
+    }),
+  },
+  W1_INTRO_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Aprender a mirar",
+      slotId: "W1_INTRO_TITLE_01",
+      text: "Antes de escuchar, necesitamos aprender a mirar.",
+    }),
+  },
+  W1_INTRO_BODY_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Inicio raíz",
+      slotId: "W1_INTRO_BODY_01",
+      text: "Estás frente a una raíz joven: no llega para responder rápido, llega para enseñarnos a mirar con más atención. Antes de hablar de señales, sistemas o sonido, el recorrido pide una pausa. La planta no es un objeto de lectura; es una presencia viva que se acompaña con cuidado.",
+    }),
+  },
+  W1_RELATION_EYEBROW_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Relación",
+      slotId: "W1_RELATION_EYEBROW_01",
+      text: "RELACIÓN",
+    }),
+  },
+  W1_RELATION_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Vínculo vivo",
+      slotId: "W1_RELATION_TITLE_01",
+      text: "La planta no está aislada: vive en relación con todo lo que la sostiene.",
+    }),
+  },
+  W1_RELATION_BODY_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Relación viva",
+      slotId: "W1_RELATION_BODY_01",
+      text: "La tierra, la luz, el agua, el aire y quienes se acercan a cuidarla forman parte de la misma escena. Antes de interpretar una señal, necesitamos reconocer ese tejido de vínculos. En OKÚA, escuchar empieza cuando dejamos de mirar la planta como una cosa sola y empezamos a verla como relación viva.",
+    }),
+  },
+  W1_PERCEPTION_EYEBROW_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Percepción",
+      slotId: "W1_PERCEPTION_EYEBROW_01",
+      text: "PERCEPCIÓN",
+    }),
+  },
+  W1_PERCEPTION_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Quietud activa",
+      slotId: "W1_PERCEPTION_TITLE_01",
+      text: "Una planta puede parecer quieta, pero eso no significa que esté inactiva.",
+    }),
+  },
+  W1_PERCEPTION_BODY_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Percibir procesos",
+      slotId: "W1_PERCEPTION_BODY_01",
+      text: "Percibir no es adivinar: es afinar la atención para notar procesos que no siempre aparecen de inmediato. Hay ritmos lentos, cambios mínimos y respuestas que necesitan tiempo para hacerse visibles. Esta estación invita a bajar la velocidad para que la mirada alcance a encontrarse con lo vivo.",
+    }),
+  },
+  W1_MEDIATION_EYEBROW_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Mediación",
+      slotId: "W1_MEDIATION_EYEBROW_01",
+      text: "MEDIACIÓN",
+    }),
+  },
+  W1_MEDIATION_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Mediar con cuidado",
+      slotId: "W1_MEDIATION_TITLE_01",
+      text: "Mediar no es inventar: es construir una forma cuidadosa de acercarnos a una señal viva.",
+    }),
+  },
+  W1_MEDIATION_BODY_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Señal mediada",
+      slotId: "W1_MEDIATION_BODY_01",
+      text: "OKÚA no reemplaza la planta ni habla por ella. El sistema prepara una forma de acercamiento para que algo sensible pueda ser percibido sin convertirlo en espectáculo. La mediación existe para cuidar la distancia: ni silencio absoluto, ni traducción apresurada.",
+    }),
+  },
+  W1_READY_EYEBROW_01: {
+    es: temporaryEsEntry({
+      emitter: "ambiente",
+      shortText: "Listo",
+      slotId: "W1_READY_EYEBROW_01",
+      text: "LISTO PARA CONTINUAR",
+    }),
+  },
+  W1_READY_TITLE_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Raíz recorrida",
+      slotId: "W1_READY_TITLE_01",
+      text: "Ya recorriste las tres raíces de esta pregunta: relación, percepción y mediación.",
+    }),
+  },
+  W1_READY_BODY_01: {
+    es: temporaryEsEntry({
+      emitter: "lia",
+      shortText: "Continuar con calma",
+      slotId: "W1_READY_BODY_01",
+      text: "La raíz queda abierta como una forma de entrada, no como una respuesta cerrada. Ahora podemos avanzar con más cuidado: no para imponer una voz, sino para seguir aprendiendo a percibir. Lo que viene después nace de esta primera atención.",
+    }),
+  },
+  W1_CLOSE_ROOT_BTN_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Cerrar raíz",
+      slotId: "W1_CLOSE_ROOT_BTN_01",
+      text: "Cerrar raíz",
+    }),
+  },
+  W1_CONTINUE_BTN_01: {
+    es: temporaryEsEntry({
+      emitter: "interfaz",
+      shortText: "Continuar",
+      slotId: "W1_CONTINUE_BTN_01",
+      text: "Continuar",
+    }),
+  },
   W2_INTRO_LIA_01: {
     es: temporaryEsEntry({
       emitter: "lia",

@@ -1,0 +1,1729 @@
+{
+  "generatedAt": "2026-07-08T03:12:36.182Z",
+  "allViewportsPassed": true,
+  "reducedMotionPassed": true,
+  "results": [
+    {
+      "name": "mobile-360x800",
+      "initial": {
+        "path": "/estacion/1",
+        "rootState": "intro",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -15.5,
+          "y": 52.629302978515625,
+          "left": -15.5,
+          "top": 52.629302978515625,
+          "width": 391,
+          "height": 694.725830078125,
+          "right": 375.5,
+          "bottom": 747.3551330566406
+        },
+        "stageViewportHeightRatio": 0.868,
+        "stageViewportWidthRatio": 1.086,
+        "plant": {
+          "x": 92.94902038574219,
+          "y": 105.08045196533203,
+          "left": 92.94902038574219,
+          "top": 105.08045196533203,
+          "width": 156.40000915527344,
+          "height": 193.43359375,
+          "right": 249.34902954101562,
+          "bottom": 298.51404571533203
+        },
+        "lia": {
+          "x": 222.6015625,
+          "y": 124.20046997070312,
+          "left": 222.6015625,
+          "top": 124.20046997070312,
+          "width": 125.92965698242188,
+          "height": 223.8629150390625,
+          "right": 348.5312194824219,
+          "bottom": 348.0633850097656
+        },
+        "liaViewportWidthRatio": 0.35,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 223.58372497558594,
+          "y": 140.60491943359375,
+          "left": 223.58372497558594,
+          "top": 140.60491943359375,
+          "width": 123.96531677246094,
+          "height": 123.96533203125,
+          "right": 347.5490417480469,
+          "bottom": 264.57025146484375
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 20.34621810913086,
+            "y": 331.74346923828125,
+            "left": 20.34621810913086,
+            "top": 331.74346923828125,
+            "width": 57.362003326416016,
+            "height": 20.691741943359375,
+            "right": 77.70822143554688,
+            "bottom": 352.4352111816406
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 147.36300659179688,
+            "y": 317.8536376953125,
+            "left": 147.36300659179688,
+            "top": 317.8536376953125,
+            "width": 69.22999572753906,
+            "height": 20.69171142578125,
+            "right": 216.59300231933594,
+            "bottom": 338.54534912109375
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 283.2628173828125,
+            "y": 331.74346923828125,
+            "left": 283.2628173828125,
+            "top": 331.74346923828125,
+            "width": 63.295989990234375,
+            "height": 20.691741943359375,
+            "right": 346.5588073730469,
+            "bottom": 352.4352111816406
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "available",
+            "ringDx": 0.0000019073486328125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000019073486328125,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "perception",
+            "state": "locked",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "mediation",
+            "state": "locked",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0.0000152587890625
+          }
+        ]
+      },
+      "mediation": {
+        "path": "/estacion/1",
+        "rootState": "mediation",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -15.5,
+          "y": 52.629302978515625,
+          "left": -15.5,
+          "top": 52.629302978515625,
+          "width": 391,
+          "height": 694.725830078125,
+          "right": 375.5,
+          "bottom": 747.3551330566406
+        },
+        "stageViewportHeightRatio": 0.868,
+        "stageViewportWidthRatio": 1.086,
+        "plant": {
+          "x": 92.94902038574219,
+          "y": 105.08045196533203,
+          "left": 92.94902038574219,
+          "top": 105.08045196533203,
+          "width": 156.40000915527344,
+          "height": 193.43359375,
+          "right": 249.34902954101562,
+          "bottom": 298.51404571533203
+        },
+        "lia": {
+          "x": 218.62806701660156,
+          "y": 123.95088195800781,
+          "left": 218.62806701660156,
+          "top": 123.95088195800781,
+          "width": 126.04225158691406,
+          "height": 224.06309509277344,
+          "right": 344.6703186035156,
+          "bottom": 348.01397705078125
+        },
+        "liaViewportWidthRatio": 0.35,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 220.10446166992188,
+          "y": 140.96339416503906,
+          "left": 220.10446166992188,
+          "top": 140.96339416503906,
+          "width": 123.08950805664062,
+          "height": 123.08952331542969,
+          "right": 343.1939697265625,
+          "bottom": 264.05291748046875
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 20.34621810913086,
+            "y": 310.89971923828125,
+            "left": 20.34621810913086,
+            "top": 310.89971923828125,
+            "width": 57.362003326416016,
+            "height": 20.691741943359375,
+            "right": 77.70822143554688,
+            "bottom": 331.5914611816406
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 147.36300659179688,
+            "y": 297.0098876953125,
+            "left": 147.36300659179688,
+            "top": 297.0098876953125,
+            "width": 69.22999572753906,
+            "height": 20.69171142578125,
+            "right": 216.59300231933594,
+            "bottom": 317.70159912109375
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 283.2628173828125,
+            "y": 310.89971923828125,
+            "left": 283.2628173828125,
+            "top": 310.89971923828125,
+            "width": 63.295989990234375,
+            "height": 20.691741943359375,
+            "right": 346.5588073730469,
+            "bottom": 331.5914611816406
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0.0000019073486328125,
+            "ringDy": 0,
+            "haloDx": 0.0000057220458984375,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "active",
+            "ringDx": 0.0000152587890625,
+            "ringDy": 0,
+            "haloDx": 0.000030517578125,
+            "haloDy": 0
+          }
+        ]
+      },
+      "ready": {
+        "path": "/estacion/1",
+        "rootState": "ready_to_continue",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -15.5,
+          "y": 52.629302978515625,
+          "left": -15.5,
+          "top": 52.629302978515625,
+          "width": 391,
+          "height": 694.725830078125,
+          "right": 375.5,
+          "bottom": 747.3551330566406
+        },
+        "stageViewportHeightRatio": 0.868,
+        "stageViewportWidthRatio": 1.086,
+        "plant": {
+          "x": 92.94902038574219,
+          "y": 105.08045196533203,
+          "left": 92.94902038574219,
+          "top": 105.08045196533203,
+          "width": 156.40000915527344,
+          "height": 193.43359375,
+          "right": 249.34902954101562,
+          "bottom": 298.51404571533203
+        },
+        "lia": {
+          "x": 222.9769287109375,
+          "y": 125.89122772216797,
+          "left": 222.9769287109375,
+          "top": 125.89122772216797,
+          "width": 125.17898559570312,
+          "height": 222.52838134765625,
+          "right": 348.1559143066406,
+          "bottom": 348.4196090698242
+        },
+        "liaViewportWidthRatio": 0.348,
+        "liaStageWidthRatio": 0.32,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 223.55870056152344,
+          "y": 141.59939575195312,
+          "left": 223.55870056152344,
+          "top": 141.59939575195312,
+          "width": 124.01539611816406,
+          "height": 124.015380859375,
+          "right": 347.5740966796875,
+          "bottom": 265.6147766113281
+        },
+        "leafLayerCount": 2,
+        "continueVisible": true,
+        "continueDisabled": false,
+        "continueTarget": "/transition/world-1-to-world-2",
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 20.34621810913086,
+            "y": 276.1661376953125,
+            "left": 20.34621810913086,
+            "top": 276.1661376953125,
+            "width": 57.362003326416016,
+            "height": 20.69171142578125,
+            "right": 77.70822143554688,
+            "bottom": 296.85784912109375
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 147.36300659179688,
+            "y": 262.27630615234375,
+            "left": 147.36300659179688,
+            "top": 262.27630615234375,
+            "width": 69.22999572753906,
+            "height": 20.69171142578125,
+            "right": 216.59300231933594,
+            "bottom": 282.968017578125
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 283.2628173828125,
+            "y": 276.1661376953125,
+            "left": 283.2628173828125,
+            "top": 276.1661376953125,
+            "width": 63.295989990234375,
+            "height": 20.69171142578125,
+            "right": 346.5588073730469,
+            "bottom": 296.85784912109375
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000057220458984375,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "completed",
+            "ringDx": 0.0000152587890625,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0
+          }
+        ]
+      },
+      "plantStill": {
+        "before": {
+          "x": 92.94902038574219,
+          "y": 105.08045196533203,
+          "width": 156.40000915527344,
+          "height": 193.43358612060547,
+          "right": 249.34902954101562,
+          "bottom": 298.5140380859375
+        },
+        "after": {
+          "x": 92.94902038574219,
+          "y": 105.08045196533203,
+          "width": 156.40000915527344,
+          "height": 193.43358612060547,
+          "right": 249.34902954101562,
+          "bottom": 298.5140380859375
+        },
+        "dx": 0,
+        "dy": 0,
+        "dw": 0,
+        "dh": 0
+      },
+      "continueNavigated": true,
+      "passed": true
+    },
+    {
+      "name": "mobile-390x844",
+      "initial": {
+        "path": "/estacion/1",
+        "rootState": "intro",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -17.75,
+          "y": 43.974609375,
+          "left": -17.75,
+          "top": 43.974609375,
+          "width": 425.5,
+          "height": 756.03515625,
+          "right": 407.75,
+          "bottom": 800.009765625
+        },
+        "stageViewportHeightRatio": 0.896,
+        "stageViewportWidthRatio": 1.091,
+        "plant": {
+          "x": 100.27650451660156,
+          "y": 101.05450439453125,
+          "left": 100.27650451660156,
+          "top": 101.05450439453125,
+          "width": 170.1999969482422,
+          "height": 210.50390625,
+          "right": 270.47650146484375,
+          "bottom": 311.55841064453125
+        },
+        "lia": {
+          "x": 241.3707275390625,
+          "y": 122.17119598388672,
+          "left": 241.3707275390625,
+          "top": 122.17119598388672,
+          "width": 137.0069580078125,
+          "height": 243.56387329101562,
+          "right": 378.377685546875,
+          "bottom": 365.73506927490234
+        },
+        "liaViewportWidthRatio": 0.351,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 242.52801513671875,
+          "y": 140.116455078125,
+          "left": 242.52801513671875,
+          "top": 140.116455078125,
+          "width": 134.69241333007812,
+          "height": 134.69244384765625,
+          "right": 377.2204284667969,
+          "bottom": 274.80889892578125
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 13.285623550415039,
+            "y": 366.2211608886719,
+            "left": 13.285623550415039,
+            "top": 366.2211608886719,
+            "width": 74.05999755859375,
+            "height": 26.284698486328125,
+            "right": 87.34562110900879,
+            "bottom": 392.505859375
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 150.56399536132812,
+            "y": 351.10943603515625,
+            "left": 150.56399536132812,
+            "top": 351.10943603515625,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 239.43600463867188,
+            "bottom": 377.3941345214844
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 299.4623718261719,
+            "y": 366.2211608886719,
+            "left": 299.4623718261719,
+            "top": 366.2211608886719,
+            "width": 80.40802001953125,
+            "height": 26.284698486328125,
+            "right": 379.8703918457031,
+            "bottom": 392.505859375
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "available",
+            "ringDx": 0.000003814697265625,
+            "ringDy": 0,
+            "haloDx": 0.0000019073486328125,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "locked",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "locked",
+            "ringDx": 0,
+            "ringDy": 0,
+            "haloDx": 0,
+            "haloDy": 0
+          }
+        ]
+      },
+      "mediation": {
+        "path": "/estacion/1",
+        "rootState": "mediation",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -21.75,
+          "y": 43.974609375,
+          "left": -21.75,
+          "top": 43.974609375,
+          "width": 425.5,
+          "height": 756.03515625,
+          "right": 403.75,
+          "bottom": 800.009765625
+        },
+        "stageViewportHeightRatio": 0.896,
+        "stageViewportWidthRatio": 1.091,
+        "plant": {
+          "x": 96.27650451660156,
+          "y": 101.05450439453125,
+          "left": 96.27650451660156,
+          "top": 101.05450439453125,
+          "width": 170.1999969482422,
+          "height": 210.50390625,
+          "right": 266.47650146484375,
+          "bottom": 311.55841064453125
+        },
+        "lia": {
+          "x": 233.05087280273438,
+          "y": 121.91276550292969,
+          "left": 233.05087280273438,
+          "top": 121.91276550292969,
+          "width": 137.12948608398438,
+          "height": 243.78175354003906,
+          "right": 370.18035888671875,
+          "bottom": 365.69451904296875
+        },
+        "liaViewportWidthRatio": 0.352,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 234.52130126953125,
+          "y": 140.25914001464844,
+          "left": 234.52130126953125,
+          "top": 140.25914001464844,
+          "width": 134.18865966796875,
+          "height": 134.1886749267578,
+          "right": 368.7099609375,
+          "bottom": 274.44781494140625
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 9.285623550415039,
+            "y": 339.7711486816406,
+            "left": 9.285623550415039,
+            "top": 339.7711486816406,
+            "width": 74.05999755859375,
+            "height": 26.284698486328125,
+            "right": 83.34562110900879,
+            "bottom": 366.05584716796875
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 146.56399536132812,
+            "y": 324.6414489746094,
+            "left": 146.56399536132812,
+            "top": 324.6414489746094,
+            "width": 88.87200927734375,
+            "height": 26.28466796875,
+            "right": 235.43600463867188,
+            "bottom": 350.9261169433594
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 295.4623718261719,
+            "y": 339.7711486816406,
+            "left": 295.4623718261719,
+            "top": 339.7711486816406,
+            "width": 80.40802001953125,
+            "height": 26.284698486328125,
+            "right": 375.8703918457031,
+            "bottom": 366.05584716796875
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0.000003814697265625,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000057220458984375,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "active",
+            "ringDx": 0.0000152587890625,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0.000030517578125
+          }
+        ]
+      },
+      "ready": {
+        "path": "/estacion/1",
+        "rootState": "ready_to_continue",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -21.75,
+          "y": 43.974609375,
+          "left": -21.75,
+          "top": 43.974609375,
+          "width": 425.5,
+          "height": 756.03515625,
+          "right": 403.75,
+          "bottom": 800.009765625
+        },
+        "stageViewportHeightRatio": 0.896,
+        "stageViewportWidthRatio": 1.091,
+        "plant": {
+          "x": 96.27650451660156,
+          "y": 101.05450439453125,
+          "left": 96.27650451660156,
+          "top": 101.05450439453125,
+          "width": 170.1999969482422,
+          "height": 210.50390625,
+          "right": 266.47650146484375,
+          "bottom": 311.55841064453125
+        },
+        "lia": {
+          "x": 237.79959106445312,
+          "y": 124.01460266113281,
+          "left": 237.79959106445312,
+          "top": 124.01460266113281,
+          "width": 136.14923095703125,
+          "height": 242.03907775878906,
+          "right": 373.9488220214844,
+          "bottom": 366.0536804199219
+        },
+        "liaViewportWidthRatio": 0.349,
+        "liaStageWidthRatio": 0.32,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 237.47964477539062,
+          "y": 139.98138427734375,
+          "left": 237.47964477539062,
+          "top": 139.98138427734375,
+          "width": 136.78909301757812,
+          "height": 136.78909301757812,
+          "right": 374.26873779296875,
+          "bottom": 276.7704772949219
+        },
+        "leafLayerCount": 2,
+        "continueVisible": true,
+        "continueDisabled": false,
+        "continueTarget": "/transition/world-1-to-world-2",
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 9.285623550415039,
+            "y": 301.9648742675781,
+            "left": 9.285623550415039,
+            "top": 301.9648742675781,
+            "width": 74.05999755859375,
+            "height": 26.284698486328125,
+            "right": 83.34562110900879,
+            "bottom": 328.24957275390625
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 146.56399536132812,
+            "y": 286.835205078125,
+            "left": 146.56399536132812,
+            "top": 286.835205078125,
+            "width": 88.87200927734375,
+            "height": 26.28466796875,
+            "right": 235.43600463867188,
+            "bottom": 313.119873046875
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 295.4623718261719,
+            "y": 301.9648742675781,
+            "left": 295.4623718261719,
+            "top": 301.9648742675781,
+            "width": 80.40802001953125,
+            "height": 26.284698486328125,
+            "right": 375.8703918457031,
+            "bottom": 328.24957275390625
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0.000003814697265625,
+            "ringDy": 0,
+            "haloDx": 0.000003814697265625,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "mediation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0
+          }
+        ]
+      },
+      "plantStill": {
+        "before": {
+          "x": 96.27650451660156,
+          "y": 101.05450439453125,
+          "width": 170.1999969482422,
+          "height": 210.50390625,
+          "right": 266.47650146484375,
+          "bottom": 311.55841064453125
+        },
+        "after": {
+          "x": 96.27650451660156,
+          "y": 101.05450439453125,
+          "width": 170.1999969482422,
+          "height": 210.50390625,
+          "right": 266.47650146484375,
+          "bottom": 311.55841064453125
+        },
+        "dx": 0,
+        "dy": 0,
+        "dw": 0,
+        "dh": 0
+      },
+      "continueNavigated": true,
+      "passed": true
+    },
+    {
+      "name": "mobile-430x932",
+      "initial": {
+        "path": "/estacion/1",
+        "rootState": "intro",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -20.75,
+          "y": 47.112518310546875,
+          "left": -20.75,
+          "top": 47.112518310546875,
+          "width": 471.5,
+          "height": 837.77490234375,
+          "right": 450.75,
+          "bottom": 884.8874206542969
+        },
+        "stageViewportHeightRatio": 0.899,
+        "stageViewportWidthRatio": 1.097,
+        "plant": {
+          "x": 110.04049682617188,
+          "y": 110.37525939941406,
+          "left": 110.04049682617188,
+          "top": 110.37525939941406,
+          "width": 188.60000610351562,
+          "height": 233.25233459472656,
+          "right": 298.6405029296875,
+          "bottom": 343.6275939941406
+        },
+        "lia": {
+          "x": 266.3448486328125,
+          "y": 133.89028930664062,
+          "left": 266.3448486328125,
+          "top": 133.89028930664062,
+          "width": 151.89154052734375,
+          "height": 270.02532958984375,
+          "right": 418.23638916015625,
+          "bottom": 403.9156188964844
+        },
+        "liaViewportWidthRatio": 0.353,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 267.3103942871094,
+          "y": 153.43106079101562,
+          "left": 267.3103942871094,
+          "top": 153.43106079101562,
+          "width": 149.96044921875,
+          "height": 149.96041870117188,
+          "right": 417.2708435058594,
+          "bottom": 303.3914794921875
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": false,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 17.652809143066406,
+            "y": 411.4598388671875,
+            "left": 17.652809143066406,
+            "top": 411.4598388671875,
+            "width": 74.05999755859375,
+            "height": 26.284698486328125,
+            "right": 91.71280670166016,
+            "bottom": 437.7445373535156
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 170.56399536132812,
+            "y": 394.69500732421875,
+            "left": 170.56399536132812,
+            "top": 394.69500732421875,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 259.4360046386719,
+            "bottom": 420.9797058105469
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 335.0951843261719,
+            "y": 411.4598388671875,
+            "left": 335.0951843261719,
+            "top": 411.4598388671875,
+            "width": 80.40802001953125,
+            "height": 26.284698486328125,
+            "right": 415.5032043457031,
+            "bottom": 437.7445373535156
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "available",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000019073486328125,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "locked",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.000030517578125,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0.000030517578125
+          },
+          {
+            "id": "mediation",
+            "state": "locked",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0
+          }
+        ]
+      },
+      "mediation": {
+        "path": "/estacion/1",
+        "rootState": "mediation",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -20.75,
+          "y": 47.112518310546875,
+          "left": -20.75,
+          "top": 47.112518310546875,
+          "width": 471.5,
+          "height": 837.77490234375,
+          "right": 450.75,
+          "bottom": 884.8874206542969
+        },
+        "stageViewportHeightRatio": 0.899,
+        "stageViewportWidthRatio": 1.097,
+        "plant": {
+          "x": 110.04049682617188,
+          "y": 110.37525939941406,
+          "left": 110.04049682617188,
+          "top": 110.37525939941406,
+          "width": 188.60000610351562,
+          "height": 233.25233459472656,
+          "right": 298.6405029296875,
+          "bottom": 343.6275939941406
+        },
+        "lia": {
+          "x": 261.64459228515625,
+          "y": 133.91519165039062,
+          "left": 261.64459228515625,
+          "top": 133.91519165039062,
+          "width": 151.87643432617188,
+          "height": 269.9985046386719,
+          "right": 413.5210266113281,
+          "bottom": 403.9136962890625
+        },
+        "liaViewportWidthRatio": 0.353,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 262.92694091796875,
+          "y": 153.81881713867188,
+          "left": 262.92694091796875,
+          "top": 153.81881713867188,
+          "width": 149.31173706054688,
+          "height": 149.31170654296875,
+          "right": 412.2386779785156,
+          "bottom": 303.1305236816406
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 17.652809143066406,
+            "y": 382.13482666015625,
+            "left": 17.652809143066406,
+            "top": 382.13482666015625,
+            "width": 74.05999755859375,
+            "height": 26.284698486328125,
+            "right": 91.71280670166016,
+            "bottom": 408.4195251464844
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 170.56399536132812,
+            "y": 365.3879699707031,
+            "left": 170.56399536132812,
+            "top": 365.3879699707031,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 259.4360046386719,
+            "bottom": 391.67266845703125
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 335.0951843261719,
+            "y": 382.13482666015625,
+            "left": 335.0951843261719,
+            "top": 382.13482666015625,
+            "width": 80.40802001953125,
+            "height": 26.284698486328125,
+            "right": 415.5032043457031,
+            "bottom": 408.4195251464844
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0.000003814697265625,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.000003814697265625,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0.000030517578125
+          },
+          {
+            "id": "mediation",
+            "state": "active",
+            "ringDx": 0.0000152587890625,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0.0000152587890625
+          }
+        ]
+      },
+      "ready": {
+        "path": "/estacion/1",
+        "rootState": "ready_to_continue",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": -20.75,
+          "y": 47.112518310546875,
+          "left": -20.75,
+          "top": 47.112518310546875,
+          "width": 471.5,
+          "height": 837.77490234375,
+          "right": 450.75,
+          "bottom": 884.8874206542969
+        },
+        "stageViewportHeightRatio": 0.899,
+        "stageViewportWidthRatio": 1.097,
+        "plant": {
+          "x": 110.04049682617188,
+          "y": 110.37525939941406,
+          "left": 110.04049682617188,
+          "top": 110.37525939941406,
+          "width": 188.60000610351562,
+          "height": 233.25233459472656,
+          "right": 298.6405029296875,
+          "bottom": 343.6275939941406
+        },
+        "lia": {
+          "x": 266.84271240234375,
+          "y": 135.91384887695312,
+          "left": 266.84271240234375,
+          "top": 135.91384887695312,
+          "width": 150.89581298828125,
+          "height": 268.25518798828125,
+          "right": 417.738525390625,
+          "bottom": 404.1690368652344
+        },
+        "liaViewportWidthRatio": 0.351,
+        "liaStageWidthRatio": 0.32,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 265.21337890625,
+          "y": 152.13699340820312,
+          "left": 265.21337890625,
+          "top": 152.13699340820312,
+          "width": 154.15447998046875,
+          "height": 154.15451049804688,
+          "right": 419.36785888671875,
+          "bottom": 306.29150390625
+        },
+        "leafLayerCount": 2,
+        "continueVisible": true,
+        "continueDisabled": false,
+        "continueTarget": "/transition/world-1-to-world-2",
+        "narrativeCanScroll": false,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 17.652809143066406,
+            "y": 340.2496643066406,
+            "left": 17.652809143066406,
+            "top": 340.2496643066406,
+            "width": 74.05999755859375,
+            "height": 26.28466796875,
+            "right": 91.71280670166016,
+            "bottom": 366.5343322753906
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 170.56399536132812,
+            "y": 323.4848327636719,
+            "left": 170.56399536132812,
+            "top": 323.4848327636719,
+            "width": 88.87200927734375,
+            "height": 26.28466796875,
+            "right": 259.4360046386719,
+            "bottom": 349.7695007324219
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 335.0951843261719,
+            "y": 340.2496643066406,
+            "left": 335.0951843261719,
+            "top": 340.2496643066406,
+            "width": 80.40802001953125,
+            "height": 26.28466796875,
+            "right": 415.5032043457031,
+            "bottom": 366.5343322753906
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0.000003814697265625,
+            "ringDy": 0,
+            "haloDx": 0.0000057220458984375,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0.00000762939453125,
+            "ringDy": 0,
+            "haloDx": 0.00000762939453125,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0,
+            "haloDx": 0,
+            "haloDy": 0
+          }
+        ]
+      },
+      "plantStill": {
+        "before": {
+          "x": 110.04049682617188,
+          "y": 110.37525939941406,
+          "width": 188.60000610351562,
+          "height": 233.25233459472656,
+          "right": 298.6405029296875,
+          "bottom": 343.6275939941406
+        },
+        "after": {
+          "x": 110.04049682617188,
+          "y": 110.37525939941406,
+          "width": 188.60000610351562,
+          "height": 233.25233459472656,
+          "right": 298.6405029296875,
+          "bottom": 343.6275939941406
+        },
+        "dx": 0,
+        "dy": 0,
+        "dw": 0,
+        "dh": 0
+      },
+      "continueNavigated": true,
+      "passed": true
+    },
+    {
+      "name": "desktop-1365x768",
+      "initial": {
+        "path": "/estacion/1",
+        "rootState": "intro",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": 440.4429931640625,
+          "y": -46.09881591796875,
+          "left": 440.4429931640625,
+          "top": -46.09881591796875,
+          "width": 484.114013671875,
+          "height": 860.1820068359375,
+          "right": 924.5570068359375,
+          "bottom": 814.0831909179688
+        },
+        "stageViewportHeightRatio": 1.12,
+        "stageViewportWidthRatio": 0.355,
+        "plant": {
+          "x": 574.7316284179688,
+          "y": 18.845718383789062,
+          "left": 574.7316284179688,
+          "top": 18.845718383789062,
+          "width": 193.63128662109375,
+          "height": 239.4875030517578,
+          "right": 768.3629150390625,
+          "bottom": 258.3332214355469
+        },
+        "lia": {
+          "x": 735.1385498046875,
+          "y": 42.73333740234375,
+          "left": 735.1385498046875,
+          "top": 42.73333740234375,
+          "width": 156.13232421875,
+          "height": 277.5646057128906,
+          "right": 891.2708740234375,
+          "bottom": 320.2979431152344
+        },
+        "liaViewportWidthRatio": 0.114,
+        "liaStageWidthRatio": 0.323,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 734.5189208984375,
+          "y": 60.981590270996094,
+          "left": 734.5189208984375,
+          "top": 60.981590270996094,
+          "width": 157.37158203125,
+          "height": 157.37164306640625,
+          "right": 891.8905029296875,
+          "bottom": 218.35323333740234
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 480.8583068847656,
+            "y": 329.784423828125,
+            "left": 480.8583068847656,
+            "top": 329.784423828125,
+            "width": 74.05996704101562,
+            "height": 26.28472900390625,
+            "right": 554.9182739257812,
+            "bottom": 356.06915283203125
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 638.0640258789062,
+            "y": 312.5883483886719,
+            "left": 638.0640258789062,
+            "top": 312.5883483886719,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 726.93603515625,
+            "bottom": 338.873046875
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 806.8897705078125,
+            "y": 329.784423828125,
+            "left": 806.8897705078125,
+            "top": 329.784423828125,
+            "width": 80.407958984375,
+            "height": 26.28472900390625,
+            "right": 887.2977294921875,
+            "bottom": 356.06915283203125
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "available",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "perception",
+            "state": "locked",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0.0000152587890625
+          },
+          {
+            "id": "mediation",
+            "state": "locked",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.000030517578125,
+            "haloDy": 0.0000152587890625
+          }
+        ]
+      },
+      "mediation": {
+        "path": "/estacion/1",
+        "rootState": "mediation",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": 440.4429931640625,
+          "y": -46.09881591796875,
+          "left": 440.4429931640625,
+          "top": -46.09881591796875,
+          "width": 484.114013671875,
+          "height": 860.1820068359375,
+          "right": 924.5570068359375,
+          "bottom": 814.0831909179688
+        },
+        "stageViewportHeightRatio": 1.12,
+        "stageViewportWidthRatio": 0.355,
+        "plant": {
+          "x": 574.7316284179688,
+          "y": 18.845718383789062,
+          "left": 574.7316284179688,
+          "top": 18.845718383789062,
+          "width": 193.63128662109375,
+          "height": 239.4875030517578,
+          "right": 768.3629150390625,
+          "bottom": 258.3332214355469
+        },
+        "lia": {
+          "x": 730.5038452148438,
+          "y": 43.60187530517578,
+          "left": 730.5038452148438,
+          "top": 43.60187530517578,
+          "width": 155.6986083984375,
+          "height": 276.7935485839844,
+          "right": 886.2024536132812,
+          "bottom": 320.39542388916016
+        },
+        "liaViewportWidthRatio": 0.114,
+        "liaStageWidthRatio": 0.322,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 730.4186401367188,
+          "y": 62.33610534667969,
+          "left": 730.4186401367188,
+          "top": 62.33610534667969,
+          "width": 155.86907958984375,
+          "height": 155.86903381347656,
+          "right": 886.2877197265625,
+          "bottom": 218.20513916015625
+        },
+        "leafLayerCount": 2,
+        "continueVisible": false,
+        "continueDisabled": null,
+        "continueTarget": null,
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 480.8583068847656,
+            "y": 299.6867980957031,
+            "left": 480.8583068847656,
+            "top": 299.6867980957031,
+            "width": 74.05996704101562,
+            "height": 26.284698486328125,
+            "right": 554.9182739257812,
+            "bottom": 325.97149658203125
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 638.0640258789062,
+            "y": 282.47271728515625,
+            "left": 638.0640258789062,
+            "top": 282.47271728515625,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 726.93603515625,
+            "bottom": 308.7574157714844
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 806.8897705078125,
+            "y": 299.6867980957031,
+            "left": 806.8897705078125,
+            "top": 299.6867980957031,
+            "width": 80.407958984375,
+            "height": 26.284698486328125,
+            "right": 887.2977294921875,
+            "bottom": 325.97149658203125
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "active",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0.000030517578125,
+            "haloDy": 0.0000152587890625
+          }
+        ]
+      },
+      "ready": {
+        "path": "/estacion/1",
+        "rootState": "ready_to_continue",
+        "criticalAssetsReady": "true",
+        "overflowX": false,
+        "stage": {
+          "x": 440.4429931640625,
+          "y": -46.09881591796875,
+          "left": 440.4429931640625,
+          "top": -46.09881591796875,
+          "width": 484.114013671875,
+          "height": 860.1820068359375,
+          "right": 924.5570068359375,
+          "bottom": 814.0831909179688
+        },
+        "stageViewportHeightRatio": 1.12,
+        "stageViewportWidthRatio": 0.355,
+        "plant": {
+          "x": 574.7316284179688,
+          "y": 18.845718383789062,
+          "left": 574.7316284179688,
+          "top": 18.845718383789062,
+          "width": 193.63128662109375,
+          "height": 239.4875030517578,
+          "right": 768.3629150390625,
+          "bottom": 258.3332214355469
+        },
+        "lia": {
+          "x": 735.6961669921875,
+          "y": 44.96672821044922,
+          "left": 735.6961669921875,
+          "top": 44.96672821044922,
+          "width": 155.01708984375,
+          "height": 275.58184814453125,
+          "right": 890.7132568359375,
+          "bottom": 320.54857635498047
+        },
+        "liaViewportWidthRatio": 0.114,
+        "liaStageWidthRatio": 0.32,
+        "liaExpressionPresent": true,
+        "liaExpression": {
+          "x": 733.457763671875,
+          "y": 60.99267578125,
+          "left": 733.457763671875,
+          "top": 60.99267578125,
+          "width": 159.493896484375,
+          "height": 159.493896484375,
+          "right": 892.95166015625,
+          "bottom": 220.486572265625
+        },
+        "leafLayerCount": 2,
+        "continueVisible": true,
+        "continueDisabled": false,
+        "continueTarget": "/transition/world-1-to-world-2",
+        "narrativeCanScroll": true,
+        "labelsInViewport": true,
+        "energySparkCount": 6,
+        "maxCenterDelta": 0,
+        "exitPathRendered": false,
+        "labels": [
+          {
+            "text": "RELACIÓN",
+            "x": 480.8583068847656,
+            "y": 256.6695861816406,
+            "left": 480.8583068847656,
+            "top": 256.6695861816406,
+            "width": 74.05996704101562,
+            "height": 26.284698486328125,
+            "right": 554.9182739257812,
+            "bottom": 282.95428466796875
+          },
+          {
+            "text": "PERCEPCIÓN",
+            "x": 638.0640258789062,
+            "y": 239.47348022460938,
+            "left": 638.0640258789062,
+            "top": 239.47348022460938,
+            "width": 88.87200927734375,
+            "height": 26.284698486328125,
+            "right": 726.93603515625,
+            "bottom": 265.7581787109375
+          },
+          {
+            "text": "MEDIACIÓN",
+            "x": 806.8897705078125,
+            "y": 256.6695861816406,
+            "left": 806.8897705078125,
+            "top": 256.6695861816406,
+            "width": 80.407958984375,
+            "height": 26.284698486328125,
+            "right": 887.2977294921875,
+            "bottom": 282.95428466796875
+          }
+        ],
+        "nodeDeltas": [
+          {
+            "id": "relation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0,
+            "haloDx": 0.0000152587890625,
+            "haloDy": 0.000030517578125
+          },
+          {
+            "id": "perception",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0.0000152587890625,
+            "haloDx": 0,
+            "haloDy": 0
+          },
+          {
+            "id": "mediation",
+            "state": "completed",
+            "ringDx": 0,
+            "ringDy": 0,
+            "haloDx": 0.000030517578125,
+            "haloDy": 0.000030517578125
+          }
+        ]
+      },
+      "plantStill": {
+        "before": {
+          "x": 574.7316284179688,
+          "y": 18.845718383789062,
+          "width": 193.63128662109375,
+          "height": 239.4875030517578,
+          "right": 768.3629150390625,
+          "bottom": 258.3332214355469
+        },
+        "after": {
+          "x": 574.7316284179688,
+          "y": 18.845718383789062,
+          "width": 193.63128662109375,
+          "height": 239.4875030517578,
+          "right": 768.3629150390625,
+          "bottom": 258.3332214355469
+        },
+        "dx": 0,
+        "dy": 0,
+        "dw": 0,
+        "dh": 0
+      },
+      "continueNavigated": true,
+      "passed": true
+    }
+  ],
+  "reducedMotion": {
+    "path": "/estacion/1",
+    "rootState": "intro",
+    "criticalAssetsReady": "true",
+    "overflowX": false,
+    "stage": {
+      "x": -17.75,
+      "y": 43.974609375,
+      "left": -17.75,
+      "top": 43.974609375,
+      "width": 425.5,
+      "height": 756.03515625,
+      "right": 407.75,
+      "bottom": 800.009765625
+    },
+    "stageViewportHeightRatio": 0.896,
+    "stageViewportWidthRatio": 1.091,
+    "plant": {
+      "x": 100.27650451660156,
+      "y": 101.05450439453125,
+      "left": 100.27650451660156,
+      "top": 101.05450439453125,
+      "width": 170.1999969482422,
+      "height": 210.50390625,
+      "right": 270.47650146484375,
+      "bottom": 311.55841064453125
+    },
+    "lia": {
+      "x": 241.79959106445312,
+      "y": 125.6246109008789,
+      "left": 241.79959106445312,
+      "top": 125.6246109008789,
+      "width": 136.14923095703125,
+      "height": 242.0390625,
+      "right": 377.9488220214844,
+      "bottom": 367.6636734008789
+    },
+    "liaViewportWidthRatio": 0.349,
+    "liaStageWidthRatio": 0.32,
+    "liaExpressionPresent": true,
+    "liaExpression": {
+      "x": 241.79959106445312,
+      "y": 141.9625244140625,
+      "left": 241.79959106445312,
+      "top": 141.9625244140625,
+      "width": 136.14923095703125,
+      "height": 136.14923095703125,
+      "right": 377.9488220214844,
+      "bottom": 278.11175537109375
+    },
+    "leafLayerCount": 2,
+    "continueVisible": false,
+    "continueDisabled": null,
+    "continueTarget": null,
+    "narrativeCanScroll": true,
+    "labelsInViewport": true,
+    "energySparkCount": 6,
+    "maxCenterDelta": 0,
+    "exitPathRendered": false,
+    "labels": [
+      {
+        "text": "RELACIÓN",
+        "x": 13.285623550415039,
+        "y": 366.2211608886719,
+        "left": 13.285623550415039,
+        "top": 366.2211608886719,
+        "width": 74.05999755859375,
+        "height": 26.284698486328125,
+        "right": 87.34562110900879,
+        "bottom": 392.505859375
+      },
+      {
+        "text": "PERCEPCIÓN",
+        "x": 150.56399536132812,
+        "y": 351.10943603515625,
+        "left": 150.56399536132812,
+        "top": 351.10943603515625,
+        "width": 88.87200927734375,
+        "height": 26.284698486328125,
+        "right": 239.43600463867188,
+        "bottom": 377.3941345214844
+      },
+      {
+        "text": "MEDIACIÓN",
+        "x": 299.4623718261719,
+        "y": 366.2211608886719,
+        "left": 299.4623718261719,
+        "top": 366.2211608886719,
+        "width": 80.40802001953125,
+        "height": 26.284698486328125,
+        "right": 379.8703918457031,
+        "bottom": 392.505859375
+      }
+    ],
+    "nodeDeltas": [
+      {
+        "id": "relation",
+        "state": "available",
+        "ringDx": 0.0000019073486328125,
+        "ringDy": 0,
+        "haloDx": 0.00000762939453125,
+        "haloDy": 0.0000152587890625
+      },
+      {
+        "id": "perception",
+        "state": "locked",
+        "ringDx": 0.00000762939453125,
+        "ringDy": 0,
+        "haloDx": 0,
+        "haloDy": 0.0000152587890625
+      },
+      {
+        "id": "mediation",
+        "state": "locked",
+        "ringDx": 0,
+        "ringDy": 0,
+        "haloDx": 0,
+        "haloDy": 0.0000152587890625
+      }
+    ]
+  },
+  "reducedAnimationState": [
+    {
+      "selector": ".world1-root-plant-leaf-motion",
+      "animations": [
+        "none",
+        "none"
+      ]
+    },
+    {
+      "selector": ".world1-root-lia-presence__aura",
+      "animations": [
+        "none"
+      ]
+    },
+    {
+      "selector": ".world1-root-lia-presence__glint",
+      "animations": [
+        "none"
+      ]
+    },
+    {
+      "selector": ".world1-root-lia-presence__ground",
+      "animations": [
+        "none"
+      ]
+    },
+    {
+      "selector": ".world1-root-lia-expression__core",
+      "animations": [
+        "none"
+      ]
+    },
+    {
+      "selector": ".world1-root-narrative__scroll-cue span",
+      "animations": [
+        "none",
+        "none",
+        "none"
+      ]
+    }
+  ]
+}

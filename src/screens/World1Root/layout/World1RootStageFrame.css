@@ -2,20 +2,21 @@
   position: relative;
   width: min(
     100%,
-    430px,
+    460px,
     calc(var(--world1-stage-available-height) * 941 / 1672)
   );
   aspect-ratio: 941 / 1672;
   overflow: hidden;
-  border: 1px solid rgb(245 205 120 / 18%);
-  border-radius: 8px;
-  background: #17100a;
-  clip-path: inset(0 round 8px);
-  box-shadow: 0 20px 68px rgb(0 0 0 / 42%);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  clip-path: none;
+  box-shadow: none;
   backface-visibility: hidden;
   contain: paint;
   isolation: isolate;
-  transform: translateZ(0);
+  transform: translateZ(0) scale(var(--world1-stage-frame-scale, 1));
+  transform-origin: 50% 50%;
   --world1-stage-safe-block: 20px;
   --world1-stage-available-height: calc(100vh - var(--world1-stage-safe-block));
   --world1-stage-scale: 1;
@@ -41,13 +42,13 @@
   --world1-active-mediation-y: 69.4%;
   --world1-active-mediation-width: 91.5%;
   --world1-active-mediation-opacity: 1;
-  --world1-node-relation-x: 13%;
+  --world1-node-relation-x: 16%;
   --world1-node-relation-y: 51.5%;
   --world1-node-relation-scale: 0.92;
   --world1-node-perception-x: 50%;
   --world1-node-perception-y: 49.5%;
   --world1-node-perception-scale: 0.92;
-  --world1-node-mediation-x: 87%;
+  --world1-node-mediation-x: 84%;
   --world1-node-mediation-y: 51.5%;
   --world1-node-mediation-scale: 0.92;
   --world1-ready-node-relation-y: 43%;
@@ -60,21 +61,21 @@
   --world1-exit-path-y: 39%;
   --world1-exit-path-width: 58%;
   --world1-exit-path-opacity: 0.42;
-  --world1-lia-idle-x: 78%;
-  --world1-lia-idle-y: 12.5%;
-  --world1-lia-idle-width: 25%;
-  --world1-lia-pointRelation-x: 78%;
-  --world1-lia-pointRelation-y: 12.5%;
-  --world1-lia-pointRelation-width: 25%;
-  --world1-lia-lookPerception-x: 76%;
-  --world1-lia-lookPerception-y: 12.5%;
-  --world1-lia-lookPerception-width: 25%;
-  --world1-lia-guideMediation-x: 77%;
-  --world1-lia-guideMediation-y: 12.5%;
-  --world1-lia-guideMediation-width: 25%;
-  --world1-lia-readyContinue-x: 78%;
-  --world1-lia-readyContinue-y: 12.5%;
-  --world1-lia-readyContinue-width: 25%;
+  --world1-lia-idle-x: 77%;
+  --world1-lia-idle-y: 10.8%;
+  --world1-lia-idle-width: 32%;
+  --world1-lia-pointRelation-x: 77%;
+  --world1-lia-pointRelation-y: 10.8%;
+  --world1-lia-pointRelation-width: 32%;
+  --world1-lia-lookPerception-x: 75%;
+  --world1-lia-lookPerception-y: 10.8%;
+  --world1-lia-lookPerception-width: 32%;
+  --world1-lia-guideMediation-x: 76%;
+  --world1-lia-guideMediation-y: 10.8%;
+  --world1-lia-guideMediation-width: 32%;
+  --world1-lia-readyContinue-x: 77%;
+  --world1-lia-readyContinue-y: 10.8%;
+  --world1-lia-readyContinue-width: 32%;
 }
 
 .world1-root-stage-frame::after {
@@ -103,7 +104,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: inherit;
+  border-radius: 0;
   background-image: var(--world1-root-background);
   background-repeat: no-repeat;
   background-position: center;
@@ -132,12 +133,12 @@
 
 @media (width <= 374px) {
   .world1-root-stage-frame {
-    --world1-node-relation-x: 13%;
+    --world1-node-relation-x: 16%;
     --world1-node-relation-y: 48.5%;
     --world1-node-relation-scale: 0.86;
     --world1-node-perception-y: 46.5%;
     --world1-node-perception-scale: 0.86;
-    --world1-node-mediation-x: 87%;
+    --world1-node-mediation-x: 84%;
     --world1-node-mediation-y: 48.5%;
     --world1-node-mediation-scale: 0.86;
     --world1-ready-node-relation-y: 40.5%;

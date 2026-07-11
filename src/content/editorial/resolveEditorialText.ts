@@ -4,7 +4,11 @@ import {
 } from "./editorialLocales";
 import { editorialRegistry } from "./editorialRegistry";
 import type { EditorialSlotId } from "./editorialRegistry";
-import type { ResolvedEditorialText } from "./editorialTypes";
+import type {
+  EditorialLocale,
+  EditorialTextEntry,
+  ResolvedEditorialText,
+} from "./editorialTypes";
 
 type ResolveEditorialTextOptions = {
   locale?: string;
@@ -15,7 +19,9 @@ export function resolveEditorialText<SlotId extends EditorialSlotId>(
   options: ResolveEditorialTextOptions = {},
 ): ResolvedEditorialText<SlotId> {
   const requestedLocale = normalizeEditorialLocale(options.locale);
-  const localizedEntries = editorialRegistry[slotId];
+  const localizedEntries = editorialRegistry[slotId] as Partial<
+    Record<EditorialLocale, EditorialTextEntry<SlotId>>
+  >;
 
   if (!localizedEntries) {
     throw new Error(`Editorial slot not registered: ${slotId}`);

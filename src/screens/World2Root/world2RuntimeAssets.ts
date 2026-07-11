@@ -1,4 +1,5 @@
-const world2RuntimeBase = "/assets/gvo/stations/world-2/pulse-invisible/runtime";
+const world2RuntimeBase =
+  "/assets/gvo/stations/world-2/pulse-invisible/runtime";
 const liaBase = "/assets/gvo/shared/lia/current-used/portada-intro";
 
 export const world2RuntimeAssets = {
@@ -8,11 +9,17 @@ export const world2RuntimeAssets = {
   plant: `${world2RuntimeBase}/plant/world2_main_living_plant_v01.png`,
   plantStageAnchor: `${world2RuntimeBase}/plant/world2_plant_stage_anchor_v01.png`,
   plantAura: `${world2RuntimeBase}/plant/world2_living_plant_aura_v01.png`,
+  plantBioelectricContactNode: `${world2RuntimeBase}/plant/world2_plant_bioelectric_contact_node_v01.png`,
   rawWaveform: `${world2RuntimeBase}/signal/world2_raw_bioelectric_waveform_v01.png`,
+  signalWaveformCleanTechnical: `${world2RuntimeBase}/signal/world2_signal_waveform_clean_technical_v01.png`,
+  signalProbeCableWaveformUnified: `${world2RuntimeBase}/signal/world2_signal_probe_cable_waveform_unified_v01.png`,
+  signalWaveformNoisyRaw: `${world2RuntimeBase}/signal/world2_signal_waveform_noisy_raw_v01.png`,
   signalOriginContact: `${world2RuntimeBase}/signal/world2_signal_origin_contact_v01.png`,
   signalThreads: `${world2RuntimeBase}/signal/world2_bioelectric_signal_threads_v01.png`,
   pulseCore: `${world2RuntimeBase}/signal/world2_pulse_core_node_v01.png`,
   pulseRing: `${world2RuntimeBase}/signal/world2_pulse_expansion_ring_v01.png`,
+  captureAcquisitionChain: `${world2RuntimeBase}/capture/world2_capture_acquisition_chain_v01.png`,
+  conditioningNoisyToClean: `${world2RuntimeBase}/conditioning/world2_conditioning_noisy_to_clean_v01.png`,
   captureContact: `${world2RuntimeBase}/route/world2_signal_capture_contact_v01.png`,
   conditioningField: `${world2RuntimeBase}/route/world2_signal_conditioning_field_v01.png`,
   mappingConstellation: `${world2RuntimeBase}/route/world2_signal_mapping_constellation_v01.png`,
@@ -56,6 +63,7 @@ export const world2InitialRuntimeAssetSources = [
   world2RuntimeAssets.background,
   world2RuntimeAssets.plant,
   world2RuntimeAssets.plantStageAnchor,
+  world2RuntimeAssets.plantBioelectricContactNode,
   world2RuntimeAssets.liaIdle,
   world2RuntimeAssets.dialogueCard,
   world2RuntimeAssets.layerNavTokenBase,
