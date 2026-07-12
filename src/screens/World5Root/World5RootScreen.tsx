@@ -1,315 +1,590 @@
 import "./World5RootScreen.css";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { worldFiveToFinalTransitionRoute } from "../../app/routes";
-import { MobileShell } from "../../components/layout/MobileShell";
+import { Station5AreaVisual } from "./station5AreaArt";
 import {
-  WORLD5_REQUIRED_SLOT_COUNT,
-  world5AreaDefinitions,
-  world5EditorialSlots,
-} from "../../content/world5EditorialSlots";
-import type { World5AreaId } from "../../content/world5EditorialSlots";
+  station5Areas,
+  station5Cta,
+  station5Header,
+  station5Lia,
+  station5LiaPoses,
+} from "./station5Content";
+import type { Station5AreaContent } from "./station5Content";
 
-const world5AreaCount = world5AreaDefinitions.length;
-const preparedExitTarget = worldFiveToFinalTransitionRoute;
+const AREA_COUNT = station5Areas.length;
+const LAST_INDEX = AREA_COUNT - 1;
 
-type AreaInteractionState = "available" | "completed" | "locked";
+/**
+ * Anclas de cada área sobre la superficie de la maqueta (% del plano).
+ * Distribución tomada de la referencia: Plantas arriba-izquierda, Sistema
+ * arriba-derecha, Espacio abajo-izquierda, Visitante abajo-derecha, con el
+ * nexo de relación en el cruce central.
+ */
+const areaAnchors = [
+  { x: 27, y: 30 },
+  { x: 72, y: 29 },
+  { x: 27, y: 73 },
+  { x: 71, y: 72 },
+] as const;
 
-function getAreaInteractionState(
-  areaIndex: number,
-  currentAreaIndex: number,
-): AreaInteractionState {
-  if (currentAreaIndex >= world5AreaCount || areaIndex < currentAreaIndex) {
-    return "completed";
-  }
+const nexusAnchor = { x: 50, y: 51 } as const;
 
-  if (areaIndex === currentAreaIndex || (currentAreaIndex === -1 && areaIndex === 0)) {
-    return "available";
-  }
+type Station5Phase =
+  | "entering"
+  | "awaiting"
+  | "area"
+  | "integrating"
+  | "ready"
+  | "exiting";
 
-  return "locked";
+type AreaVisualState = "locked" | "suggested" | "active" | "completed";
+
+const areaStateLabel: Record<AreaVisualState, string> = {
+  locked: "Bloqueada",
+  suggested: "Sugerida",
+  active: "Activa",
+  completed: "Completada",
+};
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(() => {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      return false;
+    }
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
+
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      return;
+    }
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (event: MediaQueryListEvent) => setReduced(event.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+
+  return reduced;
+}
+
+/** Conexión punteada área → nexo, proyectada sobre la superficie. */
+function Station5AreaConnection({
+  area,
+  anchor,
+  lit,
+}: {
+  area: Station5AreaContent;
+  anchor: { x: number; y: number };
+  lit: boolean;
+}) {
+  const startX = anchor.x * 10;
+  const startY = anchor.y * 10;
+  const midX = (startX + nexusAnchor.x * 10) / 2;
+  const midY = (startY + nexusAnchor.y * 10) / 2 + (anchor.y < 50 ? 34 : -34);
+  return (
+    <path
+      className={`s5-link${lit ? " s5-link--lit" : ""}`}
+      data-station5-connection={area.id}
+      data-connection-state={lit ? "lit" : "dim"}
+      d={`M ${startX} ${startY} Q ${midX} ${midY} ${nexusAnchor.x * 10} ${nexusAnchor.y * 10}`}
+      pathLength={1}
+    />
+  );
+}
+
+/** Nexo central de relación: consecuencia visual, nunca un área interactiva. */
+function Station5RelationshipNexus({ level }: { level: number }) {
+  return (
+    <span
+      className="s5-nexus"
+      aria-hidden="true"
+      data-station5-nexus={level}
+      data-station5-nexus-state={level >= AREA_COUNT ? "full" : "partial"}
+      style={
+        {
+          left: `${nexusAnchor.x}%`,
+          top: `${nexusAnchor.y}%`,
+          "--s5-nexus-level": level / AREA_COUNT,
+        } as CSSProperties
+      }
+    >
+      <span className="s5-nexus__halo" />
+      <span className="s5-nexus__ring" />
+      <span className="s5-nexus__core" />
+    </span>
+  );
+}
+
+/** Área tocable del mapa (botón accesible real sobre la maqueta). */
+function Station5Area({
+  area,
+  anchor,
+  state,
+  onTap,
+}: {
+  area: Station5AreaContent;
+  anchor: { x: number; y: number };
+  state: AreaVisualState;
+  onTap: () => void;
+}) {
+  return (
+    <button
+      className={`s5-area s5-area--${state}`}
+      type="button"
+      aria-label={area.accessibleLabel}
+      aria-disabled={state === "locked"}
+      aria-current={state === "active" ? "step" : undefined}
+      aria-describedby={`s5-area-state-${area.id}`}
+      data-station5-area={area.id}
+      data-station5-area-order={area.order}
+      data-area-state={state}
+      style={{ left: `${anchor.x}%`, top: `${anchor.y}%` }}
+      onClick={onTap}
+    >
+      <span className="s5-area__ground" aria-hidden="true" />
+      <span className="s5-area__halo" aria-hidden="true" />
+      <span className="s5-area__up" aria-hidden="true">
+        <Station5AreaVisual areaId={area.id} visualKey={area.visualKey} />
+      </span>
+      <span className="s5-area__label" aria-hidden="true">
+        <span className="s5-area__check">✓</span>
+        {area.title}
+      </span>
+      <span className="s5-sr-only" id={`s5-area-state-${area.id}`}>
+        {areaStateLabel[state]}.
+      </span>
+    </button>
+  );
+}
+
+/** Lía oficial en la escena: guía calmada de síntesis. */
+function Station5LiaGuide({
+  anchor,
+  mode,
+}: {
+  anchor: { x: number; y: number };
+  mode: "guide" | "closure";
+}) {
+  return (
+    <div
+      className="s5-lia-anchor"
+      aria-hidden="true"
+      style={{ left: `${anchor.x}%`, top: `${anchor.y}%` }}
+    >
+      <span className="s5-lia-pool" />
+      <div
+        className="s5-lia"
+        data-station5-lia="official-2-5d"
+        data-lia-source="repo-existing-2-5d"
+        data-lia-mode={mode}
+      >
+        <span className="s5-lia__glow" />
+        <img
+          className="s5-lia__pose s5-lia__pose--guide"
+          src={station5LiaPoses.guide}
+          alt=""
+          loading="eager"
+          data-runtime-asset={station5LiaPoses.guide}
+        />
+        <img
+          className="s5-lia__pose s5-lia__pose--closure"
+          src={station5LiaPoses.closure}
+          alt=""
+          loading="lazy"
+          data-runtime-asset={station5LiaPoses.closure}
+        />
+      </div>
+    </div>
+  );
+}
+
+/** Acción final "Ir al cierre": presente en baja intensidad, activa al final. */
+function Station5FinalAction({
+  ready,
+  onActivate,
+}: {
+  ready: boolean;
+  onActivate: () => void;
+}) {
+  return (
+    <button
+      className={`s5-cta s5-cta--${ready ? "ready" : "waiting"}`}
+      type="button"
+      aria-label={
+        ready ? station5Cta.accessibleLabel : station5Cta.accessibleLabelDisabled
+      }
+      aria-disabled={!ready}
+      data-station5-action="ir-al-cierre"
+      data-cta-state={ready ? "ready" : "waiting"}
+      onClick={onActivate}
+    >
+      <svg
+        className="s5-cta__leaf"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M12 4 C13 8.4 15.6 10.4 18.5 11.4 C15.6 12.4 13 14.4 12 18.8 C11 14.4 8.4 12.4 5.5 11.4 C8.4 10.4 11 8.4 12 4 Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.2"
+        />
+      </svg>
+      <span className="s5-cta__divider" aria-hidden="true" />
+      <span className="s5-cta__label">{station5Cta.label}</span>
+    </button>
+  );
 }
 
 export function World5RootScreen() {
   const navigate = useNavigate();
-  const [currentAreaIndex, setCurrentAreaIndex] = useState(-1);
-  const [activeAreaId, setActiveAreaId] = useState<World5AreaId | null>(null);
-  const activeArea = useMemo(
-    () => world5AreaDefinitions.find((area) => area.id === activeAreaId) ?? null,
-    [activeAreaId],
-  );
-  const activeAreaIndex = activeArea
-    ? world5AreaDefinitions.findIndex((area) => area.id === activeArea.id)
-    : -1;
-  const world5State =
-    currentAreaIndex === -1
-      ? "intro"
-      : currentAreaIndex >= world5AreaCount
-        ? "ready_to_continue"
-        : world5AreaDefinitions[currentAreaIndex].id;
-  const isReadyToContinue = world5State === "ready_to_continue";
-  const confirmSlot =
-    activeArea && activeAreaIndex === currentAreaIndex
-      ? world5EditorialSlots[activeArea.confirmSlot]
-      : null;
+  const reducedMotion = usePrefersReducedMotion();
+  const [phase, setPhase] = useState<Station5Phase>("entering");
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [hintReady, setHintReady] = useState(false);
+  const [revisitIndex, setRevisitIndex] = useState<number | null>(null);
+  const [liaNote, setLiaNote] = useState<string | null>(null);
+  const [lockedAlt, setLockedAlt] = useState(false);
 
-  function startExperience() {
-    setCurrentAreaIndex(0);
-    setActiveAreaId(world5AreaDefinitions[0].id);
+  const enterMs = reducedMotion ? 60 : 900;
+  const readMs = reducedMotion ? 250 : 1800;
+  const integrateMs = reducedMotion ? 250 : 1500;
+
+  useEffect(() => {
+    if (phase === "entering") {
+      const timeout = window.setTimeout(() => setPhase("awaiting"), enterMs);
+      return () => window.clearTimeout(timeout);
+    }
+
+    if (phase === "area" && !hintReady && activeIndex < LAST_INDEX) {
+      const timeout = window.setTimeout(() => setHintReady(true), readMs);
+      return () => window.clearTimeout(timeout);
+    }
+
+    if (phase === "area" && activeIndex === LAST_INDEX) {
+      const timeout = window.setTimeout(() => setPhase("integrating"), readMs);
+      return () => window.clearTimeout(timeout);
+    }
+
+    if (phase === "integrating") {
+      const timeout = window.setTimeout(() => setPhase("ready"), integrateMs);
+      return () => window.clearTimeout(timeout);
+    }
+
+    return undefined;
+  }, [phase, hintReady, activeIndex, enterMs, readMs, integrateMs]);
+
+  function areaVisualState(index: number): AreaVisualState {
+    if (phase === "entering") {
+      return "locked";
+    }
+    if (phase === "awaiting") {
+      return index === 0 ? "suggested" : "locked";
+    }
+    if (phase === "area") {
+      if (index < activeIndex) {
+        return "completed";
+      }
+      if (index === activeIndex) {
+        return "active";
+      }
+      if (index === activeIndex + 1 && hintReady) {
+        return "suggested";
+      }
+      return "locked";
+    }
+    // integrating / ready / exiting: mapa integrado, revisita libre
+    return revisitIndex === index ? "active" : "completed";
   }
 
-  function selectArea(areaId: World5AreaId, areaIndex: number) {
-    const state = getAreaInteractionState(areaIndex, currentAreaIndex);
+  function connectionLit(index: number): boolean {
+    if (phase === "area") {
+      return index <= activeIndex;
+    }
+    return phase === "integrating" || phase === "ready" || phase === "exiting";
+  }
+
+  function tapArea(index: number) {
+    if (phase === "entering" || phase === "integrating" || phase === "exiting") {
+      return;
+    }
+
+    if (phase === "ready") {
+      setLiaNote(null);
+      setRevisitIndex(index);
+      return;
+    }
+
+    const state = areaVisualState(index);
 
     if (state === "locked") {
+      setLiaNote(lockedAlt ? station5Lia.lockedAlt : station5Lia.locked);
+      setLockedAlt((value) => !value);
       return;
     }
 
-    setActiveAreaId(areaId);
+    if (state === "suggested") {
+      setLiaNote(null);
+      setHintReady(false);
+      setActiveIndex(index);
+      if (phase === "awaiting") {
+        setPhase("area");
+      }
+      return;
+    }
+
+    if (state === "completed") {
+      setLiaNote(station5Lia.revisitLater);
+    }
   }
 
-  function confirmActiveArea() {
-    if (!activeArea || activeAreaIndex !== currentAreaIndex) {
+  function handleCta() {
+    if (phase !== "ready") {
+      setLiaNote(station5Lia.ctaBlocked);
       return;
     }
-
-    if (currentAreaIndex >= world5AreaCount - 1) {
-      setCurrentAreaIndex(world5AreaCount);
-      setActiveAreaId(null);
-      return;
-    }
-
-    const nextIndex = currentAreaIndex + 1;
-    setCurrentAreaIndex(nextIndex);
-    setActiveAreaId(world5AreaDefinitions[nextIndex].id);
+    setLiaNote(null);
+    setRevisitIndex(null);
+    setPhase("exiting");
+    window.setTimeout(
+      () => navigate(worldFiveToFinalTransitionRoute),
+      reducedMotion ? 0 : 320,
+    );
   }
+
+  const nexusLevel =
+    phase === "area"
+      ? activeIndex + 1
+      : phase === "integrating" || phase === "ready" || phase === "exiting"
+        ? AREA_COUNT
+        : 0;
+
+  const station5State = useMemo(() => {
+    if (phase === "entering") {
+      return "station5_entering";
+    }
+    if (phase === "awaiting") {
+      return "station5_plants_suggested";
+    }
+    if (phase === "area") {
+      return `station5_${station5Areas[activeIndex].id}_active`;
+    }
+    if (phase === "integrating") {
+      return "station5_map_integrated";
+    }
+    if (phase === "exiting") {
+      return "station5_exiting";
+    }
+    return revisitIndex === null
+      ? "station5_ready_to_close"
+      : "station5_revisit_mode";
+  }, [phase, activeIndex, revisitIndex]);
+
+  const dialogArea =
+    phase === "area"
+      ? station5Areas[activeIndex]
+      : (phase === "ready" || phase === "exiting") && revisitIndex !== null
+        ? station5Areas[revisitIndex]
+        : null;
+
+  const statusMessage = useMemo(() => {
+    if (liaNote) {
+      return liaNote;
+    }
+    if (phase === "awaiting") {
+      return station5Areas[0].hint;
+    }
+    if (phase === "area" && hintReady && activeIndex < LAST_INDEX) {
+      return station5Areas[activeIndex + 1].hint;
+    }
+    if (phase === "ready" && revisitIndex === null) {
+      return station5Lia.revisit;
+    }
+    return null;
+  }, [liaNote, phase, hintReady, activeIndex, revisitIndex]);
+
+  const liaMode: "guide" | "closure" =
+    phase === "integrating" || phase === "ready" || phase === "exiting"
+      ? "closure"
+      : "guide";
+
+  const liaAnchor = useMemo(() => {
+    if (phase === "entering" || phase === "awaiting") {
+      return { x: 82, y: 13 };
+    }
+    if (phase === "area") {
+      const anchor = areaAnchors[activeIndex];
+      return { x: anchor.x + (anchor.x < 50 ? 13 : -13), y: anchor.y - 19 };
+    }
+    if (phase === "integrating") {
+      return { x: 50, y: 28 };
+    }
+    if (revisitIndex !== null) {
+      const anchor = areaAnchors[revisitIndex];
+      return { x: anchor.x + (anchor.x < 50 ? 13 : -13), y: anchor.y - 19 };
+    }
+    return { x: 50, y: 93 };
+  }, [phase, activeIndex, revisitIndex]);
+
+  const ctaReady = phase === "ready" || phase === "exiting";
 
   return (
-    <MobileShell eyebrow="Mundo V temporal" title="Mundo V: Mapa del Presente">
-      <div
-        className="world5-root-experience"
-        data-world5-experience="temporary"
-        data-world5-editorial-source="excel_pending"
-        data-world5-state={world5State}
-        data-world5-slot-count={WORLD5_REQUIRED_SLOT_COUNT}
-        data-world5-full-experience="temporary_complete"
-        data-sensitive-permissions="blocked"
-        data-qr-camera="blocked"
-        data-daily-counter="not_implemented"
-        data-final-screen="base_entry_prepared"
-        data-review-free-mode="not_implemented"
-        data-world5-exit-target={isReadyToContinue ? preparedExitTarget : undefined}
-        data-world5-exit-mode={
-          isReadyToContinue ? "prepared_transition_final_entry" : undefined
-        }
+    <main
+      className="s5-screen"
+      data-station5-state={station5State}
+      data-station5-nexus-level={nexusLevel}
+      data-station5-revisit={phase === "ready" || phase === "exiting"}
+      data-station5-reduced-motion={reducedMotion}
+      data-sensitive-permissions="blocked"
+      data-qr-camera="blocked"
+      aria-labelledby="station5-title"
+    >
+      <header className="s5-header">
+        <svg
+          className="s5-header__mark"
+          viewBox="0 0 32 32"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <circle
+            cx="16"
+            cy="16"
+            r="13"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.3"
+          />
+          <path
+            d="M16 23 C16 17 16 13 16 9 M16 13 C13 12 11 10 10.5 8 M16 13 C19 12 21 10 21.5 8 M16 18 C13.4 17.4 12 16 11.5 14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.3"
+            strokeLinecap="round"
+          />
+        </svg>
+        <p className="s5-header__brand">{station5Header.brand}</p>
+        <p className="s5-header__brand-sub">{station5Header.brandSub}</p>
+      </header>
+
+      <div className="s5-title">
+        <p className="s5-title__eyebrow">{station5Header.eyebrow}</p>
+        <h1 id="station5-title">{station5Header.title}</h1>
+        <p className="s5-title__subtitle">{station5Header.subtitle}</p>
+      </div>
+
+      <section
+        className="s5-map-zone"
+        aria-label="Maqueta del presente de OKÚA con cuatro áreas: plantas, sistema, espacio y visitante, unidas por un nexo central."
       >
-        <section
-          className="world5-root-scene"
-          aria-label={world5EditorialSlots.W5_ACCESSIBLE_SCENE_01.text}
-          data-world5-slot-id="W5_ACCESSIBLE_SCENE_01"
-          data-editorial-status="TEMP"
-        >
-          <div className="world5-root-map" aria-hidden="true">
-            {world5AreaDefinitions.map((area, index) => {
-              const state = getAreaInteractionState(index, currentAreaIndex);
-              return (
-              <span
-                className={`world5-root-map__area world5-root-map__area--${state}`}
-                data-world5-area={area.label}
-                data-world5-area-order={area.order}
-                data-area-state={state}
-                key={area.id}
+        <div className="s5-stage" data-station5-scene="present-map">
+          <div className="s5-tray">
+            <span className="s5-tray__lip" aria-hidden="true" />
+            <div className="s5-tray__surface">
+              <span className="s5-tray__light" aria-hidden="true" />
+
+              <svg
+                className="s5-links"
+                viewBox="0 0 1000 1000"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
               >
-                {area.label}
-              </span>
-              );
-            })}
+                <path
+                  className="s5-lia-trail"
+                  d="M 900 60 Q 760 120 560 170 Q 400 210 310 280"
+                  data-trail-state={
+                    phase === "entering" || phase === "awaiting"
+                      ? "visible"
+                      : "hidden"
+                  }
+                />
+                {station5Areas.map((area, index) => (
+                  <Station5AreaConnection
+                    key={area.id}
+                    area={area}
+                    anchor={areaAnchors[index]}
+                    lit={connectionLit(index)}
+                  />
+                ))}
+              </svg>
+
+              <Station5RelationshipNexus level={nexusLevel} />
+
+              {station5Areas.map((area, index) => (
+                <Station5Area
+                  key={area.id}
+                  area={area}
+                  anchor={areaAnchors[index]}
+                  state={areaVisualState(index)}
+                  onTap={() => tapArea(index)}
+                />
+              ))}
+
+              <Station5LiaGuide anchor={liaAnchor} mode={liaMode} />
+            </div>
           </div>
+          <span className="s5-stage__shadow" aria-hidden="true" />
+        </div>
+      </section>
 
-          <div className="world5-root-copy">
-            <p className="world5-root-copy__eyebrow">
-              Estación V en preparación
-            </p>
-            <h2>Mapa del presente</h2>
-            <p
-              className="world5-root-copy__text world5-root-copy__text--lia"
-              data-world5-slot-id="W5_INTRO_LIA_01"
-              data-editorial-status="TEMP"
-            >
-              {world5EditorialSlots.W5_INTRO_LIA_01.text}
-            </p>
-            <p
-              className="world5-root-copy__text"
-              data-world5-slot-id="W5_INTRO_AMB_01"
-              data-editorial-status="TEMP"
-            >
-              {world5EditorialSlots.W5_INTRO_AMB_01.text}
-            </p>
-            {currentAreaIndex === -1 ? (
-              <button
-                className="world5-root-primary-action"
-                type="button"
-                onClick={startExperience}
-              >
-                Iniciar mapa temporal
-              </button>
-            ) : null}
-          </div>
-        </section>
-
-        <section className="world5-root-areas" aria-label="Áreas de Mundo V">
-          {world5AreaDefinitions.map((area, index) => {
-            const state = getAreaInteractionState(index, currentAreaIndex);
-            const isLocked = state === "locked";
-            const isActive = activeAreaId === area.id;
-            const accessibleSlot = world5EditorialSlots[area.accessibleSlot];
-
-            return (
-            <button
-              className={`world5-root-area world5-root-area--${state}${isActive ? " world5-root-area--active" : ""}`}
-              data-world5-area-id={area.id}
-              data-world5-protected-area={area.label}
-              data-area-state={state}
-              disabled={isLocked}
-              key={area.id}
-              type="button"
-              aria-describedby={`world5-accessible-${area.id}`}
-              aria-pressed={isActive}
-              onClick={() => selectArea(area.id, index)}
-            >
-              <span className="world5-root-area__order">
-                {String(area.order).padStart(2, "0")}
-              </span>
-              <span className="world5-root-area__label">{area.label}</span>
-              <span
-                className="world5-root-area__state"
-                data-world5-slot-id={
-                  state === "completed"
-                    ? "W5_AREA_REPEAT_01"
-                    : state === "locked"
-                      ? "W5_AREA_LOCKED_01"
-                      : undefined
-                }
-              >
-                {state === "completed"
-                  ? "Releer"
-                  : state === "locked"
-                    ? "Bloqueada"
-                    : "Disponible"}
-              </span>
-              <span
-                className="world5-root-sr-only"
-                id={`world5-accessible-${area.id}`}
-                data-world5-slot-id={accessibleSlot.slotId}
-                data-editorial-status="TEMP"
-              >
-                {accessibleSlot.text}
-              </span>
-            </button>
-            );
-          })}
-        </section>
-
-        <section
-          className="world5-root-detail"
+      <section className="s5-panel">
+        <article
+          className="s5-dialog"
           aria-live="polite"
-          data-world5-detail-state={world5State}
+          data-station5-dialog={dialogArea ? dialogArea.id : station5State}
+          key={dialogArea ? dialogArea.id : station5State}
         >
-          {activeArea ? (
+          {dialogArea ? (
             <>
-              <p className="world5-root-detail__eyebrow">
-                Área {activeArea.order} / {world5AreaCount}
+              <p className="s5-dialog__step">
+                Área {dialogArea.order} de {AREA_COUNT}
               </p>
-              <h2>{activeArea.label}</h2>
-              <p
-                className="world5-root-copy__text"
-                data-world5-slot-id={activeArea.hintSlot}
-                data-editorial-status="TEMP"
-              >
-                {world5EditorialSlots[activeArea.hintSlot].text}
-              </p>
-              <p
-                className="world5-root-copy__text world5-root-copy__text--ambient"
-                data-world5-slot-id={activeArea.ambientSlot}
-                data-editorial-status="TEMP"
-              >
-                {world5EditorialSlots[activeArea.ambientSlot].text}
-              </p>
-              {activeAreaIndex < currentAreaIndex ||
-              currentAreaIndex >= world5AreaCount ? (
-                <p
-                  className="world5-root-note"
-                  data-world5-slot-id="W5_AREA_REPEAT_01"
-                  data-editorial-status="TEMP"
-                >
-                  {world5EditorialSlots.W5_AREA_REPEAT_01.text}
-                </p>
-              ) : null}
-              {confirmSlot ? (
-                <button
-                  className="world5-root-primary-action"
-                  type="button"
-                  onClick={confirmActiveArea}
-                  data-world5-confirm-area={activeArea.id}
-                  data-world5-slot-id={confirmSlot.slotId}
-                  data-editorial-status="TEMP"
-                >
-                  {confirmSlot.text}
-                </button>
-              ) : null}
+              <h2 className="s5-dialog__title">{dialogArea.title}</h2>
+              <p className="s5-dialog__text">{dialogArea.text}</p>
+              <p className="s5-dialog__key">{dialogArea.keyLine}</p>
             </>
-          ) : isReadyToContinue ? (
+          ) : nexusLevel === AREA_COUNT ? (
             <>
-              <p className="world5-root-detail__eyebrow">
-                LISTO PARA CONTINUAR
-              </p>
-              <h2>Mapa del presente completo</h2>
-              <p
-                className="world5-root-copy__text world5-root-copy__text--lia"
-                data-world5-slot-id="W5_COMPLETE_LIA_01"
-                data-editorial-status="TEMP"
-              >
-                {world5EditorialSlots.W5_COMPLETE_LIA_01.text}
-              </p>
-              <p
-                className="world5-root-copy__text"
-                data-world5-slot-id="W5_COMPLETE_AMB_01"
-                data-editorial-status="TEMP"
-              >
-                {world5EditorialSlots.W5_COMPLETE_AMB_01.text}
-              </p>
-              <button
-                className="world5-root-primary-action world5-root-primary-action--continue"
-                type="button"
-                data-world5-slot-id="W5_FINAL_BTN_01"
-                data-world5-exit-action="navigate_to_final_transition"
-                data-editorial-status="TEMP"
-                onClick={() => navigate(worldFiveToFinalTransitionRoute)}
-              >
-                {world5EditorialSlots.W5_FINAL_BTN_01.text}
-              </button>
-              <p className="world5-root-note">
-                Salida temporal hacia Mirador Final; la pantalla completa queda
-                pendiente.
+              <p className="s5-dialog__step">Síntesis</p>
+              <p className="s5-dialog__text s5-dialog__text--synthesis">
+                {station5Lia.synthesis}
               </p>
             </>
           ) : (
-            <>
-              <p className="world5-root-detail__eyebrow">INTRO</p>
-              <h2>Secuencia temporal</h2>
-              <p
-                className="world5-root-note"
-                data-world5-slot-id="W5_AREA_LOCKED_01"
-                data-editorial-status="TEMP"
-              >
-                {world5EditorialSlots.W5_AREA_LOCKED_01.text}
-              </p>
-            </>
+            <p className="s5-dialog__text s5-dialog__text--intro">
+              {station5Lia.intro}
+            </p>
           )}
-        </section>
-      </div>
-    </MobileShell>
+        </article>
+
+        <p
+          className="s5-status"
+          role="status"
+          data-station5-status={statusMessage ? "visible" : "empty"}
+        >
+          {statusMessage}
+        </p>
+
+        <Station5FinalAction ready={ctaReady} onActivate={handleCta} />
+      </section>
+
+      <footer className="s5-footer" aria-hidden="true">
+        <span className="s5-footer__dot" />
+        <span className="s5-footer__dot" />
+        <span className="s5-footer__station">V</span>
+        <span className="s5-footer__dot" />
+        <span className="s5-footer__dot" />
+      </footer>
+    </main>
   );
 }
