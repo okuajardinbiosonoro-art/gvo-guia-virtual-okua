@@ -30,7 +30,36 @@ const areaAnchors = [
   { x: 71, y: 72 },
 ] as const;
 
+/**
+ * Anclas de los botones táctiles en espacio de pantalla (% del escenario).
+ * Los botones accesibles viven en una capa plana sobre el diorama porque el
+ * hit-test 3D de Chromium falla en la mitad inferior del plano rotado
+ * (medido con tools/debug-station5-click.mjs). Corresponden a la
+ * proyección de areaAnchors, estable ±1% entre 360x640 y 430x932.
+ */
+const areaTouchAnchors = [
+  { x: 31.3, y: 34.4 },
+  { x: 68.2, y: 32.3 },
+  { x: 31.5, y: 71 },
+  { x: 69.7, y: 68.7 },
+] as const;
+
 const nexusAnchor = { x: 50, y: 51 } as const;
+
+/**
+ * Lía acompaña sin tapar: en las zonas superiores se acerca por el lado
+ * interior; en las inferiores, por el lado exterior (lejos del nexo y de
+ * las etiquetas).
+ */
+function liaAnchorForArea(index: number) {
+  const anchor = areaAnchors[index];
+  const isTop = anchor.y < 50;
+  const outward = anchor.x < 50 ? -15 : 15;
+  return {
+    x: anchor.x + (isTop ? -outward : outward),
+    y: anchor.y - (isTop ? 19 : 13),
+  };
+}
 
 type Station5Phase =
   | "entering"
@@ -124,15 +153,49 @@ function Station5RelationshipNexus({ level }: { level: number }) {
   );
 }
 
-/** Área tocable del mapa (botón accesible real sobre la maqueta). */
-function Station5Area({
+/** Escena decorativa del área sobre la maqueta (suelo, objetos y etiqueta). */
+function Station5AreaZone({
   area,
   anchor,
+  state,
+}: {
+  area: Station5AreaContent;
+  anchor: { x: number; y: number };
+  state: AreaVisualState;
+}) {
+  return (
+    <span
+      className={`s5-zone s5-zone--${state}`}
+      aria-hidden="true"
+      data-station5-area-decor={area.id}
+      data-zone-state={state}
+      style={{ left: `${anchor.x}%`, top: `${anchor.y}%` }}
+    >
+      <span className="s5-zone__ground" />
+      <span className="s5-zone__halo" />
+      <span className="s5-zone__up">
+        <Station5AreaVisual areaId={area.id} visualKey={area.visualKey} />
+      </span>
+      <span className="s5-zone__label">
+        <span className="s5-zone__check">✓</span>
+        {area.title}
+      </span>
+    </span>
+  );
+}
+
+/**
+ * Área tocable del mapa: botón accesible real en una capa plana de pantalla
+ * (sin transformaciones 3D), alineado con la proyección de su zona visual.
+ */
+function Station5Area({
+  area,
+  touchAnchor,
   state,
   onTap,
 }: {
   area: Station5AreaContent;
-  anchor: { x: number; y: number };
+  touchAnchor: { x: number; y: number };
   state: AreaVisualState;
   onTap: () => void;
 }) {
@@ -147,18 +210,9 @@ function Station5Area({
       data-station5-area={area.id}
       data-station5-area-order={area.order}
       data-area-state={state}
-      style={{ left: `${anchor.x}%`, top: `${anchor.y}%` }}
+      style={{ left: `${touchAnchor.x}%`, top: `${touchAnchor.y}%` }}
       onClick={onTap}
     >
-      <span className="s5-area__ground" aria-hidden="true" />
-      <span className="s5-area__halo" aria-hidden="true" />
-      <span className="s5-area__up" aria-hidden="true">
-        <Station5AreaVisual areaId={area.id} visualKey={area.visualKey} />
-      </span>
-      <span className="s5-area__label" aria-hidden="true">
-        <span className="s5-area__check">✓</span>
-        {area.title}
-      </span>
       <span className="s5-sr-only" id={`s5-area-state-${area.id}`}>
         {areaStateLabel[state]}.
       </span>
@@ -362,9 +416,11 @@ export function World5RootScreen() {
     );
   }
 
+  // Intensidad del nexo: sube con cada área completada; solo queda plena
+  // (nivel 4) cuando Visitante se completa y el mapa se integra.
   const nexusLevel =
     phase === "area"
-      ? activeIndex + 1
+      ? activeIndex
       : phase === "integrating" || phase === "ready" || phase === "exiting"
         ? AREA_COUNT
         : 0;
@@ -423,17 +479,15 @@ export function World5RootScreen() {
       return { x: 82, y: 13 };
     }
     if (phase === "area") {
-      const anchor = areaAnchors[activeIndex];
-      return { x: anchor.x + (anchor.x < 50 ? 13 : -13), y: anchor.y - 19 };
+      return liaAnchorForArea(activeIndex);
     }
     if (phase === "integrating") {
       return { x: 50, y: 28 };
     }
     if (revisitIndex !== null) {
-      const anchor = areaAnchors[revisitIndex];
-      return { x: anchor.x + (anchor.x < 50 ? 13 : -13), y: anchor.y - 19 };
+      return liaAnchorForArea(revisitIndex);
     }
-    return { x: 50, y: 93 };
+    return { x: 50, y: 97 };
   }, [phase, activeIndex, revisitIndex]);
 
   const ctaReady = phase === "ready" || phase === "exiting";
@@ -521,12 +575,11 @@ export function World5RootScreen() {
               <Station5RelationshipNexus level={nexusLevel} />
 
               {station5Areas.map((area, index) => (
-                <Station5Area
+                <Station5AreaZone
                   key={area.id}
                   area={area}
                   anchor={areaAnchors[index]}
                   state={areaVisualState(index)}
-                  onTap={() => tapArea(index)}
                 />
               ))}
 
@@ -534,6 +587,17 @@ export function World5RootScreen() {
             </div>
           </div>
           <span className="s5-stage__shadow" aria-hidden="true" />
+          <div className="s5-touch-layer">
+            {station5Areas.map((area, index) => (
+              <Station5Area
+                key={area.id}
+                area={area}
+                touchAnchor={areaTouchAnchors[index]}
+                state={areaVisualState(index)}
+                onTap={() => tapArea(index)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

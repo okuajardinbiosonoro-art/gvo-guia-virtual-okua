@@ -123,15 +123,15 @@ function SystemVisual(): ReactElement {
 function SpaceVisual(): ReactElement {
   return (
     <svg viewBox="0 0 120 96" aria-hidden="true" focusable="false">
-      {/* entarimado de madera */}
-      <g transform="skewX(-8)">
-        <rect x="18" y="24" width="13" height="52" rx="2.5" fill="#c2a479" />
-        <rect x="33" y="24" width="13" height="52" rx="2.5" fill="#b5966c" />
-        <rect x="48" y="24" width="13" height="52" rx="2.5" fill="#c2a479" />
+      {/* entarimado de madera (tarima baja de recorrido) */}
+      <g transform="skewX(-6)">
+        <rect x="14" y="34" width="44" height="11" rx="3" fill="#c2a479" />
+        <rect x="16" y="47" width="44" height="11" rx="3" fill="#b5966c" />
+        <rect x="18" y="60" width="44" height="11" rx="3" fill="#c2a479" />
         <g stroke="#a98d63" strokeWidth="1" opacity="0.6">
-          <path d="M24 30 C25 42 24 56 25 70" fill="none" />
-          <path d="M39 32 C40 44 39 58 40 72" fill="none" />
-          <path d="M54 30 C55 42 54 56 55 70" fill="none" />
+          <path d="M20 39 C32 40 46 39 54 40" fill="none" />
+          <path d="M22 52 C34 53 48 52 56 53" fill="none" />
+          <path d="M24 65 C36 66 50 65 58 66" fill="none" />
         </g>
       </g>
       {/* tapete tejido */}
