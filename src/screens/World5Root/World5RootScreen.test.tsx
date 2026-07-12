@@ -1,13 +1,8 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import {
-  WORLD5_REQUIRED_SLOT_COUNT,
-  world5AreaDefinitions,
-  world5ConceptAreas,
-  world5EditorialSlots,
-} from "../../content/world5EditorialSlots";
+import { station5Areas, station5Cta, station5Lia } from "./station5Content";
 import { World5RootScreen } from "./World5RootScreen";
 
 function LocationProbe() {
@@ -16,7 +11,7 @@ function LocationProbe() {
   return <span data-testid="current-location">{location.pathname}</span>;
 }
 
-function renderWorld5RootScreen() {
+function renderStation5() {
   return render(
     <MemoryRouter initialEntries={["/estacion/5"]}>
       <World5RootScreen />
@@ -25,182 +20,379 @@ function renderWorld5RootScreen() {
   );
 }
 
-describe("World5RootScreen", () => {
+function getState(container: HTMLElement) {
+  return container
+    .querySelector("[data-station5-state]")
+    ?.getAttribute("data-station5-state");
+}
+
+function advance(ms: number) {
+  act(() => {
+    vi.advanceTimersByTime(ms);
+  });
+}
+
+function areaButton(container: HTMLElement, areaId: string) {
+  const button = container.querySelector<HTMLButtonElement>(
+    `[data-station5-area="${areaId}"]`,
+  );
+  if (!button) {
+    throw new Error(`Area button not found: ${areaId}`);
+  }
+  return button;
+}
+
+function litConnections(container: HTMLElement) {
+  return container.querySelectorAll('[data-connection-state="lit"]').length;
+}
+
+/** Entrada suave: tras el enter, Plantas queda sugerida y el resto bloqueado. */
+function enterStation(container: HTMLElement) {
+  advance(1000);
+  expect(getState(container)).toBe("station5_plants_suggested");
+}
+
+/** Espera el hint de la siguiente área y la toca (avance sin botón genérico). */
+function advanceToArea(container: HTMLElement, areaId: string) {
+  advance(1900);
+  expect(areaButton(container, areaId)).toHaveAttribute(
+    "data-area-state",
+    "suggested",
+  );
+  fireEvent.click(areaButton(container, areaId));
+  expect(areaButton(container, areaId)).toHaveAttribute(
+    "data-area-state",
+    "active",
+  );
+}
+
+/** Primera pasada completa: Plantas → Sistema → Espacio → Visitante. */
+function completeMap(container: HTMLElement) {
+  enterStation(container);
+  fireEvent.click(areaButton(container, "plantas"));
+  expect(getState(container)).toBe("station5_plantas_active");
+  advanceToArea(container, "sistema");
+  advanceToArea(container, "espacio");
+  advanceToArea(container, "visitante");
+  advance(1900);
+  expect(getState(container)).toBe("station5_map_integrated");
+  advance(1600);
+  expect(getState(container)).toBe("station5_ready_to_close");
+}
+
+function stubReducedMotion(matches: boolean) {
+  Object.defineProperty(window, "matchMedia", {
+    configurable: true,
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches,
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
+}
+
+describe("World5RootScreen — Mapa del presente", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   afterEach(() => {
     cleanup();
+    vi.useRealTimers();
+    Reflect.deleteProperty(window, "matchMedia");
   });
 
-  it("renderiza Mundo V temporal con 24 slots editoriales y sin permisos sensibles", () => {
-    const { container } = renderWorld5RootScreen();
+  it("renderiza la maqueta con título, Lía oficial única y mensaje inicial", () => {
+    const { container } = renderStation5();
 
+    expect(getState(container)).toBe("station5_entering");
     expect(
-      screen.getByRole("heading", { name: "Mundo V: Mapa del Presente" }),
+      screen.getByRole("heading", { name: "Mundo V: Mapa del presente" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Estación V en preparación")).toBeInTheDocument();
-    expect(screen.getByText("Mapa del presente")).toBeInTheDocument();
-    expect(
-      screen.getByText(world5EditorialSlots.W5_INTRO_LIA_01.text),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(world5EditorialSlots.W5_INTRO_AMB_01.text),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText(world5EditorialSlots.W5_ACCESSIBLE_SCENE_01.text),
-    ).toBeInTheDocument();
-    expect(Object.keys(world5EditorialSlots)).toHaveLength(
-      WORLD5_REQUIRED_SLOT_COUNT,
-    );
-    expect(
-      Object.values(world5EditorialSlots).every((slot) => slot.status === "TEMP"),
-    ).toBe(true);
-    expect(container.querySelector("[data-world5-experience]")).toHaveAttribute(
-      "data-world5-experience",
-      "temporary",
-    );
-    expect(container.querySelector("[data-world5-state]")).toHaveAttribute(
-      "data-world5-state",
-      "intro",
-    );
-    expect(container.querySelector("[data-world5-slot-count]")).toHaveAttribute(
-      "data-world5-slot-count",
-      String(WORLD5_REQUIRED_SLOT_COUNT),
-    );
-    expect(container.querySelector("[data-world5-full-experience]"))
-      .toHaveAttribute("data-world5-full-experience", "temporary_complete");
-    expect(container.querySelector("[data-sensitive-permissions]"))
-      .toHaveAttribute("data-sensitive-permissions", "blocked");
-    expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
-      "data-qr-camera",
-      "blocked",
-    );
-    expect(container.querySelector("[data-daily-counter]")).toHaveAttribute(
-      "data-daily-counter",
-      "not_implemented",
-    );
-    expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
-      "data-final-screen",
-      "base_entry_prepared",
-    );
-    expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
-      "data-review-free-mode",
-      "not_implemented",
-    );
-  });
+    expect(screen.getByText("Estación V")).toBeInTheDocument();
+    expect(screen.getByText("Qué significa este montaje hoy")).toBeInTheDocument();
+    expect(screen.getByText(station5Lia.intro)).toBeInTheDocument();
 
-  it("preserva las cuatro areas protegidas sin repetir la cadena tecnica de Mundo IV", () => {
-    const { container } = renderWorld5RootScreen();
+    enterStation(container);
 
-    expect(
-      Array.from(container.querySelectorAll("[data-world5-protected-area]")).map(
-        (area) => area.getAttribute("data-world5-protected-area"),
-      ),
-    ).toEqual([...world5ConceptAreas]);
-    expect(container).not.toHaveTextContent(/BIONOSIFICADOR/);
-    expect(container).not.toHaveTextContent(/ESP32/);
-    expect(container).not.toHaveTextContent(/MIDI/);
-    expect(container).not.toHaveTextContent(/WI-FI\/UDP/);
-    expect(container).not.toHaveTextContent(/ROUTER/);
-    expect(container).not.toHaveTextContent(/SISTEMA CENTRAL/);
-    expect(container).not.toHaveTextContent(/SONIDO/);
-  });
-
-  it("avanza por las areas en orden, permite relectura y llega a ready_to_continue", () => {
-    const { container } = renderWorld5RootScreen();
-    const getState = () =>
-      container
-        .querySelector("[data-world5-state]")
-        ?.getAttribute("data-world5-state");
-
-    fireEvent.click(screen.getByRole("button", { name: "Iniciar mapa temporal" }));
-    expect(getState()).toBe("plantas");
-    expect(
-      container.querySelector('[data-world5-area-id="sistema"]'),
-    ).toHaveAttribute("data-area-state", "locked");
-
-    for (const [index, area] of world5AreaDefinitions.entries()) {
-      expect(getState()).toBe(area.id);
-      expect(
-        screen.getByText(world5EditorialSlots[area.hintSlot].text),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(world5EditorialSlots[area.ambientSlot].text),
-      ).toBeInTheDocument();
-
-      if (index === 1) {
-        fireEvent.click(
-          container.querySelector(
-            '[data-world5-area-id="plantas"]',
-          ) as HTMLButtonElement,
-        );
-        expect(
-          screen.getByText(world5EditorialSlots.W5_AREA_REPEAT_01.text),
-        ).toBeInTheDocument();
-        expect(getState()).toBe("sistema");
-        fireEvent.click(
-          container.querySelector(
-            '[data-world5-area-id="sistema"]',
-          ) as HTMLButtonElement,
-        );
-      }
-
-      fireEvent.click(screen.getByText(world5EditorialSlots[area.confirmSlot].text));
+    expect(container.querySelectorAll("[data-station5-lia]")).toHaveLength(1);
+    const images = container.querySelectorAll("img");
+    expect(images.length).toBeGreaterThan(0);
+    for (const image of images) {
+      expect(image.getAttribute("data-runtime-asset")).toContain("/lia_");
     }
-
-    expect(getState()).toBe("ready_to_continue");
     expect(
-      screen.getByText(world5EditorialSlots.W5_COMPLETE_LIA_01.text),
+      container.querySelector("[data-station5-scene='present-map']"),
+    ).toBeInTheDocument();
+    expect(container.querySelector(".mobile-shell")).not.toBeInTheDocument();
+  });
+
+  it("no usa audio, video, canvas ni iframes", () => {
+    const { container } = renderStation5();
+
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    expect(container.querySelectorAll("video")).toHaveLength(0);
+    expect(container.querySelectorAll("canvas")).toHaveLength(0);
+    expect(container.querySelectorAll("iframe")).toHaveLength(0);
+  });
+
+  it("tiene exactamente cuatro áreas principales en el orden correcto", () => {
+    const { container } = renderStation5();
+
+    const areas = Array.from(
+      container.querySelectorAll("[data-station5-area]"),
+    ).map((area) => area.getAttribute("data-station5-area"));
+
+    expect(areas).toEqual(["plantas", "sistema", "espacio", "visitante"]);
+    expect(
+      screen.getByRole("button", { name: "Área 1 de 4. Plantas." }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(world5EditorialSlots.W5_COMPLETE_AMB_01.text),
+      screen.getByRole("button", { name: "Área 2 de 4. Sistema." }),
     ).toBeInTheDocument();
-    expect(container.querySelector("[data-world5-exit-target]")).toHaveAttribute(
-      "data-world5-exit-target",
-      "/transition/world-5-to-final",
-    );
-    expect(container.querySelector("[data-world5-exit-mode]")).toHaveAttribute(
-      "data-world5-exit-mode",
-      "prepared_transition_final_entry",
-    );
+    expect(
+      screen.getByRole("button", { name: "Área 3 de 4. Espacio." }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Área 4 de 4. Visitante." }),
+    ).toBeInTheDocument();
+  });
 
-    const finalButton = screen.getByRole("button", {
-      name: world5EditorialSlots.W5_FINAL_BTN_01.text,
+  it("no repite la cadena técnica de ocho nodos de Estación IV", () => {
+    const { container } = renderStation5();
+
+    expect(container).not.toHaveTextContent(/bionosificador/i);
+    expect(container).not.toHaveTextContent(/esp32/i);
+    expect(container).not.toHaveTextContent(/midi/i);
+    expect(container).not.toHaveTextContent(/wi-?fi/i);
+    expect(container).not.toHaveTextContent(/router/i);
+    expect(container).not.toHaveTextContent(/sistema central/i);
+    expect(container).not.toHaveTextContent(/[♪♫♩♬]/);
+    expect(container.querySelectorAll("[data-station5-area]")).toHaveLength(4);
+  });
+
+  it("al inicio solo Plantas está sugerida; el resto queda bloqueado", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+
+    expect(areaButton(container, "plantas")).toHaveAttribute(
+      "data-area-state",
+      "suggested",
+    );
+    for (const area of station5Areas.slice(1)) {
+      expect(areaButton(container, area.id)).toHaveAttribute(
+        "data-area-state",
+        "locked",
+      );
+      expect(areaButton(container, area.id)).toHaveAttribute(
+        "aria-disabled",
+        "true",
+      );
+    }
+    expect(litConnections(container)).toBe(0);
+  });
+
+  it("tocar un área futura bloqueada no avanza y Lía responde con calma", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+
+    fireEvent.click(areaButton(container, "espacio"));
+
+    expect(getState(container)).toBe("station5_plants_suggested");
+    expect(areaButton(container, "espacio")).toHaveAttribute(
+      "data-area-state",
+      "locked",
+    );
+    expect(screen.getByText(station5Lia.locked)).toBeInTheDocument();
+
+    fireEvent.click(areaButton(container, "visitante"));
+    expect(screen.getByText(station5Lia.lockedAlt)).toBeInTheDocument();
+    expect(getState(container)).toBe("station5_plants_suggested");
+  });
+
+  it("activa Plantas con su explicación y enciende su conexión al nexo", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+
+    fireEvent.click(areaButton(container, "plantas"));
+
+    expect(getState(container)).toBe("station5_plantas_active");
+    expect(screen.getByText(station5Areas[0].text)).toBeInTheDocument();
+    expect(screen.getByText(station5Areas[0].keyLine)).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-station5-connection="plantas"]'),
+    ).toHaveAttribute("data-connection-state", "lit");
+    expect(litConnections(container)).toBe(1);
+  });
+
+  it("completar cada área habilita solo la siguiente, en orden secuencial", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+    fireEvent.click(areaButton(container, "plantas"));
+
+    // Plantas → Sistema
+    advance(1900);
+    expect(areaButton(container, "sistema")).toHaveAttribute(
+      "data-area-state",
+      "suggested",
+    );
+    expect(areaButton(container, "espacio")).toHaveAttribute(
+      "data-area-state",
+      "locked",
+    );
+    expect(screen.getByText(station5Areas[1].hint)).toBeInTheDocument();
+    fireEvent.click(areaButton(container, "sistema"));
+    expect(getState(container)).toBe("station5_sistema_active");
+    expect(areaButton(container, "plantas")).toHaveAttribute(
+      "data-area-state",
+      "completed",
+    );
+    expect(screen.getByText(station5Areas[1].text)).toBeInTheDocument();
+    expect(litConnections(container)).toBe(2);
+
+    // Sistema → Espacio
+    advanceToArea(container, "espacio");
+    expect(getState(container)).toBe("station5_espacio_active");
+    expect(screen.getByText(station5Areas[2].text)).toBeInTheDocument();
+    expect(litConnections(container)).toBe(3);
+
+    // Espacio → Visitante
+    advanceToArea(container, "visitante");
+    expect(getState(container)).toBe("station5_visitante_active");
+    expect(screen.getByText(station5Areas[3].text)).toBeInTheDocument();
+    expect(litConnections(container)).toBe(4);
+    expect(
+      container.querySelectorAll('[data-area-state="active"]'),
+    ).toHaveLength(1);
+  });
+
+  it("durante la primera pasada un área completada no reabre la explicación", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+    fireEvent.click(areaButton(container, "plantas"));
+    advanceToArea(container, "sistema");
+
+    fireEvent.click(areaButton(container, "plantas"));
+
+    expect(getState(container)).toBe("station5_sistema_active");
+    expect(screen.getByText(station5Lia.revisitLater)).toBeInTheDocument();
+  });
+
+  it("al completar Visitante el nexo central se ilumina y llega la síntesis", () => {
+    const { container } = renderStation5();
+    completeMap(container);
+
+    expect(
+      container.querySelector("[data-station5-nexus-state]"),
+    ).toHaveAttribute("data-station5-nexus-state", "full");
+    expect(litConnections(container)).toBe(4);
+    expect(screen.getByText(station5Lia.synthesis)).toBeInTheDocument();
+    expect(screen.getByText(station5Lia.revisit)).toBeInTheDocument();
+    for (const area of station5Areas) {
+      expect(areaButton(container, area.id)).toHaveAttribute(
+        "data-area-state",
+        "completed",
+      );
+    }
+  });
+
+  it("la acción final está deshabilitada antes de completar las cuatro áreas", () => {
+    const { container } = renderStation5();
+    enterStation(container);
+
+    const cta = screen.getByRole("button", {
+      name: station5Cta.accessibleLabelDisabled,
     });
+    expect(cta).toHaveAttribute("aria-disabled", "true");
+    expect(cta).toHaveAttribute("data-cta-state", "waiting");
 
-    expect(finalButton).toHaveAttribute(
-      "data-world5-exit-action",
-      "navigate_to_final_transition",
+    fireEvent.click(cta);
+
+    expect(screen.getByText(station5Lia.ctaBlocked)).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/5",
     );
-    fireEvent.click(finalButton);
+    expect(getState(container)).toBe("station5_plants_suggested");
+  });
+
+  it("la acción final se habilita tras completar y navega a la transición final", () => {
+    const { container } = renderStation5();
+    completeMap(container);
+
+    const cta = screen.getByRole("button", {
+      name: station5Cta.accessibleLabel,
+    });
+    expect(cta).toHaveAttribute("aria-disabled", "false");
+    expect(cta).toHaveAttribute("data-cta-state", "ready");
+
+    fireEvent.click(cta);
+    expect(getState(container)).toBe("station5_exiting");
+    advance(400);
+
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-5-to-final",
     );
   });
 
-  it("no implementa medios, QR, contador ni revision libre completa", () => {
-    const { container } = renderWorld5RootScreen();
+  it("en revisita libre las áreas se reabren en cualquier orden sin perder el nexo", () => {
+    const { container } = renderStation5();
+    completeMap(container);
 
-    expect(container.querySelectorAll("img")).toHaveLength(0);
-    expect(container.querySelectorAll("audio")).toHaveLength(0);
-    expect(container.querySelectorAll("video")).toHaveLength(0);
-    expect(container.querySelectorAll("canvas")).toHaveLength(0);
-    expect(container.querySelectorAll("iframe")).toHaveLength(0);
-    expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
-      "data-qr-camera",
-      "blocked",
+    fireEvent.click(areaButton(container, "espacio"));
+
+    expect(getState(container)).toBe("station5_revisit_mode");
+    expect(areaButton(container, "espacio")).toHaveAttribute(
+      "data-area-state",
+      "active",
     );
-    expect(container.querySelector("[data-daily-counter]")).toHaveAttribute(
-      "data-daily-counter",
-      "not_implemented",
-    );
-    expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
-      "data-final-screen",
-      "base_entry_prepared",
-    );
-    expect(container.querySelector("[data-review-free-mode]")).toHaveAttribute(
-      "data-review-free-mode",
-      "not_implemented",
-    );
-    expect(container).not.toHaveTextContent(/QR/i);
-    expect(container).not.toHaveTextContent(/contador diario/i);
+    expect(screen.getByText(station5Areas[2].text)).toBeInTheDocument();
+
+    fireEvent.click(areaButton(container, "plantas"));
+
+    expect(screen.getByText(station5Areas[0].text)).toBeInTheDocument();
+    expect(litConnections(container)).toBe(4);
+    expect(
+      container.querySelector("[data-station5-nexus-state]"),
+    ).toHaveAttribute("data-station5-nexus-state", "full");
+    expect(
+      screen.getByRole("button", { name: station5Cta.accessibleLabel }),
+    ).toBeInTheDocument();
+  });
+
+  it("con reduced motion la secuencia y las explicaciones se conservan", () => {
+    stubReducedMotion(true);
+    const { container } = renderStation5();
+
+    expect(
+      container.querySelector("[data-station5-reduced-motion='true']"),
+    ).toBeInTheDocument();
+
+    advance(100);
+    expect(getState(container)).toBe("station5_plants_suggested");
+
+    fireEvent.click(areaButton(container, "plantas"));
+    expect(screen.getByText(station5Areas[0].text)).toBeInTheDocument();
+
+    advance(300);
+    fireEvent.click(areaButton(container, "sistema"));
+    expect(screen.getByText(station5Areas[1].text)).toBeInTheDocument();
+
+    advance(300);
+    fireEvent.click(areaButton(container, "espacio"));
+    advance(300);
+    fireEvent.click(areaButton(container, "visitante"));
+    expect(screen.getByText(station5Areas[3].text)).toBeInTheDocument();
+
+    advance(300);
+    expect(getState(container)).toBe("station5_map_integrated");
+    advance(300);
+    expect(getState(container)).toBe("station5_ready_to_close");
+    expect(screen.getByText(station5Lia.synthesis)).toBeInTheDocument();
   });
 });
