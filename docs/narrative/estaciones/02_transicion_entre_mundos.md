@@ -4,6 +4,17 @@
 
 **Especificación fuente:** `../source_txt/02_transicion_entre_mundos_especificacion_v1.txt`
 
+## Estado vigente W2 → W3
+
+Este tramo está `FINAL / HUMAN_APPROVED`. Es pasivo, automático y no ofrece CTA:
+
+- Título: `Abriendo Mundo III`.
+- Subtítulo: `Preparando el Cuaderno Pixel de Pruebas…`.
+- Movimiento normal: 2300 ms.
+- Reduced motion: 1000 ms.
+
+Los tramos W3→W4, W4→W5 y W5→Final conservan copy TEMP y no deben presentarse como cerrados.
+
 ## Intención
 
 Pausa pixelart breve y minimalista donde Lía acompaña la apertura de un portal para conectar narrativamente una estación con la siguiente.

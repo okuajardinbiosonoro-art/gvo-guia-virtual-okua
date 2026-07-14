@@ -1,5 +1,7 @@
 # Checklist de revisión — Estación III — Mundo III: Cuaderno Pixel de Pruebas
 
+> **CHECKLIST PREIMPLEMENTACIÓN / SUPERSEDED.** La revisión humana final ya aprobó Estación III. La fuente vigente es [`../../status/GVO_STATION3_COMPLETE.md`](../../status/GVO_STATION3_COMPLETE.md); las casillas siguientes se conservan como evidencia histórica del criterio previo.
+
 ## Revisión narrativa
 
 - [ ] La bitácora muestra prueba, error y ajuste.

@@ -4,6 +4,12 @@
 
 **Especificación fuente:** `../source_txt/05_estacion_iii_cuaderno_pixel_especificacion_v1.txt`
 
+## Estado runtime vigente
+
+`CERRADA_APROBADA_FINAL / HUMAN_APPROVED` en `/estacion/3`.
+
+La pantalla implementa primera pasada secuencial `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO`, revisitas libres posteriores y avance hacia la transición W3→W4. El copy runtime proviene de `src/screens/World3Root/station3Content.ts`; los slots `W3_*` de la matriz histórica no tienen consumidores runtime. El contrato final es [`../../status/GVO_STATION3_COMPLETE.md`](../../status/GVO_STATION3_COMPLETE.md).
+
 ## 1. Función de la estación dentro de GVO
 
 Mundo III muestra que OKÚA nació de observación, pruebas, errores, prototipos, revisión de señales y ajustes. No presenta el sistema como perfecto desde el inicio.
@@ -157,7 +163,9 @@ Pantalla vertical móvil con estética de cuaderno pixel, bloques de bitácora y
 
 Viene de Mundo II, donde la señal fue presentada como mediada. Prepara Mundo IV, donde la cadena técnica completa se ordena con precisión por nodos.
 
-## 15. Checklist específico de aprobación
+## 15. Checklist histórico de preimplementación
+
+Este checklist queda conservado como insumo de diseño. La aprobación final ya fue otorgada y se registra en el contrato canónico enlazado arriba.
 
 - [ ] La pantalla se lee como bitácora de proceso.
 - [ ] No se presenta el sistema como perfecto desde el inicio.

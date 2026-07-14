@@ -1,6 +1,8 @@
 # Entrega para escritor GVO v1
 
-Estado del paquete: `v1 — base para escritura`.
+Estado del paquete: `LEGACY — snapshot de autoría; no es fuente de verdad runtime`.
+
+> Aviso 017K-R1: la transición W2→W3 y Estación III ya están cerradas. Las matrices reflejan los dos slots W2→W3 como `FINAL / human_approved` y los 23 slots `W3_*` como `LEGACY / no consumido por runtime`. No editar esas filas ni usarlas para reemplazar `src/screens/World3Root/station3Content.ts`. Este paquete solo puede reactivarse para otros slots mediante un ticket independiente.
 
 ## Propósito
 
@@ -27,12 +29,12 @@ La entrega no impone estilo literario. Ordena función, contexto visual, restric
 2. Revisar `01_DOSSIER_VISUAL_GUIONIZACION_GVO_v1.md`.
 3. Consultar `06_INDICE_VISUAL_REFERENCIAS_GVO_v1.md` junto con las imágenes.
 4. Leer `04_CONCEPTOS_PROTEGIDOS_Y_CUIDADOS_GVO_v1.md`.
-5. Llenar la matriz con ayuda de `03_GUIA_DILIGENCIAMIENTO_MATRIZ_GVO_v1.md`.
+5. Llenar únicamente filas todavía pendientes y autorizadas por un ticket activo, con ayuda de `03_GUIA_DILIGENCIAMIENTO_MATRIZ_GVO_v1.md`.
 6. Validar la entrega con `05_CHECKLIST_ENTREGA_TEXTOS_GVO_v1.md`.
 
 ## Trabajo en la matriz
 
-El escritor debe escribir en la matriz, preferiblemente en la versión `.xlsx` si trabajará en hoja de cálculo.
+Si un ticket independiente reactiva este paquete, el escritor debe trabajar únicamente filas todavía pendientes, preferiblemente en la versión `.xlsx`.
 
 Columnas editables:
 
@@ -47,5 +49,7 @@ No cambiar:
 - Estados.
 - Columnas estructurales.
 - Orden o cantidad de filas.
+- Filas `FINAL / human_approved`.
+- Filas `LEGACY / no consumido por runtime`.
 
 Este paquete no es documentación técnica de programación. No requiere modificar rutas, pantallas, lógica, componentes ni archivos runtime.

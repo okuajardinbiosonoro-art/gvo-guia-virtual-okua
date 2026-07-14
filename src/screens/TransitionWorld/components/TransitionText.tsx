@@ -1,6 +1,7 @@
 import styles from "../TransitionWorld.module.css";
 
 type TransitionTextProps = {
+  editorialCopyStatus?: "final" | "temporary";
   subtitleSlotId?: string;
   title: string;
   titleSlotId?: string;
@@ -8,6 +9,7 @@ type TransitionTextProps = {
 };
 
 export function TransitionText({
+  editorialCopyStatus,
   subtitle,
   subtitleSlotId,
   title,
@@ -16,7 +18,9 @@ export function TransitionText({
   return (
     <div
       className={styles.copy}
-      data-editorial-copy={titleSlotId || subtitleSlotId ? "temporary" : undefined}
+      data-editorial-copy={
+        titleSlotId || subtitleSlotId ? editorialCopyStatus : undefined
+      }
       data-subtitle-slot={subtitleSlotId}
       data-title-slot={titleSlotId}
     >

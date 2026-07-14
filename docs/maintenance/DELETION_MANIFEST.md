@@ -1,5 +1,12 @@
 # Deletion manifest
 
+## Station III closeout — 017K
+
+- `src/screens/World3Root/PixelLia.tsx`: removed as dead provisional code after proving zero consumers and replacement by `World3LiaActor` plus approved runtime poses.
+- `docs/status/GVO_STATION3_FABLE_BASE_PORT.md`: removed as a superseded intermediate report whose claims about assets and approval no longer matched the repository; canonical history moved to `docs/status/GVO_STATION3_COMPLETE.md`.
+
+No Station III runtime asset was deleted. The 15 runtime/current-used pairs are required policy mirrors and remain byte-identical. No QA ZIP, local log, build output, cache, or Downloads artifact was added to Git.
+
 ## Migrated then removed
 
 - Untracked `docs/status/015H*` through `016V*`: consolidated into current state, Station II contract, changelog, and maintenance records.

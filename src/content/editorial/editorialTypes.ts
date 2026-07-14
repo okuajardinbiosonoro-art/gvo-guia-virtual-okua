@@ -2,7 +2,11 @@ export type EditorialLocale = "es" | "en";
 
 export type EditorialStatus = "TEMP" | "DRAFT" | "REVIEW" | "APPROVED" | "FINAL";
 
-export type EditorialSource = "temporary" | "editorial_excel" | "fallback";
+export type EditorialSource =
+  | "temporary"
+  | "editorial_excel"
+  | "human_approved"
+  | "fallback";
 
 export type EditorialEmitter = "ambiente" | "interfaz" | "lia" | "sistema";
 

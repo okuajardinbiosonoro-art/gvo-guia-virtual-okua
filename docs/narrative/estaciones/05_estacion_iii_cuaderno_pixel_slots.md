@@ -1,5 +1,7 @@
 # Slots de texto — Estación III — Mundo III: Cuaderno Pixel de Pruebas
 
+> **INVENTARIO EDITORIAL LEGACY / NO CONSUMIDO POR RUNTIME.** Estación III usa `src/screens/World3Root/station3Content.ts`. Este archivo preserva los 23 slots `W3_*` TEMP como deuda editorial histórica; no es fuente del copy visible. Consulte [`../../status/GVO_STATION3_COMPLETE.md`](../../status/GVO_STATION3_COMPLETE.md).
+
 ## Uso
 
 Este archivo lista los slots de texto requeridos para guionización. No contiene textos finales.

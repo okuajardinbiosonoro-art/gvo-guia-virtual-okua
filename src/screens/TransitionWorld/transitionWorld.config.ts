@@ -43,6 +43,7 @@ export const introToStationOneTransition: TransitionWorldConfig = {
 };
 
 export const worldOneToWorldTwoTransition: TransitionWorldConfig = {
+  editorialCopyStatus: worldOneToWorldTwoTransitionCopy.title.status,
   id: "world-1-to-world-2",
   fromRoute: worldOneEntryRoute,
   toRoute: worldTwoEntryRoute,
@@ -70,6 +71,7 @@ export const worldOneToWorldTwoTransition: TransitionWorldConfig = {
 };
 
 export const worldTwoToWorldThreeTransition: TransitionWorldConfig = {
+  editorialCopyStatus: worldTwoToWorldThreeTransitionCopy.title.status,
   id: "world-2-to-world-3",
   fromRoute: worldTwoEntryRoute,
   toRoute: worldThreeEntryRoute,
@@ -97,6 +99,7 @@ export const worldTwoToWorldThreeTransition: TransitionWorldConfig = {
 };
 
 export const worldThreeToWorldFourTransition: TransitionWorldConfig = {
+  editorialCopyStatus: worldThreeToWorldFourTransitionCopy.title.status,
   id: "world-3-to-world-4",
   fromRoute: worldThreeEntryRoute,
   toRoute: worldFourEntryRoute,
@@ -124,6 +127,7 @@ export const worldThreeToWorldFourTransition: TransitionWorldConfig = {
 };
 
 export const worldFourToWorldFiveTransition: TransitionWorldConfig = {
+  editorialCopyStatus: worldFourToWorldFiveTransitionCopy.title.status,
   id: "world-4-to-world-5",
   fromRoute: worldFourEntryRoute,
   toRoute: worldFiveEntryRoute,
@@ -151,6 +155,7 @@ export const worldFourToWorldFiveTransition: TransitionWorldConfig = {
 };
 
 export const worldFiveToFinalTransition: TransitionWorldConfig = {
+  editorialCopyStatus: worldFiveToFinalTransitionCopy.title.status,
   id: "world-5-to-final",
   fromRoute: worldFiveEntryRoute,
   toRoute: finalEntryRoute,

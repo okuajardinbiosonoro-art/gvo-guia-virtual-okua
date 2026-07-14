@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 
 import transitionRootAssetManifestRaw from "../../assets/transition-world/root/asset-manifest.transition-root.json?raw";
+import routerSourceRaw from "../../app/router.tsx?raw";
 import { TransitionWorld } from "./TransitionWorld";
 import {
   introToStationOneTransition,
@@ -194,7 +195,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion temporal de la transicion Mundo II a Mundo III", () => {
+  it("R1 expone copy breve y arquitectura pasiva de Mundo II a Mundo III", () => {
     const { container } = render(
       <TransitionWorld config={worldTwoToWorldThreeTransition} />,
     );
@@ -209,11 +210,17 @@ describe("TransitionWorld", () => {
     expect(worldTwoToWorldThreeTransition.subtitleSlotId).toBe(
       "TRANS_W2_W3_SUB_01",
     );
+    expect(worldTwoToWorldThreeTransition.editorialCopyStatus).toBe("final");
     expect(
-      screen.getByRole("heading", { name: "TEMP — Abriendo Mundo III" }),
+      screen.getByRole("heading", { name: "Abriendo Mundo III" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("TEMP — Preparando el cuaderno de pruebas y ajustes."),
+      screen.getByText("Preparando el Cuaderno Pixel de Pruebas…"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("status", {
+        name: "Abriendo Mundo III Preparando el Cuaderno Pixel de Pruebas…",
+      }),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
       "data-title-slot",
@@ -223,6 +230,10 @@ describe("TransitionWorld", () => {
       "data-subtitle-slot",
       "TRANS_W2_W3_SUB_01",
     );
+    expect(container.querySelector("[data-editorial-copy]")).toHaveAttribute(
+      "data-editorial-copy",
+      "final",
+    );
     expect(container.querySelector("main")).toHaveAttribute(
       "data-transition-world-id",
       "world-2-to-world-3",
@@ -230,6 +241,30 @@ describe("TransitionWorld", () => {
     expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
       "data-gvo-progress-bar",
       "transition-world",
+    );
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-progress-motion",
+      "fill-and-spark",
+    );
+    expect(
+      screen.getByTestId("transition-world-progress").getAttribute("style"),
+    ).toContain("--transition-progress-duration: 2300ms");
+    expect(container.querySelector("button")).not.toBeInTheDocument();
+    expect(container.querySelector("a")).not.toBeInTheDocument();
+    expect(container.querySelector('[role="button"]')).not.toBeInTheDocument();
+    expect(container.querySelector('[role="link"]')).not.toBeInTheDocument();
+    expect(container.querySelector("[data-hotspot]")).not.toBeInTheDocument();
+    expect(
+      container.querySelector("[data-transition-cta]"),
+    ).not.toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/TEMP/i);
+    expect(container).not.toHaveTextContent("La señal deja una huella");
+    expect(container).not.toHaveTextContent(
+      "Ya descubrimos cómo el pulso puede ser leído y mediado.",
+    );
+    expect(container).not.toHaveTextContent("Entrar al Mundo III");
+    expect(routerSourceRaw).toMatch(
+      /navigate\(config\.toRoute,\s*\{\s*replace:\s*true\s*\}\)/,
     );
   });
 
@@ -381,12 +416,109 @@ describe("TransitionWorld", () => {
     expect(handleComplete).toHaveBeenCalledTimes(1);
   });
 
-  it("runtime reduced motion usa duracion de 1000ms para completar", () => {
+  it("R1 autoavanza Mundo II a Mundo III al tiempo exacto sin interaccion", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+    const { container } = render(
+      <TransitionWorld
+        config={worldTwoToWorldThreeTransition}
+        variant="runtime"
+        onComplete={handleComplete}
+      />,
+    );
+
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-navigation-locked",
+      "true",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-target-preload",
+      "none",
+    );
+    expect(container.querySelector("main")).toHaveAttribute(
+      "data-target-assets-ready",
+      "true",
+    );
+    expect(container.querySelector("button")).not.toBeInTheDocument();
+    expect(screen.getByTestId("transition-world-progress")).toBeInTheDocument();
+
+    act(() => {
+      vi.advanceTimersByTime(worldTwoToWorldThreeTransition.durationMs - 1);
+    });
+    expect(handleComplete).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(handleComplete).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      vi.advanceTimersByTime(worldTwoToWorldThreeTransition.durationMs);
+    });
+    expect(handleComplete).toHaveBeenCalledTimes(1);
+    expect(worldTwoToWorldThreeTransition.toRoute).toBe("/estacion/3");
+  });
+
+  it("R1 limpia el temporizador automatico al desmontar", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+    const { unmount } = render(
+      <TransitionWorld
+        config={worldTwoToWorldThreeTransition}
+        variant="runtime"
+        onComplete={handleComplete}
+      />,
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(worldTwoToWorldThreeTransition.durationMs - 1);
+    });
+    unmount();
+    act(() => {
+      vi.advanceTimersByTime(worldTwoToWorldThreeTransition.durationMs * 2);
+    });
+
+    expect(handleComplete).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ["Mundo I a Mundo II", worldOneToWorldTwoTransition],
+    ["Mundo III a Mundo IV", worldThreeToWorldFourTransition],
+    ["Mundo IV a Mundo V", worldFourToWorldFiveTransition],
+    ["Mundo V a final", worldFiveToFinalTransition],
+  ])("%s conserva pasividad, progreso y autoavance", (_label, config) => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+    const { container } = render(
+      <TransitionWorld
+        config={config}
+        variant="runtime"
+        onComplete={handleComplete}
+      />,
+    );
+
+    expect(container.querySelector("button")).not.toBeInTheDocument();
+    expect(container.querySelector("a")).not.toBeInTheDocument();
+    expect(screen.getByTestId("transition-world-progress")).toBeInTheDocument();
+
+    act(() => {
+      vi.advanceTimersByTime(config.durationMs - 1);
+    });
+    expect(handleComplete).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1 + config.durationMs);
+    });
+    expect(handleComplete).toHaveBeenCalledTimes(1);
+  });
+
+  it("R1 reduced motion conserva autoavance de Mundo II a Mundo III", () => {
     vi.useFakeTimers();
     const handleComplete = vi.fn();
 
     render(
       <TransitionWorld
+        config={worldTwoToWorldThreeTransition}
         variant="runtime"
         isReducedMotion
         onComplete={handleComplete}
@@ -403,6 +535,20 @@ describe("TransitionWorld", () => {
       vi.advanceTimersByTime(1);
     });
 
+    expect(handleComplete).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId("transition-world-progress")).toHaveAttribute(
+      "data-reduced-motion",
+      "true",
+    );
+    expect(
+      screen.getByTestId("transition-world-progress").getAttribute("style"),
+    ).toContain("--transition-progress-duration: 1000ms");
+
+    act(() => {
+      vi.advanceTimersByTime(
+        worldTwoToWorldThreeTransition.reducedMotionDurationMs,
+      );
+    });
     expect(handleComplete).toHaveBeenCalledTimes(1);
   });
 

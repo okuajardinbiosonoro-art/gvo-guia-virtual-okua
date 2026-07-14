@@ -1,20 +1,23 @@
 # Assets utilizados runtime
 
-Esta carpeta es el registro canónico de assets usados por pantallas reales de GVO.
-
-No es el Atlas visual. No es una carpeta de prompts ni de mockups. Es el espejo organizado de assets utilizados por runtime o por pantallas aprobadas.
+Esta carpeta es el registro canónico de assets usados por pantallas reales de
+GVO. No es el Atlas visual, una carpeta de prompts ni un depósito de mockups. Es
+el espejo organizado de assets consumidos por runtime o registrados para una
+pantalla con estado documentado.
 
 ## Regla obligatoria
 
-Todo asset runtime usado por una pantalla debe quedar copiado o registrado aquí, organizado por pantalla, aunque el ticket no lo pida explícitamente.
+Todo asset runtime usado por una pantalla debe quedar copiado o registrado aquí,
+organizado por pantalla, aunque el ticket no lo pida explícitamente.
 
-Antes de continuar cualquier trabajo de assets o pantallas, revisar también:
+Antes de continuar cualquier trabajo de assets o pantallas, revisar:
 
 ```text
 docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md
+docs/assets/ASSET_INVENTORY.md
 ```
 
-## Estructura actual
+## Estructura registrada
 
 ```text
 current-used/
@@ -23,37 +26,44 @@ current-used/
   transition-world/
   world-1-root/
   world-2-root/
+  world-3-root/
+    environment/
+    index/
+    lia/
+    notebook/
+    plant/
+    prototype/
+    records/
+    signal/
+  world-4-root/
+  world-5-root/
+  shared/
   global/
 ```
 
-## Pantallas futuras
+## Estado por bloque
 
-Cuando se integren assets reales para nuevas pantallas, crear o actualizar:
-
-```text
-world-2-root/
-world-3-root/
-world-4-root/
-world-5-root/
-final-root/
-```
-
-## Estado antes de Estación II
-
-Se agregaron copias de los assets usados que faltaban antes de continuar con Estación II:
-
-- Pre-portada / carga inicial.
-- Portada intro.
-- Transición entre mundos.
-- Estación I / Mundo Raíz.
-- Estación II / Mundo II: Pulso invisible.
-- Assets globales runtime.
+- `loading-initial`, `cover-intro`, `transition-world`, `world-1-root`,
+  `world-2-root`, `shared` y `global` conservan sus registros runtime
+  preexistentes.
+- `world-3-root` contiene los 15 espejos aprobados de Estación III. Cada archivo
+  es byte-idéntico a su par bajo
+  `public/assets/gvo/stations/world-3/notebook-pixel/runtime/`; rutas,
+  dimensiones, SHA-256 y consumidor están inventariados en
+  `world-3-root/README.md` y `docs/assets/ASSET_INVENTORY.md`.
+- `world-4-root` es una base técnica preexistente para referencias compartidas.
+  Su presencia no declara Estación IV iniciada, aprobada ni completa.
+- Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
+  del directorio nunca equivale a aprobación de pantalla.
 
 ## Reglas
 
-- No borrar originales.
-- No mover originales.
+- No borrar ni mover originales.
 - No cambiar imports runtime solo por este espejo.
-- No optimizar ni convertir formatos desde esta carpeta.
-- No incluir referencias del Atlas como si fueran assets runtime.
+- No optimizar, convertir o reexportar archivos desde esta carpeta.
 - Mantener nombres estables y organización por pantalla.
+- No incluir referencias del Atlas como si fueran assets runtime.
+- Verificar identidad byte a byte cuando runtime y `current-used` contengan una
+  copia física del mismo asset.
+- Registrar formato, dimensiones, SHA-256, función, consumidor y estado de cada
+  asset aprobado en el inventario correspondiente.

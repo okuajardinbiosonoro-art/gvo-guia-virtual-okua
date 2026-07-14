@@ -1,5 +1,7 @@
 # Estado actual del proyecto
 
+> **HISTÓRICO — corte 2026-06-11.** Este documento no representa el estado actual. Consulte [`CURRENT_STATE.md`](CURRENT_STATE.md) y [`GVO_STATION3_COMPLETE.md`](GVO_STATION3_COMPLETE.md).
+
 Fecha: 2026-06-11
 
 Estado: carga inicial V13 consolidada en `main` como base de avance; Portada / Intro aprobada para avanzar con calificación manual 7.8/10 y deuda visual documentada; Transición entre mundos aprobada para avanzar con calificación manual 7.9/10 y flujo funcional integrado; Mundo I: Raíz montado en `/estacion/1` mediante `World1RootScreen`; Atlas Visual 006I cerrado para etapa pre-PDFs.

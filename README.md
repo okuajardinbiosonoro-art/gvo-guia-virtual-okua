@@ -26,7 +26,7 @@ El visitante debe poder abrir una guía visual desde el navegador de su celular 
 7. Estación V — Mundo V: Mapa del presente
 8. Final — Mirador final del jardín
 
-También existe una pantalla reutilizable de transición entre mundos. La primera transición runtime aprobada para avanzar conecta Portada / Intro con Mundo I: Raíz en `/estacion/1`.
+También existe una pantalla reutilizable de transición entre mundos. El tramo definitivo Mundo II → Mundo III es pasivo y automático: muestra `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…` y avanza sin CTA tras 2300 ms (1000 ms con reduced motion).
 
 ## Stack técnico
 
@@ -66,17 +66,17 @@ npm run test:e2e
 
 ## Estado actual
 
-La Estación II está implementada en `/estacion/2` como una experiencia secuencial de seis capas sobre mediación de señal bioeléctrica. El runtime `016V-R2` incluye señal, captura, acondicionamiento, mapeo, convergencia sónica, cierre centrado y revisita posterior a la finalización. El estado canónico se mantiene en [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md).
+La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido implementado y consolidado llega hasta Estación III:
 
-La carga inicial pre-portada está disponible en `/` y `/carga`, usa assets runtime locales normalizados y queda documentada como `APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA`. No está cerrada como `CERRADA_APROBADA_FINAL`.
+- Mundo I funcional en `/estacion/1`.
+- Mundo II finalizado para el alcance actual en `/estacion/2`.
+- Transición Mundo II → Mundo III definitiva, pasiva y automática.
+- Mundo III / Estación III cerrada y aprobada por revisión humana en `/estacion/3`.
+- Estación III ofrece índice progresivo, PLANTA, PROTOTIPO, SEÑAL, sello AJUSTADO, revisitas, ayudas de interacción, assets runtime y espejos `current-used`, responsive y reduced motion.
+- Mundo IV conserva una base técnica deliberada preexistente, pero no está aprobado y no fue iniciado por el ticket de cierre 017K.
+- Mundo V y Final no están cerrados.
 
-La Portada / Intro, `EL ARCHIVO VIVO DE OKÚA`, está en `APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL`. `/portada` muestra la base visual, los cinco diálogos introductorios de Lía, feedback de portales bloqueados, un panel de diálogo integrado sin conector ordinario, progreso legible `Paso X de 5`, Portal I protagonista, rig facial seguro en idle y diálogos 1-4, y una activación del Portal I por capas con Lía anclada al portal, frame frontal duplicado y luz de contacto CSS antes de entregar el flujo a la transición real. Para revisar primera pasada, usar `/portada?resetIntro=1` o `/?resetIntro=1`.
-
-La Transición entre mundos está en `APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA`. `/transition/intro-to-station-1` ejecuta la transición runtime desde Portada hacia `/estacion/1`; `/dev/transition-world` se conserva como preview técnico aislado.
-
-Mundo I: Raíz ya está montado en `/estacion/1` mediante `World1RootScreen`. Incluye fondo aprobado, raíces, planta, Lía por estados, nodos secuenciales de RELACIÓN / PERCEPCIÓN / MEDIACIÓN y estado `ready_to_continue` sin navegación de salida final. No está marcado como `CERRADA_APROBADA_FINAL`; conserva deuda visual y de continuidad documentada.
-
-El Atlas Visual 006I quedó cerrado para etapa pre-PDFs: 47 PNG en la carpeta Atlas, mapa de 197/197 slots y sin pendientes visuales bloqueantes en `manifest_006i_pending_visuals.csv`.
+El contrato integral de Estación III está en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y el siguiente frente se mantiene en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Metodología de avance por pantalla
 
@@ -94,7 +94,9 @@ Estado actual:
 - Transición: APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA
 - Estación I: RUNTIME ACTIVO / INTERACCION REFINADA / DEUDA VISUAL DOCUMENTADA
 - Estación II: FINALIZADA PARA EL ALCANCE ACTUAL / RUNTIME 016V-R2
-- Estaciones III-V: BASE TEMPORAL / PENDIENTES DE DESARROLLO FINAL
+- Estación III: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
+- Estación IV: BASE TÉCNICA PREEXISTENTE / NO APROBADA / NO INICIADA POR 017K
+- Estación V: BASE PREEXISTENTE / NO CERRADA
 - Final: NO_INICIADA / BLOQUEADO
 
-Consulta el [índice documental](docs/README.md), el [contrato final de Estación II](docs/worlds/WORLD_II_FINAL.md) y el [inventario de assets](docs/assets/ASSET_INVENTORY.md).
+Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md) y [Estación III](docs/status/GVO_STATION3_COMPLETE.md), y el [inventario de assets](docs/assets/ASSET_INVENTORY.md).

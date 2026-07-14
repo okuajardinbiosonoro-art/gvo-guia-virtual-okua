@@ -29,10 +29,10 @@ El recorrido se organiza como una secuencia de pantallas locales. El acceso prin
 
 ## Regla secuencial
 
-La Portada / Intro entrega el flujo a la transición runtime `/transition/intro-to-station-1`, y esta transición conduce a `/estacion/1`.
+La Portada / Intro entrega el flujo a `/transition/intro-to-station-1`, que conduce a `/estacion/1`. El recorrido consolidado continúa por Mundo I y Mundo II hasta la transición definitiva `/transition/world-2-to-world-3`, que avanza automáticamente a `/estacion/3`.
 
-La estación 1 ya está montada como Mundo I: Raíz mediante `World1RootScreen`. Cada estación siguiente requiere completar la estación anterior. Las estaciones II-V y el final real siguen pendientes de implementación funcional.
+Mundo III exige la primera pasada `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO`; después permite revisitas y habilita `Continuar`. El avance conduce a la transición W3→W4, cuyo copy sigue siendo TEMP. La base técnica preexistente de Mundo IV no constituye aprobación ni desarrollo iniciado por 017K.
 
 ## Transición entre mundos
 
-La pantalla de transición reutilizable ya existe para el tramo Portada / Intro -> Mundo I. La preview técnica se conserva en `/dev/transition-world` y el runtime aprobado usa `/transition/intro-to-station-1`.
+La pantalla de transición reutilizable cubre los tramos del recorrido. La transición W2→W3 es pasiva y automática, usa `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…`, dura 2300 ms en movimiento normal y 1000 ms en reduced motion, y no expone CTA, link ni hotspot. La preview técnica se conserva en `/dev/transition-world`.

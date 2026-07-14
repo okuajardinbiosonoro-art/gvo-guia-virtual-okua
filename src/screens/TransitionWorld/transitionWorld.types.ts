@@ -15,6 +15,7 @@ export type TransitionWorldPalette = {
 };
 
 export type TransitionWorldConfig = {
+  editorialCopyStatus?: "final" | "temporary";
   id: string;
   fromRoute: string;
   subtitleSlotId?: string;

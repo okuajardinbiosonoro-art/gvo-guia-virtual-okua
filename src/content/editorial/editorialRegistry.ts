@@ -15,6 +15,8 @@ type TemporaryEntryInput<SlotId extends string> = {
   text: string;
 };
 
+type FinalEntryInput<SlotId extends string> = TemporaryEntryInput<SlotId>;
+
 function temporaryEsEntry<SlotId extends string>({
   emitter,
   notes = excelPendingNote,
@@ -30,6 +32,25 @@ function temporaryEsEntry<SlotId extends string>({
     slotId,
     source: "temporary",
     status: "TEMP",
+    text,
+  };
+}
+
+function finalEsEntry<SlotId extends string>({
+  emitter,
+  notes = "Copy definitivo aprobado por revisión humana.",
+  shortText,
+  slotId,
+  text,
+}: FinalEntryInput<SlotId>): EditorialTextEntry<SlotId> {
+  return {
+    emitter,
+    locale: "es",
+    notes,
+    shortText,
+    slotId,
+    source: "human_approved",
+    status: "FINAL",
     text,
   };
 }
@@ -54,21 +75,21 @@ export const editorialRegistry = {
     }),
   },
   TRANS_W2_W3_TITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de transición W2→W3; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
       shortText: "Abriendo Mundo III",
       slotId: "TRANS_W2_W3_TITLE_01",
-      text: "TEMP — Abriendo Mundo III",
+      text: "Abriendo Mundo III",
     }),
   },
   TRANS_W2_W3_SUB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W2→W3; reemplazar por Excel editorial.",
-      shortText: "Cuaderno de pruebas",
+      notes: "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
+      shortText: "Cuaderno Pixel de Pruebas",
       slotId: "TRANS_W2_W3_SUB_01",
-      text: "TEMP — Preparando el cuaderno de pruebas y ajustes.",
+      text: "Preparando el Cuaderno Pixel de Pruebas…",
     }),
   },
   TRANS_W3_W4_TITLE_01: {

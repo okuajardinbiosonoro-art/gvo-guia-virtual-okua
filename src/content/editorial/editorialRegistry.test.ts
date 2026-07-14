@@ -44,12 +44,16 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
-  it("resuelve los slots temporales W2 W3, W3 W4, W4 W5, Mundo III, Mundo IV y entrada Mundo V", () => {
+  it("resuelve el copy final W2 W3 y conserva temporales los slots posteriores", () => {
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
-      "TEMP — Abriendo Mundo III",
+      "Abriendo Mundo III",
     );
     expect(resolveEditorialText("TRANS_W2_W3_SUB_01").text).toBe(
-      "TEMP — Preparando el cuaderno de pruebas y ajustes.",
+      "Preparando el Cuaderno Pixel de Pruebas…",
+    );
+    expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").status).toBe("FINAL");
+    expect(resolveEditorialText("TRANS_W2_W3_SUB_01").source).toBe(
+      "human_approved",
     );
     expect(resolveEditorialText("TRANS_W3_W4_TITLE_01").text).toBe(
       "TEMP — Abriendo Mundo IV",
@@ -243,14 +247,24 @@ describe("editorialRegistry", () => {
     ).toThrow("Editorial slot not registered: W2_SLOT_INEXISTENTE");
   });
 
-  it("preserva todos los slots actuales como temporales con fuente temporary", () => {
+  it("preserva la metadata final W2 W3 y deja temporales los gaps reales", () => {
+    const finalSlotIds = new Set([
+      "TRANS_W2_W3_TITLE_01",
+      "TRANS_W2_W3_SUB_01",
+    ]);
+
     for (const localizedEntries of Object.values(editorialRegistry)) {
       const esEntry = localizedEntries.es;
 
       expect(esEntry).toBeDefined();
       expect(esEntry?.locale).toBe(EDITORIAL_DEFAULT_LOCALE);
-      expect(esEntry?.source).toBe("temporary");
-      expect(esEntry?.status).toBe("TEMP");
+      if (esEntry && finalSlotIds.has(esEntry.slotId)) {
+        expect(esEntry.source).toBe("human_approved");
+        expect(esEntry.status).toBe("FINAL");
+      } else {
+        expect(esEntry?.source).toBe("temporary");
+        expect(esEntry?.status).toBe("TEMP");
+      }
     }
   });
 });

@@ -16,72 +16,73 @@ export type TransitionEditorialSlotId =
     | "TRANS_W5_FINAL_SUB_01"
   >;
 
-type TemporaryTransitionSlot = {
+type TransitionSlot = {
   id: TransitionEditorialSlotId;
-  replacement: "editorial_matrix_pending";
-  status: "temporary";
+  replacement: "editorial_matrix_pending" | null;
+  status: "final" | "temporary";
   text: string;
 };
 
-function resolveTemporaryTransitionSlot(
+function resolveTransitionSlot(
   slotId: TransitionEditorialSlotId,
-): TemporaryTransitionSlot {
+): TransitionSlot {
   const resolvedSlot = resolveEditorialText(slotId);
+  const isFinal = resolvedSlot.status === "FINAL";
 
   return {
     id: resolvedSlot.slotId,
-    replacement: "editorial_matrix_pending",
-    status: "temporary",
+    replacement: isFinal ? null : "editorial_matrix_pending",
+    status: isFinal ? "final" : "temporary",
     text: resolvedSlot.text,
   };
 }
 
-export const temporaryTransitionEditorialSlots = {
-  TRANS_W1_W2_TITLE_01: resolveTemporaryTransitionSlot(
+export const transitionEditorialSlots = {
+  TRANS_W1_W2_TITLE_01: resolveTransitionSlot(
     "TRANS_W1_W2_TITLE_01",
   ),
-  TRANS_W1_W2_SUB_01: resolveTemporaryTransitionSlot("TRANS_W1_W2_SUB_01"),
-  TRANS_W2_W3_TITLE_01: resolveTemporaryTransitionSlot(
+  TRANS_W1_W2_SUB_01: resolveTransitionSlot("TRANS_W1_W2_SUB_01"),
+  TRANS_W2_W3_TITLE_01: resolveTransitionSlot(
     "TRANS_W2_W3_TITLE_01",
   ),
-  TRANS_W2_W3_SUB_01: resolveTemporaryTransitionSlot("TRANS_W2_W3_SUB_01"),
-  TRANS_W3_W4_TITLE_01: resolveTemporaryTransitionSlot(
+  TRANS_W2_W3_SUB_01: resolveTransitionSlot("TRANS_W2_W3_SUB_01"),
+  TRANS_W3_W4_TITLE_01: resolveTransitionSlot(
     "TRANS_W3_W4_TITLE_01",
   ),
-  TRANS_W3_W4_SUB_01: resolveTemporaryTransitionSlot("TRANS_W3_W4_SUB_01"),
-  TRANS_W4_W5_TITLE_01: resolveTemporaryTransitionSlot(
+  TRANS_W3_W4_SUB_01: resolveTransitionSlot("TRANS_W3_W4_SUB_01"),
+  TRANS_W4_W5_TITLE_01: resolveTransitionSlot(
     "TRANS_W4_W5_TITLE_01",
   ),
-  TRANS_W4_W5_SUB_01: resolveTemporaryTransitionSlot("TRANS_W4_W5_SUB_01"),
-  TRANS_W5_FINAL_TITLE_01: resolveTemporaryTransitionSlot(
+  TRANS_W4_W5_SUB_01: resolveTransitionSlot("TRANS_W4_W5_SUB_01"),
+  TRANS_W5_FINAL_TITLE_01: resolveTransitionSlot(
     "TRANS_W5_FINAL_TITLE_01",
   ),
-  TRANS_W5_FINAL_SUB_01: resolveTemporaryTransitionSlot(
+  TRANS_W5_FINAL_SUB_01: resolveTransitionSlot(
     "TRANS_W5_FINAL_SUB_01",
   ),
-} as const satisfies Record<TransitionEditorialSlotId, TemporaryTransitionSlot>;
+} as const satisfies Record<TransitionEditorialSlotId, TransitionSlot>;
 
 export const worldOneToWorldTwoTransitionCopy = {
-  subtitle: temporaryTransitionEditorialSlots.TRANS_W1_W2_SUB_01,
-  title: temporaryTransitionEditorialSlots.TRANS_W1_W2_TITLE_01,
+  subtitle: transitionEditorialSlots.TRANS_W1_W2_SUB_01,
+  title: transitionEditorialSlots.TRANS_W1_W2_TITLE_01,
 } as const;
 
 export const worldTwoToWorldThreeTransitionCopy = {
-  subtitle: temporaryTransitionEditorialSlots.TRANS_W2_W3_SUB_01,
-  title: temporaryTransitionEditorialSlots.TRANS_W2_W3_TITLE_01,
+  subtitle: transitionEditorialSlots.TRANS_W2_W3_SUB_01,
+  title: transitionEditorialSlots.TRANS_W2_W3_TITLE_01,
 } as const;
 
 export const worldThreeToWorldFourTransitionCopy = {
-  subtitle: temporaryTransitionEditorialSlots.TRANS_W3_W4_SUB_01,
-  title: temporaryTransitionEditorialSlots.TRANS_W3_W4_TITLE_01,
+  subtitle: transitionEditorialSlots.TRANS_W3_W4_SUB_01,
+  title: transitionEditorialSlots.TRANS_W3_W4_TITLE_01,
 } as const;
 
 export const worldFourToWorldFiveTransitionCopy = {
-  subtitle: temporaryTransitionEditorialSlots.TRANS_W4_W5_SUB_01,
-  title: temporaryTransitionEditorialSlots.TRANS_W4_W5_TITLE_01,
+  subtitle: transitionEditorialSlots.TRANS_W4_W5_SUB_01,
+  title: transitionEditorialSlots.TRANS_W4_W5_TITLE_01,
 } as const;
 
 export const worldFiveToFinalTransitionCopy = {
-  subtitle: temporaryTransitionEditorialSlots.TRANS_W5_FINAL_SUB_01,
-  title: temporaryTransitionEditorialSlots.TRANS_W5_FINAL_TITLE_01,
+  subtitle: transitionEditorialSlots.TRANS_W5_FINAL_SUB_01,
+  title: transitionEditorialSlots.TRANS_W5_FINAL_TITLE_01,
 } as const;

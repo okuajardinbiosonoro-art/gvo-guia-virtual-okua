@@ -1,9 +1,11 @@
 {
   "packageId": "gvo-writer-handoff-v1",
   "ticket": "005D",
-  "status": "ready_for_writer_review",
+  "status": "legacy_snapshot_runtime_superseded",
   "sourceWorkspace": "docs/narrative",
   "createdAt": "2026-06-09",
+  "updatedAt": "2026-07-14",
+  "supersededForRuntimeBy": "GVO-017K-R1",
   "matrixRowsExpected": 197,
   "uniqueIdsExpected": 197,
   "visualReferencesExpected": 9,
@@ -32,6 +34,8 @@
   "notes": [
     "Writer package for dialogue and screen text production.",
     "Functional constraints only; literary tone remains authorial.",
-    "Do not edit runtime files."
+    "Do not edit runtime files.",
+    "W2-W3 rows are FINAL / human_approved; W3 rows are LEGACY and not consumed by runtime.",
+    "Use only still-pending rows covered by a separate active ticket."
   ]
 }

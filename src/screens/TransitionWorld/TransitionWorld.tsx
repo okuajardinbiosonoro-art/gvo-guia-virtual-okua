@@ -162,6 +162,7 @@ export function TransitionWorld({
           <TransitionLiaSprite />
         </div>
         <TransitionText
+          editorialCopyStatus={config.editorialCopyStatus}
           title={config.title}
           titleSlotId={config.titleSlotId}
           subtitle={config.subtitle}
