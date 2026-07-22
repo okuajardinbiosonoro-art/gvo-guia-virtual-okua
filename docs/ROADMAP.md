@@ -1,23 +1,64 @@
 # Roadmap GVO
 
-Actualizado: 2026-07-14
+Actualizado: 2026-07-22
 
 ## Estado consolidado
 
-- Mundo I: funcional.
+- Mundo I: funcional, con deuda visual documentada.
 - Mundo II: finalizado para el alcance actual.
 - Transición Mundo II → Mundo III: definitiva, pasiva y automática.
 - Mundo III / Estación III: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
+- Mundo IV / Estación IV: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
+- Mundo V: base Fable funcional, probada y documentada; visuales de área procedurales/reemplazables, no cerrada y no aprobada por revisión humana.
+- Final: experiencia temporal preexistente, no cerrada y no aprobada.
 
 ## Siguiente frente real
 
-El siguiente frente es la revisión y eventual desarrollo de Estación IV mediante un ticket independiente y aprobación explícita. El repositorio contiene una base técnica Fable deliberada de `Mesa de sistema`; sigue `NO APROBADA` y no fue iniciada ni ampliada por 017K.
+El siguiente frente es exclusivamente:
 
-Antes de declarar Estación IV completa se requieren, como mínimo, ticket activo, criterio narrativo/visual aprobado, QA técnico y aprobación humana independiente.
+```text
+ST5-019A — read-only audit e inventario maestro
+```
 
-## Fuera del cierre 017K
+Esa auditoría debe confirmar el estado real de paths, base Fable, assets, copy,
+lógica, rutas, responsive, fullscreen/PWA, accesibilidad, deuda y riesgos. No
+autoriza todavía generar assets ni programar Estación V.
 
-- No aprobar Estación IV por inferencia.
-- No iniciar ni cerrar Estación V.
-- No cerrar el Mirador final.
-- No reabrir Estación III salvo regresión reproducible.
+Secuencia propuesta posterior, siempre sujeta a tickets separados y aprobación:
+
+```text
+ST5-019A — read-only audit e inventario maestro
+ST5-019B — narrativa, interacción, cámara, responsive y blueprint
+ST5-ASSETS — producción uno por uno
+ST5-019C — static composition
+ST5-019D — immersive layout
+ST5-019E — motion/interaction
+ST5-019F — closeout
+```
+
+## Gates obligatorios para Estación V
+
+```text
+Audit
+→ Preproduction
+→ Asset production
+→ Static composition
+→ Immersive layout
+→ Motion/interaction
+→ Human approval
+→ Documentation
+→ Commit/push
+```
+
+La base existente de Mundo V no permite omitir gates ni declarar visuales
+procedurales como assets finales. Mobile compacto, landscape, cámara, artboard,
+anchors, alpha-aware alignment, accesibilidad y reduced motion se diseñan desde
+preproducción.
+
+## Fuera del alcance inmediato
+
+- No reabrir Estación IV salvo regresión reproducible.
+- No alterar copy o rutas de transiciones marcadas `TEMP` sin ticket específico.
+- No declarar Mundo V cerrado, asset-complete o `HUMAN_APPROVED`.
+- No iniciar Mundo VI.
+- No cerrar el Mirador final por inferencia.

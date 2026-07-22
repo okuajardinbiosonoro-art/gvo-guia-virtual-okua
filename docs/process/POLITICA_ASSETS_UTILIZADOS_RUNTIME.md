@@ -2,7 +2,7 @@
 
 ## Estado
 
-`ACTIVA / OBLIGATORIA / VIGENTE_TRAS_CIERRE_ESTACION_III`
+`ACTIVA / OBLIGATORIA / VIGENTE_TRAS_CIERRE_ESTACION_IV`
 
 ## Propósito
 
@@ -85,8 +85,13 @@ Mantener nombres estables y carpetas internas descriptivas (`environment`,
 `background`, `progress`, `nodes`, `roots`, `overlays`, `manifests`, etc.).
 
 La existencia de un directorio no demuestra aprobación funcional. En particular,
-`world-4-root/` conserva una base técnica preexistente para referencias
-compartidas: el cierre de Estación III no inicia, aprueba ni completa Estación IV.
+`world-4-root/` contiene desde 018C los espejos integrados de la composición
+estática. R1 conserva los 20 hashes, retiene z1 y preserva z5 aunque la excluye
+del render tras la comprobación visual por capas. El cierre 018E registra
+Estación IV como `HUMAN_APPROVED`: esa aprobación procede de la autorización
+humana expresa, no de la presencia del directorio. La experiencia cerrada no
+usa audio, ofrece reduced motion completo y conserva como limitación documentada
+que la PWA instalada no fue certificada en la plataforma de QA.
 
 ## Registro aprobado de Estación III
 

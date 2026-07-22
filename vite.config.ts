@@ -14,9 +14,11 @@ export default defineConfig({
         short_name: "GVO OKÚA",
         description:
           "Guía Virtual OKÚA para recorrido local mobile-first sin Internet.",
+        lang: "es",
         theme_color: "#20362f",
         background_color: "#f5f1e7",
         display: "standalone",
+        display_override: ["fullscreen", "standalone"],
         scope: "/",
         start_url: "/",
         icons: [
@@ -29,7 +31,10 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,png,json,webmanifest}"],
+        globPatterns: [
+          "**/*.{js,css,html,svg,png,webp,json,webmanifest,woff2}",
+        ],
+        globIgnores: ["assets/gvo/current-used/**/*", "**/*.md", "**/.gitkeep"],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: "/index.html",
       },

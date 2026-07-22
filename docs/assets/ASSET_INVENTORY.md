@@ -62,12 +62,58 @@ Grupos de Estación II:
 - Diálogos, efectos de Lía y microescenas.
 - Navegación de capas y assets de ruta/resultado.
 
+## Estación IV — cierre integral 018E
+
+Estado: `CERRADA 018E / HUMAN_APPROVED / 20 PARES VERIFICADOS / PWA INSTALADA
+NO CERTIFICADA`. Estación IV conserva 20 assets canónicos bajo:
+
+```text
+public/assets/gvo/stations/world-4/system-table/runtime/
+```
+
+Sus 20 espejos byte-idénticos viven en:
+
+```text
+public/assets/gvo/current-used/world-4-root/
+```
+
+El registro ejecutable es `src/screens/World4Root/world4RuntimeAssets.ts`; los
+hashes, `alpha_bbox`, tamaños baseline, slices y responsabilidades semánticas se
+mantienen en `world4AssetManifest.ts`. El inventario por ruta, dimensiones,
+SHA-256, función, consumidor y estado está en
+`public/assets/gvo/current-used/world-4-root/README.md`.
+
+La prueba visual de capas R1 determinó que z1 no produce las protuberancias
+laterales y permanece en el escenario. z5 sí produce exactamente esas dos
+formas: se preserva byte-idéntica en runtime, manifest y `current-used`, pero no
+se emite como elemento visual. La decisión queda expuesta en DOM como
+`front-edge-disabled-by-human-review`.
+
+El cierre 018E registra la aprobación humana de la composición, el layout y la
+coreografía. La experiencia permanece sin audio y ofrece reduced motion
+completo. La PWA instalada no fue certificada en la plataforma de QA; esa
+limitación no altera la aprobación visual y funcional de Estación IV.
+
+| Grupo            | Cantidad | Rutas relativas                                                                                                                                                                                                                                                                                                          |
+| ---------------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Entorno          |        3 | `environment/world4_environment_base_v01.webp`, `environment/world4_rear_depth_plane_v01.png`, `environment/world4_haze_overlay_v01.png`                                                                                                                                                                                 |
+| Mesa             |        4 | `table/world4_table_contact_shadow_v01.png`, `table/world4_table_lower_base_v01.png`, `table/world4_table_front_edge_v01.png`, `table/world4_table_top_v01.png`                                                                                                                                                          |
+| Ruta             |        1 | `route/world4_system_route_base_v01.png`                                                                                                                                                                                                                                                                                 |
+| Sistema de nodos |        2 | `nodes/world4_node_state_halo_sheet_v01.png`, `nodes/world4_node_pedestal_v01.png`                                                                                                                                                                                                                                       |
+| Objetos          |        8 | `objects/world4_node_plant_v01.png`, `objects/world4_node_bionosifier_v01.png`, `objects/world4_node_esp32_v01.png`, `objects/world4_node_midi_v01.png`, `objects/world4_node_wifi_udp_v01.png`, `objects/world4_node_router_v01.png`, `objects/world4_node_central_system_v01.png`, `objects/world4_node_sound_v01.png` |
+| UI               |        2 | `ui/world4_text_card_backplate_v01.png`, `ui/world4_open_world5_button_backplate_v01.png`                                                                                                                                                                                                                                |
+
+La pantalla conserva las poses compartidas de Lía `explain_calm` y `greeting`;
+sus copias aprobadas siguen registradas en `current-used/cover-intro`. No se
+duplicaron ni alteraron. El archivo rechazado
+`world4_node_top_object_master_v01.png` no está integrado.
+
 ## Pantallas posteriores
 
 La presencia de una carpeta en `current-used` no prueba aprobación funcional de
-una estación. En particular, `world-4-root/` conserva una base técnica
-preexistente para referencias compartidas; Estación IV no queda iniciada,
-aprobada ni completada por el cierre de Estación III.
+una estación. Estación IV sí quedó cerrada y `HUMAN_APPROVED` por autorización
+expresa en 018E, no por la sola existencia de `world-4-root/`. La instalación y
+el relanzamiento como PWA permanecen no certificados.
 
 Los assets sin referencia runtime solo pueden permanecer como fuentes
 documentadas. Las capturas generadas para QA no pertenecen en `public/`.

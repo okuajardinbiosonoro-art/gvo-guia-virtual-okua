@@ -8,6 +8,7 @@ Este directorio conserva dos clases de documentos: contratos canónicos vigentes
 | --- | --- |
 | [CURRENT_STATE.md](CURRENT_STATE.md) | Resumen vigente del estado entregable del proyecto. |
 | [GVO_STATION3_COMPLETE.md](GVO_STATION3_COMPLETE.md) | Contrato final de Estación III, su transición de entrada, arquitectura, interacción y aprobación. |
+| [GVO_ST4_018E_STATION4_CLOSEOUT.md](GVO_ST4_018E_STATION4_CLOSEOUT.md) | Contrato final de Estación IV, assets, composición, motion, accesibilidad, validación y aprobación. |
 | [WORLD_II_FINAL.md](../worlds/WORLD_II_FINAL.md) | Contrato final vigente de Mundo II. |
 | [Arquitectura técnica](../05_ARQUITECTURA_TECNICA.md) | Arquitectura y contratos runtime actuales. |
 | [Inventario de assets](../assets/ASSET_INVENTORY.md) | Trazabilidad de assets runtime y copias `current-used`. |
@@ -21,4 +22,10 @@ Cuando un registro histórico contradiga un documento canónico, prevalecen `CUR
 
 ## Estado de Estación III
 
-Estación III está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/3`. Mundo IV conserva una base técnica preexistente, pero no está aprobado ni fue iniciado por el cierre `GVO-017K-R1`.
+Estación III está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/3`.
+
+## Estado de Estación IV
+
+Estación IV está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/4` por `GVO_ST4_018E`. Los registros 018C/R1/018D conservan sus flags históricos; no se reinterpretan retroactivamente.
+
+Estación V contiene una base Fable funcional y probada con visuales procedurales reemplazables. Permanece no cerrada y sin aprobación visual; su primer siguiente paso es una auditoría read-only.

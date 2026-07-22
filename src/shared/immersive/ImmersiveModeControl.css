@@ -1,0 +1,51 @@
+.gvo-immersive-mode-control {
+  --gvo-immersive-control-border: rgb(167 237 240 / 58%);
+  --gvo-immersive-control-background: rgb(7 18 25 / 76%);
+  --gvo-immersive-control-color: rgb(241 250 247 / 96%);
+  --gvo-immersive-control-focus: rgb(243 198 119 / 90%);
+
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 0.82rem;
+  border: 1px solid var(--gvo-immersive-control-border);
+  border-radius: 0.5rem;
+  background: var(--gvo-immersive-control-background);
+  color: var(--gvo-immersive-control-color);
+  font: inherit;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.gvo-immersive-mode-control:hover:not(:disabled) {
+  border-color: rgb(167 237 240 / 86%);
+  background: rgb(12 31 39 / 88%);
+}
+
+.gvo-immersive-mode-control:focus-visible {
+  outline: 2px solid var(--gvo-immersive-control-focus);
+  outline-offset: 3px;
+}
+
+.gvo-immersive-mode-control[aria-pressed="true"] {
+  border-color: rgb(243 198 119 / 72%);
+}
+
+.gvo-immersive-mode-control:disabled,
+.gvo-immersive-mode-control[data-gvo-immersive-state="error"] {
+  opacity: 0.68;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gvo-immersive-mode-control {
+    transition: none;
+  }
+}

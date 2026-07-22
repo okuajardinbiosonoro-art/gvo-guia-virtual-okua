@@ -1,43 +1,37 @@
 import "./World4RootScreen.css";
 
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import {
+  type CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { worldFourToWorldFiveTransitionRoute } from "../../app/routes";
+import { OrientationHint } from "../../components/OrientationHint/OrientationHint";
 import {
-  station4Exit,
-  station4Lia,
-  station4LiaPoses,
-  station4Nodes,
-} from "./station4Content";
-import { Station4NodeArt, Station4NodeVisual } from "./station4NodeArt";
+  markStationCompleted,
+  readProgress,
+} from "../../domain/progress/progress.storage";
+import {
+  getDisplayMode,
+  ImmersiveModeControl,
+  type ImmersiveDisplayMode,
+} from "../../shared/immersive";
+import { station4Exit, station4Lia, station4Nodes } from "./station4Content";
+import { useWorld4MotionController } from "./useWorld4MotionController";
+import { WORLD4_BACKPLATE_SLICES } from "./world4AssetManifest";
+import type { World4AmbientDensity } from "./World4AmbientLayer";
+import type { World4NodeVisualState } from "./World4NodeStack";
+import { World4Stage } from "./World4Stage";
+import { World4TapHint } from "./World4TapHint";
 
 const NODE_COUNT = station4Nodes.length;
 const LAST_INDEX = NODE_COUNT - 1;
-
-/**
- * Anclas proyectadas de cada nodo sobre el plano de la mesa.
- * x/depth en coordenadas del plano (%, 0=fondo → 1=frente); el arco
- * suave da profundidad 2.5D sin romper la lectura izquierda→derecha.
- */
-const nodeAnchors = [
-  { x: 8.5, depth: 0.34 },
-  { x: 20.6, depth: 0.44 },
-  { x: 32.7, depth: 0.52 },
-  { x: 44.8, depth: 0.56 },
-  { x: 56.9, depth: 0.56 },
-  { x: 69, depth: 0.52 },
-  { x: 81.1, depth: 0.44 },
-  { x: 93.2, depth: 0.34 },
-] as const;
-
-function anchorNodeY(depth: number) {
-  return 16 + depth * 46;
-}
-
-function anchorLineY(depth: number) {
-  return anchorNodeY(depth) + 21;
-}
+const STATION_ID = 4;
 
 type Station4Phase =
   | "entering"
@@ -47,14 +41,7 @@ type Station4Phase =
   | "exit_ready"
   | "exiting";
 
-type NodeVisualState = "locked" | "available" | "active" | "completed";
-
-const nodeStateLabel: Record<NodeVisualState, string> = {
-  locked: "Bloqueado",
-  available: "Disponible",
-  active: "Activo",
-  completed: "Completado",
-};
+type CardMotion = "stable" | "out" | "in";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() => {
@@ -83,130 +70,310 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+type VisualViewportMetrics = {
+  height: number;
+  width: number;
+};
+
+function readVisualViewport(): VisualViewportMetrics {
+  if (typeof window === "undefined") {
+    return { height: 0, width: 0 };
+  }
+
+  return {
+    height: Math.round(window.visualViewport?.height ?? window.innerHeight),
+    width: Math.round(window.visualViewport?.width ?? window.innerWidth),
+  };
+}
+
+function useVisualViewportMetrics() {
+  const [metrics, setMetrics] = useState(readVisualViewport);
+
+  useEffect(() => {
+    const updateMetrics = () => setMetrics(readVisualViewport());
+    const visualViewport = window.visualViewport;
+
+    updateMetrics();
+    window.addEventListener("resize", updateMetrics);
+    visualViewport?.addEventListener("resize", updateMetrics);
+    visualViewport?.addEventListener("scroll", updateMetrics);
+
+    return () => {
+      window.removeEventListener("resize", updateMetrics);
+      visualViewport?.removeEventListener("resize", updateMetrics);
+      visualViewport?.removeEventListener("scroll", updateMetrics);
+    };
+  }, []);
+
+  return metrics;
+}
+
+function useGrantedDisplayMode(): ImmersiveDisplayMode {
+  const [displayMode, setDisplayMode] = useState(getDisplayMode);
+
+  useEffect(() => {
+    const updateDisplayMode = () => setDisplayMode(getDisplayMode());
+    const displayQueries =
+      typeof window.matchMedia === "function"
+        ? ["fullscreen", "standalone", "minimal-ui"].map((mode) =>
+            window.matchMedia(`(display-mode: ${mode})`),
+          )
+        : [];
+
+    document.addEventListener("fullscreenchange", updateDisplayMode);
+    displayQueries.forEach((query) =>
+      query.addEventListener("change", updateDisplayMode),
+    );
+
+    return () => {
+      document.removeEventListener("fullscreenchange", updateDisplayMode);
+      displayQueries.forEach((query) =>
+        query.removeEventListener("change", updateDisplayMode),
+      );
+    };
+  }, []);
+
+  return displayMode;
+}
+
+function useDocumentVisible() {
+  const [visible, setVisible] = useState(
+    () => typeof document === "undefined" || !document.hidden,
+  );
+
+  useEffect(() => {
+    const updateVisibility = () => setVisible(!document.hidden);
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
+
+  return visible;
+}
+
+function completedBeforeMount() {
+  return readProgress().completedStations.includes(STATION_ID);
+}
+
+function ambientDensityForViewport({
+  height,
+  width,
+}: VisualViewportMetrics): World4AmbientDensity {
+  if (width <= 480 && height > width) {
+    return "compact-portrait";
+  }
+  if (height <= 480 && width > height) {
+    return "mobile-landscape";
+  }
+  return "full";
+}
+
 export function World4RootScreen() {
   const navigate = useNavigate();
   const reducedMotion = usePrefersReducedMotion();
+  const displayMode = useGrantedDisplayMode();
+  const visualViewport = useVisualViewportMetrics();
+  const documentVisible = useDocumentVisible();
+  const [persistedRevisit] = useState(completedBeforeMount);
+  const initialProgress = persistedRevisit ? LAST_INDEX : -1;
   const [phase, setPhase] = useState<Station4Phase>("entering");
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [hintReady, setHintReady] = useState(false);
-  const [movingTarget, setMovingTarget] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(
+    persistedRevisit ? LAST_INDEX : 0,
+  );
+  const [progress, setProgress] = useState(initialProgress);
+  const [revisitActiveIndex, setRevisitActiveIndex] = useState<number | null>(
+    null,
+  );
+  const [cardMotion, setCardMotion] = useState<CardMotion>("stable");
   const [liaNote, setLiaNote] = useState<string | null>(null);
   const [lockedAlt, setLockedAlt] = useState(false);
+  const [tapHintDismissSignal, setTapHintDismissSignal] = useState(0);
+  const progressRef = useRef(initialProgress);
+  const entryStartedRef = useRef(false);
+  const chainStartedRef = useRef(false);
+  const stationMarkedRef = useRef(persistedRevisit);
+  const navigationStartedRef = useRef(false);
+  const tapHintAnchorRef = useRef<HTMLButtonElement>(null);
 
-  const enterMs = reducedMotion ? 60 : 900;
-  const readMs = reducedMotion ? 250 : 1600;
-  const moveMs = reducedMotion ? 120 : 680;
-  const chainHoldMs = reducedMotion ? 300 : 1500;
+  const onEntrySettled = useCallback(() => {
+    setCardMotion("stable");
+    setPhase(persistedRevisit ? "exit_ready" : "reading");
+  }, [persistedRevisit]);
 
-  const revisit = phase === "exit_ready" || phase === "exiting";
+  const onCardSwap = useCallback((context: { nodeIndex: number | null }) => {
+    if (context.nodeIndex === null) {
+      return;
+    }
+    setActiveIndex(context.nodeIndex);
+    setCardMotion("in");
+  }, []);
+
+  const onStepSettled = useCallback(
+    (completion: { nodeIndex: number | null }) => {
+      const target = completion.nodeIndex;
+      if (target === null) {
+        return;
+      }
+
+      setActiveIndex(target);
+      setCardMotion("stable");
+      setTapHintDismissSignal((value) => value + 1);
+
+      if (target > progressRef.current) {
+        progressRef.current = target;
+        setProgress(target);
+        setRevisitActiveIndex(null);
+
+        if (target === LAST_INDEX) {
+          if (!stationMarkedRef.current) {
+            markStationCompleted(STATION_ID);
+            stationMarkedRef.current = true;
+          }
+          chainStartedRef.current = false;
+          setPhase("chain");
+        } else {
+          setPhase("reading");
+        }
+        return;
+      }
+
+      setRevisitActiveIndex(target);
+      setPhase("exit_ready");
+    },
+    [],
+  );
+
+  const onChainSettled = useCallback(() => {
+    setPhase("exit_ready");
+  }, []);
+
+  const onExitSettled = useCallback(() => {
+    navigate(worldFourToWorldFiveTransitionRoute);
+  }, [navigate]);
+
+  const motion = useWorld4MotionController({
+    reducedMotion,
+    onCardSwap,
+    onChainSettled,
+    onEntrySettled,
+    onExitSettled,
+    onStepSettled,
+  });
 
   useEffect(() => {
+    if (phase !== "entering" || entryStartedRef.current || !documentVisible) {
+      return;
+    }
+    entryStartedRef.current = true;
+    motion.startEntry(persistedRevisit ? "abbreviated" : "full");
+    return () => {
+      entryStartedRef.current = false;
+    };
+  }, [documentVisible, motion.startEntry, persistedRevisit, phase]);
+
+  useEffect(() => {
+    if (phase !== "chain" || chainStartedRef.current || !documentVisible) {
+      return;
+    }
+    const epoch = motion.startChainComplete();
+    if (epoch !== null) {
+      chainStartedRef.current = true;
+    }
+  }, [documentVisible, motion.startChainComplete, phase]);
+
+  function nodeVisualState(index: number): World4NodeVisualState {
     if (phase === "entering") {
-      const timeout = window.setTimeout(() => setPhase("reading"), enterMs);
-      return () => window.clearTimeout(timeout);
-    }
-
-    if (movingTarget !== null) {
-      const target = movingTarget;
-      const timeout = window.setTimeout(() => {
-        setActiveIndex(target);
-        setMovingTarget(null);
-        if (target > progress) {
-          setProgress(target);
-          setHintReady(false);
-        }
-        setPhase((current) => (current === "moving" ? "reading" : current));
-      }, moveMs);
-      return () => window.clearTimeout(timeout);
-    }
-
-    if (phase === "reading" && progress < LAST_INDEX && !hintReady) {
-      const timeout = window.setTimeout(() => setHintReady(true), readMs);
-      return () => window.clearTimeout(timeout);
-    }
-
-    if (
-      phase === "reading" &&
-      progress === LAST_INDEX &&
-      activeIndex === LAST_INDEX
-    ) {
-      const timeout = window.setTimeout(() => setPhase("chain"), readMs);
-      return () => window.clearTimeout(timeout);
+      return persistedRevisit ? "completed" : "locked";
     }
 
     if (phase === "chain") {
-      const timeout = window.setTimeout(
-        () => setPhase("exit_ready"),
-        chainHoldMs,
-      );
-      return () => window.clearTimeout(timeout);
+      return "completed";
     }
 
-    return undefined;
-  }, [
-    phase,
-    movingTarget,
-    progress,
-    hintReady,
-    activeIndex,
-    enterMs,
-    readMs,
-    moveMs,
-    chainHoldMs,
-  ]);
-
-  function nodeVisualState(index: number): NodeVisualState {
-    if (phase === "moving" && movingTarget === index) {
-      return "available";
+    if (phase === "exit_ready" || phase === "exiting") {
+      if (motion.motionKind === "node_step") {
+        if (motion.motionNodeIndex !== index) {
+          return "completed";
+        }
+        return ["node_arrival", "node_active", "node_settle"].includes(
+          motion.visualPhase,
+        )
+          ? "active"
+          : "completed";
+      }
+      return revisitActiveIndex === index ? "active" : "completed";
     }
-    if (index === activeIndex && phase !== "entering") {
+
+    if (motion.motionKind === "node_step" && motion.motionNodeIndex === index) {
+      return ["node_arrival", "node_active", "node_settle"].includes(
+        motion.visualPhase,
+      )
+        ? "active"
+        : "available";
+    }
+
+    if (index < progress || (index === progress && index !== activeIndex)) {
+      return "completed";
+    }
+    if (index === activeIndex && progress >= 0) {
       return "active";
     }
-    if (revisit || phase === "chain") {
-      return "completed";
-    }
-    if (index <= progress) {
-      return "completed";
-    }
-    if (index === progress + 1 && hintReady) {
+    if (index === progress + 1) {
       return "available";
     }
     return "locked";
   }
 
   function tapNode(index: number) {
-    if (
-      (phase !== "reading" && phase !== "exit_ready") ||
-      movingTarget !== null
-    ) {
+    setTapHintDismissSignal((value) => value + 1);
+
+    if (motion.inputLocked || (phase !== "reading" && phase !== "exit_ready")) {
       return;
     }
-    if (index === activeIndex) {
-      return;
-    }
+
     const state = nodeVisualState(index);
     if (state === "locked") {
       setLiaNote(lockedAlt ? station4Lia.lockedAlt : station4Lia.locked);
       setLockedAlt((value) => !value);
       return;
     }
+    if (state === "active") {
+      return;
+    }
+    if (state === "completed" && !stationMarkedRef.current) {
+      return;
+    }
+
+    const epoch = motion.startNodeStep(index);
+    if (epoch === null) {
+      return;
+    }
+
     setLiaNote(null);
-    setMovingTarget(index);
+    setRevisitActiveIndex(null);
+    setCardMotion("out");
     if (phase === "reading") {
       setPhase("moving");
     }
   }
 
   function handleExit() {
-    if (phase !== "exit_ready") {
+    setTapHintDismissSignal((value) => value + 1);
+    if (
+      phase !== "exit_ready" ||
+      motion.inputLocked ||
+      navigationStartedRef.current
+    ) {
       return;
     }
+
+    const epoch = motion.startExit();
+    if (epoch === null) {
+      return;
+    }
+
+    navigationStartedRef.current = true;
     setPhase("exiting");
-    window.setTimeout(
-      () => navigate(worldFourToWorldFiveTransitionRoute),
-      reducedMotion ? 0 : 300,
-    );
   }
 
   const station4State = useMemo(() => {
@@ -216,20 +383,20 @@ export function World4RootScreen() {
     if (phase === "exiting") {
       return "station4_exiting";
     }
+    if (motion.motionKind === "node_step" && motion.motionNodeIndex !== null) {
+      return `station4_node_${motion.motionNodeIndex + 1}_activating`;
+    }
     if (phase === "chain") {
       return "station4_chain_completed";
     }
     if (phase === "exit_ready") {
       return "station4_ready_to_exit";
     }
-    if (phase === "moving" && movingTarget !== null) {
-      return `station4_node_${movingTarget + 1}_activating`;
-    }
-    if (hintReady && progress < LAST_INDEX) {
-      return `station4_node_${progress + 2}_ready_hint`;
+    if (progress < 0) {
+      return "station4_node_1_available";
     }
     return `station4_node_${activeIndex + 1}_active`;
-  }, [phase, movingTarget, hintReady, progress, activeIndex]);
+  }, [activeIndex, motion.motionKind, motion.motionNodeIndex, phase, progress]);
 
   const statusMessage = useMemo(() => {
     if (liaNote) {
@@ -241,47 +408,75 @@ export function World4RootScreen() {
     if (phase === "exit_ready" || phase === "exiting") {
       return station4Lia.revisit;
     }
-    if (phase === "reading" && hintReady) {
+    if (phase === "reading" && progress >= 0 && progress < LAST_INDEX) {
       return station4Lia.nextHint;
     }
-    if (
-      (phase === "entering" || phase === "reading") &&
-      activeIndex === 0 &&
-      progress === 0
-    ) {
+    if (phase === "entering" && persistedRevisit) {
+      return station4Lia.revisit;
+    }
+    if (phase === "entering" || (phase === "reading" && progress < 0)) {
       return station4Lia.intro;
     }
     return null;
-  }, [liaNote, phase, hintReady, activeIndex, progress]);
+  }, [liaNote, persistedRevisit, phase, progress]);
 
   const activeNode = station4Nodes[activeIndex];
-  const liaIndex = movingTarget ?? activeIndex;
-  const liaClosure = phase === "chain" || phase === "exit_ready" || phase === "exiting";
-  const liaAnchor = liaClosure
-    ? { x: 51, y: 16 }
-    : {
-        x: nodeAnchors[liaIndex].x,
-        y: anchorNodeY(nodeAnchors[liaIndex].depth) - 5,
-      };
+  const nodeStates = station4Nodes.map((_, index) => nodeVisualState(index));
+  const chainComplete =
+    phase === "chain" || phase === "exit_ready" || phase === "exiting";
+  const ambientDensity = ambientDensityForViewport(visualViewport);
+  const tapHintActive =
+    phase === "reading" &&
+    progress < 0 &&
+    motion.motionKind === null &&
+    !motion.inputLocked;
+  const renderedEntryMode =
+    motion.entryMode ??
+    (phase === "entering"
+      ? persistedRevisit
+        ? "abbreviated"
+        : "full"
+      : "none");
+  const viewportStyle = {
+    "--s4-visual-viewport-height": `${visualViewport.height}px`,
+    "--s4-visual-viewport-width": `${visualViewport.width}px`,
+  } as CSSProperties;
 
   return (
     <main
-      className="s4-screen"
-      data-station4-state={station4State}
-      data-station4-active-node={activeNode.id}
-      data-station4-progress={progress + 1}
-      data-station4-revisit={revisit}
-      data-station4-reduced-motion={reducedMotion}
-      data-sensitive-permissions="blocked"
-      data-qr-camera="blocked"
       aria-labelledby="station4-title"
+      className="s4-screen"
+      data-display-mode={displayMode}
+      data-layout-contract="controls-stage-gap-then-trailing-space"
+      data-qr-camera="blocked"
+      data-sensitive-permissions="blocked"
+      data-station4-active-node={activeNode.id}
+      data-station4-card-motion={cardMotion}
+      data-station4-document-visibility={documentVisible ? "visible" : "hidden"}
+      data-station4-entry-mode={renderedEntryMode}
+      data-station4-input-locked={motion.inputLocked}
+      data-station4-motion-epoch={motion.motionEpoch}
+      data-station4-motion-kind={motion.motionKind ?? "none"}
+      data-station4-motion-node={
+        motion.motionNodeIndex === null ? "none" : motion.motionNodeIndex + 1
+      }
+      data-station4-motion-phase={motion.visualPhase}
+      data-station4-progress={progress + 1}
+      data-station4-reduced-motion={reducedMotion}
+      data-station4-revisit={chainComplete}
+      data-station4-state={station4State}
+      data-visual-viewport-height={visualViewport.height}
+      data-visual-viewport-width={visualViewport.width}
+      style={viewportStyle}
     >
+      <ImmersiveModeControl className="s4-immersive-control" />
+
       <header className="s4-title">
         <svg
-          className="s4-title__leaf"
-          viewBox="0 0 24 24"
           aria-hidden="true"
+          className="s4-title__leaf"
           focusable="false"
+          viewBox="0 0 24 24"
         >
           <path
             d="M12 3 C13 8 16 10 19 11 C16 12 13 14 12 19 C11 14 8 12 5 11 C8 10 11 8 12 3 Z"
@@ -289,7 +484,7 @@ export function World4RootScreen() {
             stroke="currentColor"
             strokeWidth="1"
           />
-          <circle cx="12" cy="21.4" r="0.9" fill="currentColor" />
+          <circle cx="12" cy="21.4" fill="currentColor" r="0.9" />
         </svg>
         <h1 id="station4-title">Estación IV</h1>
         <p className="s4-title__sub">Operación técnica</p>
@@ -300,192 +495,116 @@ export function World4RootScreen() {
         </p>
       </header>
 
-      <section className="s4-table-zone" aria-label="Mesa de sistema con la cadena técnica de ocho pasos">
-        <div className="s4-stage">
-          <div className="s4-plane">
-            <span className="s4-plane__sheen" aria-hidden="true" />
-            <span className="s4-plane__lip" aria-hidden="true" />
+      <OrientationHint
+        className="s4-orientation-hint"
+        dataHook="world4-stage"
+        storageKey="gvo:world4:orientation-hint:dismissed"
+      />
 
-            <svg
-              className="s4-flowline-svg"
-              viewBox="0 0 1000 600"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              {station4Nodes.slice(0, -1).map((node, index) => {
-                const from = nodeAnchors[index];
-                const to = nodeAnchors[index + 1];
-                const lit =
-                  phase === "chain" || revisit
-                    ? "soft"
-                    : index < progress
-                      ? "lit"
-                      : phase === "moving" &&
-                          movingTarget !== null &&
-                          index === movingTarget - 1 &&
-                          movingTarget > progress
-                        ? "igniting"
-                        : "dim";
-                return (
-                  <line
-                    className={`s4-flowline__segment s4-flowline__segment--${lit}`}
-                    key={`segment-${node.id}`}
-                    x1={from.x * 10}
-                    y1={anchorLineY(from.depth) * 6}
-                    x2={to.x * 10}
-                    y2={anchorLineY(to.depth) * 6}
-                    pathLength={1}
-                  />
-                );
-              })}
-            </svg>
-
-            {station4Nodes.map((node, index) => {
-              const anchor = nodeAnchors[index];
-              const state = nodeVisualState(index);
-              return (
-                <span
-                  className={`s4-stop s4-stop--${state}`}
-                  aria-hidden="true"
-                  key={`stop-${node.id}`}
-                  style={{
-                    left: `${anchor.x}%`,
-                    top: `${anchorLineY(anchor.depth)}%`,
-                  }}
-                >
-                  <span className="s4-stop__halo" />
-                  <span className="s4-stop__dot" />
-                  <span className="s4-stop__number">{node.order}</span>
-                </span>
-              );
-            })}
-
-            {station4Nodes.map((node, index) => {
-              const anchor = nodeAnchors[index];
-              const state = nodeVisualState(index);
-              return (
-                <button
-                  className={`s4-node s4-node--${state}`}
-                  type="button"
-                  aria-label={node.accessibleLabel}
-                  aria-disabled={state === "locked"}
-                  aria-current={state === "active" ? "step" : undefined}
-                  aria-describedby={`s4-node-state-${node.id}`}
-                  data-station4-node={node.id}
-                  data-node-state={state}
-                  key={node.id}
-                  style={
-                    {
-                      left: `${anchor.x}%`,
-                      top: `${anchorNodeY(anchor.depth)}%`,
-                      zIndex: Math.round(10 + anchor.depth * 100),
-                      "--s4-depth": anchor.depth,
-                    } as CSSProperties
-                  }
-                  onClick={() => tapNode(index)}
-                >
-                  <span className="s4-node__shadow" aria-hidden="true" />
-                  <span className="s4-node__pedestal" aria-hidden="true" />
-                  <span className="s4-node__up" aria-hidden="true">
-                    <span className="s4-node__hint-arrow" />
-                    <Station4NodeVisual
-                      nodeId={node.id}
-                      visualKey={node.visualKey}
-                    />
-                  </span>
-                  <span className="s4-sr-only" id={`s4-node-state-${node.id}`}>
-                    {nodeStateLabel[state]}.
-                  </span>
-                </button>
-              );
-            })}
-
-            <div
-              className="s4-lia-anchor"
-              aria-hidden="true"
-              style={{ left: `${liaAnchor.x}%`, top: `${liaAnchor.y}%` }}
-            >
-              <span className="s4-lia-pool" />
-              <div
-                className="s4-lia"
-                data-station4-lia="official-2-5d"
-                data-lia-source="repo-existing-2-5d"
-                data-lia-mode={liaClosure ? "closure" : "guide"}
-              >
-                <span className="s4-lia__glow" />
-                <img
-                  className="s4-lia__pose s4-lia__pose--guide"
-                  src={station4LiaPoses.guide}
-                  alt=""
-                  loading="eager"
-                  data-runtime-asset={station4LiaPoses.guide}
-                />
-                <img
-                  className="s4-lia__pose s4-lia__pose--closure"
-                  src={station4LiaPoses.closure}
-                  alt=""
-                  loading="lazy"
-                  data-runtime-asset={station4LiaPoses.closure}
-                />
-              </div>
-            </div>
-          </div>
-          <span className="s4-stage__shadow" aria-hidden="true" />
-        </div>
-
+      <section className="s4-experience">
         <div className="s4-panel">
           <article
-            className="s4-card"
+            aria-atomic="true"
             aria-live="polite"
+            className="s4-card"
+            data-backplate={WORLD4_BACKPLATE_SLICES.textCard.asset}
+            data-border-image-slice={
+              WORLD4_BACKPLATE_SLICES.textCard.borderImageSlice
+            }
+            data-runtime-asset={WORLD4_BACKPLATE_SLICES.textCard.asset}
+            data-stage-layer="z12"
             data-station4-card={activeNode.id}
-            key={activeNode.id}
+            data-station4-card-motion={cardMotion}
           >
-            <span className="s4-card__icon" aria-hidden="true">
-              <Station4NodeArt nodeId={activeNode.id} />
-            </span>
-            <div className="s4-card__body">
-              <p className="s4-card__step">Paso {activeNode.order} de 8</p>
-              <h2 className="s4-card__title">{activeNode.title}</h2>
-              <p className="s4-card__text">{activeNode.text}</p>
-              <p className="s4-card__learning">{activeNode.learning}</p>
-            </div>
+            <p className="s4-card__step">Paso {activeNode.order} de 8</p>
+            <h2 className="s4-card__title">{activeNode.title}</h2>
+            <p className="s4-card__text">{activeNode.text}</p>
+            <p className="s4-card__learning">{activeNode.learning}</p>
           </article>
 
-          <p
-            className="s4-status"
-            role="status"
-            data-station4-status={statusMessage ? "visible" : "empty"}
-          >
-            {statusMessage}
-          </p>
-
-          {phase === "exit_ready" || phase === "exiting" ? (
-            <button
-              className="s4-exit"
-              type="button"
-              aria-label={station4Exit.accessibleLabel}
-              data-station4-action="open-world5"
-              onClick={handleExit}
+          <div className="s4-panel__controls">
+            <p
+              className="s4-status"
+              data-station4-status={statusMessage ? "visible" : "empty"}
+              role="status"
             >
-              <span className="s4-exit__stub" aria-hidden="true" />
-              <span className="s4-exit__halo" aria-hidden="true" />
-              <span className="s4-exit__label">{station4Exit.label}</span>
-              <span className="s4-exit__arrow" aria-hidden="true">
-                ›
-              </span>
-            </button>
-          ) : null}
+              {statusMessage}
+            </p>
+
+            {phase === "exit_ready" ||
+            phase === "exiting" ||
+            motion.visualPhase === "exit_reveal" ? (
+              <button
+                aria-label={station4Exit.accessibleLabel}
+                className="s4-exit"
+                data-backplate={WORLD4_BACKPLATE_SLICES.openWorld5.asset}
+                data-border-image-slice={
+                  WORLD4_BACKPLATE_SLICES.openWorld5.borderImageSlice
+                }
+                data-runtime-asset={WORLD4_BACKPLATE_SLICES.openWorld5.asset}
+                data-stage-layer="z12"
+                data-station4-action="open-world5"
+                disabled={phase === "exiting" || motion.inputLocked}
+                onClick={handleExit}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    handleExit();
+                  }
+                }}
+                type="button"
+              >
+                <span className="s4-exit__label">{station4Exit.label}</span>
+                <span aria-hidden="true" className="s4-exit__arrow">
+                  ›
+                </span>
+              </button>
+            ) : null}
+          </div>
         </div>
+
+        <World4Stage
+          activeIndex={activeIndex}
+          ambientDensity={ambientDensity}
+          chainComplete={chainComplete}
+          firstPassEntry={phase === "entering" && !persistedRevisit}
+          inputLocked={motion.inputLocked}
+          motionEpoch={motion.motionEpoch}
+          motionNodeIndex={motion.motionNodeIndex}
+          nodeStates={nodeStates}
+          onNodeActivate={tapNode}
+          progress={progress}
+          reducedMotion={reducedMotion}
+          revisitActive={
+            revisitActiveIndex !== null ||
+            (phase === "exit_ready" && motion.motionKind === "node_step")
+          }
+          tapHintAnchorRef={tapHintAnchorRef}
+          visualPhase={motion.visualPhase}
+        />
       </section>
 
-      <footer className="s4-footer" aria-hidden="true">
+      <World4TapHint
+        active={tapHintActive}
+        anchorRef={tapHintAnchorRef}
+        dismissSignal={tapHintDismissSignal}
+        reducedMotion={reducedMotion}
+        targetLabel={station4Nodes[0].accessibleLabel}
+      />
+
+      <footer aria-hidden="true" className="s4-footer">
         <span className="s4-footer__dot" />
         <span className="s4-footer__dot" />
         <span className="s4-footer__station">IV</span>
         <span className="s4-footer__dot" />
         <span className="s4-footer__dot" />
       </footer>
+
+      <div
+        aria-hidden="true"
+        className="s4-trailing-space"
+        data-station4-trailing-space="true"
+      />
     </main>
   );
 }

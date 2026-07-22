@@ -1,6 +1,6 @@
 # Arquitectura técnica
 
-Actualizado: 2026-07-14
+Actualizado: 2026-07-22
 
 La base usa Vite, React, TypeScript y React Router. La aplicación es local-first, silenciosa y empaqueta sus recursos requeridos en el build; las pantallas runtime no dependen de recursos remotos obligatorios.
 
@@ -31,8 +31,11 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 | `/estacion/2` | `World2RootScreen`. |
 | `/transition/world-2-to-world-3` | Transición pasiva final hacia Estación III. |
 | `/estacion/3` | `World3RootScreen`, Estación III aprobada. |
-| `/transition/world-3-to-world-4` | Salida técnica existente; no aprueba Mundo IV. |
-| `/estacion/4` | Base técnica preexistente, **NO APROBADA**. |
+| `/transition/world-3-to-world-4` | Transición compartida; copy editorial todavía `TEMP`. |
+| `/estacion/4` | `World4RootScreen`, Estación IV cerrada y aprobada. |
+| `/transition/world-4-to-world-5` | Transición compartida; copy editorial todavía `TEMP`. |
+| `/estacion/5` | `World5RootScreen`, base Fable funcional con visuales procedurales reemplazables; no cerrada. |
+| `/transition/world-5-to-final` | Transición compartida; copy editorial todavía `TEMP`. |
 | `/final` | `FinalRootScreen`. |
 | `/qr/:stationId` | Entrada QR técnica. |
 
@@ -87,10 +90,57 @@ El índice calcula el siguiente registro disponible desde el número de completa
 
 `worldTwoToWorldThreeTransition` usa `TransitionWorldRuntimeRoute` y `TransitionWorld`. El contrato es pasivo y automático, sin CTA: espera `2300 ms` en movimiento normal o `1000 ms` con reduced motion y navega a `/estacion/3` con reemplazo de historial. La aprobación humana de este comportamiento forma parte del cierre de Estación III.
 
+## Arquitectura de Estación IV
+
+La ruta `/estacion/4` monta `World4RootScreen`. La máquina pedagógica mantiene
+una sola fuente de progreso y recorre `entering`, `reading`, `moving`, `chain`,
+`exit_ready` y `exiting`. `useWorld4MotionController` deriva fases visuales,
+epoch, input lock y timers cancelables sin persistir una segunda máquina.
+
+### Composición y geometría
+
+- `world4Geometry.ts` fija artboard `1536×1024`, ocho anchors y z-order.
+- `World4Stage.tsx` compone environment, rear plane, haze, sombra, base, mesa,
+  ruta pasiva, nodos, Lía y UI.
+- `World4NodeStack.tsx` resuelve halo, pedestal, objeto, FX y hit target.
+- z1 permanece retenido; z5 se conserva como asset pero no se renderiza por
+  `front-edge-disabled-by-human-review`.
+- El layout se escala como una sola escena; no usa offsets por viewport.
+
+### Assets
+
+- `world4RuntimeAssets.ts`: fuente única de 20 rutas runtime.
+- `world4AssetManifest.ts`: hashes aprobados, dimensiones, alpha bounds, slices
+  y sentinel del master genérico rechazado.
+- Runtime: `public/assets/gvo/stations/world-4/system-table/runtime/`.
+- Espejos auditables: `public/assets/gvo/current-used/world-4-root/`.
+- Los 20 pares son byte-idénticos. Lía reutiliza assets compartidos existentes;
+  no duplica nuevas poses.
+
+### Motion e interacción
+
+- `World4RoutePulse` superpone siete segmentos SVG al PNG pasivo.
+- `World4NodeFx` y `world4NodeFxConfig` aplican un efecto semántico por nodo
+  en coordenadas normalizadas al bbox alfa.
+- `World4LiaGuide` reutiliza `greeting` y `explain_calm` con WAAPI puntual.
+- `World4AmbientLayer` limita ambiente a haze, ribbons, motes y pool local.
+- `World4TapHint` reutiliza `GestureHint` una vez por sesión.
+- Chain complete revela el CTA y la revisita habilita los ocho nodos sin
+  alterar progreso.
+
+### Responsive, fullscreen y accesibilidad
+
+Portrait es soportado y mobile landscape recomendado. `OrientationHint` es
+no bloqueante; `ImmersiveModeControl` sólo solicita fullscreen mediante gesto
+explícito. Los controles son nativos, admiten pointer/Enter/Space, mantienen
+focus visible y hit targets ≥44×44. Estados completed no dependen sólo del
+color. Reduced motion conserva secuencia, copy, CTA y revisita mediante fades
+y highlights estáticos.
+
 ## PWA y permisos
 
-La PWA mantiene cache local básico. No usa notificaciones push ni solicita permisos innecesarios. Estación III declara cámara, QR y permisos sensibles como bloqueados.
+La PWA mantiene manifest, service worker y cache local. No usa notificaciones push ni solicita permisos innecesarios. Estación III declara cámara, QR y permisos sensibles como bloqueados. Estación IV añade fullscreen opt-in, sin permisos persistentes; la instalación PWA no se certificó en la plataforma QA y un despliegue LAN instalable requiere origen seguro.
 
 ## Estado y límites
 
-Estación III está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`). Mundo IV conserva una base técnica preexistente, está **NO APROBADA** y no fue iniciado por `GVO-017K-R1`. Los documentos numerados bajo `docs/status/` son registros históricos; el estado vigente se consulta en [CURRENT_STATE.md](status/CURRENT_STATE.md) y el contrato completo en [GVO_STATION3_COMPLETE.md](status/GVO_STATION3_COMPLETE.md).
+Estaciones III y IV están `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`). Mundo V conserva una base Fable funcional, pero sus visuales son procedurales/reemplazables y no está cerrado ni aprobado. Los documentos numerados bajo `docs/status/` son registros históricos; el estado vigente se consulta en [CURRENT_STATE.md](status/CURRENT_STATE.md) y los contratos completos en [GVO_STATION3_COMPLETE.md](status/GVO_STATION3_COMPLETE.md) y [GVO_ST4_018E_STATION4_CLOSEOUT.md](status/GVO_ST4_018E_STATION4_CLOSEOUT.md).

@@ -51,8 +51,13 @@ current-used/
   `public/assets/gvo/stations/world-3/notebook-pixel/runtime/`; rutas,
   dimensiones, SHA-256 y consumidor están inventariados en
   `world-3-root/README.md` y `docs/assets/ASSET_INVENTORY.md`.
-- `world-4-root` es una base técnica preexistente para referencias compartidas.
-  Su presencia no declara Estación IV iniciada, aprobada ni completa.
+- `world-4-root` contiene los 20 espejos byte-idénticos integrados por 018C para
+  la composición estática de Estación IV. R1 conserva los 20 archivos y sus
+  hashes, retiene z1 y excluye z5 únicamente del render tras el toggle visual
+  obligatorio. El cierre 018E declara la pantalla `HUMAN_APPROVED` y cerrada; el
+  detalle vive en su `README.md`. La experiencia no usa audio, ofrece reduced
+  motion completo y mantiene la PWA instalada como no certificada en la
+  plataforma de QA.
 - Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
   del directorio nunca equivale a aprobación de pantalla.
 

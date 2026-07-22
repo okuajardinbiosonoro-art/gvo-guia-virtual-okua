@@ -1,38 +1,105 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-07-14
+Actualizado: 2026-07-22
 
 ## Estado canónico
 
 - Estación III / Mundo III — Cuaderno Pixel de Pruebas: `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`).
-- Ruta runtime: `/estacion/3`, servida por `World3RootScreen`.
-- Recorrido aprobado: `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO → Continuar`.
-- Transición Mundo II → Mundo III: cierre final pasivo y automático hacia `/estacion/3`, sin CTA; duración `2300 ms` en movimiento normal y `1000 ms` con reduced motion.
+- Estación IV / Mundo IV — Mesa de sistema: `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) por el cierre `GVO_ST4_018E`.
+- Ruta runtime de Estación IV: `/estacion/4`, servida por `World4RootScreen`.
+- Cadena aprobada: `Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido`.
+- Contrato completo de Estación IV: [GVO_ST4_018E_STATION4_CLOSEOUT.md](GVO_ST4_018E_STATION4_CLOSEOUT.md).
 - Contrato completo de Estación III: [GVO_STATION3_COMPLETE.md](GVO_STATION3_COMPLETE.md).
 - Contrato previo de Mundo II: [WORLD_II_FINAL.md](../worlds/WORLD_II_FINAL.md).
 
-## Contrato de Estación III
+## Estado global verificable
 
-El índice aplica gates secuenciales: solo está disponible el siguiente registro; los demás permanecen con bloqueo suave. Al cerrar cada página se vuelve al índice estable, se habilita la siguiente y se conserva la posibilidad de revisitar registros completados. Tras completar los tres registros aparece `AJUSTADO` y luego el control `Continuar`.
+| Tramo | Estado vigente |
+| --- | --- |
+| Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada. |
+| Portada | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final. |
+| Mundo I | Runtime activo, interacción refinada y deuda visual documentada. |
+| Mundo II | Finalizado para el alcance actual. |
+| W2→W3 | Definitiva, pasiva y automática. |
+| Mundo III | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
+| W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
+| Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
+| W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
+| Mundo V | Base Fable funcional, probada y documentada; visuales procedurales/reemplazables, sin cierre ni aprobación humana. |
+| W5→Final | Ruta existente con copy editorial `TEMP`. |
+| Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
 
-La experiencia usa una hoja real para el page-turn (`680 ms` normal, `120 ms` reduced motion), cinco poses aprobadas de Lía mediante `World3LiaActor`, assets runtime declarados en `world3RuntimeAssets` y responsabilidades semánticas declaradas en `world3SemanticAssetManifest`. La traza de SEÑAL es determinista, se revela una vez y queda congelada como evidencia.
+Los documentos históricos conservan el estado real de su fecha. En particular,
+los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
+aprobación humana vinculante y cierra Estación IV sin alterar esos registros.
 
-El progreso de Estación III vive únicamente en el estado de la instancia montada. Las revisitas funcionan mientras esa instancia permanece montada; una recarga reinicia el recorrido. No hay persistencia de Estación III en `localStorage` ni `sessionStorage`.
+## Contrato de Estación IV
 
-## Experiencia y acceso
+La composición usa un artboard único `1536×1024`, texto arriba y mesa abajo.
+Los anchors, escalas, bboxes alfa y capas se resuelven en coordenadas de
+artboard, sin offsets por viewport.
 
-- Responsive: composiciones específicas para móvil compacto, retrato balanceado, tablet portrait y tablet landscape.
-- Interacción: pointer y teclado, restauración de foco al índice y estados semánticos `locked`, `available` y `completed`.
-- Ayuda: `GestureHint` señala el siguiente registro disponible sin sustituir su etiqueta accesible.
-- Accesibilidad: controles nativos, etiquetas accesibles, capas inactivas fuera del orden de interacción y soporte de `prefers-reduced-motion`.
-- Permisos sensibles: cámara y QR permanecen bloqueados en esta pantalla.
+Capas aprobadas:
+
+```text
+z0  environment
+z1  rear depth plane
+z2  haze
+z3  contact shadow
+z4  lower base
+z5  front edge — preservado, excluido del render por revisión humana
+z6  tabletop
+z7  passive route
+z8  halo
+z9  pedestal
+z10 object
+z11 Lía
+z12 DOM/UI
+```
+
+La decisión z5 queda registrada como `front-edge-disabled-by-human-review`;
+z1 permanece retenido. Los 20 assets runtime y sus 20 espejos `current-used`
+son byte-idénticos. El master genérico rechazado no existe como archivo, import
+ni entrada de precache.
+
+## Interacción, movimiento y acceso
+
+- Progreso secuencial 1→8 con estados locked, available, active y completed.
+- Revisión libre después del cierre, sin duplicar progreso.
+- Ruta pasiva PNG con overlay SVG activo de siete segmentos.
+- Un FX semántico por nodo, Lía mediante poses existentes `greeting` y
+  `explain_calm`, tarjeta DOM, ayuda tap y ambiente técnico contenido.
+- Chain complete, CTA y salida hacia la transición existente W4→W5.
+- Pointer, toque, Enter y Space; controles nativos, foco visible, hit targets
+  de al menos 44×44 y estados no dependientes sólo del color.
+- `prefers-reduced-motion` conserva comprensión y secuencia sin travel, drift
+  ni loops decorativos.
+- Portrait está soportado; mobile landscape es recomendado. `OrientationHint`
+  es no bloqueante y fullscreen sólo se inicia mediante gesto explícito.
+
+## PWA, red y sonido
+
+El build mantiene manifest y service worker. La PWA instalada no pudo
+certificarse en la plataforma de QA y no se declara validada. En despliegue
+LAN, la instalación PWA real requiere un origen seguro. La experiencia no
+añade audio y no depende de CDN, URL externa ni servicio remoto runtime.
 
 ## QA y aprobación
 
-Las validaciones automatizadas de código, estados, rutas, responsive y reduced motion forman parte del cierre. El Browser integrado completó el smoke de diez casos y el recorrido pointer; sus únicas limitaciones fueron la activación nativa por Enter/Espacio desde el controlador de automatización y el timeout de captura raster. La suite focal cubre teclado y foco, y la revisión humana explícita aprobó Estación III y la transición pasiva Mundo II → Mundo III.
+El cierre de Estación IV integra la evidencia de los microfrentes 018A→018D y
+la aprobación humana vinculante de 018E. La suite final, build/PWA, auditoría
+de assets, hashes, áreas congeladas y smoke global se registran en el reporte
+externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales,
+242/242 globales, 15 contact sheets y un WebM real.
 
-## Límites de alcance
+## Límites y siguiente frente
 
-Mundo IV conserva únicamente una base técnica preexistente. No está aprobado, no fue iniciado por el ticket `GVO-017K-R1` y no debe presentarse como siguiente experiencia terminada.
+Estación V no se modifica durante 018E. Su base actual es real y funcional,
+pero no está visualmente cerrada ni `HUMAN_APPROVED`. El siguiente paso es un
+ticket `ST5-019A` estrictamente read-only que audite paths, assets, copy, lógica,
+responsive, deuda y riesgos antes de generar assets o programar.
 
-Los documentos numerados de `docs/status/` son evidencia histórica del momento en que se emitieron. No reemplazan este estado actual ni los contratos canónicos enlazados arriba.
+El handoff autosuficiente está en
+[GVO-HANDOFF-INICIO-ESTACION-V.md](../../GVO-HANDOFF-INICIO-ESTACION-V.md).
+Los registros numerados bajo `docs/status/` permanecen históricos y no deben
+editarse para simular otro resultado.

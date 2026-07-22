@@ -17,9 +17,9 @@ export type Station4NodeId =
   | "sonido";
 
 /**
- * Clave estable del slot visual de cada nodo. Codex puede sustituir el
- * placeholder procedural por un asset propio buscando este identificador
- * (data-station4-visual en el DOM / visualKey en el contenido).
+ * Clave editorial estable conservada por compatibilidad con la base funcional.
+ * La composición 018C resuelve el asset aprobado mediante el id semántico del
+ * nodo en `world4AssetManifest.ts`; no existe ya un placeholder procedural.
  */
 export type Station4VisualKey =
   | "plant"
@@ -129,11 +129,4 @@ export const station4Lia = {
 export const station4Exit = {
   label: "Abrir Mundo V",
   accessibleLabel: "Abrir Mundo V. Ir al Mapa del presente.",
-} as const;
-
-const liaBase = "/assets/gvo/shared/lia/current-used/portada-intro";
-
-export const station4LiaPoses = {
-  guide: `${liaBase}/lia_pose_explain_calm_v1.png`,
-  closure: `${liaBase}/lia_pose_greeting_v1.png`,
 } as const;

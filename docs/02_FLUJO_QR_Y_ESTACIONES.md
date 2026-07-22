@@ -31,8 +31,14 @@ El recorrido se organiza como una secuencia de pantallas locales. El acceso prin
 
 La Portada / Intro entrega el flujo a `/transition/intro-to-station-1`, que conduce a `/estacion/1`. El recorrido consolidado continúa por Mundo I y Mundo II hasta la transición definitiva `/transition/world-2-to-world-3`, que avanza automáticamente a `/estacion/3`.
 
-Mundo III exige la primera pasada `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO`; después permite revisitas y habilita `Continuar`. El avance conduce a la transición W3→W4, cuyo copy sigue siendo TEMP. La base técnica preexistente de Mundo IV no constituye aprobación ni desarrollo iniciado por 017K.
+Mundo III exige la primera pasada `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO`; después permite revisitas y habilita `Continuar`. El avance conduce a la transición W3→W4, cuyo copy sigue siendo `TEMP`.
+
+Mundo IV exige la primera pasada `Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido`. Al completar la cadena habilita CTA y revisitas. Estación IV está cerrada y aprobada; su salida usa la ruta W4→W5 existente, cuyo copy editorial continúa `TEMP`.
+
+Mundo V posee una base Fable funcional con cuatro áreas (`PLANTAS → SISTEMA → ESPACIO → VISITANTE`) y revisitas posteriores. Sus visuales siguen siendo procedurales/reemplazables: la estación no está cerrada ni aprobada por revisión humana.
 
 ## Transición entre mundos
 
 La pantalla de transición reutilizable cubre los tramos del recorrido. La transición W2→W3 es pasiva y automática, usa `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…`, dura 2300 ms en movimiento normal y 1000 ms en reduced motion, y no expone CTA, link ni hotspot. La preview técnica se conserva en `/dev/transition-world`.
+
+Las rutas W3→W4, W4→W5 y W5→Final existen y funcionan con el componente compartido, pero su copy permanece `TEMP`; no se documentan como transiciones definitivas. Estación IV no modifica esos contratos durante 018E.

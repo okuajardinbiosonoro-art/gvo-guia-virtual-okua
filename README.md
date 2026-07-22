@@ -66,17 +66,19 @@ npm run test:e2e
 
 ## Estado actual
 
-La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido implementado y consolidado llega hasta Estación III:
+La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido implementado, validado y aprobado llega hasta Estación IV:
 
 - Mundo I funcional en `/estacion/1`.
 - Mundo II finalizado para el alcance actual en `/estacion/2`.
 - Transición Mundo II → Mundo III definitiva, pasiva y automática.
 - Mundo III / Estación III cerrada y aprobada por revisión humana en `/estacion/3`.
 - Estación III ofrece índice progresivo, PLANTA, PROTOTIPO, SEÑAL, sello AJUSTADO, revisitas, ayudas de interacción, assets runtime y espejos `current-used`, responsive y reduced motion.
-- Mundo IV conserva una base técnica deliberada preexistente, pero no está aprobado y no fue iniciado por el ticket de cierre 017K.
-- Mundo V y Final no están cerrados.
+- Mundo IV / Estación IV cerrada y aprobada por revisión humana en `/estacion/4`: cadena Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido, 20 assets runtime con espejos, ruta SVG, Lía, fullscreen, responsive y reduced motion.
+- La transición W4→W5 y las transiciones posteriores existen, pero su copy continúa marcado `TEMP` y no se declara definitivo.
+- Mundo V ya posee una base Fable funcional, probada y documentada; sus cuatro visuales de área siguen siendo procedurales/reemplazables y la estación no está cerrada ni aprobada visualmente.
+- Final conserva una experiencia temporal preexistente; no está cerrado ni aprobado.
 
-El contrato integral de Estación III está en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y el siguiente frente se mantiene en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+Los contratos integrales están en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y [`docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md`](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md). El siguiente frente autorizado está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Metodología de avance por pantalla
 
@@ -95,8 +97,8 @@ Estado actual:
 - Estación I: RUNTIME ACTIVO / INTERACCION REFINADA / DEUDA VISUAL DOCUMENTADA
 - Estación II: FINALIZADA PARA EL ALCANCE ACTUAL / RUNTIME 016V-R2
 - Estación III: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
-- Estación IV: BASE TÉCNICA PREEXISTENTE / NO APROBADA / NO INICIADA POR 017K
-- Estación V: BASE PREEXISTENTE / NO CERRADA
-- Final: NO_INICIADA / BLOQUEADO
+- Estación IV: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
+- Estación V: BASE FABLE FUNCIONAL / VISUALES PROVISIONALES / NO CERRADA / NO HUMAN_APPROVED
+- Final: EXPERIENCIA TEMPORAL PREEXISTENTE / NO CERRADA / NO HUMAN_APPROVED
 
-Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md) y [Estación III](docs/status/GVO_STATION3_COMPLETE.md), y el [inventario de assets](docs/assets/ASSET_INVENTORY.md).
+Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md) y el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md).
