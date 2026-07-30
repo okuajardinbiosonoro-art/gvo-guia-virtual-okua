@@ -110,6 +110,22 @@ duplicaron ni alteraron. El archivo rechazado
 
 ## Pantallas posteriores
 
+## Estación V — vertical slice Plantas ST5-020A
+
+Estado: `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW`, no `HUMAN_APPROVED` ni estación cerrada.
+
+- Runtime: `public/assets/gvo/stations/world-5/present-map/runtime/`.
+- Espejo byte-idéntico: `public/assets/gvo/current-used/world-5-root/`.
+- Registro ejecutable: `src/screens/World5Root/world5RuntimeAssets.ts`.
+- Inventario completo: `public/assets/gvo/stations/world-5/present-map/runtime/manifest.json`.
+- Once WEBP: ocho para mapa y tres para Plantas.
+- Mapa crítico: 1.290.122 bytes; Plantas: 428.412 bytes.
+- `LIA_NOT_YET_INTEGRATED_IN_020A`; no se añadió ningún bitmap.
+- Sistema, Espacio, Visitante y cierre 4/4 permanecen fuera del alcance.
+
+El arte procedural anterior dejó de ser la capa principal. Labels, estados,
+nexo, vínculos, foco, controles y pulso siguen siendo DOM/SVG/CSS accesible.
+
 La presencia de una carpeta en `current-used` no prueba aprobación funcional de
 una estación. Estación IV sí quedó cerrada y `HUMAN_APPROVED` por autorización
 expresa en 018E, no por la sola existencia de `world-4-root/`. La instalación y

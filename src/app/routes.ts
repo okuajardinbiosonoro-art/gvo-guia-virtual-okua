@@ -30,4 +30,6 @@ export const worldFourEntryRoute = "/estacion/4";
 
 export const worldFiveEntryRoute = "/estacion/5";
 
+export const worldFivePlantsRoute = "/estacion/5/plantas";
+
 export const finalEntryRoute = "/final";

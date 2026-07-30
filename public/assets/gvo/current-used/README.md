@@ -58,6 +58,9 @@ current-used/
   detalle vive en su `README.md`. La experiencia no usa audio, ofrece reduced
   motion completo y mantiene la PWA instalada como no certificada en la
   plataforma de QA.
+- `world-5-root` registra los once pares byte-idénticos del mapa real y Plantas
+  publicados por `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW`. Su presencia no
+  constituye aprobación humana ni cierre de Estación V.
 - Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
   del directorio nunca equivale a aprobación de pantalla.
 

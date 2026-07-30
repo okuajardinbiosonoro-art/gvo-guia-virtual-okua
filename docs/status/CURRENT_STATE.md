@@ -1,6 +1,6 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-07-22
+Actualizado: 2026-07-29
 
 ## Estado canónico
 
@@ -25,7 +25,7 @@ Actualizado: 2026-07-22
 | W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
 | Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
 | W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo V | Base Fable funcional, probada y documentada; visuales procedurales/reemplazables, sin cierre ni aprobación humana. |
+| Mundo V | `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW`: mapa real y vertical slice Plantas en checkpoint de `main`; sin cierre ni aprobación humana. |
 | W5→Final | Ruta existente con copy editorial `TEMP`. |
 | Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
 
@@ -92,14 +92,17 @@ de assets, hashes, áreas congeladas y smoke global se registran en el reporte
 externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales,
 242/242 globales, 15 contact sheets y un WebM real.
 
-## Límites y siguiente frente
+## Estado de Estación V
 
-Estación V no se modifica durante 018E. Su base actual es real y funcional,
-pero no está visualmente cerrada ni `HUMAN_APPROVED`. El siguiente paso es un
-ticket `ST5-019A` estrictamente read-only que audite paths, assets, copy, lógica,
-responsive, deuda y riesgos antes de generar assets o programar.
+`ST5-020A` reemplaza el diorama procedural de Mundo V por los once assets reales
+validados del mapa y Plantas. Las rutas activas son `/estacion/5` y
+`/estacion/5/plantas`; el progreso local usa `gvo.station5.v1` y completa sólo
+Plantas. Sistema queda identificado como siguiente área, pero continúa
+físicamente bloqueado; Espacio y Visitante también permanecen fuera de alcance.
 
-El handoff autosuficiente está en
-[GVO-HANDOFF-INICIO-ESTACION-V.md](../../GVO-HANDOFF-INICIO-ESTACION-V.md).
-Los registros numerados bajo `docs/status/` permanecen históricos y no deben
-editarse para simular otro resultado.
+El resultado está listo únicamente para revisión humana. Conserva
+`COPY_CANDIDATE_PENDING_HUMAN_APPROVAL` y `LIA_NOT_YET_INTEGRATED_IN_020A`; no declara Mundo V
+cerrado, no completa Estación V y no habilita Final. La evidencia técnica está
+en [GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md](GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md).
+Los registros anteriores permanecen históricos y no se reescriben para simular
+otro resultado.

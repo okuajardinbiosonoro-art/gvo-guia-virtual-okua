@@ -1,0 +1,22 @@
+{
+  "ticket": "ST5-020A",
+  "screen": "world-5-root",
+  "status": "integrated_ready_for_human_review",
+  "runtimeBase": "/assets/gvo/stations/world-5/present-map/runtime",
+  "currentUsedMirror": "public/assets/gvo/current-used/world-5-root",
+  "mapCriticalBytes": 1290122,
+  "plantsBundleBytes": 428412,
+  "assets": [
+    { "id": "MAP-01", "file": "world5_map_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta/world5_map_environment_portrait_v01.webp", "width": 1440, "height": 2560, "alpha": false, "bytes": 87632, "sha256": "4EA310071C8D7D6CAEBAFBF2D245DF20F8F36603D0BF61E62EBCAD5FCD3546A0" },
+    { "id": "MAP-02", "file": "world5_map_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta (2)/world5_map_environment_landscape_v01.webp", "width": 2560, "height": 1440, "alpha": false, "bytes": 56796, "sha256": "7EB9261B1ED1CE01B6ABAE302FA020A99DBFE2B5BA0F30A493E665F6753D938C" },
+    { "id": "MAP-03", "file": "world5_map_rim_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta (3)/world5_map_rim_portrait_v01.webp", "width": 1440, "height": 2560, "alpha": true, "bytes": 86014, "sha256": "39DB9B7A016E8839F3788FD505A51F3C33127E51AAACC3AEFE134F194C6CAF7C" },
+    { "id": "MAP-04", "file": "world5_map_rim_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images6/world5_map_rim_landscape_v01.webp", "width": 2560, "height": 1440, "alpha": true, "bytes": 357670, "sha256": "EB838E7F7E2ED0DF6561AE2A13AD4BD26209F313DAFCA0CAD51B78D48D5B95B2" },
+    { "id": "MAP-05", "file": "world5_map_sector_plants_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images7/world5_map_sector_plants_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 303502, "sha256": "6694571EF217B853C8A76E027F99988133315538E7A286721210BDD4D0E0A530" },
+    { "id": "MAP-06", "file": "world5_map_sector_system_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images8/world5_map_sector_system_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 115746, "sha256": "B1534F1E43D248A30283E0FA3A94C383F9012B1F146B329EB6F446F743805C20" },
+    { "id": "MAP-07", "file": "world5_map_sector_space_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images9/world5_map_sector_space_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 145786, "sha256": "5774B6A8E6BF6E4E1A14F7F97D57B42FA5928A4DD24DA165A5E9BEC2809A6145" },
+    { "id": "MAP-08", "file": "world5_map_sector_visitor_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images10/world5_map_sector_visitor_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 136976, "sha256": "D596549E9C5550A70DF7E0615790157705E14766EBCA9590A4E5934F561D4533" },
+    { "id": "SUB-PLANTS-BG-PORTRAIT", "file": "world5_sub_plants_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images11/world5_sub_plants_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 158160, "sha256": "400279CBD5A569DB261277D14A1730AA0F7B0A4410BF56C8683DC1CA62FC1612" },
+    { "id": "SUB-PLANTS-BG-LANDSCAPE", "file": "world5_sub_plants_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images12/world5_sub_plants_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 115856, "sha256": "27FBB61F3C6817990F4C049DB3879879226AC2A51291D4F93F1E11A6ADB9CB26" },
+    { "id": "SUB-PLANTS-FOCUS", "file": "world5_sub_plants_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images13/world5_sub_plants_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 154396, "sha256": "3A3FC7759B7F51B6EAF5646F488F401C15F68C3A8540D9EF84A35862FFEEC8BE" }
+  ]
+}

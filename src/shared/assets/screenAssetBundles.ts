@@ -3,6 +3,10 @@ import { coverIntroAssets } from "../../screens/Cover/coverIntroAssets";
 import { loadingInitialAssets } from "../../screens/LoadingInitial/loadingInitialAssets";
 import { world1RootAssets } from "../../screens/World1Root/world1RootAssets";
 import { world2InitialRuntimeAssetSources } from "../../screens/World2Root/world2RuntimeAssets";
+import {
+  world5MapCriticalAssetSources,
+  world5PlantsAssetSources,
+} from "../../screens/World5Root/world5RuntimeAssets";
 
 export type ScreenAssetBundleId =
   | "loadingInitialCritical"
@@ -13,7 +17,9 @@ export type ScreenAssetBundleId =
   | "world1RootPerception"
   | "world1RootMediation"
   | "world1RootReady"
-  | "world2RootInitial";
+  | "world2RootInitial"
+  | "world5MapCritical"
+  | "world5Plants";
 
 export type ScreenAssetPreloadItem = {
   id: string;
@@ -225,6 +231,22 @@ export const screenAssetBundles = {
       "Assets criticos iniciales de Mundo II: fondo, planta, Lia, dialogo y navegacion.",
     assets: world2InitialRuntimeAssetSources.map((src, index) =>
       image(`world2_initial_${index + 1}`, src),
+    ),
+  },
+  world5MapCritical: {
+    id: "world5MapCritical",
+    route: "/estacion/5",
+    description: "Mapa real de Estación V con ambas orientaciones y cuatro sectores.",
+    assets: world5MapCriticalAssetSources.map((src, index) =>
+      image(`world5_map_${index + 1}`, src),
+    ),
+  },
+  world5Plants: {
+    id: "world5Plants",
+    route: "/estacion/5/plantas",
+    description: "Subestación Plantas en ambas orientaciones y foco compartido.",
+    assets: world5PlantsAssetSources.map((src, index) =>
+      image(`world5_plants_${index + 1}`, src),
     ),
   },
 } as const satisfies Record<ScreenAssetBundleId, ScreenAssetBundle>;
