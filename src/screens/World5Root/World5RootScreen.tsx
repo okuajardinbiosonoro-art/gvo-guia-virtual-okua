@@ -17,6 +17,7 @@ import {
   station5PlantsCopy,
   station5SpaceCopy,
   station5SystemCopy,
+  station5VisitorCopy,
   type Station5AreaId,
 } from "./station5Content";
 import {
@@ -36,7 +37,7 @@ import {
   type World5LiaRole,
 } from "./World5EditorialPanel";
 
-type TraversableArea = "plantas" | "sistema" | "espacio";
+type TraversableArea = "plantas" | "sistema" | "espacio" | "visitante";
 type AreaVisualState = "locked" | "available" | "completed";
 type TransitionMode = "entering" | "returning";
 
@@ -49,6 +50,8 @@ export type Station5PresentationState =
   | "system_resolved"
   | "space_intro"
   | "space_resolved"
+  | "visitor_intro"
+  | "visitor_resolved"
   | "transitioning"
   | "storage_error";
 
@@ -69,20 +72,21 @@ const areaRoutes: Record<TraversableArea, string> = {
   plantas: worldFivePlantsRoute,
   sistema: worldFiveSystemRoute,
   espacio: worldFiveSpaceRoute,
+  visitante: worldFiveVisitorRoute,
 };
-
-const protectedRoutes = new Set([worldFiveVisitorRoute]);
 
 const introStates: Record<TraversableArea, Station5PresentationState> = {
   plantas: "plants_intro",
   sistema: "system_intro",
   espacio: "space_intro",
+  visitante: "visitor_intro",
 };
 
 const resolvedStates: Record<TraversableArea, Station5PresentationState> = {
   plantas: "plants_resolved",
   sistema: "system_resolved",
   espacio: "space_resolved",
+  visitante: "visitor_resolved",
 };
 
 function usePrefersReducedMotion() {
@@ -111,6 +115,7 @@ function routeArea(pathname: string): TraversableArea | null {
   if (pathname === worldFivePlantsRoute) return "plantas";
   if (pathname === worldFiveSystemRoute) return "sistema";
   if (pathname === worldFiveSpaceRoute) return "espacio";
+  if (pathname === worldFiveVisitorRoute) return "visitante";
   return null;
 }
 
@@ -127,6 +132,9 @@ function initialPresentation(
   if (area === "espacio" && completed(progress, "sistema")) {
     return completed(progress, area) ? "space_resolved" : "space_intro";
   }
+  if (area === "visitante" && completed(progress, "espacio")) {
+    return completed(progress, area) ? "visitor_resolved" : "visitor_intro";
+  }
   return "map_overview";
 }
 
@@ -138,6 +146,7 @@ function stateArea(
   if (state.startsWith("plants_")) return "plantas";
   if (state.startsWith("system_")) return "sistema";
   if (state.startsWith("space_")) return "espacio";
+  if (state.startsWith("visitor_")) return "visitante";
   if (state === "transitioning") return transitionArea;
   if (state === "storage_error") return errorArea;
   return null;
@@ -166,6 +175,7 @@ export function World5RootScreen() {
   const plantsButtonRef = useRef<HTMLButtonElement>(null);
   const systemButtonRef = useRef<HTMLButtonElement>(null);
   const spaceButtonRef = useRef<HTMLButtonElement>(null);
+  const visitorButtonRef = useRef<HTMLButtonElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const pendingMapFocusRef = useRef<TraversableArea | null>(null);
   const lastPathnameRef = useRef(location.pathname);
@@ -173,6 +183,7 @@ export function World5RootScreen() {
   const plantsCompleted = completed(progress, "plantas");
   const systemCompleted = completed(progress, "sistema");
   const spaceCompleted = completed(progress, "espacio");
+  const visitorCompleted = completed(progress, "visitante");
   const mapActive =
     presentation === "map_overview" || presentation === "map_blocked_feedback";
   const motionLock = presentation === "transitioning";
@@ -181,6 +192,7 @@ export function World5RootScreen() {
   const renderPlantsAssets = activeArea === "plantas";
   const renderSystemAssets = activeArea === "sistema";
   const renderSpaceAssets = activeArea === "espacio";
+  const renderVisitorAssets = activeArea === "visitante";
 
   const clearTimeline = useCallback(() => {
     epochRef.current += 1;
@@ -196,11 +208,8 @@ export function World5RootScreen() {
     const requestedArea = routeArea(location.pathname);
     const blockedSystem = requestedArea === "sistema" && !plantsCompleted;
     const blockedSpace = requestedArea === "espacio" && !systemCompleted;
-    if (
-      protectedRoutes.has(location.pathname) ||
-      blockedSystem ||
-      blockedSpace
-    ) {
+    const blockedVisitor = requestedArea === "visitante" && !spaceCompleted;
+    if (blockedSystem || blockedSpace || blockedVisitor) {
       lastPathnameRef.current = worldFiveEntryRoute;
       clearTimeline();
       navigate(worldFiveEntryRoute, { replace: true });
@@ -212,7 +221,7 @@ export function World5RootScreen() {
           ? "Completa Plantas para habilitar Sistema."
           : blockedSpace
             ? "Completa Sistema para habilitar Espacio."
-            : "Visitante todavía está protegido.",
+            : "Completa Espacio para habilitar Visitante.",
       );
       return;
     }
@@ -234,6 +243,7 @@ export function World5RootScreen() {
     navigate,
     plantsCompleted,
     systemCompleted,
+    spaceCompleted,
   ]);
 
   useEffect(() => {
@@ -250,6 +260,7 @@ export function World5RootScreen() {
       plantas: plantsButtonRef,
       sistema: systemButtonRef,
       espacio: spaceButtonRef,
+      visitante: visitorButtonRef,
     }[area];
     target.current?.focus({ preventScroll: true });
   }, [presentation]);
@@ -282,6 +293,20 @@ export function World5RootScreen() {
     });
   }, [mapActive, spaceCompleted, systemCompleted]);
 
+  useEffect(() => {
+    if (!spaceCompleted || visitorCompleted || !mapActive) return;
+    const portrait = window.matchMedia("(orientation: portrait)").matches;
+    [
+      portrait
+        ? world5RuntimeAssets.visitorEnvironmentPortrait
+        : world5RuntimeAssets.visitorEnvironmentLandscape,
+      world5RuntimeAssets.visitorFocus,
+    ].forEach((src) => {
+      const image = new Image();
+      image.src = src;
+    });
+  }, [mapActive, spaceCompleted, visitorCompleted]);
+
   const areaState = useCallback(
     (area: Station5AreaId): AreaVisualState => {
       if (area === "plantas")
@@ -294,9 +319,10 @@ export function World5RootScreen() {
         if (spaceCompleted) return "completed";
         return systemCompleted ? "available" : "locked";
       }
-      return "locked";
+      if (visitorCompleted) return "completed";
+      return spaceCompleted ? "available" : "locked";
     },
-    [plantsCompleted, spaceCompleted, systemCompleted],
+    [plantsCompleted, spaceCompleted, systemCompleted, visitorCompleted],
   );
 
   const showBlockedFeedback = useCallback(
@@ -309,7 +335,7 @@ export function World5RootScreen() {
           ? "Completa Plantas para habilitar Sistema."
           : area === "espacio"
             ? "Completa Sistema para habilitar Espacio."
-            : "Visitante todavía está protegido.";
+            : "Completa Espacio para habilitar Visitante.";
       setAnnouncement(message);
     },
     [mapActive, motionLock, systemCompleted],
@@ -323,6 +349,10 @@ export function World5RootScreen() {
         return;
       }
       if (area === "espacio" && !systemCompleted) {
+        showBlockedFeedback(area);
+        return;
+      }
+      if (area === "visitante" && !spaceCompleted) {
         showBlockedFeedback(area);
         return;
       }
@@ -358,6 +388,7 @@ export function World5RootScreen() {
       progress,
       reducedMotion,
       showBlockedFeedback,
+      spaceCompleted,
       systemCompleted,
     ],
   );
@@ -386,6 +417,7 @@ export function World5RootScreen() {
           plantas: station5PlantsCopy.storageError,
           sistema: station5SystemCopy.storageError,
           espacio: station5SpaceCopy.storageError,
+          visitante: station5VisitorCopy.storageError,
         }[activeArea],
       );
       return;
@@ -397,6 +429,7 @@ export function World5RootScreen() {
         plantas: station5PlantsCopy.resolvedStatus,
         sistema: station5SystemCopy.resolvedStatus,
         espacio: station5SpaceCopy.resolvedStatus,
+        visitante: station5VisitorCopy.resolvedStatus,
       }[activeArea],
     );
   }, [activeArea, presentation]);
@@ -427,9 +460,12 @@ export function World5RootScreen() {
         setPresentation("map_overview");
         setAnnouncement(
           `${
-            { plantas: "Plantas", sistema: "Sistema", espacio: "Espacio" }[
-              activeArea
-            ]
+            {
+              plantas: "Plantas",
+              sistema: "Sistema",
+              espacio: "Espacio",
+              visitante: "Visitante",
+            }[activeArea]
           } completada. Regresaste al mapa general.`,
         );
         timerRef.current = null;
@@ -457,10 +493,17 @@ export function World5RootScreen() {
   }[liaRole];
 
   const overviewCopy = useMemo(() => {
+    if (visitorCompleted) {
+      return {
+        lead:
+          "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        support: "Puedes volver a mirar cualquiera de las cuatro áreas.",
+      };
+    }
     if (spaceCompleted) {
       return {
         lead: "El recorrido ya tiene un lugar.",
-        support: "Visitante será el siguiente paso.",
+        support: "Toca Visitante para completar el mapa.",
       };
     }
     if (systemCompleted) {
@@ -479,16 +522,14 @@ export function World5RootScreen() {
       lead: "Descubre cómo la vida se convierte en señal.",
       support: "Toca Plantas para comenzar.",
     };
-  }, [plantsCompleted, spaceCompleted, systemCompleted]);
+  }, [plantsCompleted, spaceCompleted, systemCompleted, visitorCompleted]);
 
   const blockedGuidance =
     blockedArea === "sistema"
       ? "Completa Plantas para habilitar Sistema."
-      : blockedArea === "espacio"
-        ? "Completa Sistema para habilitar Espacio."
-        : spaceCompleted
-          ? "Visitante será el siguiente paso, pero todavía está protegido."
-          : "Visitante todavía está protegido.";
+        : blockedArea === "espacio"
+          ? "Completa Sistema para habilitar Espacio."
+          : "Completa Espacio para habilitar Visitante.";
 
   const renderAreaAction = (area: Station5AreaId) => {
     if (area === "plantas") return () => enterArea("plantas");
@@ -500,7 +541,9 @@ export function World5RootScreen() {
       return systemCompleted
         ? () => enterArea("espacio")
         : () => showBlockedFeedback("espacio");
-    return () => showBlockedFeedback(area);
+    return spaceCompleted
+      ? () => enterArea("visitante")
+      : () => showBlockedFeedback(area);
   };
 
   return (
@@ -509,7 +552,7 @@ export function World5RootScreen() {
       data-active-area={activeArea ?? "map"}
       data-copy-approval={station5ContentApprovalStatus}
       data-motion-lock={motionLock ? "true" : "false"}
-      data-station-complete="false"
+      data-station-complete={visitorCompleted ? "true" : "false"}
       data-station5-reduced-motion={reducedMotion ? "true" : "false"}
       data-station5-state={presentation}
       data-transition-mode={transitionMode ?? "none"}
@@ -518,7 +561,7 @@ export function World5RootScreen() {
       <div className="s5-layout">
         <section
           className="s5-stage"
-          aria-label="Mapa del presente y subestaciones Plantas, Sistema y Espacio"
+          aria-label="Mapa del presente y subestaciones Plantas, Sistema, Espacio y Visitante"
         >
           <div
             className="s5-map-scene"
@@ -551,7 +594,7 @@ export function World5RootScreen() {
               </header>
               <div
                 className="s5-map-artboard"
-                data-map-complete="false"
+                data-map-complete={visitorCompleted ? "true" : "false"}
                 data-map-recess="source-derived"
                 data-recess-polygon-portrait={serializeSourcePolygon(
                   mapRecessMaskPortrait,
@@ -573,7 +616,7 @@ export function World5RootScreen() {
                             ? systemButtonRef
                             : area.id === "espacio"
                               ? spaceButtonRef
-                              : undefined
+                              : visitorButtonRef
                       }
                       type="button"
                       className={`s5-sector s5-sector--${area.id}`}
@@ -833,6 +876,78 @@ export function World5RootScreen() {
                 : "← Mapa"}
             </button>
           </div>
+
+          <div
+            className="s5-visitor-scene"
+            data-station5-scene="visitante"
+            aria-hidden={!renderVisitorAssets}
+            inert={!renderVisitorAssets ? true : undefined}
+          >
+            <ProjectedRasterStage
+              fit="cover"
+              landscapeHeight={1080}
+              landscapeSrc={
+                renderVisitorAssets
+                  ? world5RuntimeAssets.visitorEnvironmentLandscape
+                  : undefined
+              }
+              landscapeWidth={1920}
+              name="visitor"
+              portraitHeight={1920}
+              portraitSrc={
+                renderVisitorAssets
+                  ? world5RuntimeAssets.visitorEnvironmentPortrait
+                  : undefined
+              }
+              portraitWidth={1440}
+            >
+              <button
+                className="s5-visitor-focus"
+                type="button"
+                data-anchor-id="P_VISITOR_RING_CENTER"
+                data-source-anchor="768,1000"
+                data-source-anchor-correction-landscape="125,0"
+                data-source-socket-landscape="0.15,0.22,0.40,0.66"
+                data-source-socket-portrait="0.23,0.42,0.54,0.34"
+                aria-label={station5VisitorCopy.actionAccessibleLabel}
+                disabled={presentation !== "visitor_intro"}
+                onClick={activateArea}
+              >
+                <img
+                  alt=""
+                  data-runtime-asset={
+                    renderVisitorAssets
+                      ? world5RuntimeAssets.visitorFocus
+                      : undefined
+                  }
+                  draggable="false"
+                  src={
+                    renderVisitorAssets
+                      ? world5RuntimeAssets.visitorFocus
+                      : undefined
+                  }
+                />
+              </button>
+            </ProjectedRasterStage>
+            <button
+              className="s5-back"
+              type="button"
+              onClick={
+                presentation === "visitor_resolved"
+                  ? returnToMap
+                  : returnToMapImmediately
+              }
+              disabled={
+                presentation === "storage_error" ||
+                transitionMode === "returning"
+              }
+            >
+              {presentation === "visitor_resolved" ||
+              presentation === "storage_error"
+                ? station5VisitorCopy.returnLabel
+                : "← Mapa"}
+            </button>
+          </div>
         </section>
 
         {mapActive ? (
@@ -872,6 +987,42 @@ export function World5RootScreen() {
               presentation === "map_blocked_feedback"
                 ? "Tu avance y tu ubicación no cambiaron."
                 : overviewCopy.support
+            }
+            liaAsset={liaAsset}
+            liaRole={liaRole}
+          />
+        ) : activeArea === "visitante" ? (
+          <World5EditorialPanel
+            action={
+              presentation === "storage_error" ? (
+                <button
+                  className="s5-secondary-action"
+                  type="button"
+                  onClick={retryStorage}
+                >
+                  {station5VisitorCopy.retryLabel}
+                </button>
+              ) : undefined
+            }
+            context="VISITANTE · ÁREA 4 DE 4"
+            title={station5VisitorCopy.heading}
+            headingRef={headingRef}
+            lead={
+              presentation === "visitor_resolved"
+                ? station5VisitorCopy.resolvedDescription
+                : station5VisitorCopy.lead
+            }
+            support={
+              presentation === "visitor_resolved"
+                ? undefined
+                : station5VisitorCopy.instruction
+            }
+            status={
+              presentation === "visitor_resolved"
+                ? station5VisitorCopy.resolvedStatus
+                : presentation === "storage_error"
+                  ? station5VisitorCopy.storageError
+                  : undefined
             }
             liaAsset={liaAsset}
             liaRole={liaRole}

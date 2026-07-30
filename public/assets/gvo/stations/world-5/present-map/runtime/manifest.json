@@ -1,13 +1,14 @@
 {
-  "ticket": "ST5-020F",
+  "ticket": "ST5-020G",
   "screen": "world-5-root",
-  "status": "ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW",
+  "status": "ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW",
   "runtimeBase": "/assets/gvo/stations/world-5/present-map/runtime",
   "currentUsedMirror": "public/assets/gvo/current-used/world-5-root",
   "mapCriticalBytes": 1290122,
   "plantsBundleBytes": 428412,
   "systemBundleBytes": 328882,
   "spaceBundleBytes": 324550,
+  "visitorBundleBytes": 398238,
   "liaBundleBytes": 1686309,
   "assets": [
     { "id": "MAP-01", "file": "world5_map_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta/world5_map_environment_portrait_v01.webp", "width": 1440, "height": 2560, "alpha": false, "bytes": 87632, "sha256": "4EA310071C8D7D6CAEBAFBF2D245DF20F8F36603D0BF61E62EBCAD5FCD3546A0" },
@@ -30,6 +31,9 @@
     { "id": "LIA-ATTEND-NEUTRAL", "file": "lia/lia_world5_attend_neutral_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_ATTEND_NEUTRAL_APPROVED_FINAL/lia_world5_attend_neutral_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 135910, "sha256": "BFD5C5E3EB4DE9B9A908C6DAA7730EA9005AF912ABB58CE735C81DDCAA451316" },
     { "id": "SUB-SPACE-BG-PORTRAIT", "file": "world5_sub_space_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images17/world5_sub_space_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 109230, "sha256": "2D5CF7921187A67A7AEA092D7DCB84C9B4435620168187DBBB6E928A4D6F48B3" },
     { "id": "SUB-SPACE-BG-LANDSCAPE", "file": "world5_sub_space_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images18/world5_sub_space_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 73372, "sha256": "53D57B96D5BC0ED13694361892A11CB8568E7C4DA61D95BEE1A6A44EF0EE7BD8" },
-    { "id": "SUB-SPACE-FOCUS", "file": "world5_sub_space_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images19/world5_sub_space_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 141948, "sha256": "FDD48FBC8E9F439E9D51C21C2BB3CB7406423DDCBB50AA0A3A218EA6DEB71F66" }
+    { "id": "SUB-SPACE-FOCUS", "file": "world5_sub_space_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images19/world5_sub_space_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 141948, "sha256": "FDD48FBC8E9F439E9D51C21C2BB3CB7406423DDCBB50AA0A3A218EA6DEB71F66" },
+    { "id": "SUB-VISITOR-BG-PORTRAIT", "file": "world5_sub_visitor_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images20/world5_sub_visitor_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 166804, "sha256": "0434D75215C7F93A0F5C1DC37AEFDFAAD9A0FB7DFA1FB1F7DC51D4FB627CE6E7" },
+    { "id": "SUB-VISITOR-BG-LANDSCAPE", "file": "world5_sub_visitor_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images21/world5_sub_visitor_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 98454, "sha256": "A7EC3EEB48E30003AA2E2D8817D2E7508621EBDC73648A4C632C69C6D017C3BE" },
+    { "id": "SUB-VISITOR-FOCUS", "file": "world5_sub_visitor_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images22/world5_sub_visitor_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 132980, "sha256": "8F0C0F3A424453081484D2B97961E4ED53375FEB931E9A5ECCE431C768B998D4" }
   ]
 }

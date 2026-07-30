@@ -1,0 +1,20 @@
+{
+  "ticket": "ST5-020G",
+  "captureCount": 121,
+  "viewportCount": 11,
+  "scenarioCount": 11,
+  "passed": 121,
+  "failed": [],
+  "minBodyFontSize": 14,
+  "minTarget": 44,
+  "maxScrollOverflow": 0,
+  "minLandscapeRailWidth": 260,
+  "minLandscapeLiaVisibleAlphaHeight": 94.90262430939225,
+  "maxVisitorAnchorDrift": 0.015596808201846224,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "externalRequests": [],
+  "dynamicPass": true,
+  "pass": true
+}

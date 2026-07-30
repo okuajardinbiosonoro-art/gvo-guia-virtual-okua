@@ -25,7 +25,7 @@ Actualizado: 2026-07-30
 | W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
 | Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
 | W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo V | Entrada `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`; `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW` integra Espacio y corrige el rail landscape de Plantas/Sistema/Espacio. La estación permanece en 3/4 y no está cerrada. |
+| Mundo V | Entrada `ST5_020F_HUMAN_APPROVED`; `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW` integra Visitante y prepara el estado interno 4/4 para revisión global. La estación no está cerrada y Final sigue protegido. |
 | W5→Final | Ruta existente con copy editorial `TEMP`. |
 | Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
 
@@ -94,17 +94,15 @@ externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales
 
 ## Estado de Estación V
 
-El mapa, Plantas, Sistema y su composición responsive quedaron aprobados por el
-usuario en 020E con una deuda acotada de texto landscape. `ST5-020F` suma los
-tres assets aprobados de Espacio y corrige el rail editorial compartido sin
-recomponer el overview. Las rutas activas son `/estacion/5`,
-`/estacion/5/plantas`, `/estacion/5/sistema` y `/estacion/5/espacio`; el
-progreso local usa `gvo.station5.v1` y acepta únicamente el prefijo exacto
-`['plantas','sistema','espacio']`. Visitante y su ruta permanecen protegidos.
+El mapa, Plantas, Sistema, Espacio y la composición responsive protegida tienen
+aprobación humana de entrada por `ST5_020F_HUMAN_APPROVED`. `ST5-020G` suma los
+tres assets finales de Visitante y activa `/estacion/5/visitante`. El progreso
+local `gvo.station5.v1` acepta el prefijo exacto
+`['plantas','sistema','espacio','visitante']`; tras 4/4 permite revisita libre
+de las cuatro áreas y presenta el overview global para revisión humana.
 
-El resultado 020F está listo únicamente para revisión humana de Espacio y de la
-deuda landscape corregida. No declara Mundo V cerrado, no completa Estación V,
-no habilita Visitante, 4/4 ni Final. La evidencia técnica vigente está en
-[GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md](GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md).
+El resultado 020G no declara Mundo V cerrado y no habilita `Ir al cierre`, la
+transición W5→Final ni Final. La evidencia técnica vigente está en
+[GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md](GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md).
 Los registros anteriores permanecen históricos y no se reescriben para simular
 otro resultado.

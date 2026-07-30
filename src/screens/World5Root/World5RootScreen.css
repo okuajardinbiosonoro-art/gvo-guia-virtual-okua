@@ -55,7 +55,8 @@ body:has(.s5-screen) #app {
 .s5-map-scene,
 .s5-plants-scene,
 .s5-system-scene,
-.s5-space-scene {
+.s5-space-scene,
+.s5-visitor-scene {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -68,13 +69,15 @@ body:has(.s5-screen) #app {
 }
 .s5-plants-scene,
 .s5-system-scene,
-.s5-space-scene {
+.s5-space-scene,
+.s5-visitor-scene {
   z-index: 2;
 }
 .s5-map-scene[aria-hidden="false"],
 .s5-plants-scene[aria-hidden="false"],
 .s5-system-scene[aria-hidden="false"],
-.s5-space-scene[aria-hidden="false"] {
+.s5-space-scene[aria-hidden="false"],
+.s5-visitor-scene[aria-hidden="false"] {
   opacity: 1;
   pointer-events: auto;
 }
@@ -105,6 +108,8 @@ body:has(.s5-screen) #app {
 .s5-projected-stage[data-projected-stage="system"][data-projection-fit="cover"]
   .s5-media-canvas,
 .s5-projected-stage[data-projected-stage="space"][data-projection-fit="cover"]
+  .s5-media-canvas,
+.s5-projected-stage[data-projected-stage="visitor"][data-projection-fit="cover"]
   .s5-media-canvas {
   width: max(100cqw, 75cqh);
   height: max(100cqh, 133.3333cqw);
@@ -231,6 +236,7 @@ body:has(.s5-screen) #app {
 .s5-leaf-control:focus-visible,
 .s5-system-focus:focus-visible,
 .s5-space-focus:focus-visible,
+.s5-visitor-focus:focus-visible,
 .s5-back:focus-visible,
 .s5-secondary-action:focus-visible {
   outline: 3px solid #183f7a;
@@ -272,7 +278,8 @@ body:has(.s5-screen) #app {
 }
 .s5-leaf-control:disabled,
 .s5-system-focus:disabled,
-.s5-space-focus:disabled {
+.s5-space-focus:disabled,
+.s5-visitor-focus:disabled {
   cursor: default;
 }
 .s5-screen[data-station5-state="plants_resolved"] .s5-plants-focus {
@@ -338,6 +345,37 @@ body:has(.s5-screen) #app {
 .s5-screen[data-station5-state="space_resolved"] .s5-space-focus {
   filter: saturate(1.05) brightness(1.07);
   transform: translate(-50%, -49.5%) scale(1.012);
+}
+
+.s5-visitor-focus {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 60.99%;
+  width: 57.4%;
+  min-width: 44px;
+  min-height: 44px;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translate(-50%, -65.104%);
+  transform-origin: 50% 65.104%;
+  cursor: pointer;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+.s5-visitor-focus > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.s5-screen[data-station5-state="visitor_resolved"] .s5-visitor-focus {
+  filter: saturate(1.03) brightness(1.05);
+  transform: translate(-50%, -65.104%) scale(1.01);
 }
 
 .s5-back {
@@ -478,7 +516,9 @@ body:has(.s5-screen) #app {
 .s5-screen[data-station5-state="transitioning"][data-transition-mode="entering"]
   .s5-system-scene,
 .s5-screen[data-station5-state="transitioning"][data-transition-mode="entering"]
-  .s5-space-scene {
+  .s5-space-scene,
+.s5-screen[data-station5-state="transitioning"][data-transition-mode="entering"]
+  .s5-visitor-scene {
   animation: s5-sub-in 760ms ease both;
 }
 .s5-screen[data-station5-state="transitioning"][data-transition-mode="returning"]
@@ -490,7 +530,9 @@ body:has(.s5-screen) #app {
 .s5-screen[data-station5-state="transitioning"][data-transition-mode="returning"]
   .s5-system-scene,
 .s5-screen[data-station5-state="transitioning"][data-transition-mode="returning"]
-  .s5-space-scene {
+  .s5-space-scene,
+.s5-screen[data-station5-state="transitioning"][data-transition-mode="returning"]
+  .s5-visitor-scene {
   animation: s5-sub-away 620ms ease both;
 }
 
@@ -557,6 +599,8 @@ body:has(.s5-screen) #app {
   .s5-projected-stage[data-projected-stage="system"][data-projection-fit="cover"]
     .s5-media-canvas,
   .s5-projected-stage[data-projected-stage="space"][data-projection-fit="cover"]
+    .s5-media-canvas,
+  .s5-projected-stage[data-projected-stage="visitor"][data-projection-fit="cover"]
     .s5-media-canvas {
     width: max(100cqw, 177.7778cqh);
     height: max(100cqh, 56.25cqw);
@@ -608,6 +652,12 @@ body:has(.s5-screen) #app {
     left: 33%;
     top: 53%;
     width: 46.875%;
+  }
+
+  .s5-visitor-focus {
+    left: 41.5104%;
+    top: 55%;
+    width: 33.68%;
   }
 }
 
@@ -797,6 +847,28 @@ body:has(.s5-screen) #app {
     left: -7px;
     width: 98px;
     height: 131px;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 600px) and (max-height: 320px) {
+  .s5-screen[data-active-area="map"] {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+  body:has(.s5-screen[data-active-area="map"]),
+  body:has(.s5-screen[data-active-area="map"]) #app {
+    height: 100%;
+    overflow: hidden;
+  }
+  .s5-screen[data-active-area="map"] .s5-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 58fr) minmax(310px, 42fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: 100%;
+  }
+  .s5-screen[data-active-area="map"] .s5-stage {
+    min-height: 0;
   }
 }
 

@@ -58,7 +58,7 @@ function area(container: HTMLElement, id: string) {
 
 function enterArea(
   container: HTMLElement,
-  id: "plantas" | "sistema" | "espacio",
+  id: "plantas" | "sistema" | "espacio" | "visitante",
   reduced = false,
 ) {
   fireEvent.click(area(container, id));
@@ -72,6 +72,7 @@ function enterArea(
       plantas: "plants_intro",
       sistema: "system_intro",
       espacio: "space_intro",
+      visitante: "visitor_intro",
     }[id],
   );
 }
@@ -88,7 +89,7 @@ function stubReducedMotion(matches: boolean) {
   });
 }
 
-describe("World5RootScreen — ST5-020F", () => {
+describe("World5RootScreen — ST5-020G", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
@@ -101,8 +102,8 @@ describe("World5RootScreen — ST5-020F", () => {
     vi.useRealTimers();
   });
 
-  it("abre siempre en overview y habilita Espacio tras Sistema", () => {
-    seedProgress(["plantas", "sistema"]);
+  it("abre siempre en overview y habilita Visitante tras Espacio", () => {
+    seedProgress(["plantas", "sistema", "espacio"]);
     const { container } = renderStation5();
     expect(state(container)).toBe("map_overview");
     expect(
@@ -112,9 +113,9 @@ describe("World5RootScreen — ST5-020F", () => {
       screen.queryByRole("heading", { name: "Espacio" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByText("Toca Espacio para continuar."),
+      screen.getByText("Toca Visitante para completar el mapa."),
     ).toBeInTheDocument();
-    expect(area(container, "espacio")).toHaveAttribute(
+    expect(area(container, "visitante")).toHaveAttribute(
       "data-area-state",
       "available",
     );
@@ -133,29 +134,63 @@ describe("World5RootScreen — ST5-020F", () => {
     expect(area(container, "sistema")).not.toHaveAttribute("aria-disabled");
   });
 
-  it("mantiene Visitante protegido tras completar Espacio sin cambiar ruta ni progreso", () => {
+  it("completa Visitante desde la presencia raster, persiste 4/4 y no navega a Final", () => {
     seedProgress(["plantas", "sistema", "espacio"]);
     const { container } = renderStation5();
+    enterArea(container, "visitante");
+    const presence = screen.getByRole("button", {
+      name: "Reconocer la presencia del visitante dentro del recorrido.",
+    });
     expect(
-      screen.queryByRole("heading", { name: "Área protegida" }),
-    ).not.toBeInTheDocument();
-    fireEvent.click(area(container, "visitante"));
-    expect(state(container)).toBe("map_blocked_feedback");
-    expect(
-      screen.getByRole("heading", { name: "Área protegida" }),
+      presence.querySelector(
+        `[data-runtime-asset="${world5RuntimeAssets.visitorFocus}"]`,
+      ),
     ).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/estacion/5",
-    );
+    fireEvent.pointerDown(presence);
+    fireEvent.pointerUp(presence);
+    fireEvent.click(presence);
+    expect(state(container)).toBe("visitor_resolved");
     expect(
       JSON.parse(
         window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}",
       ).completedAreas,
-    ).toEqual(["plantas", "sistema", "espacio"]);
-    fireEvent.click(
-      screen.getByRole("button", { name: "Volver al mapa general" }),
+    ).toEqual(["plantas", "sistema", "espacio", "visitante"]);
+    expect(container.querySelector("[data-station-complete]")).toHaveAttribute(
+      "data-station-complete",
+      "true",
     );
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+    expect(screen.queryByText("Ir al cierre")).not.toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).not.toHaveTextContent(
+      "/transition/world-5-to-final",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Volver al mapa" }));
+    advance(650);
     expect(state(container)).toBe("map_overview");
+    expect(
+      screen.getByText(
+        "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+      ),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-map-complete]")).toHaveAttribute(
+      "data-map-complete",
+      "true",
+    );
+    expect(area(container, "visitante")).toHaveFocus();
+  });
+
+  it("mantiene Visitante bloqueada y protege su ruta directa antes de Espacio", () => {
+    seedProgress(["plantas", "sistema"]);
+    const { container } = renderStation5("/estacion/5/visitante");
+    expect(state(container)).toBe("map_overview");
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/5",
+    );
+    fireEvent.click(area(container, "visitante"));
+    expect(state(container)).toBe("map_blocked_feedback");
+    expect(
+      screen.getAllByText("Completa Espacio para habilitar Visitante."),
+    ).toHaveLength(2);
   });
 
   it("un intento temprano sobre Sistema explica el bloqueo sin usar disabled nativo", () => {
@@ -230,7 +265,7 @@ describe("World5RootScreen — ST5-020F", () => {
     );
   });
 
-  it("completa Espacio sólo desde el recorrido raster, conserva 3/4 y protege Visitante", () => {
+  it("completa Espacio sólo desde el recorrido raster, conserva 3/4 y habilita Visitante", () => {
     seedProgress(["plantas", "sistema"]);
     const { container } = renderStation5();
     enterArea(container, "espacio");
@@ -258,11 +293,11 @@ describe("World5RootScreen — ST5-020F", () => {
     advance(650);
     expect(state(container)).toBe("map_overview");
     expect(
-      screen.getByText("Visitante será el siguiente paso."),
+      screen.getByText("Toca Visitante para completar el mapa."),
     ).toBeInTheDocument();
     expect(area(container, "visitante")).toHaveAttribute(
       "data-area-state",
-      "locked",
+      "available",
     );
     expect(area(container, "espacio")).toHaveFocus();
   });
@@ -281,6 +316,46 @@ describe("World5RootScreen — ST5-020F", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Espacio" }),
     ).toBeInTheDocument();
+  });
+
+  it("acepta la ruta directa de Visitante tras Espacio y restaura su estado resuelto", () => {
+    seedProgress(["plantas", "sistema", "espacio"]);
+    const intro = renderStation5("/estacion/5/visitante");
+    expect(state(intro.container)).toBe("visitor_intro");
+    intro.unmount();
+
+    seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+    const resolved = renderStation5("/estacion/5/visitante");
+    expect(state(resolved.container)).toBe("visitor_resolved");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Visitante" }),
+    ).toBeInTheDocument();
+  });
+
+  it("permite revisitar libremente las cuatro áreas después de 4/4 sin duplicar progreso", () => {
+    seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+    const { container } = renderStation5();
+    for (const id of ["visitante", "plantas", "espacio", "sistema"] as const) {
+      fireEvent.click(area(container, id));
+      expect(state(container)).toBe("transitioning");
+      advance(770);
+      expect(state(container)).toBe(
+        {
+          plantas: "plants_resolved",
+          sistema: "system_resolved",
+          espacio: "space_resolved",
+          visitante: "visitor_resolved",
+        }[id],
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Volver al mapa" }));
+      advance(650);
+      expect(state(container)).toBe("map_overview");
+    }
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}",
+      ).completedAreas,
+    ).toEqual(["plantas", "sistema", "espacio", "visitante"]);
   });
 
   it("un refresh directo de subestación restaura su estado resuelto y el mapa vuelve a overview", () => {
@@ -307,6 +382,24 @@ describe("World5RootScreen — ST5-020F", () => {
       screen.getByRole("button", { name: "Reintentar guardado" }),
     );
     expect(state(container)).toBe("plants_intro");
+  });
+
+  it("falla cerrado al guardar Visitante y permite reintentar", () => {
+    seedProgress(["plantas", "sistema", "espacio"]);
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("quota");
+    });
+    const { container } = renderStation5();
+    enterArea(container, "visitante");
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Reconocer la presencia del visitante dentro del recorrido.",
+      }),
+    );
+    expect(state(container)).toBe("storage_error");
+    expect(screen.getByRole("button", { name: "Volver al mapa" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar guardado" }));
+    expect(state(container)).toBe("visitor_intro");
   });
 
   it("usa artboards proyectados, Lía contextual y ningún visual procedimental", () => {

@@ -1,9 +1,9 @@
 # Assets runtime — world-5-root
 
-Estado de entrada: `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`.
-Estado publicado: `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW`.
+Estado de entrada: `ST5_020F_HUMAN_APPROVED`.
+Estado publicado: `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW`.
 
-Los veintiún assets integrados en `public/assets/gvo/stations/world-5/present-map/runtime/`
+Los veinticuatro assets integrados en `public/assets/gvo/stations/world-5/present-map/runtime/`
 tienen aquí una copia byte-idéntica para revisión. El runtime importa únicamente
 la ruta `stations/world-5/present-map/runtime`; esta carpeta no es fuente de imports.
 
@@ -30,9 +30,12 @@ la ruta `stations/world-5/present-map/runtime`; esta carpeta no es fuente de imp
 | SUB-SPACE-BG-PORTRAIT | `space/world5_sub_space_environment_portrait_v01.webp` | 1440×1920 | no | 109.230 | `2D5CF7921187A67A7AEA092D7DCB84C9B4435620168187DBBB6E928A4D6F48B3` |
 | SUB-SPACE-BG-LANDSCAPE | `space/world5_sub_space_environment_landscape_v01.webp` | 1920×1080 | no | 73.372 | `53D57B96D5BC0ED13694361892A11CB8568E7C4DA61D95BEE1A6A44EF0EE7BD8` |
 | SUB-SPACE-FOCUS | `space/world5_sub_space_focus_v01.webp` | 1536×1536 | sí | 141.948 | `FDD48FBC8E9F439E9D51C21C2BB3CB7406423DDCBB50AA0A3A218EA6DEB71F66` |
+| SUB-VISITOR-BG-PORTRAIT | `visitor/world5_sub_visitor_environment_portrait_v01.webp` | 1440×1920 | no | 166.804 | `0434D75215C7F93A0F5C1DC37AEFDFAAD9A0FB7DFA1FB1F7DC51D4FB627CE6E7` |
+| SUB-VISITOR-BG-LANDSCAPE | `visitor/world5_sub_visitor_environment_landscape_v01.webp` | 1920×1080 | no | 98.454 | `A7EC3EEB48E30003AA2E2D8817D2E7508621EBDC73648A4C632C69C6D017C3BE` |
+| SUB-VISITOR-FOCUS | `visitor/world5_sub_visitor_focus_v01.webp` | 1536×1536 | sí | 132.980 | `8F0C0F3A424453081484D2B97961E4ED53375FEB931E9A5ECCE431C768B998D4` |
 
 Presupuestos: mapa crítico 1.290.122 bytes; Plantas 428.412 bytes; Sistema
-328.882 bytes; Espacio 324.550 bytes; Lía 1.686.309 bytes. No se integró
+328.882 bytes; Espacio 324.550 bytes; Visitante 398.238 bytes; Lía 1.686.309 bytes. No se integró
 `SUB-PLANTS-FG-01`.
 Runtime consume únicamente las rutas canónicas; `current-used` no es fuente de
 imports. Las cuatro poses de Lía permanecen sin mirror CSS, recomprensión ni

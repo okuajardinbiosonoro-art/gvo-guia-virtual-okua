@@ -81,6 +81,20 @@ export const station5SpaceCopy = {
   retryLabel: "Reintentar guardado",
 } as const;
 
+export const station5VisitorCopy = {
+  heading: "Visitante",
+  lead: "Tú también haces parte del presente de OKÚA.",
+  instruction: "Toca la presencia dentro del aro.",
+  actionAccessibleLabel:
+    "Reconocer la presencia del visitante dentro del recorrido.",
+  resolvedStatus: "Presencia reconocida.",
+  resolvedDescription:
+    "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+  returnLabel: "Volver al mapa",
+  storageError: "No fue posible guardar el avance. Inténtalo de nuevo.",
+  retryLabel: "Reintentar guardado",
+} as const;
+
 export const station5DeprecatedCopy = {
   W5_SISTEMA_ACTION: "DEPRECATED_NO_RENDER",
 } as const;

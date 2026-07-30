@@ -1,0 +1,3014 @@
+[
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 505,
+        "width": 359,
+        "height": 497
+      },
+      "card": {
+        "left": 8,
+        "top": 513,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 146
+      },
+      "lia": {
+        "left": 240,
+        "top": 525.5,
+        "right": 356,
+        "bottom": 647.5,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 99.11602209944752,
+        "height": 115.91160220994482
+      },
+      "focus": {
+        "left": 80.953125,
+        "top": 172.1580810546875,
+        "right": 294.046875,
+        "bottom": 385.2518310546875,
+        "width": 213.09375,
+        "height": 213.09375
+      },
+      "visitorAlpha": {
+        "left": 120.908203125,
+        "top": 217.93994140625,
+        "right": 271.849609375,
+        "bottom": 366.80035400390625,
+        "width": 150.94140625,
+        "height": 148.86041259765625
+      },
+      "visitorAnchor": {
+        "x": 187.5,
+        "y": 310.8909912109375
+      },
+      "expectedAnchor": {
+        "x": 187.5,
+        "y": 310.8984375
+      },
+      "socket": {
+        "left": 87.2625,
+        "top": 216.9,
+        "right": 287.7375,
+        "bottom": 385.2,
+        "width": 200.47500000000002,
+        "height": 168.29999999999998
+      }
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 10.88,
+        "box": {
+          "left": 21,
+          "top": 533.28125,
+          "right": 232,
+          "bottom": 546.328125,
+          "width": 211,
+          "height": 13.046875
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20,
+        "box": {
+          "left": 21,
+          "top": 550.328125,
+          "right": 232,
+          "bottom": 571.921875,
+          "width": 211,
+          "height": 21.59375
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 576.921875,
+          "right": 232,
+          "bottom": 616.109375,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 620.109375,
+          "right": 232,
+          "bottom": 639.703125,
+          "width": 211,
+          "height": 19.59375
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 80.953125,
+          "top": 172.1580810546875,
+          "right": 294.046875,
+          "bottom": 385.2518310546875,
+          "width": 213.09375,
+          "height": 213.09375
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 37.34375,
+        "top": 65.50459289550781,
+        "right": 252.28125,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": {
+        "left": 77.64453125,
+        "top": 111.68256813287735,
+        "right": 229.89192708333334,
+        "bottom": 261.8309542834759,
+        "width": 152.24739583333334,
+        "height": 150.14838615059853
+      },
+      "visitorAnchor": {
+        "x": 144.8125,
+        "y": 205.43785119056702
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 106.203125,
+          "right": 555,
+          "bottom": 135.359375,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 139.359375,
+          "right": 555,
+          "bottom": 161.8125,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 166.8125,
+          "right": 555,
+          "bottom": 225.59375,
+          "width": 147,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 229.59375,
+          "right": 555,
+          "bottom": 268.78125,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 37.34375,
+          "top": 65.50459289550781,
+          "right": 252.28125,
+          "bottom": 280.44207763671875,
+          "width": 214.9375,
+          "height": 214.93748474121094
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 111,
+          "bottom": 64,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 505,
+        "width": 359,
+        "height": 497
+      },
+      "card": {
+        "left": 8,
+        "top": 513,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 146
+      },
+      "lia": {
+        "left": 240,
+        "top": 525.5,
+        "right": 356,
+        "bottom": 647.5,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 99.11602209944752,
+        "height": 115.91160220994482
+      },
+      "focus": {
+        "left": 80.953125,
+        "top": 172.1580810546875,
+        "right": 294.046875,
+        "bottom": 385.2518310546875,
+        "width": 213.09375,
+        "height": 213.09375
+      },
+      "visitorAlpha": {
+        "left": 120.908203125,
+        "top": 217.93994140625,
+        "right": 271.849609375,
+        "bottom": 366.80035400390625,
+        "width": 150.94140625,
+        "height": 148.86041259765625
+      },
+      "visitorAnchor": {
+        "x": 187.5,
+        "y": 310.8909912109375
+      },
+      "expectedAnchor": {
+        "x": 187.5,
+        "y": 310.8984375
+      },
+      "socket": {
+        "left": 87.2625,
+        "top": 216.9,
+        "right": 287.7375,
+        "bottom": 385.2,
+        "width": 200.47500000000002,
+        "height": 168.29999999999998
+      }
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 10.88,
+        "box": {
+          "left": 21,
+          "top": 533.28125,
+          "right": 232,
+          "bottom": 546.328125,
+          "width": 211,
+          "height": 13.046875
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20,
+        "box": {
+          "left": 21,
+          "top": 550.328125,
+          "right": 232,
+          "bottom": 571.921875,
+          "width": 211,
+          "height": 21.59375
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 576.921875,
+          "right": 232,
+          "bottom": 616.109375,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 620.109375,
+          "right": 232,
+          "bottom": 639.703125,
+          "width": 211,
+          "height": 19.59375
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 80.953125,
+          "top": 172.1580810546875,
+          "right": 294.046875,
+          "bottom": 385.2518310546875,
+          "width": 213.09375,
+          "height": 213.09375
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 3
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 37.34375,
+        "top": 65.50459289550781,
+        "right": 252.28125,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": {
+        "left": 77.64453125,
+        "top": 111.68256813287735,
+        "right": 229.89192708333334,
+        "bottom": 261.8309542834759,
+        "width": 152.24739583333334,
+        "height": 150.14838615059853
+      },
+      "visitorAnchor": {
+        "x": 144.8125,
+        "y": 205.43785119056702
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 106.203125,
+          "right": 555,
+          "bottom": 135.359375,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 139.359375,
+          "right": 555,
+          "bottom": 161.8125,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 166.8125,
+          "right": 555,
+          "bottom": 225.59375,
+          "width": 147,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 229.59375,
+          "right": 555,
+          "bottom": 268.78125,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 37.34375,
+          "top": 65.50459289550781,
+          "right": 252.28125,
+          "bottom": 280.44207763671875,
+          "width": 214.9375,
+          "height": 214.93748474121094
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 111,
+          "bottom": 64,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 313,
+        "width": 378,
+        "height": 306
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 260,
+        "height": 306
+      },
+      "lia": {
+        "left": 561,
+        "top": 109.984375,
+        "right": 647,
+        "bottom": 209.984375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939227
+      },
+      "focus": {
+        "left": 62.1015625,
+        "top": 56.68805694580078,
+        "right": 244.1171875,
+        "bottom": 238.70368194580078,
+        "width": 182.015625,
+        "height": 182.015625
+      },
+      "visitorAlpha": {
+        "left": 96.2294921875,
+        "top": 95.79297637939453,
+        "right": 225.1572265625,
+        "bottom": 222.9432144165039,
+        "width": 128.927734375,
+        "height": 127.15023803710938
+      },
+      "visitorAnchor": {
+        "x": 153.109375,
+        "y": 175.18781280517578
+      },
+      "expectedAnchor": {
+        "x": 153.11910807291667,
+        "y": 175.20000000000002
+      },
+      "socket": {
+        "left": 9.846875000000011,
+        "top": 74.88000000000001,
+        "right": 226.02187500000002,
+        "bottom": 275.52000000000004,
+        "width": 216.175,
+        "height": 200.64000000000004
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 78.703125,
+          "right": 555,
+          "bottom": 107.859375,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 111.859375,
+          "right": 555,
+          "bottom": 134.3125,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 139.3125,
+          "right": 555,
+          "bottom": 198.09375,
+          "width": 147,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 202.09375,
+          "right": 555,
+          "bottom": 241.28125,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 62.1015625,
+          "top": 56.68805694580078,
+          "right": 244.1171875,
+          "bottom": 238.70368194580078,
+          "width": 182.015625,
+          "height": 182.015625
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 111,
+          "bottom": 64,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "02_visitor_intro",
+    "runtimeState": "visitor_intro",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 37.34375,
+        "top": 65.50459289550781,
+        "right": 252.28125,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": {
+        "left": 77.64453125,
+        "top": 111.68256813287735,
+        "right": 229.89192708333334,
+        "bottom": 261.8309542834759,
+        "width": 152.24739583333334,
+        "height": 150.14838615059853
+      },
+      "visitorAnchor": {
+        "x": 144.8125,
+        "y": 205.43785119056702
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 106.203125,
+          "right": 555,
+          "bottom": 135.359375,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 139.359375,
+          "right": 555,
+          "bottom": 161.8125,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "Tú también haces parte del presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 166.8125,
+          "right": 555,
+          "bottom": 225.59375,
+          "width": 147,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Toca la presencia dentro del aro.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 229.59375,
+          "right": 555,
+          "bottom": 268.78125,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Reconocer la presencia del visitante dentro del recorrido.",
+        "box": {
+          "left": 37.34375,
+          "top": 65.50459289550781,
+          "right": 252.28125,
+          "bottom": 280.44207763671875,
+          "width": 214.9375,
+          "height": 214.93748474121094
+        }
+      },
+      {
+        "label": "← Mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 111,
+          "bottom": 64,
+          "width": 88,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 3
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 493.984375,
+        "width": 359,
+        "height": 485.984375
+      },
+      "card": {
+        "left": 8,
+        "top": 501.984375,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 157.015625
+      },
+      "lia": {
+        "left": 240,
+        "top": 519.984375,
+        "right": 356,
+        "bottom": 641.984375,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 99.11602209944752,
+        "height": 115.91160220994482
+      },
+      "focus": {
+        "left": 82.27859497070312,
+        "top": 167.1675567626953,
+        "right": 292.7057800292969,
+        "bottom": 377.5947265625,
+        "width": 210.42718505859375,
+        "height": 210.4271697998047
+      },
+      "visitorAlpha": {
+        "left": 121.73369216918945,
+        "top": 212.3765190243721,
+        "right": 270.78628158569336,
+        "bottom": 359.3741448024909,
+        "width": 149.0525894165039,
+        "height": 146.9976257781188
+      },
+      "visitorAnchor": {
+        "x": 187.4921875,
+        "y": 304.1644121011098
+      },
+      "expectedAnchor": {
+        "x": 187.5,
+        "y": 304.1722412109375
+      },
+      "socket": {
+        "left": 89.49421874999999,
+        "top": 212.265625,
+        "right": 285.50578125,
+        "bottom": 376.8203125,
+        "width": 196.0115625,
+        "height": 164.5546875
+      }
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 10.88,
+        "box": {
+          "left": 21,
+          "top": 517.984375,
+          "right": 232,
+          "bottom": 531.03125,
+          "width": 211,
+          "height": 13.046875
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20,
+        "box": {
+          "left": 21,
+          "top": 535.03125,
+          "right": 232,
+          "bottom": 556.625,
+          "width": 211,
+          "height": 21.59375
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 561.625,
+          "right": 232,
+          "bottom": 620.40625,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 624.40625,
+          "right": 232,
+          "bottom": 644,
+          "width": 211,
+          "height": 19.59375
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 21,
+          "top": 21,
+          "right": 163,
+          "bottom": 65,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 36.269073486328125,
+        "top": 64.10527038574219,
+        "right": 253.35595703125,
+        "bottom": 281.192138671875,
+        "width": 217.08688354492188,
+        "height": 217.0868682861328
+      },
+      "visitorAlpha": {
+        "left": 76.97286415100098,
+        "top": 110.74502724409103,
+        "right": 230.74273999532065,
+        "bottom": 262.394903331995,
+        "width": 153.76987584431967,
+        "height": 151.64987608790398
+      },
+      "visitorAnchor": {
+        "x": 144.81251525878906,
+        "y": 205.43786692619324
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 86.609375,
+          "right": 555,
+          "bottom": 115.765625,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 119.765625,
+          "right": 555,
+          "bottom": 142.21875,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 147.21875,
+          "right": 555,
+          "bottom": 245.1875,
+          "width": 147,
+          "height": 97.96875
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 249.1875,
+          "right": 555,
+          "bottom": 288.375,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 165,
+          "bottom": 64,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 493.984375,
+        "width": 359,
+        "height": 485.984375
+      },
+      "card": {
+        "left": 8,
+        "top": 501.984375,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 157.015625
+      },
+      "lia": {
+        "left": 240,
+        "top": 519.984375,
+        "right": 356,
+        "bottom": 641.984375,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 99.11602209944752,
+        "height": 115.91160220994482
+      },
+      "focus": {
+        "left": 82.27859497070312,
+        "top": 167.1675567626953,
+        "right": 292.7057800292969,
+        "bottom": 377.5947265625,
+        "width": 210.42718505859375,
+        "height": 210.4271697998047
+      },
+      "visitorAlpha": {
+        "left": 121.73369216918945,
+        "top": 212.3765190243721,
+        "right": 270.78628158569336,
+        "bottom": 359.3741448024909,
+        "width": 149.0525894165039,
+        "height": 146.9976257781188
+      },
+      "visitorAnchor": {
+        "x": 187.4921875,
+        "y": 304.1644121011098
+      },
+      "expectedAnchor": {
+        "x": 187.5,
+        "y": 304.1722412109375
+      },
+      "socket": {
+        "left": 89.49421874999999,
+        "top": 212.265625,
+        "right": 285.50578125,
+        "bottom": 376.8203125,
+        "width": 196.0115625,
+        "height": 164.5546875
+      }
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 10.88,
+        "box": {
+          "left": 21,
+          "top": 517.984375,
+          "right": 232,
+          "bottom": 531.03125,
+          "width": 211,
+          "height": 13.046875
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20,
+        "box": {
+          "left": 21,
+          "top": 535.03125,
+          "right": 232,
+          "bottom": 556.625,
+          "width": 211,
+          "height": 21.59375
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 561.625,
+          "right": 232,
+          "bottom": 620.40625,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 624.40625,
+          "right": 232,
+          "bottom": 644,
+          "width": 211,
+          "height": 19.59375
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 21,
+          "top": 21,
+          "right": 163,
+          "bottom": 65,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 3
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 36.269073486328125,
+        "top": 64.10527038574219,
+        "right": 253.35595703125,
+        "bottom": 281.192138671875,
+        "width": 217.08688354492188,
+        "height": 217.0868682861328
+      },
+      "visitorAlpha": {
+        "left": 76.97286415100098,
+        "top": 110.74502724409103,
+        "right": 230.74273999532065,
+        "bottom": 262.394903331995,
+        "width": 153.76987584431967,
+        "height": 151.64987608790398
+      },
+      "visitorAnchor": {
+        "x": 144.81251525878906,
+        "y": 205.43786692619324
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 86.609375,
+          "right": 555,
+          "bottom": 115.765625,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 119.765625,
+          "right": 555,
+          "bottom": 142.21875,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 147.21875,
+          "right": 555,
+          "bottom": 245.1875,
+          "width": 147,
+          "height": 97.96875
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 249.1875,
+          "right": 555,
+          "bottom": 288.375,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 165,
+          "bottom": 64,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 313,
+        "width": 378,
+        "height": 306
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 260,
+        "height": 306
+      },
+      "lia": {
+        "left": 561,
+        "top": 109.984375,
+        "right": 647,
+        "bottom": 209.984375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939227
+      },
+      "focus": {
+        "left": 61.19148254394531,
+        "top": 55.50306701660156,
+        "right": 245.02728271484375,
+        "bottom": 239.33885192871094,
+        "width": 183.83580017089844,
+        "height": 183.83578491210938
+      },
+      "visitorAlpha": {
+        "left": 95.66069507598877,
+        "top": 94.99903643131256,
+        "right": 225.87772019704184,
+        "bottom": 223.42077940702438,
+        "width": 130.21702512105307,
+        "height": 128.42174297571182
+      },
+      "visitorAnchor": {
+        "x": 153.10938262939453,
+        "y": 175.1878228187561
+      },
+      "expectedAnchor": {
+        "x": 153.11910807291667,
+        "y": 175.20000000000002
+      },
+      "socket": {
+        "left": 9.846875000000011,
+        "top": 74.88000000000001,
+        "right": 226.02187500000002,
+        "bottom": 275.52000000000004,
+        "width": 216.175,
+        "height": 200.64000000000004
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 59.109375,
+          "right": 555,
+          "bottom": 88.265625,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 92.265625,
+          "right": 555,
+          "bottom": 114.71875,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 119.71875,
+          "right": 555,
+          "bottom": 217.6875,
+          "width": 147,
+          "height": 97.96875
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 221.6875,
+          "right": 555,
+          "bottom": 260.875,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 165,
+          "bottom": 64,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "03_visitor_resolved",
+    "runtimeState": "visitor_resolved",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 388,
+        "bottom": 368,
+        "width": 378,
+        "height": 361
+      },
+      "card": {
+        "left": 397,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 260,
+        "height": 361
+      },
+      "lia": {
+        "left": 561,
+        "top": 137.484375,
+        "right": 647,
+        "bottom": 237.484375,
+        "width": 86,
+        "height": 100
+      },
+      "liaVisibleAlpha": {
+        "width": 80.9447513812155,
+        "height": 94.90262430939225
+      },
+      "focus": {
+        "left": 36.269073486328125,
+        "top": 64.10527038574219,
+        "right": 253.35595703125,
+        "bottom": 281.192138671875,
+        "width": 217.08688354492188,
+        "height": 217.0868682861328
+      },
+      "visitorAlpha": {
+        "left": 76.97286415100098,
+        "top": 110.74502724409103,
+        "right": 230.74273999532065,
+        "bottom": 262.394903331995,
+        "width": 153.76987584431967,
+        "height": 151.64987608790398
+      },
+      "visitorAnchor": {
+        "x": 144.81251525878906,
+        "y": 205.43786692619324
+      },
+      "expectedAnchor": {
+        "x": 144.81788736979166,
+        "y": 205.45000000000002
+      },
+      "socket": {
+        "left": -24.376562500000006,
+        "top": 86.98,
+        "right": 230.9109375,
+        "bottom": 323.92,
+        "width": 255.2875,
+        "height": 236.94
+      }
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "VISITANTE · ÁREA 4 DE 4",
+        "role": "s5-kicker",
+        "fontSize": 12.16,
+        "box": {
+          "left": 408,
+          "top": 86.609375,
+          "right": 555,
+          "bottom": 115.765625,
+          "width": 147,
+          "height": 29.15625
+        }
+      },
+      {
+        "text": "Visitante",
+        "role": "H1",
+        "fontSize": 20.8,
+        "box": {
+          "left": 408,
+          "top": 119.765625,
+          "right": 555,
+          "bottom": 142.21875,
+          "width": 147,
+          "height": 22.453125
+        }
+      },
+      {
+        "text": "La experiencia se completa cuando alguien la recorre, la escucha y la comprende.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 147.21875,
+          "right": 555,
+          "bottom": 245.1875,
+          "width": 147,
+          "height": 97.96875
+        }
+      },
+      {
+        "text": "Presencia reconocida.",
+        "role": "s5-status-copy",
+        "fontSize": 14,
+        "box": {
+          "left": 408,
+          "top": 249.1875,
+          "right": 555,
+          "bottom": 288.375,
+          "width": 147,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Volver al mapa",
+        "box": {
+          "left": 23,
+          "top": 20,
+          "right": 165,
+          "bottom": 64,
+          "width": 142,
+          "height": 44
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 3
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 515,
+        "width": 359,
+        "height": 507
+      },
+      "card": {
+        "left": 8,
+        "top": 523,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 136
+      },
+      "lia": {
+        "left": 240,
+        "top": 532,
+        "right": 356,
+        "bottom": 654,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 116,
+        "height": 122
+      },
+      "focus": {
+        "left": 78.8046875,
+        "top": 175.4543914794922,
+        "right": 296.1953125,
+        "bottom": 392.84503173828125,
+        "width": 217.390625,
+        "height": 217.39064025878906
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 542.015625,
+          "right": 232,
+          "bottom": 600.796875,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 604.796875,
+          "right": 232,
+          "bottom": 643.984375,
+          "width": 211,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 90.31925201416016,
+          "top": 231.3026885986328,
+          "right": 176.14950561523438,
+          "bottom": 333.10357666015625,
+          "width": 85.83025360107422,
+          "height": 101.80088806152344
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 192.89736938476562,
+          "top": 231.3026885986328,
+          "right": 278.72760009765625,
+          "bottom": 333.10357666015625,
+          "width": 85.83023071289062,
+          "height": 101.80088806152344
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 90.31925201416016,
+          "top": 333.88079833984375,
+          "right": 176.14950561523438,
+          "bottom": 435.6816711425781,
+          "width": 85.83025360107422,
+          "height": 101.80087280273438
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 192.89736938476562,
+          "top": 333.88079833984375,
+          "right": 278.72760009765625,
+          "bottom": 435.6816711425781,
+          "width": 85.83023071289062,
+          "height": 101.80087280273438
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 116,
+        "height": 122
+      },
+      "focus": {
+        "left": 11.5,
+        "top": 65.50459289550781,
+        "right": 226.4375,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 116.921875,
+          "right": 515.328125,
+          "bottom": 195.296875,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 199.296875,
+          "right": 515.328125,
+          "bottom": 258.078125,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 48.68815612792969,
+          "top": 127.59571838378906,
+          "right": 99.96809387207031,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 127.59571838378906,
+          "right": 172.1868438720703,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 43.62565612792969,
+          "top": 192.20509338378906,
+          "right": 94.90559387207031,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 192.20509338378906,
+          "right": 172.1868438720703,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 515,
+        "width": 359,
+        "height": 507
+      },
+      "card": {
+        "left": 8,
+        "top": 523,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 136
+      },
+      "lia": {
+        "left": 240,
+        "top": 532,
+        "right": 356,
+        "bottom": 654,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 116,
+        "height": 122
+      },
+      "focus": {
+        "left": 78.8046875,
+        "top": 175.4543914794922,
+        "right": 296.1953125,
+        "bottom": 392.84503173828125,
+        "width": 217.390625,
+        "height": 217.39064025878906
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 542.015625,
+          "right": 232,
+          "bottom": 600.796875,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 604.796875,
+          "right": 232,
+          "bottom": 643.984375,
+          "width": 211,
+          "height": 39.1875
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 90.31925201416016,
+          "top": 231.3026885986328,
+          "right": 176.14950561523438,
+          "bottom": 333.10357666015625,
+          "width": 85.83025360107422,
+          "height": 101.80088806152344
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 192.89736938476562,
+          "top": 231.3026885986328,
+          "right": 278.72760009765625,
+          "bottom": 333.10357666015625,
+          "width": 85.83023071289062,
+          "height": 101.80088806152344
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 90.31925201416016,
+          "top": 333.88079833984375,
+          "right": 176.14950561523438,
+          "bottom": 435.6816711425781,
+          "width": 85.83025360107422,
+          "height": 101.80087280273438
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 192.89736938476562,
+          "top": 333.88079833984375,
+          "right": 278.72760009765625,
+          "bottom": 435.6816711425781,
+          "width": 85.83023071289062,
+          "height": 101.80087280273438
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "portrait_landscape_portrait",
+    "step": 3
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 116,
+        "height": 122
+      },
+      "focus": {
+        "left": 11.5,
+        "top": 65.50459289550781,
+        "right": 226.4375,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 116.921875,
+          "right": 515.328125,
+          "bottom": 195.296875,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 199.296875,
+          "right": 515.328125,
+          "bottom": 258.078125,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 48.68815612792969,
+          "top": 127.59571838378906,
+          "right": 99.96809387207031,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 127.59571838378906,
+          "right": 172.1868438720703,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 43.62565612792969,
+          "top": 192.20509338378906,
+          "right": 94.90559387207031,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 192.20509338378906,
+          "right": 172.1868438720703,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 1
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 313,
+        "width": 326.328125,
+        "height": 306
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 310,
+        "height": 306
+      },
+      "lia": {
+        "left": 535.328125,
+        "top": 99,
+        "right": 639.328125,
+        "bottom": 221,
+        "width": 104,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 104,
+        "height": 122
+      },
+      "focus": {
+        "left": 36.2578125,
+        "top": 56.68805694580078,
+        "right": 218.2734375,
+        "bottom": 238.70368194580078,
+        "width": 182.015625,
+        "height": 182.015625
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 89.421875,
+          "right": 527.328125,
+          "bottom": 167.796875,
+          "width": 162.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 171.796875,
+          "right": 527.328125,
+          "bottom": 230.578125,
+          "width": 162.65625,
+          "height": 58.78125
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 48.68815612792969,
+          "top": 100.09571838378906,
+          "right": 99.96809387207031,
+          "bottom": 159.06053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 100.09571838378906,
+          "right": 172.1868438720703,
+          "bottom": 159.06053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 43.62565612792969,
+          "top": 164.70509338378906,
+          "right": 94.90559387207031,
+          "bottom": 223.66990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 164.70509338378906,
+          "right": 172.1868438720703,
+          "bottom": 223.66990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 2
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "scene": "04_overview_four_of_four",
+    "runtimeState": "map_overview",
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "liaVisibleAlpha": {
+        "width": 116,
+        "height": 122
+      },
+      "focus": {
+        "left": 11.5,
+        "top": 65.50459289550781,
+        "right": 226.4375,
+        "bottom": 280.44207763671875,
+        "width": 214.9375,
+        "height": 214.93748474121094
+      },
+      "visitorAlpha": null,
+      "visitorAnchor": null,
+      "expectedAnchor": null,
+      "socket": null
+    },
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "role": "s5-lead",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 116.921875,
+          "right": 515.328125,
+          "bottom": 195.296875,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "role": "s5-support",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 199.296875,
+          "right": 515.328125,
+          "bottom": 258.078125,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      }
+    ],
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "box": {
+          "left": 48.68815612792969,
+          "top": 127.59571838378906,
+          "right": 99.96809387207031,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 127.59571838378906,
+          "right": 172.1868438720703,
+          "bottom": 186.56053161621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Espacio, área 3 de 4. Completada.",
+        "box": {
+          "left": 43.62565612792969,
+          "top": 192.20509338378906,
+          "right": 94.90559387207031,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      },
+      {
+        "label": "Visitante, área 4 de 4. Completada.",
+        "box": {
+          "left": 120.90690612792969,
+          "top": 192.20509338378906,
+          "right": 172.1868438720703,
+          "bottom": 251.16990661621094,
+          "width": 51.279937744140625,
+          "height": 58.964813232421875
+        }
+      }
+    ],
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "expectedState": true,
+      "noOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "targetsAtLeast44": true,
+      "landscapeRail": true,
+      "liaLandscapeVisible": true,
+      "visitorAlphaInsideSocket": true,
+      "visitorAlphaInsideStage": true,
+      "visitorAnchorDriftAtMost2": true,
+      "fourOfFourState": true,
+      "finalNavigationAbsent": true,
+      "forbiddenAbsent": true
+    },
+    "pass": true,
+    "sequence": "short_landscape",
+    "step": 3
+  }
+]

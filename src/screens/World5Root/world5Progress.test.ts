@@ -73,7 +73,7 @@ describe("world5Progress", () => {
     });
   });
 
-  it("persiste Espacio en orden exacto, rechaza Visitante e ignora repeticiones", () => {
+  it("persiste Espacio y Visitante en orden exacto e ignora repeticiones", () => {
     const storage = memoryStorage();
     completeWorld5Area("plantas", storage, () => "2026-07-30T12:00:00.000Z");
     completeWorld5Area("sistema", storage, () => "2026-07-30T12:01:00.000Z");
@@ -82,16 +82,20 @@ describe("world5Progress", () => {
       storage,
       () => "2026-07-30T12:02:00.000Z",
     );
-    const repeated = completeWorld5Area("espacio", storage, () => "later");
-    const visitor = completeWorld5Area("visitante", storage);
+    const visitor = completeWorld5Area(
+      "visitante",
+      storage,
+      () => "2026-07-30T12:03:00.000Z",
+    );
+    const repeated = completeWorld5Area("visitante", storage, () => "later");
 
     expect(space).toMatchObject({ ok: true, changed: true });
+    expect(visitor).toMatchObject({ ok: true, changed: true });
     expect(repeated).toMatchObject({ ok: true, changed: false });
-    expect(visitor).toMatchObject({ ok: false });
     expect(readWorld5Progress(storage)).toEqual({
       schemaVersion: 1,
-      completedAreas: ["plantas", "sistema", "espacio"],
-      updatedAt: "2026-07-30T12:02:00.000Z",
+      completedAreas: ["plantas", "sistema", "espacio", "visitante"],
+      updatedAt: "2026-07-30T12:03:00.000Z",
     });
   });
 

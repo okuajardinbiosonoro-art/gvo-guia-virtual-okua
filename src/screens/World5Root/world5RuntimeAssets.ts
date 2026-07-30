@@ -18,6 +18,9 @@ export const world5RuntimeAssets = {
   spaceEnvironmentPortrait: `${world5RuntimeBase}/world5_sub_space_environment_portrait_v01.webp`,
   spaceEnvironmentLandscape: `${world5RuntimeBase}/world5_sub_space_environment_landscape_v01.webp`,
   spaceFocus: `${world5RuntimeBase}/world5_sub_space_focus_v01.webp`,
+  visitorEnvironmentPortrait: `${world5RuntimeBase}/world5_sub_visitor_environment_portrait_v01.webp`,
+  visitorEnvironmentLandscape: `${world5RuntimeBase}/world5_sub_visitor_environment_landscape_v01.webp`,
+  visitorFocus: `${world5RuntimeBase}/world5_sub_visitor_focus_v01.webp`,
   liaExplainCalm: `${world5RuntimeBase}/lia/lia_pose_explain_calm_v1.png`,
   liaGreeting: `${world5RuntimeBase}/lia/lia_pose_greeting_v1.png`,
   liaLeadForward: `${world5RuntimeBase}/lia/lia_world5_lead_forward_v01.webp`,
@@ -51,6 +54,12 @@ export const world5SpaceAssetSources = [
   world5RuntimeAssets.spaceEnvironmentPortrait,
   world5RuntimeAssets.spaceEnvironmentLandscape,
   world5RuntimeAssets.spaceFocus,
+] as const;
+
+export const world5VisitorAssetSources = [
+  world5RuntimeAssets.visitorEnvironmentPortrait,
+  world5RuntimeAssets.visitorEnvironmentLandscape,
+  world5RuntimeAssets.visitorFocus,
 ] as const;
 
 export const world5LiaAssetSources = [

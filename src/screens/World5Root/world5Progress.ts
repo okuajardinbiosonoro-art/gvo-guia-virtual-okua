@@ -7,6 +7,7 @@ export const WORLD5_AREA_ORDER = [
   "plantas",
   "sistema",
   "espacio",
+  "visitante",
 ] as const satisfies readonly Station5AreaId[];
 
 export type World5Progress = {

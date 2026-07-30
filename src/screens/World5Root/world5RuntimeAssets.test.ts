@@ -11,6 +11,7 @@ import {
   world5LiaAssetSources,
   world5SpaceAssetSources,
   world5SystemAssetSources,
+  world5VisitorAssetSources,
 } from "./world5RuntimeAssets";
 
 const runtimeRoot = path.resolve(
@@ -165,6 +166,55 @@ describe("assets runtime ST5-020B", () => {
     },
   );
 
+  it.each([
+    [
+      "world5_sub_visitor_environment_portrait_v01.webp",
+      "webp",
+      1440,
+      1920,
+      false,
+      166804,
+      "0434d75215c7f93a0f5c1dc37aefdfaad9a0fb7dfa1fb1f7dc51d4fb627ce6e7",
+    ],
+    [
+      "world5_sub_visitor_environment_landscape_v01.webp",
+      "webp",
+      1920,
+      1080,
+      false,
+      98454,
+      "a7ec3eeb48e30003aa2e2d8817d2e7508621ebdc73648a4c632c69c6d017c3be",
+    ],
+    [
+      "world5_sub_visitor_focus_v01.webp",
+      "webp",
+      1536,
+      1536,
+      true,
+      132980,
+      "8f0c0f3a424453081484d2b97961e4ed53375feb931e9a5ecce431c768b998d4",
+    ],
+  ] as const)(
+    "valida asset ST5-020G y espejo visitor de %s",
+    async (relativeFile, format, width, height, alpha, bytes, sha256) => {
+      const runtimeFile = path.join(runtimeRoot, relativeFile);
+      const mirrorFile = path.join(mirrorRoot, "visitor", relativeFile);
+      const [runtimeBuffer, mirrorBuffer, runtimeStat] = await Promise.all([
+        readFile(runtimeFile),
+        readFile(mirrorFile),
+        stat(runtimeFile),
+      ]);
+      const metadata = await sharp(runtimeBuffer).metadata();
+
+      expect(metadata).toMatchObject({ format, width, height, hasAlpha: alpha });
+      expect(runtimeStat.size).toBe(bytes);
+      expect(createHash("sha256").update(runtimeBuffer).digest("hex")).toBe(
+        sha256,
+      );
+      expect(mirrorBuffer.equals(runtimeBuffer)).toBe(true);
+    },
+  );
+
   it("registra bundles tipados exactos y únicamente URLs locales", () => {
     expect(
       screenAssetBundles.world5System.assets.map(({ src }) => src),
@@ -175,9 +225,13 @@ describe("assets runtime ST5-020B", () => {
     expect(screenAssetBundles.world5Space.assets.map(({ src }) => src)).toEqual(
       [...world5SpaceAssetSources],
     );
+    expect(
+      screenAssetBundles.world5Visitor.assets.map(({ src }) => src),
+    ).toEqual([...world5VisitorAssetSources]);
     for (const bundle of [
       screenAssetBundles.world5System,
       screenAssetBundles.world5Space,
+      screenAssetBundles.world5Visitor,
       screenAssetBundles.world5Lia,
     ]) {
       for (const asset of bundle.assets) {

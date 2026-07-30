@@ -9,6 +9,7 @@ import {
   world5PlantsAssetSources,
   world5SpaceAssetSources,
   world5SystemAssetSources,
+  world5VisitorAssetSources,
 } from "../../screens/World5Root/world5RuntimeAssets";
 
 export type ScreenAssetBundleId =
@@ -25,6 +26,7 @@ export type ScreenAssetBundleId =
   | "world5Plants"
   | "world5System"
   | "world5Space"
+  | "world5Visitor"
   | "world5Lia";
 
 export type ScreenAssetPreloadItem = {
@@ -275,10 +277,19 @@ export const screenAssetBundles = {
       image(`world5_space_${index + 1}`, src),
     ),
   },
+  world5Visitor: {
+    id: "world5Visitor",
+    route: "/estacion/5/visitante",
+    description:
+      "Subestación Visitante en ambas orientaciones y presencia dentro del aro.",
+    assets: world5VisitorAssetSources.map((src, index) =>
+      image(`world5_visitor_${index + 1}`, src),
+    ),
+  },
   world5Lia: {
     id: "world5Lia",
     route:
-      "/estacion/5, /estacion/5/plantas, /estacion/5/sistema, /estacion/5/espacio",
+      "/estacion/5, /estacion/5/plantas, /estacion/5/sistema, /estacion/5/espacio, /estacion/5/visitante",
     description: "Poses aprobadas de Lía para guiar Estación V.",
     assets: world5LiaAssetSources.map((src, index) =>
       image(`world5_lia_${index + 1}`, src),
