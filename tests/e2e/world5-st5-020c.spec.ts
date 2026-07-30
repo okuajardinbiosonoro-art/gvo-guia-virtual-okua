@@ -78,8 +78,8 @@ for (const [width, height] of viewports) {
     await page.goto("/estacion/5");
     await page.evaluate(() => localStorage.clear());
     await page.reload();
-    await expect(page.getByText("ESTACIÓN V · MUNDO V")).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1, name: "Mapa del presente" })).toBeVisible();
+    await expect(page.getByText("ESTACIÓN V")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: "MUNDO PRESENTE" })).toBeVisible();
     await assertNormalViewport(page);
 
     await page.locator('[data-station5-area="plantas"]').click();

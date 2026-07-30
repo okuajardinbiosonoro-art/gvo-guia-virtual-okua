@@ -1,0 +1,14 @@
+{
+  "chromium": {
+    "name": "Chromium",
+    "available": true,
+    "version": "148.0.7778.96"
+  },
+  "webkit": {
+    "name": "WebKit",
+    "available": false,
+    "reason": "Playwright browser executable is not installed in this environment."
+  },
+  "policy": "Chromium is mandatory. WebKit critical validation is executed only when its Playwright engine is already available.",
+  "pass": true
+}

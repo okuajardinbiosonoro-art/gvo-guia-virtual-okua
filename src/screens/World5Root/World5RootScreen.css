@@ -15,7 +15,7 @@
   overflow: hidden;
   color: var(--s5-ink);
   background: var(--s5-paper);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: var(--gvo-font-body);
 }
 
 html:has(.s5-screen),
@@ -132,10 +132,43 @@ body:has(.s5-screen) #app {
   pointer-events: none;
 }
 
+.s5-map-heading {
+  position: absolute;
+  z-index: 12;
+  top: 17%;
+  left: 50%;
+  width: 82%;
+  color: #4f522b;
+  text-align: center;
+  text-shadow: 0 1px 1px rgb(244 236 220 / 88%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.s5-map-heading p,
+.s5-map-heading h1 {
+  margin: 0;
+}
+.s5-map-heading p {
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.68rem, 2.7vw, 0.84rem);
+  font-weight: 750;
+  letter-spacing: 0.16em;
+}
+.s5-map-heading h1 {
+  margin-top: 2px;
+  font-family: var(--gvo-font-heading);
+  font-size: clamp(1.05rem, 4.8vw, 1.58rem);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
 .s5-sector {
   position: absolute;
-  width: 48%;
-  height: 45%;
+  left: var(--s5-sector-p-x);
+  top: var(--s5-sector-p-y);
+  width: var(--s5-sector-p-w);
+  height: var(--s5-sector-p-h);
   min-width: 44px;
   min-height: 44px;
   padding: 0;
@@ -149,26 +182,14 @@ body:has(.s5-screen) #app {
     transform 160ms ease;
 }
 
-.s5-sector--plantas {
-  left: 1%;
-  top: 3%;
-}
-.s5-sector--sistema {
-  right: 1%;
-  top: 3%;
-}
-.s5-sector--espacio {
-  left: 1%;
-  bottom: 3%;
-}
-.s5-sector--visitante {
-  right: 1%;
-  bottom: 3%;
-}
 .s5-sector img {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1;
   object-fit: contain;
   pointer-events: none;
 }
@@ -188,11 +209,12 @@ body:has(.s5-screen) #app {
 }
 .s5-sector__label {
   position: absolute;
+  top: var(--s5-sector-p-label-y);
   left: 50%;
-  bottom: 2%;
   max-width: 96%;
   color: #26362e;
-  font-size: clamp(0.69rem, 2.8vw, 0.88rem);
+  font-family: var(--gvo-font-ui);
+  font-size: clamp(0.75rem, 3vw, 0.9rem);
   font-weight: 900;
   line-height: 1;
   text-shadow: 0 1px 1px rgb(244 236 220 / 92%);
@@ -213,7 +235,7 @@ body:has(.s5-screen) #app {
   position: absolute;
   z-index: 4;
   left: 50%;
-  top: 69%;
+  top: 64.5%;
   width: 60%;
   aspect-ratio: 1;
   transform: translate(-50.4%, -84.8%);
@@ -316,12 +338,18 @@ body:has(.s5-screen) #app {
   color: var(--s5-ink);
   background: var(--s5-card);
 }
+.s5-screen[data-active-area="map"] .s5-story-card {
+  height: 136px;
+  min-height: 0;
+  padding-block: 8px;
+}
 .s5-editorial-copy {
   min-width: 0;
 }
-.s5-editorial h1 {
+.s5-editorial h1,
+.s5-editorial h2 {
   margin: 2px 0 5px;
-  font-family: Georgia, serif;
+  font-family: var(--gvo-font-heading);
   font-size: clamp(1.25rem, 5.25vw, 1.72rem);
   font-weight: 600;
   line-height: 1.08;
@@ -487,9 +515,34 @@ body:has(.s5-screen) #app {
     height: max(100cqh, 56.25cqw);
   }
 
+  .s5-map-heading {
+    top: 17%;
+    left: 78%;
+    width: 34%;
+  }
+
+  .s5-map-heading p {
+    font-size: clamp(0.62rem, 1.25vw, 0.78rem);
+  }
+
+  .s5-map-heading h1 {
+    font-size: clamp(0.95rem, 2.1vw, 1.4rem);
+  }
+
+  .s5-sector {
+    left: var(--s5-sector-l-x);
+    top: var(--s5-sector-l-y);
+    width: var(--s5-sector-l-w);
+    height: var(--s5-sector-l-h);
+  }
+
+  .s5-sector__label {
+    top: var(--s5-sector-l-label-y);
+  }
+
   .s5-plants-focus {
-    left: 43%;
-    top: 58%;
+    left: 44%;
+    top: 67%;
     width: 32%;
   }
 
@@ -523,6 +576,9 @@ body:has(.s5-screen) #app {
     height: 100%;
     align-content: center;
     padding: clamp(12px, 2.5vw, 26px);
+  }
+  .s5-screen[data-active-area="map"] .s5-story-card {
+    height: 100%;
   }
   .s5-editorial h1 {
     font-size: clamp(1.3rem, 2.8vw, 2rem);
@@ -605,6 +661,41 @@ body:has(.s5-screen) #app {
   .s5-secondary-action {
     max-width: 100%;
     white-space: normal;
+  }
+}
+
+@media (min-width: 240px) and (max-width: 340px) and (min-height: 321px) {
+  .s5-screen {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+  body:has(.s5-screen),
+  body:has(.s5-screen) #app {
+    height: 100%;
+    overflow: hidden;
+  }
+  .s5-layout {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100%;
+  }
+  .s5-stage {
+    min-height: 0;
+  }
+  .s5-screen[data-active-area="map"] .s5-story-card {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    height: 136px;
+  }
+}
+
+@media (max-width: 239px) {
+  .s5-story-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .s5-lia {
+    justify-self: center;
+    height: 122px;
   }
 }
 

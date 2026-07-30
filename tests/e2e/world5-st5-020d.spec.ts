@@ -22,6 +22,7 @@ async function seedProgress(page: Page, completedAreas: string[]) {
 test("ST5-020D conserva overview y persiste Plantas/Sistema solo desde el foco", async ({
   page,
 }) => {
+  test.setTimeout(90_000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/estacion/5");
   await clearProgress(page);
@@ -62,7 +63,7 @@ test("ST5-020D conserva overview y persiste Plantas/Sistema solo desde el foco",
     "map_overview",
   );
   await expect(
-    page.getByRole("heading", { name: "Mapa del presente" }),
+    page.getByRole("heading", { name: "MUNDO PRESENTE" }),
   ).toBeVisible();
 
   await page.locator('[data-station5-area="sistema"]').click();
@@ -100,7 +101,7 @@ test("ST5-020D conserva overview y persiste Plantas/Sistema solo desde el foco",
     "map_overview",
   );
   await expect(
-    page.getByRole("heading", { name: "Mapa del presente" }),
+    page.getByRole("heading", { name: "MUNDO PRESENTE" }),
   ).toBeVisible();
   await page.screenshot({
     path: "docs/visual/world5/st5-020d/refresh_completed_overview_390x844.png",

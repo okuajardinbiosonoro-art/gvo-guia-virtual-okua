@@ -4,14 +4,15 @@ export type World5LiaRole = "explain" | "attend" | "lead";
 
 type World5EditorialPanelProps = {
   action?: ReactNode;
-  context: string;
+  context?: string;
   headingRef?: RefObject<HTMLHeadingElement | null>;
   lead: string;
   liaAsset: string;
   liaRole: World5LiaRole;
   status?: string;
   support?: string;
-  title: string;
+  title?: string;
+  titleAs?: "h1" | "h2";
 };
 
 export function World5EditorialPanel({
@@ -24,7 +25,9 @@ export function World5EditorialPanel({
   status,
   support,
   title,
+  titleAs = "h1",
 }: World5EditorialPanelProps) {
+  const Title = titleAs;
   return (
     <aside
       className="s5-editorial"
@@ -32,14 +35,16 @@ export function World5EditorialPanel({
     >
       <article className="s5-story-card" aria-atomic="true" aria-live="polite">
         <div className="s5-editorial-copy">
-          <p className="s5-kicker">{context}</p>
-          <h1
-            id="station5-title"
-            ref={headingRef}
-            tabIndex={headingRef ? -1 : undefined}
-          >
-            {title}
-          </h1>
+          {context ? <p className="s5-kicker">{context}</p> : null}
+          {title ? (
+            <Title
+              id={titleAs === "h1" ? "station5-title" : undefined}
+              ref={titleAs === "h1" ? headingRef : undefined}
+              tabIndex={titleAs === "h1" && headingRef ? -1 : undefined}
+            >
+              {title}
+            </Title>
+          ) : null}
           <p className="s5-lead">{lead}</p>
           {support ? <p className="s5-support">{support}</p> : null}
           {status ? <p className="s5-status-copy">{status}</p> : null}

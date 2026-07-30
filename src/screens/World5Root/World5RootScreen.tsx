@@ -25,6 +25,12 @@ import {
 } from "./world5Progress";
 import { world5RuntimeAssets } from "./world5RuntimeAssets";
 import {
+  mapRecessMaskLandscape,
+  mapRecessMaskPortrait,
+  sectorSourceStyle,
+  serializeSourcePolygon,
+} from "./station5Geometry";
+import {
   World5EditorialPanel,
   type World5LiaRole,
 } from "./World5EditorialPanel";
@@ -394,12 +400,12 @@ export function World5RootScreen() {
 
   const overviewGuidance = useMemo(() => {
     if (systemCompleted) {
-      return "Plantas y Sistema están completas. Este mapa conserva la vista general; las áreas restantes siguen protegidas.";
+      return "Plantas y Sistema ya están conectados. Espacio sigue protegido.";
     }
     if (plantsCompleted) {
-      return "Plantas está completa. Selecciona Sistema para continuar el recorrido disponible.";
+      return "Plantas ya fue reconocida. Continúa con Sistema.";
     }
-    return "Selecciona Plantas para comenzar. Los demás sectores se habilitan en orden.";
+    return "Toca Plantas para comenzar.";
   }, [plantsCompleted, systemCompleted]);
 
   const blockedGuidance =
@@ -430,7 +436,7 @@ export function World5RootScreen() {
       data-station5-reduced-motion={reducedMotion ? "true" : "false"}
       data-station5-state={presentation}
       data-transition-mode={transitionMode ?? "none"}
-      aria-labelledby="station5-title"
+      aria-labelledby={mapActive ? "station5-map-title" : "station5-title"}
     >
       <div className="s5-layout">
         <section
@@ -462,7 +468,21 @@ export function World5RootScreen() {
               }
               portraitWidth={1440}
             >
-              <div className="s5-map-artboard" data-map-complete="false">
+              <header className="s5-map-heading">
+                <p>ESTACIÓN V</p>
+                <h1 id="station5-map-title">MUNDO PRESENTE</h1>
+              </header>
+              <div
+                className="s5-map-artboard"
+                data-map-complete="false"
+                data-map-recess="source-derived"
+                data-recess-polygon-portrait={serializeSourcePolygon(
+                  mapRecessMaskPortrait,
+                )}
+                data-recess-polygon-landscape={serializeSourcePolygon(
+                  mapRecessMaskLandscape,
+                )}
+              >
                 {station5Areas.map((area) => {
                   const visualState = areaState(area.id);
                   const protectedArea =
@@ -479,6 +499,7 @@ export function World5RootScreen() {
                       }
                       type="button"
                       className={`s5-sector s5-sector--${area.id}`}
+                      style={sectorSourceStyle(area.id)}
                       data-station5-area={area.id}
                       data-area-state={visualState}
                       data-protected={protectedArea ? "true" : "false"}
@@ -683,16 +704,21 @@ export function World5RootScreen() {
                 </button>
               ) : undefined
             }
-            context="ESTACIÓN V · MUNDO V"
+            context={
+              presentation === "map_blocked_feedback"
+                ? "RECORRIDO PROTEGIDO"
+                : undefined
+            }
             title={
               presentation === "map_blocked_feedback"
                 ? "Área protegida"
-                : "Mapa del presente"
+                : undefined
             }
+            titleAs="h2"
             lead={
               presentation === "map_blocked_feedback"
                 ? blockedGuidance
-                : "Aquí puedes reconocer el recorrido disponible sin perder la vista general."
+                : "Descubre cómo la vida se convierte en señal."
             }
             support={
               presentation === "map_blocked_feedback"

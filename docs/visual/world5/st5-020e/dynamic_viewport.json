@@ -1,0 +1,666 @@
+{
+  "360": [
+    {
+      "viewport": {
+        "name": "360x560",
+        "width": 360,
+        "height": 560
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 352,
+          "bottom": 386.984375,
+          "width": 344,
+          "height": 378.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 394.984375,
+          "right": 352,
+          "bottom": 552,
+          "width": 344,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 9,
+          "top": -30.5078125,
+          "right": 351,
+          "bottom": 425.4765625,
+          "width": 342,
+          "height": 455.984375
+        },
+        "lia": {
+          "left": 225,
+          "top": 412.984375,
+          "right": 341,
+          "bottom": 534.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994476
+        },
+        "systemFocus": {
+          "left": 72.2120361328125,
+          "top": 142.07052612304688,
+          "right": 296.8580322265625,
+          "bottom": 366.7165222167969,
+          "width": 224.64599609375,
+          "height": 224.64599609375
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 179.7135951121648,
+          "y": 260.59212493896484
+        },
+        "soilBand": {
+          "top": 238.33297526041667,
+          "bottom": 270.3943766276042
+        },
+        "boundaryY": 270.3943766276042,
+        "insertionPx": 9.80225168863933,
+        "projectedSourceY": 1225.7259470410856
+      },
+      "stageShare": 0.6966624540441176,
+      "dimensions": {
+        "clientWidth": 360,
+        "clientHeight": 560,
+        "scrollWidth": 360,
+        "scrollHeight": 560
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 179.1792449951172,
+          "top": 118.32130432128906,
+          "right": 236.6167449951172,
+          "bottom": 212.69630432128906,
+          "width": 57.4375,
+          "height": 94.375
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_360x560_1.png"
+    },
+    {
+      "viewport": {
+        "name": "360x640",
+        "width": 360,
+        "height": 640
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 352,
+          "bottom": 466.984375,
+          "width": 344,
+          "height": 458.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 474.984375,
+          "right": 352,
+          "bottom": 632,
+          "width": 344,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 8.6328125,
+          "top": 8.9921875,
+          "right": 351.3671875,
+          "bottom": 465.9765625,
+          "width": 342.734375,
+          "height": 456.984375
+        },
+        "lia": {
+          "left": 225,
+          "top": 492.984375,
+          "right": 341,
+          "bottom": 614.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994476
+        },
+        "systemFocus": {
+          "left": 71.9861068725586,
+          "top": 181.94627380371094,
+          "right": 297.12084197998047,
+          "bottom": 407.0810241699219,
+          "width": 225.13473510742188,
+          "height": 225.13475036621094
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 179.70513916015625,
+          "y": 300.7261327107748
+        },
+        "soilBand": {
+          "top": 278.42255859375,
+          "bottom": 310.5542724609375
+        },
+        "boundaryY": 310.5542724609375,
+        "insertionPx": 9.828139750162734,
+        "projectedSourceY": 1225.70749777755
+      },
+      "stageShare": 0.7355518830128205,
+      "dimensions": {
+        "clientWidth": 360,
+        "clientHeight": 640,
+        "scrollWidth": 360,
+        "scrollHeight": 640
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 179.16180419921875,
+          "top": 158.1401824951172,
+          "right": 236.73992919921875,
+          "bottom": 252.7339324951172,
+          "width": 57.578125,
+          "height": 94.59375
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_360x640_2.png"
+    },
+    {
+      "viewport": {
+        "name": "360x560",
+        "width": 360,
+        "height": 560
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 352,
+          "bottom": 386.984375,
+          "width": 344,
+          "height": 378.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 394.984375,
+          "right": 352,
+          "bottom": 552,
+          "width": 344,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 9,
+          "top": -30.5078125,
+          "right": 351,
+          "bottom": 425.4765625,
+          "width": 342,
+          "height": 455.984375
+        },
+        "lia": {
+          "left": 225,
+          "top": 412.984375,
+          "right": 341,
+          "bottom": 534.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994476
+        },
+        "systemFocus": {
+          "left": 72.2120361328125,
+          "top": 142.07052612304688,
+          "right": 296.8580322265625,
+          "bottom": 366.7165222167969,
+          "width": 224.64599609375,
+          "height": 224.64599609375
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 179.7135951121648,
+          "y": 260.59212493896484
+        },
+        "soilBand": {
+          "top": 238.33297526041667,
+          "bottom": 270.3943766276042
+        },
+        "boundaryY": 270.3943766276042,
+        "insertionPx": 9.80225168863933,
+        "projectedSourceY": 1225.7259470410856
+      },
+      "stageShare": 0.6966624540441176,
+      "dimensions": {
+        "clientWidth": 360,
+        "clientHeight": 560,
+        "scrollWidth": 360,
+        "scrollHeight": 560
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 179.1792449951172,
+          "top": 118.32130432128906,
+          "right": 236.6167449951172,
+          "bottom": 212.69630432128906,
+          "width": 57.4375,
+          "height": 94.375
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_360x560_3.png"
+    }
+  ],
+  "375": [
+    {
+      "viewport": {
+        "name": "375x548",
+        "width": 375,
+        "height": 548
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 367,
+          "bottom": 374.984375,
+          "width": 359,
+          "height": 366.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 382.984375,
+          "right": 367,
+          "bottom": 540,
+          "width": 359,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 9,
+          "top": -46.5078125,
+          "right": 366,
+          "bottom": 429.4765625,
+          "width": 357,
+          "height": 475.984375
+        },
+        "lia": {
+          "left": 240,
+          "top": 400.984375,
+          "right": 356,
+          "bottom": 522.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994476
+        },
+        "systemFocus": {
+          "left": 74.98006439208984,
+          "top": 133.63479614257812,
+          "right": 309.48250579833984,
+          "bottom": 368.13726806640625,
+          "width": 234.50244140625,
+          "height": 234.50247192382812
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 187.20102183024088,
+          "y": 257.35075887044275
+        },
+        "soilBand": {
+          "top": 234.12464192708336,
+          "bottom": 267.59229329427086
+        },
+        "boundaryY": 267.59229329427086,
+        "insertionPx": 10.241534423828114,
+        "projectedSourceY": 1225.6882529626105
+      },
+      "stageShare": 0.6898202537593985,
+      "dimensions": {
+        "clientWidth": 375,
+        "clientHeight": 548,
+        "scrollWidth": 375,
+        "scrollHeight": 548
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 186.64324951171875,
+          "top": 108.84555053710938,
+          "right": 246.61199951171875,
+          "bottom": 207.36117553710938,
+          "width": 59.96875,
+          "height": 98.515625
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_375x548_1.png"
+    },
+    {
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 367,
+          "bottom": 493.984375,
+          "width": 359,
+          "height": 485.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 501.984375,
+          "right": 367,
+          "bottom": 659,
+          "width": 359,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 6.0078125,
+          "top": 8.9921875,
+          "right": 368.9921875,
+          "bottom": 492.9765625,
+          "width": 362.984375,
+          "height": 483.984375
+        },
+        "lia": {
+          "left": 240,
+          "top": 519.984375,
+          "right": 356,
+          "bottom": 641.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994482
+        },
+        "systemFocus": {
+          "left": 73.10964965820312,
+          "top": 192.17559814453125,
+          "right": 311.53839111328125,
+          "bottom": 430.6043395996094,
+          "width": 238.42874145507812,
+          "height": 238.42874145507812
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 187.18819427490234,
+          "y": 317.9542872111003
+        },
+        "soilBand": {
+          "top": 294.34130859375,
+          "bottom": 328.3714599609375
+        },
+        "boundaryY": 328.3714599609375,
+        "insertionPx": 10.41717274983722,
+        "projectedSourceY": 1225.6743442292172
+      },
+      "stageShare": 0.746519777265745,
+      "dimensions": {
+        "clientWidth": 375,
+        "clientHeight": 667,
+        "scrollWidth": 375,
+        "scrollHeight": 667
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 186.62106323242188,
+          "top": 166.9542999267578,
+          "right": 247.58981323242188,
+          "bottom": 267.12615966796875,
+          "width": 60.96875,
+          "height": 100.17185974121094
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_375x667_2.png"
+    },
+    {
+      "viewport": {
+        "name": "375x548",
+        "width": 375,
+        "height": 548
+      },
+      "scene": "03_plants_intro",
+      "runtimeState": "plants_intro",
+      "boxes": {
+        "stage": {
+          "left": 8,
+          "top": 8,
+          "right": 367,
+          "bottom": 374.984375,
+          "width": 359,
+          "height": 366.984375
+        },
+        "card": {
+          "left": 8,
+          "top": 382.984375,
+          "right": 367,
+          "bottom": 540,
+          "width": 359,
+          "height": 157.015625
+        },
+        "canvas": {
+          "left": 9,
+          "top": -46.5078125,
+          "right": 366,
+          "bottom": 429.4765625,
+          "width": 357,
+          "height": 475.984375
+        },
+        "lia": {
+          "left": 240,
+          "top": 400.984375,
+          "right": 356,
+          "bottom": 522.984375,
+          "width": 116,
+          "height": 122
+        },
+        "liaVisibleAlpha": {
+          "width": 99.11602209944752,
+          "height": 115.91160220994476
+        },
+        "systemFocus": {
+          "left": 74.98006439208984,
+          "top": 133.63479614257812,
+          "right": 309.48250579833984,
+          "bottom": 368.13726806640625,
+          "width": 234.50244140625,
+          "height": 234.50247192382812
+        }
+      },
+      "sectors": [],
+      "plantContact": {
+        "base": {
+          "x": 187.20102183024088,
+          "y": 257.35075887044275
+        },
+        "soilBand": {
+          "top": 234.12464192708336,
+          "bottom": 267.59229329427086
+        },
+        "boundaryY": 267.59229329427086,
+        "insertionPx": 10.241534423828114,
+        "projectedSourceY": 1225.6882529626105
+      },
+      "stageShare": 0.6898202537593985,
+      "dimensions": {
+        "clientWidth": 375,
+        "clientHeight": 548,
+        "scrollWidth": 375,
+        "scrollHeight": 548
+      },
+      "minBodyFontSize": 14,
+      "targets": [
+        {
+          "label": "Reconocer la vitalidad desde la hoja.",
+          "left": 186.64324951171875,
+          "top": 108.84555053710938,
+          "right": 246.61199951171875,
+          "bottom": 207.36117553710938,
+          "width": 59.96875,
+          "height": 98.515625
+        },
+        {
+          "label": "← Mapa",
+          "left": 21,
+          "top": 21,
+          "right": 109,
+          "bottom": 65,
+          "width": 88,
+          "height": 44
+        }
+      ],
+      "headings": [
+        "H1:MUNDO PRESENTE",
+        "H1:Plantas"
+      ],
+      "forbiddenCount": 0,
+      "systemRotation": "-2.5deg-portrait_-2deg-landscape",
+      "telemetry": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "responses404": [],
+        "externalRequests": []
+      },
+      "file": "dynamic_375x548_3.png"
+    }
+  ]
+}

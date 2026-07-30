@@ -102,12 +102,12 @@ describe("World5RootScreen — ST5-020D", () => {
     const { container } = renderStation5();
     expect(state(container)).toBe("map_overview");
     expect(
-      screen.getByRole("heading", { level: 1, name: "Mapa del presente" }),
+      screen.getByRole("heading", { level: 1, name: "MUNDO PRESENTE" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "Espacio" }),
     ).not.toBeInTheDocument();
-    expect(screen.getByText(/conserva la vista general/i)).toBeInTheDocument();
+    expect(screen.getByText(/Espacio sigue protegido/i)).toBeInTheDocument();
   });
 
   it("no sustituye el overview por fichas automáticas al restaurar progreso parcial", () => {
@@ -115,7 +115,7 @@ describe("World5RootScreen — ST5-020D", () => {
     const { container } = renderStation5();
     expect(state(container)).toBe("map_overview");
     expect(
-      screen.getByRole("heading", { name: "Mapa del presente" }),
+      screen.getByRole("heading", { name: "MUNDO PRESENTE" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "Sistema" }),
@@ -189,7 +189,7 @@ describe("World5RootScreen — ST5-020D", () => {
     advance(20);
     expect(state(container)).toBe("map_overview");
     expect(
-      screen.getByRole("heading", { name: "Mapa del presente" }),
+      screen.getByRole("heading", { name: "MUNDO PRESENTE" }),
     ).toBeInTheDocument();
     expect(area(container, "plantas")).toHaveFocus();
   });

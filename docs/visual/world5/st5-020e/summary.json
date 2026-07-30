@@ -1,0 +1,142 @@
+{
+  "captureCount": 80,
+  "viewportCount": 10,
+  "stateCount": 8,
+  "sourceGeometry": {
+    "portrait": {
+      "plantas": {
+        "opaquePixels": 666518,
+        "opaquePixelsInsideRecess": 666518,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 229.95073891625617,
+          "y": 1129.9507389162563,
+          "size": 429.95073891625617
+        }
+      },
+      "sistema": {
+        "opaquePixels": 297145,
+        "opaquePixelsInsideRecess": 297145,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 749.9507389162562,
+          "y": 1129.9507389162563,
+          "size": 429.95073891625617
+        }
+      },
+      "espacio": {
+        "opaquePixels": 406629,
+        "opaquePixelsInsideRecess": 406629,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 229.95073891625617,
+          "y": 1649.9507389162563,
+          "size": 429.95073891625617
+        }
+      },
+      "visitante": {
+        "opaquePixels": 482411,
+        "opaquePixelsInsideRecess": 482411,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 749.9507389162562,
+          "y": 1649.9507389162563,
+          "size": 429.95073891625617
+        }
+      }
+    },
+    "landscape": {
+      "plantas": {
+        "opaquePixels": 666518,
+        "opaquePixelsInsideRecess": 666518,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 299.9499282304637,
+          "y": 249.97032640949556,
+          "size": 399.9332376406182
+        }
+      },
+      "sistema": {
+        "opaquePixels": 297145,
+        "opaquePixelsInsideRecess": 297145,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 869.9402476883533,
+          "y": 249.97032640949556,
+          "size": 399.9332376406182
+        }
+      },
+      "espacio": {
+        "opaquePixels": 406629,
+        "opaquePixelsInsideRecess": 406629,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 259.9566044664018,
+          "y": 759.9952522255193,
+          "size": 399.9332376406182
+        }
+      },
+      "visitante": {
+        "opaquePixels": 482411,
+        "opaquePixelsInsideRecess": 482411,
+        "opaquePixelsInsideRecessPercent": 100,
+        "alphaClippingPixels": 0,
+        "sourcePlacement": {
+          "x": 869.9402476883533,
+          "y": 759.9952522255193,
+          "size": 399.9332376406182
+        }
+      }
+    }
+  },
+  "minimumOpaquePixelsInsideRecessPercent": 100,
+  "alphaClippingPixels": 0,
+  "labelDistancePx": {
+    "min": 4.41729736328125,
+    "max": 10.316956758499146
+  },
+  "stageAndCard": [
+    {
+      "viewport": "360x560",
+      "stageHeight": 400,
+      "stageShare": 0.7352941176470589,
+      "cardHeight": 136
+    },
+    {
+      "viewport": "375x548",
+      "stageHeight": 388,
+      "stageShare": 0.7293233082706767,
+      "cardHeight": 136
+    },
+    {
+      "viewport": "375x667",
+      "stageHeight": 507,
+      "stageShare": 0.7788018433179723,
+      "cardHeight": 136
+    }
+  ],
+  "minVisibleLiaHeight": 113.29427083333326,
+  "plantInsertionPx": {
+    "min": 8.665476481119782,
+    "max": 27.5522297046802
+  },
+  "smallMobilePlantInsertionPx": {
+    "min": 8.665476481119782,
+    "max": 10.41717274983722
+  },
+  "minTargetDimension": 44,
+  "maxHorizontalOverflow": 0,
+  "maxVerticalOverflow": 0,
+  "minBodyFontSize": 14,
+  "forbiddenCount": 0,
+  "consoleAndPageErrors": 0,
+  "responses404": 0,
+  "externalRequests": 0
+}
