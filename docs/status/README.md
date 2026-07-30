@@ -11,6 +11,7 @@ Este directorio conserva dos clases de documentos: contratos canónicos vigentes
 | [GVO_ST4_018E_STATION4_CLOSEOUT.md](GVO_ST4_018E_STATION4_CLOSEOUT.md) | Contrato final de Estación IV, assets, composición, motion, accesibilidad, validación y aprobación. |
 | [GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md](GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md) | Evidencia técnica del mapa real y vertical slice Plantas, pendiente de aprobación humana. |
 | [GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md](GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md) | Evidencia técnica de Lía y vertical slice Sistema, pendiente de aprobación humana. |
+| [GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md](GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md) | Integración de Espacio y corrección acotada del rail editorial landscape, pendientes de revisión humana. |
 | [WORLD_II_FINAL.md](../worlds/WORLD_II_FINAL.md) | Contrato final vigente de Mundo II. |
 | [Arquitectura técnica](../05_ARQUITECTURA_TECNICA.md) | Arquitectura y contratos runtime actuales. |
 | [Inventario de assets](../assets/ASSET_INVENTORY.md) | Trazabilidad de assets runtime y copias `current-used`. |
@@ -30,7 +31,7 @@ Estación III está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/3`
 
 Estación IV está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/4` por `GVO_ST4_018E`. Los registros 018C/R1/018D conservan sus flags históricos; no se reinterpretan retroactivamente.
 
-Estación V publica Plantas bajo `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW` e
-integra Lía + Sistema bajo `ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW`. Permanece
-no cerrada y sin aprobación visual; Espacio, Visitante, 4/4 y Final siguen
-fuera del alcance.
+Estación V entra desde `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT` y
+publica Espacio más la corrección landscape bajo
+`ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW`. Permanece no cerrada: Visitante, 4/4
+y Final siguen fuera del alcance.

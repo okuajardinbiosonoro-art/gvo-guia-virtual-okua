@@ -1,5 +1,4 @@
-const world5RuntimeBase =
-  "/assets/gvo/stations/world-5/present-map/runtime";
+const world5RuntimeBase = "/assets/gvo/stations/world-5/present-map/runtime";
 
 export const world5RuntimeAssets = {
   mapEnvironmentPortrait: `${world5RuntimeBase}/world5_map_environment_portrait_v01.webp`,
@@ -16,6 +15,9 @@ export const world5RuntimeAssets = {
   systemEnvironmentPortrait: `${world5RuntimeBase}/system/world5_sub_system_environment_portrait_v01.webp`,
   systemEnvironmentLandscape: `${world5RuntimeBase}/system/world5_sub_system_environment_landscape_v01.webp`,
   systemFocus: `${world5RuntimeBase}/system/world5_sub_system_focus_v01.webp`,
+  spaceEnvironmentPortrait: `${world5RuntimeBase}/world5_sub_space_environment_portrait_v01.webp`,
+  spaceEnvironmentLandscape: `${world5RuntimeBase}/world5_sub_space_environment_landscape_v01.webp`,
+  spaceFocus: `${world5RuntimeBase}/world5_sub_space_focus_v01.webp`,
   liaExplainCalm: `${world5RuntimeBase}/lia/lia_pose_explain_calm_v1.png`,
   liaGreeting: `${world5RuntimeBase}/lia/lia_pose_greeting_v1.png`,
   liaLeadForward: `${world5RuntimeBase}/lia/lia_world5_lead_forward_v01.webp`,
@@ -43,6 +45,12 @@ export const world5SystemAssetSources = [
   world5RuntimeAssets.systemEnvironmentPortrait,
   world5RuntimeAssets.systemEnvironmentLandscape,
   world5RuntimeAssets.systemFocus,
+] as const;
+
+export const world5SpaceAssetSources = [
+  world5RuntimeAssets.spaceEnvironmentPortrait,
+  world5RuntimeAssets.spaceEnvironmentLandscape,
+  world5RuntimeAssets.spaceFocus,
 ] as const;
 
 export const world5LiaAssetSources = [

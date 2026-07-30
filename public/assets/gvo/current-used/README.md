@@ -58,11 +58,11 @@ current-used/
   detalle vive en su `README.md`. La experiencia no usa audio, ofrece reduced
   motion completo y mantiene la PWA instalada como no certificada en la
   plataforma de QA.
-- `world-5-root` registra dieciocho pares byte-idénticos: once del mapa/Plantas,
-  tres de Sistema y cuatro poses aprobadas de Lía. Corresponden a
-  `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW` y
-  `ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW`; su presencia no constituye
-  aprobación humana ni cierre de Estación V.
+- `world-5-root` registra veintiún pares byte-idénticos: once del mapa/Plantas,
+  tres de Sistema, tres de Espacio y cuatro poses aprobadas de Lía. El estado
+  humano de entrada es `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`; la
+  publicación 020F queda `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW` y no declara
+  cierre de Estación V.
 - Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
   del directorio nunca equivale a aprobación de pantalla.
 

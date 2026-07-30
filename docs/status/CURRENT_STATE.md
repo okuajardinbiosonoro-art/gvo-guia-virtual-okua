@@ -25,7 +25,7 @@ Actualizado: 2026-07-30
 | W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
 | Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
 | W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo V | `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW` + `ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW`: mapa, Plantas, Lía y Sistema en checkpoints de `main`; sin cierre ni aprobación humana. |
+| Mundo V | Entrada `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`; `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW` integra Espacio y corrige el rail landscape de Plantas/Sistema/Espacio. La estación permanece en 3/4 y no está cerrada. |
 | W5→Final | Ruta existente con copy editorial `TEMP`. |
 | Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
 
@@ -94,19 +94,17 @@ externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales
 
 ## Estado de Estación V
 
-`ST5-020A` reemplazó el diorama procedural de Mundo V por los once assets reales
-validados del mapa y Plantas. `ST5-020B` suma siete assets aprobados: tres de
-Sistema y cuatro poses de Lía. Las rutas activas son `/estacion/5`,
-`/estacion/5/plantas` y `/estacion/5/sistema`; el progreso local usa
-`gvo.station5.v1` y acepta únicamente el prefijo `['plantas','sistema']`.
-Espacio aparece como siguiente área, pero su ruta continúa protegida; Visitante
-también permanece protegido.
+El mapa, Plantas, Sistema y su composición responsive quedaron aprobados por el
+usuario en 020E con una deuda acotada de texto landscape. `ST5-020F` suma los
+tres assets aprobados de Espacio y corrige el rail editorial compartido sin
+recomponer el overview. Las rutas activas son `/estacion/5`,
+`/estacion/5/plantas`, `/estacion/5/sistema` y `/estacion/5/espacio`; el
+progreso local usa `gvo.station5.v1` y acepta únicamente el prefijo exacto
+`['plantas','sistema','espacio']`. Visitante y su ruta permanecen protegidos.
 
-El resultado está listo únicamente para revisión humana. Conserva
-`COPY_CANDIDATE_PENDING_HUMAN_APPROVAL` y
-`LIA_WORLD5_APPROVED_ASSETS_INTEGRATED_PENDING_HUMAN_RUNTIME_REVIEW`; no declara
-Mundo V cerrado, no completa Estación V y no habilita Final. La evidencia
-técnica está en [GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md](GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md)
-y [GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md](GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md).
+El resultado 020F está listo únicamente para revisión humana de Espacio y de la
+deuda landscape corregida. No declara Mundo V cerrado, no completa Estación V,
+no habilita Visitante, 4/4 ni Final. La evidencia técnica vigente está en
+[GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md](GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md).
 Los registros anteriores permanecen históricos y no se reescriben para simular
 otro resultado.

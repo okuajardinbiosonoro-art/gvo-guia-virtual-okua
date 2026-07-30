@@ -58,7 +58,7 @@ function area(container: HTMLElement, id: string) {
 
 function enterArea(
   container: HTMLElement,
-  id: "plantas" | "sistema",
+  id: "plantas" | "sistema" | "espacio",
   reduced = false,
 ) {
   fireEvent.click(area(container, id));
@@ -68,7 +68,11 @@ function enterArea(
   );
   advance(reduced ? 90 : 770);
   expect(state(container)).toBe(
-    id === "plantas" ? "plants_intro" : "system_intro",
+    {
+      plantas: "plants_intro",
+      sistema: "system_intro",
+      espacio: "space_intro",
+    }[id],
   );
 }
 
@@ -84,7 +88,7 @@ function stubReducedMotion(matches: boolean) {
   });
 }
 
-describe("World5RootScreen — ST5-020D", () => {
+describe("World5RootScreen — ST5-020F", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
@@ -97,7 +101,7 @@ describe("World5RootScreen — ST5-020D", () => {
     vi.useRealTimers();
   });
 
-  it("abre siempre en overview aunque Plantas y Sistema estén persistidas", () => {
+  it("abre siempre en overview y habilita Espacio tras Sistema", () => {
     seedProgress(["plantas", "sistema"]);
     const { container } = renderStation5();
     expect(state(container)).toBe("map_overview");
@@ -107,7 +111,13 @@ describe("World5RootScreen — ST5-020D", () => {
     expect(
       screen.queryByRole("heading", { name: "Espacio" }),
     ).not.toBeInTheDocument();
-    expect(screen.getByText(/Espacio sigue protegido/i)).toBeInTheDocument();
+    expect(
+      screen.getByText("Toca Espacio para continuar."),
+    ).toBeInTheDocument();
+    expect(area(container, "espacio")).toHaveAttribute(
+      "data-area-state",
+      "available",
+    );
   });
 
   it("no sustituye el overview por fichas automáticas al restaurar progreso parcial", () => {
@@ -123,13 +133,13 @@ describe("World5RootScreen — ST5-020D", () => {
     expect(area(container, "sistema")).not.toHaveAttribute("aria-disabled");
   });
 
-  it("muestra feedback protegido solo tras un intento explícito y no cambia ruta ni progreso", () => {
-    seedProgress(["plantas", "sistema"]);
+  it("mantiene Visitante protegido tras completar Espacio sin cambiar ruta ni progreso", () => {
+    seedProgress(["plantas", "sistema", "espacio"]);
     const { container } = renderStation5();
     expect(
       screen.queryByRole("heading", { name: "Área protegida" }),
     ).not.toBeInTheDocument();
-    fireEvent.click(area(container, "espacio"));
+    fireEvent.click(area(container, "visitante"));
     expect(state(container)).toBe("map_blocked_feedback");
     expect(
       screen.getByRole("heading", { name: "Área protegida" }),
@@ -141,7 +151,7 @@ describe("World5RootScreen — ST5-020D", () => {
       JSON.parse(
         window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}",
       ).completedAreas,
-    ).toEqual(["plantas", "sistema"]);
+    ).toEqual(["plantas", "sistema", "espacio"]);
     fireEvent.click(
       screen.getByRole("button", { name: "Volver al mapa general" }),
     );
@@ -218,6 +228,59 @@ describe("World5RootScreen — ST5-020D", () => {
       "data-station-complete",
       "false",
     );
+  });
+
+  it("completa Espacio sólo desde el recorrido raster, conserva 3/4 y protege Visitante", () => {
+    seedProgress(["plantas", "sistema"]);
+    const { container } = renderStation5();
+    enterArea(container, "espacio");
+    const walkway = screen.getByRole("button", {
+      name: "Activar el recorrido de Espacio.",
+    });
+    expect(
+      walkway.querySelector(
+        `[data-runtime-asset="${world5RuntimeAssets.spaceFocus}"]`,
+      ),
+    ).toBeInTheDocument();
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+    fireEvent.click(walkway);
+    expect(state(container)).toBe("space_resolved");
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}",
+      ).completedAreas,
+    ).toEqual(["plantas", "sistema", "espacio"]);
+    expect(container.querySelector("[data-station-complete]")).toHaveAttribute(
+      "data-station-complete",
+      "false",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Volver al mapa" }));
+    advance(650);
+    expect(state(container)).toBe("map_overview");
+    expect(
+      screen.getByText("Visitante será el siguiente paso."),
+    ).toBeInTheDocument();
+    expect(area(container, "visitante")).toHaveAttribute(
+      "data-area-state",
+      "locked",
+    );
+    expect(area(container, "espacio")).toHaveFocus();
+  });
+
+  it("protege la ruta directa de Espacio antes de Sistema y restaura Espacio resuelto", () => {
+    const blocked = renderStation5("/estacion/5/espacio");
+    expect(state(blocked.container)).toBe("map_overview");
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/5",
+    );
+    blocked.unmount();
+
+    seedProgress(["plantas", "sistema", "espacio"]);
+    const restored = renderStation5("/estacion/5/espacio");
+    expect(state(restored.container)).toBe("space_resolved");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Espacio" }),
+    ).toBeInTheDocument();
   });
 
   it("un refresh directo de subestación restaura su estado resuelto y el mapa vuelve a overview", () => {

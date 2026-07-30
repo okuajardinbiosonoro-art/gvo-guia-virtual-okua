@@ -7,7 +7,6 @@ export const WORLD5_AREA_ORDER = [
   "plantas",
   "sistema",
   "espacio",
-  "visitante",
 ] as const satisfies readonly Station5AreaId[];
 
 export type World5Progress = {
@@ -44,7 +43,9 @@ export function normalizeWorld5Progress(value: unknown): World5Progress {
       ? candidate.completedAreas.filter(
           (area): area is Station5AreaId =>
             typeof area === "string" &&
-            WORLD5_AREA_ORDER.includes(area as Station5AreaId),
+            (WORLD5_AREA_ORDER as readonly Station5AreaId[]).includes(
+              area as Station5AreaId,
+            ),
         )
       : [],
   );
@@ -74,7 +75,9 @@ export function readWorld5Progress(
 
   try {
     const raw = storage.getItem(WORLD5_PROGRESS_STORAGE_KEY);
-    return raw ? normalizeWorld5Progress(JSON.parse(raw)) : { ...emptyWorld5Progress };
+    return raw
+      ? normalizeWorld5Progress(JSON.parse(raw))
+      : { ...emptyWorld5Progress };
   } catch {
     return { ...emptyWorld5Progress };
   }

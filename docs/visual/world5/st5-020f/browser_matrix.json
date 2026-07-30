@@ -1,0 +1,33 @@
+{
+  "chromium": {
+    "name": "Chromium",
+    "available": true,
+    "version": "148.0.7778.96",
+    "state": "space_intro",
+    "dimensions": {
+      "client": [
+        667,
+        320
+      ],
+      "scroll": [
+        667,
+        320
+      ]
+    },
+    "pass": true
+  },
+  "firefox": {
+    "name": "Firefox",
+    "available": false,
+    "pass": null,
+    "reason": "Playwright browser executable is not installed in this environment."
+  },
+  "webkit": {
+    "name": "WebKit",
+    "available": false,
+    "pass": null,
+    "reason": "Playwright browser executable is not installed in this environment."
+  },
+  "pass": true,
+  "policy": "Chromium is mandatory; Firefox and WebKit are exercised when their Playwright engines are installed."
+}

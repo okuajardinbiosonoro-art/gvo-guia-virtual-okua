@@ -15,6 +15,7 @@ import {
   station5Areas,
   station5ContentApprovalStatus,
   station5PlantsCopy,
+  station5SpaceCopy,
   station5SystemCopy,
   type Station5AreaId,
 } from "./station5Content";
@@ -35,7 +36,7 @@ import {
   type World5LiaRole,
 } from "./World5EditorialPanel";
 
-type TraversableArea = "plantas" | "sistema";
+type TraversableArea = "plantas" | "sistema" | "espacio";
 type AreaVisualState = "locked" | "available" | "completed";
 type TransitionMode = "entering" | "returning";
 
@@ -46,6 +47,8 @@ export type Station5PresentationState =
   | "plants_resolved"
   | "system_intro"
   | "system_resolved"
+  | "space_intro"
+  | "space_resolved"
   | "transitioning"
   | "storage_error";
 
@@ -65,9 +68,22 @@ const sectorAssets: Record<Station5AreaId, string> = {
 const areaRoutes: Record<TraversableArea, string> = {
   plantas: worldFivePlantsRoute,
   sistema: worldFiveSystemRoute,
+  espacio: worldFiveSpaceRoute,
 };
 
-const protectedRoutes = new Set([worldFiveSpaceRoute, worldFiveVisitorRoute]);
+const protectedRoutes = new Set([worldFiveVisitorRoute]);
+
+const introStates: Record<TraversableArea, Station5PresentationState> = {
+  plantas: "plants_intro",
+  sistema: "system_intro",
+  espacio: "space_intro",
+};
+
+const resolvedStates: Record<TraversableArea, Station5PresentationState> = {
+  plantas: "plants_resolved",
+  sistema: "system_resolved",
+  espacio: "space_resolved",
+};
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() =>
@@ -94,6 +110,7 @@ function completed(progress: World5Progress, area: TraversableArea) {
 function routeArea(pathname: string): TraversableArea | null {
   if (pathname === worldFivePlantsRoute) return "plantas";
   if (pathname === worldFiveSystemRoute) return "sistema";
+  if (pathname === worldFiveSpaceRoute) return "espacio";
   return null;
 }
 
@@ -107,6 +124,9 @@ function initialPresentation(
   if (area === "sistema" && completed(progress, "plantas")) {
     return completed(progress, area) ? "system_resolved" : "system_intro";
   }
+  if (area === "espacio" && completed(progress, "sistema")) {
+    return completed(progress, area) ? "space_resolved" : "space_intro";
+  }
   return "map_overview";
 }
 
@@ -117,6 +137,7 @@ function stateArea(
 ): TraversableArea | null {
   if (state.startsWith("plants_")) return "plantas";
   if (state.startsWith("system_")) return "sistema";
+  if (state.startsWith("space_")) return "espacio";
   if (state === "transitioning") return transitionArea;
   if (state === "storage_error") return errorArea;
   return null;
@@ -144,12 +165,14 @@ export function World5RootScreen() {
   const timerRef = useRef<number | null>(null);
   const plantsButtonRef = useRef<HTMLButtonElement>(null);
   const systemButtonRef = useRef<HTMLButtonElement>(null);
+  const spaceButtonRef = useRef<HTMLButtonElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const pendingMapFocusRef = useRef<TraversableArea | null>(null);
   const lastPathnameRef = useRef(location.pathname);
 
   const plantsCompleted = completed(progress, "plantas");
   const systemCompleted = completed(progress, "sistema");
+  const spaceCompleted = completed(progress, "espacio");
   const mapActive =
     presentation === "map_overview" || presentation === "map_blocked_feedback";
   const motionLock = presentation === "transitioning";
@@ -157,6 +180,7 @@ export function World5RootScreen() {
   const renderMapAssets = mapActive || motionLock;
   const renderPlantsAssets = activeArea === "plantas";
   const renderSystemAssets = activeArea === "sistema";
+  const renderSpaceAssets = activeArea === "espacio";
 
   const clearTimeline = useCallback(() => {
     epochRef.current += 1;
@@ -171,7 +195,12 @@ export function World5RootScreen() {
   useEffect(() => {
     const requestedArea = routeArea(location.pathname);
     const blockedSystem = requestedArea === "sistema" && !plantsCompleted;
-    if (protectedRoutes.has(location.pathname) || blockedSystem) {
+    const blockedSpace = requestedArea === "espacio" && !systemCompleted;
+    if (
+      protectedRoutes.has(location.pathname) ||
+      blockedSystem ||
+      blockedSpace
+    ) {
       lastPathnameRef.current = worldFiveEntryRoute;
       clearTimeline();
       navigate(worldFiveEntryRoute, { replace: true });
@@ -181,7 +210,9 @@ export function World5RootScreen() {
       setAnnouncement(
         blockedSystem
           ? "Completa Plantas para habilitar Sistema."
-          : "La ruta todavía está protegida.",
+          : blockedSpace
+            ? "Completa Sistema para habilitar Espacio."
+            : "Visitante todavía está protegido.",
       );
       return;
     }
@@ -197,7 +228,13 @@ export function World5RootScreen() {
       setPresentation("map_overview");
       setAnnouncement("");
     }
-  }, [clearTimeline, location.pathname, navigate, plantsCompleted]);
+  }, [
+    clearTimeline,
+    location.pathname,
+    navigate,
+    plantsCompleted,
+    systemCompleted,
+  ]);
 
   useEffect(() => {
     if (!presentation.endsWith("_intro") && !presentation.endsWith("_resolved"))
@@ -209,9 +246,12 @@ export function World5RootScreen() {
     if (presentation !== "map_overview" || !pendingMapFocusRef.current) return;
     const area = pendingMapFocusRef.current;
     pendingMapFocusRef.current = null;
-    (area === "sistema" ? systemButtonRef : plantsButtonRef).current?.focus({
-      preventScroll: true,
-    });
+    const target = {
+      plantas: plantsButtonRef,
+      sistema: systemButtonRef,
+      espacio: spaceButtonRef,
+    }[area];
+    target.current?.focus({ preventScroll: true });
   }, [presentation]);
 
   useEffect(() => {
@@ -228,6 +268,20 @@ export function World5RootScreen() {
     });
   }, [mapActive, plantsCompleted, systemCompleted]);
 
+  useEffect(() => {
+    if (!systemCompleted || spaceCompleted || !mapActive) return;
+    const portrait = window.matchMedia("(orientation: portrait)").matches;
+    [
+      portrait
+        ? world5RuntimeAssets.spaceEnvironmentPortrait
+        : world5RuntimeAssets.spaceEnvironmentLandscape,
+      world5RuntimeAssets.spaceFocus,
+    ].forEach((src) => {
+      const image = new Image();
+      image.src = src;
+    });
+  }, [mapActive, spaceCompleted, systemCompleted]);
+
   const areaState = useCallback(
     (area: Station5AreaId): AreaVisualState => {
       if (area === "plantas")
@@ -236,9 +290,13 @@ export function World5RootScreen() {
         if (systemCompleted) return "completed";
         return plantsCompleted ? "available" : "locked";
       }
+      if (area === "espacio") {
+        if (spaceCompleted) return "completed";
+        return systemCompleted ? "available" : "locked";
+      }
       return "locked";
     },
-    [plantsCompleted, systemCompleted],
+    [plantsCompleted, spaceCompleted, systemCompleted],
   );
 
   const showBlockedFeedback = useCallback(
@@ -250,10 +308,8 @@ export function World5RootScreen() {
         area === "sistema"
           ? "Completa Plantas para habilitar Sistema."
           : area === "espacio"
-            ? systemCompleted
-              ? "Espacio sigue protegido en este ticket."
-              : "Completa Plantas y Sistema antes de Espacio."
-            : "Visitante sigue protegido en este ticket.";
+            ? "Completa Sistema para habilitar Espacio."
+            : "Visitante todavía está protegido.";
       setAnnouncement(message);
     },
     [mapActive, motionLock, systemCompleted],
@@ -263,6 +319,10 @@ export function World5RootScreen() {
     (area: TraversableArea) => {
       if (!mapActive || motionLock) return;
       if (area === "sistema" && !plantsCompleted) {
+        showBlockedFeedback(area);
+        return;
+      }
+      if (area === "espacio" && !systemCompleted) {
         showBlockedFeedback(area);
         return;
       }
@@ -280,12 +340,8 @@ export function World5RootScreen() {
           if (epochRef.current !== epoch) return;
           setPresentation(
             completed(progress, area)
-              ? area === "plantas"
-                ? "plants_resolved"
-                : "system_resolved"
-              : area === "plantas"
-                ? "plants_intro"
-                : "system_intro",
+              ? resolvedStates[area]
+              : introStates[area],
           );
           setTransitionMode(null);
           timerRef.current = null;
@@ -302,6 +358,7 @@ export function World5RootScreen() {
       progress,
       reducedMotion,
       showBlockedFeedback,
+      systemCompleted,
     ],
   );
 
@@ -319,41 +376,40 @@ export function World5RootScreen() {
   }, [activeArea, clearTimeline, navigate]);
 
   const activateArea = useCallback(() => {
-    const introState =
-      activeArea === "plantas" ? "plants_intro" : "system_intro";
-    if (!activeArea || presentation !== introState) return;
+    if (!activeArea || presentation !== introStates[activeArea]) return;
     const result = completeWorld5Area(activeArea);
     if (!result.ok) {
       setErrorArea(activeArea);
       setPresentation("storage_error");
       setAnnouncement(
-        activeArea === "sistema"
-          ? station5SystemCopy.storageError
-          : station5PlantsCopy.storageError,
+        {
+          plantas: station5PlantsCopy.storageError,
+          sistema: station5SystemCopy.storageError,
+          espacio: station5SpaceCopy.storageError,
+        }[activeArea],
       );
       return;
     }
     setProgress(result.progress);
-    setPresentation(
-      activeArea === "plantas" ? "plants_resolved" : "system_resolved",
-    );
+    setPresentation(resolvedStates[activeArea]);
     setAnnouncement(
-      activeArea === "sistema"
-        ? station5SystemCopy.resolvedStatus
-        : station5PlantsCopy.resolvedStatus,
+      {
+        plantas: station5PlantsCopy.resolvedStatus,
+        sistema: station5SystemCopy.resolvedStatus,
+        espacio: station5SpaceCopy.resolvedStatus,
+      }[activeArea],
     );
   }, [activeArea, presentation]);
 
   const retryStorage = useCallback(() => {
     if (!errorArea || presentation !== "storage_error") return;
-    setPresentation(errorArea === "plantas" ? "plants_intro" : "system_intro");
+    setPresentation(introStates[errorArea]);
     setAnnouncement("");
   }, [errorArea, presentation]);
 
   const returnToMap = useCallback(() => {
     if (!activeArea || !completed(progress, activeArea)) return;
-    const expected =
-      activeArea === "plantas" ? "plants_resolved" : "system_resolved";
+    const expected = resolvedStates[activeArea];
     if (presentation !== expected) return;
     clearTimeline();
     pendingMapFocusRef.current = activeArea;
@@ -370,9 +426,11 @@ export function World5RootScreen() {
         setTransitionMode(null);
         setPresentation("map_overview");
         setAnnouncement(
-          activeArea === "sistema"
-            ? "Sistema completada. Regresaste al mapa general."
-            : "Plantas completada. Regresaste al mapa general.",
+          `${
+            { plantas: "Plantas", sistema: "Sistema", espacio: "Espacio" }[
+              activeArea
+            ]
+          } completada. Regresaste al mapa general.`,
         );
         timerRef.current = null;
       },
@@ -398,24 +456,39 @@ export function World5RootScreen() {
     lead: world5RuntimeAssets.liaLeadForward,
   }[liaRole];
 
-  const overviewGuidance = useMemo(() => {
+  const overviewCopy = useMemo(() => {
+    if (spaceCompleted) {
+      return {
+        lead: "El recorrido ya tiene un lugar.",
+        support: "Visitante será el siguiente paso.",
+      };
+    }
     if (systemCompleted) {
-      return "Plantas y Sistema ya están conectados. Espacio sigue protegido.";
+      return {
+        lead: "Plantas y Sistema ya están conectadas.",
+        support: "Toca Espacio para continuar.",
+      };
     }
     if (plantsCompleted) {
-      return "Plantas ya fue reconocida. Continúa con Sistema.";
+      return {
+        lead: "Descubre cómo la vida se convierte en señal.",
+        support: "Plantas ya fue reconocida. Continúa con Sistema.",
+      };
     }
-    return "Toca Plantas para comenzar.";
-  }, [plantsCompleted, systemCompleted]);
+    return {
+      lead: "Descubre cómo la vida se convierte en señal.",
+      support: "Toca Plantas para comenzar.",
+    };
+  }, [plantsCompleted, spaceCompleted, systemCompleted]);
 
   const blockedGuidance =
     blockedArea === "sistema"
       ? "Completa Plantas para habilitar Sistema."
       : blockedArea === "espacio"
-        ? systemCompleted
-          ? "Espacio todavía no forma parte del alcance publicado."
-          : "Completa Plantas y Sistema antes de intentar Espacio."
-        : "Visitante todavía no forma parte del alcance publicado.";
+        ? "Completa Sistema para habilitar Espacio."
+        : spaceCompleted
+          ? "Visitante será el siguiente paso, pero todavía está protegido."
+          : "Visitante todavía está protegido.";
 
   const renderAreaAction = (area: Station5AreaId) => {
     if (area === "plantas") return () => enterArea("plantas");
@@ -423,6 +496,10 @@ export function World5RootScreen() {
       return plantsCompleted
         ? () => enterArea("sistema")
         : () => showBlockedFeedback("sistema");
+    if (area === "espacio")
+      return systemCompleted
+        ? () => enterArea("espacio")
+        : () => showBlockedFeedback("espacio");
     return () => showBlockedFeedback(area);
   };
 
@@ -441,7 +518,7 @@ export function World5RootScreen() {
       <div className="s5-layout">
         <section
           className="s5-stage"
-          aria-label="Mapa del presente y subestaciones Plantas y Sistema"
+          aria-label="Mapa del presente y subestaciones Plantas, Sistema y Espacio"
         >
           <div
             className="s5-map-scene"
@@ -485,8 +562,7 @@ export function World5RootScreen() {
               >
                 {station5Areas.map((area) => {
                   const visualState = areaState(area.id);
-                  const protectedArea =
-                    area.id === "espacio" || area.id === "visitante";
+                  const protectedArea = visualState === "locked";
                   return (
                     <button
                       key={area.id}
@@ -495,7 +571,9 @@ export function World5RootScreen() {
                           ? plantsButtonRef
                           : area.id === "sistema"
                             ? systemButtonRef
-                            : undefined
+                            : area.id === "espacio"
+                              ? spaceButtonRef
+                              : undefined
                       }
                       type="button"
                       className={`s5-sector s5-sector--${area.id}`}
@@ -685,6 +763,76 @@ export function World5RootScreen() {
                 : "← Mapa"}
             </button>
           </div>
+
+          <div
+            className="s5-space-scene"
+            data-station5-scene="espacio"
+            aria-hidden={!renderSpaceAssets}
+            inert={!renderSpaceAssets ? true : undefined}
+          >
+            <ProjectedRasterStage
+              fit="cover"
+              landscapeHeight={1080}
+              landscapeSrc={
+                renderSpaceAssets
+                  ? world5RuntimeAssets.spaceEnvironmentLandscape
+                  : undefined
+              }
+              landscapeWidth={1920}
+              name="space"
+              portraitHeight={1920}
+              portraitSrc={
+                renderSpaceAssets
+                  ? world5RuntimeAssets.spaceEnvironmentPortrait
+                  : undefined
+              }
+              portraitWidth={1440}
+            >
+              <button
+                className="s5-space-focus"
+                type="button"
+                data-anchor-id="A_SPACE_WALKWAY"
+                data-source-socket-landscape="0.14,0.24,0.36,0.58"
+                data-source-socket-portrait="0.24,0.43,0.42,0.32"
+                aria-label={station5SpaceCopy.actionAccessibleLabel}
+                disabled={presentation !== "space_intro"}
+                onClick={activateArea}
+              >
+                <img
+                  alt=""
+                  data-runtime-asset={
+                    renderSpaceAssets
+                      ? world5RuntimeAssets.spaceFocus
+                      : undefined
+                  }
+                  draggable="false"
+                  src={
+                    renderSpaceAssets
+                      ? world5RuntimeAssets.spaceFocus
+                      : undefined
+                  }
+                />
+              </button>
+            </ProjectedRasterStage>
+            <button
+              className="s5-back"
+              type="button"
+              onClick={
+                presentation === "space_resolved"
+                  ? returnToMap
+                  : returnToMapImmediately
+              }
+              disabled={
+                presentation === "storage_error" ||
+                transitionMode === "returning"
+              }
+            >
+              {presentation === "space_resolved" ||
+              presentation === "storage_error"
+                ? station5SpaceCopy.returnLabel
+                : "← Mapa"}
+            </button>
+          </div>
         </section>
 
         {mapActive ? (
@@ -718,12 +866,48 @@ export function World5RootScreen() {
             lead={
               presentation === "map_blocked_feedback"
                 ? blockedGuidance
-                : "Descubre cómo la vida se convierte en señal."
+                : overviewCopy.lead
             }
             support={
               presentation === "map_blocked_feedback"
                 ? "Tu avance y tu ubicación no cambiaron."
-                : overviewGuidance
+                : overviewCopy.support
+            }
+            liaAsset={liaAsset}
+            liaRole={liaRole}
+          />
+        ) : activeArea === "espacio" ? (
+          <World5EditorialPanel
+            action={
+              presentation === "storage_error" ? (
+                <button
+                  className="s5-secondary-action"
+                  type="button"
+                  onClick={retryStorage}
+                >
+                  {station5SpaceCopy.retryLabel}
+                </button>
+              ) : undefined
+            }
+            context="ESPACIO · ÁREA 3 DE 4"
+            title={station5SpaceCopy.heading}
+            headingRef={headingRef}
+            lead={
+              presentation === "space_resolved"
+                ? station5SpaceCopy.resolvedDescription
+                : station5SpaceCopy.lead
+            }
+            support={
+              presentation === "space_resolved"
+                ? undefined
+                : station5SpaceCopy.instruction
+            }
+            status={
+              presentation === "space_resolved"
+                ? station5SpaceCopy.resolvedStatus
+                : presentation === "storage_error"
+                  ? station5SpaceCopy.storageError
+                  : undefined
             }
             liaAsset={liaAsset}
             liaRole={liaRole}

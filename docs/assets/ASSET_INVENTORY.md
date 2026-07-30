@@ -110,20 +110,22 @@ duplicaron ni alteraron. El archivo rechazado
 
 ## Pantallas posteriores
 
-## Estación V — Plantas ST5-020A + Lía/Sistema ST5-020B
+## Estación V — mapa/Plantas/Sistema aprobados + Espacio ST5-020F
 
-Estado: `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW`, no `HUMAN_APPROVED` ni estación cerrada.
+Estado de entrada: `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`.
+Estado publicado: `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW`; estación no cerrada.
 
 - Runtime: `public/assets/gvo/stations/world-5/present-map/runtime/`.
 - Espejo byte-idéntico: `public/assets/gvo/current-used/world-5-root/`.
 - Registro ejecutable: `src/screens/World5Root/world5RuntimeAssets.ts`.
 - Inventario completo: `public/assets/gvo/stations/world-5/present-map/runtime/manifest.json`.
-- Dieciocho assets: once WEBP de mapa/Plantas, tres WEBP de Sistema y cuatro
-  poses aprobadas de Lía (dos PNG y dos WEBP).
+- Veintiún assets: once WEBP de mapa/Plantas, tres WEBP de Sistema, tres WEBP
+  de Espacio y cuatro poses aprobadas de Lía (dos PNG y dos WEBP).
 - Mapa crítico: 1.290.122 bytes; Plantas: 428.412 bytes; Sistema: 328.882
-  bytes; Lía: 1.686.309 bytes.
+  bytes; Espacio: 324.550 bytes; Lía: 1.686.309 bytes.
 - `LIA_WORLD5_APPROVED_ASSETS_INTEGRATED_PENDING_HUMAN_RUNTIME_REVIEW`.
-- Espacio, Visitante, cierre 4/4 y Final permanecen fuera del alcance.
+- Espacio está integrado como área 3/4. Visitante, cierre 4/4 y Final
+  permanecen fuera del alcance.
 
 El arte procedural anterior dejó de ser la capa principal. Labels, estados,
 nexo, vínculos, foco, controles y pulso siguen siendo DOM/SVG/CSS accesible.

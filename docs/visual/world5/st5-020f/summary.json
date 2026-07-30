@@ -1,0 +1,41 @@
+{
+  "ticket": "ST5-020F",
+  "captureCount": 110,
+  "viewportCount": 11,
+  "scenarioCount": 10,
+  "passed": 110,
+  "failed": [],
+  "minBodyFontSize": 14,
+  "minTarget": 44,
+  "maxScrollOverflow": 0,
+  "protectedOverview667x320Baseline": [
+    {
+      "scene": "01_overview_space_available",
+      "scrollHeight": 485,
+      "clientHeight": 320
+    },
+    {
+      "scene": "04_overview_after_space",
+      "scrollHeight": 485,
+      "clientHeight": 320
+    },
+    {
+      "scene": "09_visitor_protected",
+      "scrollHeight": 514,
+      "clientHeight": 320
+    },
+    {
+      "scene": "10_overview_new",
+      "scrollHeight": 485,
+      "clientHeight": 320
+    }
+  ],
+  "minLandscapeRailWidth": 260,
+  "minLandscapeLiaVisibleAlphaHeight": 94.90262430939225,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "externalRequests": [],
+  "dynamicPass": true,
+  "pass": true
+}

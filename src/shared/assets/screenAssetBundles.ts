@@ -7,6 +7,7 @@ import {
   world5LiaAssetSources,
   world5MapCriticalAssetSources,
   world5PlantsAssetSources,
+  world5SpaceAssetSources,
   world5SystemAssetSources,
 } from "../../screens/World5Root/world5RuntimeAssets";
 
@@ -23,6 +24,7 @@ export type ScreenAssetBundleId =
   | "world5MapCritical"
   | "world5Plants"
   | "world5System"
+  | "world5Space"
   | "world5Lia";
 
 export type ScreenAssetPreloadItem = {
@@ -240,7 +242,8 @@ export const screenAssetBundles = {
   world5MapCritical: {
     id: "world5MapCritical",
     route: "/estacion/5",
-    description: "Mapa real de Estación V con ambas orientaciones y cuatro sectores.",
+    description:
+      "Mapa real de Estación V con ambas orientaciones y cuatro sectores.",
     assets: world5MapCriticalAssetSources.map((src, index) =>
       image(`world5_map_${index + 1}`, src),
     ),
@@ -248,7 +251,8 @@ export const screenAssetBundles = {
   world5Plants: {
     id: "world5Plants",
     route: "/estacion/5/plantas",
-    description: "Subestación Plantas en ambas orientaciones y foco compartido.",
+    description:
+      "Subestación Plantas en ambas orientaciones y foco compartido.",
     assets: world5PlantsAssetSources.map((src, index) =>
       image(`world5_plants_${index + 1}`, src),
     ),
@@ -256,14 +260,25 @@ export const screenAssetBundles = {
   world5System: {
     id: "world5System",
     route: "/estacion/5/sistema",
-    description: "Subestación Sistema en ambas orientaciones y su foco contextual.",
+    description:
+      "Subestación Sistema en ambas orientaciones y su foco contextual.",
     assets: world5SystemAssetSources.map((src, index) =>
       image(`world5_system_${index + 1}`, src),
     ),
   },
+  world5Space: {
+    id: "world5Space",
+    route: "/estacion/5/espacio",
+    description:
+      "Subestación Espacio en ambas orientaciones y recorrido de madera.",
+    assets: world5SpaceAssetSources.map((src, index) =>
+      image(`world5_space_${index + 1}`, src),
+    ),
+  },
   world5Lia: {
     id: "world5Lia",
-    route: "/estacion/5, /estacion/5/plantas, /estacion/5/sistema",
+    route:
+      "/estacion/5, /estacion/5/plantas, /estacion/5/sistema, /estacion/5/espacio",
     description: "Poses aprobadas de Lía para guiar Estación V.",
     assets: world5LiaAssetSources.map((src, index) =>
       image(`world5_lia_${index + 1}`, src),

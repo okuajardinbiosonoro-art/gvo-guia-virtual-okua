@@ -10,10 +10,30 @@ export type Station5AreaContent = {
 export const station5ContentApprovalStatus = "candidate" as const;
 
 export const station5Areas: readonly Station5AreaContent[] = [
-  { id: "plantas", order: 1, title: "Plantas", accessibleLabel: "Plantas, área 1 de 4" },
-  { id: "sistema", order: 2, title: "Sistema", accessibleLabel: "Sistema, área 2 de 4" },
-  { id: "espacio", order: 3, title: "Espacio", accessibleLabel: "Espacio, área 3 de 4" },
-  { id: "visitante", order: 4, title: "Visitante", accessibleLabel: "Visitante, área 4 de 4" },
+  {
+    id: "plantas",
+    order: 1,
+    title: "Plantas",
+    accessibleLabel: "Plantas, área 1 de 4",
+  },
+  {
+    id: "sistema",
+    order: 2,
+    title: "Sistema",
+    accessibleLabel: "Sistema, área 2 de 4",
+  },
+  {
+    id: "espacio",
+    order: 3,
+    title: "Espacio",
+    accessibleLabel: "Espacio, área 3 de 4",
+  },
+  {
+    id: "visitante",
+    order: 4,
+    title: "Visitante",
+    accessibleLabel: "Visitante, área 4 de 4",
+  },
 ] as const;
 
 export const station5Header = {
@@ -38,11 +58,25 @@ export const station5SystemCopy = {
   intro: "Aquí, la técnica actúa como mediación.",
   lia: "El sistema media la señal; no reemplaza a la planta.",
   instruction: "Toca el conector para hacer visible la mediación.",
-  actionAccessibleLabel: "Hacer visible la mediación desde el conector del sistema.",
+  actionAccessibleLabel:
+    "Hacer visible la mediación desde el conector del sistema.",
   resolvedStatus: "Mediación visible.",
   resolvedDescription: "La técnica conecta el montaje sin ser su centro.",
   returnLabel: "Volver al mapa",
   spaceLocked: "Completa Sistema para habilitar Espacio.",
+  storageError: "No fue posible guardar el avance. Inténtalo de nuevo.",
+  retryLabel: "Reintentar guardado",
+} as const;
+
+export const station5SpaceCopy = {
+  heading: "Espacio",
+  lead: "OKÚA ocurre en un lugar, no solo en una pantalla o circuito.",
+  instruction: "Toca el recorrido de madera.",
+  actionAccessibleLabel: "Activar el recorrido de Espacio.",
+  resolvedStatus: "Recorrido reconocido.",
+  resolvedDescription:
+    "El espacio convierte el sistema en una experiencia situada.",
+  returnLabel: "Volver al mapa",
   storageError: "No fue posible guardar el avance. Inténtalo de nuevo.",
   retryLabel: "Reintentar guardado",
 } as const;

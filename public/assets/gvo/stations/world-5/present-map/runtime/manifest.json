@@ -1,12 +1,13 @@
 {
-  "ticket": "ST5-020B",
+  "ticket": "ST5-020F",
   "screen": "world-5-root",
-  "status": "ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW",
+  "status": "ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW",
   "runtimeBase": "/assets/gvo/stations/world-5/present-map/runtime",
   "currentUsedMirror": "public/assets/gvo/current-used/world-5-root",
   "mapCriticalBytes": 1290122,
   "plantsBundleBytes": 428412,
   "systemBundleBytes": 328882,
+  "spaceBundleBytes": 324550,
   "liaBundleBytes": 1686309,
   "assets": [
     { "id": "MAP-01", "file": "world5_map_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta/world5_map_environment_portrait_v01.webp", "width": 1440, "height": 2560, "alpha": false, "bytes": 87632, "sha256": "4EA310071C8D7D6CAEBAFBF2D245DF20F8F36603D0BF61E62EBCAD5FCD3546A0" },
@@ -26,6 +27,9 @@
     { "id": "LIA-EXPLAIN-CALM", "file": "lia/lia_pose_explain_calm_v1.png", "source": "public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png", "width": 1086, "height": 1448, "alpha": true, "bytes": 727614, "sha256": "17020FCDCE68624DB85FF173869D693D77A009E408859E323FC238D2F90B7064" },
     { "id": "LIA-GREETING", "file": "lia/lia_pose_greeting_v1.png", "source": "public/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png", "width": 1086, "height": 1448, "alpha": true, "bytes": 702541, "sha256": "7A25A54FBC96852D0C5E26B4DE1FD470AE708ECCDEF7EF7352D37806E89C0AD5" },
     { "id": "LIA-LEAD-FORWARD", "file": "lia/lia_world5_lead_forward_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_LEAD_FORWARD_APPROVED_FINAL/lia_world5_lead_forward_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 120244, "sha256": "58696A77F16BDE395FB093771790377F3B44FC788FF9D1B661080E92806A009E" },
-    { "id": "LIA-ATTEND-NEUTRAL", "file": "lia/lia_world5_attend_neutral_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_ATTEND_NEUTRAL_APPROVED_FINAL/lia_world5_attend_neutral_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 135910, "sha256": "BFD5C5E3EB4DE9B9A908C6DAA7730EA9005AF912ABB58CE735C81DDCAA451316" }
+    { "id": "LIA-ATTEND-NEUTRAL", "file": "lia/lia_world5_attend_neutral_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_ATTEND_NEUTRAL_APPROVED_FINAL/lia_world5_attend_neutral_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 135910, "sha256": "BFD5C5E3EB4DE9B9A908C6DAA7730EA9005AF912ABB58CE735C81DDCAA451316" },
+    { "id": "SUB-SPACE-BG-PORTRAIT", "file": "world5_sub_space_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images17/world5_sub_space_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 109230, "sha256": "2D5CF7921187A67A7AEA092D7DCB84C9B4435620168187DBBB6E928A4D6F48B3" },
+    { "id": "SUB-SPACE-BG-LANDSCAPE", "file": "world5_sub_space_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images18/world5_sub_space_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 73372, "sha256": "53D57B96D5BC0ED13694361892A11CB8568E7C4DA61D95BEE1A6A44EF0EE7BD8" },
+    { "id": "SUB-SPACE-FOCUS", "file": "world5_sub_space_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images19/world5_sub_space_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 141948, "sha256": "FDD48FBC8E9F439E9D51C21C2BB3CB7406423DDCBB50AA0A3A218EA6DEB71F66" }
   ]
 }
