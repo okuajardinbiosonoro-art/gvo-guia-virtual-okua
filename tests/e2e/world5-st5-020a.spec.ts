@@ -44,7 +44,7 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({ page }
   await page.getByRole("button", { name: "Volver al mapa" }).click();
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_plantas_completed");
   await expect(page.locator('[data-station5-area="plantas"]')).toBeFocused();
-  await expect(page.locator('[data-station5-area="sistema"]')).toBeDisabled();
+  await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
 
   await page.goto("/estacion/5/plantas");
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_resolved");
@@ -82,5 +82,4 @@ test("ST5-020A reduced motion conserva comprensión y persistencia", async ({ pa
   await page.getByRole("button", { name: "Activar el pulso visual desde la hoja." }).click();
   await expect(page.getByRole("status")).toContainText("llegó al suelo");
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
-  await page.screenshot({ path: "docs/visual/world5/st5-020a/reduced_motion_390x844.png" });
 });

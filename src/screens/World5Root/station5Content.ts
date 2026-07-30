@@ -33,4 +33,22 @@ export const station5PlantsCopy = {
   retryLabel: "Reintentar guardado",
 } as const;
 
+export const station5SystemCopy = {
+  heading: "Sistema",
+  intro: "Aquí, la técnica actúa como mediación.",
+  lia: "El sistema media la señal; no reemplaza a la planta.",
+  instruction: "Toca el conector para hacer visible la mediación.",
+  actionAccessibleLabel: "Hacer visible la mediación desde el conector del sistema.",
+  resolvedStatus: "Mediación visible.",
+  resolvedDescription: "La técnica conecta el montaje sin ser su centro.",
+  returnLabel: "Volver al mapa",
+  spaceLocked: "Completa Sistema para habilitar Espacio.",
+  storageError: "No fue posible guardar el avance. Inténtalo de nuevo.",
+  retryLabel: "Reintentar guardado",
+} as const;
+
+export const station5DeprecatedCopy = {
+  W5_SISTEMA_ACTION: "DEPRECATED_NO_RENDER",
+} as const;
+
 export const station5FixedCta = "Ir al cierre" as const;

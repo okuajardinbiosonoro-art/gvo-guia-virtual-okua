@@ -21,6 +21,13 @@ function renderStation5(path = "/estacion/5") {
   );
 }
 
+function seedProgress(completedAreas: string[]) {
+  window.localStorage.setItem(
+    WORLD5_PROGRESS_STORAGE_KEY,
+    JSON.stringify({ schemaVersion: 1, completedAreas, updatedAt: "2026-07-30T12:00:00.000Z" }),
+  );
+}
+
 function state(container: HTMLElement) {
   return container.querySelector("[data-station5-state]")?.getAttribute("data-station5-state");
 }
@@ -35,13 +42,13 @@ function area(container: HTMLElement, id: string) {
   return button;
 }
 
-function enterPlants(container: HTMLElement, reduced = false) {
-  fireEvent.click(area(container, "plantas"));
-  expect(state(container)).toBe("camera_entering_plantas");
-  expect(screen.getByTestId("current-location")).toHaveTextContent("/estacion/5/plantas");
+function enterArea(container: HTMLElement, id: "plantas" | "sistema", reduced = false) {
+  fireEvent.click(area(container, id));
+  expect(state(container)).toBe(`camera_entering_${id}`);
+  expect(screen.getByTestId("current-location")).toHaveTextContent(`/estacion/5/${id}`);
   advance(reduced ? 150 : 1070);
   advance(reduced ? 150 : 190);
-  expect(state(container)).toBe("substation_plantas_interactive");
+  expect(state(container)).toBe(`substation_${id}_interactive`);
 }
 
 function stubReducedMotion(matches: boolean) {
@@ -56,7 +63,7 @@ function stubReducedMotion(matches: boolean) {
   });
 }
 
-describe("World5RootScreen — ST5-020A", () => {
+describe("World5RootScreen — ST5-020A + ST5-020B", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
@@ -69,17 +76,17 @@ describe("World5RootScreen — ST5-020A", () => {
     vi.useRealTimers();
   });
 
-  it("renderiza el mapa real con cuatro wrappers y sin bitmap de Lía", () => {
+  it("renderiza cuatro wrappers, Lía explicativa no interactiva y ninguna tecnología prohibida", () => {
     const { container } = renderStation5();
     expect(state(container)).toBe("map_stable");
-    expect(screen.getByRole("heading", { name: "MUNDO V: MAPA DEL PRESENTE" })).toBeInTheDocument();
     expect(container.querySelectorAll("[data-station5-area]")).toHaveLength(4);
     expect(container.querySelector(`[data-runtime-asset="${world5RuntimeAssets.mapSectorPlants}"]`)).toBeInTheDocument();
-    expect(container.querySelector("[data-station5-lia]")).not.toBeInTheDocument();
+    expect(container.querySelector('[data-station5-lia="explain"]')).toBeInTheDocument();
+    expect(container.querySelector(".s5-lia")).toHaveStyle({ pointerEvents: "none" });
     expect(container.querySelectorAll("audio,video,canvas,iframe")).toHaveLength(0);
   });
 
-  it("hace de Plantas el único sector recorrible y mantiene los demás bloqueados", () => {
+  it("habilita únicamente Plantas sin progreso", () => {
     const { container } = renderStation5();
     expect(area(container, "plantas")).toBeEnabled();
     expect(area(container, "sistema")).toBeDisabled();
@@ -87,72 +94,128 @@ describe("World5RootScreen — ST5-020A", () => {
     expect(area(container, "visitante")).toBeDisabled();
   });
 
-  it("entra por la ruta Plantas y mantiene un solo árbol accesible", () => {
+  it("con Plantas completada habilita Sistema y conserva Espacio protegido", () => {
+    seedProgress(["plantas"]);
     const { container } = renderStation5();
-    enterPlants(container);
-    expect(container.querySelector('[data-station5-scene="map"]')).toHaveAttribute("aria-hidden", "true");
-    expect(container.querySelector('[data-station5-scene="plantas"]')).toHaveAttribute("aria-hidden", "false");
-    expect(screen.getByRole("button", { name: "Activar el pulso visual desde la hoja." })).toBeEnabled();
+    expect(state(container)).toBe("map_plantas_completed");
+    expect(area(container, "sistema")).toBeEnabled();
+    expect(area(container, "espacio")).toBeDisabled();
+    expect(area(container, "espacio")).toHaveAttribute("data-protected", "true");
   });
 
-  it("persiste solo Plantas antes de habilitar retorno y no completa Estación V", () => {
+  it("bloquea y reemplaza la ruta directa Sistema sin Plantas", () => {
+    const { container } = renderStation5("/estacion/5/sistema");
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/estacion/5");
+    expect(state(container)).toBe("map_stable");
+    expect(screen.getByRole("status")).toHaveTextContent("Completa Plantas");
+  });
+
+  it("bloquea rutas futuras sin montar su contenido", () => {
+    const { container } = renderStation5("/estacion/5/espacio");
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/estacion/5");
+    expect(state(container)).toBe("map_stable");
+    expect(container.querySelector('[data-station5-scene="espacio"]')).not.toBeInTheDocument();
+  });
+
+  it("abre Sistema por ruta directa válida y enfoca el heading estable", () => {
+    seedProgress(["plantas"]);
+    const { container } = renderStation5("/estacion/5/sistema");
+    expect(state(container)).toBe("substation_sistema_intro");
+    expect(screen.getByRole("heading", { name: "Sistema" })).toHaveFocus();
+    advance(190);
+    expect(state(container)).toBe("substation_sistema_interactive");
+  });
+
+  it("usa el focus de Sistema como único control y resuelve con una conexión general", () => {
+    seedProgress(["plantas"]);
     const { container } = renderStation5();
-    enterPlants(container);
-    fireEvent.click(screen.getByRole("button", { name: "Activar el pulso visual desde la hoja." }));
-    expect(state(container)).toBe("substation_plantas_resolved");
-    expect(screen.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
-    expect(JSON.parse(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}").completedAreas).toEqual(["plantas"]);
+    enterArea(container, "sistema");
+    const connector = screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." });
+    expect(container.querySelectorAll(".s5-system-focus")).toHaveLength(1);
+    expect(connector.querySelector(`[data-runtime-asset="${world5RuntimeAssets.systemFocus}"]`)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Revelar mediación/i })).not.toBeInTheDocument();
+    fireEvent.click(connector);
+    expect(state(container)).toBe("substation_sistema_resolved");
+    expect(screen.getByRole("status")).toHaveTextContent("Mediación visible.");
+    expect(container.querySelectorAll('[data-world5-connection="general"]')).toHaveLength(1);
+    expect(JSON.parse(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}").completedAreas).toEqual(["plantas", "sistema"]);
     expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
   });
 
-  it("retorna al mapa, restaura foco e identifica Sistema sin abrirlo", () => {
+  it("ignora acción prematura, tap exterior y repetición después de resolver", () => {
+    seedProgress(["plantas"]);
     const { container } = renderStation5();
-    enterPlants(container);
-    fireEvent.click(screen.getByRole("button", { name: "Activar el pulso visual desde la hoja." }));
+    fireEvent.click(area(container, "sistema"));
+    const connector = screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." });
+    fireEvent.click(connector);
+    fireEvent.click(container.querySelector(".s5-system-scene")!);
+    expect(state(container)).toBe("camera_entering_sistema");
+    advance(1070);
+    advance(190);
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
+    fireEvent.click(connector);
+    fireEvent.click(connector);
+    expect(setItem).toHaveBeenCalledTimes(1);
+    expect(state(container)).toBe("substation_sistema_resolved");
+  });
+
+  it("impide retorno falso cuando falla storage en Sistema", () => {
+    seedProgress(["plantas"]);
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
+    const { container } = renderStation5();
+    enterArea(container, "sistema");
+    fireEvent.click(screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }));
+    expect(state(container)).toBe("substation_sistema_storage_error");
+    expect(screen.getByRole("button", { name: "Volver al mapa" })).toBeDisabled();
+    expect(JSON.parse(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}").completedAreas).toEqual(["plantas"]);
+  });
+
+  it("retorna, restaura foco a Sistema y deja Espacio disponible pero protegido", () => {
+    seedProgress(["plantas"]);
+    const { container } = renderStation5();
+    enterArea(container, "sistema");
+    fireEvent.click(screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }));
     fireEvent.click(screen.getByRole("button", { name: "Volver al mapa" }));
-    expect(state(container)).toBe("camera_returning_to_map");
     advance(830);
     advance(20);
-    expect(state(container)).toBe("map_plantas_completed");
-    expect(area(container, "plantas")).toHaveFocus();
-    expect(area(container, "sistema")).toHaveAttribute("data-area-state", "available");
-    expect(area(container, "sistema")).toBeDisabled();
+    expect(state(container)).toBe("map_sistema_completed");
+    expect(area(container, "sistema")).toHaveFocus();
+    expect(area(container, "espacio")).toHaveAttribute("data-area-state", "available");
+    expect(area(container, "espacio")).toBeDisabled();
+    expect(container.querySelector("[data-station-complete]" )).toHaveAttribute("data-station-complete", "false");
   });
 
-  it("Back durante la entrada cancela sin completar Plantas", () => {
+  it("Back durante entrada cancela el epoch sin completar Sistema", () => {
+    seedProgress(["plantas"]);
     const { container } = renderStation5();
-    fireEvent.click(area(container, "plantas"));
+    fireEvent.click(area(container, "sistema"));
     fireEvent.click(screen.getByRole("button", { name: "← Mapa" }));
     advance(1200);
-    expect(state(container)).toBe("map_stable");
-    expect(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY)).toBeNull();
+    expect(state(container)).toBe("map_plantas_completed");
+    expect(JSON.parse(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}").completedAreas).toEqual(["plantas"]);
   });
 
-  it("bloquea un retorno falso cuando falla storage", () => {
-    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
-      throw new Error("quota");
-    });
+  it("asigna a Lía lead, attend y greeting por fase sin convertirla en target", () => {
+    seedProgress(["plantas"]);
     const { container } = renderStation5();
-    enterPlants(container);
-    fireEvent.click(screen.getByRole("button", { name: "Activar el pulso visual desde la hoja." }));
-    expect(state(container)).toBe("substation_plantas_storage_error");
-    expect(screen.getByRole("button", { name: "Volver al mapa" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "Reintentar guardado" })).toBeEnabled();
-  });
-
-  it("refresh directo en Plantas no restaura un frame intermedio", () => {
-    const { container } = renderStation5("/estacion/5/plantas");
-    expect(state(container)).toBe("substation_plantas_intro");
+    expect(container.querySelector('[data-station5-lia="attend"]')).toBeInTheDocument();
+    fireEvent.click(area(container, "sistema"));
+    expect(container.querySelector('[data-station5-lia="lead"]')).toBeInTheDocument();
+    advance(1070);
     advance(190);
-    expect(state(container)).toBe("substation_plantas_interactive");
+    expect(container.querySelector('[data-station5-lia="attend"]')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }));
+    expect(container.querySelector('[data-station5-lia="greeting"]')).toBeInTheDocument();
+    expect(container.querySelector(".s5-lia button")).not.toBeInTheDocument();
   });
 
-  it("reduced motion conserva ruta, persistencia y comprensión sin travel", () => {
+  it("reduced motion conserva entrada, persistencia y comprensión", () => {
+    seedProgress(["plantas"]);
     stubReducedMotion(true);
     const { container } = renderStation5();
-    enterPlants(container, true);
-    fireEvent.click(screen.getByRole("button", { name: "Activar el pulso visual desde la hoja." }));
-    expect(state(container)).toBe("substation_plantas_resolved");
+    enterArea(container, "sistema", true);
+    fireEvent.click(screen.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }));
+    expect(state(container)).toBe("substation_sistema_resolved");
     expect(container.querySelector("[data-station5-reduced-motion]" )).toHaveAttribute("data-station5-reduced-motion", "true");
   });
 });

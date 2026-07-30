@@ -1,6 +1,6 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-07-29
+Actualizado: 2026-07-30
 
 ## Estado canónico
 
@@ -25,7 +25,7 @@ Actualizado: 2026-07-29
 | W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
 | Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
 | W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo V | `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW`: mapa real y vertical slice Plantas en checkpoint de `main`; sin cierre ni aprobación humana. |
+| Mundo V | `ST5_020A_PUBLISHED_PENDING_HUMAN_REVIEW` + `ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW`: mapa, Plantas, Lía y Sistema en checkpoints de `main`; sin cierre ni aprobación humana. |
 | W5→Final | Ruta existente con copy editorial `TEMP`. |
 | Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
 
@@ -94,15 +94,19 @@ externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales
 
 ## Estado de Estación V
 
-`ST5-020A` reemplaza el diorama procedural de Mundo V por los once assets reales
-validados del mapa y Plantas. Las rutas activas son `/estacion/5` y
-`/estacion/5/plantas`; el progreso local usa `gvo.station5.v1` y completa sólo
-Plantas. Sistema queda identificado como siguiente área, pero continúa
-físicamente bloqueado; Espacio y Visitante también permanecen fuera de alcance.
+`ST5-020A` reemplazó el diorama procedural de Mundo V por los once assets reales
+validados del mapa y Plantas. `ST5-020B` suma siete assets aprobados: tres de
+Sistema y cuatro poses de Lía. Las rutas activas son `/estacion/5`,
+`/estacion/5/plantas` y `/estacion/5/sistema`; el progreso local usa
+`gvo.station5.v1` y acepta únicamente el prefijo `['plantas','sistema']`.
+Espacio aparece como siguiente área, pero su ruta continúa protegida; Visitante
+también permanece protegido.
 
 El resultado está listo únicamente para revisión humana. Conserva
-`COPY_CANDIDATE_PENDING_HUMAN_APPROVAL` y `LIA_NOT_YET_INTEGRATED_IN_020A`; no declara Mundo V
-cerrado, no completa Estación V y no habilita Final. La evidencia técnica está
-en [GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md](GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md).
+`COPY_CANDIDATE_PENDING_HUMAN_APPROVAL` y
+`LIA_WORLD5_APPROVED_ASSETS_INTEGRATED_PENDING_HUMAN_RUNTIME_REVIEW`; no declara
+Mundo V cerrado, no completa Estación V y no habilita Final. La evidencia
+técnica está en [GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md](GVO_ST5_020A_VERTICAL_SLICE_PLANTAS.md)
+y [GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md](GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md).
 Los registros anteriores permanecen históricos y no se reescriben para simular
 otro resultado.

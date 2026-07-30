@@ -1,11 +1,13 @@
 {
-  "ticket": "ST5-020A",
+  "ticket": "ST5-020B",
   "screen": "world-5-root",
-  "status": "integrated_ready_for_human_review",
+  "status": "ST5_020B_PUBLISHED_PENDING_HUMAN_REVIEW",
   "runtimeBase": "/assets/gvo/stations/world-5/present-map/runtime",
   "currentUsedMirror": "public/assets/gvo/current-used/world-5-root",
   "mapCriticalBytes": 1290122,
   "plantsBundleBytes": 428412,
+  "systemBundleBytes": 328882,
+  "liaBundleBytes": 1686309,
   "assets": [
     { "id": "MAP-01", "file": "world5_map_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta/world5_map_environment_portrait_v01.webp", "width": 1440, "height": 2560, "alpha": false, "bytes": 87632, "sha256": "4EA310071C8D7D6CAEBAFBF2D245DF20F8F36603D0BF61E62EBCAD5FCD3546A0" },
     { "id": "MAP-02", "file": "world5_map_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/Nueva carpeta (2)/world5_map_environment_landscape_v01.webp", "width": 2560, "height": 1440, "alpha": false, "bytes": 56796, "sha256": "7EB9261B1ED1CE01B6ABAE302FA020A99DBFE2B5BA0F30A493E665F6753D938C" },
@@ -17,6 +19,13 @@
     { "id": "MAP-08", "file": "world5_map_sector_visitor_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images10/world5_map_sector_visitor_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 136976, "sha256": "D596549E9C5550A70DF7E0615790157705E14766EBCA9590A4E5934F561D4533" },
     { "id": "SUB-PLANTS-BG-PORTRAIT", "file": "world5_sub_plants_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images11/world5_sub_plants_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 158160, "sha256": "400279CBD5A569DB261277D14A1730AA0F7B0A4410BF56C8683DC1CA62FC1612" },
     { "id": "SUB-PLANTS-BG-LANDSCAPE", "file": "world5_sub_plants_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images12/world5_sub_plants_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 115856, "sha256": "27FBB61F3C6817990F4C049DB3879879226AC2A51291D4F93F1E11A6ADB9CB26" },
-    { "id": "SUB-PLANTS-FOCUS", "file": "world5_sub_plants_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images13/world5_sub_plants_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 154396, "sha256": "3A3FC7759B7F51B6EAF5646F488F401C15F68C3A8540D9EF84A35862FFEEC8BE" }
+    { "id": "SUB-PLANTS-FOCUS", "file": "world5_sub_plants_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images13/world5_sub_plants_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 154396, "sha256": "3A3FC7759B7F51B6EAF5646F488F401C15F68C3A8540D9EF84A35862FFEEC8BE" },
+    { "id": "SUB-SYSTEM-BG-PORTRAIT", "file": "system/world5_sub_system_environment_portrait_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images14/world5_sub_system_environment_portrait_v01.webp", "width": 1440, "height": 1920, "alpha": false, "bytes": 91210, "sha256": "F9C5978400F3DEB37E027CDBC9AEB0D6754E6FA04441BE641F83561496326BCB" },
+    { "id": "SUB-SYSTEM-BG-LANDSCAPE", "file": "system/world5_sub_system_environment_landscape_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images15/world5_sub_system_environment_landscape_v01.webp", "width": 1920, "height": 1080, "alpha": false, "bytes": 51930, "sha256": "9AF9FEF48649CBFCD650513EB5F7662FEDC584079800616F7E6C4AB652C231D3" },
+    { "id": "SUB-SYSTEM-FOCUS", "file": "system/world5_sub_system_focus_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/images16/world5_sub_system_focus_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 185742, "sha256": "680392B58B8A6C9B13C5AA36783FF481303B31712F3646471DCC4375AE3390B2" },
+    { "id": "LIA-EXPLAIN-CALM", "file": "lia/lia_pose_explain_calm_v1.png", "source": "public/assets/runtime/cover-intro/lia/poses/lia_pose_explain_calm_v1.png", "width": 1086, "height": 1448, "alpha": true, "bytes": 727614, "sha256": "17020FCDCE68624DB85FF173869D693D77A009E408859E323FC238D2F90B7064" },
+    { "id": "LIA-GREETING", "file": "lia/lia_pose_greeting_v1.png", "source": "public/assets/runtime/cover-intro/lia/poses/lia_pose_greeting_v1.png", "width": 1086, "height": 1448, "alpha": true, "bytes": 702541, "sha256": "7A25A54FBC96852D0C5E26B4DE1FD470AE708ECCDEF7EF7352D37806E89C0AD5" },
+    { "id": "LIA-LEAD-FORWARD", "file": "lia/lia_world5_lead_forward_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_LEAD_FORWARD_APPROVED_FINAL/lia_world5_lead_forward_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 120244, "sha256": "58696A77F16BDE395FB093771790377F3B44FC788FF9D1B661080E92806A009E" },
+    { "id": "LIA-ATTEND-NEUTRAL", "file": "lia/lia_world5_attend_neutral_v01.webp", "source": "C:/Users/JOSE DAVID/Downloads/LIA_ATTEND_NEUTRAL_APPROVED_FINAL/lia_world5_attend_neutral_v01.webp", "width": 1536, "height": 1536, "alpha": true, "bytes": 135910, "sha256": "BFD5C5E3EB4DE9B9A908C6DAA7730EA9005AF912ABB58CE735C81DDCAA451316" }
   ]
 }

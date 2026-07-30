@@ -32,4 +32,10 @@ export const worldFiveEntryRoute = "/estacion/5";
 
 export const worldFivePlantsRoute = "/estacion/5/plantas";
 
+export const worldFiveSystemRoute = "/estacion/5/sistema";
+
+export const worldFiveSpaceRoute = "/estacion/5/espacio";
+
+export const worldFiveVisitorRoute = "/estacion/5/visitante";
+
 export const finalEntryRoute = "/final";

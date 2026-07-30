@@ -42,6 +42,18 @@ describe("world5Progress", () => {
     expect(storage.getItem(WORLD5_PROGRESS_STORAGE_KEY)).toBeNull();
   });
 
+  it("persiste Plantas y Sistema como prefijo canónico y verifica la lectura", () => {
+    const storage = memoryStorage();
+    completeWorld5Area("plantas", storage, () => "2026-07-30T12:00:00.000Z");
+    const result = completeWorld5Area("sistema", storage, () => "2026-07-30T12:01:00.000Z");
+    expect(result).toMatchObject({ ok: true, changed: true });
+    expect(readWorld5Progress(storage)).toEqual({
+      schemaVersion: 1,
+      completedAreas: ["plantas", "sistema"],
+      updatedAt: "2026-07-30T12:01:00.000Z",
+    });
+  });
+
   it("reporta fallo de escritura y no simula progreso", () => {
     const storage: ProgressStorage = {
       getItem: () => null,

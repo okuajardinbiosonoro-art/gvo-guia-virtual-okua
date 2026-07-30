@@ -4,8 +4,10 @@ import { loadingInitialAssets } from "../../screens/LoadingInitial/loadingInitia
 import { world1RootAssets } from "../../screens/World1Root/world1RootAssets";
 import { world2InitialRuntimeAssetSources } from "../../screens/World2Root/world2RuntimeAssets";
 import {
+  world5LiaAssetSources,
   world5MapCriticalAssetSources,
   world5PlantsAssetSources,
+  world5SystemAssetSources,
 } from "../../screens/World5Root/world5RuntimeAssets";
 
 export type ScreenAssetBundleId =
@@ -19,7 +21,9 @@ export type ScreenAssetBundleId =
   | "world1RootReady"
   | "world2RootInitial"
   | "world5MapCritical"
-  | "world5Plants";
+  | "world5Plants"
+  | "world5System"
+  | "world5Lia";
 
 export type ScreenAssetPreloadItem = {
   id: string;
@@ -247,6 +251,22 @@ export const screenAssetBundles = {
     description: "Subestación Plantas en ambas orientaciones y foco compartido.",
     assets: world5PlantsAssetSources.map((src, index) =>
       image(`world5_plants_${index + 1}`, src),
+    ),
+  },
+  world5System: {
+    id: "world5System",
+    route: "/estacion/5/sistema",
+    description: "Subestación Sistema en ambas orientaciones y su foco contextual.",
+    assets: world5SystemAssetSources.map((src, index) =>
+      image(`world5_system_${index + 1}`, src),
+    ),
+  },
+  world5Lia: {
+    id: "world5Lia",
+    route: "/estacion/5, /estacion/5/plantas, /estacion/5/sistema",
+    description: "Poses aprobadas de Lía para guiar Estación V.",
+    assets: world5LiaAssetSources.map((src, index) =>
+      image(`world5_lia_${index + 1}`, src),
     ),
   },
 } as const satisfies Record<ScreenAssetBundleId, ScreenAssetBundle>;

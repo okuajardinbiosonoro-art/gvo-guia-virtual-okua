@@ -35,6 +35,9 @@ import {
   finalEntryRoute,
   worldFiveEntryRoute,
   worldFivePlantsRoute,
+  worldFiveSpaceRoute,
+  worldFiveSystemRoute,
+  worldFiveVisitorRoute,
   worldFiveToFinalTransitionRoute,
   worldFourToWorldFiveTransitionRoute,
   worldThreeEntryRoute,
@@ -199,6 +202,18 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFivePlantsRoute,
+    element: <World5RootScreen />,
+  },
+  {
+    path: worldFiveSystemRoute,
+    element: <World5RootScreen />,
+  },
+  {
+    path: worldFiveSpaceRoute,
+    element: <World5RootScreen />,
+  },
+  {
+    path: worldFiveVisitorRoute,
     element: <World5RootScreen />,
   },
   {
