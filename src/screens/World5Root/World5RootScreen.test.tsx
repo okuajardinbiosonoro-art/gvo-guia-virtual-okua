@@ -63,7 +63,7 @@ function stubReducedMotion(matches: boolean) {
   });
 }
 
-describe("World5RootScreen — ST5-020A + ST5-020B", () => {
+describe("World5RootScreen — ST5-020C", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
@@ -84,6 +84,9 @@ describe("World5RootScreen — ST5-020A + ST5-020B", () => {
     expect(container.querySelector('[data-station5-lia="explain"]')).toBeInTheDocument();
     expect(container.querySelector(".s5-lia")).toHaveStyle({ pointerEvents: "none" });
     expect(container.querySelectorAll("audio,video,canvas,iframe")).toHaveLength(0);
+    expect(screen.getByText("ESTACIÓN V · MUNDO V")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Mapa del presente" })).toBeInTheDocument();
+    expect(container.querySelectorAll(".s5-map__nexus,.s5-map__links,.s5-sector__status,.s5-vital-pulse,.s5-resolved-check,.s5-system-connection,.s5-system-indicator")).toHaveLength(0);
   });
 
   it("habilita únicamente Plantas sin progreso", () => {
@@ -126,7 +129,7 @@ describe("World5RootScreen — ST5-020A + ST5-020B", () => {
     expect(state(container)).toBe("substation_sistema_interactive");
   });
 
-  it("usa el focus de Sistema como único control y resuelve con una conexión general", () => {
+  it("usa el focus real de Sistema como único control sin superponer una conexión procedimental", () => {
     seedProgress(["plantas"]);
     const { container } = renderStation5();
     enterArea(container, "sistema");
@@ -137,7 +140,7 @@ describe("World5RootScreen — ST5-020A + ST5-020B", () => {
     fireEvent.click(connector);
     expect(state(container)).toBe("substation_sistema_resolved");
     expect(screen.getByRole("status")).toHaveTextContent("Mediación visible.");
-    expect(container.querySelectorAll('[data-world5-connection="general"]')).toHaveLength(1);
+    expect(container.querySelectorAll('[data-world5-connection="general"]')).toHaveLength(0);
     expect(JSON.parse(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY) ?? "{}").completedAreas).toEqual(["plantas", "sistema"]);
     expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
   });

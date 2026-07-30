@@ -17,16 +17,16 @@ export const station5Areas: readonly Station5AreaContent[] = [
 ] as const;
 
 export const station5Header = {
-  eyebrow: "ESTACIÓN V",
-  title: "MUNDO V: MAPA DEL PRESENTE",
+  eyebrow: "ESTACIÓN V · MUNDO V",
+  title: "Mapa del presente",
 } as const;
 
 export const station5PlantsCopy = {
   intro: "Las plantas abren el recorrido.",
   description: "Son seres vivos y el punto de partida de esta experiencia.",
-  instruction: "Toca la hoja para activar un pulso visual.",
-  leafAccessibleLabel: "Activar el pulso visual desde la hoja.",
-  resolvedStatus: "El pulso visual llegó al suelo.",
+  instruction: "Toca la hoja para reconocer su vitalidad.",
+  leafAccessibleLabel: "Reconocer la vitalidad desde la hoja.",
+  resolvedStatus: "Vitalidad reconocida en la planta.",
   resolvedDescription: "Las plantas sostienen el origen vivo del montaje.",
   returnLabel: "Volver al mapa",
   storageError: "No fue posible guardar el avance. Inténtalo de nuevo.",

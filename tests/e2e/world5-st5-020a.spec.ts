@@ -27,11 +27,11 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({ page }
   await page.locator('[data-station5-area="plantas"]').click();
   await expect(page).toHaveURL(/\/estacion\/5\/plantas$/);
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
-  await expect(page.getByRole("button", { name: "Activar el pulso visual desde la hoja." })).toHaveCount(1);
+  await expect(page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })).toHaveCount(1);
 
-  await page.getByRole("button", { name: "Activar el pulso visual desde la hoja." }).click();
+  await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).click();
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_resolved");
-  await expect(page.getByRole("status")).toContainText("llegó al suelo");
+  await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
 
   const stored = await page.evaluate(() => ({
@@ -46,7 +46,7 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({ page }
   await expect(page.locator('[data-station5-area="plantas"]')).toBeFocused();
   await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
 
-  await page.goto("/estacion/5/plantas");
+  await page.goto("/estacion/5/plantas", { waitUntil: "domcontentloaded" });
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_resolved");
   expect(consoleErrors).toEqual([]);
   expect(externalRequests).toEqual([]);
@@ -79,7 +79,7 @@ test("ST5-020A reduced motion conserva comprensión y persistencia", async ({ pa
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-reduced-motion", "true");
   await page.locator('[data-station5-area="plantas"]').click();
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
-  await page.getByRole("button", { name: "Activar el pulso visual desde la hoja." }).click();
-  await expect(page.getByRole("status")).toContainText("llegó al suelo");
+  await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).click();
+  await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
 });

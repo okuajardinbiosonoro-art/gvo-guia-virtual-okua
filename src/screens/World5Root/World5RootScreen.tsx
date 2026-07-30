@@ -13,7 +13,6 @@ import {
 import {
   station5Areas,
   station5ContentApprovalStatus,
-  station5Header,
   station5PlantsCopy,
   station5SystemCopy,
   type Station5AreaId,
@@ -24,6 +23,10 @@ import {
   type World5Progress,
 } from "./world5Progress";
 import { world5RuntimeAssets } from "./world5RuntimeAssets";
+import {
+  World5EditorialPanel,
+  type World5LiaRole,
+} from "./World5EditorialPanel";
 
 type TraversableArea = "plantas" | "sistema";
 type AreaVisualState = "locked" | "available" | "selected" | "completed";
@@ -38,8 +41,6 @@ export type Station5RuntimeState =
   | `substation_${TraversableArea}_resolved`
   | `substation_${TraversableArea}_storage_error`
   | `camera_returning_${TraversableArea}`;
-
-type LiaRole = "explain" | "attend" | "lead" | "greeting";
 
 const ENTER_DURATION_MS = 1060;
 const RETURN_DURATION_MS = 820;
@@ -306,7 +307,7 @@ export function World5RootScreen() {
     }, reducedMotion ? REDUCED_DURATION_MS : RETURN_DURATION_MS);
   }, [activeArea, clearTimeline, navigate, progress, reducedMotion, setFlipVariables, state]);
 
-  const liaRole: LiaRole = useMemo(() => {
+  const liaRole: World5LiaRole = useMemo(() => {
     if (motionLock) return "lead";
     if (state.endsWith("_resolved")) return "greeting";
     if (state.endsWith("_interactive") || mapActive && (plantsCompleted || systemCompleted)) return "attend";
@@ -342,11 +343,6 @@ export function World5RootScreen() {
       data-station-complete="false"
       aria-labelledby="station5-title"
     >
-      <header className="s5-header">
-        <p>{station5Header.eyebrow}</p>
-        <h1 id="station5-title">{station5Header.title}</h1>
-      </header>
-
       <div className="s5-layout">
         <section className="s5-stage" aria-label="Mapa del presente y subestaciones Plantas y Sistema">
           <div className="s5-map-scene" data-station5-scene="map" aria-hidden={!mapActive} inert={!mapActive ? true : undefined}>
@@ -376,16 +372,9 @@ export function World5RootScreen() {
                   >
                     <img src={renderMapAssets ? sectorAssets[area.id] : undefined} alt="" draggable="false" data-runtime-asset={renderMapAssets ? sectorAssets[area.id] : undefined} />
                     <span className="s5-sector__label">{area.title}</span>
-                    <span className="s5-sector__status" aria-hidden="true">{visualState === "completed" ? "✓" : visualState === "locked" ? "🔒" : "●"}</span>
                   </button>
                 );
               })}
-              <span className="s5-map__nexus" aria-hidden="true" />
-              <svg className="s5-map__links" viewBox="0 0 100 100" aria-hidden="true">
-                <path data-link-area="plantas" data-active={plantsCompleted} d="M28 28 Q42 44 50 50" />
-                <path data-link-area="sistema" data-active={systemCompleted} d="M72 28 Q58 44 50 50" />
-                <path d="M28 72 Q42 56 50 50 M72 72 Q58 56 50 50" />
-              </svg>
             </div>
             <picture className="s5-rim" aria-hidden="true">
               <source media="(orientation: landscape)" srcSet={renderMapAssets ? world5RuntimeAssets.mapRimLandscape : undefined} />
@@ -399,12 +388,15 @@ export function World5RootScreen() {
               <source media="(orientation: landscape)" srcSet={renderPlantsAssets ? world5RuntimeAssets.plantsEnvironmentLandscape : undefined} />
               <img src={renderPlantsAssets ? world5RuntimeAssets.plantsEnvironmentPortrait : undefined} alt="" data-runtime-asset={renderPlantsAssets ? world5RuntimeAssets.plantsEnvironmentPortrait : undefined} />
             </picture>
-            <button className="s5-back" type="button" onClick={returnToMapImmediately} disabled={state.startsWith("camera_returning")}>← Mapa</button>
+            <button
+              className="s5-back"
+              type="button"
+              onClick={state === "substation_plantas_resolved" ? returnToMap : returnToMapImmediately}
+              disabled={state === "substation_plantas_storage_error" || state.startsWith("camera_returning")}
+            >{state === "substation_plantas_resolved" || state === "substation_plantas_storage_error" ? station5PlantsCopy.returnLabel : "← Mapa"}</button>
             <div ref={plantsFocusRef} className="s5-plants-focus" data-anchor-id="A_PLANT_LEAF">
               <img src={renderPlantsAssets ? world5RuntimeAssets.plantsFocus : undefined} alt="" draggable="false" data-runtime-asset={renderPlantsAssets ? world5RuntimeAssets.plantsFocus : undefined} />
               <button className="s5-leaf-control" type="button" aria-label={station5PlantsCopy.leafAccessibleLabel} disabled={state !== "substation_plantas_interactive"} onClick={activateArea} />
-              <svg className="s5-vital-pulse" viewBox="0 0 100 160" aria-hidden="true"><path d="M58 22 C54 42 52 58 50 78 C49 99 55 117 47 138 C39 145 31 150 20 154" pathLength={1} /></svg>
-              <span className="s5-resolved-check" aria-hidden="true">✓</span>
             </div>
           </div>
 
@@ -413,7 +405,12 @@ export function World5RootScreen() {
               <source media="(orientation: landscape)" srcSet={renderSystemAssets ? world5RuntimeAssets.systemEnvironmentLandscape : undefined} />
               <img src={renderSystemAssets ? world5RuntimeAssets.systemEnvironmentPortrait : undefined} alt="" data-runtime-asset={renderSystemAssets ? world5RuntimeAssets.systemEnvironmentPortrait : undefined} />
             </picture>
-            <button className="s5-back" type="button" onClick={returnToMapImmediately} disabled={state.startsWith("camera_returning")}>← Mapa</button>
+            <button
+              className="s5-back"
+              type="button"
+              onClick={state === "substation_sistema_resolved" ? returnToMap : returnToMapImmediately}
+              disabled={state === "substation_sistema_storage_error" || state.startsWith("camera_returning")}
+            >{state === "substation_sistema_resolved" || state === "substation_sistema_storage_error" ? station5SystemCopy.returnLabel : "← Mapa"}</button>
             <button
               ref={systemFocusRef}
               className="s5-system-focus"
@@ -424,48 +421,45 @@ export function World5RootScreen() {
               onClick={activateArea}
             >
               <img src={renderSystemAssets ? world5RuntimeAssets.systemFocus : undefined} alt="" draggable="false" data-runtime-asset={renderSystemAssets ? world5RuntimeAssets.systemFocus : undefined} />
-              <svg className="s5-system-connection" viewBox="0 0 160 100" data-world5-connection="general" aria-hidden="true"><path d="M28 48 C58 18 104 18 135 48" /><circle cx="28" cy="48" r="7" /><circle cx="135" cy="48" r="7" /></svg>
-              <span className="s5-system-indicator" aria-hidden="true">✓</span>
             </button>
           </div>
         </section>
 
-        <section className="s5-rail" aria-label="Información de Estación V">
-          <figure className={`s5-lia s5-lia--${liaRole}`} data-station5-lia={liaRole} aria-hidden="true" style={{ pointerEvents: "none" }}>
-            <img src={liaAsset} alt="" draggable="false" data-runtime-asset={liaAsset} />
-          </figure>
-          {mapActive ? (
-            <div className="s5-map-copy">
-              <p className="s5-kicker">Mapa estable</p>
-              <h2>{systemCompleted ? "Espacio" : plantsCompleted ? "Sistema" : "Plantas"}</h2>
-              <p>{systemCompleted ? "Plantas y Sistema hacen visible el recorrido." : plantsCompleted ? station5SystemCopy.intro : station5PlantsCopy.intro}</p>
-              <p>{systemCompleted ? station5SystemCopy.resolvedDescription : plantsCompleted ? station5SystemCopy.lia : station5PlantsCopy.description}</p>
-              <p className="s5-status-copy">{statusText}</p>
-              {systemCompleted ? <p className="s5-next-area">Espacio · siguiente área, protegida hasta otro ticket.</p> : plantsCompleted ? <p className="s5-next-area">Sistema · siguiente área disponible.</p> : null}
-            </div>
-          ) : activeArea === "sistema" ? (
-            <div className="s5-sub-copy">
-              <p className="s5-kicker">Sistema</p>
-              <h2 ref={headingRef} tabIndex={-1}>{station5SystemCopy.heading}</h2>
-              <p>{station5SystemCopy.intro}</p>
-              <p>{station5SystemCopy.lia}</p>
-              <p>{state === "substation_sistema_resolved" ? station5SystemCopy.resolvedDescription : station5SystemCopy.instruction}</p>
-              <p className="s5-status-copy">{statusText}</p>
-              {state === "substation_sistema_storage_error" ? <button type="button" className="s5-secondary-action" onClick={retryStorage}>{station5SystemCopy.retryLabel}</button> : null}
-              <button type="button" className="s5-return" disabled={state !== "substation_sistema_resolved" || !systemCompleted} onClick={returnToMap}>{station5SystemCopy.returnLabel}</button>
-            </div>
-          ) : (
-            <div className="s5-sub-copy">
-              <p className="s5-kicker">Plantas</p>
-              <h2 ref={headingRef} tabIndex={-1}>Las plantas abren el recorrido.</h2>
-              <p>{station5PlantsCopy.description}</p>
-              <p>{state === "substation_plantas_resolved" ? station5PlantsCopy.resolvedDescription : station5PlantsCopy.instruction}</p>
-              <p className="s5-status-copy">{statusText}</p>
-              {state === "substation_plantas_storage_error" ? <button type="button" className="s5-secondary-action" onClick={retryStorage}>{station5PlantsCopy.retryLabel}</button> : null}
-              <button type="button" className="s5-return" disabled={state !== "substation_plantas_resolved" || !plantsCompleted} onClick={returnToMap}>{station5PlantsCopy.returnLabel}</button>
-            </div>
-          )}
-        </section>
+        {mapActive ? (
+          <World5EditorialPanel
+            areaLabel={systemCompleted ? "Espacio · área 3 de 4 · protegida" : plantsCompleted ? "Sistema · área 2 de 4 · disponible" : "Plantas · área 1 de 4 · disponible"}
+            title={systemCompleted ? "Espacio" : plantsCompleted ? station5SystemCopy.heading : "Las plantas abren el recorrido."}
+            lead={systemCompleted ? "Plantas y Sistema hacen visible el recorrido." : plantsCompleted ? station5SystemCopy.intro : station5PlantsCopy.intro}
+            support={systemCompleted ? station5SystemCopy.resolvedDescription : plantsCompleted ? station5SystemCopy.lia : station5PlantsCopy.description}
+            status={plantsCompleted || systemCompleted ? statusText : undefined}
+            liaAsset={liaAsset}
+            liaRole={liaRole}
+          />
+        ) : activeArea === "sistema" ? (
+          <World5EditorialPanel
+            areaLabel="Sistema · área 2 de 4"
+            title={station5SystemCopy.heading}
+            headingRef={headingRef}
+            lead={station5SystemCopy.intro}
+            support={state === "substation_sistema_resolved" ? station5SystemCopy.resolvedDescription : station5SystemCopy.instruction}
+            status={state.endsWith("_resolved") || state.endsWith("_storage_error") ? statusText : undefined}
+            liaAsset={liaAsset}
+            liaRole={liaRole}
+            action={state === "substation_sistema_storage_error" ? <button type="button" className="s5-secondary-action" onClick={retryStorage}>{station5SystemCopy.retryLabel}</button> : undefined}
+          />
+        ) : (
+          <World5EditorialPanel
+            areaLabel="Plantas · área 1 de 4"
+            title="Las plantas abren el recorrido."
+            headingRef={headingRef}
+            lead={station5PlantsCopy.description}
+            support={state === "substation_plantas_resolved" ? station5PlantsCopy.resolvedDescription : station5PlantsCopy.instruction}
+            status={state.endsWith("_resolved") || state.endsWith("_storage_error") ? statusText : undefined}
+            liaAsset={liaAsset}
+            liaRole={liaRole}
+            action={state === "substation_plantas_storage_error" ? <button type="button" className="s5-secondary-action" onClick={retryStorage}>{station5PlantsCopy.retryLabel}</button> : undefined}
+          />
+        )}
       </div>
 
       <p className="s5-sr-only" role="status" aria-live="polite">{announcement}</p>

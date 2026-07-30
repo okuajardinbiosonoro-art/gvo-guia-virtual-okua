@@ -1,0 +1,5522 @@
+[
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 400.4,
+        "width": 340,
+        "height": 390.4
+      },
+      "title": {
+        "left": 16,
+        "top": 408.4,
+        "right": 344,
+        "bottom": 435,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 435,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 113
+      },
+      "lia": {
+        "left": 258,
+        "top": 443,
+        "right": 344,
+        "bottom": 547,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 152.5
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 400.4,
+        "width": 340,
+        "height": 390.4
+      },
+      "title": {
+        "left": 16,
+        "top": 408.4,
+        "right": 344,
+        "bottom": 435,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 435,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 113
+      },
+      "lia": {
+        "left": 258,
+        "top": 443,
+        "right": 344,
+        "bottom": 547,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 91.6,
+        "top": 145.1,
+        "right": 268.4,
+        "bottom": 321.9,
+        "width": 176.8,
+        "height": 176.8
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 145.34375,
+        "height": 152.5
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 368.2,
+        "width": 340,
+        "height": 358.2
+      },
+      "title": {
+        "left": 16,
+        "top": 376.2,
+        "right": 344,
+        "bottom": 402.8,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 402.8,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 145.2
+      },
+      "lia": {
+        "left": 258,
+        "top": 426.9,
+        "right": 344,
+        "bottom": 530.9,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 91.6,
+        "top": 129,
+        "right": 268.4,
+        "bottom": 305.8,
+        "width": 176.8,
+        "height": 176.8
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 145.34375,
+        "height": 139.90625
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 139.90625
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 385.7,
+        "width": 340,
+        "height": 375.7
+      },
+      "title": {
+        "left": 16,
+        "top": 393.7,
+        "right": 344,
+        "bottom": 420.3,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 420.3,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 127.7
+      },
+      "lia": {
+        "left": 258,
+        "top": 435.6,
+        "right": 344,
+        "bottom": 539.6,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 148.93539428710938
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 146.734375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 402.4,
+        "width": 340,
+        "height": 392.4
+      },
+      "title": {
+        "left": 16,
+        "top": 410.4,
+        "right": 344,
+        "bottom": 437,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 437,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 111
+      },
+      "lia": {
+        "left": 258,
+        "top": 444,
+        "right": 344,
+        "bottom": 548,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 52.5,
+        "top": 127.7,
+        "right": 307.5,
+        "bottom": 382.7,
+        "width": 255,
+        "height": 255
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 155.56460571289062
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 145.34375,
+        "height": 153.265625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 400.3,
+        "width": 340,
+        "height": 390.3
+      },
+      "title": {
+        "left": 16,
+        "top": 408.3,
+        "right": 344,
+        "bottom": 434.9,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 434.9,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 113.1
+      },
+      "lia": {
+        "left": 258,
+        "top": 442.9,
+        "right": 344,
+        "bottom": 546.9,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 52.5,
+        "top": 126.5,
+        "right": 307.5,
+        "bottom": 381.5,
+        "width": 255,
+        "height": 255
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 154.72406005859375
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 145.34375,
+        "height": 152.4375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 560,
+        "width": 360,
+        "height": 560
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 371.1,
+        "width": 340,
+        "height": 361.1
+      },
+      "title": {
+        "left": 16,
+        "top": 379.1,
+        "right": 344,
+        "bottom": 405.7,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 405.7,
+        "right": 344,
+        "bottom": 548,
+        "width": 328,
+        "height": 142.3
+      },
+      "lia": {
+        "left": 258,
+        "top": 428.3,
+        "right": 344,
+        "bottom": 532.3,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 143.14669799804688
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 147.52392578125,
+        "height": 143.14671325683594
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 480.4,
+        "width": 340,
+        "height": 470.4
+      },
+      "title": {
+        "left": 16,
+        "top": 488.4,
+        "right": 344,
+        "bottom": 515,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 515,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 113
+      },
+      "lia": {
+        "left": 258,
+        "top": 523,
+        "right": 344,
+        "bottom": 627,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 183.75
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 480.4,
+        "width": 340,
+        "height": 470.4
+      },
+      "title": {
+        "left": 16,
+        "top": 488.4,
+        "right": 344,
+        "bottom": 515,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 515,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 113
+      },
+      "lia": {
+        "left": 258,
+        "top": 523,
+        "right": 344,
+        "bottom": 627,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 91.6,
+        "top": 185.1,
+        "right": 268.4,
+        "bottom": 361.9,
+        "width": 176.8,
+        "height": 176.8
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 145.34375,
+        "height": 183.75
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 448.2,
+        "width": 340,
+        "height": 438.2
+      },
+      "title": {
+        "left": 16,
+        "top": 456.2,
+        "right": 344,
+        "bottom": 482.8,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 482.8,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 145.2
+      },
+      "lia": {
+        "left": 258,
+        "top": 506.9,
+        "right": 344,
+        "bottom": 610.9,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 91.5,
+        "top": 168.9,
+        "right": 268.5,
+        "bottom": 345.9,
+        "width": 177,
+        "height": 177
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 145.52737426757812,
+        "height": 171.3725128173828
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 171.15625
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 465.7,
+        "width": 340,
+        "height": 455.7
+      },
+      "title": {
+        "left": 16,
+        "top": 473.7,
+        "right": 344,
+        "bottom": 500.3,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 500.3,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 127.7
+      },
+      "lia": {
+        "left": 258,
+        "top": 515.6,
+        "right": 344,
+        "bottom": 619.6,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 180.65414428710938
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 145.34375,
+        "height": 177.984375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 482.4,
+        "width": 340,
+        "height": 472.4
+      },
+      "title": {
+        "left": 16,
+        "top": 490.4,
+        "right": 344,
+        "bottom": 517,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 517,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 111
+      },
+      "lia": {
+        "left": 258,
+        "top": 524,
+        "right": 344,
+        "bottom": 628,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 52.5,
+        "top": 172.5,
+        "right": 307.5,
+        "bottom": 427.5,
+        "width": 255,
+        "height": 255
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 187.28335571289062
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 145.34375,
+        "height": 184.515625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 480.3,
+        "width": 340,
+        "height": 470.3
+      },
+      "title": {
+        "left": 16,
+        "top": 488.3,
+        "right": 344,
+        "bottom": 514.9,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 514.9,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 113.1
+      },
+      "lia": {
+        "left": 258,
+        "top": 522.9,
+        "right": 344,
+        "bottom": 626.9,
+        "width": 86,
+        "height": 104
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 52.3,
+        "top": 171.2,
+        "right": 307.7,
+        "bottom": 426.5,
+        "width": 255.3,
+        "height": 255.3
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 186.45867919921875
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 145.52755737304688,
+        "height": 183.93545532226562
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 360,
+        "bottom": 640,
+        "width": 360,
+        "height": 640
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 451.1,
+        "width": 340,
+        "height": 441.1
+      },
+      "title": {
+        "left": 16,
+        "top": 459.1,
+        "right": 344,
+        "bottom": 485.7,
+        "width": 328,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 485.7,
+        "right": 344,
+        "bottom": 628,
+        "width": 328,
+        "height": 142.3
+      },
+      "lia": {
+        "left": 258,
+        "top": 508.3,
+        "right": 344,
+        "bottom": 612.3,
+        "width": 86,
+        "height": 104
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 147.52389526367188,
+        "height": 174.86546325683594
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 147.52392578125,
+        "height": 174.86546325683594
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 507.4,
+        "width": 355,
+        "height": 497.4
+      },
+      "title": {
+        "left": 16,
+        "top": 515.4,
+        "right": 359,
+        "bottom": 542,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 542,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 113
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 549.5,
+        "right": 359,
+        "bottom": 654.5,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 151.75,
+        "height": 194.28125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 507.4,
+        "width": 355,
+        "height": 497.4
+      },
+      "title": {
+        "left": 16,
+        "top": 515.4,
+        "right": 359,
+        "bottom": 542,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 542,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 113
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 549.5,
+        "right": 359,
+        "bottom": 654.5,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 95.2,
+        "top": 195.9,
+        "right": 279.8,
+        "bottom": 380.5,
+        "width": 184.6,
+        "height": 184.6
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 151.75,
+        "height": 194.28125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 475.2,
+        "width": 355,
+        "height": 465.2
+      },
+      "title": {
+        "left": 16,
+        "top": 483.2,
+        "right": 359,
+        "bottom": 509.8,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 509.8,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 145.2
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 533.4,
+        "right": 359,
+        "bottom": 638.4,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 95.2,
+        "top": 179.8,
+        "right": 279.8,
+        "bottom": 364.4,
+        "width": 184.6,
+        "height": 184.6
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 151.75,
+        "height": 181.703125
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 151.75,
+        "height": 181.703125
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 492.7,
+        "width": 355,
+        "height": 482.7
+      },
+      "title": {
+        "left": 16,
+        "top": 500.7,
+        "right": 359,
+        "bottom": 527.3,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 527.3,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 127.7
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 542.1,
+        "right": 359,
+        "bottom": 647.1,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 154.0262451171875,
+        "height": 191.35922241210938
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 151.75,
+        "height": 188.53125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 508.4,
+        "width": 355,
+        "height": 498.4
+      },
+      "title": {
+        "left": 16,
+        "top": 516.4,
+        "right": 359,
+        "bottom": 543,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 543,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 112
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 550,
+        "right": 359,
+        "bottom": 655,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 54.4,
+        "top": 182.6,
+        "right": 320.6,
+        "bottom": 448.8,
+        "width": 266.3,
+        "height": 266.3
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 154.0262451171875,
+        "height": 197.59194946289062
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 151.75,
+        "height": 194.671875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 508.4,
+        "width": 355,
+        "height": 498.4
+      },
+      "title": {
+        "left": 16,
+        "top": 516.4,
+        "right": 359,
+        "bottom": 543,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 543,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 112
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 550,
+        "right": 359,
+        "bottom": 655,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 54.4,
+        "top": 182.6,
+        "right": 320.6,
+        "bottom": 448.8,
+        "width": 266.3,
+        "height": 266.3
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 154.0262451171875,
+        "height": 197.59194946289062
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 151.75,
+        "height": 194.671875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 667,
+        "width": 375,
+        "height": 667
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 365,
+        "bottom": 507.3,
+        "width": 355,
+        "height": 497.3
+      },
+      "title": {
+        "left": 16,
+        "top": 515.3,
+        "right": 359,
+        "bottom": 541.9,
+        "width": 343,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 541.9,
+        "right": 359,
+        "bottom": 655,
+        "width": 343,
+        "height": 113.1
+      },
+      "lia": {
+        "left": 272.8,
+        "top": 549.4,
+        "right": 359,
+        "bottom": 654.4,
+        "width": 86.3,
+        "height": 105
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 154.0262451171875,
+        "height": 197.14788818359375
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 154.0262451171875,
+        "height": 197.14788818359375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 681.2,
+        "width": 370,
+        "height": 671.2
+      },
+      "title": {
+        "left": 16,
+        "top": 689.2,
+        "right": 374,
+        "bottom": 715.8,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 715.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 116.2
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 722.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 158.171875,
+        "height": 262.171875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 681.2,
+        "width": 370,
+        "height": 671.2
+      },
+      "title": {
+        "left": 16,
+        "top": 689.2,
+        "right": 374,
+        "bottom": 715.8,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 715.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 116.2
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 722.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 98.8,
+        "top": 280.2,
+        "right": 291.2,
+        "bottom": 472.6,
+        "width": 192.4,
+        "height": 192.4
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 158.171875,
+        "height": 262.171875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 666.8,
+        "width": 370,
+        "height": 656.8
+      },
+      "title": {
+        "left": 16,
+        "top": 674.8,
+        "right": 374,
+        "bottom": 701.4,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 701.4,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 130.6
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 715.6,
+        "right": 374,
+        "bottom": 824.8,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 98.8,
+        "top": 273,
+        "right": 291.2,
+        "bottom": 465.4,
+        "width": 192.4,
+        "height": 192.4
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 158.171875,
+        "height": 256.546875
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 158.171875,
+        "height": 256.546875
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 669.7,
+        "width": 370,
+        "height": 659.7
+      },
+      "title": {
+        "left": 16,
+        "top": 677.7,
+        "right": 374,
+        "bottom": 704.3,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 704.3,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 127.7
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 717,
+        "right": 374,
+        "bottom": 826.2,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 160.54444885253906,
+        "height": 261.5369567871094
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 158.171875,
+        "height": 257.671875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 681.2,
+        "width": 370,
+        "height": 671.2
+      },
+      "title": {
+        "left": 16,
+        "top": 689.2,
+        "right": 374,
+        "bottom": 715.8,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 715.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 116.2
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 722.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 56.3,
+        "top": 274.9,
+        "right": 333.8,
+        "bottom": 552.4,
+        "width": 277.5,
+        "height": 277.5
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 160.54444885253906,
+        "height": 266.1044616699219
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 158.171875,
+        "height": 262.171875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 681.2,
+        "width": 370,
+        "height": 671.2
+      },
+      "title": {
+        "left": 16,
+        "top": 689.2,
+        "right": 374,
+        "bottom": 715.8,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 715.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 116.2
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 722.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 56.3,
+        "top": 274.9,
+        "right": 333.8,
+        "bottom": 552.4,
+        "width": 277.5,
+        "height": 277.5
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 160.54444885253906,
+        "height": 266.1044616699219
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 158.171875,
+        "height": 262.171875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 380,
+        "bottom": 681.2,
+        "width": 370,
+        "height": 671.2
+      },
+      "title": {
+        "left": 16,
+        "top": 689.2,
+        "right": 374,
+        "bottom": 715.8,
+        "width": 358,
+        "height": 26.6
+      },
+      "card": {
+        "left": 16,
+        "top": 715.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 358,
+        "height": 116.2
+      },
+      "lia": {
+        "left": 284.3,
+        "top": 722.8,
+        "right": 374,
+        "bottom": 832,
+        "width": 89.7,
+        "height": 109.2
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 160.54444885253906,
+        "height": 266.1044616699219
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 160.54446411132812,
+        "height": 266.1044616699219
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 108.4,
+        "top": 311.4,
+        "right": 321.6,
+        "bottom": 524.6,
+        "width": 213.2,
+        "height": 213.2
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 108.4,
+        "top": 311.4,
+        "right": 321.6,
+        "bottom": 524.6,
+        "width": 213.2,
+        "height": 213.2
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 177.89462280273438,
+        "height": 296.4909973144531
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 61.3,
+        "top": 305.8,
+        "right": 368.8,
+        "bottom": 613.3,
+        "width": 307.5,
+        "height": 307.5
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 177.89462280273438,
+        "height": 296.4909973144531
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 61.3,
+        "top": 305.8,
+        "right": 368.8,
+        "bottom": 613.3,
+        "width": 307.5,
+        "height": 307.5
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 177.89462280273438,
+        "height": 296.4909973144531
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 175.265625,
+        "height": 292.109375
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 430,
+      "clientHeight": 932,
+      "scrollWidth": 430,
+      "scrollHeight": 932
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 430,
+        "bottom": 932,
+        "width": 430,
+        "height": 932
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 420,
+        "bottom": 757.8,
+        "width": 410,
+        "height": 747.8
+      },
+      "title": {
+        "left": 16,
+        "top": 765.8,
+        "right": 414,
+        "bottom": 792.6,
+        "width": 398,
+        "height": 26.8
+      },
+      "card": {
+        "left": 16,
+        "top": 792.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 398,
+        "height": 127.4
+      },
+      "lia": {
+        "left": 315.1,
+        "top": 799.6,
+        "right": 414,
+        "bottom": 920,
+        "width": 98.9,
+        "height": 120.4
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 177.89462280273438,
+        "height": 296.4909973144531
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 177.89459228515625,
+        "height": 296.490966796875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 249,
+        "top": 326.8,
+        "right": 519,
+        "bottom": 596.8,
+        "width": 270,
+        "height": 270
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 249,
+        "top": 326.8,
+        "right": 519,
+        "bottom": 596.8,
+        "width": 270,
+        "height": 270
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 324.57794189453125,
+        "height": 323.9753112792969
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 110,
+        "bottom": 66,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 184,
+        "top": 307.6,
+        "right": 584,
+        "bottom": 707.6,
+        "width": 400,
+        "height": 400
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 324.57794189453125,
+        "height": 323.9753112792969
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": {
+        "left": 22,
+        "top": 22,
+        "right": 164,
+        "bottom": 66,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 184,
+        "top": 307.6,
+        "right": 584,
+        "bottom": 707.6,
+        "width": 400,
+        "height": 400
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 324.57794189453125,
+        "height": 323.9753112792969
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 319.78125,
+        "height": 319.1875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "orientation": "portrait"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 768,
+        "bottom": 1024,
+        "width": 768,
+        "height": 1024
+      },
+      "stage": {
+        "left": 10,
+        "top": 10,
+        "right": 758,
+        "bottom": 827.2,
+        "width": 748,
+        "height": 817.2
+      },
+      "title": {
+        "left": 16,
+        "top": 835.2,
+        "right": 752,
+        "bottom": 867,
+        "width": 736,
+        "height": 31.8
+      },
+      "card": {
+        "left": 16,
+        "top": 867,
+        "right": 752,
+        "bottom": 1012,
+        "width": 736,
+        "height": 145
+      },
+      "lia": {
+        "left": 640,
+        "top": 874,
+        "right": 752,
+        "bottom": 1012,
+        "width": 112,
+        "height": 138
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 324.57794189453125,
+        "height": 323.9753112792969
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 324.5780029296875,
+        "height": 323.97528076171875
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": {
+        "left": 22,
+        "top": 19,
+        "right": 110,
+        "bottom": 63,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 110.2,
+        "top": 100.3,
+        "right": 300.2,
+        "bottom": 290.3,
+        "width": 190,
+        "height": 190
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": {
+        "left": 22,
+        "top": 19,
+        "right": 164,
+        "bottom": 63,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 110,
+        "top": 100.2,
+        "right": 300.3,
+        "bottom": 290.4,
+        "width": 190.2,
+        "height": 190.2
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 154.61618041992188,
+        "height": 144.3063507080078
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 156.7382049560547,
+        "height": 146.28688049316406
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": {
+        "left": 22,
+        "top": 19,
+        "right": 110,
+        "bottom": 63,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 54.8,
+        "top": 129.8,
+        "right": 264.8,
+        "bottom": 339.8,
+        "width": 210,
+        "height": 210
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 156.7382049560547,
+        "height": 146.28688049316406
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": {
+        "left": 22,
+        "top": 19,
+        "right": 164,
+        "bottom": 63,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 54.8,
+        "top": 129.8,
+        "right": 264.8,
+        "bottom": 339.8,
+        "width": 210,
+        "height": 210
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 156.7382049560547,
+        "height": 146.28688049316406
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 154.421875,
+        "height": 144.125
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 463.9,
+        "bottom": 383,
+        "width": 453.9,
+        "height": 376
+      },
+      "title": {
+        "left": 487.5,
+        "top": 11,
+        "right": 823.9,
+        "bottom": 61.5,
+        "width": 336.4,
+        "height": 50.5
+      },
+      "card": {
+        "left": 487.5,
+        "top": 61.5,
+        "right": 823.9,
+        "bottom": 379,
+        "width": 336.4,
+        "height": 317.5
+      },
+      "lia": {
+        "left": 697.3,
+        "top": 147.8,
+        "right": 823.9,
+        "bottom": 299.7,
+        "width": 126.6,
+        "height": 151.9
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 156.7382049560547,
+        "height": 146.28688049316406
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 156.73818969726562,
+        "height": 146.28688049316406
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "01_map_initial",
+    "runtimeState": "map_stable",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Disponible.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "02_plants_intro",
+    "runtimeState": "substation_plantas_intro",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": {
+        "left": 36,
+        "top": 28,
+        "right": 124,
+        "bottom": 72,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 174.5,
+        "top": 303.5,
+        "right": 389.4,
+        "bottom": 518.5,
+        "width": 214.9,
+        "height": 214.9
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Bloqueada.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "03_plants_resolved",
+    "runtimeState": "substation_plantas_resolved",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": {
+        "left": 36,
+        "top": 28,
+        "right": 178,
+        "bottom": 72,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": {
+        "left": 174.5,
+        "top": 303.5,
+        "right": 389.4,
+        "bottom": 518.5,
+        "width": 214.9,
+        "height": 214.9
+      },
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Las plantas abren el recorrido."
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "04_map_after_plants",
+    "runtimeState": "map_plantas_completed",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 230.7063446044922,
+        "height": 215.32272338867188
+      },
+      {
+        "label": "Sistema, área 2 de 4. Disponible.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "05_system_intro",
+    "runtimeState": "substation_sistema_intro",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": {
+        "left": 36,
+        "top": 28,
+        "right": 124,
+        "bottom": 72,
+        "width": 88,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 126.1,
+        "top": 306,
+        "right": 394.8,
+        "bottom": 574.7,
+        "width": 268.7,
+        "height": 268.7
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 230.7063446044922,
+        "height": 215.32272338867188
+      },
+      {
+        "label": "Sistema, área 2 de 4. Bloqueada.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "06_system_resolved",
+    "runtimeState": "substation_sistema_resolved",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": {
+        "left": 36,
+        "top": 28,
+        "right": 178,
+        "bottom": 72,
+        "width": 142,
+        "height": 44
+      },
+      "plantsFocus": null,
+      "systemFocus": {
+        "left": 126.1,
+        "top": 306,
+        "right": 394.8,
+        "bottom": 574.7,
+        "width": 268.7,
+        "height": 268.7
+      }
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 230.7063446044922,
+        "height": 215.32272338867188
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 227.296875,
+        "height": 212.140625
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "Volver al mapa",
+        "width": 142,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Sistema"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "orientation": "landscape"
+    },
+    "scene": "07_map_after_system",
+    "runtimeState": "map_sistema_completed",
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "boxes": {
+      "root": {
+        "left": 0,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "width": 1024,
+        "height": 768
+      },
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 561.4,
+        "bottom": 752,
+        "width": 537.4,
+        "height": 736
+      },
+      "title": {
+        "left": 601.8,
+        "top": 34,
+        "right": 976,
+        "bottom": 87.7,
+        "width": 374.2,
+        "height": 53.7
+      },
+      "card": {
+        "left": 601.8,
+        "top": 87.7,
+        "right": 976,
+        "bottom": 734,
+        "width": 374.2,
+        "height": 646.3
+      },
+      "lia": {
+        "left": 822.4,
+        "top": 322.2,
+        "right": 976,
+        "bottom": 506.5,
+        "width": 153.6,
+        "height": 184.3
+      },
+      "back": null,
+      "plantsFocus": null,
+      "systemFocus": null
+    },
+    "targets": [
+      {
+        "label": "Plantas, área 1 de 4. Completada.",
+        "width": 230.7063446044922,
+        "height": 215.32272338867188
+      },
+      {
+        "label": "Sistema, área 2 de 4. Completada.",
+        "width": 230.706298828125,
+        "height": 215.32272338867188
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      },
+      {
+        "label": "← Mapa",
+        "width": 88,
+        "height": 44
+      }
+    ],
+    "forbiddenProceduralCount": 0,
+    "titleHierarchy": [
+      "H1:Mapa del presente",
+      "H2:Espacio"
+    ],
+    "errors": [],
+    "failedResponses": [],
+    "externalRequests": [],
+    "problems": []
+  }
+]
