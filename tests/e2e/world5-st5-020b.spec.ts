@@ -26,18 +26,18 @@ test("ST5-020B recorre Sistema, integra Lía y no usa red externa", async ({ pag
   await expect(page.locator('[data-station5-lia="attend"]')).toHaveCount(1);
   await page.locator('[data-station5-area="sistema"]').click();
   await expect(page).toHaveURL(/\/estacion\/5\/sistema$/);
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
   await expect(page.getByRole("heading", { name: "Sistema" })).toBeFocused();
   await expect(page.locator('.s5-system-focus [data-runtime-asset$="world5_sub_system_focus_v01.webp"]')).toHaveCount(1);
-  await expect(page.locator('[data-station5-lia="attend"]')).toHaveCount(1);
+  await expect(page.locator('[data-station5-lia="explain"]')).toHaveCount(1);
 
   const connector = page.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." });
   await connector.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_resolved");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_resolved");
   await expect(page.getByRole("status")).toContainText("Mediación visible.");
   await expect(page.locator('[data-world5-connection="general"]')).toHaveCount(0);
-  await expect(page.locator('[data-station5-lia="greeting"]')).toHaveCount(1);
+  await expect(page.locator('[data-station5-lia="explain"]')).toHaveCount(1);
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
 
   const stored = await page.evaluate(() => ({
@@ -48,15 +48,15 @@ test("ST5-020B recorre Sistema, integra Lía y no usa red externa", async ({ pag
   expect(stored.global).toBeNull();
 
   await page.getByRole("button", { name: "Volver al mapa" }).click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_sistema_completed");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_overview");
   await expect(page.locator('[data-station5-area="sistema"]')).toBeFocused();
-  await expect(page.locator('[data-station5-area="espacio"]')).toHaveAttribute("data-area-state", "available");
-  await expect(page.locator('[data-station5-area="espacio"]')).toBeDisabled();
+  await expect(page.locator('[data-station5-area="espacio"]')).toHaveAttribute("data-area-state", "locked");
+  await expect(page.locator('[data-station5-area="espacio"]')).toBeEnabled();
   await expect(page.locator("[data-station-complete]")).toHaveAttribute("data-station-complete", "false");
   await page.screenshot({ path: "docs/visual/world5/st5-020b/map_after_system_390x844.png", fullPage: false });
 
   await page.reload();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_sistema_completed");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_overview");
   expect(consoleErrors).toEqual([]);
   expect(externalRequests).toEqual([]);
 });
@@ -100,8 +100,8 @@ test("ST5-020B conserva responsive, targets y background landscape nativo", asyn
 
   await page.setViewportSize({ width: 844, height: 390 });
   await page.locator('[data-station5-area="sistema"]').click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_interactive");
-  await expect(page.locator('.s5-sub-environment source[srcset$="world5_sub_system_environment_landscape_v01.webp"]')).toHaveCount(1);
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
+  await expect(page.locator('[data-projected-stage="system"] .s5-media-background source[srcset$="world5_sub_system_environment_landscape_v01.webp"]')).toHaveCount(1);
   await page.screenshot({ path: "docs/visual/world5/st5-020b/system_844x390.png", fullPage: false });
 });
 
@@ -117,7 +117,7 @@ test("ST5-020B reduced motion conserva semántica y persistencia", async ({ page
   await page.reload();
   await page.locator('[data-station5-area="sistema"]').click();
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-reduced-motion", "true");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
   await page.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }).press("Space");
   await expect(page.getByRole("status")).toContainText("Mediación visible.");
   await page.screenshot({ path: "docs/visual/world5/st5-020b/reduced_motion_system_390x844.png", fullPage: false });

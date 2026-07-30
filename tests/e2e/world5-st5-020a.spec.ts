@@ -19,18 +19,19 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({ page }
   const sectors = page.locator("[data-station5-area]");
   await expect(sectors).toHaveCount(4);
   await expect(page.locator('[data-station5-area="plantas"]')).toBeEnabled();
-  await expect(page.locator('[data-station5-area="sistema"]')).toBeDisabled();
-  await expect(page.locator('[data-station5-area="espacio"]')).toBeDisabled();
-  await expect(page.locator('[data-station5-area="visitante"]')).toBeDisabled();
+  await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
+  await expect(page.locator('[data-station5-area="sistema"]')).toHaveAttribute("data-area-state", "locked");
+  await expect(page.locator('[data-station5-area="espacio"]')).toBeEnabled();
+  await expect(page.locator('[data-station5-area="visitante"]')).toBeEnabled();
   await expect(page.locator('[data-runtime-asset$="world5_map_environment_portrait_v01.webp"]')).toHaveCount(1);
 
   await page.locator('[data-station5-area="plantas"]').click();
   await expect(page).toHaveURL(/\/estacion\/5\/plantas$/);
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
   await expect(page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })).toHaveCount(1);
 
   await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_resolved");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_resolved");
   await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
 
@@ -42,12 +43,12 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({ page }
   expect(stored.global).toBeNull();
 
   await page.getByRole("button", { name: "Volver al mapa" }).click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_plantas_completed");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_overview");
   await expect(page.locator('[data-station5-area="plantas"]')).toBeFocused();
   await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
 
   await page.goto("/estacion/5/plantas", { waitUntil: "domcontentloaded" });
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_resolved");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_resolved");
   expect(consoleErrors).toEqual([]);
   expect(externalRequests).toEqual([]);
 });
@@ -69,7 +70,7 @@ test("ST5-020A refluye en viewports requeridos y conserva controles de 44 px", a
   }
 
   await page.setViewportSize({ width: 844, height: 390 });
-  await expect(page.locator('.s5-environment source[srcset$="world5_map_environment_landscape_v01.webp"]')).toHaveCount(1);
+  await expect(page.locator('[data-projected-stage="map"] .s5-media-background source[srcset$="world5_map_environment_landscape_v01.webp"]')).toHaveCount(1);
 });
 
 test("ST5-020A reduced motion conserva comprensión y persistencia", async ({ page }) => {
@@ -78,7 +79,7 @@ test("ST5-020A reduced motion conserva comprensión y persistencia", async ({ pa
   await page.goto("/estacion/5");
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-reduced-motion", "true");
   await page.locator('[data-station5-area="plantas"]').click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
   await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).click();
   await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();

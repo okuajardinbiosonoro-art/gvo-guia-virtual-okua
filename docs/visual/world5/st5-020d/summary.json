@@ -1,0 +1,16 @@
+{
+  "captureCount": 64,
+  "viewportCount": 8,
+  "stateCount": 8,
+  "maxHorizontalOverflow": 0,
+  "maxVerticalOverflow": 0,
+  "minVisibleLiaHeight": 113.29427083333326,
+  "minTargetDimension": 44,
+  "maxPlantContactDriftPx": 0.13511836687723644,
+  "maxProjectionRatioDrift": 0.00008572370590176348,
+  "minBodyFontSize": 14,
+  "forbiddenProceduralCount": 0,
+  "consoleErrors": 0,
+  "failedResponses": 0,
+  "externalRequests": 0
+}

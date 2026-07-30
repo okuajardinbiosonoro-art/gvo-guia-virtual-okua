@@ -1,12 +1,10 @@
 import type { ReactNode, RefObject } from "react";
 
-import { station5Header } from "./station5Content";
-
-export type World5LiaRole = "explain" | "attend" | "lead" | "greeting";
+export type World5LiaRole = "explain" | "attend" | "lead";
 
 type World5EditorialPanelProps = {
   action?: ReactNode;
-  areaLabel: string;
+  context: string;
   headingRef?: RefObject<HTMLHeadingElement | null>;
   lead: string;
   liaAsset: string;
@@ -18,7 +16,7 @@ type World5EditorialPanelProps = {
 
 export function World5EditorialPanel({
   action,
-  areaLabel,
+  context,
   headingRef,
   lead,
   liaAsset,
@@ -28,16 +26,20 @@ export function World5EditorialPanel({
   title,
 }: World5EditorialPanelProps) {
   return (
-    <aside className="s5-editorial" aria-label="Orientación de Lía para Estación V">
-      <header className="s5-title">
-        <p>{station5Header.eyebrow}</p>
-        <h1 id="station5-title">{station5Header.title}</h1>
-      </header>
-
-      <article className="s5-editorial-card">
+    <aside
+      className="s5-editorial"
+      aria-label="Orientación de Lía para Estación V"
+    >
+      <article className="s5-story-card" aria-atomic="true" aria-live="polite">
         <div className="s5-editorial-copy">
-          <p className="s5-kicker">{areaLabel}</p>
-          <h2 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{title}</h2>
+          <p className="s5-kicker">{context}</p>
+          <h1
+            id="station5-title"
+            ref={headingRef}
+            tabIndex={headingRef ? -1 : undefined}
+          >
+            {title}
+          </h1>
           <p className="s5-lead">{lead}</p>
           {support ? <p className="s5-support">{support}</p> : null}
           {status ? <p className="s5-status-copy">{status}</p> : null}
@@ -50,7 +52,12 @@ export function World5EditorialPanel({
           aria-hidden="true"
           style={{ pointerEvents: "none" }}
         >
-          <img src={liaAsset} alt="" draggable="false" data-runtime-asset={liaAsset} />
+          <img
+            src={liaAsset}
+            alt=""
+            draggable="false"
+            data-runtime-asset={liaAsset}
+          />
         </figure>
       </article>
     </aside>

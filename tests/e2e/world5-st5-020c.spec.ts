@@ -24,8 +24,7 @@ const forbiddenProcedural = [
 async function assertNormalViewport(page: Page) {
   const result = await page.evaluate((forbidden) => {
     const visibleSelectors = [
-      ".s5-title",
-      ".s5-editorial-card",
+      ".s5-story-card",
       ".s5-lia",
       '[data-station5-scene]:not([aria-hidden="true"]) .s5-back',
       '[data-station5-scene="plantas"][aria-hidden="false"] .s5-plants-focus',
@@ -84,7 +83,7 @@ for (const [width, height] of viewports) {
     await assertNormalViewport(page);
 
     await page.locator('[data-station5-area="plantas"]').click();
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
+    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
     await assertNormalViewport(page);
     await expect(page.locator(".s5-plants-focus")).toBeInViewport();
     await expect(page.locator(".s5-lia")).toBeInViewport();
@@ -93,7 +92,7 @@ for (const [width, height] of viewports) {
     await seedPlants(page);
     await page.reload();
     await page.locator('[data-station5-area="sistema"]').click();
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_interactive");
+    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
     await assertNormalViewport(page);
     await expect(page.locator(".s5-system-focus")).toBeInViewport();
     await expect(page.locator(".s5-lia")).toBeInViewport();
@@ -108,17 +107,17 @@ test("ST5-020C permite flujo completo sólo con teclado", async ({ page }) => {
 
   await page.locator('[data-station5-area="plantas"]').focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
   await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).focus();
   await expect(page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })).toBeFocused();
   await page.keyboard.press("Space");
   await page.getByRole("button", { name: "Volver al mapa" }).focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_plantas_completed");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_overview");
 
   await page.locator('[data-station5-area="sistema"]').focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_sistema_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
   await page.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }).focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("status")).toContainText("Mediación visible.");
@@ -129,8 +128,8 @@ test("ST5-020C reflow 200% conserva contenido y controles", async ({ page }) => 
   await page.setViewportSize({ width: 195, height: 422 });
   await page.goto("/estacion/5/plantas");
   const required = [
-    page.getByText("ESTACIÓN V · MUNDO V"),
-    page.getByRole("heading", { level: 1, name: "Mapa del presente" }),
+    page.getByText("PLANTAS · ÁREA 1 DE 4"),
+    page.getByRole("heading", { level: 1, name: "Plantas" }),
     page.getByRole("button", { name: "← Mapa" }),
     page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }),
     page.locator(".s5-lia"),
@@ -167,7 +166,7 @@ test("ST5-020C mantiene reduced motion, consola y red local limpias", async ({ p
   await page.goto("/estacion/5");
   await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-reduced-motion", "true");
   await page.locator('[data-station5-area="plantas"]').click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "substation_plantas_interactive");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
   await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).press("Enter");
   await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   expect(errors).toEqual([]);
