@@ -1,0 +1,48 @@
+{
+  "runnerBrowserVersion": "148.0.7778.96",
+  "chromium": {
+    "name": "Chromium",
+    "available": true,
+    "version": "148.0.7778.96",
+    "route": "/estacion/5",
+    "closeVisible": true,
+    "closeBox": {
+      "x": 364.671875,
+      "y": 214.078125,
+      "width": 124,
+      "height": 44
+    },
+    "dimensions": {
+      "client": [
+        667,
+        320
+      ],
+      "scroll": [
+        667,
+        320
+      ]
+    },
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "pass": true
+  },
+  "firefox": {
+    "name": "Firefox",
+    "available": false,
+    "pass": null,
+    "reason": "Playwright browser executable is not installed in this environment."
+  },
+  "webkit": {
+    "name": "WebKit",
+    "available": false,
+    "pass": null,
+    "reason": "Playwright browser executable is not installed in this environment."
+  },
+  "policy": "Chromium is mandatory; Firefox and WebKit are exercised when their Playwright engines are installed.",
+  "pass": true
+}

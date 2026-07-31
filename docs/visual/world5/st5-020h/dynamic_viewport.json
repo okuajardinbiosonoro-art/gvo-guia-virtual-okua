@@ -1,0 +1,330 @@
+{
+  "pass": true,
+  "samples": [
+    {
+      "state": "closure_ready",
+      "sequence": "portrait_landscape_portrait",
+      "step": 1,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_overview_portrait_landscape_portrait_1_375x667.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "closure_ready",
+      "sequence": "portrait_landscape_portrait",
+      "step": 2,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_overview_portrait_landscape_portrait_2_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "closure_ready",
+      "sequence": "portrait_landscape_portrait",
+      "step": 3,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_overview_portrait_landscape_portrait_3_375x667.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "closure_ready",
+      "sequence": "short_landscape",
+      "step": 1,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_overview_short_landscape_1_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "closure_ready",
+      "sequence": "short_landscape",
+      "step": 2,
+      "width": 667,
+      "height": 320,
+      "file": "dynamic_overview_short_landscape_2_667x320.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        320
+      ],
+      "scroll": [
+        667,
+        320
+      ]
+    },
+    {
+      "state": "closure_ready",
+      "sequence": "short_landscape",
+      "step": 3,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_overview_short_landscape_3_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "portrait_landscape_portrait",
+      "step": 1,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_closure_error_portrait_landscape_portrait_1_375x667.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "portrait_landscape_portrait",
+      "step": 2,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_closure_error_portrait_landscape_portrait_2_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "portrait_landscape_portrait",
+      "step": 3,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_closure_error_portrait_landscape_portrait_3_375x667.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "short_landscape",
+      "step": 1,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_closure_error_short_landscape_1_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "short_landscape",
+      "step": 2,
+      "width": 667,
+      "height": 320,
+      "file": "dynamic_closure_error_short_landscape_2_667x320.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        320
+      ],
+      "scroll": [
+        667,
+        320
+      ]
+    },
+    {
+      "state": "closure_error",
+      "sequence": "short_landscape",
+      "step": 3,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_closure_error_short_landscape_3_667x375.png",
+      "route": "/estacion/5",
+      "focused": true,
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        375
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "portrait_landscape_portrait",
+      "step": 1,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_transition_portrait_landscape_portrait_1_375x667.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "portrait_landscape_portrait",
+      "step": 2,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_transition_portrait_landscape_portrait_2_667x375.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        610
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "portrait_landscape_portrait",
+      "step": 3,
+      "width": 375,
+      "height": 667,
+      "file": "dynamic_transition_portrait_landscape_portrait_3_375x667.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        375,
+        667
+      ],
+      "scroll": [
+        375,
+        667
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "short_landscape",
+      "step": 1,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_transition_short_landscape_1_667x375.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        610
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "short_landscape",
+      "step": 2,
+      "width": 667,
+      "height": 320,
+      "file": "dynamic_transition_short_landscape_2_667x320.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        667,
+        320
+      ],
+      "scroll": [
+        667,
+        610
+      ]
+    },
+    {
+      "state": "transition",
+      "sequence": "short_landscape",
+      "step": 3,
+      "width": 667,
+      "height": 375,
+      "file": "dynamic_transition_short_landscape_3_667x375.png",
+      "route": "/transition/world-5-to-final",
+      "client": [
+        667,
+        375
+      ],
+      "scroll": [
+        667,
+        610
+      ]
+    }
+  ],
+  "telemetry": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "responses404": [],
+    "externalRequests": []
+  }
+}

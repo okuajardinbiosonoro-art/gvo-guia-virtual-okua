@@ -14,20 +14,20 @@ Actualizado: 2026-07-30
 
 ## Estado global verificable
 
-| Tramo | Estado vigente |
-| --- | --- |
-| Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada. |
-| Portada | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final. |
-| Mundo I | Runtime activo, interacción refinada y deuda visual documentada. |
-| Mundo II | Finalizado para el alcance actual. |
-| W2→W3 | Definitiva, pasiva y automática. |
-| Mundo III | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
-| W3→W4 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo IV | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`. |
-| W4→W5 | Ruta runtime existente; copy editorial todavía `TEMP`. |
-| Mundo V | Entrada `ST5_020F_HUMAN_APPROVED`; `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW` integra Visitante y prepara el estado interno 4/4 para revisión global. La estación no está cerrada y Final sigue protegido. |
-| W5→Final | Ruta existente con copy editorial `TEMP`. |
-| Final | Experiencia temporal preexistente; no cerrada ni aprobada. |
+| Tramo         | Estado vigente                                                                                                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                            |
+| Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                        |
+| Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                              |
+| Mundo II      | Finalizado para el alcance actual.                                                                                                                                                                            |
+| W2→W3         | Definitiva, pasiva y automática.                                                                                                                                                                              |
+| Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
+| W3→W4         | Ruta runtime existente; copy editorial todavía `TEMP`.                                                                                                                                                        |
+| Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
+| W4→W5         | Ruta runtime existente; copy editorial todavía `TEMP`.                                                                                                                                                        |
+| Mundo V       | `ST5_020G_HUMAN_APPROVED`; `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW` publica el CTA de cierre desde 4/4, persistencia global verificada y guardas de salida. La aprobación humana de 020H continúa pendiente. |
+| W5→Final      | Ruta existente con copy editorial `TEMP`; protegida hasta completar globalmente Estación V y validada como salida de 020H.                                                                                    |
+| Final         | Experiencia temporal preexistente; no cerrada ni aprobada.                                                                                                                                                    |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -94,15 +94,16 @@ externo del cierre. Los resultados históricos 018D incluyen 42/42 tests focales
 
 ## Estado de Estación V
 
-El mapa, Plantas, Sistema, Espacio y la composición responsive protegida tienen
-aprobación humana de entrada por `ST5_020F_HUMAN_APPROVED`. `ST5-020G` suma los
-tres assets finales de Visitante y activa `/estacion/5/visitante`. El progreso
-local `gvo.station5.v1` acepta el prefijo exacto
+El mapa, Plantas, Sistema, Espacio, Visitante y el estado interno 4/4 están
+humanamente aprobados por `ST5_020G_HUMAN_APPROVED`. El progreso local
+`gvo.station5.v1` acepta el prefijo exacto
 `['plantas','sistema','espacio','visitante']`; tras 4/4 permite revisita libre
-de las cuatro áreas y presenta el overview global para revisión humana.
+de las cuatro áreas.
 
-El resultado 020G no declara Mundo V cerrado y no habilita `Ir al cierre`, la
-transición W5→Final ni Final. La evidencia técnica vigente está en
-[GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md](GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md).
-Los registros anteriores permanecen históricos y no se reescriben para simular
-otro resultado.
+`ST5-020H` muestra `Ir al cierre` solo en el overview 4/4. La activación verifica
+la escritura de Estación V en `gvo.progress.v1` antes de entrar a la transición
+W5→Final; un fallo conserva el 4/4 y permite reintentar. La transición y Final
+están protegidas antes del cierre global. La evidencia técnica vigente está en
+[GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md](GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md).
+`ST5-020H` aún no tiene aprobación humana y Final continúa temporal, no cerrada
+ni aprobada. Los registros 020A–020G permanecen históricos y no se reescriben.

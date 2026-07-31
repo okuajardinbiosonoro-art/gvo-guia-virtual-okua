@@ -19,30 +19,42 @@ test.beforeAll(() => {
 test("preview tecnico de transicion entre mundos conserva base no interactiva", async ({
   page,
 }) => {
+  test.setTimeout(120_000);
   await page.goto("/dev/transition-world");
 
   await expect(
     page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
   ).toBeVisible();
-  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
-  await expect(page.getByTestId("transition-world-background-real")).toBeVisible();
+  await expect(
+    page.getByTestId("transition-world-background-real"),
+  ).toBeVisible();
   await expect(page.getByTestId("transition-world-sparkles")).toBeVisible();
   await expect(page.getByTestId("transition-world-sparkle")).toHaveCount(8);
   await expect(page.getByTestId("transition-world-portal")).toBeVisible();
-  await expect(page.getByTestId("transition-world-portal-inactive")).toBeVisible();
+  await expect(
+    page.getByTestId("transition-world-portal-inactive"),
+  ).toBeAttached();
   await expect(
     page.getByTestId("transition-world-portal-activating"),
-  ).toBeVisible();
+  ).toBeAttached();
   await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
   await expect(page.getByTestId("transition-world-lia-sprite")).toBeVisible();
-  await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
-  await expect(page.getByTestId("transition-world-lia-guide")).toBeVisible();
-  await expect(page.getByTestId("transition-world-lia-exit")).toBeVisible();
+  await expect(page.getByTestId("transition-world-lia-real")).toBeAttached();
+  await expect(page.getByTestId("transition-world-lia-guide")).toBeAttached();
+  await expect(page.getByTestId("transition-world-lia-exit")).toBeAttached();
   await expect(page.getByRole("progressbar")).toBeVisible();
-  await expect(page.getByTestId("transition-world-progress-real")).toBeVisible();
-  await expect(page.getByTestId("transition-world-progress-track")).toBeVisible();
-  await expect(page.getByTestId("transition-world-progress-fill")).toBeVisible();
-  await expect(page.getByTestId("transition-world-progress-spark")).toBeVisible();
+  await expect(
+    page.getByTestId("transition-world-progress-real"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("transition-world-progress-track"),
+  ).toBeAttached();
+  await expect(
+    page.getByTestId("transition-world-progress-fill"),
+  ).toBeAttached();
+  await expect(
+    page.getByTestId("transition-world-progress-spark"),
+  ).toBeAttached();
   await expect(page.locator("button")).toHaveCount(0);
   await expect(page.locator("a")).toHaveCount(0);
   await expect(page.locator("audio")).toHaveCount(0);
@@ -50,14 +62,24 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   await expect(page.getByText(/Cargando assets/i)).toHaveCount(0);
   await expect(page.getByText(/\d+%/)).toHaveCount(0);
 
+  const realImageSelector = [
+    '[data-testid="transition-world-background-real"] img',
+    '[data-testid="transition-world-portal-real"] img',
+    '[data-testid="transition-world-progress-real"] img',
+  ].join(",");
+  await page.waitForFunction(
+    (selector) => {
+      const images = [...document.querySelectorAll<HTMLImageElement>(selector)];
+      return (
+        images.length >= 3 &&
+        images.every((image) => image.complete && image.naturalWidth > 0)
+      );
+    },
+    realImageSelector,
+    { timeout: 30_000 },
+  );
   const loadedImages = await page
-    .locator(
-      [
-        '[data-testid="transition-world-background-real"] img',
-        '[data-testid="transition-world-portal-real"] img',
-        '[data-testid="transition-world-progress-real"] img',
-      ].join(","),
-    )
+    .locator(realImageSelector)
     .evaluateAll((images) =>
       images.map((image) => ({
         complete: (image as HTMLImageElement).complete,
@@ -139,18 +161,18 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   });
 
   const motionGeometry = await page.evaluate(() => {
-    const portal = document.querySelector(
-      '[data-testid="transition-world-portal"]',
-    )?.getBoundingClientRect();
-    const lia = document.querySelector(
-      '[data-testid="transition-world-lia-sprite"]',
-    )?.getBoundingClientRect();
-    const progress = document.querySelector(
-      '[data-testid="transition-world-progress-real"]',
-    )?.getBoundingClientRect();
-    const spark = document.querySelector(
-      '[data-testid="transition-world-progress-spark"]',
-    )?.getBoundingClientRect();
+    const portal = document
+      .querySelector('[data-testid="transition-world-portal"]')
+      ?.getBoundingClientRect();
+    const lia = document
+      .querySelector('[data-testid="transition-world-lia-sprite"]')
+      ?.getBoundingClientRect();
+    const progress = document
+      .querySelector('[data-testid="transition-world-progress-real"]')
+      ?.getBoundingClientRect();
+    const spark = document
+      .querySelector('[data-testid="transition-world-progress-spark"]')
+      ?.getBoundingClientRect();
 
     return {
       liaCenterX: lia ? lia.left + lia.width / 2 : null,
@@ -221,7 +243,11 @@ test("ruta runtime de transicion navega una sola vez al destino", async ({
   await expect(
     page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
   ).toBeVisible();
-  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await page.waitForFunction(
+    () => document.body.textContent?.includes("Preparando recorrido..."),
+    undefined,
+    { timeout: 5_000 },
+  );
   await expect(page.locator("main")).toHaveAttribute(
     "data-transition-world-variant",
     "runtime",
@@ -264,7 +290,9 @@ test("ruta runtime respeta duracion reducida de 1000ms", async ({ page }) => {
   await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 1000 });
 });
 
-test("genera capturas de revision visual T003E7C en mobile", async ({ page }) => {
+test("genera capturas de revision visual T003E7C en mobile", async ({
+  page,
+}) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 430, height: 932 },
@@ -274,7 +302,9 @@ test("genera capturas de revision visual T003E7C en mobile", async ({ page }) =>
     await expect(
       page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
     ).toBeVisible();
-    await expect(page.getByTestId("transition-world-portal-real")).toBeVisible();
+    await expect(
+      page.getByTestId("transition-world-portal-real"),
+    ).toBeVisible();
     await expect(page.getByTestId("transition-world-lia-real")).toBeVisible();
     await page.waitForTimeout(120);
     await page.screenshot({

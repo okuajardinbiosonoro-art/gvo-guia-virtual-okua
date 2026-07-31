@@ -1,0 +1,91 @@
+{
+  "ticket": "ST5-020H",
+  "comparisons": [
+    {
+      "output": "comparison_020g_020h_overview_375x667.jpg",
+      "baseline": "docs/visual/world5/st5-020g/375x667_04_overview_four_of_four.png",
+      "current": "docs/visual/world5/st5-020h/375x667_02_overview_four_of_four.png",
+      "width": 375,
+      "height": 667,
+      "changedPixels": 195932,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 12.36575212393803,
+      "channelsOverTwentyRatio": 0.15020989505247376,
+      "perceptualMatch": false
+    },
+    {
+      "output": "comparison_020g_020h_overview_667x375.jpg",
+      "baseline": "docs/visual/world5/st5-020g/667x375_04_overview_four_of_four.png",
+      "current": "docs/visual/world5/st5-020h/667x375_02_overview_four_of_four.png",
+      "width": 667,
+      "height": 375,
+      "changedPixels": 139031,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 3.8241079460269867,
+      "channelsOverTwentyRatio": 0.027320339830084958,
+      "perceptualMatch": false
+    },
+    {
+      "output": "comparison_020g_020h_plants_375x667.jpg",
+      "baseline": "docs/visual/world5/st5-020g/375x667_06_plants_intro.png",
+      "current": "docs/visual/world5/st5-020h/protected_plants_intro_375x667.png",
+      "width": 375,
+      "height": 667,
+      "changedPixels": 167406,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 0.6623778110944528,
+      "channelsOverTwentyRatio": 0.00046676661669165415,
+      "perceptualMatch": true
+    },
+    {
+      "output": "comparison_020g_020h_system_375x667.jpg",
+      "baseline": "docs/visual/world5/st5-020g/375x667_08_system_intro.png",
+      "current": "docs/visual/world5/st5-020h/protected_system_intro_375x667.png",
+      "width": 375,
+      "height": 667,
+      "changedPixels": 156607,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 0.378607696151924,
+      "channelsOverTwentyRatio": 0.00006196901549225387,
+      "perceptualMatch": true
+    },
+    {
+      "output": "comparison_020g_020h_space_375x667.jpg",
+      "baseline": "docs/visual/world5/st5-020g/375x667_10_space_intro.png",
+      "current": "docs/visual/world5/st5-020h/protected_space_intro_375x667.png",
+      "width": 375,
+      "height": 667,
+      "changedPixels": 153634,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 0.3711664167916042,
+      "channelsOverTwentyRatio": 0.00007596201899050474,
+      "perceptualMatch": true
+    },
+    {
+      "output": "comparison_020g_020h_visitor_375x667.jpg",
+      "baseline": "docs/visual/world5/st5-020g/375x667_02_visitor_intro.png",
+      "current": "docs/visual/world5/st5-020h/protected_visitor_intro_375x667.png",
+      "width": 375,
+      "height": 667,
+      "changedPixels": 163893,
+      "totalPixels": 250125,
+      "exactMatch": false,
+      "meanAbsoluteChannelDelta": 0.5904187906046976,
+      "channelsOverTwentyRatio": 0.00020589705147426286,
+      "perceptualMatch": true
+    }
+  ],
+  "protectedExactMatches": 0,
+  "protectedPerceptualMatches": 4,
+  "protectedCount": 4,
+  "rasterTolerance": {
+    "meanAbsoluteChannelDeltaMax": 1,
+    "channelsOverTwentyRatioMax": 0.001
+  },
+  "pass": true
+}

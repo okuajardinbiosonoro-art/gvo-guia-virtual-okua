@@ -238,7 +238,8 @@ body:has(.s5-screen) #app {
 .s5-space-focus:focus-visible,
 .s5-visitor-focus:focus-visible,
 .s5-back:focus-visible,
-.s5-secondary-action:focus-visible {
+.s5-secondary-action:focus-visible,
+.s5-close-action:focus-visible {
   outline: 3px solid #183f7a;
   outline-offset: 3px;
 }
@@ -471,6 +472,38 @@ body:has(.s5-screen) #app {
   background: var(--s5-olive);
   font-size: 0.875rem;
   font-weight: 800;
+}
+.s5-close-action {
+  min-width: 124px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid #4c5631;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--s5-olive);
+  font-size: 0.875rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    transform 120ms ease;
+}
+.s5-close-action:active:not(:disabled) {
+  background: #4d542f;
+  transform: translateY(1px);
+}
+.s5-close-action:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+@media (orientation: portrait) {
+  .s5-screen[data-world5-close-ready="true"] .s5-story-card {
+    height: 192px;
+  }
+  .s5-screen[data-world5-close-state="closure_error"] .s5-story-card {
+    height: 220px;
+  }
 }
 
 .s5-lia {

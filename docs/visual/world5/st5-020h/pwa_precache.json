@@ -1,0 +1,145 @@
+{
+  "ticket": "ST5-020H",
+  "mode": "generateSW",
+  "runtimeAssetCount": 24,
+  "runtimeAssetsPrecached": 24,
+  "assets": [
+    {
+      "id": "MAP-01",
+      "file": "world5_map_environment_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-02",
+      "file": "world5_map_environment_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-03",
+      "file": "world5_map_rim_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-04",
+      "file": "world5_map_rim_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-05",
+      "file": "world5_map_sector_plants_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-06",
+      "file": "world5_map_sector_system_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-07",
+      "file": "world5_map_sector_space_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "MAP-08",
+      "file": "world5_map_sector_visitor_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-PLANTS-BG-PORTRAIT",
+      "file": "world5_sub_plants_environment_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-PLANTS-BG-LANDSCAPE",
+      "file": "world5_sub_plants_environment_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-PLANTS-FOCUS",
+      "file": "world5_sub_plants_focus_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SYSTEM-BG-PORTRAIT",
+      "file": "system/world5_sub_system_environment_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SYSTEM-BG-LANDSCAPE",
+      "file": "system/world5_sub_system_environment_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SYSTEM-FOCUS",
+      "file": "system/world5_sub_system_focus_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "LIA-EXPLAIN-CALM",
+      "file": "lia/lia_pose_explain_calm_v1.png",
+      "precached": true
+    },
+    {
+      "id": "LIA-GREETING",
+      "file": "lia/lia_pose_greeting_v1.png",
+      "precached": true
+    },
+    {
+      "id": "LIA-LEAD-FORWARD",
+      "file": "lia/lia_world5_lead_forward_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "LIA-ATTEND-NEUTRAL",
+      "file": "lia/lia_world5_attend_neutral_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SPACE-BG-PORTRAIT",
+      "file": "world5_sub_space_environment_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SPACE-BG-LANDSCAPE",
+      "file": "world5_sub_space_environment_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-SPACE-FOCUS",
+      "file": "world5_sub_space_focus_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-VISITOR-BG-PORTRAIT",
+      "file": "world5_sub_visitor_environment_portrait_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-VISITOR-BG-LANDSCAPE",
+      "file": "world5_sub_visitor_environment_landscape_v01.webp",
+      "precached": true
+    },
+    {
+      "id": "SUB-VISITOR-FOCUS",
+      "file": "world5_sub_visitor_focus_v01.webp",
+      "precached": true
+    }
+  ],
+  "shellEntries": [
+    {
+      "file": "index.html",
+      "precached": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "precached": true
+    },
+    {
+      "file": "registerSW.js",
+      "precached": true
+    }
+  ],
+  "navigateFallback": true,
+  "note": "Static verification of the generated precache; installed-PWA relaunch remains a manual platform check.",
+  "pass": true
+}

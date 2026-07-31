@@ -1,0 +1,21 @@
+{
+  "ticket": "ST5-020H",
+  "baseline": "ddd6859efa3bdb3c5415b9bb6ec2cd13faac707a",
+  "scopes": [
+    "src/screens/TransitionWorld",
+    "src/content/transitionEditorialSlots.ts",
+    "src/screens/FinalRoot",
+    "public/assets/gvo/stations/world-5",
+    "public/assets/gvo/current-used/world-5-root",
+    "public/assets/gvo/shared/lia",
+    "package.json",
+    "package-lock.json"
+  ],
+  "baselineFileCount": 118,
+  "changedFiles": [],
+  "finalRootByteIdentical": true,
+  "transitionWorldByteIdentical": true,
+  "packageFilesByteIdentical": true,
+  "worldFiveAssetsByteIdentical": true,
+  "pass": true
+}

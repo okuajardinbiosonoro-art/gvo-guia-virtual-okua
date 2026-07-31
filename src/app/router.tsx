@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   createBrowserRouter,
+  replace,
   useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
 
 import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
+import {
+  canOpenFinal,
+  readProgress,
+} from "../domain/progress/progress.storage";
 import { CoverIntroScreen } from "../screens/Cover";
 import { FinalRootScreen } from "../screens/FinalRoot";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
@@ -88,12 +93,15 @@ function JourneyLoadingRoute() {
 
     const searchParams = new URLSearchParams(location.search);
     const shouldResetIntro = searchParams.get("resetIntro") === "1";
-    const destination = shouldResetIntro
-      ? "/portada?resetIntro=1"
-      : "/portada";
+    const destination = shouldResetIntro ? "/portada?resetIntro=1" : "/portada";
 
     navigate(destination, { replace: true });
-  }, [coverIntroPreload.ready, location.search, minimumDurationComplete, navigate]);
+  }, [
+    coverIntroPreload.ready,
+    location.search,
+    minimumDurationComplete,
+    navigate,
+  ]);
 
   return (
     <LoadingInitialScreen
@@ -102,6 +110,18 @@ function JourneyLoadingRoute() {
       preloadTarget="coverIntroCritical"
     />
   );
+}
+
+export function requireFinalAccess() {
+  try {
+    if (canOpenFinal(readProgress())) {
+      return null;
+    }
+  } catch {
+    // Storage unavailable must fail closed before TransitionWorld or Final mount.
+  }
+
+  return replace(worldFiveEntryRoute);
 }
 
 function TransitionWorldRuntimeRoute({
@@ -150,7 +170,9 @@ export const router = createBrowserRouter([
   },
   {
     path: coverToWorldOneTransitionRoute,
-    element: <TransitionWorldRuntimeRoute config={introToStationOneTransition} />,
+    element: (
+      <TransitionWorldRuntimeRoute config={introToStationOneTransition} />
+    ),
   },
   {
     path: worldOneToWorldTwoTransitionRoute,
@@ -178,7 +200,10 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFiveToFinalTransitionRoute,
-    element: <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />,
+    loader: requireFinalAccess,
+    element: (
+      <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />
+    ),
   },
   {
     path: "/estacion/1",
@@ -222,6 +247,7 @@ export const router = createBrowserRouter([
   },
   {
     path: finalEntryRoute,
+    loader: requireFinalAccess,
     element: <FinalRootScreen />,
   },
   {

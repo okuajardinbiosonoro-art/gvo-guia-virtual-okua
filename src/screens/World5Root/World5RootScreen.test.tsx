@@ -8,8 +8,10 @@ import {
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { worldFiveToFinalTransitionRoute } from "../../app/routes";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { World5RootScreen } from "./World5RootScreen";
+import { station5FixedCta } from "./station5Content";
 import { WORLD5_PROGRESS_STORAGE_KEY } from "./world5Progress";
 import { world5RuntimeAssets } from "./world5RuntimeAssets";
 
@@ -36,6 +38,34 @@ function seedProgress(completedAreas: string[]) {
       updatedAt: "2026-07-30T12:00:00.000Z",
     }),
   );
+}
+
+function seedGlobalProgress(
+  completedStations: number[],
+  updatedAt = "2026-07-30T12:00:00.000Z",
+) {
+  window.localStorage.setItem(
+    GVO_PROGRESS_STORAGE_KEY,
+    JSON.stringify({ completedStations, updatedAt }),
+  );
+}
+
+function readGlobalProgress() {
+  return JSON.parse(
+    window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}",
+  ) as { completedStations?: number[]; updatedAt?: string | null };
+}
+
+function closeTelemetry(container: HTMLElement) {
+  const telemetry = container.querySelector<HTMLElement>(
+    "[data-world5-close-state]",
+  );
+  if (!telemetry) throw new Error("Missing Station 5 close telemetry");
+  return telemetry;
+}
+
+function closeButton() {
+  return screen.getByRole("button", { name: station5FixedCta });
 }
 
 function state(container: HTMLElement) {
@@ -89,7 +119,7 @@ function stubReducedMotion(matches: boolean) {
   });
 }
 
-describe("World5RootScreen — ST5-020G", () => {
+describe("World5RootScreen — ST5-020G/ST5-020H", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
@@ -176,6 +206,8 @@ describe("World5RootScreen — ST5-020G", () => {
       "data-map-complete",
       "true",
     );
+    expect(closeButton()).toBeInTheDocument();
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
     expect(area(container, "visitante")).toHaveFocus();
   });
 
@@ -397,8 +429,12 @@ describe("World5RootScreen — ST5-020G", () => {
       }),
     );
     expect(state(container)).toBe("storage_error");
-    expect(screen.getByRole("button", { name: "Volver al mapa" })).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar guardado" }));
+    expect(
+      screen.getByRole("button", { name: "Volver al mapa" }),
+    ).toBeDisabled();
+    fireEvent.click(
+      screen.getByRole("button", { name: "Reintentar guardado" }),
+    );
     expect(state(container)).toBe("visitor_intro");
   });
 
@@ -439,6 +475,279 @@ describe("World5RootScreen — ST5-020G", () => {
     expect(
       container.querySelector("[data-station5-reduced-motion]"),
     ).toHaveAttribute("data-station5-reduced-motion", "true");
+  });
+
+  describe("cierre global ST5-020H", () => {
+    it("mantiene Ir al cierre fuera del DOM en 0/4, 1/4, 2/4 y 3/4", () => {
+      for (const completedAreas of [
+        [],
+        ["plantas"],
+        ["plantas", "sistema"],
+        ["plantas", "sistema", "espacio"],
+      ]) {
+        seedProgress(completedAreas);
+        const view = renderStation5();
+
+        expect(
+          screen.queryByRole("button", { name: station5FixedCta }),
+        ).not.toBeInTheDocument();
+        expect(closeTelemetry(view.container)).toHaveAttribute(
+          "data-world5-close-ready",
+          "false",
+        );
+
+        view.unmount();
+        window.localStorage.clear();
+      }
+    });
+
+    it("expone Ir al cierre solo en overview 4/4 con telemetría contractual", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      const { container } = renderStation5();
+      const telemetry = closeTelemetry(container);
+
+      expect(state(container)).toBe("map_overview");
+      expect(closeButton()).toBeEnabled();
+      expect(telemetry).toHaveAttribute("data-world5-close-ready", "true");
+      expect(telemetry).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_ready",
+      );
+      expect(telemetry).toHaveAttribute("data-world5-global-complete", "false");
+      expect(telemetry).toHaveAttribute(
+        "data-world5-exit-target",
+        worldFiveToFinalTransitionRoute,
+      );
+      expect(
+        screen.getByText(
+          "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        ),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        ),
+      ).toBeInTheDocument();
+    });
+
+    it("oculta Ir al cierre dentro de las cuatro áreas y en feedback bloqueado", () => {
+      for (const id of [
+        "plantas",
+        "sistema",
+        "espacio",
+        "visitante",
+      ] as const) {
+        seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+        const view = renderStation5(`/estacion/5/${id}`);
+        expect(
+          screen.queryByRole("button", { name: station5FixedCta }),
+        ).not.toBeInTheDocument();
+        view.unmount();
+        window.localStorage.clear();
+      }
+
+      const blocked = renderStation5();
+      fireEvent.click(area(blocked.container, "sistema"));
+      expect(state(blocked.container)).toBe("map_blocked_feedback");
+      expect(
+        screen.queryByRole("button", { name: station5FixedCta }),
+      ).not.toBeInTheDocument();
+    });
+
+    it("no escribe progreso global al restaurar 4/4, recargar ni revisitar áreas", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      const internalBefore = window.localStorage.getItem(
+        WORLD5_PROGRESS_STORAGE_KEY,
+      );
+      const setItemSpy = vi.spyOn(Storage.prototype, "setItem");
+
+      const first = renderStation5();
+      expect(closeButton()).toBeInTheDocument();
+      expect(
+        setItemSpy.mock.calls.filter(
+          ([key]) => key === GVO_PROGRESS_STORAGE_KEY,
+        ),
+      ).toHaveLength(0);
+      first.unmount();
+
+      const reloaded = renderStation5();
+      expect(closeButton()).toBeInTheDocument();
+      fireEvent.click(area(reloaded.container, "plantas"));
+      advance(770);
+      expect(state(reloaded.container)).toBe("plants_resolved");
+      expect(
+        screen.queryByRole("button", { name: station5FixedCta }),
+      ).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole("button", { name: "Volver al mapa" }));
+      advance(650);
+
+      expect(state(reloaded.container)).toBe("map_overview");
+      expect(closeButton()).toBeInTheDocument();
+      expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+      expect(
+        setItemSpy.mock.calls.filter(
+          ([key]) => key === GVO_PROGRESS_STORAGE_KEY,
+        ),
+      ).toHaveLength(0);
+      expect(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY)).toBe(
+        internalBefore,
+      );
+    });
+
+    it("verifica la escritura global antes de navegar y conserva progreso interno", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      seedGlobalProgress([1, 2, 3, 4]);
+      const internalBefore = window.localStorage.getItem(
+        WORLD5_PROGRESS_STORAGE_KEY,
+      );
+      const { container } = renderStation5();
+
+      fireEvent.click(closeButton());
+
+      expect(readGlobalProgress().completedStations).toEqual([1, 2, 3, 4, 5]);
+      expect(window.localStorage.getItem(WORLD5_PROGRESS_STORAGE_KEY)).toBe(
+        internalBefore,
+      );
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_complete",
+      );
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-global-complete",
+        "true",
+      );
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        worldFiveToFinalTransitionRoute,
+      );
+    });
+
+    it("falla cerrado cuando la escritura global no queda verificada", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      seedGlobalProgress([1, 2, 3, 4]);
+      const nativeSetItem = Storage.prototype.setItem;
+      vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+        this: Storage,
+        key,
+        value,
+      ) {
+        if (key === GVO_PROGRESS_STORAGE_KEY) return;
+        nativeSetItem.call(this, key, value);
+      });
+      const { container } = renderStation5();
+
+      fireEvent.click(closeButton());
+
+      expect(readGlobalProgress().completedStations).toEqual([1, 2, 3, 4]);
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_error",
+      );
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-global-complete",
+        "false",
+      );
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "No fue posible guardar el cierre. Inténtalo de nuevo.",
+      );
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        "/estacion/5",
+      );
+      expect(closeButton()).toBeEnabled();
+    });
+
+    it("permite reintentar tras una excepción de storage y navega solo al verificar", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      seedGlobalProgress([1, 2, 3, 4]);
+      const nativeSetItem = Storage.prototype.setItem;
+      let storageFails = true;
+      vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+        this: Storage,
+        key,
+        value,
+      ) {
+        if (key === GVO_PROGRESS_STORAGE_KEY && storageFails) {
+          throw new Error("quota");
+        }
+        nativeSetItem.call(this, key, value);
+      });
+      const { container } = renderStation5();
+
+      fireEvent.click(closeButton());
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_error",
+      );
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        "/estacion/5",
+      );
+
+      storageFails = false;
+      fireEvent.click(closeButton());
+
+      expect(readGlobalProgress().completedStations).toEqual([1, 2, 3, 4, 5]);
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_complete",
+      );
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        worldFiveToFinalTransitionRoute,
+      );
+    });
+
+    it("bloquea doble activación y escribe Estación V una sola vez", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      seedGlobalProgress([1, 2, 3, 4]);
+      const setItemSpy = vi.spyOn(Storage.prototype, "setItem");
+      const { container } = renderStation5();
+      const exit = closeButton();
+
+      fireEvent.click(exit);
+      fireEvent.click(exit);
+
+      expect(
+        setItemSpy.mock.calls.filter(
+          ([key]) => key === GVO_PROGRESS_STORAGE_KEY,
+        ),
+      ).toHaveLength(1);
+      expect(readGlobalProgress().completedStations).toEqual([1, 2, 3, 4, 5]);
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-close-state",
+        "closure_complete",
+      );
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        worldFiveToFinalTransitionRoute,
+      );
+    });
+
+    it("no reescribe ni cambia updatedAt cuando Estación V ya estaba cerrada", () => {
+      seedProgress(["plantas", "sistema", "espacio", "visitante"]);
+      const originalTimestamp = "2026-07-29T08:30:00.000Z";
+      seedGlobalProgress([1, 2, 3, 4, 5], originalTimestamp);
+      const globalBefore = window.localStorage.getItem(
+        GVO_PROGRESS_STORAGE_KEY,
+      );
+      const setItemSpy = vi.spyOn(Storage.prototype, "setItem");
+      const { container } = renderStation5();
+
+      expect(closeTelemetry(container)).toHaveAttribute(
+        "data-world5-global-complete",
+        "true",
+      );
+      fireEvent.click(closeButton());
+
+      expect(
+        setItemSpy.mock.calls.filter(
+          ([key]) => key === GVO_PROGRESS_STORAGE_KEY,
+        ),
+      ).toHaveLength(0);
+      expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBe(
+        globalBefore,
+      );
+      expect(readGlobalProgress().updatedAt).toBe(originalTimestamp);
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        worldFiveToFinalTransitionRoute,
+      );
+    });
   });
 });
 

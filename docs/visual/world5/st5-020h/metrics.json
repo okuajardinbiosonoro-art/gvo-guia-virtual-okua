@@ -1,0 +1,3998 @@
+[
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "01_overview_three_of_four",
+    "screenshot": "360x560_01_overview_three_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_unavailable",
+    "closeReady": "false",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 352,
+        "bottom": 408,
+        "width": 344,
+        "height": 400
+      },
+      "card": {
+        "left": 8,
+        "top": 416,
+        "right": 352,
+        "bottom": 552,
+        "width": 344,
+        "height": 136
+      },
+      "lia": {
+        "left": 225,
+        "top": 425,
+        "right": 341,
+        "bottom": 547,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "El recorrido ya tiene un lugar.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 444.8125,
+          "right": 217,
+          "bottom": 484,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "Toca Visitante para completar el mapa.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 488,
+          "right": 217,
+          "bottom": 527.1875,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 551,
+          "right": 8,
+          "bottom": 552,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeAbsent": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "360x560_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 490.484375,
+        "right": 145,
+        "bottom": 534.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 352,
+        "bottom": 352,
+        "width": 344,
+        "height": 344
+      },
+      "card": {
+        "left": 8,
+        "top": 360,
+        "right": 352,
+        "bottom": 552,
+        "width": 344,
+        "height": 192
+      },
+      "lia": {
+        "left": 225,
+        "top": 395,
+        "right": 341,
+        "bottom": 517,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 381.515625,
+          "right": 217,
+          "bottom": 440.296875,
+          "width": 196,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 444.296875,
+          "right": 217,
+          "bottom": 483.484375,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 551,
+          "right": 8,
+          "bottom": 552,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "03_overview_four_of_four_focus",
+    "screenshot": "360x560_03_overview_four_of_four_focus.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 490.484375,
+        "right": 145,
+        "bottom": 534.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 352,
+        "bottom": 352,
+        "width": 344,
+        "height": 344
+      },
+      "card": {
+        "left": 8,
+        "top": 360,
+        "right": 352,
+        "bottom": 552,
+        "width": 344,
+        "height": 192
+      },
+      "lia": {
+        "left": 225,
+        "top": 395,
+        "right": 341,
+        "bottom": 517,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 381.515625,
+          "right": 217,
+          "bottom": 440.296875,
+          "width": 196,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 444.296875,
+          "right": 217,
+          "bottom": 483.484375,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 551,
+          "right": 8,
+          "bottom": 552,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closeFocused": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "04_closure_error",
+    "screenshot": "360x560_04_closure_error.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_error",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 498.078125,
+        "right": 145,
+        "bottom": 542.078125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 352,
+        "bottom": 324,
+        "width": 344,
+        "height": 316
+      },
+      "card": {
+        "left": 8,
+        "top": 332,
+        "right": 352,
+        "bottom": 552,
+        "width": 344,
+        "height": 220
+      },
+      "lia": {
+        "left": 225,
+        "top": 381,
+        "right": 341,
+        "bottom": 503,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 345.921875,
+          "right": 217,
+          "bottom": 404.703125,
+          "width": 196,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 408.703125,
+          "right": 217,
+          "bottom": 447.890625,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 451.890625,
+          "right": 217,
+          "bottom": 491.078125,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 551,
+          "right": 8,
+          "bottom": 552,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 560
+    },
+    "hasClosureError": true,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closureErrorVisible": true,
+      "stayedInStationFive": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "360x560_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Preparando recorrido...",
+        "fontSize": 15.36,
+        "box": {
+          "left": 90.5,
+          "top": 0,
+          "right": 269.5,
+          "bottom": 18.421875,
+          "width": 179,
+          "height": 18.421875
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 578
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 15.36,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x560",
+      "width": 360,
+      "height": 560
+    },
+    "state": "06_final_arrival",
+    "screenshot": "360x560_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 560,
+      "scrollWidth": 360,
+      "scrollHeight": 1342
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "360x640_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 570.484375,
+        "right": 145,
+        "bottom": 614.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 352,
+        "bottom": 432,
+        "width": 344,
+        "height": 424
+      },
+      "card": {
+        "left": 8,
+        "top": 440,
+        "right": 352,
+        "bottom": 632,
+        "width": 344,
+        "height": 192
+      },
+      "lia": {
+        "left": 225,
+        "top": 475,
+        "right": 341,
+        "bottom": 597,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 461.515625,
+          "right": 217,
+          "bottom": 520.296875,
+          "width": 196,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 524.296875,
+          "right": 217,
+          "bottom": 563.484375,
+          "width": 196,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 631,
+          "right": 8,
+          "bottom": 632,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 640
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "360x640_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Preparando recorrido...",
+        "fontSize": 15.36,
+        "box": {
+          "left": 90.5,
+          "top": 0,
+          "right": 269.5,
+          "bottom": 18.421875,
+          "width": 179,
+          "height": 18.421875
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 658
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 15.36,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "360x640",
+      "width": 360,
+      "height": 640
+    },
+    "state": "06_final_arrival",
+    "screenshot": "360x640_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 360,
+      "clientHeight": 640,
+      "scrollWidth": 360,
+      "scrollHeight": 1341
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x548",
+      "width": 375,
+      "height": 548
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "375x548_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 478.484375,
+        "right": 145,
+        "bottom": 522.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 340,
+        "width": 359,
+        "height": 332
+      },
+      "card": {
+        "left": 8,
+        "top": 348,
+        "right": 367,
+        "bottom": 540,
+        "width": 359,
+        "height": 192
+      },
+      "lia": {
+        "left": 240,
+        "top": 383,
+        "right": 356,
+        "bottom": 505,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 369.515625,
+          "right": 232,
+          "bottom": 428.296875,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 432.296875,
+          "right": 232,
+          "bottom": 471.484375,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 539,
+          "right": 8,
+          "bottom": 540,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 548,
+      "scrollWidth": 375,
+      "scrollHeight": 548
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x548",
+      "width": 375,
+      "height": 548
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "375x548_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 375,
+          "bottom": 548,
+          "width": 375,
+          "height": 548
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 548,
+      "scrollWidth": 375,
+      "scrollHeight": 548
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x548",
+      "width": 375,
+      "height": 548
+    },
+    "state": "06_final_arrival",
+    "screenshot": "375x548_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 548,
+      "scrollWidth": 375,
+      "scrollHeight": 1341
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "01_overview_three_of_four",
+    "screenshot": "375x667_01_overview_three_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_unavailable",
+    "closeReady": "false",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 515,
+        "width": 359,
+        "height": 507
+      },
+      "card": {
+        "left": 8,
+        "top": 523,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 136
+      },
+      "lia": {
+        "left": 240,
+        "top": 532,
+        "right": 356,
+        "bottom": 654,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "El recorrido ya tiene un lugar.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 561.609375,
+          "right": 232,
+          "bottom": 581.203125,
+          "width": 211,
+          "height": 19.59375
+        }
+      },
+      {
+        "text": "Toca Visitante para completar el mapa.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 585.203125,
+          "right": 232,
+          "bottom": 624.390625,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 658,
+          "right": 8,
+          "bottom": 659,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeAbsent": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "375x667_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 597.484375,
+        "right": 145,
+        "bottom": 641.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 459,
+        "width": 359,
+        "height": 451
+      },
+      "card": {
+        "left": 8,
+        "top": 467,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 192
+      },
+      "lia": {
+        "left": 240,
+        "top": 502,
+        "right": 356,
+        "bottom": 624,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 488.515625,
+          "right": 232,
+          "bottom": 547.296875,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 551.296875,
+          "right": 232,
+          "bottom": 590.484375,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 658,
+          "right": 8,
+          "bottom": 659,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "03_overview_four_of_four_focus",
+    "screenshot": "375x667_03_overview_four_of_four_focus.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 597.484375,
+        "right": 145,
+        "bottom": 641.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 459,
+        "width": 359,
+        "height": 451
+      },
+      "card": {
+        "left": 8,
+        "top": 467,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 192
+      },
+      "lia": {
+        "left": 240,
+        "top": 502,
+        "right": 356,
+        "bottom": 624,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 488.515625,
+          "right": 232,
+          "bottom": 547.296875,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 551.296875,
+          "right": 232,
+          "bottom": 590.484375,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 658,
+          "right": 8,
+          "bottom": 659,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closeFocused": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "04_closure_error",
+    "screenshot": "375x667_04_closure_error.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_error",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 605.078125,
+        "right": 145,
+        "bottom": 649.078125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 367,
+        "bottom": 431,
+        "width": 359,
+        "height": 423
+      },
+      "card": {
+        "left": 8,
+        "top": 439,
+        "right": 367,
+        "bottom": 659,
+        "width": 359,
+        "height": 220
+      },
+      "lia": {
+        "left": 240,
+        "top": 488,
+        "right": 356,
+        "bottom": 610,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 452.921875,
+          "right": 232,
+          "bottom": 511.703125,
+          "width": 211,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 515.703125,
+          "right": 232,
+          "bottom": 554.890625,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 558.890625,
+          "right": 232,
+          "bottom": 598.078125,
+          "width": 211,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 658,
+          "right": 8,
+          "bottom": 659,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "hasClosureError": true,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closureErrorVisible": true,
+      "stayedInStationFive": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "375x667_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 375,
+          "bottom": 667,
+          "width": 375,
+          "height": 667
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 667
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "375x667",
+      "width": 375,
+      "height": 667
+    },
+    "state": "06_final_arrival",
+    "screenshot": "375x667_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 375,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "scrollHeight": 1341
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "390x844_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 774.484375,
+        "right": 145,
+        "bottom": 818.484375,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 382,
+        "bottom": 636,
+        "width": 374,
+        "height": 628
+      },
+      "card": {
+        "left": 8,
+        "top": 644,
+        "right": 382,
+        "bottom": 836,
+        "width": 374,
+        "height": 192
+      },
+      "lia": {
+        "left": 255,
+        "top": 679,
+        "right": 371,
+        "bottom": 801,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 665.515625,
+          "right": 247,
+          "bottom": 724.296875,
+          "width": 226,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 21,
+          "top": 728.296875,
+          "right": 247,
+          "bottom": 767.484375,
+          "width": 226,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 835,
+          "right": 8,
+          "bottom": 836,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "390x844_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Preparando recorrido...",
+        "fontSize": 15.6,
+        "box": {
+          "left": 102.5,
+          "top": 0,
+          "right": 287.5,
+          "bottom": 18.703125,
+          "width": 185,
+          "height": 18.703125
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 863
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 15.6,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    "state": "06_final_arrival",
+    "screenshot": "390x844_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 390,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 1317
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "01_overview_three_of_four",
+    "screenshot": "667x320_01_overview_three_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_unavailable",
+    "closeReady": "false",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 313,
+        "width": 326.328125,
+        "height": 306
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 310,
+        "height": 306
+      },
+      "lia": {
+        "left": 535.328125,
+        "top": 99,
+        "right": 639.328125,
+        "bottom": 221,
+        "width": 104,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "El recorrido ya tiene un lugar.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 118.8125,
+          "right": 527.328125,
+          "bottom": 158,
+          "width": 162.65625,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "Toca Visitante para completar el mapa.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 162,
+          "right": 527.328125,
+          "bottom": 201.1875,
+          "width": 162.65625,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 312,
+          "right": 10,
+          "bottom": 313,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeAbsent": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "667x320_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 214.078125,
+        "right": 488.671875,
+        "bottom": 258.078125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 313,
+        "width": 326.328125,
+        "height": 306
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 310,
+        "height": 306
+      },
+      "lia": {
+        "left": 535.328125,
+        "top": 99,
+        "right": 639.328125,
+        "bottom": 221,
+        "width": 104,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 65.921875,
+          "right": 527.328125,
+          "bottom": 144.296875,
+          "width": 162.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 148.296875,
+          "right": 527.328125,
+          "bottom": 207.078125,
+          "width": 162.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 312,
+          "right": 10,
+          "bottom": 313,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "03_overview_four_of_four_focus",
+    "screenshot": "667x320_03_overview_four_of_four_focus.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 214.078125,
+        "right": 488.671875,
+        "bottom": 258.078125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 313,
+        "width": 326.328125,
+        "height": 306
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 310,
+        "height": 306
+      },
+      "lia": {
+        "left": 535.328125,
+        "top": 99,
+        "right": 639.328125,
+        "bottom": 221,
+        "width": 104,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 65.921875,
+          "right": 527.328125,
+          "bottom": 144.296875,
+          "width": 162.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 148.296875,
+          "right": 527.328125,
+          "bottom": 207.078125,
+          "width": 162.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 312,
+          "right": 10,
+          "bottom": 313,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closeFocused": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "04_closure_error",
+    "screenshot": "667x320_04_closure_error.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_error",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 245.46875,
+        "right": 488.671875,
+        "bottom": 289.46875,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 313,
+        "width": 326.328125,
+        "height": 306
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 313,
+        "width": 310,
+        "height": 306
+      },
+      "lia": {
+        "left": 535.328125,
+        "top": 99,
+        "right": 639.328125,
+        "bottom": 221,
+        "width": 104,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 34.53125,
+          "right": 527.328125,
+          "bottom": 112.90625,
+          "width": 162.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 116.90625,
+          "right": 527.328125,
+          "bottom": 175.6875,
+          "width": 162.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 179.6875,
+          "right": 527.328125,
+          "bottom": 238.46875,
+          "width": 162.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 312,
+          "right": 10,
+          "bottom": 313,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 320
+    },
+    "hasClosureError": true,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closureErrorVisible": true,
+      "stayedInStationFive": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "667x320_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 118.5,
+          "top": 0,
+          "right": 548.5,
+          "bottom": 610.40625,
+          "width": 430,
+          "height": 610.40625
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 610
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x320",
+      "width": 667,
+      "height": 320
+    },
+    "state": "06_final_arrival",
+    "screenshot": "667x320_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 320,
+      "scrollWidth": 667,
+      "scrollHeight": 1342
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "01_overview_three_of_four",
+    "screenshot": "667x375_01_overview_three_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_unavailable",
+    "closeReady": "false",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "El recorrido ya tiene un lugar.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 146.3125,
+          "right": 515.328125,
+          "bottom": 185.5,
+          "width": 150.65625,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "Toca Visitante para completar el mapa.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 189.5,
+          "right": 515.328125,
+          "bottom": 228.6875,
+          "width": 150.65625,
+          "height": 39.1875
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 367,
+          "right": 10,
+          "bottom": 368,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeAbsent": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "667x375_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 241.578125,
+        "right": 488.671875,
+        "bottom": 285.578125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 93.421875,
+          "right": 515.328125,
+          "bottom": 171.796875,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 175.796875,
+          "right": 515.328125,
+          "bottom": 234.578125,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 367,
+          "right": 10,
+          "bottom": 368,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "03_overview_four_of_four_focus",
+    "screenshot": "667x375_03_overview_four_of_four_focus.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 241.578125,
+        "right": 488.671875,
+        "bottom": 285.578125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 93.421875,
+          "right": 515.328125,
+          "bottom": 171.796875,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 175.796875,
+          "right": 515.328125,
+          "bottom": 234.578125,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 367,
+          "right": 10,
+          "bottom": 368,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closeFocused": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "04_closure_error",
+    "screenshot": "667x375_04_closure_error.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_error",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 364.671875,
+        "top": 272.96875,
+        "right": 488.671875,
+        "bottom": 316.96875,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": true,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 336.328125,
+        "bottom": 368,
+        "width": 326.328125,
+        "height": 361
+      },
+      "card": {
+        "left": 347,
+        "top": 7,
+        "right": 657,
+        "bottom": 368,
+        "width": 310,
+        "height": 361
+      },
+      "lia": {
+        "left": 523.328125,
+        "top": 126.5,
+        "right": 639.328125,
+        "bottom": 248.5,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 62.03125,
+          "right": 515.328125,
+          "bottom": 140.40625,
+          "width": 150.65625,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 144.40625,
+          "right": 515.328125,
+          "bottom": 203.1875,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 14,
+        "box": {
+          "left": 364.671875,
+          "top": 207.1875,
+          "right": 515.328125,
+          "bottom": 265.96875,
+          "width": 150.65625,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 367,
+          "right": 10,
+          "bottom": 368,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375
+    },
+    "hasClosureError": true,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true,
+      "closureErrorVisible": true,
+      "stayedInStationFive": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "667x375_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Preparando recorrido...",
+        "fontSize": 18.56,
+        "box": {
+          "left": 226,
+          "top": 0,
+          "right": 441,
+          "bottom": 22.265625,
+          "width": 215,
+          "height": 22.265625
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 633
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 18.56,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "667x375",
+      "width": 667,
+      "height": 375
+    },
+    "state": "06_final_arrival",
+    "screenshot": "667x375_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 667,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 1344
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "736x414",
+      "width": 736,
+      "height": 414
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "736x414_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 435.390625,
+        "top": 261.078125,
+        "right": 559.390625,
+        "bottom": 305.078125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 404.234375,
+        "bottom": 407,
+        "width": 394.234375,
+        "height": 400
+      },
+      "card": {
+        "left": 416,
+        "top": 7,
+        "right": 726,
+        "bottom": 407,
+        "width": 310,
+        "height": 400
+      },
+      "lia": {
+        "left": 590.609375,
+        "top": 146,
+        "right": 706.609375,
+        "bottom": 268,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 435.390625,
+          "top": 112.921875,
+          "right": 582.609375,
+          "bottom": 191.296875,
+          "width": 147.21875,
+          "height": 78.375
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 435.390625,
+          "top": 195.296875,
+          "right": 582.609375,
+          "bottom": 254.078125,
+          "width": 147.21875,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 406,
+          "right": 10,
+          "bottom": 407,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 736,
+      "clientHeight": 414,
+      "scrollWidth": 736,
+      "scrollHeight": 414
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "736x414",
+      "width": 736,
+      "height": 414
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "736x414_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 153,
+          "top": 0,
+          "right": 583,
+          "bottom": 610.40625,
+          "width": 430,
+          "height": 610.40625
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 736,
+      "clientHeight": 414,
+      "scrollWidth": 736,
+      "scrollHeight": 610
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "736x414",
+      "width": 736,
+      "height": 414
+    },
+    "state": "06_final_arrival",
+    "screenshot": "736x414_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 736,
+      "clientHeight": 414,
+      "scrollWidth": 736,
+      "scrollHeight": 1216
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "844x390_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 515.671875,
+        "top": 239.28125,
+        "right": 639.671875,
+        "bottom": 283.28125,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 10,
+        "top": 7,
+        "right": 480.078125,
+        "bottom": 383,
+        "width": 470.078125,
+        "height": 376
+      },
+      "card": {
+        "left": 493.578125,
+        "top": 7,
+        "right": 833.984375,
+        "bottom": 383,
+        "width": 340.40625,
+        "height": 376
+      },
+      "lia": {
+        "left": 695.890625,
+        "top": 134,
+        "right": 811.890625,
+        "bottom": 256,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 14,
+        "box": {
+          "left": 515.671875,
+          "top": 110.71875,
+          "right": 687.890625,
+          "bottom": 169.5,
+          "width": 172.21875,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 14,
+        "box": {
+          "left": 515.671875,
+          "top": 173.5,
+          "right": 687.890625,
+          "bottom": 232.28125,
+          "width": 172.21875,
+          "height": 58.78125
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 9,
+          "top": 382,
+          "right": 10,
+          "bottom": 383,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 14,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "844x390_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 207,
+          "top": 0,
+          "right": 637,
+          "bottom": 610.40625,
+          "width": 430,
+          "height": 610.40625
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 610
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "844x390",
+      "width": 844,
+      "height": 390
+    },
+    "state": "06_final_arrival",
+    "screenshot": "844x390_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 1216
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "768x1024_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 21,
+        "top": 927.890625,
+        "right": 145,
+        "bottom": 971.890625,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 8,
+        "top": 8,
+        "right": 760,
+        "bottom": 816,
+        "width": 752,
+        "height": 808
+      },
+      "card": {
+        "left": 8,
+        "top": 824,
+        "right": 760,
+        "bottom": 1016,
+        "width": 752,
+        "height": 192
+      },
+      "lia": {
+        "left": 633,
+        "top": 859,
+        "right": 749,
+        "bottom": 981,
+        "width": 116,
+        "height": 122
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 16,
+        "box": {
+          "left": 21,
+          "top": 872.109375,
+          "right": 625,
+          "bottom": 894.5,
+          "width": 604,
+          "height": 22.390625
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 16,
+        "box": {
+          "left": 21,
+          "top": 898.5,
+          "right": 625,
+          "bottom": 920.890625,
+          "width": 604,
+          "height": 22.390625
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 7,
+          "top": 1015,
+          "right": 8,
+          "bottom": 1016,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "768x1024_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Preparando recorrido...",
+        "fontSize": 18.56,
+        "box": {
+          "left": 276.5,
+          "top": 0,
+          "right": 491.5,
+          "bottom": 22.265625,
+          "width": 215,
+          "height": 22.265625
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1046
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 18.56,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024
+    },
+    "state": "06_final_arrival",
+    "screenshot": "768x1024_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 768,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1216
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "state": "02_overview_four_of_four",
+    "screenshot": "1024x768_02_overview_four_of_four.png",
+    "route": "/estacion/5",
+    "stationState": "map_overview",
+    "closeState": "closure_ready",
+    "closeReady": "true",
+    "globalComplete": "false",
+    "exitTarget": "/transition/world-5-to-final",
+    "closeButton": {
+      "box": {
+        "left": 645.78125,
+        "top": 447.265625,
+        "right": 769.78125,
+        "bottom": 491.265625,
+        "width": 124,
+        "height": 44
+      },
+      "visible": true,
+      "focused": false,
+      "disabled": false
+    },
+    "boxes": {
+      "stage": {
+        "left": 24,
+        "top": 16,
+        "right": 595.1875,
+        "bottom": 752,
+        "width": 571.1875,
+        "height": 736
+      },
+      "card": {
+        "left": 619.1875,
+        "top": 16,
+        "right": 1000,
+        "bottom": 752,
+        "width": 380.8125,
+        "height": 736
+      },
+      "lia": {
+        "left": 831.40625,
+        "top": 309,
+        "right": 973.40625,
+        "bottom": 459,
+        "width": 142,
+        "height": 150
+      },
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        "fontSize": 15.872,
+        "box": {
+          "left": 645.78125,
+          "top": 280.734375,
+          "right": 823.40625,
+          "bottom": 369.609375,
+          "width": 177.625,
+          "height": 88.875
+        }
+      },
+      {
+        "text": "Puedes volver a mirar cualquiera de las cuatro áreas.",
+        "fontSize": 15.872,
+        "box": {
+          "left": 645.78125,
+          "top": 373.609375,
+          "right": 823.40625,
+          "bottom": 440.265625,
+          "width": 177.625,
+          "height": 66.65625
+        }
+      },
+      {
+        "text": "",
+        "fontSize": 16,
+        "box": {
+          "left": 23,
+          "top": 751,
+          "right": 24,
+          "bottom": 752,
+          "width": 1,
+          "height": 1
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": false,
+    "minBodyFontSize": 15.872,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "stationOverview": true,
+      "noVerticalOverflow": true,
+      "textInsideViewport": true,
+      "bodyAtLeast14": true,
+      "closeVisible": true,
+      "closeTargetAtLeast44": true,
+      "closeDoesNotOverlapLia": true,
+      "closeDoesNotOverlapMap": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "state": "05_transition_world_five_to_final",
+    "screenshot": "1024x768_05_transition_world_five_to_final.png",
+    "route": "/transition/world-5-to-final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [
+      {
+        "text": "TEMP — Abriendo el MiradorTEMP — Preparando el cierre del recorrido.",
+        "fontSize": 16,
+        "box": {
+          "left": 297,
+          "top": 0,
+          "right": 727,
+          "bottom": 768,
+          "width": 430,
+          "height": 768
+        }
+      }
+    ],
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    "hasClosureError": false,
+    "transition": {
+      "id": "world-5-to-final",
+      "from": "/estacion/5",
+      "to": "/final",
+      "duration": "2300"
+    },
+    "finalVisible": false,
+    "minBodyFontSize": 16,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "transitionRoute": true,
+      "transitionContract": true
+    },
+    "pass": true
+  },
+  {
+    "viewport": {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "state": "06_final_arrival",
+    "screenshot": "1024x768_06_final_arrival.png",
+    "route": "/final",
+    "closeButton": null,
+    "boxes": {
+      "stage": null,
+      "card": null,
+      "lia": null,
+      "closeLiaOverlapArea": 0,
+      "closeStageOverlapArea": 0
+    },
+    "text": [],
+    "dimensions": {
+      "clientWidth": 1024,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 1216
+    },
+    "hasClosureError": false,
+    "transition": {},
+    "finalVisible": true,
+    "minBodyFontSize": null,
+    "telemetry": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses404": [],
+      "externalRequests": []
+    },
+    "checks": {
+      "noHorizontalOverflow": true,
+      "telemetryClean": true,
+      "finalRoute": true,
+      "finalVisible": true
+    },
+    "pass": true
+  }
+]

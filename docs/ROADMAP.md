@@ -1,6 +1,6 @@
 # Roadmap GVO
 
-Actualizado: 2026-07-22
+Actualizado: 2026-07-30
 
 ## Estado consolidado
 
@@ -9,32 +9,23 @@ Actualizado: 2026-07-22
 - Transición Mundo II → Mundo III: definitiva, pasiva y automática.
 - Mundo III / Estación III: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
 - Mundo IV / Estación IV: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
-- Mundo V: base Fable funcional, probada y documentada; visuales de área procedurales/reemplazables, no cerrada y no aprobada por revisión humana.
+- Mundo V: mapa, cuatro áreas y 4/4 bajo `ST5_020G_HUMAN_APPROVED`; cierre global y salida publicados como `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW`.
 - Final: experiencia temporal preexistente, no cerrada y no aprobada.
 
-## Siguiente frente real
+## Revisión activa
 
-El siguiente frente es exclusivamente:
-
-```text
-ST5-019A — read-only audit e inventario maestro
-```
-
-Esa auditoría debe confirmar el estado real de paths, base Fable, assets, copy,
-lógica, rutas, responsive, fullscreen/PWA, accesibilidad, deuda y riesgos. No
-autoriza todavía generar assets ni programar Estación V.
-
-Secuencia propuesta posterior, siempre sujeta a tickets separados y aprobación:
+El único umbral abierto es la revisión humana de 020H:
 
 ```text
-ST5-019A — read-only audit e inventario maestro
-ST5-019B — narrativa, interacción, cámara, responsive y blueprint
-ST5-ASSETS — producción uno por uno
-ST5-019C — static composition
-ST5-019D — immersive layout
-ST5-019E — motion/interaction
-ST5-019F — closeout
+overview 4/4 + CTA Ir al cierre
+→ persistencia global
+→ guardas de transición y Final
+→ transición W5→Final
+→ arribo al Mirador temporal
 ```
+
+No se declara todavía aprobación humana de 020H, cierre aprobado de Final ni
+autorización para construir el Mirador.
 
 ## Gates obligatorios para Estación V
 
@@ -59,6 +50,6 @@ preproducción.
 
 - No reabrir Estación IV salvo regresión reproducible.
 - No alterar copy o rutas de transiciones marcadas `TEMP` sin ticket específico.
-- No declarar Mundo V cerrado, asset-complete o `HUMAN_APPROVED`.
+- No promover 020H a `HUMAN_APPROVED` sin decisión explícita del usuario.
 - No iniciar Mundo VI.
 - No cerrar el Mirador final por inferencia.

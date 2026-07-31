@@ -1,0 +1,21 @@
+{
+  "ticket": "ST5-020H",
+  "viewportCount": 11,
+  "priorityViewportCount": 4,
+  "captureCount": 45,
+  "passed": 45,
+  "failed": [],
+  "minBodyFontSize": 14,
+  "minCloseTarget": 44,
+  "maxHorizontalOverflow": 0,
+  "telemetry": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "responses404": [],
+    "externalRequests": []
+  },
+  "browserMatrix": "browser_matrix.json",
+  "finalEvidenceScope": "Arrival only; this is not human approval of Final.",
+  "pass": true
+}

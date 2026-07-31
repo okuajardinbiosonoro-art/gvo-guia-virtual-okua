@@ -8,12 +8,19 @@ import {
   worldFivePlantsRoute,
   worldFiveSpaceRoute,
   worldFiveSystemRoute,
+  worldFiveToFinalTransitionRoute,
   worldFiveVisitorRoute,
 } from "../../app/routes";
+import {
+  canOpenFinal,
+  markStationCompleted,
+  readProgress,
+} from "../../domain/progress/progress.storage";
 import { ProjectedRasterStage } from "./ProjectedRasterStage";
 import {
   station5Areas,
   station5ContentApprovalStatus,
+  station5FixedCta,
   station5PlantsCopy,
   station5SpaceCopy,
   station5SystemCopy,
@@ -40,6 +47,7 @@ import {
 type TraversableArea = "plantas" | "sistema" | "espacio" | "visitante";
 type AreaVisualState = "locked" | "available" | "completed";
 type TransitionMode = "entering" | "returning";
+type ClosurePhase = "idle" | "persisting" | "error" | "complete";
 
 export type Station5PresentationState =
   | "map_overview"
@@ -170,8 +178,18 @@ export function World5RootScreen() {
   const [errorArea, setErrorArea] = useState<TraversableArea | null>(null);
   const [blockedArea, setBlockedArea] = useState<Station5AreaId | null>(null);
   const [announcement, setAnnouncement] = useState("");
+  const [closurePhase, setClosurePhase] = useState<ClosurePhase>("idle");
+  const [globalComplete, setGlobalComplete] = useState(() => {
+    try {
+      return canOpenFinal(readProgress());
+    } catch {
+      return false;
+    }
+  });
   const epochRef = useRef(0);
   const timerRef = useRef<number | null>(null);
+  const closureLockRef = useRef(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const plantsButtonRef = useRef<HTMLButtonElement>(null);
   const systemButtonRef = useRef<HTMLButtonElement>(null);
   const spaceButtonRef = useRef<HTMLButtonElement>(null);
@@ -187,6 +205,17 @@ export function World5RootScreen() {
   const mapActive =
     presentation === "map_overview" || presentation === "map_blocked_feedback";
   const motionLock = presentation === "transitioning";
+  const closeReady =
+    location.pathname === worldFiveEntryRoute &&
+    presentation === "map_overview" &&
+    visitorCompleted &&
+    !motionLock;
+  const closeState =
+    closurePhase === "idle"
+      ? closeReady
+        ? "closure_ready"
+        : "closure_unavailable"
+      : `closure_${closurePhase}`;
   const activeArea = stateArea(presentation, transitionArea, errorArea);
   const renderMapAssets = mapActive || motionLock;
   const renderPlantsAssets = activeArea === "plantas";
@@ -440,6 +469,38 @@ export function World5RootScreen() {
     setAnnouncement("");
   }, [errorArea, presentation]);
 
+  const closeStation = useCallback(() => {
+    if (!closeReady || closureLockRef.current) return;
+
+    closureLockRef.current = true;
+    setClosurePhase("persisting");
+    setAnnouncement("");
+
+    try {
+      const currentGlobalProgress = readProgress();
+      if (!currentGlobalProgress.completedStations.includes(5)) {
+        markStationCompleted(5);
+      }
+
+      const verifiedGlobalProgress = readProgress();
+      if (!canOpenFinal(verifiedGlobalProgress)) {
+        throw new Error("station_5_completion_not_verified");
+      }
+
+      setGlobalComplete(true);
+      setClosurePhase("complete");
+      navigate(worldFiveToFinalTransitionRoute);
+    } catch {
+      closureLockRef.current = false;
+      setGlobalComplete(false);
+      setClosurePhase("error");
+      setAnnouncement("No fue posible guardar el cierre. Inténtalo de nuevo.");
+      window.queueMicrotask(() => {
+        closeButtonRef.current?.focus({ preventScroll: true });
+      });
+    }
+  }, [closeReady, navigate]);
+
   const returnToMap = useCallback(() => {
     if (!activeArea || !completed(progress, activeArea)) return;
     const expected = resolvedStates[activeArea];
@@ -495,8 +556,7 @@ export function World5RootScreen() {
   const overviewCopy = useMemo(() => {
     if (visitorCompleted) {
       return {
-        lead:
-          "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
+        lead: "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
         support: "Puedes volver a mirar cualquiera de las cuatro áreas.",
       };
     }
@@ -527,9 +587,9 @@ export function World5RootScreen() {
   const blockedGuidance =
     blockedArea === "sistema"
       ? "Completa Plantas para habilitar Sistema."
-        : blockedArea === "espacio"
-          ? "Completa Sistema para habilitar Espacio."
-          : "Completa Espacio para habilitar Visitante.";
+      : blockedArea === "espacio"
+        ? "Completa Sistema para habilitar Espacio."
+        : "Completa Espacio para habilitar Visitante.";
 
   const renderAreaAction = (area: Station5AreaId) => {
     if (area === "plantas") return () => enterArea("plantas");
@@ -556,6 +616,10 @@ export function World5RootScreen() {
       data-station5-reduced-motion={reducedMotion ? "true" : "false"}
       data-station5-state={presentation}
       data-transition-mode={transitionMode ?? "none"}
+      data-world5-close-ready={closeReady ? "true" : "false"}
+      data-world5-close-state={closeState}
+      data-world5-exit-target={worldFiveToFinalTransitionRoute}
+      data-world5-global-complete={globalComplete ? "true" : "false"}
       aria-labelledby={mapActive ? "station5-map-title" : "station5-title"}
     >
       <div className="s5-layout">
@@ -965,6 +1029,17 @@ export function World5RootScreen() {
                 >
                   Volver al mapa general
                 </button>
+              ) : closeReady ? (
+                <button
+                  ref={closeButtonRef}
+                  className="s5-close-action"
+                  type="button"
+                  aria-busy={closurePhase === "persisting" ? "true" : "false"}
+                  disabled={closurePhase === "persisting"}
+                  onClick={closeStation}
+                >
+                  {station5FixedCta}
+                </button>
               ) : undefined
             }
             context={
@@ -987,6 +1062,11 @@ export function World5RootScreen() {
               presentation === "map_blocked_feedback"
                 ? "Tu avance y tu ubicación no cambiaron."
                 : overviewCopy.support
+            }
+            status={
+              closurePhase === "error"
+                ? "No fue posible guardar el cierre. Inténtalo de nuevo."
+                : undefined
             }
             liaAsset={liaAsset}
             liaRole={liaRole}
