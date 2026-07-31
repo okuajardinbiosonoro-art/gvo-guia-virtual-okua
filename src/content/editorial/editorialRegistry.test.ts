@@ -44,34 +44,46 @@ describe("editorialRegistry", () => {
     expect(slot.text).toBe("Abriendo Mundo II");
   });
 
-  it("resuelve el copy final W2 W3 y conserva temporales los slots posteriores", () => {
+  it("resuelve el copy final de todas las transiciones y conserva los gaps de estaciones", () => {
+    expect(resolveEditorialText("TRANS_COVER_W1_TITLE_01").text).toBe(
+      "Abriendo Mundo I",
+    );
+    expect(resolveEditorialText("TRANS_COVER_W1_SUB_01").text).toBe(
+      "Preparando la raíz.",
+    );
+    expect(resolveEditorialText("TRANS_W1_W2_TITLE_01").text).toBe(
+      "Abriendo Mundo II",
+    );
+    expect(resolveEditorialText("TRANS_W1_W2_SUB_01").text).toBe(
+      "Preparando el pulso invisible.",
+    );
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").text).toBe(
       "Abriendo Mundo III",
     );
     expect(resolveEditorialText("TRANS_W2_W3_SUB_01").text).toBe(
-      "Preparando el Cuaderno Pixel de Pruebas…",
+      "Preparando el cuaderno de pruebas.",
     );
     expect(resolveEditorialText("TRANS_W2_W3_TITLE_01").status).toBe("FINAL");
     expect(resolveEditorialText("TRANS_W2_W3_SUB_01").source).toBe(
       "human_approved",
     );
     expect(resolveEditorialText("TRANS_W3_W4_TITLE_01").text).toBe(
-      "TEMP — Abriendo Mundo IV",
+      "Abriendo Mundo IV",
     );
     expect(resolveEditorialText("TRANS_W3_W4_SUB_01").text).toBe(
-      "TEMP — Preparando la mesa del sistema.",
+      "Preparando la mesa de sistema.",
     );
     expect(resolveEditorialText("TRANS_W4_W5_TITLE_01").text).toBe(
-      "TEMP — Abriendo Mundo V",
+      "Abriendo Mundo V",
     );
     expect(resolveEditorialText("TRANS_W4_W5_SUB_01").text).toBe(
-      "TEMP — Preparando el mapa del presente.",
+      "Preparando el mapa del presente.",
     );
     expect(resolveEditorialText("TRANS_W5_FINAL_TITLE_01").text).toBe(
-      "TEMP — Abriendo el Mirador",
+      "Abriendo el Mirador",
     );
     expect(resolveEditorialText("TRANS_W5_FINAL_SUB_01").text).toBe(
-      "TEMP — Preparando el cierre del recorrido.",
+      "Preparando el cierre del recorrido.",
     );
     expect(resolveEditorialText("W3_INTRO_LIA_01").text).toBe(
       "TEMP — Este cuaderno guarda pruebas, errores y ajustes del sistema.",
@@ -247,10 +259,20 @@ describe("editorialRegistry", () => {
     ).toThrow("Editorial slot not registered: W2_SLOT_INEXISTENTE");
   });
 
-  it("preserva la metadata final W2 W3 y deja temporales los gaps reales", () => {
+  it("preserva metadata final solo para las transiciones cerradas y deja temporales los gaps reales", () => {
     const finalSlotIds = new Set([
+      "TRANS_COVER_W1_TITLE_01",
+      "TRANS_COVER_W1_SUB_01",
+      "TRANS_W1_W2_TITLE_01",
+      "TRANS_W1_W2_SUB_01",
       "TRANS_W2_W3_TITLE_01",
       "TRANS_W2_W3_SUB_01",
+      "TRANS_W3_W4_TITLE_01",
+      "TRANS_W3_W4_SUB_01",
+      "TRANS_W4_W5_TITLE_01",
+      "TRANS_W4_W5_SUB_01",
+      "TRANS_W5_FINAL_TITLE_01",
+      "TRANS_W5_FINAL_SUB_01",
     ]);
 
     for (const localizedEntries of Object.values(editorialRegistry)) {

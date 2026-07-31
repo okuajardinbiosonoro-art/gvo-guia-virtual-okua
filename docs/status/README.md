@@ -13,7 +13,8 @@ Este directorio conserva dos clases de documentos: contratos canónicos vigentes
 | [GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md](GVO_ST5_020B_LIA_Y_VERTICAL_SLICE_SISTEMA.md)                                           | Evidencia técnica de Lía y vertical slice Sistema, pendiente de aprobación humana.                           |
 | [GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md](GVO_ST5_020F_ESPACIO_Y_CORRECCION_TEXTO_LANDSCAPE.md)                           | Integración de Espacio y corrección acotada del rail editorial landscape, pendientes de revisión humana.     |
 | [GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md](GVO_ST5_020G_VISITANTE_Y_ESTADO_4_DE_4_PARA_REVISION.md)                     | Integración histórica de Visitante y estado interno 4/4; aprobada humanamente como entrada de 020H.          |
-| [GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md](GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md) | Cierre global controlado de Estación V, guardas y salida W5→Final; publicado y pendiente de revisión humana. |
+| [GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md](GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md) | Registro histórico del cierre controlado de Estación V antes de su aprobación humana.                       |
+| [GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md](GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md)                         | Cierre editorial final de las seis transiciones y aprobación humana de 020H.                                |
 | [WORLD_II_FINAL.md](../worlds/WORLD_II_FINAL.md)                                                                                       | Contrato final vigente de Mundo II.                                                                          |
 | [Arquitectura técnica](../05_ARQUITECTURA_TECNICA.md)                                                                                  | Arquitectura y contratos runtime actuales.                                                                   |
 | [Inventario de assets](../assets/ASSET_INVENTORY.md)                                                                                   | Trazabilidad de assets runtime y copias `current-used`.                                                      |
@@ -35,7 +36,8 @@ Estación IV está `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`) en `/estacion/4` 
 
 ## Estado de Estación V
 
-`ST5_020G_HUMAN_APPROVED` protege mapa, cuatro áreas, 4/4, composición y
-responsive. `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW` publica `Ir al cierre`,
-la escritura global verificada, las guardas de transición/Final y el arribo al
-Mirador temporal. La aprobación humana de 020H y de Final no se declaran.
+`ST5_020H_HUMAN_APPROVED` cierra Estación V para el alcance actual: mapa, cuatro
+áreas, 4/4, `Ir al cierre`, persistencia global, guardas y salida al Mirador
+temporal. `ST5_020I_PUBLISHED_COMPLETE` y
+`TRANSITION_COPY_AUDIT_COMPLETE` formalizan las doce piezas de las seis
+transiciones. La Pantalla Final continúa temporal, no cerrada y no aprobada.

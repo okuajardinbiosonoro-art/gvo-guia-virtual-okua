@@ -125,8 +125,8 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
     ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
-  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(page.getByText("Abriendo Mundo I")).toBeVisible();
+  await expect(page.getByText("Preparando la raíz.")).toBeVisible();
   await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
     timeout: 5000,
   });
@@ -210,8 +210,8 @@ test("reduced motion conserva diálogos y gating en /portada", async ({
     page.getByRole("button", { name: "Entrar a Mundo I" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
-  await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+  await expect(page.getByText("Abriendo Mundo I")).toBeVisible();
+  await expect(page.getByText("Preparando la raíz.")).toBeVisible();
   await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
     timeout: 5000,
   });

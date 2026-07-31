@@ -89,9 +89,9 @@ test.describe("T003E8 flujo Portada a Transición y Mundo I", () => {
         timeout: 5000,
       });
       await expect(
-        page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+        page.getByRole("heading", { name: "Abriendo Mundo I" }),
       ).toBeVisible();
-      await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+      await expect(page.getByText("Preparando la raíz.")).toBeVisible();
       await expect(page.locator("main")).toHaveAttribute(
         "data-transition-world-variant",
         "runtime",

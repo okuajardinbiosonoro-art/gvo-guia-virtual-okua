@@ -1,0 +1,751 @@
+{
+  "state": "ST5_020I_BROWSER_PASS",
+  "browser": "chromium",
+  "measurements": [
+    {
+      "id": "intro-to-station-1",
+      "route": "/transition/intro-to-station-1",
+      "fromRoute": "/portada",
+      "toRoute": "/estacion/1",
+      "title": "Abriendo Mundo I",
+      "subtitle": "Preparando la raíz.",
+      "titleSlotId": "TRANS_COVER_W1_TITLE_01",
+      "subtitleSlotId": "TRANS_COVER_W1_SUB_01",
+      "targetPreload": "world1RootInitial",
+      "screenshot": "375x667_01_intro-to-station-1.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo Mundo I",
+        "subtitle": "Preparando la raíz.",
+        "fromRoute": "/portada",
+        "toRoute": "/estacion/1",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "world1RootInitial",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_COVER_W1_TITLE_01",
+        "subtitleSlotId": "TRANS_COVER_W1_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 117.5,
+          "y": 399,
+          "width": 140,
+          "height": 18.65625,
+          "right": 257.5,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 120,
+          "y": 424.65625,
+          "width": 135,
+          "height": 15.953125,
+          "right": 255,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 66.50416564941406,
+          "y": 26.032073974609375,
+          "width": 241.99168395996094,
+          "height": 362.98748779296875,
+          "right": 308.495849609375,
+          "bottom": 389.0195617675781
+        },
+        "portalVisibleRect": {
+          "x": 116.13136646151543,
+          "y": 54.39047145843506,
+          "width": 146.5184023976326,
+          "height": 303.4348530769348,
+          "right": 262.649768859148,
+          "bottom": 357.8253245353699
+        },
+        "liaRect": {
+          "x": -8.29345989227295,
+          "y": 188.4124298095703,
+          "width": 95.00438690185547,
+          "height": 95.00440979003906,
+          "right": 86.71092700958252,
+          "bottom": 283.4168395996094
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    },
+    {
+      "id": "world-1-to-world-2",
+      "route": "/transition/world-1-to-world-2",
+      "fromRoute": "/estacion/1",
+      "toRoute": "/estacion/2",
+      "title": "Abriendo Mundo II",
+      "subtitle": "Preparando el pulso invisible.",
+      "titleSlotId": "TRANS_W1_W2_TITLE_01",
+      "subtitleSlotId": "TRANS_W1_W2_SUB_01",
+      "targetPreload": "none",
+      "screenshot": "375x667_02_world-1-to-world-2.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo Mundo II",
+        "subtitle": "Preparando el pulso invisible.",
+        "fromRoute": "/estacion/1",
+        "toRoute": "/estacion/2",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "none",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_W1_W2_TITLE_01",
+        "subtitleSlotId": "TRANS_W1_W2_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 114,
+          "y": 399,
+          "width": 147,
+          "height": 18.65625,
+          "right": 261,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 91,
+          "y": 424.65625,
+          "width": 193,
+          "height": 15.953125,
+          "right": 284,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 67.46800231933594,
+          "y": 33.451995849609375,
+          "width": 240.06398010253906,
+          "height": 360.09600830078125,
+          "right": 307.531982421875,
+          "bottom": 393.5480041503906
+        },
+        "portalVisibleRect": {
+          "x": 116.69987323880196,
+          "y": 61.58449649810791,
+          "width": 145.3512379527092,
+          "height": 301.0177569389343,
+          "right": 262.05111119151115,
+          "bottom": 362.60225343704224
+        },
+        "liaRect": {
+          "x": -16.507282257080078,
+          "y": 192.22201538085938,
+          "width": 95.37188720703125,
+          "height": 95.37188720703125,
+          "right": 78.86460494995117,
+          "bottom": 287.5939025878906
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    },
+    {
+      "id": "world-2-to-world-3",
+      "route": "/transition/world-2-to-world-3",
+      "fromRoute": "/estacion/2",
+      "toRoute": "/estacion/3",
+      "title": "Abriendo Mundo III",
+      "subtitle": "Preparando el cuaderno de pruebas.",
+      "titleSlotId": "TRANS_W2_W3_TITLE_01",
+      "subtitleSlotId": "TRANS_W2_W3_SUB_01",
+      "targetPreload": "none",
+      "screenshot": "375x667_03_world-2-to-world-3.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo Mundo III",
+        "subtitle": "Preparando el cuaderno de pruebas.",
+        "fromRoute": "/estacion/2",
+        "toRoute": "/estacion/3",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "none",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_W2_W3_TITLE_01",
+        "subtitleSlotId": "TRANS_W2_W3_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 110.5,
+          "y": 399,
+          "width": 154,
+          "height": 18.65625,
+          "right": 264.5,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 63,
+          "y": 424.65625,
+          "width": 249,
+          "height": 15.953125,
+          "right": 312,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 66.63562774658203,
+          "y": 27.044097900390625,
+          "width": 241.728759765625,
+          "height": 362.5931396484375,
+          "right": 308.36438751220703,
+          "bottom": 389.6372375488281
+        },
+        "portalVisibleRect": {
+          "x": 116.20890855789185,
+          "y": 55.371686935424805,
+          "width": 146.35921001434326,
+          "height": 303.1052026748657,
+          "right": 262.5681185722351,
+          "bottom": 358.4768896102905
+        },
+        "liaRect": {
+          "x": -16.507282257080078,
+          "y": 192.22201538085938,
+          "width": 95.37188720703125,
+          "height": 95.37188720703125,
+          "right": 78.86460494995117,
+          "bottom": 287.5939025878906
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    },
+    {
+      "id": "world-3-to-world-4",
+      "route": "/transition/world-3-to-world-4",
+      "fromRoute": "/estacion/3",
+      "toRoute": "/estacion/4",
+      "title": "Abriendo Mundo IV",
+      "subtitle": "Preparando la mesa de sistema.",
+      "titleSlotId": "TRANS_W3_W4_TITLE_01",
+      "subtitleSlotId": "TRANS_W3_W4_SUB_01",
+      "targetPreload": "none",
+      "screenshot": "375x667_04_world-3-to-world-4.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo Mundo IV",
+        "subtitle": "Preparando la mesa de sistema.",
+        "fromRoute": "/estacion/3",
+        "toRoute": "/estacion/4",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "none",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_W3_W4_TITLE_01",
+        "subtitleSlotId": "TRANS_W3_W4_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 112.5,
+          "y": 399,
+          "width": 150,
+          "height": 18.65625,
+          "right": 262.5,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 76,
+          "y": 424.65625,
+          "width": 223,
+          "height": 15.953125,
+          "right": 299,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 66.60520935058594,
+          "y": 26.8099365234375,
+          "width": 241.78956604003906,
+          "height": 362.6843566894531,
+          "right": 308.394775390625,
+          "bottom": 389.4942932128906
+        },
+        "portalVisibleRect": {
+          "x": 116.19096019864082,
+          "y": 55.144651889801025,
+          "width": 146.3960263133049,
+          "height": 303.1814544200897,
+          "right": 262.5869865119457,
+          "bottom": 358.32610630989075
+        },
+        "liaRect": {
+          "x": -16.507282257080078,
+          "y": 192.22201538085938,
+          "width": 95.37188720703125,
+          "height": 95.37188720703125,
+          "right": 78.86460494995117,
+          "bottom": 287.5939025878906
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    },
+    {
+      "id": "world-4-to-world-5",
+      "route": "/transition/world-4-to-world-5",
+      "fromRoute": "/estacion/4",
+      "toRoute": "/estacion/5",
+      "title": "Abriendo Mundo V",
+      "subtitle": "Preparando el mapa del presente.",
+      "titleSlotId": "TRANS_W4_W5_TITLE_01",
+      "subtitleSlotId": "TRANS_W4_W5_SUB_01",
+      "targetPreload": "none",
+      "screenshot": "375x667_05_world-4-to-world-5.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo Mundo V",
+        "subtitle": "Preparando el mapa del presente.",
+        "fromRoute": "/estacion/4",
+        "toRoute": "/estacion/5",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "none",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_W4_W5_TITLE_01",
+        "subtitleSlotId": "TRANS_W4_W5_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 116,
+          "y": 399,
+          "width": 143,
+          "height": 18.65625,
+          "right": 259,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 71,
+          "y": 424.65625,
+          "width": 233,
+          "height": 15.953125,
+          "right": 304,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 66.56224060058594,
+          "y": 26.479156494140625,
+          "width": 241.87550354003906,
+          "height": 362.8132629394531,
+          "right": 308.437744140625,
+          "bottom": 389.29241943359375
+        },
+        "portalVisibleRect": {
+          "x": 116.16561535000801,
+          "y": 54.8239426612854,
+          "width": 146.44805878400803,
+          "height": 303.2892119884491,
+          "right": 262.61367413401604,
+          "bottom": 358.1131546497345
+        },
+        "liaRect": {
+          "x": -16.507282257080078,
+          "y": 192.22201538085938,
+          "width": 95.37188720703125,
+          "height": 95.37188720703125,
+          "right": 78.86460494995117,
+          "bottom": 287.5939025878906
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    },
+    {
+      "id": "world-5-to-final",
+      "route": "/transition/world-5-to-final",
+      "fromRoute": "/estacion/5",
+      "toRoute": "/final",
+      "title": "Abriendo el Mirador",
+      "subtitle": "Preparando el cierre del recorrido.",
+      "titleSlotId": "TRANS_W5_FINAL_TITLE_01",
+      "subtitleSlotId": "TRANS_W5_FINAL_SUB_01",
+      "targetPreload": "none",
+      "screenshot": "375x667_06_world-5-to-final.png",
+      "viewport": {
+        "name": "375x667",
+        "width": 375,
+        "height": 667
+      },
+      "runtimeSnapshot": {
+        "title": "Abriendo el Mirador",
+        "subtitle": "Preparando el cierre del recorrido.",
+        "fromRoute": "/estacion/5",
+        "toRoute": "/final",
+        "durationMs": "2300",
+        "reducedMotionDurationMs": "1000",
+        "targetPreload": "none",
+        "portalState": "open",
+        "editorialCopyStatus": "final",
+        "titleSlotId": "TRANS_W5_FINAL_TITLE_01",
+        "subtitleSlotId": "TRANS_W5_FINAL_SUB_01",
+        "interactiveControlCount": 0,
+        "containsForbiddenCopy": false,
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "landscapeCompactMediaQueryActive": false,
+        "documentScroll": {
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "scrollWidth": 375,
+          "clientWidth": 375
+        },
+        "horizontalOverflow": 0,
+        "verticalOverflow": 0,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "internalScroll": {
+          "rootX": 0,
+          "rootY": 0,
+          "stageX": 0,
+          "stageY": 0
+        },
+        "fontSizes": {
+          "title": 17.28,
+          "subtitle": 14.25
+        },
+        "titleRect": {
+          "x": 107,
+          "y": 399,
+          "width": 161,
+          "height": 18.65625,
+          "right": 268,
+          "bottom": 417.65625
+        },
+        "subtitleRect": {
+          "x": 68,
+          "y": 424.65625,
+          "width": 239,
+          "height": 15.953125,
+          "right": 307,
+          "bottom": 440.609375
+        },
+        "portalRect": {
+          "x": 66.63556671142578,
+          "y": 27.043670654296875,
+          "width": 241.7288818359375,
+          "height": 362.5932922363281,
+          "right": 308.3644485473633,
+          "bottom": 389.636962890625
+        },
+        "portalVisibleRect": {
+          "x": 116.2088725566864,
+          "y": 55.37127161026001,
+          "width": 146.35928392410278,
+          "height": 303.10533022880554,
+          "right": 262.5681564807892,
+          "bottom": 358.47660183906555
+        },
+        "liaRect": {
+          "x": -16.507282257080078,
+          "y": 192.22201538085938,
+          "width": 95.37188720703125,
+          "height": 95.37188720703125,
+          "right": 78.86460494995117,
+          "bottom": 287.5939025878906
+        },
+        "progressRect": {
+          "x": 37.5,
+          "y": 452.609375,
+          "width": 300,
+          "height": 25,
+          "right": 337.5,
+          "bottom": 477.609375
+        },
+        "copyOverlapsVisuals": {
+          "titlePortal": false,
+          "titleLia": false,
+          "titleProgress": false,
+          "subtitlePortal": false,
+          "subtitleLia": false,
+          "subtitleProgress": false,
+          "titleSubtitle": false
+        },
+        "visualElementsPresent": {
+          "portal": true,
+          "lia": true,
+          "progress": true
+        }
+      },
+      "destinationNavigations": 1,
+      "storageUnchanged": true
+    }
+  ],
+  "telemetry": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "responses404": [],
+    "externalRequests": []
+  }
+}

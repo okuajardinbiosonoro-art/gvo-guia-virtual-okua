@@ -8,6 +8,7 @@ import {
   worldTwoEntryRoute,
 } from "../../app/routes";
 import {
+  coverToWorldOneTransitionCopy,
   worldFiveToFinalTransitionCopy,
   worldFourToWorldFiveTransitionCopy,
   worldOneToWorldTwoTransitionCopy,
@@ -18,12 +19,15 @@ import {
 export const TRANSITION_WORLD_VERSION = "T003E7C_TYPOGRAPHY_TOKENS";
 
 export const introToStationOneTransition: TransitionWorldConfig = {
+  editorialCopyStatus: coverToWorldOneTransitionCopy.title.status,
   id: "intro-to-station-1",
   fromRoute: "/portada",
   toRoute: worldOneEntryRoute,
   targetPreload: "world1RootInitial",
-  title: "Abriendo Mundo I: Raíz...",
-  subtitle: "Preparando recorrido...",
+  title: coverToWorldOneTransitionCopy.title.text,
+  titleSlotId: coverToWorldOneTransitionCopy.title.id,
+  subtitle: coverToWorldOneTransitionCopy.subtitle.text,
+  subtitleSlotId: coverToWorldOneTransitionCopy.subtitle.id,
   durationMs: 2300,
   reducedMotionDurationMs: 1000,
   portalLabel: "Portal de transición hacia Mundo I: Raíz",

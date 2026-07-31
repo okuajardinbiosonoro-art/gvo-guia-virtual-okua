@@ -56,19 +56,37 @@ function finalEsEntry<SlotId extends string>({
 }
 
 export const editorialRegistry = {
-  TRANS_W1_W2_TITLE_01: {
-    es: temporaryEsEntry({
+  TRANS_COVER_W1_TITLE_01: {
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de transición W1→W2; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición Portada→W1 aprobado en ST5-020I.",
+      shortText: "Abriendo Mundo I",
+      slotId: "TRANS_COVER_W1_TITLE_01",
+      text: "Abriendo Mundo I",
+    }),
+  },
+  TRANS_COVER_W1_SUB_01: {
+    es: finalEsEntry({
+      emitter: "ambiente",
+      notes: "Copy definitivo de transición Portada→W1 aprobado en ST5-020I.",
+      shortText: "Raíz",
+      slotId: "TRANS_COVER_W1_SUB_01",
+      text: "Preparando la raíz.",
+    }),
+  },
+  TRANS_W1_W2_TITLE_01: {
+    es: finalEsEntry({
+      emitter: "interfaz",
+      notes: "Copy definitivo de transición W1→W2 aprobado en ST5-020I.",
       shortText: "Abriendo Mundo II",
       slotId: "TRANS_W1_W2_TITLE_01",
       text: "Abriendo Mundo II",
     }),
   },
   TRANS_W1_W2_SUB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W1→W2; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición W1→W2 aprobado en ST5-020I.",
       shortText: "Pulso invisible",
       slotId: "TRANS_W1_W2_SUB_01",
       text: "Preparando el pulso invisible.",
@@ -86,64 +104,64 @@ export const editorialRegistry = {
   TRANS_W2_W3_SUB_01: {
     es: finalEsEntry({
       emitter: "ambiente",
-      notes: "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
-      shortText: "Cuaderno Pixel de Pruebas",
+      notes: "Copy definitivo de transición W2→W3 reconciliado en ST5-020I.",
+      shortText: "Cuaderno de pruebas",
       slotId: "TRANS_W2_W3_SUB_01",
-      text: "Preparando el Cuaderno Pixel de Pruebas…",
+      text: "Preparando el cuaderno de pruebas.",
     }),
   },
   TRANS_W3_W4_TITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de transición W3→W4; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición W3→W4 aprobado en ST5-020I.",
       shortText: "Abriendo Mundo IV",
       slotId: "TRANS_W3_W4_TITLE_01",
-      text: "TEMP — Abriendo Mundo IV",
+      text: "Abriendo Mundo IV",
     }),
   },
   TRANS_W3_W4_SUB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W3→W4; prepara entrada base de Mundo IV.",
-      shortText: "Mesa del sistema",
+      notes: "Copy definitivo de transición W3→W4 aprobado en ST5-020I.",
+      shortText: "Mesa de sistema",
       slotId: "TRANS_W3_W4_SUB_01",
-      text: "TEMP — Preparando la mesa del sistema.",
+      text: "Preparando la mesa de sistema.",
     }),
   },
   TRANS_W4_W5_TITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de transición W4→W5; prepara entrada base de Mundo V.",
+      notes: "Copy definitivo de transición W4→W5 aprobado en ST5-020I.",
       shortText: "Abriendo Mundo V",
       slotId: "TRANS_W4_W5_TITLE_01",
-      text: "TEMP — Abriendo Mundo V",
+      text: "Abriendo Mundo V",
     }),
   },
   TRANS_W4_W5_SUB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W4→W5; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición W4→W5 aprobado en ST5-020I.",
       shortText: "Mapa del presente",
       slotId: "TRANS_W4_W5_SUB_01",
-      text: "TEMP — Preparando el mapa del presente.",
+      text: "Preparando el mapa del presente.",
     }),
   },
   TRANS_W5_FINAL_TITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de transición W5→Final; prepara entrada base Mirador.",
+      notes: "Copy definitivo de transición W5→Final aprobado en ST5-020I.",
       shortText: "Abriendo el Mirador",
       slotId: "TRANS_W5_FINAL_TITLE_01",
-      text: "TEMP — Abriendo el Mirador",
+      text: "Abriendo el Mirador",
     }),
   },
   TRANS_W5_FINAL_SUB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de transición W5→Final; reemplazar por Excel editorial.",
+      notes: "Copy definitivo de transición W5→Final aprobado en ST5-020I.",
       shortText: "Cierre del recorrido",
       slotId: "TRANS_W5_FINAL_SUB_01",
-      text: "TEMP — Preparando el cierre del recorrido.",
+      text: "Preparando el cierre del recorrido.",
     }),
   },
   W1_ACCESSIBLE_SCENE_01: {

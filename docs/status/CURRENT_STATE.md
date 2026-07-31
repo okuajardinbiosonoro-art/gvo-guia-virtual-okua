@@ -20,13 +20,11 @@ Actualizado: 2026-07-30
 | Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                        |
 | Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                              |
 | Mundo II      | Finalizado para el alcance actual.                                                                                                                                                                            |
-| W2→W3         | Definitiva, pasiva y automática.                                                                                                                                                                              |
+| Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                           |
 | Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
-| W3→W4         | Ruta runtime existente; copy editorial todavía `TEMP`.                                                                                                                                                        |
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
-| W4→W5         | Ruta runtime existente; copy editorial todavía `TEMP`.                                                                                                                                                        |
-| Mundo V       | `ST5_020G_HUMAN_APPROVED`; `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW` publica el CTA de cierre desde 4/4, persistencia global verificada y guardas de salida. La aprobación humana de 020H continúa pendiente. |
-| W5→Final      | Ruta existente con copy editorial `TEMP`; protegida hasta completar globalmente Estación V y validada como salida de 020H.                                                                                    |
+| Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                         |
+| W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                  |
 | Final         | Experiencia temporal preexistente; no cerrada ni aprobada.                                                                                                                                                    |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
@@ -100,10 +98,13 @@ humanamente aprobados por `ST5_020G_HUMAN_APPROVED`. El progreso local
 `['plantas','sistema','espacio','visitante']`; tras 4/4 permite revisita libre
 de las cuatro áreas.
 
-`ST5-020H` muestra `Ir al cierre` solo en el overview 4/4. La activación verifica
+`ST5-020H`, aprobado humanamente, muestra `Ir al cierre` solo en el overview
+4/4. La activación verifica
 la escritura de Estación V en `gvo.progress.v1` antes de entrar a la transición
 W5→Final; un fallo conserva el 4/4 y permite reintentar. La transición y Final
 están protegidas antes del cierre global. La evidencia técnica vigente está en
 [GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md](GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md).
-`ST5-020H` aún no tiene aprobación humana y Final continúa temporal, no cerrada
-ni aprobada. Los registros 020A–020G permanecen históricos y no se reescriben.
+El cierre editorial global está en
+[GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md](GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md).
+Final continúa temporal, no cerrada ni aprobada. Los registros 020A–020H
+permanecen históricos y no se reescriben.

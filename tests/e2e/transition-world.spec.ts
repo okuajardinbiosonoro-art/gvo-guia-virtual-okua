@@ -23,7 +23,7 @@ test("preview tecnico de transicion entre mundos conserva base no interactiva", 
   await page.goto("/dev/transition-world");
 
   await expect(
-    page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+    page.getByRole("heading", { name: "Abriendo Mundo I" }),
   ).toBeVisible();
   await expect(
     page.getByTestId("transition-world-background-real"),
@@ -241,10 +241,10 @@ test("ruta runtime de transicion navega una sola vez al destino", async ({
   await page.goto("/transition/intro-to-station-1");
 
   await expect(
-    page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+    page.getByRole("heading", { name: "Abriendo Mundo I" }),
   ).toBeVisible();
   await page.waitForFunction(
-    () => document.body.textContent?.includes("Preparando recorrido..."),
+    () => document.body.textContent?.includes("Preparando la raíz."),
     undefined,
     { timeout: 5_000 },
   );
@@ -300,7 +300,7 @@ test("genera capturas de revision visual T003E7C en mobile", async ({
     await page.setViewportSize(viewport);
     await page.goto("/dev/transition-world");
     await expect(
-      page.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+      page.getByRole("heading", { name: "Abriendo Mundo I" }),
     ).toBeVisible();
     await expect(
       page.getByTestId("transition-world-portal-real"),

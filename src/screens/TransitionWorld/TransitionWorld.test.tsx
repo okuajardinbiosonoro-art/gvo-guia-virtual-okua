@@ -26,9 +26,9 @@ describe("TransitionWorld", () => {
     const { container } = render(<TransitionWorld />);
 
     expect(
-      screen.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+      screen.getByRole("heading", { name: "Abriendo Mundo I" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Preparando recorrido...")).toBeInTheDocument();
+    expect(screen.getByText("Preparando la raíz.")).toBeInTheDocument();
     expect(
       screen.getByTestId("transition-world-background-real"),
     ).toBeInTheDocument();
@@ -131,7 +131,7 @@ describe("TransitionWorld", () => {
     );
     expect(
       screen.getByRole("status", {
-        name: "Abriendo Mundo I: Raíz. Preparando recorrido.",
+        name: "Abriendo Mundo I Preparando la raíz.",
       }),
     ).toBeInTheDocument();
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
@@ -160,9 +160,16 @@ describe("TransitionWorld", () => {
     expect(introToStationOneTransition.fromRoute).toBe("/portada");
     expect(introToStationOneTransition.toRoute).toBe("/estacion/1");
     expect(introToStationOneTransition.targetPreload).toBe("world1RootInitial");
+    expect(introToStationOneTransition.titleSlotId).toBe(
+      "TRANS_COVER_W1_TITLE_01",
+    );
+    expect(introToStationOneTransition.subtitleSlotId).toBe(
+      "TRANS_COVER_W1_SUB_01",
+    );
+    expect(introToStationOneTransition.editorialCopyStatus).toBe("final");
   });
 
-  it("expone configuracion temporal de la transicion Mundo I a Mundo II", () => {
+  it("expone configuracion final de la transicion Mundo I a Mundo II", () => {
     const { container } = render(
       <TransitionWorld config={worldOneToWorldTwoTransition} />,
     );
@@ -177,6 +184,7 @@ describe("TransitionWorld", () => {
     expect(worldOneToWorldTwoTransition.subtitleSlotId).toBe(
       "TRANS_W1_W2_SUB_01",
     );
+    expect(worldOneToWorldTwoTransition.editorialCopyStatus).toBe("final");
     expect(
       screen.getByRole("heading", { name: "Abriendo Mundo II" }),
     ).toBeInTheDocument();
@@ -215,11 +223,11 @@ describe("TransitionWorld", () => {
       screen.getByRole("heading", { name: "Abriendo Mundo III" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Preparando el Cuaderno Pixel de Pruebas…"),
+      screen.getByText("Preparando el cuaderno de pruebas."),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("status", {
-        name: "Abriendo Mundo III Preparando el Cuaderno Pixel de Pruebas…",
+        name: "Abriendo Mundo III Preparando el cuaderno de pruebas.",
       }),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
@@ -268,7 +276,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion temporal de la transicion Mundo III a entrada base Mundo IV", () => {
+  it("expone configuracion final de la transicion Mundo III a Mundo IV", () => {
     const { container } = render(
       <TransitionWorld config={worldThreeToWorldFourTransition} />,
     );
@@ -283,13 +291,14 @@ describe("TransitionWorld", () => {
     expect(worldThreeToWorldFourTransition.subtitleSlotId).toBe(
       "TRANS_W3_W4_SUB_01",
     );
+    expect(worldThreeToWorldFourTransition.editorialCopyStatus).toBe("final");
     expect(
       screen.getByRole("heading", {
-        name: "TEMP — Abriendo Mundo IV",
+        name: "Abriendo Mundo IV",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("TEMP — Preparando la mesa del sistema."),
+      screen.getByText("Preparando la mesa de sistema."),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
       "data-title-slot",
@@ -305,7 +314,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion temporal de la transicion Mundo IV a entrada base Mundo V", () => {
+  it("expone configuracion final de la transicion Mundo IV a Mundo V", () => {
     const { container } = render(
       <TransitionWorld config={worldFourToWorldFiveTransition} />,
     );
@@ -320,13 +329,14 @@ describe("TransitionWorld", () => {
     expect(worldFourToWorldFiveTransition.subtitleSlotId).toBe(
       "TRANS_W4_W5_SUB_01",
     );
+    expect(worldFourToWorldFiveTransition.editorialCopyStatus).toBe("final");
     expect(
       screen.getByRole("heading", {
-        name: "TEMP — Abriendo Mundo V",
+        name: "Abriendo Mundo V",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("TEMP — Preparando el mapa del presente."),
+      screen.getByText("Preparando el mapa del presente."),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
       "data-title-slot",
@@ -342,7 +352,7 @@ describe("TransitionWorld", () => {
     );
   });
 
-  it("expone configuracion temporal de la transicion Mundo V a Pantalla Final", () => {
+  it("expone configuracion final de la transicion Mundo V a Pantalla Final", () => {
     const { container } = render(
       <TransitionWorld config={worldFiveToFinalTransition} />,
     );
@@ -357,13 +367,14 @@ describe("TransitionWorld", () => {
     expect(worldFiveToFinalTransition.subtitleSlotId).toBe(
       "TRANS_W5_FINAL_SUB_01",
     );
+    expect(worldFiveToFinalTransition.editorialCopyStatus).toBe("final");
     expect(
       screen.getByRole("heading", {
-        name: "TEMP — Abriendo el Mirador",
+        name: "Abriendo el Mirador",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("TEMP — Preparando el cierre del recorrido."),
+      screen.getByText("Preparando el cierre del recorrido."),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-title-slot]")).toHaveAttribute(
       "data-title-slot",
@@ -482,7 +493,9 @@ describe("TransitionWorld", () => {
   });
 
   it.each([
+    ["Portada a Mundo I", introToStationOneTransition],
     ["Mundo I a Mundo II", worldOneToWorldTwoTransition],
+    ["Mundo II a Mundo III", worldTwoToWorldThreeTransition],
     ["Mundo III a Mundo IV", worldThreeToWorldFourTransition],
     ["Mundo IV a Mundo V", worldFourToWorldFiveTransition],
     ["Mundo V a final", worldFiveToFinalTransition],
@@ -512,13 +525,20 @@ describe("TransitionWorld", () => {
     expect(handleComplete).toHaveBeenCalledTimes(1);
   });
 
-  it("R1 reduced motion conserva autoavance de Mundo II a Mundo III", () => {
+  it.each([
+    ["Portada a Mundo I", introToStationOneTransition],
+    ["Mundo I a Mundo II", worldOneToWorldTwoTransition],
+    ["Mundo II a Mundo III", worldTwoToWorldThreeTransition],
+    ["Mundo III a Mundo IV", worldThreeToWorldFourTransition],
+    ["Mundo IV a Mundo V", worldFourToWorldFiveTransition],
+    ["Mundo V a final", worldFiveToFinalTransition],
+  ])("%s conserva autoavance con reduced motion", (_label, config) => {
     vi.useFakeTimers();
     const handleComplete = vi.fn();
 
     render(
       <TransitionWorld
-        config={worldTwoToWorldThreeTransition}
+        config={config}
         variant="runtime"
         isReducedMotion
         onComplete={handleComplete}
@@ -545,9 +565,7 @@ describe("TransitionWorld", () => {
     ).toContain("--transition-progress-duration: 1000ms");
 
     act(() => {
-      vi.advanceTimersByTime(
-        worldTwoToWorldThreeTransition.reducedMotionDurationMs,
-      );
+      vi.advanceTimersByTime(config.reducedMotionDurationMs);
     });
     expect(handleComplete).toHaveBeenCalledTimes(1);
   });
@@ -634,7 +652,7 @@ describe("TransitionWorld", () => {
       "transition_root_progress_track_base_v1",
     );
     expect(
-      screen.getByRole("heading", { name: "Abriendo Mundo I: Raíz..." }),
+      screen.getByRole("heading", { name: "Abriendo Mundo I" }),
     ).toBeInTheDocument();
   });
 

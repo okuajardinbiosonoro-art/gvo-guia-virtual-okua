@@ -66,7 +66,7 @@ npm run test:e2e
 
 ## Estado actual
 
-La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido con aprobación humana llega hasta el estado 4/4 de Estación V; su cierre y salida están publicados para revisión:
+La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido con aprobación humana cierra Estación V para el alcance actual:
 
 - Mundo I funcional en `/estacion/1`.
 - Mundo II finalizado para el alcance actual en `/estacion/2`.
@@ -74,8 +74,8 @@ La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STAT
 - Mundo III / Estación III cerrada y aprobada por revisión humana en `/estacion/3`.
 - Estación III ofrece índice progresivo, PLANTA, PROTOTIPO, SEÑAL, sello AJUSTADO, revisitas, ayudas de interacción, assets runtime y espejos `current-used`, responsive y reduced motion.
 - Mundo IV / Estación IV cerrada y aprobada por revisión humana en `/estacion/4`: cadena Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido, 20 assets runtime con espejos, ruta SVG, Lía, fullscreen, responsive y reduced motion.
-- La transición W4→W5 y las transiciones posteriores existen; el copy W5→Final continúa marcado `TEMP` y no se declara definitivo.
-- Mundo V conserva mapa, Plantas, Sistema, Espacio, Visitante y 4/4 bajo `ST5_020G_HUMAN_APPROVED`. `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW` añade `Ir al cierre`, persistencia global verificada, guardas y salida por la transición existente.
+- Las seis transiciones runtime y sus doce piezas editoriales están cerradas como `FINAL / human_approved` por `TRANSITION_COPY_AUDIT_COMPLETE`.
+- Mundo V conserva mapa, Plantas, Sistema, Espacio, Visitante, 4/4, `Ir al cierre`, persistencia global, guardas y salida bajo `ST5_020H_HUMAN_APPROVED`.
 - Final conserva una experiencia temporal preexistente; no está cerrado ni aprobado.
 
 Los contratos integrales están en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y [`docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md`](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md). El umbral de revisión vigente está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
@@ -98,7 +98,8 @@ Estado actual:
 - Estación II: FINALIZADA PARA EL ALCANCE ACTUAL / RUNTIME 016V-R2
 - Estación III: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
 - Estación IV: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
-- Estación V: ST5_020G_HUMAN_APPROVED / ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW
+- Estación V: ST5_020H_HUMAN_APPROVED / CERRADA PARA EL ALCANCE ACTUAL
+- Transiciones: ST5_020I_PUBLISHED_COMPLETE / TRANSITION_COPY_AUDIT_COMPLETE
 - Final: EXPERIENCIA TEMPORAL PREEXISTENTE / NO CERRADA / NO HUMAN_APPROVED
 
 Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md) y el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md).

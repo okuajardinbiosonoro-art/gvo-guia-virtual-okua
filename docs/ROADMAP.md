@@ -6,15 +6,17 @@ Actualizado: 2026-07-30
 
 - Mundo I: funcional, con deuda visual documentada.
 - Mundo II: finalizado para el alcance actual.
-- Transición Mundo II → Mundo III: definitiva, pasiva y automática.
+- Seis transiciones runtime: `TRANSITION_COPY_AUDIT_COMPLETE`, doce piezas
+  finales, pasivas y automáticas.
 - Mundo III / Estación III: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
 - Mundo IV / Estación IV: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
-- Mundo V: mapa, cuatro áreas y 4/4 bajo `ST5_020G_HUMAN_APPROVED`; cierre global y salida publicados como `ST5_020H_PUBLISHED_PENDING_HUMAN_REVIEW`.
+- Mundo V: `ST5_020H_HUMAN_APPROVED` y
+  `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`.
 - Final: experiencia temporal preexistente, no cerrada y no aprobada.
 
-## Revisión activa
+## Cierre vigente
 
-El único umbral abierto es la revisión humana de 020H:
+El alcance de Estación V está humanamente aprobado:
 
 ```text
 overview 4/4 + CTA Ir al cierre
@@ -24,8 +26,8 @@ overview 4/4 + CTA Ir al cierre
 → arribo al Mirador temporal
 ```
 
-No se declara todavía aprobación humana de 020H, cierre aprobado de Final ni
-autorización para construir el Mirador.
+`ST5_020I_PUBLISHED_COMPLETE` cierra el copy de todas las transiciones. No se
+declara cierre aprobado de Final ni inicio del Mirador.
 
 ## Gates obligatorios para Estación V
 
@@ -49,7 +51,6 @@ preproducción.
 ## Fuera del alcance inmediato
 
 - No reabrir Estación IV salvo regresión reproducible.
-- No alterar copy o rutas de transiciones marcadas `TEMP` sin ticket específico.
-- No promover 020H a `HUMAN_APPROVED` sin decisión explícita del usuario.
+- No alterar el copy final ni las rutas de transición sin ticket específico.
 - No iniciar Mundo VI.
 - No cerrar el Mirador final por inferencia.

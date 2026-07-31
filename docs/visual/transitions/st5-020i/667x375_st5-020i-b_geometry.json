@@ -1,0 +1,129 @@
+{
+  "state": "ST5_020I_C_GEOMETRY_PASS",
+  "before": {
+    "viewport": {
+      "width": 667,
+      "height": 375
+    },
+    "documentScroll": {
+      "scrollHeight": 552,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "clientWidth": 667
+    },
+    "horizontalOverflow": 0,
+    "verticalOverflow": 177,
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "title": {
+      "x": 243,
+      "y": 2,
+      "width": 181,
+      "height": 23.140625,
+      "right": 424,
+      "bottom": 25.140625
+    },
+    "subtitle": {
+      "x": 257.5,
+      "y": 27.140625,
+      "width": 152,
+      "height": 18.265625,
+      "right": 409.5,
+      "bottom": 45.40625
+    },
+    "portal": {
+      "x": 181.5032501220703,
+      "y": 26.0208740234375,
+      "width": 303.9935302734375,
+      "height": 455.9902648925781,
+      "right": 485.4967803955078,
+      "bottom": 482.0111389160156
+    },
+    "lia": {
+      "x": 112.09268188476562,
+      "y": 231.46298217773438,
+      "width": 113.41664123535156,
+      "height": 113.4166259765625,
+      "right": 225.5093231201172,
+      "bottom": 344.8796081542969
+    },
+    "progress": {
+      "x": 153.5,
+      "y": 494,
+      "width": 360,
+      "height": 30,
+      "right": 513.5,
+      "bottom": 524
+    }
+  },
+  "after": {
+    "viewport": {
+      "width": 667,
+      "height": 375
+    },
+    "documentScroll": {
+      "scrollHeight": 375,
+      "clientHeight": 375,
+      "scrollWidth": 667,
+      "clientWidth": 667
+    },
+    "horizontalOverflow": 0,
+    "verticalOverflow": 0,
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "title": {
+      "x": 243,
+      "y": 2,
+      "width": 181,
+      "height": 23.140625,
+      "right": 424,
+      "bottom": 25.140625
+    },
+    "subtitle": {
+      "x": 257.5,
+      "y": 27.140625,
+      "width": 152,
+      "height": 18.265625,
+      "right": 409.5,
+      "bottom": 45.40625
+    },
+    "portal": {
+      "x": 181.5032501220703,
+      "y": 26.0208740234375,
+      "width": 303.9935302734375,
+      "height": 455.9902648925781,
+      "right": 485.4967803955078,
+      "bottom": 482.0111389160156
+    },
+    "lia": {
+      "x": 112.09268188476562,
+      "y": 231.46298217773438,
+      "width": 113.41664123535156,
+      "height": 113.4166259765625,
+      "right": 225.5093231201172,
+      "bottom": 344.8796081542969
+    },
+    "progress": {
+      "x": 153.5,
+      "y": 494,
+      "width": 360,
+      "height": 30,
+      "right": 513.5,
+      "bottom": 524
+    }
+  },
+  "drift": {
+    "portal": 0,
+    "lia": 0,
+    "progress": 0
+  },
+  "pixelComparison": {
+    "scope": "stage protegida sobre fondo plano",
+    "differingChannels": 0,
+    "maximumChannelDelta": 0
+  }
+}

@@ -141,7 +141,7 @@ test.describe("QA visual final Portada / Intro 002L", () => {
     await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
       timeout: 5000,
     });
-    await expect(page.getByText("Preparando recorrido...")).toBeVisible();
+    await expect(page.getByText("Preparando la raíz.")).toBeVisible();
     await expect(page.locator("button")).toHaveCount(0);
     await expect(page.locator("a")).toHaveCount(0);
     await capture(

@@ -4,6 +4,8 @@ import type { EditorialSlotId } from "./editorial";
 export type TransitionEditorialSlotId =
   Extract<
     EditorialSlotId,
+    | "TRANS_COVER_W1_TITLE_01"
+    | "TRANS_COVER_W1_SUB_01"
     | "TRANS_W1_W2_TITLE_01"
     | "TRANS_W1_W2_SUB_01"
     | "TRANS_W2_W3_TITLE_01"
@@ -38,6 +40,10 @@ function resolveTransitionSlot(
 }
 
 export const transitionEditorialSlots = {
+  TRANS_COVER_W1_TITLE_01: resolveTransitionSlot(
+    "TRANS_COVER_W1_TITLE_01",
+  ),
+  TRANS_COVER_W1_SUB_01: resolveTransitionSlot("TRANS_COVER_W1_SUB_01"),
   TRANS_W1_W2_TITLE_01: resolveTransitionSlot(
     "TRANS_W1_W2_TITLE_01",
   ),
@@ -61,6 +67,11 @@ export const transitionEditorialSlots = {
     "TRANS_W5_FINAL_SUB_01",
   ),
 } as const satisfies Record<TransitionEditorialSlotId, TransitionSlot>;
+
+export const coverToWorldOneTransitionCopy = {
+  subtitle: transitionEditorialSlots.TRANS_COVER_W1_SUB_01,
+  title: transitionEditorialSlots.TRANS_COVER_W1_TITLE_01,
+} as const;
 
 export const worldOneToWorldTwoTransitionCopy = {
   subtitle: transitionEditorialSlots.TRANS_W1_W2_SUB_01,

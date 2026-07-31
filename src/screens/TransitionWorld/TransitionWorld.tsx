@@ -137,7 +137,7 @@ export function TransitionWorld({
     >
       {transitionRootPreload.ready ? null : (
         <p className={styles.preloadStatus} role="status">
-          Preparando recorrido...
+          {config.subtitle}
         </p>
       )}
       <TransitionBackground palette={config.palette} />

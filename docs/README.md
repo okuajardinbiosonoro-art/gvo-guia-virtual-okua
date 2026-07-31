@@ -5,6 +5,7 @@ Canonical current documentation:
 - [Project state](status/CURRENT_STATE.md)
 - [Station III final contract](status/GVO_STATION3_COMPLETE.md)
 - [Station IV final closeout](status/GVO_ST4_018E_STATION4_CLOSEOUT.md)
+- [Station V and transition-copy closeout](status/GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md)
 - [Station IV retrospective](retrospectives/GVO_STATION_IV_RETROSPECTIVE.md)
 - [Roadmap](ROADMAP.md)
 - [Technical architecture](05_ARQUITECTURA_TECNICA.md)
