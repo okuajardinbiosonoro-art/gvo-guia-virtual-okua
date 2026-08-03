@@ -1,0 +1,89 @@
+{
+  "ticket": "GVO_FINAL_021D",
+  "classification": "PREPRODUCTION_NOT_RUNTIME",
+  "brief_count": 6,
+  "ready_count": 6,
+  "blocked_count": 0,
+  "first_ready_asset": "FINAL-ENV-P-001",
+  "reference_count": 21,
+  "source_reference_count": 15,
+  "overlay_count": 6,
+  "h07_status": "OPEN_CONTROLLED_ART_DIRECTION_ONLY_NO_BINARY_REUSE",
+  "outputs": [
+    {
+      "file": "FINAL-DEPTH-L-001_BRIEF.md",
+      "bytes": 7438,
+      "sha256": "E20344197CD220618889E393C33410324F19909F0FC04E53A37197CE9F77690B"
+    },
+    {
+      "file": "FINAL-DEPTH-P-001_BRIEF.md",
+      "bytes": 7778,
+      "sha256": "EA3EF76C51E81791290950B0256F996B40D6AE2365BCDD9670F9063044458C85"
+    },
+    {
+      "file": "FINAL-ENV-L-001_BRIEF.md",
+      "bytes": 7811,
+      "sha256": "11C8C7FDC1129DAF6E1B86AB5910F277896526DFA292E2392EFC8E43AA901FA8"
+    },
+    {
+      "file": "FINAL-ENV-P-001_BRIEF.md",
+      "bytes": 8243,
+      "sha256": "2F61BA44285C9B322D7BD4A8AEF43B7332A8BDF624BB5037479696A228623828"
+    },
+    {
+      "file": "FINAL-MIRADOR-L-001_BRIEF.md",
+      "bytes": 7778,
+      "sha256": "39C8E7F075BEA24EFDEEDE22AFA50EF6618D647248EFFBDBDFB743590C7E4159"
+    },
+    {
+      "file": "FINAL-MIRADOR-P-001_BRIEF.md",
+      "bytes": 8019,
+      "sha256": "F7B3D80F7AE2175F0F25AABF3870C4BD40E00AC06E1F9C94BA8E9575D5712D6A"
+    },
+    {
+      "file": "final_021d_depth_landscape_layer_map.png",
+      "bytes": 131035,
+      "sha256": "C780DC36C908671EC1633FC9F476B1B4872A6F0FCC2ED556F674099D506D3852"
+    },
+    {
+      "file": "final_021d_depth_portrait_layer_map.png",
+      "bytes": 96284,
+      "sha256": "7C146B91B3B4F79483F6469EEBFF59BC79254F0EEC040FAED046152388406C87"
+    },
+    {
+      "file": "final_021d_env_landscape_generation_overlay.png",
+      "bytes": 114427,
+      "sha256": "232D7EDF8B1E860B9D65BAEAB09AD72658D6F3A40A2B68DB8AE969BCEF2A9D03"
+    },
+    {
+      "file": "final_021d_env_portrait_generation_overlay.png",
+      "bytes": 89062,
+      "sha256": "033B0B8AFAD6C98D3F8773896FBF09570AA3DE7F36C4EB2BC48A56A0024CD021"
+    },
+    {
+      "file": "final_021d_environment_family_manifest.csv",
+      "bytes": 3594,
+      "sha256": "E2FBD1CE57E9DD6A46E7D099E5D316321BDDBA167DFD101ACDD2AA7C55B4E052"
+    },
+    {
+      "file": "final_021d_environment_reference_manifest.csv",
+      "bytes": 10224,
+      "sha256": "30CDC5245F87A22AE4932F152779131EDCAAD8307A65C1B2B293A8B431A7480B"
+    },
+    {
+      "file": "final_021d_mirador_landscape_exclusion_map.png",
+      "bytes": 96276,
+      "sha256": "3D961E5998F95EB257FE6654AC1050607C8B38FC01AA196051593222291A171F"
+    },
+    {
+      "file": "final_021d_mirador_portrait_exclusion_map.png",
+      "bytes": 57832,
+      "sha256": "4A5B4BD666A29B0787364271B05465AF839EE5B63B6408422218B204AAC0CB8C"
+    },
+    {
+      "file": "generate_final_021d_asset_briefs.py",
+      "bytes": 73672,
+      "sha256": "5FA2B54F771193C284C04CAD7F3300AF622ADCE8EB0202FC2BDE074C41D7EE8A"
+    }
+  ]
+}

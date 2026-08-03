@@ -109,7 +109,11 @@ El cierre editorial global está en
 Final continúa temporal y no cerrado en runtime. Su preproducción, Art Bible,
 cámaras y dirección visual están humanamente aprobadas por
 [GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md](GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md),
-con Gates 1–4 cerrados. No existen assets finales ni implementación nueva; el
-siguiente frente autorizado es
-`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY`. Los registros
-020A–020H permanecen históricos y no se reescriben.
+con Gates 1–4 cerrados. 021D publicó los seis briefs de la familia Environment,
+overlays y reference pack; `FINAL-ENV-P-001` es el primer brief
+`READY_FOR_HUMAN_ASSET_PRODUCTION`. No se produjo ningún asset final ni se
+implementó runtime. El registro está en
+[GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY.md](GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY.md).
+La siguiente acción controlada es producir sólo ENV-P con ticket posterior y
+revisarlo antes de ENV-L. Los registros 020A–020H permanecen históricos y no se
+reescriben.

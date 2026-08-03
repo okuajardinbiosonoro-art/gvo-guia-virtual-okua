@@ -32,12 +32,13 @@ overview 4/4 + CTA Ir al cierre
 aprueba humanamente la dirección visual de preproducción del Mirador, pero no
 declara cierre ni aprobación de su runtime.
 
-## Frente siguiente autorizado
+## Frente de preproducción completado
 
-`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY` prepara los briefs
-de la familia environment. No produce assets. El primer asset de producción de
-un frente posterior deberá ser
-`FINAL-ENV-P-001 — final_environment_portrait_v01.webp`.
+`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY` deja seis briefs,
+overlays y reference pack `READY`; no produce assets. La siguiente acción bajo
+ticket posterior es producir únicamente
+`FINAL-ENV-P-001 — final_environment_portrait_v01.webp` con ChatGPT Images y
+revisarlo humanamente. No iniciar ENV-L antes de esa revisión.
 
 ## Gates obligatorios para Estación V
 
