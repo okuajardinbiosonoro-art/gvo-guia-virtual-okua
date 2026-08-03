@@ -34,11 +34,13 @@ declara cierre ni aprobación de su runtime.
 
 ## Frente de preproducción completado
 
-`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY` deja seis briefs,
-overlays y reference pack `READY`; no produce assets. La siguiente acción bajo
-ticket posterior es producir únicamente
-`FINAL-ENV-P-001 — final_environment_portrait_v01.webp` con ChatGPT Images y
-revisarlo humanamente. No iniciar ENV-L antes de esa revisión.
+`GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS` audita los seis
+Environment aprobados en Descargas como referencias `NOT_RUNTIME` y deja seis
+briefs, cinco overlays y el reference pack de accesos I–V/placa `READY`; no
+produce esos seis assets ni implementa runtime. La siguiente acción bajo ticket
+posterior es producir únicamente
+`FINAL-ACCESS-I-001 — final_access_world1_root_v01.webp` y revisarlo
+humanamente. No iniciar ACCESS-II antes de esa revisión.
 
 ## Gates obligatorios para Estación V
 

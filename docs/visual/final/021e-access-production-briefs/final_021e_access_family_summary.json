@@ -1,0 +1,93 @@
+{
+  "ticket": "GVO_FINAL_021E",
+  "classification": "PREPRODUCTION_NOT_RUNTIME",
+  "brief_count": 6,
+  "ready_count": 6,
+  "blocked_count": 0,
+  "first_ready_asset": "FINAL-ACCESS-I-001",
+  "reference_count": 34,
+  "source_reference_count": 29,
+  "overlay_count": 5,
+  "environment_reference_count": 6,
+  "environment_alpha_deviation_count": 1,
+  "h07_status": "OPEN_CONTROLLED_ART_DIRECTION_ONLY_NO_BINARY_REUSE",
+  "runtime_modified": false,
+  "final_assets_produced": false,
+  "outputs": [
+    {
+      "file": "FINAL-ACCESS-I-001_BRIEF.md",
+      "bytes": 7597,
+      "sha256": "E75FE27ED692E01AD7EF8EFF94A359B5232BF68C7AA6C8E42A48019EB323ADB6"
+    },
+    {
+      "file": "FINAL-ACCESS-II-001_BRIEF.md",
+      "bytes": 7668,
+      "sha256": "111D274096DE2AEC550CBCC09B89CCC8F6FB4CFE0BBB3ACF881AE20E78270CA2"
+    },
+    {
+      "file": "FINAL-ACCESS-III-001_BRIEF.md",
+      "bytes": 7513,
+      "sha256": "A23FDD1F99ED87B625438B90B79BE25AE8E6425F0B1758F9202E8F4A0CB81521"
+    },
+    {
+      "file": "FINAL-ACCESS-IV-001_BRIEF.md",
+      "bytes": 7599,
+      "sha256": "89EFE2FD8D17696C9EE84B84B0EEE181194BE324A8A0C49134C060A69AAC1039"
+    },
+    {
+      "file": "FINAL-ACCESS-V-001_BRIEF.md",
+      "bytes": 7623,
+      "sha256": "388A64DCC164CDC1ADA090F4547677653FF91D6E820BCE214A5AC16930501429"
+    },
+    {
+      "file": "FINAL-PLATE-LABEL-001_BRIEF.md",
+      "bytes": 7558,
+      "sha256": "E42031A3FDD2DE1DAC0FBFB08439540AF12A9A4879A9A4D7EE42051D275928C9"
+    },
+    {
+      "file": "final_021e_access_family_manifest.csv",
+      "bytes": 3787,
+      "sha256": "75E423F374B647A17CBF6CE09C2C81520ED8C21BFBE2310A160D3D6AEBE95E42"
+    },
+    {
+      "file": "final_021e_access_family_scale_contact_sheet.png",
+      "bytes": 73048,
+      "sha256": "87008F4D76983B018BD527AA4B9C70864B6A68560B847DDA32E66ECA9072C9A0"
+    },
+    {
+      "file": "final_021e_access_landscape_alignment_overlay.png",
+      "bytes": 3202766,
+      "sha256": "DBBBEA41AB9025F3E815D722B3A73217480626EE37BB38D22C473A5E64849CB5"
+    },
+    {
+      "file": "final_021e_access_portrait_alignment_overlay.png",
+      "bytes": 2516612,
+      "sha256": "6EB4D0E81F0B83840D29B470DF805571062197E98070B51EB494719DEBDF0ED8"
+    },
+    {
+      "file": "final_021e_access_reference_manifest.csv",
+      "bytes": 16997,
+      "sha256": "FE47639B65779079EE6C76B119536BC05937000C80213A6B3B5E5C7707EE7CFC"
+    },
+    {
+      "file": "final_021e_access_square_safearea_overlay.png",
+      "bytes": 40734,
+      "sha256": "A2E4BDCDE32D9D7B3027665B3321ECDE4CDAE1496705D0CD9E89C79A035DB477"
+    },
+    {
+      "file": "final_021e_environment_production_reference_manifest.csv",
+      "bytes": 1994,
+      "sha256": "1441B80F66915A34B1458C86846C629BE4CE6B13C015DD609410372B55CF99CF"
+    },
+    {
+      "file": "final_021e_label_9slice_guide.png",
+      "bytes": 82435,
+      "sha256": "408CD329047AAB4F98F4C9DB1C5B4CDF27F608AC38EC15BC9352B802D7B71DDF"
+    },
+    {
+      "file": "generate_final_021e_access_briefs.py",
+      "bytes": 73699,
+      "sha256": "7969C53C13D19906DE6FDD0996CE7ABE16CD9996E86D49CD749D8ECA93F37D24"
+    }
+  ]
+}

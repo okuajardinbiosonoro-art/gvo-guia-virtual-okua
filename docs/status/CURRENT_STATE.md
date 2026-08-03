@@ -25,7 +25,7 @@ Actualizado: 2026-08-03
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
 | Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                         |
 | W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                  |
-| Final         | Runtime temporal y no cerrado. Preproducción 021B con Gates 1–4 cerrados y Art Bible/cámara `HUMAN_APPROVED` por 021C; sin assets finales ni implementación.                                                  |
+| Final         | Runtime temporal y no cerrado. Los seis Environment aprobados permanecen en Descargas como `NOT_RUNTIME`; 021E deja briefs de accesos I–V/placa listos, sin producirlos ni implementar.                 |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -109,11 +109,13 @@ El cierre editorial global está en
 Final continúa temporal y no cerrado en runtime. Su preproducción, Art Bible,
 cámaras y dirección visual están humanamente aprobadas por
 [GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md](GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md),
-con Gates 1–4 cerrados. 021D publicó los seis briefs de la familia Environment,
-overlays y reference pack; `FINAL-ENV-P-001` es el primer brief
-`READY_FOR_HUMAN_ASSET_PRODUCTION`. No se produjo ningún asset final ni se
-implementó runtime. El registro está en
-[GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY.md](GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY.md).
-La siguiente acción controlada es producir sólo ENV-P con ticket posterior y
-revisarlo antes de ENV-L. Los registros 020A–020H permanecen históricos y no se
-reescriben.
+con Gates 1–4 cerrados. 021E auditó los seis Environment aprobados en Descargas
+como `APPROVED_PRODUCTION_REFERENCE / NOT_RUNTIME` y publicó seis briefs,
+cinco overlays y el reference pack de accesos I–V/placa;
+`FINAL-ACCESS-I-001` es el primer brief
+`READY_FOR_HUMAN_ASSET_PRODUCTION`. No se produjo ningún acceso ni placa final
+y no se implementó runtime. El registro está en
+[GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS.md](GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS.md).
+La siguiente acción controlada es producir sólo ACCESS-I con ticket posterior y
+revisarlo antes de ACCESS-II. Los registros 020A–020H permanecen históricos y
+no se reescriben.
