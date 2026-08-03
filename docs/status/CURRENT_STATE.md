@@ -1,6 +1,6 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-07-30
+Actualizado: 2026-08-03
 
 ## Estado canónico
 
@@ -25,7 +25,7 @@ Actualizado: 2026-07-30
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                    |
 | Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                         |
 | W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                  |
-| Final         | Experiencia temporal preexistente; no cerrada ni aprobada.                                                                                                                                                    |
+| Final         | Runtime temporal y no cerrado. Preproducción 021B con Gates 1–4 cerrados y Art Bible/cámara `HUMAN_APPROVED` por 021C; sin assets finales ni implementación.                                                  |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -106,5 +106,10 @@ están protegidas antes del cierre global. La evidencia técnica vigente está e
 [GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md](GVO_ST5_020H_CIERRE_ESTACION_V_Y_SALIDA_W5_FINAL_PARA_REVISION.md).
 El cierre editorial global está en
 [GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md](GVO_ST5_020I_CIERRE_EDITORIAL_GLOBAL_TRANSICIONES.md).
-Final continúa temporal, no cerrada ni aprobada. Los registros 020A–020H
-permanecen históricos y no se reescriben.
+Final continúa temporal y no cerrado en runtime. Su preproducción, Art Bible,
+cámaras y dirección visual están humanamente aprobadas por
+[GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md](GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md),
+con Gates 1–4 cerrados. No existen assets finales ni implementación nueva; el
+siguiente frente autorizado es
+`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY`. Los registros
+020A–020H permanecen históricos y no se reescriben.

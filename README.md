@@ -76,7 +76,7 @@ La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STAT
 - Mundo IV / Estación IV cerrada y aprobada por revisión humana en `/estacion/4`: cadena Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido, 20 assets runtime con espejos, ruta SVG, Lía, fullscreen, responsive y reduced motion.
 - Las seis transiciones runtime y sus doce piezas editoriales están cerradas como `FINAL / human_approved` por `TRANSITION_COPY_AUDIT_COMPLETE`.
 - Mundo V conserva mapa, Plantas, Sistema, Espacio, Visitante, 4/4, `Ir al cierre`, persistencia global, guardas y salida bajo `ST5_020H_HUMAN_APPROVED`.
-- Final conserva una experiencia temporal preexistente; no está cerrado ni aprobado.
+- Final conserva runtime temporal y no cerrado; la preproducción 021B, su Art Bible y cámaras están `HUMAN_APPROVED` por 021C, sin assets finales ni implementación.
 
 Los contratos integrales están en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y [`docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md`](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md). El umbral de revisión vigente está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
@@ -100,6 +100,6 @@ Estado actual:
 - Estación IV: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
 - Estación V: ST5_020H_HUMAN_APPROVED / CERRADA PARA EL ALCANCE ACTUAL
 - Transiciones: ST5_020I_PUBLISHED_COMPLETE / TRANSITION_COPY_AUDIT_COMPLETE
-- Final: EXPERIENCIA TEMPORAL PREEXISTENTE / NO CERRADA / NO HUMAN_APPROVED
+- Final: RUNTIME TEMPORAL / PREPRODUCCIÓN GATES 1–4 CERRADOS / ART BIBLE Y CÁMARA HUMAN_APPROVED / NO IMPLEMENTADA
 
-Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md) y el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md).
+Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md), el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md) y la [aprobación de preproducción del Mirador](docs/status/GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md).

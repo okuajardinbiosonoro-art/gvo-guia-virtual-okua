@@ -1,6 +1,6 @@
 # Roadmap GVO
 
-Actualizado: 2026-07-30
+Actualizado: 2026-08-03
 
 ## Estado consolidado
 
@@ -12,7 +12,9 @@ Actualizado: 2026-07-30
 - Mundo IV / Estación IV: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
 - Mundo V: `ST5_020H_HUMAN_APPROVED` y
   `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`.
-- Final: experiencia temporal preexistente, no cerrada y no aprobada.
+- Final: runtime temporal y no cerrado; preproducción con Gates 1–4 cerrados y
+  Art Bible/cámara `HUMAN_APPROVED` por `GVO_FINAL_021C`, sin assets finales ni
+  implementación.
 
 ## Cierre vigente
 
@@ -26,8 +28,16 @@ overview 4/4 + CTA Ir al cierre
 → arribo al Mirador temporal
 ```
 
-`ST5_020I_PUBLISHED_COMPLETE` cierra el copy de todas las transiciones. No se
-declara cierre aprobado de Final ni inicio del Mirador.
+`ST5_020I_PUBLISHED_COMPLETE` cierra el copy de todas las transiciones. 021C
+aprueba humanamente la dirección visual de preproducción del Mirador, pero no
+declara cierre ni aprobación de su runtime.
+
+## Frente siguiente autorizado
+
+`GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY` prepara los briefs
+de la familia environment. No produce assets. El primer asset de producción de
+un frente posterior deberá ser
+`FINAL-ENV-P-001 — final_environment_portrait_v01.webp`.
 
 ## Gates obligatorios para Estación V
 
