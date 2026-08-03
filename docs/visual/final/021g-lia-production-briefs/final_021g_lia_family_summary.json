@@ -1,0 +1,114 @@
+{
+  "ticket": "GVO_FINAL_021G",
+  "baseline": "ae8d03c8b6f90470381e103c2cb72f7398f467ff",
+  "runtime": "READ_ONLY",
+  "art_generated": false,
+  "integration": false,
+  "current_used_modified": false,
+  "family_asset_count": 5,
+  "brief_count": 3,
+  "decision_count": 2,
+  "production_reference_count": 16,
+  "curated_lia_source_count": 42,
+  "reference_manifest_rows": 72,
+  "canonical_identity": {
+    "petals": 5,
+    "head": "opalescent",
+    "eyes": "crescent",
+    "collar": "amber",
+    "body": "segmented_plant_bulb",
+    "horizontal_flip": "FORBIDDEN_BY_DEFAULT"
+  },
+  "scale": {
+    "portrait_viewport_height_percent": [
+      14,
+      18
+    ],
+    "portrait_anchor": [
+      0.5,
+      0.68
+    ],
+    "landscape_viewport_height_percent": [
+      20,
+      26
+    ],
+    "landscape_anchor": [
+      0.5,
+      0.61
+    ],
+    "measurement": "ALPHA_BBOX"
+  },
+  "first_ready_asset": "FINAL-LIA-IDLE-001",
+  "blocked_until_idle_human_approval": [
+    "FINAL-LIA-GREET-001",
+    "FINAL-LIA-GLOW-001"
+  ],
+  "direction": "DEFERRED / NO_NEW_ASSET_IN_INITIAL_SET",
+  "reset": "NO_NEW_ASSET_REQUIRED_FOR_INITIAL_IMPLEMENTATION",
+  "h07": "OPEN_CONTROLLED_ART_DIRECTION_ONLY_NO_BINARY_REUSE",
+  "visual_outputs": {
+    "final_021g_lia_identity_contact_sheet.png": {
+      "sha256": "1B30D720F20F5E658D5800D10A85523700C8824D385F567EF895C2B0D340ED67",
+      "width": 2000,
+      "height": 1400,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_lia_hard_fails_contact_sheet.png": {
+      "sha256": "4403AB8F18D026F7123B858D7BEFB083FC1A76E76DDC7DE99469EB6B50B9C1DF",
+      "width": 2000,
+      "height": 1400,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_lia_portrait_scale_overlay.png": {
+      "sha256": "E3BD2713C037C362AD95501EFA1EDB584F43B11601A62D1B66C63C6B3A9FD1BC",
+      "width": 1800,
+      "height": 1600,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_lia_landscape_667x375_scale_overlay.png": {
+      "sha256": "E6339F125F56767117F4E40660B2EF5B8484AE6D1D7C3246B7B2803468F8CD8F",
+      "width": 1334,
+      "height": 375,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_idle_6f_sprite_guide.png": {
+      "sha256": "165E93DA06BF001CFD03491DC45E35D7A139D88A72945BE44BF02176B80E95EE",
+      "width": 1536,
+      "height": 256,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_greeting_4f_sprite_guide.png": {
+      "sha256": "FD6EFBB889853EBE9E2B6A34F535C34B4A0B74A807479E73443C04D232C1D119",
+      "width": 1024,
+      "height": 256,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_glow_shadow_guide.png": {
+      "sha256": "C7FE53757AB4B7503DC5ABB3056ACBECA5569DAF72DD3516407C5595BD902686",
+      "width": 1024,
+      "height": 512,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_lia_motion_timing_sheet.png": {
+      "sha256": "8114F52894FDF026D2C99FF155330E2FE95CBF7E4617DA7F8CCF7478962E29E1",
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_lia_existing_pose_benchmark.png": {
+      "sha256": "C6F923B14B7DD7C98E6CBE6B0C8361FA8E64900AF26772AE218DA0D1870B4F31",
+      "width": 2000,
+      "height": 1600,
+      "mode": "RGB",
+      "alpha": "NO"
+    }
+  }
+}
