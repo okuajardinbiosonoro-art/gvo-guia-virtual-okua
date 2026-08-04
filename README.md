@@ -76,7 +76,7 @@ La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STAT
 - Mundo IV / Estación IV cerrada y aprobada por revisión humana en `/estacion/4`: cadena Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido, 20 assets runtime con espejos, ruta SVG, Lía, fullscreen, responsive y reduced motion.
 - Las seis transiciones runtime y sus doce piezas editoriales están cerradas como `FINAL / human_approved` por `TRANSITION_COPY_AUDIT_COMPLETE`.
 - Mundo V conserva mapa, Plantas, Sistema, Espacio, Visitante, 4/4, `Ir al cierre`, persistencia global, guardas y salida bajo `ST5_020H_HUMAN_APPROVED`.
-- Final conserva runtime temporal y no cerrado; 021E auditó los seis Environment aprobados en Descargas como referencias `NOT_RUNTIME` y dejó listos seis briefs para accesos I–V/placa, sin producir esos assets ni implementar.
+- Final conserva runtime temporal y no cerrado. 021I registró 19 assets aprobados, 19 mirrors byte-idénticos y cinco fuentes de producción fuera de runtime; Gate 5 está completo, pero `FinalRoot` todavía no consume el paquete ni tiene composición visual nueva.
 
 Los contratos integrales están en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y [`docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md`](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md). El umbral de revisión vigente está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
@@ -100,6 +100,6 @@ Estado actual:
 - Estación IV: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
 - Estación V: ST5_020H_HUMAN_APPROVED / CERRADA PARA EL ALCANCE ACTUAL
 - Transiciones: ST5_020I_PUBLISHED_COMPLETE / TRANSITION_COPY_AUDIT_COMPLETE
-- Final: RUNTIME TEMPORAL / GATES 1–4 CERRADOS / 021E BRIEFS ACCESS+LABEL READY / PRIMER ASSET ACCESS-I / NO IMPLEMENTADA
+- Final: RUNTIME TEMPORAL / GATES 1–5 CERRADOS / 19 ASSETS REGISTERED / NOT_YET_COMPOSED / NO IMPLEMENTADA
 
-Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md), el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md), la [aprobación de preproducción del Mirador](docs/status/GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md), los [briefs Environment 021D](docs/status/GVO_FINAL_021D_ASSET_PRODUCTION_BRIEFS_ENVIRONMENT_FAMILY.md) y los [briefs de accesos/placa 021E](docs/status/GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS.md).
+Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md), el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md), la [aprobación de preproducción del Mirador](docs/status/GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md) y el [cierre de Gate 5 del Mirador](docs/status/GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).

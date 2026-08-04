@@ -1,0 +1,129 @@
+{
+  "classification": "DETERMINISTIC_GREETING_CANDIDATE / PENDING_HUMAN_REVIEW / NOT_RUNTIME",
+  "source": "approved FINAL-LIA-IDLE-001 frames",
+  "method": {
+    "F1": "approved idle F1",
+    "F2": "approved idle F1, -2 degree tilt, +1 px y",
+    "F3": "approved idle blink frame, -3 degree tilt, +2 px y",
+    "F4": "approved idle F1 exact return",
+    "total_duration_ms": 640
+  },
+  "identity": {
+    "same_approved_body": true,
+    "exactly_five_petals": true,
+    "no_generative_redesign": true,
+    "F4_equals_F1": true
+  },
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        54,
+        35,
+        184,
+        184
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "margins": {
+        "left": 54,
+        "top": 35,
+        "right": 72,
+        "bottom": 72
+      },
+      "center": [
+        119.0,
+        109.5
+      ],
+      "center_drift_from_f1": 0.0
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        56,
+        36,
+        186,
+        185
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "margins": {
+        "left": 56,
+        "top": 36,
+        "right": 70,
+        "bottom": 71
+      },
+      "center": [
+        121.0,
+        110.5
+      ],
+      "center_drift_from_f1": 2.236
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        56,
+        35,
+        186,
+        184
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "margins": {
+        "left": 56,
+        "top": 35,
+        "right": 70,
+        "bottom": 72
+      },
+      "center": [
+        121.0,
+        109.5
+      ],
+      "center_drift_from_f1": 2.0
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        35,
+        184,
+        184
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "margins": {
+        "left": 54,
+        "top": 35,
+        "right": 72,
+        "bottom": 72
+      },
+      "center": [
+        119.0,
+        109.5
+      ],
+      "center_drift_from_f1": 0.0
+    }
+  ],
+  "outputs": {
+    "final_lia_greeting_2x2_sheet_deterministic_v01.png": {
+      "bytes": 107432,
+      "sha256": "1104EFCD73E16A9806FB919F94EBA730D1B5AE7B42218548D9B74EB7EF48A697"
+    },
+    "final_lia_greeting_4f_v01.webp": {
+      "bytes": 30182,
+      "sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD"
+    },
+    "final_lia_greeting_4f_preview.png": {
+      "bytes": 46569,
+      "sha256": "4B902BD4EEFA3F73840FD14CEC79B73B4C8647A7A3302F287EFB7A9410BEF79D"
+    },
+    "final_lia_greeting_4f_preview_animated.webp": {
+      "bytes": 85350,
+      "sha256": "ECA4226CAB168A8905F206E3EF8407427601DACA5401092B4435A0ACD400FF4F"
+    },
+    "final_lia_greeting_4f_metrics.json": {
+      "bytes": 2014,
+      "sha256": "9981A17F6A6CB87EC252A101D6F0020BDBC834645CB233748ADA16D2ED54D53B"
+    }
+  }
+}

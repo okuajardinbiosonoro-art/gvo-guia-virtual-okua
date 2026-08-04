@@ -25,7 +25,7 @@ Actualizado: 2026-08-04
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                 |
 | Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                                                     |
 | W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                                               |
-| Final         | Cierre editorial `FINAL / human_approved / es`: 35 slots registrados y 30 consumidos por el DOM actual. Los cinco slots operativos nuevos no tienen consumidor funcional. La composición visual y el cierre funcional permanecen abiertos. |
+| Final         | Cierre editorial `FINAL / human_approved / es`; Gate 5 `ASSETS PRODUCED_AND_APPROVED / COMPLETE`: 19 assets runtime y 19 mirrors registrados, todavía no consumidos. La composición visual y el cierre funcional permanecen abiertos. |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -111,16 +111,16 @@ Final tiene cierre editorial humano de 35 slots, documentado en
 El DOM actual consume los 30 slots base sin `TEMP` ni `excel_pending`; los cinco
 slots nuevos quedan registrados sin implementar retorno global al Mirador,
 busy, rollback, error o reintento. La composición visual y el cierre funcional
-continúan abiertos. Su preproducción, Art Bible,
-cámaras y dirección visual están humanamente aprobadas por
+continúan abiertos. Su preproducción, Art Bible, cámaras y dirección visual
+están humanamente aprobadas por
 [GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md](GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md),
-con Gates 1–4 cerrados. 021E auditó los seis Environment aprobados en Descargas
-como `APPROVED_PRODUCTION_REFERENCE / NOT_RUNTIME` y publicó seis briefs,
-cinco overlays y el reference pack de accesos I–V/placa;
-`FINAL-ACCESS-I-001` es el primer brief
-`READY_FOR_HUMAN_ASSET_PRODUCTION`. No se produjo ningún acceso ni placa final
-y no se implementó runtime. El registro está en
-[GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS.md](GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS.md).
-La siguiente acción controlada es producir sólo ACCESS-I con ticket posterior y
-revisarlo antes de ACCESS-II. Los registros 020A–020H permanecen históricos y
-no se reescriben.
+con Gates 1–4 cerrados. `GVO_FINAL_021I` registra desde el paquete humano
+aprobado seis Environment, seis Access, cuatro UI y tres assets de Lía bajo
+`public/assets/gvo/stations/final-root/`, con 19 mirrors byte-idénticos en
+`current-used/final-root`, manifest canónico y registry tipado aún no consumido.
+Las cinco fuentes de producción de Lía permanecen fuera de `public`, `dist` y
+precache. Gate 5 queda `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; no implica
+composición, layout aprobado, interacción, retorno, reset ni motion. El cierre
+está en
+[GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md](GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).
+Los registros 020A–020H y 021B–021H permanecen históricos y no se reescriben.

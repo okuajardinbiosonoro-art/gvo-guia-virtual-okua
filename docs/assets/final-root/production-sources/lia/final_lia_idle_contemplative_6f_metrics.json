@@ -1,0 +1,260 @@
+{
+  "contract": "FINAL-LIA-IDLE-001_ASSEMBLY_CONTRACT",
+  "classification": "PRODUCTION_OUTPUT_PENDING_HUMAN_REVIEW / NOT_RUNTIME",
+  "source": {
+    "path": "/mnt/data/lia_deterministic_final/final_lia_idle_3x2_sheet_v01.png",
+    "sha256_before": "C032E39C0C3BFCBBFE06AD95827637864AF9C3502E4729DA3EB8AD8537F5565A",
+    "sha256_after": "C032E39C0C3BFCBBFE06AD95827637864AF9C3502E4729DA3EB8AD8537F5565A",
+    "canvas": [
+      768,
+      512
+    ],
+    "layout": "3x2 row-major",
+    "source_cell_size": [
+      256,
+      256
+    ]
+  },
+  "assembly": {
+    "interpolation": "nearest",
+    "single_resize_per_cell": true,
+    "final_canvas": [
+      1536,
+      256
+    ],
+    "grid": "6x1",
+    "cell_size": [
+      256,
+      256
+    ],
+    "frame_count": 6,
+    "duration_ms": 4000,
+    "preview_frame_duration_ms": 667,
+    "blink_method": "OPTION_A_SHEET_STATES"
+  },
+  "limits": {
+    "safe_area_px": 16,
+    "center_drift_px": 6.0,
+    "baseline_drift_px": 4,
+    "scale_delta_percent": 2.0,
+    "visible_width_percent": [
+      46.0,
+      54.0
+    ],
+    "visible_height_percent": [
+      58.0,
+      64.0
+    ]
+  },
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        54,
+        35,
+        184,
+        184
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 109.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": 0.0,
+      "center_drift_from_f1": 0.0,
+      "baseline": 183,
+      "baseline_drift_from_f1": 0,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 35,
+        "right": 72,
+        "bottom": 72
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        54,
+        33,
+        184,
+        182
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 107.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": -2.0,
+      "center_drift_from_f1": 2.0,
+      "baseline": 181,
+      "baseline_drift_from_f1": -2,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 33,
+        "right": 72,
+        "bottom": 74
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        54,
+        31,
+        184,
+        180
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 105.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": -4.0,
+      "center_drift_from_f1": 4.0,
+      "baseline": 179,
+      "baseline_drift_from_f1": -4,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 31,
+        "right": 72,
+        "bottom": 76
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        54,
+        33,
+        184,
+        182
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 107.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": -2.0,
+      "center_drift_from_f1": 2.0,
+      "baseline": 181,
+      "baseline_drift_from_f1": -2,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 33,
+        "right": 72,
+        "bottom": 74
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        54,
+        37,
+        184,
+        186
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 111.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": 2.0,
+      "center_drift_from_f1": 2.0,
+      "baseline": 185,
+      "baseline_drift_from_f1": 2,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 37,
+        "right": 72,
+        "bottom": 70
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        54,
+        35,
+        184,
+        184
+      ],
+      "visible_width": 130,
+      "visible_height": 149,
+      "visible_width_percent": 50.781,
+      "visible_height_percent": 58.203,
+      "center_x": 118.368,
+      "center_y": 109.69,
+      "center_drift_x_from_f1": 0.0,
+      "center_drift_y_from_f1": 0.0,
+      "center_drift_from_f1": 0.0,
+      "baseline": 183,
+      "baseline_drift_from_f1": 0,
+      "scale_width_delta_percent_from_f1": 0.0,
+      "scale_height_delta_percent_from_f1": 0.0,
+      "margins": {
+        "left": 54,
+        "top": 35,
+        "right": 72,
+        "bottom": 72
+      },
+      "edge_contacts": [],
+      "safe_area_pass": true,
+      "bbox_range_pass": true
+    }
+  ],
+  "loop_closure": {
+    "f6_to_f1_alpha_iou": 1.0,
+    "f6_to_f1_mean_rgba_delta": 0.0
+  },
+  "outputs": {
+    "final_webp": {
+      "path": "/mnt/data/lia_deterministic_final/out/final_lia_idle_contemplative_6f_v01.webp",
+      "bytes": 28306,
+      "sha256": "D3171A70C467EFCDA6D1FBB553FA2BEC5D3CFF0DE1A3B00306F5FF121F18CCDE"
+    },
+    "preview_png": {
+      "path": "/mnt/data/lia_deterministic_final/out/final_lia_idle_contemplative_6f_preview.png",
+      "bytes": 47747,
+      "sha256": "E3F1E15503F0A35C396EE1B2A4173A606D698FD799FE8C9394673E4D8BC87437"
+    },
+    "preview_animated_webp": {
+      "path": "/mnt/data/lia_deterministic_final/out/final_lia_idle_contemplative_6f_preview_animated.webp",
+      "bytes": 127544,
+      "sha256": "0091B3B58BFD5886E7C6B6698FC13E7845916A68CC9B8B04E64031BF568B4C3A"
+    }
+  },
+  "validation": "PASS",
+  "runtime_promoted": false
+}

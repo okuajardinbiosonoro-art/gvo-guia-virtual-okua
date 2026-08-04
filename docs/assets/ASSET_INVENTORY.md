@@ -137,3 +137,43 @@ el relanzamiento como PWA permanecen no certificados.
 
 Los assets sin referencia runtime solo pueden permanecer como fuentes
 documentadas. Las capturas generadas para QA no pertenecen en `public/`.
+
+## Pantalla Final — Mirador / Gate 5 021I
+
+Estado: `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; runtime
+`HUMAN_APPROVED / REGISTERED / NOT_YET_COMPOSED`.
+
+- Runtime canónico: `public/assets/gvo/stations/final-root/`.
+- Espejo byte-idéntico: `public/assets/gvo/current-used/final-root/`.
+- Registry tipado no consumido: `src/shared/assets/finalRootAssets.ts`.
+- Fuentes de producción no-runtime:
+  `docs/assets/final-root/production-sources/lia/`.
+- Paquete aprobado SHA-256:
+  `4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F`.
+
+| ID | Ruta relativa común | Formato / dimensiones | SHA-256 | Función futura / consumidor | Estado |
+| --- | --- | --- | --- | --- | --- |
+| `FINAL-ENV-P-001` | `environment/final_environment_portrait_v01.webp` | WEBP RGBA / 1440×2560 | `1E8B599BE197EE26E346B1B1974CAA571DE42AF4B8587758C801C914C04C1347` | Entorno portrait / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ENV-L-001` | `environment/final_environment_landscape_v01.webp` | WEBP RGB / 2560×1440 | `EDB75703A398724B9084D800CF21B888D72B6028C4199DC1D7A2C5F5CC0D1D84` | Entorno landscape / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-DEPTH-P-001` | `environment/final_valley_depth_portrait_v01.webp` | WEBP RGBA / 1440×2560 | `F64326254C5215CB44E0F9D93134B425E8806EA41E27556A4BBC40EA36D71E99` | Profundidad del valle portrait / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-DEPTH-L-001` | `environment/final_valley_depth_landscape_v01.webp` | WEBP RGBA / 2560×1440 | `FA9999A33EA636F57FA901D8C06B4FF9694A27F66704DAE7968B9E2DC45EC42B` | Profundidad del valle landscape / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-MIRADOR-P-001` | `environment/final_mirador_foreground_portrait_v01.webp` | WEBP RGBA / 1440×1280 | `19290CF1995A8FAB2B643BEBC88126D3BA6E67A516A43877E1AA79A16E11427D` | Foreground del Mirador portrait / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-MIRADOR-L-001` | `environment/final_mirador_foreground_landscape_v01.webp` | WEBP RGBA / 2560×900 | `455EDBA68398FBB8BC1A508C42D0EB1BC7D2B6AFC236BF5F8928C2356FD60544` | Foreground del Mirador landscape / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ACCESS-I-001` | `access/final_access_world1_root_v01.webp` | WEBP RGBA / 1024×1024 | `F1BE36246795D8A89241AA708D8E8ECE29FA5C98F3F0DCCAF5C2BD5F8F1BF046` | Acceso visual Mundo I / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ACCESS-II-001` | `access/final_access_world2_pulse_v01.webp` | WEBP RGBA / 1024×1024 | `6EE6B093DEE9ABBEA96FDA66C6C80DB3601CDF588A34FD062D0F844466EDD7B6` | Acceso visual Mundo II / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ACCESS-III-001` | `access/final_access_world3_notebook_v01.webp` | WEBP RGBA / 1024×1024 | `2EFAB6C3CA5430D7BA1F0113AA4E19A4B99CE6D4AF5C3212371AC86314039CD3` | Acceso visual Mundo III / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ACCESS-IV-001` | `access/final_access_world4_system_v01.webp` | WEBP RGBA / 1024×1024 | `5472BDCA276DBD851D0C3C7C48A96038A5D7544AA13EF4A51BE7BC4DCC2E2B9D` | Acceso visual Mundo IV / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-ACCESS-V-001` | `access/final_access_world5_map_v01.webp` | WEBP RGBA / 1024×1024 | `A034AA6940E2043870FF3EE0B6C833DF4F3C3F15CFD386C846DB78AA1CBFC07F` | Acceso visual Mundo V / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-LABEL-001` | `access/final_access_label_backplate_v01.png` | PNG RGBA / 1024×256 | `36257FEC3E1E69D58A9F5E7CA2543F983D309776E45F757D1A81A7CAECFA3698` | Materialidad de labels DOM / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-PLATE-TITLE-001` | `ui/final_title_backplate_v01.png` | PNG RGBA / 1536×512 | `898949FFAA35E66507A3AA799BFE32AEC36FA4D3B73B54E58FC1E1A2715C360D` | Backplate de título DOM / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-PLATE-CREDITS-001` | `ui/final_credits_backplate_v01.png` | PNG RGBA / 1536×384 | `45C6FD147A04FF9F8FF5A249EDBC2FCE16EA07FE843A9082B2E011ABC75FFFB1` | Backplate de créditos DOM / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-PLATE-ACTION-001` | `ui/final_action_backplate_v01.png` | PNG RGBA / 1024×256 | `C771BA00ACD157962EA1C1BD54FC54758BB6D7306F99C9C0616B5BDCEF211B81` | Backplate de acciones DOM / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-PLATE-DIALOG-001` | `ui/final_restart_dialog_backplate_v01.png` | PNG RGBA / 1536×1024 | `2E81A8CE8C4DFB17E519BC3AE8513367D0C45418A312DC863C9238186FDAB32C` | Materialidad del diálogo futuro / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-LIA-IDLE-001` | `lia/final_lia_idle_contemplative_6f_v01.webp` | WEBP RGBA / 1536×256 | `D3171A70C467EFCDA6D1FBB553FA2BEC5D3CFF0DE1A3B00306F5FF121F18CCDE` | Secuencia idle contemplativa futura / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-LIA-GREETING-001` | `lia/final_lia_greeting_4f_v01.webp` | WEBP RGBA / 1024×256 | `80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD` | Secuencia de saludo futura / `FinalRoot` | Human approved, registrado, no compuesto |
+| `FINAL-LIA-SHADOW-001` | `lia/final_lia_glow_shadow_v01.png` | PNG RGBA / 1024×512 | `BE1A7499B742B36652F3382B805A012D015C1D06581844C72EA247EC0367E375` | Glow/sombra de presencia futura / `FinalRoot` | Human approved, registrado, no compuesto |
+
+Las cinco fuentes `PRODUCTION_SOURCE / HUMAN_APPROVED / NOT_RUNTIME` conservan
+los binarios originales y métricas aprobadas fuera de `public`. No entran en
+`current-used`, imports, `dist` ni precache. El manifest completo registra
+bytes, canvas, modo, alpha, `alpha_bbox`, hashes y procedencia por asset.

@@ -1,6 +1,6 @@
 # Roadmap GVO
 
-Actualizado: 2026-08-03
+Actualizado: 2026-08-04
 
 ## Estado consolidado
 
@@ -12,9 +12,9 @@ Actualizado: 2026-08-03
 - Mundo IV / Estación IV: `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.
 - Mundo V: `ST5_020H_HUMAN_APPROVED` y
   `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`.
-- Final: runtime temporal y no cerrado; preproducción con Gates 1–4 cerrados y
-  Art Bible/cámara `HUMAN_APPROVED` por `GVO_FINAL_021C`, sin assets finales ni
-  implementación.
+- Final: runtime temporal y no cerrado; Gates 1–5 cerrados. Los 19 assets
+  aprobados y sus mirrors están `REGISTERED / NOT_YET_COMPOSED`; no existe
+  todavía composición visual ni cierre funcional.
 
 ## Cierre vigente
 
@@ -30,25 +30,25 @@ overview 4/4 + CTA Ir al cierre
 
 `ST5_020I_PUBLISHED_COMPLETE` cierra el copy de todas las transiciones. 021C
 aprueba humanamente la dirección visual de preproducción del Mirador, pero no
-declara cierre ni aprobación de su runtime.
+declara cierre ni aprobación de su runtime. `GVO_FINAL_021I` cierra Gate 5 con
+19 assets runtime, 19 mirrors y cinco fuentes de producción preservadas, sin
+consumirlos en `FinalRoot`.
 
 ## Frente de preproducción completado
 
-`GVO_FINAL_021E_ACCESS_AND_LABEL_ASSET_PRODUCTION_BRIEFS` audita los seis
-Environment aprobados en Descargas como referencias `NOT_RUNTIME` y deja seis
-briefs, cinco overlays y el reference pack de accesos I–V/placa `READY`; no
-produce esos seis assets ni implementa runtime. La siguiente acción bajo ticket
-posterior es producir únicamente
-`FINAL-ACCESS-I-001 — final_access_world1_root_v01.webp` y revisarlo
-humanamente. No iniciar ACCESS-II antes de esa revisión.
+La secuencia 021B–021H cerró blueprint, aprobación humana, briefs de producción,
+corrección de Lía y copy editorial. `GVO_FINAL_021I` verificó el paquete aprobado
+por hash y metadata, registró los 19 assets canónicos y cerró Gate 5. El siguiente
+microfrente autorizado es `GVO_FINAL_021J_STATIC_COMPOSITION_PORTRAIT`: consume
+el paquete aprobado en portrait, sin interacción, motion ni landscape.
 
-## Gates obligatorios para Estación V
+## Gates obligatorios para el Mirador
 
 ```text
-Audit
-→ Preproduction
-→ Asset production
-→ Static composition
+Audit ✓
+→ Preproduction ✓
+→ Asset production ✓ (Gate 5)
+→ Static composition (Gate 6, pendiente)
 → Immersive layout
 → Motion/interaction
 → Human approval
@@ -56,7 +56,7 @@ Audit
 → Commit/push
 ```
 
-La base existente de Mundo V no permite omitir gates ni declarar visuales
+La base existente del Mirador no permite omitir gates ni declarar visuales
 procedurales como assets finales. Mobile compacto, landscape, cámara, artboard,
 anchors, alpha-aware alignment, accesibilidad y reduced motion se diseñan desde
 preproducción.

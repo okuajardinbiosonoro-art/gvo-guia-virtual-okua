@@ -37,6 +37,11 @@ current-used/
     signal/
   world-4-root/
   world-5-root/
+  final-root/
+    access/
+    environment/
+    lia/
+    ui/
   shared/
   global/
 ```
@@ -63,6 +68,11 @@ current-used/
   humano de entrada es `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`; la
   publicación 020F queda `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW` y no declara
   cierre de Estación V.
+- `final-root` registra 19 pares byte-idénticos aprobados humanamente para el
+  Mirador: seis Environment, seis Access, cuatro UI y tres Lía. Gate 5 queda
+  `ASSETS PRODUCED_AND_APPROVED / COMPLETE`, pero el estado runtime sigue
+  `REGISTERED / NOT_YET_COMPOSED`; sus cinco fuentes de producción permanecen
+  fuera de `public` y no tienen mirror ni precache.
 - Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
   del directorio nunca equivale a aprobación de pantalla.
 
