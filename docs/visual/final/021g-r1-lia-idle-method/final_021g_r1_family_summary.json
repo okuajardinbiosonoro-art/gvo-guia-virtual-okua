@@ -1,0 +1,84 @@
+{
+  "ticket": "GVO_FINAL_021G_R1",
+  "baseline": "b3ce96a5e523a5bfa4c09fc51a402c9b10b05927",
+  "runtime": "READ_ONLY",
+  "art_generated": false,
+  "i17": {
+    "files": 2,
+    "frames_per_file": 6,
+    "cropped_frames_per_file": 6,
+    "safe16_pass_frames": 0,
+    "classification": "REJECTED_PRODUCTION_CANDIDATE / NOT_RUNTIME / DO_NOT_REPAIR"
+  },
+  "method": {
+    "deprecated": "DIRECT_GENERATIVE_6X1_STRIP",
+    "master": "FINAL-LIA-MASTER-001",
+    "sheet": "FINAL-LIA-IDLE-SHEET-001",
+    "assembler": "tools/asset-production/lia/build_final_lia_idle.py",
+    "blink": "OPTION_A_SELECTED_FOR_INITIAL_PRODUCTION"
+  },
+  "visual_outputs": {
+    "final_021g_r1_i17_rejection_contact_sheet.png": {
+      "sha256": "E681D7D67470718DEDA6C2D8B93C4B61254587A0F3AB1C262608F739A05BB38E",
+      "width": 1800,
+      "height": 1250,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_r1_lia_master_safearea_1024.png": {
+      "sha256": "81273B4C304E73225C2EE1434AD93212F1894DDFE006ECFB58EEFADDCBAC93F5",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_r1_lia_idle_3x2_sheet_guide.png": {
+      "sha256": "6A2F8EBBC7E63BDCEB5F70CC2D333D060FD733E82E4819C63F120BE28F08E871",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_r1_lia_6x1_output_guide.png": {
+      "sha256": "07BEFE44BC2BFBA7838CFF82FD8B2DAA458B11B2A7AA8EDFD55D5D966E726899",
+      "width": 1536,
+      "height": 256,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_r1_master_to_sheet_to_strip_flow.png": {
+      "sha256": "6F43FE2561054B430AD2C14218F3D605AEC66C59DBFE2F29454C3A83B7945155",
+      "width": 1800,
+      "height": 900,
+      "mode": "RGB",
+      "alpha": "NO"
+    },
+    "final_021g_r1_blink_method_decision_sheet.png": {
+      "sha256": "C2C15F2D6F653D94EA9C742CA101C6DD5EC9310FD10EF22A880EAB5165E25A33",
+      "width": 1800,
+      "height": 1000,
+      "mode": "RGB",
+      "alpha": "NO"
+    }
+  },
+  "reference_pack": {
+    "ticket": "GVO_FINAL_021G_R1",
+    "classification": "REFERENCE_ONLY / NOT_RUNTIME",
+    "unique_sources": 15,
+    "attachment_copies": 36,
+    "folder_counts": {
+      "COMMON": 15,
+      "FINAL-LIA-MASTER-001": 10,
+      "FINAL-LIA-IDLE-SHEET-001": 11
+    },
+    "copied_021g_reference_count": 0,
+    "runtime_modified": false,
+    "folder": "C:\\Users\\JOSE DAVID\\Downloads\\GVO_FINAL_021G_R1_LIA_IDLE_REFERENCE_PACK",
+    "manifest": "C:\\Users\\JOSE DAVID\\Downloads\\GVO_FINAL_021G_R1_LIA_IDLE_REFERENCE_PACK\\MANIFEST.csv",
+    "manifest_sha256": "B5C7B4FBCB03EE1D267EE1317A9835CB5F26FCF8357A693635025B003FDB00D4",
+    "zip": "C:\\Users\\JOSE DAVID\\Downloads\\GVO_FINAL_021G_R1_LIA_IDLE_REFERENCE_PACK.zip",
+    "zip_sha256": "68F9D13F54B97260BFCBF81D1889AD45C740B34F60C05160484606FBE17A4C56",
+    "zip_bytes": 11724965
+  },
+  "next": "Produce only FINAL-LIA-MASTER-001."
+}
