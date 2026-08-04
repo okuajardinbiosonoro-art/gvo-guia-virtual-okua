@@ -95,7 +95,8 @@ export const editorialRegistry = {
   TRANS_W2_W3_TITLE_01: {
     es: finalEsEntry({
       emitter: "interfaz",
-      notes: "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
+      notes:
+        "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
       shortText: "Abriendo Mundo III",
       slotId: "TRANS_W2_W3_TITLE_01",
       text: "Abriendo Mundo III",
@@ -1261,276 +1262,295 @@ export const editorialRegistry = {
     }),
   },
   FINAL_TITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de entrada base Pantalla Final — Mirador.",
-      shortText: "Mirador Final",
+      shortText: "Mirador final",
       slotId: "FINAL_TITLE_01",
-      text: "TEMP — Mirador Final",
+      text: "Mirador final del jardín",
     }),
   },
   FINAL_SUBTITLE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de entrada base Pantalla Final; reemplazar por Excel editorial.",
-      shortText: "Recorrido reunido",
+      shortText: "Recorrido completo",
       slotId: "FINAL_SUBTITLE_01",
-      text: "TEMP — El recorrido queda reunido para volver a mirar.",
+      text: "Recorrido completo",
     }),
   },
   FINAL_LIA_MESSAGE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "lia",
-      notes: "TEMP de mensaje de Lía para Mirador Final completo.",
-      shortText: "Revisar mundos",
+      shortText: "Cierre y revisión libre",
       slotId: "FINAL_LIA_MESSAGE_01",
-      text:
-        "TEMP — Desde aquí puedes revisar los mundos completados, volver al inicio o reiniciar el recorrido.",
+      text: "Llegaste al final del recorrido. Puedes volver a cualquier mundo cuando quieras.",
     }),
   },
   FINAL_AMB_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "ambiente",
-      notes: "TEMP de ambiente para Mirador Final completo.",
-      shortText: "Memoria temporal",
+      shortText: "Jardín abierto",
       slotId: "FINAL_AMB_01",
-      text: "TEMP — Los mundos quedan abiertos como memoria temporal del camino.",
+      text: "El jardín queda abierto para volver a mirarlo.",
     }),
   },
   FINAL_ACCESS_I_LABEL_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acceso de revisión a Mundo I.",
-      shortText: "Mundo I",
+      shortText: "I — Raíz",
       slotId: "FINAL_ACCESS_I_LABEL_01",
-      text: "TEMP — Mundo I — Raíz",
+      text: "I — Raíz",
     }),
   },
   FINAL_ACCESS_I_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación local para revisión de Mundo I.",
-      shortText: "Revisión Mundo I",
+      shortText: "Reabrir Mundo I",
       slotId: "FINAL_ACCESS_I_CONFIRM_01",
-      text: "TEMP — Revisión de Mundo I preparada.",
+      text: "Reabriendo Mundo I: Raíz…",
     }),
   },
   FINAL_ACCESS_II_LABEL_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acceso de revisión a Mundo II.",
-      shortText: "Mundo II",
+      shortText: "II — Pulso invisible",
       slotId: "FINAL_ACCESS_II_LABEL_01",
-      text: "TEMP — Mundo II — Pulso invisible",
+      text: "II — Pulso invisible",
     }),
   },
   FINAL_ACCESS_II_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación local para revisión de Mundo II.",
-      shortText: "Revisión Mundo II",
+      shortText: "Reabrir Mundo II",
       slotId: "FINAL_ACCESS_II_CONFIRM_01",
-      text: "TEMP — Revisión de Mundo II preparada.",
+      text: "Reabriendo Mundo II: Pulso invisible…",
     }),
   },
   FINAL_ACCESS_III_LABEL_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acceso de revisión a Mundo III.",
-      shortText: "Mundo III",
+      shortText: "III — Cuaderno de pruebas",
       slotId: "FINAL_ACCESS_III_LABEL_01",
-      text: "TEMP — Mundo III — Cuaderno Pixel",
+      text: "III — Cuaderno de pruebas",
     }),
   },
   FINAL_ACCESS_III_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación local para revisión de Mundo III.",
-      shortText: "Revisión Mundo III",
+      shortText: "Reabrir Mundo III",
       slotId: "FINAL_ACCESS_III_CONFIRM_01",
-      text: "TEMP — Revisión de Mundo III preparada.",
+      text: "Reabriendo Mundo III: Cuaderno de pruebas…",
     }),
   },
   FINAL_ACCESS_IV_LABEL_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acceso de revisión a Mundo IV.",
-      shortText: "Mundo IV",
+      shortText: "IV — Mesa de sistema",
       slotId: "FINAL_ACCESS_IV_LABEL_01",
-      text: "TEMP — Mundo IV — Mesa de Sistema",
+      text: "IV — Mesa de sistema",
     }),
   },
   FINAL_ACCESS_IV_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación local para revisión de Mundo IV.",
-      shortText: "Revisión Mundo IV",
+      shortText: "Reabrir Mundo IV",
       slotId: "FINAL_ACCESS_IV_CONFIRM_01",
-      text: "TEMP — Revisión de Mundo IV preparada.",
+      text: "Reabriendo Mundo IV: Mesa de sistema…",
     }),
   },
   FINAL_ACCESS_V_LABEL_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acceso de revisión a Mundo V.",
-      shortText: "Mundo V",
+      shortText: "V — Mapa del presente",
       slotId: "FINAL_ACCESS_V_LABEL_01",
-      text: "TEMP — Mundo V — Mapa del Presente",
+      text: "V — Mapa del presente",
     }),
   },
   FINAL_ACCESS_V_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación local para revisión de Mundo V.",
-      shortText: "Revisión Mundo V",
+      shortText: "Reabrir Mundo V",
       slotId: "FINAL_ACCESS_V_CONFIRM_01",
-      text: "TEMP — Revisión de Mundo V preparada.",
+      text: "Reabriendo Mundo V: Mapa del presente…",
     }),
   },
   FINAL_HELP_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de ayuda contextual para revisión libre temporal.",
-      shortText: "Revisión sin nueva estación",
+      shortText: "Revisión libre",
       slotId: "FINAL_HELP_01",
-      text:
-        "TEMP — Puedes volver a mirar cualquier mundo completado sin agregar una nueva estación.",
+      text: "Elige un mundo para revisarlo libremente.",
     }),
   },
   FINAL_BACK_HOME_BTN_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acción para volver al inicio visible del recorrido.",
       shortText: "Volver al inicio",
       slotId: "FINAL_BACK_HOME_BTN_01",
-      text: "TEMP — Volver al inicio",
+      text: "Volver al inicio",
     }),
   },
   FINAL_BACK_HOME_HELP_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de ayuda para volver al inicio sin reiniciar recorrido.",
-      shortText: "Inicio visible",
+      shortText: "Conservar recorrido",
       slotId: "FINAL_BACK_HOME_HELP_01",
-      text: "TEMP — Esta acción regresa al inicio visible del recorrido.",
+      text: "Regresa a la portada sin borrar tu recorrido.",
     }),
   },
   FINAL_RESTART_BTN_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de acción crítica de reinicio.",
-      shortText: "Reiniciar",
+      shortText: "Reiniciar recorrido",
       slotId: "FINAL_RESTART_BTN_01",
-      text: "TEMP — Reiniciar",
+      text: "Reiniciar recorrido",
     }),
   },
   FINAL_RESTART_CONFIRM_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "sistema",
-      notes: "TEMP de confirmación para reinicio sin limpieza global.",
       shortText: "Confirmar reinicio",
       slotId: "FINAL_RESTART_CONFIRM_01",
-      text: "TEMP — ¿Quieres reiniciar el recorrido desde el comienzo?",
+      text: "¿Quieres reiniciar el recorrido completo? Volverás a comenzar desde el inicio.",
     }),
   },
   FINAL_RESTART_CANCEL_BTN_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de cancelación de reinicio.",
       shortText: "Cancelar",
       slotId: "FINAL_RESTART_CANCEL_BTN_01",
-      text: "TEMP — Cancelar",
+      text: "Cancelar",
     }),
   },
   FINAL_RESTART_CONFIRM_BTN_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de confirmación final de reinicio por navegación.",
-      shortText: "Confirmar reinicio",
+      shortText: "Reiniciar recorrido",
       slotId: "FINAL_RESTART_CONFIRM_BTN_01",
-      text: "TEMP — Confirmar reinicio",
+      text: "Reiniciar recorrido",
     }),
   },
   FINAL_CREDITS_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP de créditos mínimos para Mirador Final.",
-      shortText: "Créditos OKÚA",
+      notes:
+        "Copy definitivo aprobado; sus dos líneas se separan con un salto DOM.",
+      shortText: "Créditos",
       slotId: "FINAL_CREDITS_01",
-      text: "TEMP — OKÚA Jardín Biosonoro · Guía Virtual OKÚA",
+      text: "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David Pérez Zapata.",
     }),
   },
   FINAL_ACCESSIBLE_SCENE_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible de Mirador Final completo.",
       shortText: "Escena accesible final",
       slotId: "FINAL_ACCESSIBLE_SCENE_01",
-      text:
-        "TEMP — Pantalla final tipo mirador con cierre, accesos a mundos, regreso al inicio y reinicio preparado.",
+      text: "Mirador final del jardín con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
     }),
   },
   FINAL_ACCESSIBLE_ACCESS_I_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para acceso de revisión a Mundo I.",
-      shortText: "Acceso Mundo I",
+      shortText: "Revisar Mundo I",
       slotId: "FINAL_ACCESSIBLE_ACCESS_I_01",
-      text: "TEMP — Acceso de revisión a Mundo I.",
+      text: "Revisar Mundo I: Raíz",
     }),
   },
   FINAL_ACCESSIBLE_ACCESS_II_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para acceso de revisión a Mundo II.",
-      shortText: "Acceso Mundo II",
+      shortText: "Revisar Mundo II",
       slotId: "FINAL_ACCESSIBLE_ACCESS_II_01",
-      text: "TEMP — Acceso de revisión a Mundo II.",
+      text: "Revisar Mundo II: Pulso invisible",
     }),
   },
   FINAL_ACCESSIBLE_ACCESS_III_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para acceso de revisión a Mundo III.",
-      shortText: "Acceso Mundo III",
+      shortText: "Revisar Mundo III",
       slotId: "FINAL_ACCESSIBLE_ACCESS_III_01",
-      text: "TEMP — Acceso de revisión a Mundo III.",
+      text: "Revisar Mundo III: Cuaderno de pruebas",
     }),
   },
   FINAL_ACCESSIBLE_ACCESS_IV_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para acceso de revisión a Mundo IV.",
-      shortText: "Acceso Mundo IV",
+      shortText: "Revisar Mundo IV",
       slotId: "FINAL_ACCESSIBLE_ACCESS_IV_01",
-      text: "TEMP — Acceso de revisión a Mundo IV.",
+      text: "Revisar Mundo IV: Mesa de sistema",
     }),
   },
   FINAL_ACCESSIBLE_ACCESS_V_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para acceso de revisión a Mundo V.",
-      shortText: "Acceso Mundo V",
+      shortText: "Revisar Mundo V",
       slotId: "FINAL_ACCESSIBLE_ACCESS_V_01",
-      text: "TEMP — Acceso de revisión a Mundo V.",
+      text: "Revisar Mundo V: Mapa del presente",
     }),
   },
   FINAL_ACCESSIBLE_BACK_HOME_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para volver al inicio.",
-      shortText: "Accesible inicio",
+      shortText: "Volver sin borrar",
       slotId: "FINAL_ACCESSIBLE_BACK_HOME_01",
-      text: "TEMP — Botón para volver al inicio del recorrido.",
+      text: "Volver a la portada sin borrar el recorrido completado",
     }),
   },
   FINAL_ACCESSIBLE_RESTART_01: {
-    es: temporaryEsEntry({
+    es: finalEsEntry({
       emitter: "interfaz",
-      notes: "TEMP accesible para reinicio con confirmación.",
-      shortText: "Accesible reinicio",
+      shortText: "Reinicio con confirmación",
       slotId: "FINAL_ACCESSIBLE_RESTART_01",
-      text: "TEMP — Acción crítica de reinicio con confirmación.",
+      text: "Reiniciar el recorrido completo después de confirmar",
+    }),
+  },
+  FINAL_RETURN_TO_MIRADOR_BTN_01: {
+    es: finalEsEntry({
+      emitter: "interfaz",
+      notes:
+        "Copy aprobado y registrado; consumo pendiente de ticket funcional de revisita.",
+      shortText: "Volver al Mirador",
+      slotId: "FINAL_RETURN_TO_MIRADOR_BTN_01",
+      text: "Volver al Mirador",
+    }),
+  },
+  FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01: {
+    es: finalEsEntry({
+      emitter: "interfaz",
+      notes:
+        "Copy aprobado y registrado; consumo pendiente de ticket funcional de revisita.",
+      shortText: "Retorno accesible",
+      slotId: "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+      text: "Volver al Mirador final desde este mundo",
+    }),
+  },
+  FINAL_RESTART_BUSY_01: {
+    es: finalEsEntry({
+      emitter: "sistema",
+      notes:
+        "Copy aprobado y registrado; consumo pendiente de ticket funcional de reinicio.",
+      shortText: "Reiniciando",
+      slotId: "FINAL_RESTART_BUSY_01",
+      text: "Reiniciando recorrido…",
+    }),
+  },
+  FINAL_RESTART_ERROR_01: {
+    es: finalEsEntry({
+      emitter: "sistema",
+      notes:
+        "Copy aprobado y registrado; solo consumir tras verificar rollback que conserve el progreso.",
+      shortText: "Error de reinicio",
+      slotId: "FINAL_RESTART_ERROR_01",
+      text: "No pudimos reiniciar el recorrido. Tu progreso se conservó.",
+    }),
+  },
+  FINAL_RESTART_RETRY_BTN_01: {
+    es: finalEsEntry({
+      emitter: "interfaz",
+      notes:
+        "Copy aprobado y registrado; consumo pendiente de ticket funcional de reinicio.",
+      shortText: "Reintentar",
+      slotId: "FINAL_RESTART_RETRY_BTN_01",
+      text: "Reintentar",
     }),
   },
 } as const satisfies EditorialRegistry;

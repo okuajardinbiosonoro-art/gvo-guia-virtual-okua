@@ -7,8 +7,10 @@ import type {
   EditorialStatus,
 } from "./editorial";
 
-export type FinalEditorialSlotId =
-  Extract<EditorialSlotId, (typeof finalEditorialSlotIds)[number]>;
+export type FinalEditorialSlotId = Extract<
+  EditorialSlotId,
+  (typeof finalEditorialSlotIds)[number]
+>;
 
 type FinalEditorialSlot = {
   emitter: EditorialEmitter;
@@ -52,6 +54,11 @@ const finalEditorialSlotIds = [
   "FINAL_ACCESSIBLE_ACCESS_V_01",
   "FINAL_ACCESSIBLE_BACK_HOME_01",
   "FINAL_ACCESSIBLE_RESTART_01",
+  "FINAL_RETURN_TO_MIRADOR_BTN_01",
+  "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+  "FINAL_RESTART_BUSY_01",
+  "FINAL_RESTART_ERROR_01",
+  "FINAL_RESTART_RETRY_BTN_01",
 ] as const;
 
 function resolveFinalSlot(slotId: FinalEditorialSlotId): FinalEditorialSlot {
@@ -75,4 +82,7 @@ export const finalEditorialSlots = Object.fromEntries(
 
 export const FINAL_REQUIRED_SLOT_COUNT = finalEditorialSlotIds.length;
 
-export const FINAL_BASE_SLOT_COUNT = FINAL_REQUIRED_SLOT_COUNT;
+export const FINAL_BASE_SLOT_COUNT = 30;
+
+export const FINAL_OPERATIONAL_SLOT_COUNT =
+  FINAL_REQUIRED_SLOT_COUNT - FINAL_BASE_SLOT_COUNT;

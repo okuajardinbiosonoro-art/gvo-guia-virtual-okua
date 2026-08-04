@@ -8,6 +8,7 @@ import {
   WORLD1_REQUIRED_SLOT_COUNT,
   world1EditorialSlots,
 } from "../world1EditorialSlots";
+import { finalEditorialSlots } from "../finalEditorialSlots";
 
 describe("editorialRegistry", () => {
   it("resuelve textos temporales en es sin fallback", () => {
@@ -144,96 +145,60 @@ describe("editorialRegistry", () => {
       "TEMP — El mapa ya muestra cómo OKÚA reúne plantas, sistema, espacio y visitante.",
     );
     expect(resolveEditorialText("W5_FINAL_BTN_01").text).toBe("Continuar");
-    expect(resolveEditorialText("FINAL_TITLE_01").text).toBe(
-      "TEMP — Mirador Final",
-    );
-    expect(resolveEditorialText("FINAL_SUBTITLE_01").text).toBe(
-      "TEMP — El recorrido queda reunido para volver a mirar.",
-    );
-    expect(resolveEditorialText("FINAL_LIA_MESSAGE_01").text).toBe(
-      "TEMP — Desde aquí puedes revisar los mundos completados, volver al inicio o reiniciar el recorrido.",
-    );
-    expect(resolveEditorialText("FINAL_AMB_01").text).toBe(
-      "TEMP — Los mundos quedan abiertos como memoria temporal del camino.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_I_LABEL_01").text).toBe(
-      "TEMP — Mundo I — Raíz",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_I_CONFIRM_01").text).toBe(
-      "TEMP — Revisión de Mundo I preparada.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_II_LABEL_01").text).toBe(
-      "TEMP — Mundo II — Pulso invisible",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_II_CONFIRM_01").text).toBe(
-      "TEMP — Revisión de Mundo II preparada.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_III_LABEL_01").text).toBe(
-      "TEMP — Mundo III — Cuaderno Pixel",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_III_CONFIRM_01").text).toBe(
-      "TEMP — Revisión de Mundo III preparada.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_IV_LABEL_01").text).toBe(
-      "TEMP — Mundo IV — Mesa de Sistema",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_IV_CONFIRM_01").text).toBe(
-      "TEMP — Revisión de Mundo IV preparada.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_V_LABEL_01").text).toBe(
-      "TEMP — Mundo V — Mapa del Presente",
-    );
-    expect(resolveEditorialText("FINAL_ACCESS_V_CONFIRM_01").text).toBe(
-      "TEMP — Revisión de Mundo V preparada.",
-    );
-    expect(resolveEditorialText("FINAL_HELP_01").text).toBe(
-      "TEMP — Puedes volver a mirar cualquier mundo completado sin agregar una nueva estación.",
-    );
-    expect(resolveEditorialText("FINAL_BACK_HOME_BTN_01").text).toBe(
-      "TEMP — Volver al inicio",
-    );
-    expect(resolveEditorialText("FINAL_BACK_HOME_HELP_01").text).toBe(
-      "TEMP — Esta acción regresa al inicio visible del recorrido.",
-    );
-    expect(resolveEditorialText("FINAL_RESTART_BTN_01").text).toBe(
-      "TEMP — Reiniciar",
-    );
-    expect(resolveEditorialText("FINAL_RESTART_CONFIRM_01").text).toBe(
-      "TEMP — ¿Quieres reiniciar el recorrido desde el comienzo?",
-    );
-    expect(resolveEditorialText("FINAL_RESTART_CANCEL_BTN_01").text).toBe(
-      "TEMP — Cancelar",
-    );
-    expect(resolveEditorialText("FINAL_RESTART_CONFIRM_BTN_01").text).toBe(
-      "TEMP — Confirmar reinicio",
-    );
-    expect(resolveEditorialText("FINAL_CREDITS_01").text).toBe(
-      "TEMP — OKÚA Jardín Biosonoro · Guía Virtual OKÚA",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_SCENE_01").text).toBe(
-      "TEMP — Pantalla final tipo mirador con cierre, accesos a mundos, regreso al inicio y reinicio preparado.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_I_01").text).toBe(
-      "TEMP — Acceso de revisión a Mundo I.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_II_01").text).toBe(
-      "TEMP — Acceso de revisión a Mundo II.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_III_01").text).toBe(
-      "TEMP — Acceso de revisión a Mundo III.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_IV_01").text).toBe(
-      "TEMP — Acceso de revisión a Mundo IV.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_ACCESS_V_01").text).toBe(
-      "TEMP — Acceso de revisión a Mundo V.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_BACK_HOME_01").text).toBe(
-      "TEMP — Botón para volver al inicio del recorrido.",
-    );
-    expect(resolveEditorialText("FINAL_ACCESSIBLE_RESTART_01").text).toBe(
-      "TEMP — Acción crítica de reinicio con confirmación.",
-    );
+    const expectedFinalCopy = {
+      FINAL_TITLE_01: "Mirador final del jardín",
+      FINAL_SUBTITLE_01: "Recorrido completo",
+      FINAL_LIA_MESSAGE_01:
+        "Llegaste al final del recorrido. Puedes volver a cualquier mundo cuando quieras.",
+      FINAL_AMB_01: "El jardín queda abierto para volver a mirarlo.",
+      FINAL_ACCESS_I_LABEL_01: "I — Raíz",
+      FINAL_ACCESS_I_CONFIRM_01: "Reabriendo Mundo I: Raíz…",
+      FINAL_ACCESS_II_LABEL_01: "II — Pulso invisible",
+      FINAL_ACCESS_II_CONFIRM_01: "Reabriendo Mundo II: Pulso invisible…",
+      FINAL_ACCESS_III_LABEL_01: "III — Cuaderno de pruebas",
+      FINAL_ACCESS_III_CONFIRM_01: "Reabriendo Mundo III: Cuaderno de pruebas…",
+      FINAL_ACCESS_IV_LABEL_01: "IV — Mesa de sistema",
+      FINAL_ACCESS_IV_CONFIRM_01: "Reabriendo Mundo IV: Mesa de sistema…",
+      FINAL_ACCESS_V_LABEL_01: "V — Mapa del presente",
+      FINAL_ACCESS_V_CONFIRM_01: "Reabriendo Mundo V: Mapa del presente…",
+      FINAL_HELP_01: "Elige un mundo para revisarlo libremente.",
+      FINAL_BACK_HOME_BTN_01: "Volver al inicio",
+      FINAL_BACK_HOME_HELP_01: "Regresa a la portada sin borrar tu recorrido.",
+      FINAL_RESTART_BTN_01: "Reiniciar recorrido",
+      FINAL_RESTART_CONFIRM_01:
+        "¿Quieres reiniciar el recorrido completo? Volverás a comenzar desde el inicio.",
+      FINAL_RESTART_CANCEL_BTN_01: "Cancelar",
+      FINAL_RESTART_CONFIRM_BTN_01: "Reiniciar recorrido",
+      FINAL_CREDITS_01:
+        "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David Pérez Zapata.",
+      FINAL_ACCESSIBLE_SCENE_01:
+        "Mirador final del jardín con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
+      FINAL_ACCESSIBLE_ACCESS_I_01: "Revisar Mundo I: Raíz",
+      FINAL_ACCESSIBLE_ACCESS_II_01: "Revisar Mundo II: Pulso invisible",
+      FINAL_ACCESSIBLE_ACCESS_III_01: "Revisar Mundo III: Cuaderno de pruebas",
+      FINAL_ACCESSIBLE_ACCESS_IV_01: "Revisar Mundo IV: Mesa de sistema",
+      FINAL_ACCESSIBLE_ACCESS_V_01: "Revisar Mundo V: Mapa del presente",
+      FINAL_ACCESSIBLE_BACK_HOME_01:
+        "Volver a la portada sin borrar el recorrido completado",
+      FINAL_ACCESSIBLE_RESTART_01:
+        "Reiniciar el recorrido completo después de confirmar",
+      FINAL_RETURN_TO_MIRADOR_BTN_01: "Volver al Mirador",
+      FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01:
+        "Volver al Mirador final desde este mundo",
+      FINAL_RESTART_BUSY_01: "Reiniciando recorrido…",
+      FINAL_RESTART_ERROR_01:
+        "No pudimos reiniciar el recorrido. Tu progreso se conservó.",
+      FINAL_RESTART_RETRY_BTN_01: "Reintentar",
+    } as const;
+
+    for (const [slotId, text] of Object.entries(expectedFinalCopy)) {
+      const slot = resolveEditorialText(slotId as EditorialSlotId);
+
+      expect(slot.text).toBe(text);
+      expect(slot.status).toBe("FINAL");
+      expect(slot.source).toBe("human_approved");
+      expect(slot.locale).toBe("es");
+    }
   });
 
   it("registra los 18 slots temporales de Mundo I sin prefijo visual TEMP", () => {
@@ -260,7 +225,7 @@ describe("editorialRegistry", () => {
   });
 
   it("preserva metadata final solo para las transiciones cerradas y deja temporales los gaps reales", () => {
-    const finalSlotIds = new Set([
+    const finalSlotIds = new Set<string>([
       "TRANS_COVER_W1_TITLE_01",
       "TRANS_COVER_W1_SUB_01",
       "TRANS_W1_W2_TITLE_01",
@@ -273,6 +238,7 @@ describe("editorialRegistry", () => {
       "TRANS_W4_W5_SUB_01",
       "TRANS_W5_FINAL_TITLE_01",
       "TRANS_W5_FINAL_SUB_01",
+      ...Object.keys(finalEditorialSlots),
     ]);
 
     for (const localizedEntries of Object.values(editorialRegistry)) {

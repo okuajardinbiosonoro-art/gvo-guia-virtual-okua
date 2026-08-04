@@ -28,7 +28,7 @@ describe("FinalRootScreen", () => {
     cleanup();
   });
 
-  it("renderiza Mirador Final temporal completo con 30 slots TEMP y sin permisos sensibles", () => {
+  it("renderiza Mirador Final con 35 slots editoriales aprobados y sin permisos sensibles", () => {
     const { container } = renderFinalRootScreen();
 
     expect(
@@ -39,8 +39,6 @@ describe("FinalRootScreen", () => {
         name: finalEditorialSlots.FINAL_TITLE_01.text,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText("TEMP — Cierre temporal completo"))
-      .toBeInTheDocument();
     expect(
       screen.getByText(finalEditorialSlots.FINAL_SUBTITLE_01.text),
     ).toBeInTheDocument();
@@ -56,26 +54,64 @@ describe("FinalRootScreen", () => {
     expect(Object.keys(finalEditorialSlots)).toHaveLength(
       FINAL_REQUIRED_SLOT_COUNT,
     );
-    expect(Object.keys(finalEditorialSlots)).toHaveLength(30);
+    expect(Object.keys(finalEditorialSlots)).toHaveLength(35);
     expect(
-      Object.values(finalEditorialSlots).every((slot) => slot.status === "TEMP"),
+      Object.values(finalEditorialSlots).every(
+        (slot) => slot.status === "FINAL",
+      ),
     ).toBe(true);
     expect(
       Object.values(finalEditorialSlots).every(
-        (slot) => slot.source === "temporary" && slot.locale === "es",
+        (slot) => slot.source === "human_approved" && slot.locale === "es",
       ),
     ).toBe(true);
     expect(
-      Object.values(finalEditorialSlots).every((slot) =>
-        slot.text.startsWith("TEMP"),
+      Object.values(finalEditorialSlots).every(
+        (slot) => !slot.text.startsWith("TEMP"),
       ),
     ).toBe(true);
+    expect(
+      container.querySelectorAll('[data-editorial-status="TEMP"]'),
+    ).toHaveLength(0);
     expect(container.querySelector("[data-final-screen]")).toHaveAttribute(
       "data-final-screen",
-      "temporary_complete_experience",
+      "editorial_final_complete_experience",
     );
-    expect(container.querySelector("[data-final-complete-experience]"))
-      .toHaveAttribute("data-final-complete-experience", "temporary_complete");
+    expect(
+      container.querySelector("[data-final-complete-experience]"),
+    ).toHaveAttribute("data-final-complete-experience", "editorial_final");
+    expect(
+      container.querySelector("[data-final-editorial-source]"),
+    ).toHaveAttribute("data-final-editorial-source", "human_approved");
+    expect(
+      container.querySelector("[data-final-operational-slots]"),
+    ).toHaveAttribute(
+      "data-final-operational-slots",
+      "registered_not_consumed",
+    );
+    const credits = container.querySelector(
+      '[data-final-slot-id="FINAL_CREDITS_01"]',
+    );
+    expect(credits).toHaveTextContent("Desarrollado por Momotto S.A.S.");
+    expect(credits).toHaveTextContent(
+      "A cargo del Ing. José David Pérez Zapata.",
+    );
+    expect(credits?.querySelector("br")).toBeInTheDocument();
+    expect(container).not.toHaveTextContent(
+      finalEditorialSlots.FINAL_RESTART_BUSY_01.text,
+    );
+    expect(container).not.toHaveTextContent(
+      finalEditorialSlots.FINAL_RESTART_ERROR_01.text,
+    );
+    expect(container).not.toHaveTextContent(
+      finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.text,
+    );
+    expect(container).not.toHaveTextContent(
+      finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text,
+    );
+    expect(container).not.toHaveTextContent(
+      finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text,
+    );
     expect(container.querySelector("[data-review-mode]")).toHaveAttribute(
       "data-review-mode",
       "direct_route_review",
@@ -92,8 +128,9 @@ describe("FinalRootScreen", () => {
       "data-qr-camera",
       "blocked",
     );
-    expect(container.querySelector("[data-sensitive-permissions]"))
-      .toHaveAttribute("data-sensitive-permissions", "blocked");
+    expect(
+      container.querySelector("[data-sensitive-permissions]"),
+    ).toHaveAttribute("data-sensitive-permissions", "blocked");
     expect(container.querySelector("[data-final-world-six]")).toHaveAttribute(
       "data-final-world-six",
       "blocked",
@@ -104,30 +141,35 @@ describe("FinalRootScreen", () => {
     const { container } = renderFinalRootScreen();
     const accessExpectations = [
       {
+        accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_I_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_I_CONFIRM_01.text,
         label: finalEditorialSlots.FINAL_ACCESS_I_LABEL_01.text,
         route: "/estacion/1",
         state: "final_access_i_selected",
       },
       {
+        accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_II_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_II_CONFIRM_01.text,
         label: finalEditorialSlots.FINAL_ACCESS_II_LABEL_01.text,
         route: "/estacion/2",
         state: "final_access_ii_selected",
       },
       {
+        accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_III_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_III_CONFIRM_01.text,
         label: finalEditorialSlots.FINAL_ACCESS_III_LABEL_01.text,
         route: "/estacion/3",
         state: "final_access_iii_selected",
       },
       {
+        accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_IV_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_IV_CONFIRM_01.text,
         label: finalEditorialSlots.FINAL_ACCESS_IV_LABEL_01.text,
         route: "/estacion/4",
         state: "final_access_iv_selected",
       },
       {
+        accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_V_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_V_CONFIRM_01.text,
         label: finalEditorialSlots.FINAL_ACCESS_V_LABEL_01.text,
         route: "/estacion/5",
@@ -136,15 +178,16 @@ describe("FinalRootScreen", () => {
     ];
 
     for (const access of accessExpectations) {
-      fireEvent.click(screen.getByRole("button", { name: access.label }));
+      fireEvent.click(screen.getByRole("button", { name: access.accessible }));
       expect(container.querySelector("[data-final-state]")).toHaveAttribute(
         "data-final-state",
         access.state,
       );
       expect(screen.getByText(access.confirm)).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: access.label }),
-      ).toHaveAttribute("href", access.route);
+      expect(screen.getByRole("link", { name: access.label })).toHaveAttribute(
+        "href",
+        access.route,
+      );
     }
 
     fireEvent.click(
@@ -162,7 +205,7 @@ describe("FinalRootScreen", () => {
 
     fireEvent.click(
       screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_BTN_01.text,
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
       }),
     );
     expect(container.querySelector("[data-final-state]")).toHaveAttribute(
@@ -188,7 +231,7 @@ describe("FinalRootScreen", () => {
 
     fireEvent.click(
       screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_BTN_01.text,
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
       }),
     );
     fireEvent.click(
@@ -196,7 +239,9 @@ describe("FinalRootScreen", () => {
         name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
       }),
     );
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/portada");
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/portada",
+    );
 
     rerender(
       <MemoryRouter initialEntries={["/final"]}>
@@ -206,10 +251,12 @@ describe("FinalRootScreen", () => {
     );
     fireEvent.click(
       screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_BACK_HOME_BTN_01.text,
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_BACK_HOME_01.text,
       }),
     );
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/portada");
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/portada",
+    );
   });
 
   it("no crea sexta estacion, medios, QR, contador ni promesas prohibidas", () => {

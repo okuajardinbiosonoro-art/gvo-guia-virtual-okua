@@ -1,10 +1,10 @@
 {
   "package": "GVO narrative package",
   "date": "2026-06-09",
-  "updated_at": "2026-06-09",
+  "updated_at": "2026-08-04",
   "screens": 9,
-  "matrix_rows": 197,
-  "unique_ids": 197,
+  "matrix_rows": 202,
+  "unique_ids": 202,
   "visual_refs": 9,
   "source_txt": 9,
   "updates": [
@@ -78,6 +78,19 @@
         "docs/narrative/README.md",
         "docs/narrative/manifest_narrative_package.json"
       ]
+    },
+    {
+      "ticket": "GVO_FINAL_EDITORIAL_COPY_HUMAN_APPROVED",
+      "date": "2026-08-04",
+      "summary": "Cierre humano de los 35 slots editoriales de Pantalla final; cinco slots operativos quedan registrados sin consumidor funcional.",
+      "files_updated": [
+        "docs/narrative/estaciones/08_pantalla_final_mirador_slots.md",
+        "docs/narrative/estaciones/08_pantalla_final_mirador_revision.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.csv",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.md",
+        "docs/narrative/02_MATRIZ_DIALOGOS_Y_TEXTOS_GVO.xlsx",
+        "docs/narrative/manifest_narrative_package.json"
+      ]
     }
   ],
   "writer_handoff": {
@@ -98,6 +111,6 @@
     "Estación III — Cuaderno Pixel": 23,
     "Estación IV — Mesa de Sistema": 40,
     "Estación V — Mapa del Presente": 24,
-    "Pantalla final — Mirador": 30
+    "Pantalla final — Mirador": 35
   }
 }
