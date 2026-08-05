@@ -1,9 +1,18 @@
 import "./FinalRootScreen.css";
 
-import type { CSSProperties, ReactNode } from "react";
-import { useState } from "react";
+import type { CSSProperties, MouseEvent, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import {
+  beginFinalReview,
+  clearFinalReviewContext,
+  type FinalReviewWorld,
+} from "../../app/review/finalReviewContext";
+import {
+  resetGvoJourney,
+  type JourneyResetResult,
+} from "../../app/reset/resetGvoJourney";
 import {
   coverIntroRoute,
   worldFiveEntryRoute,
@@ -26,7 +35,16 @@ type FinalExperienceState =
   | "final_intro"
   | "final_return"
   | "final_restart"
-  | "final_restart_confirm";
+  | "final_restart_confirm"
+  | "final_restart_busy"
+  | "final_restart_error"
+  | "final_restart_success";
+
+type FinalRestartState = "idle" | "confirm" | "busy" | "error" | "success";
+
+export type FinalRootScreenProps = {
+  resetJourney?: () => Promise<JourneyResetResult>;
+};
 
 type FinalReviewAccess = {
   accessibleSlot: FinalEditorialSlotId;
@@ -35,6 +53,7 @@ type FinalReviewAccess = {
   id: FinalReviewAccessId;
   labelSlot: FinalEditorialSlotId;
   route: string;
+  world: FinalReviewWorld;
   x: number;
   y: number;
 };
@@ -61,6 +80,7 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
     id: "i",
     labelSlot: "FINAL_ACCESS_I_LABEL_01",
     route: worldOneEntryRoute,
+    world: 1,
     x: 20,
     y: 30,
   },
@@ -71,6 +91,7 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
     id: "ii",
     labelSlot: "FINAL_ACCESS_II_LABEL_01",
     route: worldTwoEntryRoute,
+    world: 2,
     x: 80,
     y: 30,
   },
@@ -81,6 +102,7 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
     id: "iii",
     labelSlot: "FINAL_ACCESS_III_LABEL_01",
     route: worldThreeEntryRoute,
+    world: 3,
     x: 50,
     y: 43,
   },
@@ -91,6 +113,7 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
     id: "iv",
     labelSlot: "FINAL_ACCESS_IV_LABEL_01",
     route: worldFourEntryRoute,
+    world: 4,
     x: 20,
     y: 52,
   },
@@ -101,6 +124,7 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
     id: "v",
     labelSlot: "FINAL_ACCESS_V_LABEL_01",
     route: worldFiveEntryRoute,
+    world: 5,
     x: 80,
     y: 52,
   },
@@ -136,6 +160,23 @@ function NineSlicePanel({
 function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
   const labelSlot = finalEditorialSlots[access.labelSlot];
   const accessibleSlot = finalEditorialSlots[access.accessibleSlot];
+  const navigate = useNavigate();
+
+  function openReview(event: MouseEvent<HTMLAnchorElement>) {
+    if (
+      event.button !== 0 ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    const state = beginFinalReview(access.world);
+    navigate(access.route, { state });
+  }
 
   return (
     <Link
@@ -145,10 +186,12 @@ function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
       data-final-access-id={access.id}
       data-final-access-intermediate-panel="false"
       data-final-access-route={access.route}
+      data-final-review-world={access.world}
       data-final-accessible-slot-id={accessibleSlot.slotId}
       data-final-slot-id={labelSlot.slotId}
       data-editorial-status="FINAL"
       to={access.route}
+      onClick={openReview}
       style={
         {
           "--final-access-x": access.x,
@@ -187,29 +230,114 @@ function FinalActionIcon({ type }: { type: "home" | "restart" }) {
   );
 }
 
-export function FinalRootScreen() {
+export function FinalRootScreen({
+  resetJourney = resetGvoJourney,
+}: FinalRootScreenProps = {}) {
   const navigate = useNavigate();
   const [experienceState, setExperienceState] =
     useState<FinalExperienceState>("final_intro");
-  const [restartConfirmOpen, setRestartConfirmOpen] = useState(false);
+  const [restartState, setRestartState] = useState<FinalRestartState>("idle");
+  const [resetFailure, setResetFailure] = useState<
+    Extract<JourneyResetResult, { ok: false }> | undefined
+  >();
+  const restartTriggerRef = useRef<HTMLButtonElement>(null);
+  const cancelButtonRef = useRef<HTMLButtonElement>(null);
+  const retryButtonRef = useRef<HTMLButtonElement>(null);
+  const resetInFlightRef = useRef(false);
+  const returnFocusAfterCloseRef = useRef(false);
+  const mountedRef = useRef(true);
+  const restartConfirmOpen =
+    restartState !== "idle" && restartState !== "success";
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (restartState === "confirm") {
+      cancelButtonRef.current?.focus();
+    } else if (restartState === "error") {
+      retryButtonRef.current?.focus();
+    } else if (restartState === "idle" && returnFocusAfterCloseRef.current) {
+      returnFocusAfterCloseRef.current = false;
+      restartTriggerRef.current?.focus();
+    }
+  }, [restartState]);
 
   function openRestartConfirmation() {
-    setRestartConfirmOpen(true);
+    setResetFailure(undefined);
+    setRestartState("confirm");
     setExperienceState("final_restart_confirm");
   }
 
   function cancelRestart() {
-    setRestartConfirmOpen(false);
+    if (restartState === "busy") {
+      return;
+    }
+
+    returnFocusAfterCloseRef.current = true;
+    setResetFailure(undefined);
+    setRestartState("idle");
     setExperienceState("final_restart");
   }
 
   function navigateToHome() {
+    clearFinalReviewContext();
     setExperienceState("final_return");
     navigate(coverIntroRoute);
   }
 
-  function confirmRestart() {
-    navigate(coverIntroRoute);
+  async function executeRestart() {
+    if (resetInFlightRef.current) {
+      return;
+    }
+
+    resetInFlightRef.current = true;
+    setResetFailure(undefined);
+    setRestartState("busy");
+    setExperienceState("final_restart_busy");
+
+    let result: JourneyResetResult;
+    try {
+      result = await resetJourney();
+    } catch {
+      result = {
+        copySafe: false,
+        durationMs: 0,
+        errorCode: "transaction_threw",
+        failedStage: "snapshot",
+        ok: false,
+        rollbackAttempted: false,
+        rollbackVerified: false,
+        snapshotCount: 0,
+        snapshotCreated: false,
+      };
+    } finally {
+      resetInFlightRef.current = false;
+    }
+
+    if (!mountedRef.current) {
+      return;
+    }
+
+    if (result.ok) {
+      setRestartState("success");
+      setExperienceState("final_restart_success");
+      navigate(coverIntroRoute, { replace: true });
+      return;
+    }
+
+    console.error("GVO_FINAL_021O_RESET_FAILURE", {
+      errorCode: result.errorCode,
+      failedStage: result.failedStage,
+      rollbackVerified: result.rollbackVerified,
+    });
+    setResetFailure(result);
+    setRestartState("error");
+    setExperienceState("final_restart_error");
   }
 
   return (
@@ -227,7 +355,7 @@ export function FinalRootScreen() {
         data-final-composition="static_portrait_landscape_human_approved_021l"
         data-final-editorial-locale="es"
         data-final-editorial-source="human_approved"
-        data-final-operational-slots="registered_not_consumed"
+        data-final-operational-slots="consumed_021o"
         data-final-root="mirador_editorial_final"
         data-final-screen="editorial_final_complete_experience"
         data-final-slot-count={FINAL_REQUIRED_SLOT_COUNT}
@@ -235,8 +363,8 @@ export function FinalRootScreen() {
         data-final-station-model="mirador_closure"
         data-final-world-six="blocked"
         data-qr-camera="blocked"
-        data-restart-mode="navigation_only_no_global_cleanup"
-        data-review-mode="direct_link_single_activation"
+        data-restart-mode="allowlist_snapshot_rollback"
+        data-review-mode="final_review_context_single_activation"
         data-sensitive-permissions="blocked"
       >
         <picture
@@ -409,6 +537,7 @@ export function FinalRootScreen() {
               data-final-accessible-slot-id="FINAL_ACCESSIBLE_RESTART_01"
               data-final-action="open_restart_confirmation"
               data-final-slot-id="FINAL_RESTART_BTN_01"
+              ref={restartTriggerRef}
               type="button"
               onClick={openRestartConfirmation}
             >
@@ -449,42 +578,87 @@ export function FinalRootScreen() {
           >
             <section
               aria-label={finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}
+              aria-busy={restartState === "busy"}
               className="final-root-restart"
               data-final-metric="restart-dialog"
-              data-final-state-equivalent="final_restart_confirm"
+              data-final-reset-copy-gap={
+                resetFailure && !resetFailure.copySafe
+                  ? "GVO_FINAL_021O_ROLLBACK_COPY_GAP"
+                  : "none"
+              }
+              data-final-reset-state={restartState}
+              data-final-state-equivalent={`final_restart_${restartState}`}
             >
               <NineSlicePanel
                 asset={finalRootAssets.ui.restartDialogBackplate}
                 className="final-root-restart__panel"
                 insets="160 192 160 192"
               >
-                <p
-                  data-editorial-status="FINAL"
-                  data-final-slot-id="FINAL_RESTART_CONFIRM_01"
-                >
-                  {finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}
-                </p>
+                <div aria-live="polite" className="final-root-restart__status">
+                  {restartState === "confirm" ? (
+                    <p
+                      data-editorial-status="FINAL"
+                      data-final-slot-id="FINAL_RESTART_CONFIRM_01"
+                    >
+                      {finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}
+                    </p>
+                  ) : null}
+                  {restartState === "busy" ? (
+                    <p
+                      data-editorial-status="FINAL"
+                      data-final-slot-id="FINAL_RESTART_BUSY_01"
+                    >
+                      {finalEditorialSlots.FINAL_RESTART_BUSY_01.text}
+                    </p>
+                  ) : null}
+                  {restartState === "error" && resetFailure?.copySafe ? (
+                    <p
+                      data-editorial-status="FINAL"
+                      data-final-slot-id="FINAL_RESTART_ERROR_01"
+                      role="status"
+                    >
+                      {finalEditorialSlots.FINAL_RESTART_ERROR_01.text}
+                    </p>
+                  ) : null}
+                </div>
                 <div className="final-root-restart__actions">
                   <button
                     className="final-root-dialog-action"
                     data-editorial-status="FINAL"
                     data-final-action="cancel_restart"
                     data-final-slot-id="FINAL_RESTART_CANCEL_BTN_01"
+                    disabled={restartState === "busy"}
+                    ref={cancelButtonRef}
                     type="button"
                     onClick={cancelRestart}
                   >
                     {finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text}
                   </button>
-                  <button
-                    className="final-root-dialog-action final-root-dialog-action--confirm"
-                    data-editorial-status="FINAL"
-                    data-final-action="confirm_restart_navigation_only"
-                    data-final-slot-id="FINAL_RESTART_CONFIRM_BTN_01"
-                    type="button"
-                    onClick={confirmRestart}
-                  >
-                    {finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text}
-                  </button>
+                  {restartState === "error" ? (
+                    <button
+                      className="final-root-dialog-action final-root-dialog-action--confirm"
+                      data-editorial-status="FINAL"
+                      data-final-action="retry_restart_transaction"
+                      data-final-slot-id="FINAL_RESTART_RETRY_BTN_01"
+                      ref={retryButtonRef}
+                      type="button"
+                      onClick={executeRestart}
+                    >
+                      {finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.text}
+                    </button>
+                  ) : (
+                    <button
+                      className="final-root-dialog-action final-root-dialog-action--confirm"
+                      data-editorial-status="FINAL"
+                      data-final-action="confirm_restart_transaction"
+                      data-final-slot-id="FINAL_RESTART_CONFIRM_BTN_01"
+                      disabled={restartState === "busy"}
+                      type="button"
+                      onClick={executeRestart}
+                    >
+                      {finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text}
+                    </button>
+                  )}
                 </div>
               </NineSlicePanel>
             </section>

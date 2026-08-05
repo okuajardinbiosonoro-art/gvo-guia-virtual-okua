@@ -36,6 +36,10 @@ import { World5RootScreen } from "../screens/World5Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
+  FinalReviewContextInvalidator,
+  FinalReviewModeLayout,
+} from "./review/FinalReviewModeLayout";
+import {
   coverToWorldOneTransitionRoute,
   finalEntryRoute,
   worldFiveEntryRoute,
@@ -158,7 +162,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/portada",
-    element: <CoverIntroScreen />,
+    element: (
+      <FinalReviewContextInvalidator>
+        <CoverIntroScreen />
+      </FinalReviewContextInvalidator>
+    ),
   },
   {
     path: "/dev/transition-world",
@@ -171,75 +179,123 @@ export const router = createBrowserRouter([
   {
     path: coverToWorldOneTransitionRoute,
     element: (
-      <TransitionWorldRuntimeRoute config={introToStationOneTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={introToStationOneTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: worldOneToWorldTwoTransitionRoute,
     element: (
-      <TransitionWorldRuntimeRoute config={worldOneToWorldTwoTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={worldOneToWorldTwoTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: worldTwoToWorldThreeTransitionRoute,
     element: (
-      <TransitionWorldRuntimeRoute config={worldTwoToWorldThreeTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={worldTwoToWorldThreeTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: worldThreeToWorldFourTransitionRoute,
     element: (
-      <TransitionWorldRuntimeRoute config={worldThreeToWorldFourTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={worldThreeToWorldFourTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: worldFourToWorldFiveTransitionRoute,
     element: (
-      <TransitionWorldRuntimeRoute config={worldFourToWorldFiveTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={worldFourToWorldFiveTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: worldFiveToFinalTransitionRoute,
     loader: requireFinalAccess,
     element: (
-      <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />
+      <FinalReviewContextInvalidator>
+        <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />
+      </FinalReviewContextInvalidator>
     ),
   },
   {
     path: "/estacion/1",
-    element: <World1RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={1}>
+        <World1RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldTwoEntryRoute,
-    element: <World2RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={2}>
+        <World2RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldThreeEntryRoute,
-    element: <World3RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={3}>
+        <World3RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFourEntryRoute,
-    element: <World4RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={4}>
+        <World4RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFiveEntryRoute,
-    element: <World5RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={5}>
+        <World5RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFivePlantsRoute,
-    element: <World5RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={5}>
+        <World5RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFiveSystemRoute,
-    element: <World5RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={5}>
+        <World5RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFiveSpaceRoute,
-    element: <World5RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={5}>
+        <World5RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: worldFiveVisitorRoute,
-    element: <World5RootScreen />,
+    element: (
+      <FinalReviewModeLayout world={5}>
+        <World5RootScreen />
+      </FinalReviewModeLayout>
+    ),
   },
   {
     path: "/estacion/:stationId",
@@ -248,7 +304,11 @@ export const router = createBrowserRouter([
   {
     path: finalEntryRoute,
     loader: requireFinalAccess,
-    element: <FinalRootScreen />,
+    element: (
+      <FinalReviewContextInvalidator>
+        <FinalRootScreen />
+      </FinalReviewContextInvalidator>
+    ),
   },
   {
     path: "/qr/:stationId",

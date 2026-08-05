@@ -1,0 +1,37 @@
+.final-review-mode-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+
+.final-review-return-control {
+  position: fixed;
+  z-index: 1000;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 2px solid #f4dda6;
+  border-radius: 999px;
+  color: #fff7df;
+  font: 700 15px/1.1 var(--gvo-font-ui);
+  text-align: center;
+  text-shadow: 0 1px 1px rgb(24 14 18 / 80%);
+  background: rgb(51 37 50 / 94%);
+  box-shadow: 0 4px 14px rgb(14 8 15 / 40%);
+  cursor: pointer;
+}
+
+.final-review-return-control:focus-visible {
+  outline: 3px solid #fff7c9;
+  outline-offset: 3px;
+}
+
+@media (orientation: landscape) {
+  .final-review-return-control {
+    top: max(10px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: auto;
+  }
+}

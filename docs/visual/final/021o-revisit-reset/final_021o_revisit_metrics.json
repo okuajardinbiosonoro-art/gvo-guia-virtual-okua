@@ -1,0 +1,108 @@
+{
+  "ticket": "GVO_FINAL_021O",
+  "generatedAt": "2026-08-05T00:13:33-05:00",
+  "baselineSha": "aecaf32ff5d720cb6cf3c5a2ea9c3c2963021989",
+  "context": {
+    "mechanism": "react-router navigation state preferred with sessionStorage refresh fallback",
+    "key": "gvo.final.reviewContext.v1",
+    "version": 1,
+    "schema": {
+      "origin": "/final",
+      "mode": "final-review",
+      "world": "1..5",
+      "startedAt": "ISO-8601",
+      "timestamp": "epoch-ms",
+      "version": 1
+    },
+    "storageValuesRecorded": false,
+    "invalidation": [
+      "return-to-final",
+      "portada",
+      "normal-transition-flow",
+      "different-world",
+      "successful-reset",
+      "corruption"
+    ]
+  },
+  "routes": {
+    "world1": ["/estacion/1"],
+    "world2": ["/estacion/2"],
+    "world3": ["/estacion/3"],
+    "world4": ["/estacion/4"],
+    "world5": [
+      "/estacion/5",
+      "/estacion/5/plantas",
+      "/estacion/5/sistema",
+      "/estacion/5/espacio",
+      "/estacion/5/visitante"
+    ]
+  },
+  "chromium": {
+    "portraitWorld1": {
+      "route": "/estacion/1",
+      "viewport": { "width": 390, "height": 844 },
+      "control": { "width": 163.3125, "height": 44, "x": 214.6875, "y": 788 },
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "landscapeWorld5": {
+      "route": "/estacion/5",
+      "viewport": { "width": 844, "height": 390 },
+      "control": { "width": 163.3125, "height": 44, "x": 668.6875, "y": 10 },
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "refresh": {
+      "route": "/estacion/1",
+      "active": true,
+      "controlPresent": true,
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "return": {
+      "route": "/final",
+      "accessCount": 5,
+      "reviewControlAfterReturn": 0,
+      "finalGuardStillOpen": true,
+      "result": "PASS"
+    },
+    "directEntry": {
+      "route": "/estacion/1",
+      "reviewActive": false,
+      "controlCount": 0,
+      "result": "PASS"
+    },
+    "reducedMotion": {
+      "matches": true,
+      "phase": "reduced_static",
+      "frame": 1,
+      "activeTimers": 0,
+      "greetingPlayCount": 0,
+      "accessCount": 5,
+      "result": "PASS"
+    },
+    "cleanRun": {
+      "consoleErrors": 0,
+      "consoleWarnings": 0,
+      "externalDomUrls": 0,
+      "result": "PASS"
+    }
+  },
+  "focus": {
+    "returnControlNativeButton": true,
+    "returnControlFocused": true,
+    "cancelReturnsToRestartTrigger": true,
+    "minimumTargetPx": 44,
+    "result": "PASS"
+  },
+  "screenshots": [
+    "final_021o_return_portrait_world1.png",
+    "final_021o_return_landscape_world5.png",
+    "final_021o_return_after_refresh.png",
+    "final_021o_return_back_at_mirador.png"
+  ],
+  "result": "PASS"
+}

@@ -386,6 +386,12 @@
   text-align: center;
 }
 
+.final-root-restart__status {
+  display: grid;
+  min-height: 42px;
+  align-items: center;
+}
+
 .final-root-restart__actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -408,6 +414,11 @@
 
 .final-root-dialog-action--confirm {
   background: #684171;
+}
+
+.final-root-dialog-action:disabled {
+  cursor: wait;
+  opacity: 0.55;
 }
 
 .final-root-sr-only {

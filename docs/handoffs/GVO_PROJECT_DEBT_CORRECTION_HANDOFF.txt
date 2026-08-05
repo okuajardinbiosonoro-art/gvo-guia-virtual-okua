@@ -1,0 +1,360 @@
+GVO — HANDOFF AUTORITATIVO A PROJECT DEBT CORRECTION
+
+Encoding: UTF-8 sin BOM
+Line endings: LF
+
+A. IDENTIDAD Y AUTORIDAD
+
+Proyecto: GVO — Guía Virtual OKÚA
+Fecha: 2026-08-05
+Branch: main
+Baseline inicial de 021P: aecaf32ff5d720cb6cf3c5a2ea9c3c2963021989
+SHA publicado por 021P: SELF
+Commit autorizado: feat(final): publish revisit return and real reset
+Repositorio remoto: https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git
+
+El repositorio remoto en origin/main es la fuente de verdad. Una copia local,
+un archivo de Descargas, una captura o un acta histórica no sustituyen el SHA
+publicado y verificado del remoto.
+
+Documentos autoritativos vigentes:
+
+- docs/status/CURRENT_STATE.md
+- docs/status/GVO_FINAL_021P_REVISIT_RESET_HUMAN_APPROVED_AND_MIRADOR_PHASE_COMPLETE.md
+- docs/status/GVO_FINAL_MIRADOR_PHASE_COMPLETE.md
+- docs/handoffs/GVO_PROJECT_DEBT_CORRECTION_HANDOFF.txt
+- docs/assets/ASSET_INVENTORY.md
+- docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md
+- docs/status/GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md
+- docs/status/GVO_FINAL_021L_STATIC_COMPOSITION_HUMAN_APPROVED_AND_PUBLISHED.md
+- docs/status/GVO_FINAL_021N_LIA_MOTION_HUMAN_APPROVED_AND_PUBLISHED.md
+- docs/status/GVO_FINAL_021O_REVISIT_RETURN_AND_REAL_RESET_FOR_REVIEW.md
+
+El acta 021O es evidencia histórica PENDING_HUMAN_REVIEW. La aprobación humana
+posterior y el cierre vinculante están en 021P; no se debe reinterpretar ni
+editar retrospectivamente 021O.
+
+public/assets/gvo/current-used/README.md sigue siendo autoridad de organización
+del mirror. Su frase histórica REGISTERED / NOT_YET_COMPOSED corresponde al
+corte 021I y queda superada en estado por 021P; 021P no la reescribe porque
+public/assets/** fue un path expresamente prohibido.
+
+B. ESTADO ACTUAL
+
+Estado del Mirador: GVO FINAL — MIRADOR PHASE / COMPLETE
+Gate 5: ASSETS PRODUCED_AND_APPROVED / COMPLETE
+Gate 6: STATIC COMPOSITION / HUMAN_APPROVED / COMPLETE
+Gate 7: LIA MOTION / HUMAN_APPROVED / COMPLETE
+Gate 8: REVISIT RETURN AND REAL RESET / HUMAN_APPROVED / COMPLETE
+
+Estado publicado requerido y verificado por 021P:
+
+- branch main;
+- HEAD == origin/main == refs/heads/main remoto;
+- divergencia 0/0;
+- worktree limpio;
+- composición portrait aprobada;
+- composición landscape aprobada;
+- motion y reduced motion aprobados;
+- revisita, retorno, reset, rollback y retry aprobados.
+
+La fase del Mirador está completa. Todo GVO no está terminado: las deudas
+transversales enumeradas en la sección J pasan a una fase separada.
+
+C. HISTORIAL DE SHAS RELEVANTES
+
+021H editorial: 8b8dcbde1352919215a30d32e80ea3e9519eae1e
+021I assets: f310abffb9370dba5f4119c4f012a2104fd36487
+021L composition: d69d9fa886e4184c17a183dd010c575e42cce26c
+021N motion: aecaf32ff5d720cb6cf3c5a2ea9c3c2963021989
+021P return/reset + closure: SELF
+
+D. ARQUITECTURA ACTUAL
+
+D.1 Rutas y guards
+
+El router principal vive en src/app/router.tsx.
+
+Rutas principales del recorrido:
+
+- / y /carga: carga inicial.
+- /portada: Portada.
+- seis rutas tipadas de transición entre Portada, Mundos I–V y Final.
+- /estacion/1: Mundo I.
+- /estacion/2: Mundo II.
+- /estacion/3: Mundo III.
+- /estacion/4: Mundo IV.
+- /estacion/5: overview de Mundo V.
+- /estacion/5/plantas: área Plantas.
+- /estacion/5/sistema: área Sistema.
+- /estacion/5/espacio: área Espacio.
+- /estacion/5/visitante: área Visitante.
+- /final: Mirador, protegido por el guard de progreso existente.
+- /qr/:stationId: entrada QR tipada.
+
+Las nueve rutas válidas de Mundos I–V están envueltas por
+FinalReviewModeLayout sin cambiar su contenido interno. La ruta genérica
+/estacion/:stationId no activa revisión ni inventa subrutas.
+
+D.2 Registry y Mirador
+
+- Registry canónico: src/shared/assets/finalRootAssets.ts.
+- Manifest runtime: public/assets/gvo/stations/final-root/manifest.json.
+- Componente principal: src/screens/FinalRoot/FinalRootScreen.tsx.
+- Estilos responsive: src/screens/FinalRoot/FinalRootScreen.css.
+- Motion: src/screens/FinalRoot/FinalLiaMotion.tsx.
+- Copy tipado: src/content/finalEditorialSlots.ts y
+  src/content/editorial/editorialRegistry.ts.
+
+FinalRoot consume el registry tipado, mantiene copy y controles en DOM y sirve
+composición portrait/landscape. FinalLiaMotion consume greeting, idle y glow del
+mismo registry. No se importan assets desde current-used.
+
+D.3 Motion de Lía
+
+Greeting F1–F4: 160/160/160/160 ms; total 640 ms; una reproducción por montaje.
+Idle F1–F6: 4200/180/160/160/180/320 ms; ciclo 5200 ms.
+Reduced motion: F1 estático, greeting/loop omitidos y timers 0.
+Visibility hidden: pausa en F1 y timers 0.
+Visibility visible: reanuda desde idle F1, sin catch-up ni repetir greeting.
+
+No cambiar timings ni layout de FinalLiaMotion sin un ticket específico y una
+regresión demostrada.
+
+D.4 Contexto de revisita
+
+- Implementación: src/app/review/finalReviewContext.ts.
+- Layout/control: src/app/review/FinalReviewModeLayout.tsx y CSS asociado.
+- Key: gvo.final.reviewContext.v1.
+- Version: 1.
+- Fuente preferida: React Router navigation state.
+- Fallback de refresh: sessionStorage en la misma pestaña.
+- Schema: origin /final, mode final-review, world 1..5, startedAt ISO-8601,
+  timestamp epoch-ms y version 1.
+
+Invalidar al volver a Final, entrar a Portada, tomar transición normal, abrir un
+Mundo diferente, completar reset o detectar corrupción/versión inválida.
+
+D.5 Reset
+
+- Política: src/app/reset/journeyResetPolicy.ts.
+- Transacción: src/app/reset/resetGvoJourney.ts.
+- Estados UI: idle, confirm, busy, error y success.
+
+Keys auditadas y eliminadas exclusivamente por allowlist:
+
+- localStorage:gvo.progress.v1
+- localStorage:gvo.station5.v1
+- localStorage:gvo.coverIntro.introCompleted.v1
+- sessionStorage:gvo.final.reviewContext.v1
+
+Keys/familias conocidas que se preservan:
+
+- localStorage:gvo-dev-world1-layout-calibrator-v2
+- sessionStorage:gvo:orientation-hint:dismissed
+- sessionStorage:gvo:world4:orientation-hint:dismissed
+- sessionStorage:gvo:world4:tap-hint:shown
+- accesibilidad, tema, idioma y preferencias no demostradas como recorrido
+- Cache Storage y datos del service worker
+- configuración de plataforma, credenciales/tokens y datos ajenos
+
+La transacción toma snapshot en memoria, verifica lectura estable, elimina sólo
+la allowlist, verifica ausencia y navega a /portada únicamente tras success.
+Ante fallo restaura y compara raw. El copy de progreso conservado sólo aparece
+tras rollback completo y verificado. Retry siempre crea snapshot nuevo.
+
+Nunca introducir localStorage.clear(), sessionStorage.clear(), borrado global
+de IndexedDB ni borrado global de Cache Storage.
+
+D.6 PWA, precache y pruebas
+
+- Build Vite + PWA válido.
+- Manifest y service worker generados.
+- 278 entradas de precache en la publicación 021P.
+- Assets canónicos de Final presentes en dist y precache.
+- current-used y production sources excluidos de imports/precache.
+- Sin CDN, APIs, fuentes, imágenes ni requests externos runtime.
+- Sin audio.
+- Suite publicada: 332/332 tests en 30/30 archivos.
+- Pruebas focales cubren FinalRoot, FinalLiaMotion, review context, layout,
+  reset policy/transacción, router/guards, registry, assets y editorial.
+- Evidencia Chromium cubre portrait, landscape, refresh, entrada directa,
+  reset success/failure, rollback, retry, reduced motion y consola limpia.
+
+Warning aceptado: chunk principal mayor de 500 kB.
+Warning aceptado: reporte histórico de tiempos de plugins de Vite.
+No aceptar warnings nuevos por inferencia.
+
+E. ASSETS CANONICOS DEL MIRADOR
+
+Base runtime: public/assets/gvo/stations/final-root/
+Mirror: public/assets/gvo/current-used/final-root/
+Total: 19 assets runtime y 19 mirrors byte-idénticos.
+
+Environment portrait/landscape:
+
+- environment/final_environment_portrait_v01.webp
+- environment/final_environment_landscape_v01.webp
+
+Depth portrait/landscape:
+
+- environment/final_valley_depth_portrait_v01.webp
+- environment/final_valley_depth_landscape_v01.webp
+
+Foreground portrait/landscape:
+
+- environment/final_mirador_foreground_portrait_v01.webp
+- environment/final_mirador_foreground_landscape_v01.webp
+
+Cinco accesos:
+
+- access/final_access_world1_root_v01.webp
+- access/final_access_world2_pulse_v01.webp
+- access/final_access_world3_notebook_v01.webp
+- access/final_access_world4_system_v01.webp
+- access/final_access_world5_map_v01.webp
+
+Backplate de labels:
+
+- access/final_access_label_backplate_v01.png
+
+Backplates UI:
+
+- ui/final_title_backplate_v01.png
+- ui/final_credits_backplate_v01.png
+- ui/final_action_backplate_v01.png
+- ui/final_restart_dialog_backplate_v01.png
+
+Lía:
+
+- lia/final_lia_idle_contemplative_6f_v01.webp
+- lia/final_lia_greeting_4f_v01.webp
+- lia/final_lia_glow_shadow_v01.png
+
+Reglas de autoridad:
+
+- current-used es mirror de revisión; nunca es import runtime.
+- docs/assets/final-root/production-sources/lia contiene cinco fuentes de
+  producción HUMAN_APPROVED / NOT_RUNTIME; no se copian a public ni precache.
+- I17, I19 e I20 están rechazados y no son referencias autorizadas.
+- I3/I4 iniciales, previews, contact sheets temporales, candidatas rechazadas y
+  derivados WebP no canónicos de PNG UI/Lía no se usan.
+- El Atlas visual es referencia documental; no sustituye runtime/current-used.
+- No reexportar, optimizar, convertir, mover ni reemplazar binarios sin ticket.
+
+F. COPY Y COMPORTAMIENTO
+
+- 35 slots finales: FINAL / human_approved / es.
+- Los 30 slots base y los 5 slots operativos de retorno/reset están consumidos.
+- Copy visible y accesible permanece en DOM; no está incrustado en imágenes.
+- Crédito final corto:
+  Desarrollado por Momotto S.A.S.
+  A cargo del Ing. José David P. Z.
+- Accesos I–V: una activación directa al Mundo correspondiente; sin panel
+  intermedio ni doble activación.
+- Retorno: Volver al Mirador sólo durante revisita válida; conserva progreso.
+- Reset: confirmación explícita y eliminación real sólo de la allowlist.
+- Busy: anuncia Reiniciando recorrido…, marca aria-busy y deshabilita acciones.
+- Error: el copy de conservación sólo se consume tras rollback verificado.
+- Retry: operación nueva, snapshot nuevo, sin reload.
+- Reduced motion: no cambia navegación, reset ni retorno.
+- Visibility handling: pausa/reanuda motion sin catch-up.
+
+G. LOGROS QUE DEBEN CONSERVARSE
+
+- Pipeline disciplinado por gates pequeños y verificables.
+- Separación entre producción, aprobación humana e integración runtime.
+- Assets canónicos con manifest, metadata, hashes y mirrors byte-idénticos.
+- Composición responsive distinta para portrait y landscape.
+- Sprites deterministas para greeting e idle.
+- Evidencias visuales y métricas reproducibles, sin secretos.
+- Pruebas unitarias, integrales, build/PWA, auditoría de assets y Chromium.
+- Reset transaccional con rollback seguro y retry controlado.
+- Copy de conservación condicionado a verificación real.
+- Alcance protegido: cero cambios internos de Mundos I–V en 021O/021P.
+- Sin assets inventados, dependencias externas, audio ni cambios prohibidos.
+
+H. APRENDIZAJES QUE DEBEN CONSERVARSE
+
+- El PASS técnico no sustituye aprobación humana.
+- Revisar composición en dispositivos pequeños reales.
+- Medir contenido pictórico, no sólo bboxes DOM.
+- Generar y aprobar assets uno por uno.
+- Evitar trabajo manual excesivo en Photopea.
+- Separar composición estática y motion en tickets distintos.
+- Utilizar acceso directo cuando no hay decisión adicional.
+- Mantener copy final en DOM.
+- Usar tickets descargables .md para Codex.
+- No autorizar commit/push antes de revisión humana.
+- Exigir baseline y worktree estrictos antes de escribir o publicar.
+- No reabrir decisiones aprobadas sin una regresión demostrada.
+
+I. ERRORES QUE NO DEBEN REPETIRSE
+
+- Recomendar archivos inexistentes.
+- Recomendar referencias rechazadas.
+- Usar sheets generativos directos que recortan o cambian anatomía.
+- Depender de métricas automáticas para aprobar composición pictórica.
+- Imponer doble activación innecesaria.
+- Corregir microdetalles sin impacto runtime.
+- Empujar al usuario a demasiada reconstrucción manual.
+- Inventar rutas, claves o estados.
+- Expandir scope durante un ticket.
+- Declarar una fase cerrada antes de aprobación y publicación.
+- Usar copy de rollback sin verificación real.
+
+J. DEUDAS CONOCIDAS PARA LA SIGUIENTE FASE
+
+P0 — Consistencia de progreso entre Mundos
+P0 — Persistencia versionada y esquema común
+P0 — Hidratación antes de guards
+P0 — Recuperación tras reload/reconexión
+P0 — Offline-first del progreso del usuario
+P1 — Auditoría de revisitas y estados desbloqueados por Mundo
+P1 — Fullscreen/immersive shell desde el inicio
+P1 — Auditoría de deudas visuales y funcionales de Mundos I–V
+P2 — Optimización del chunk principal >500 kB
+P2 — Limpieza o documentación del reporte de plugin timings
+
+Esta lista es una hipótesis inicial documentada. La prioridad final debe salir
+de una auditoría del repo con evidencia, dependencias y riesgo, no de
+suposiciones ni de la posición de los puntos en este archivo.
+
+K. FLUJO DE TRABAJO DE LA NUEVA FASE
+
+ChatGPT define ticket .md
+Usuario entrega ticket a Codex
+Codex audita/implementa
+Usuario devuelve salida y archivos
+ChatGPT revisa
+Aprobación humana
+Ticket de publicación
+
+Reglas operativas:
+
+- Trabajar en español, con enfoque directo y preciso.
+- Resolver un microfrente por ticket.
+- No hacer commit/push salvo autorización explícita del ticket.
+- No crear Pull Requests; el flujo de este repositorio es directo a la rama
+  autorizada.
+- No tocar el Mirador salvo regresión reproducible y ticket específico.
+- No comenzar implementando todas las deudas.
+- La primera acción es auditoría y priorización.
+- Preservar las reglas no negociables, la política current-used y los gates de
+  aprobación humana.
+
+L. PRIMER PASO RECOMENDADO
+
+GVO_DEBT_001_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION
+
+Alcance inicial exclusivo:
+
+- inventario;
+- evidencia;
+- dependencias;
+- riesgo;
+- prioridad;
+- roadmap;
+- no implementación masiva.
+
+FIN DEL HANDOFF

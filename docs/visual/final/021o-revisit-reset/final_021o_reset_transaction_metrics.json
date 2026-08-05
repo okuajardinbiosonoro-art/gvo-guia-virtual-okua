@@ -1,0 +1,147 @@
+{
+  "ticket": "GVO_FINAL_021O",
+  "generatedAt": "2026-08-05T00:13:33-05:00",
+  "baselineSha": "aecaf32ff5d720cb6cf3c5a2ea9c3c2963021989",
+  "allowlist": [
+    {
+      "backend": "localStorage",
+      "key": "gvo.progress.v1",
+      "purpose": "global-progress"
+    },
+    {
+      "backend": "localStorage",
+      "key": "gvo.station5.v1",
+      "purpose": "world-five-state"
+    },
+    {
+      "backend": "localStorage",
+      "key": "gvo.coverIntro.introCompleted.v1",
+      "purpose": "cover-completion"
+    },
+    {
+      "backend": "sessionStorage",
+      "key": "gvo.final.reviewContext.v1",
+      "purpose": "final-review-context"
+    }
+  ],
+  "preserve": [
+    "orientation and tap-hint session preferences",
+    "accessibility, theme and language preferences",
+    "PWA Cache Storage and service-worker data",
+    "platform configuration",
+    "credentials, tokens and unrelated application data",
+    "developer-only layout calibrator presets"
+  ],
+  "snapshot": {
+    "scope": "allowlist-only",
+    "fields": ["backend", "key", "existed", "raw"],
+    "inMemoryOnly": true,
+    "stableReadVerification": true,
+    "rawValuesRecordedInEvidence": false
+  },
+  "transaction": {
+    "states": ["idle", "confirm", "busy", "error", "success"],
+    "globalClearCalls": 0,
+    "indexedDbDeletes": 0,
+    "cacheStorageDeletes": 0,
+    "navigationOnlyAfterVerifiedSuccess": true,
+    "concurrentUiExecutionBlocked": true,
+    "retryCreatesNewSnapshot": true
+  },
+  "failureInjectionTests": {
+    "snapshot": "PASS_NO_MUTATION_NO_CONSERVATION_COPY",
+    "delete": "PASS_FULL_ROLLBACK_VERIFIED_COPY_SAFE",
+    "verify": "PASS_FULL_ROLLBACK_VERIFIED_COPY_SAFE",
+    "restore": "PASS_ROLLBACK_FAILURE_NO_MISLEADING_COPY",
+    "copyGapFlag": "GVO_FINAL_021O_ROLLBACK_COPY_GAP"
+  },
+  "storageDiffTests": {
+    "allowlistedKeysAbsentAfterSuccess": 4,
+    "preservedSentinelsByteIdentical": true,
+    "guardFinalClosedAfterSuccess": true,
+    "reviewContextAbsentAfterSuccess": true,
+    "valuesRedacted": true,
+    "result": "PASS"
+  },
+  "chromium": {
+    "portraitConfirm": {
+      "viewport": { "width": 390, "height": 844 },
+      "state": "confirm",
+      "ariaBusy": false,
+      "targetsAtLeast44": true,
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "portraitBusy": {
+      "state": "busy",
+      "ariaBusy": true,
+      "controlsDisabled": 2,
+      "navigationStayedOnFinal": true,
+      "result": "PASS"
+    },
+    "portraitError": {
+      "state": "error",
+      "rollbackVerified": true,
+      "approvedConservationCopyShown": true,
+      "copyGap": "none",
+      "retryFocused": true,
+      "navigationStayedOnFinal": true,
+      "result": "PASS"
+    },
+    "retry": {
+      "newOperation": true,
+      "pageReloadUsed": false,
+      "staleDialogAfterSuccess": 0,
+      "result": "PASS"
+    },
+    "realSuccess": {
+      "route": "/portada",
+      "resetDialogCount": 0,
+      "reviewControlCount": 0,
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "guardAfterRealSuccess": {
+      "requested": "/final",
+      "resolved": "/estacion/5",
+      "finalMounted": false,
+      "result": "PASS"
+    },
+    "landscapeConfirm": {
+      "viewport": { "width": 844, "height": 390 },
+      "dialog": { "width": 360, "height": 206, "x": 242, "y": 92 },
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    },
+    "landscapeError": {
+      "viewport": { "width": 844, "height": 390 },
+      "retryFocused": true,
+      "overflowX": 0,
+      "overflowY": 0,
+      "result": "PASS"
+    }
+  },
+  "qaProvenance": {
+    "busyAndError": "deterministic development-only dependency injection used for screenshots",
+    "success": "real resetGvoJourney transaction",
+    "temporaryRuntimeInjectionRemovedBeforeValidation": true,
+    "failureAndRollbackLogicAlsoCoveredByUnitTests": true
+  },
+  "screenshots": [
+    "final_021o_reset_confirm.png",
+    "final_021o_reset_busy.png",
+    "final_021o_reset_error.png",
+    "final_021o_reset_retry.png",
+    "final_021o_reset_success_portada.png",
+    "final_021o_reset_landscape_confirm.png",
+    "final_021o_reset_landscape_error.png"
+  ],
+  "publication": {
+    "status": "BLOCKED_PENDING_HUMAN_REVIEW",
+    "rollbackCopyGapPolicy": "if rollback cannot be verified, no editorial copy is shown and publication remains blocked"
+  },
+  "result": "PASS_FOR_HUMAN_REVIEW"
+}
