@@ -155,6 +155,19 @@ progreso entre Mundos, persistencia versionada, hidratación antes de guards,
 recuperación tras reload/reconexión, continuidad offline-first, fullscreen,
 auditoría de Mundos I–V y optimización del chunk principal permanecen en la
 fase `PROJECT DEBT CORRECTION`.
+
+## Estado de la corrección de deuda del proyecto
+
+La fase `PROJECT DEBT CORRECTION` está activa. La auditoría técnica conserva su
+registro histórico `PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_001_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_FOR_REVIEW.md](GVO_DEBT_001_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_FOR_REVIEW.md)
+y su aprobación humana vinculante está publicada en
+[GVO_DEBT_001P_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_001P_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_HUMAN_APPROVED_AND_PUBLISHED.md).
+Este cierre es documental: todavía no se ha implementado ninguna deuda
+funcional. El siguiente paso es la definición y publicación del primer ticket
+funcional aprobado. El Mirador permanece `COMPLETE` bajo la autoridad de
+`GVO_FINAL_021P`; este estado no declara terminado todo GVO.
+
 El cierre de assets está en
 [GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md](GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).
 El cierre de composición estática está en
