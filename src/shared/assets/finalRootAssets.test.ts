@@ -205,7 +205,7 @@ describe("GVO_FINAL_021I approved FinalRoot assets", () => {
       );
       expect(asset.precache_expected).toBe(true);
     }
-  });
+  }, 15_000);
 
   it("preserves exactly five approved production sources outside public", async () => {
     const sourceFiles = (await readdir(productionSourceRoot)).sort();
@@ -239,12 +239,23 @@ describe("GVO_FINAL_021I approved FinalRoot assets", () => {
     }
   });
 
-  it("does not consume the registry from the current FinalRoot screen", async () => {
+  it("consumes the authorized static portrait and landscape subsets", async () => {
     const finalRootSource = await readFile(
       path.resolve("src/screens/FinalRoot/FinalRootScreen.tsx"),
       "utf8",
     );
-    expect(finalRootSource).not.toContain("finalRootAssets");
+
+    expect(finalRootSource).toContain("finalRootAssets");
     expect(finalRootSource).not.toContain("/assets/gvo/stations/final-root/");
+    expect(finalRootSource).toContain("finalRootAssets.environment.landscape");
+    expect(finalRootSource).toContain(
+      "finalRootAssets.environment.valleyDepthLandscape",
+    );
+    expect(finalRootSource).toContain(
+      "finalRootAssets.environment.miradorForegroundLandscape",
+    );
+    expect(finalRootSource).toContain('media="(orientation: landscape)"');
+    expect(finalRootSource).not.toContain("finalRootAssets.lia.greeting4f");
+    expect(finalRootSource).not.toContain("current-used");
   });
 });

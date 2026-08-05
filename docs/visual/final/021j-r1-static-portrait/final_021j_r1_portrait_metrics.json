@@ -1,0 +1,1610 @@
+{
+  "schema": "gvo.final.021j-r1.portrait-metrics.v1",
+  "ticket": "GVO_FINAL_021J_R1_PORTRAIT_REFINEMENT_AND_DIRECT_ACCESS",
+  "generatedAt": "2026-08-04T23:18:07.633Z",
+  "route": "/final",
+  "browser": "Codex in-app Browser (Chromium)",
+  "baseline": "f310abffb9370dba5f4119c4f012a2104fd36487",
+  "accessSetup": {
+    "mode": "temporary_local_final_loader_bypass",
+    "reason": "Browser sandbox does not expose localStorage writes required by the existing /final guard",
+    "repositoryResidueExpected": false,
+    "guardValidation": "src/app/router.test.tsx"
+  },
+  "states": [
+    {
+      "label": "375x667_idle",
+      "pictorialReview": "PASS: núcleo central/inferior desplazado 14 px; Lía flota por encima del barandal, IV/V respiran sobre el foreground y el centro ceremonial permanece legible.",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10,
+        "runtimeUnique": [
+          "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+          "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+          "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+          "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+        ]
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 245.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 154.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 259.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 154.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 377.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 240.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 420.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 300.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 420.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 300.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 599,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 537
+        },
+        "credits": {
+          "bottom": 646.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 615.19
+        },
+        "foreground": {
+          "bottom": 610.31,
+          "fontSize": "16px",
+          "height": 373.33,
+          "lineHeight": "normal",
+          "right": 397.5,
+          "width": 420,
+          "x": -22.5,
+          "y": 236.98
+        },
+        "lia": {
+          "bottom": 491.23,
+          "fontSize": "16px",
+          "height": 103.38,
+          "lineHeight": "normal",
+          "right": 239.19,
+          "width": 103.38,
+          "x": 135.81,
+          "y": 387.86
+        },
+        "restartDialog": null,
+        "title": {
+          "bottom": 106.7,
+          "fontSize": "16px",
+          "height": 90.03,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "clipping": [],
+      "directAccessDom": {
+        "accessButtonCount": 0,
+        "activationContracts": [
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/1",
+            "id": "i",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/2",
+            "id": "ii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/3",
+            "id": "iii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/4",
+            "id": "iv",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/5",
+            "id": "v",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          }
+        ],
+        "ariaPressedCount": 0,
+        "intermediatePanelCount": 0,
+        "linkCount": 5,
+        "secondReviewControlCount": 0
+      },
+      "overlaps": [],
+      "route": "/final",
+      "scroll": {
+        "body": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "scrollHeight": 667,
+          "scrollWidth": 375
+        },
+        "document": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 667,
+          "scrollWidth": 375,
+          "vertical": false
+        },
+        "shell": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 667,
+          "scrollWidth": 375,
+          "vertical": false
+        }
+      },
+      "shifts": {
+        "core": "-14px",
+        "lowerCore": "0px",
+        "lowerRow": "0px"
+      },
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20.01px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"]
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 667,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "domDetected": [],
+        "critical": [],
+        "classification": "none"
+      }
+    },
+    {
+      "label": "390x844_idle",
+      "pictorialReview": "PASS: sin regresión respecto de 021J; conserva respiración amplia, jerarquía 2–1–2, Lía completa y mirador despejado.",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10,
+        "runtimeUnique": [
+          "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+          "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+          "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+          "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+        ]
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 320.48,
+              "fontSize": "16px",
+              "height": 106.3,
+              "lineHeight": "normal",
+              "right": 128.7,
+              "width": 101.39,
+              "x": 27.3,
+              "y": 214.19
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 335.78,
+              "fontSize": "16px",
+              "height": 121.59,
+              "lineHeight": "normal",
+              "right": 362.7,
+              "width": 101.39,
+              "x": 261.3,
+              "y": 214.19
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 479.22,
+              "fontSize": "16px",
+              "height": 155.31,
+              "lineHeight": "normal",
+              "right": 245.7,
+              "width": 101.39,
+              "x": 144.3,
+              "y": 323.91
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 536.77,
+              "fontSize": "16px",
+              "height": 136.89,
+              "lineHeight": "normal",
+              "right": 128.7,
+              "width": 101.39,
+              "x": 27.3,
+              "y": 399.88
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 536.77,
+              "fontSize": "16px",
+              "height": 136.89,
+              "lineHeight": "normal",
+              "right": 362.7,
+              "width": 101.39,
+              "x": 261.3,
+              "y": 399.88
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 745.63,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 378.3,
+          "width": 366.59,
+          "x": 11.7,
+          "y": 683.63
+        },
+        "credits": {
+          "bottom": 820.69,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 347.4,
+          "width": 304.8,
+          "x": 42.6,
+          "y": 789.06
+        },
+        "foreground": {
+          "bottom": 772.27,
+          "fontSize": "16px",
+          "height": 388.25,
+          "lineHeight": "normal",
+          "right": 413.4,
+          "width": 436.8,
+          "x": -23.4,
+          "y": 384.02
+        },
+        "lia": {
+          "bottom": 639.31,
+          "fontSize": "16px",
+          "height": 130.81,
+          "lineHeight": "normal",
+          "right": 260.41,
+          "width": 130.81,
+          "x": 129.59,
+          "y": 508.5
+        },
+        "restartDialog": null,
+        "title": {
+          "bottom": 129.09,
+          "fontSize": "16px",
+          "height": 108,
+          "lineHeight": "normal",
+          "right": 366.59,
+          "width": 343.19,
+          "x": 23.41,
+          "y": 21.09
+        }
+      },
+      "clipping": [],
+      "directAccessDom": {
+        "accessButtonCount": 0,
+        "activationContracts": [
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/1",
+            "id": "i",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/2",
+            "id": "ii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/3",
+            "id": "iii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/4",
+            "id": "iv",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/5",
+            "id": "v",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          }
+        ],
+        "ariaPressedCount": 0,
+        "intermediatePanelCount": 0,
+        "linkCount": 5,
+        "secondReviewControlCount": 0
+      },
+      "overlaps": [],
+      "route": "/final",
+      "scroll": {
+        "body": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "scrollHeight": 844,
+          "scrollWidth": 390
+        },
+        "document": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "horizontal": false,
+          "scrollHeight": 844,
+          "scrollWidth": 390,
+          "vertical": false
+        },
+        "shell": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "horizontal": false,
+          "scrollHeight": 844,
+          "scrollWidth": 390,
+          "vertical": false
+        }
+      },
+      "shifts": {
+        "core": "0px",
+        "lowerCore": "0px",
+        "lowerRow": "0px"
+      },
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 106.3,
+          "id": "i",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 121.59,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 155.31,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 136.89,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 136.89,
+          "id": "v",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 155.3
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 155.3
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "22px",
+        "labels": ["15px", "15px", "15px", "15px", "15px"]
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 844,
+        "width": 390
+      },
+      "overlapAssessment": {
+        "domDetected": [],
+        "critical": [],
+        "classification": "none"
+      }
+    },
+    {
+      "label": "360x640_idle",
+      "pictorialReview": "PASS: Lía, halo, accesos, plataforma, acciones y créditos permanecen completos; separación pictórica clara y composición equilibrada.",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10,
+        "runtimeUnique": [
+          "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+          "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+          "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+          "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+        ]
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 237.27,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 120,
+              "width": 96,
+              "x": 24,
+              "y": 146
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 251.53,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 336,
+              "width": 96,
+              "x": 240,
+              "y": 146
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 365.81,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 228,
+              "width": 96,
+              "x": 132,
+              "y": 229.19
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 406.59,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 120,
+              "width": 96,
+              "x": 24,
+              "y": 286.8
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 406.59,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 336,
+              "width": 96,
+              "x": 240,
+              "y": 286.8
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 572,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 349.2,
+          "width": 338.39,
+          "x": 10.8,
+          "y": 510
+        },
+        "credits": {
+          "bottom": 621.33,
+          "fontSize": "14px",
+          "height": 47.44,
+          "lineHeight": "15.82px",
+          "right": 318.59,
+          "width": 277.19,
+          "x": 41.41,
+          "y": 573.89
+        },
+        "foreground": {
+          "bottom": 585.61,
+          "fontSize": "16px",
+          "height": 358.38,
+          "lineHeight": "normal",
+          "right": 381.59,
+          "width": 403.19,
+          "x": -21.59,
+          "y": 227.23
+        },
+        "lia": {
+          "bottom": 470.78,
+          "fontSize": "16px",
+          "height": 99.19,
+          "lineHeight": "normal",
+          "right": 229.59,
+          "width": 99.19,
+          "x": 130.41,
+          "y": 371.59
+        },
+        "restartDialog": null,
+        "title": {
+          "bottom": 102.39,
+          "fontSize": "16px",
+          "height": 86.39,
+          "lineHeight": "normal",
+          "right": 338.4,
+          "width": 316.8,
+          "x": 21.6,
+          "y": 16
+        }
+      },
+      "clipping": [],
+      "directAccessDom": {
+        "accessButtonCount": 0,
+        "activationContracts": [
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/1",
+            "id": "i",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/2",
+            "id": "ii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/3",
+            "id": "iii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/4",
+            "id": "iv",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/5",
+            "id": "v",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          }
+        ],
+        "ariaPressedCount": 0,
+        "intermediatePanelCount": 0,
+        "linkCount": 5,
+        "secondReviewControlCount": 0
+      },
+      "overlaps": [],
+      "route": "/final",
+      "scroll": {
+        "body": {
+          "clientHeight": 640,
+          "clientWidth": 360,
+          "scrollHeight": 640,
+          "scrollWidth": 360
+        },
+        "document": {
+          "clientHeight": 640,
+          "clientWidth": 360,
+          "horizontal": false,
+          "scrollHeight": 640,
+          "scrollWidth": 360,
+          "vertical": false
+        },
+        "shell": {
+          "clientHeight": 640,
+          "clientWidth": 360,
+          "horizontal": false,
+          "scrollHeight": 640,
+          "scrollWidth": 360,
+          "vertical": false
+        }
+      },
+      "shifts": {
+        "core": "-14px",
+        "lowerCore": "0px",
+        "lowerRow": "0px"
+      },
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 96
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 96
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 96
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 96
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 96
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 141.19
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 141.2
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"]
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 640,
+        "width": 360
+      },
+      "overlapAssessment": {
+        "domDetected": [],
+        "critical": [],
+        "classification": "none"
+      }
+    },
+    {
+      "label": "375x548_idle",
+      "pictorialReview": "PASS: Lía y halo quedan completos y suspendidos sobre el barandal; IV/V conservan hitboxes independientes y terminan antes del mirador; la intersección DOM III/Lía corresponde a canvas transparente sin contacto pictórico ni captura de puntero.",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10,
+        "runtimeUnique": [
+          "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+          "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+          "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+          "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+        ]
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 207.66,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 116.39
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 221.92,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 116.39
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 296.25,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 159.63
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 342.75,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 222.95
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 342.75,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 222.95
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 480,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 418
+        },
+        "credits": {
+          "bottom": 529.25,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 497.63
+        },
+        "foreground": {
+          "bottom": 501.42,
+          "fontSize": "16px",
+          "height": 373.33,
+          "lineHeight": "normal",
+          "right": 397.5,
+          "width": 420,
+          "x": -22.5,
+          "y": 128.09
+        },
+        "lia": {
+          "bottom": 376.63,
+          "fontSize": "16px",
+          "height": 96,
+          "lineHeight": "normal",
+          "right": 235.5,
+          "width": 96,
+          "x": 139.5,
+          "y": 280.63
+        },
+        "restartDialog": null,
+        "title": {
+          "bottom": 99.69,
+          "fontSize": "16px",
+          "height": 86,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 13.69
+        }
+      },
+      "clipping": [],
+      "directAccessDom": {
+        "accessButtonCount": 0,
+        "activationContracts": [
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/1",
+            "id": "i",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/2",
+            "id": "ii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/3",
+            "id": "iii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/4",
+            "id": "iv",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/5",
+            "id": "v",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          }
+        ],
+        "ariaPressedCount": 0,
+        "intermediatePanelCount": 0,
+        "linkCount": 5,
+        "secondReviewControlCount": 0
+      },
+      "overlaps": [
+        {
+          "a": "access-iii",
+          "area": 1500,
+          "b": "lia",
+          "height": 15.63,
+          "width": 96
+        }
+      ],
+      "route": "/final",
+      "scroll": {
+        "body": {
+          "clientHeight": 548,
+          "clientWidth": 375,
+          "scrollHeight": 548,
+          "scrollWidth": 375
+        },
+        "document": {
+          "clientHeight": 548,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 548,
+          "scrollWidth": 375,
+          "vertical": false
+        },
+        "shell": {
+          "clientHeight": 548,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 548,
+          "scrollWidth": 375,
+          "vertical": false
+        }
+      },
+      "shifts": {
+        "core": "-16px",
+        "lowerCore": "-28px",
+        "lowerRow": "-14px"
+      },
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"]
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 548,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "domDetected": [
+          {
+            "a": "access-iii",
+            "area": 1500,
+            "b": "lia",
+            "height": 15.63,
+            "width": 96
+          }
+        ],
+        "critical": [],
+        "classification": "transparent_asset_canvas_only",
+        "note": "El bbox transparente de Lía intersecta el bbox del acceso III; la captura confirma separación pictórica y Lía tiene pointer-events:none."
+      }
+    },
+    {
+      "label": "375x667_restart_open",
+      "pictorialReview": "PASS: diálogo completo y operable sobre la composición R1; escena base reconocible, sin scroll ni clipping.",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10,
+        "runtimeUnique": [
+          "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+          "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+          "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+          "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+          "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+          "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_restart_dialog_backplate_v01.png",
+          "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+        ]
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 245.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 154.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 259.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 154.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 377.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 240.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 420.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 300.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 420.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 300.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 599,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 537
+        },
+        "credits": {
+          "bottom": 646.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 615.19
+        },
+        "foreground": {
+          "bottom": 610.31,
+          "fontSize": "16px",
+          "height": 373.33,
+          "lineHeight": "normal",
+          "right": 397.5,
+          "width": 420,
+          "x": -22.5,
+          "y": 236.98
+        },
+        "lia": {
+          "bottom": 491.23,
+          "fontSize": "16px",
+          "height": 103.38,
+          "lineHeight": "normal",
+          "right": 239.19,
+          "width": 103.38,
+          "x": 135.81,
+          "y": 387.86
+        },
+        "restartDialog": {
+          "bottom": 443.84,
+          "fontSize": "16px",
+          "height": 220.69,
+          "lineHeight": "normal",
+          "right": 347.11,
+          "width": 319.23,
+          "x": 27.88,
+          "y": 223.16
+        },
+        "title": {
+          "bottom": 106.7,
+          "fontSize": "16px",
+          "height": 90.03,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "clipping": [],
+      "directAccessDom": {
+        "accessButtonCount": 0,
+        "activationContracts": [
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/1",
+            "id": "i",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/2",
+            "id": "ii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/3",
+            "id": "iii",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/4",
+            "id": "iv",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          },
+          {
+            "activationsRequired": 1,
+            "href": "/estacion/5",
+            "id": "v",
+            "intermediatePanel": false,
+            "role": "link",
+            "tag": "a"
+          }
+        ],
+        "ariaPressedCount": 0,
+        "intermediatePanelCount": 0,
+        "linkCount": 5,
+        "secondReviewControlCount": 0
+      },
+      "overlaps": [],
+      "route": "/final",
+      "scroll": {
+        "body": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "scrollHeight": 667,
+          "scrollWidth": 375
+        },
+        "document": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 667,
+          "scrollWidth": 375,
+          "vertical": false
+        },
+        "shell": {
+          "clientHeight": 667,
+          "clientWidth": 375,
+          "horizontal": false,
+          "scrollHeight": 667,
+          "scrollWidth": 375,
+          "vertical": false
+        }
+      },
+      "shifts": {
+        "core": "-14px",
+        "lowerCore": "0px",
+        "lowerRow": "0px"
+      },
+      "state": "final_restart_confirm",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 49.5,
+          "id": "cancel_restart",
+          "pass44x44": true,
+          "width": 110.61
+        },
+        {
+          "height": 49.5,
+          "id": "confirm_restart_navigation_only",
+          "pass44x44": true,
+          "width": 110.63
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": "16px",
+        "h1": "20.01px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"]
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 667,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "domDetected": [],
+        "critical": [],
+        "classification": "none"
+      }
+    }
+  ],
+  "runtimeAudit": {
+    "expectedAuthorizedPortraitAssetCountIncludingRestart": 15,
+    "observedIdleAssetCount": 14,
+    "observedRestartAssetCount": 15,
+    "assetsIncludingRestart": [
+      "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+      "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+      "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+      "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_restart_dialog_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+    ],
+    "dom": {
+      "accessButtons": 0,
+      "accessLinks": 5,
+      "confirmTemplateStatus": ["FINAL", "FINAL", "FINAL", "FINAL", "FINAL"],
+      "confirmTemplates": 5,
+      "h1Count": 1,
+      "intermediatePanels": 0,
+      "landscapeStatus": "pending-021k",
+      "liaFrame": "1",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": [],
+      "operationalStatus": "registered_not_consumed",
+      "secondReviewControls": 0,
+      "spriteFrame": "1"
+    }
+  },
+  "console": {
+    "errorsAndWarnings": [],
+    "count": 0
+  },
+  "requests": {
+    "observedAssetSummary": {
+      "byKind": {
+        "font": 1,
+        "image": 48,
+        "other": 0,
+        "script": 129,
+        "stylesheet": 21,
+        "video": 0
+      },
+      "inlineSvgCount": 2,
+      "totalCount": 199
+    },
+    "external": [],
+    "externalCount": 0
+  },
+  "directAccess": {
+    "tested": 5,
+    "passed": 5,
+    "activationsRequired": 1,
+    "intermediatePanelPresent": false,
+    "secondControlRequired": false,
+    "consoleErrorOrWarningCount": 0,
+    "externalRequestCount": 0,
+    "allPass": true
+  },
+  "technicalCriteria": {
+    "portraitNoScroll": true,
+    "essentialClippingZero": true,
+    "criticalDomOverlapsZero": true,
+    "minimumHeightOverlapReviewedAsTransparentCanvas": true,
+    "targets44x44": true,
+    "assetsLoaded": true,
+    "pictorialReviewsPass": true,
+    "noConsoleErrorsOrWarnings": true,
+    "noExternalRequests": true,
+    "directAccessOneActivation": true,
+    "confirmSlotsPreserved": true,
+    "operationalSlotsNotConsumed": true,
+    "uniqueH1": true,
+    "staticLiaFrame1": true,
+    "noMotionInFinalDom": true,
+    "landscapePending": true
+  }
+}

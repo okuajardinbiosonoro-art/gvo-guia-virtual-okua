@@ -1,0 +1,1913 @@
+{
+  "ticket": "GVO_FINAL_021K",
+  "generatedAt": "2026-08-04",
+  "status": "TECHNICAL_PASS_PENDING_HUMAN_FINAL_REVIEW",
+  "approvedCarryovers": {
+    "finalCredits01": "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David P. Z.",
+    "accessCluster": "single coordinated CSS variable; -6px tall portrait, -8px short portrait, -6px strict short portrait",
+    "liaBase": "+26px tall portrait, +22px short portrait, +16px strict short portrait relative to R1"
+  },
+  "liaFrame": {
+    "frame": 1,
+    "sourceBbox": [
+      54,
+      35,
+      184,
+      184
+    ],
+    "motion": "none",
+    "greetingConsumed": false
+  },
+  "platformAnchors": {
+    "portrait": {
+      "normalized": [
+        0.5,
+        0.735
+      ],
+      "source": "canonical portrait foreground pictorial medallion"
+    }
+  },
+  "viewports": [
+    {
+      "assets": {
+        "external": [],
+        "failed": [],
+        "images": [
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-foreground__image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "naturalHeight": 1280,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-lia__glow",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "naturalHeight": 512,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-lia__strip",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "naturalHeight": 256,
+            "naturalWidth": 1536
+          }
+        ]
+      },
+      "bboxes": {
+        "accesses": [
+          {
+            "bottom": 314.48,
+            "fontSize": 16,
+            "height": 106.3,
+            "id": "i",
+            "right": 128.7,
+            "width": 101.39,
+            "x": 27.3,
+            "y": 208.19
+          },
+          {
+            "bottom": 329.78,
+            "fontSize": 16,
+            "height": 121.59,
+            "id": "ii",
+            "right": 362.7,
+            "width": 101.39,
+            "x": 261.3,
+            "y": 208.19
+          },
+          {
+            "bottom": 473.22,
+            "fontSize": 16,
+            "height": 155.31,
+            "id": "iii",
+            "right": 245.7,
+            "width": 101.39,
+            "x": 144.3,
+            "y": 317.91
+          },
+          {
+            "bottom": 530.77,
+            "fontSize": 16,
+            "height": 136.89,
+            "id": "iv",
+            "right": 128.7,
+            "width": 101.39,
+            "x": 27.3,
+            "y": 393.88
+          },
+          {
+            "bottom": 530.77,
+            "fontSize": 16,
+            "height": 136.89,
+            "id": "v",
+            "right": 362.7,
+            "width": 101.39,
+            "x": 261.3,
+            "y": 393.88
+          }
+        ],
+        "actions": {
+          "bottom": 745.63,
+          "fontSize": 16,
+          "height": 62,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 378.3,
+          "selector": ".final-root-actions",
+          "width": 366.59,
+          "x": 11.7,
+          "y": 683.63
+        },
+        "credits": {
+          "bottom": 833.88,
+          "fontSize": 16,
+          "height": 58,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 374.4,
+          "selector": ".final-root-credits",
+          "width": 358.8,
+          "x": 15.6,
+          "y": 775.88
+        },
+        "foreground": {
+          "bottom": 772.27,
+          "fontSize": 16,
+          "height": 388.25,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 413.4,
+          "selector": ".final-root-foreground__image",
+          "width": 436.8,
+          "x": -23.4,
+          "y": 384.02
+        },
+        "lia": {
+          "bottom": 665.31,
+          "fontSize": 16,
+          "height": 130.81,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 260.41,
+          "selector": ".final-root-lia",
+          "width": 130.81,
+          "x": 129.59,
+          "y": 534.5
+        },
+        "liaVisibleAlpha": {
+          "bottom": 628.52,
+          "height": 76.14,
+          "right": 223.62,
+          "sourceFrameBbox": [
+            54,
+            35,
+            184,
+            184
+          ],
+          "width": 66.43,
+          "x": 157.19,
+          "y": 552.38
+        },
+        "title": {
+          "bottom": 129.09,
+          "fontSize": 16,
+          "height": 108,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 366.59,
+          "selector": ".final-root-title",
+          "width": 343.19,
+          "x": 23.41,
+          "y": 21.09
+        }
+      },
+      "body": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "compositionVariables": {
+        "accessClusterShiftY": "-6px",
+        "coreShiftY": "0px",
+        "liaBaseShiftY": "26px",
+        "lowerCoreShiftY": "0px",
+        "lowerRowShiftY": "0px"
+      },
+      "creditsText": "Desarrollado por Momotto S.A.S.A cargo del Ing. José David P. Z.",
+      "currentDepth": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "currentEnvironment": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "currentForeground": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "document": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "essentialClipping": [
+        {
+          "bottom": 772.27,
+          "fontSize": 16,
+          "height": 388.25,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 413.4,
+          "selector": ".final-root-foreground__image",
+          "width": 436.8,
+          "x": -23.4,
+          "y": 384.02
+        }
+      ],
+      "label": "390x844",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": "none",
+      "orientation": "portrait",
+      "pictorial": {
+        "liaBaselineMinusRail": 11.55,
+        "liaBaselineY": 628.52,
+        "platform": {
+          "method": "manual pictorial anchor measured on canonical foreground asset",
+          "sourceNormalized": [
+            0.5,
+            0.735
+          ],
+          "x": 195,
+          "y": 669.38
+        },
+        "platformMinusLiaBaseline": 40.86,
+        "railY": 616.97,
+        "annotation": "Lia F1 baseline is below the railing crest and above the measured platform medallion center; foreground canvas overscan contains only transparent margins while its alpha bbox stays inside the viewport."
+      },
+      "shell": {
+        "bottom": 844,
+        "fontSize": 16,
+        "height": 844,
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "right": 390,
+        "selector": ".final-root-shell",
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "shellOverflow": {
+        "x": "hidden",
+        "y": "hidden"
+      },
+      "targets": {
+        "items": [
+          {
+            "bottom": 314.48,
+            "fontSize": 16,
+            "height": 106.3,
+            "id": "i",
+            "right": 128.7,
+            "width": 101.39,
+            "x": 27.3,
+            "y": 208.19
+          },
+          {
+            "bottom": 329.78,
+            "fontSize": 16,
+            "height": 121.59,
+            "id": "ii",
+            "right": 362.7,
+            "width": 101.39,
+            "x": 261.3,
+            "y": 208.19
+          },
+          {
+            "bottom": 473.22,
+            "fontSize": 16,
+            "height": 155.31,
+            "id": "iii",
+            "right": 245.7,
+            "width": 101.39,
+            "x": 144.3,
+            "y": 317.91
+          },
+          {
+            "bottom": 530.77,
+            "fontSize": 16,
+            "height": 136.89,
+            "id": "iv",
+            "right": 128.7,
+            "width": 101.39,
+            "x": 27.3,
+            "y": 393.88
+          },
+          {
+            "bottom": 530.77,
+            "fontSize": 16,
+            "height": 136.89,
+            "id": "v",
+            "right": 362.7,
+            "width": 101.39,
+            "x": 261.3,
+            "y": 393.88
+          },
+          {
+            "bottom": 736.63,
+            "fontSize": 16,
+            "height": 44,
+            "id": "safe_navigation_portada",
+            "right": 179,
+            "width": 155.3,
+            "x": 23.7,
+            "y": 692.63
+          },
+          {
+            "bottom": 736.63,
+            "fontSize": 16,
+            "height": 44,
+            "id": "open_restart_confirmation",
+            "right": 366.3,
+            "width": 155.3,
+            "x": 211,
+            "y": 692.63
+          }
+        ],
+        "min44": true,
+        "overlaps": []
+      },
+      "typography": {
+        "actions": [
+          16,
+          16
+        ],
+        "credits": 14,
+        "h1": 22,
+        "labels": [
+          15,
+          15,
+          15,
+          15,
+          15
+        ],
+        "subtitle": 15.192
+      },
+      "uniqueH1": 1,
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "console": [],
+      "pageAssets": {
+        "summary": {
+          "byKind": {
+            "font": 1,
+            "image": 44,
+            "other": 0,
+            "script": 129,
+            "stylesheet": 21,
+            "video": 0
+          },
+          "inlineSvgCount": 2,
+          "totalCount": 195
+        },
+        "external": []
+      },
+      "foregroundAlphaViewport": {
+        "x": 65.48,
+        "y": 385.54,
+        "right": 324.52,
+        "bottom": 770.15,
+        "sourceCanvas": [
+          1440,
+          1280
+        ],
+        "sourceAlphaBbox": [
+          293,
+          5,
+          1147,
+          1273
+        ]
+      },
+      "canvasOverscan": [
+        {
+          "bottom": 772.27,
+          "fontSize": 16,
+          "height": 388.25,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 413.4,
+          "selector": ".final-root-foreground__image",
+          "width": 436.8,
+          "x": -23.4,
+          "y": 384.02
+        }
+      ],
+      "essentialContentClipping": [],
+      "visibleContentOverlaps": [],
+      "review": {
+        "scrollPass": true,
+        "contentClippingPass": true,
+        "targetsPass": true,
+        "visibleOverlapPass": true,
+        "assetsPass": true,
+        "consolePass": true,
+        "motionPass": true,
+        "uniqueH1Pass": true
+      }
+    },
+    {
+      "assets": {
+        "external": [],
+        "failed": [],
+        "images": [
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-foreground__image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "naturalHeight": 1280,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-lia__glow",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "naturalHeight": 512,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-lia__strip",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "naturalHeight": 256,
+            "naturalWidth": 1536
+          }
+        ]
+      },
+      "bboxes": {
+        "accesses": [
+          {
+            "bottom": 237.36,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 146.09
+          },
+          {
+            "bottom": 251.63,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 146.09
+          },
+          {
+            "bottom": 369.42,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 236.25,
+            "width": 97.5,
+            "x": 138.75,
+            "y": 232.8
+          },
+          {
+            "bottom": 412.63,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 292.83
+          },
+          {
+            "bottom": 412.63,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 292.83
+          }
+        ],
+        "actions": {
+          "bottom": 599,
+          "fontSize": 16,
+          "height": 62,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 363.75,
+          "selector": ".final-root-actions",
+          "width": 352.5,
+          "x": 11.25,
+          "y": 537
+        },
+        "credits": {
+          "bottom": 659,
+          "fontSize": 16,
+          "height": 56,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 360,
+          "selector": ".final-root-credits",
+          "width": 345,
+          "x": 15,
+          "y": 603
+        },
+        "foreground": {
+          "bottom": 610.31,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 236.98
+        },
+        "lia": {
+          "bottom": 513.23,
+          "fontSize": 16,
+          "height": 103.38,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 239.19,
+          "selector": ".final-root-lia",
+          "width": 103.38,
+          "x": 135.81,
+          "y": 409.86
+        },
+        "liaVisibleAlpha": {
+          "bottom": 484.16,
+          "height": 60.17,
+          "right": 210.11,
+          "sourceFrameBbox": [
+            54,
+            35,
+            184,
+            184
+          ],
+          "width": 52.5,
+          "x": 157.62,
+          "y": 423.99
+        },
+        "title": {
+          "bottom": 106.7,
+          "fontSize": 16,
+          "height": 90.03,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 352.5,
+          "selector": ".final-root-title",
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "body": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "scrollHeight": 667,
+        "scrollWidth": 375
+      },
+      "compositionVariables": {
+        "accessClusterShiftY": "-8px",
+        "coreShiftY": "-14px",
+        "liaBaseShiftY": "22px",
+        "lowerCoreShiftY": "0px",
+        "lowerRowShiftY": "0px"
+      },
+      "creditsText": "Desarrollado por Momotto S.A.S.A cargo del Ing. José David P. Z.",
+      "currentDepth": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "currentEnvironment": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "currentForeground": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "document": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "scrollHeight": 667,
+        "scrollWidth": 375
+      },
+      "essentialClipping": [
+        {
+          "bottom": 610.31,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 236.98
+        }
+      ],
+      "label": "375x667",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": "none",
+      "orientation": "portrait",
+      "pictorial": {
+        "liaBaselineMinusRail": 23.18,
+        "liaBaselineY": 484.16,
+        "platform": {
+          "method": "manual pictorial anchor measured on canonical foreground asset",
+          "sourceNormalized": [
+            0.5,
+            0.735
+          ],
+          "x": 187.5,
+          "y": 511.38
+        },
+        "platformMinusLiaBaseline": 27.22,
+        "railY": 460.98,
+        "annotation": "Lia F1 baseline is below the railing crest and above the measured platform medallion center; foreground canvas overscan contains only transparent margins while its alpha bbox stays inside the viewport."
+      },
+      "shell": {
+        "bottom": 667,
+        "fontSize": 16,
+        "height": 667,
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "right": 375,
+        "selector": ".final-root-shell",
+        "width": 375,
+        "x": 0,
+        "y": 0
+      },
+      "shellOverflow": {
+        "x": "hidden",
+        "y": "hidden"
+      },
+      "targets": {
+        "items": [
+          {
+            "bottom": 237.36,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 146.09
+          },
+          {
+            "bottom": 251.63,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 146.09
+          },
+          {
+            "bottom": 369.42,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 236.25,
+            "width": 97.5,
+            "x": 138.75,
+            "y": 232.8
+          },
+          {
+            "bottom": 412.63,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 292.83
+          },
+          {
+            "bottom": 412.63,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 292.83
+          },
+          {
+            "bottom": 590,
+            "fontSize": 16,
+            "height": 44,
+            "id": "safe_navigation_portada",
+            "right": 171.5,
+            "width": 148.25,
+            "x": 23.25,
+            "y": 546
+          },
+          {
+            "bottom": 590,
+            "fontSize": 16,
+            "height": 44,
+            "id": "open_restart_confirmation",
+            "right": 351.75,
+            "width": 148.25,
+            "x": 203.5,
+            "y": 546
+          }
+        ],
+        "min44": true,
+        "overlaps": []
+      },
+      "typography": {
+        "actions": [
+          16,
+          16
+        ],
+        "credits": 14,
+        "h1": 20.01,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "subtitle": 14
+      },
+      "uniqueH1": 1,
+      "viewport": {
+        "dpr": 1,
+        "height": 667,
+        "width": 375
+      },
+      "console": [],
+      "pageAssets": {
+        "summary": {
+          "byKind": {
+            "font": 1,
+            "image": 44,
+            "other": 0,
+            "script": 129,
+            "stylesheet": 21,
+            "video": 0
+          },
+          "inlineSvgCount": 2,
+          "totalCount": 195
+        },
+        "external": []
+      },
+      "foregroundAlphaViewport": {
+        "x": 62.96,
+        "y": 238.44,
+        "right": 312.04,
+        "bottom": 608.27,
+        "sourceCanvas": [
+          1440,
+          1280
+        ],
+        "sourceAlphaBbox": [
+          293,
+          5,
+          1147,
+          1273
+        ]
+      },
+      "canvasOverscan": [
+        {
+          "bottom": 610.31,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 236.98
+        }
+      ],
+      "essentialContentClipping": [],
+      "visibleContentOverlaps": [],
+      "review": {
+        "scrollPass": true,
+        "contentClippingPass": true,
+        "targetsPass": true,
+        "visibleOverlapPass": true,
+        "assetsPass": true,
+        "consolePass": true,
+        "motionPass": true,
+        "uniqueH1Pass": true
+      }
+    },
+    {
+      "assets": {
+        "external": [],
+        "failed": [],
+        "images": [
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-foreground__image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "naturalHeight": 1280,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-lia__glow",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "naturalHeight": 512,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-lia__strip",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "naturalHeight": 256,
+            "naturalWidth": 1536
+          }
+        ]
+      },
+      "bboxes": {
+        "accesses": [
+          {
+            "bottom": 229.27,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 120,
+            "width": 96,
+            "x": 24,
+            "y": 138
+          },
+          {
+            "bottom": 243.53,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 336,
+            "width": 96,
+            "x": 240,
+            "y": 138
+          },
+          {
+            "bottom": 357.81,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 228,
+            "width": 96,
+            "x": 132,
+            "y": 221.19
+          },
+          {
+            "bottom": 398.59,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 120,
+            "width": 96,
+            "x": 24,
+            "y": 278.8
+          },
+          {
+            "bottom": 398.59,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 336,
+            "width": 96,
+            "x": 240,
+            "y": 278.8
+          }
+        ],
+        "actions": {
+          "bottom": 572,
+          "fontSize": 16,
+          "height": 62,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 349.2,
+          "selector": ".final-root-actions",
+          "width": 338.39,
+          "x": 10.8,
+          "y": 510
+        },
+        "credits": {
+          "bottom": 632.33,
+          "fontSize": 16,
+          "height": 56,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 345.59,
+          "selector": ".final-root-credits",
+          "width": 331.19,
+          "x": 14.41,
+          "y": 576.33
+        },
+        "foreground": {
+          "bottom": 585.61,
+          "fontSize": 16,
+          "height": 358.38,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 381.59,
+          "selector": ".final-root-foreground__image",
+          "width": 403.19,
+          "x": -21.59,
+          "y": 227.23
+        },
+        "lia": {
+          "bottom": 492.78,
+          "fontSize": 16,
+          "height": 99.19,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 229.59,
+          "selector": ".final-root-lia",
+          "width": 99.19,
+          "x": 130.41,
+          "y": 393.59
+        },
+        "liaVisibleAlpha": {
+          "bottom": 464.88,
+          "height": 57.73,
+          "right": 201.7,
+          "sourceFrameBbox": [
+            54,
+            35,
+            184,
+            184
+          ],
+          "width": 50.37,
+          "x": 151.33,
+          "y": 407.15
+        },
+        "title": {
+          "bottom": 102.39,
+          "fontSize": 16,
+          "height": 86.39,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 338.4,
+          "selector": ".final-root-title",
+          "width": 316.8,
+          "x": 21.6,
+          "y": 16
+        }
+      },
+      "body": {
+        "clientHeight": 640,
+        "clientWidth": 360,
+        "scrollHeight": 640,
+        "scrollWidth": 360
+      },
+      "compositionVariables": {
+        "accessClusterShiftY": "-8px",
+        "coreShiftY": "-14px",
+        "liaBaseShiftY": "22px",
+        "lowerCoreShiftY": "0px",
+        "lowerRowShiftY": "0px"
+      },
+      "creditsText": "Desarrollado por Momotto S.A.S.A cargo del Ing. José David P. Z.",
+      "currentDepth": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "currentEnvironment": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "currentForeground": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "document": {
+        "clientHeight": 640,
+        "clientWidth": 360,
+        "scrollHeight": 640,
+        "scrollWidth": 360
+      },
+      "essentialClipping": [
+        {
+          "bottom": 585.61,
+          "fontSize": 16,
+          "height": 358.38,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 381.59,
+          "selector": ".final-root-foreground__image",
+          "width": 403.19,
+          "x": -21.59,
+          "y": 227.23
+        }
+      ],
+      "label": "360x640",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": "none",
+      "orientation": "portrait",
+      "pictorial": {
+        "liaBaselineMinusRail": 22.62,
+        "liaBaselineY": 464.88,
+        "platform": {
+          "method": "manual pictorial anchor measured on canonical foreground asset",
+          "sourceNormalized": [
+            0.5,
+            0.735
+          ],
+          "x": 180,
+          "y": 490.64
+        },
+        "platformMinusLiaBaseline": 25.76,
+        "railY": 442.26,
+        "annotation": "Lia F1 baseline is below the railing crest and above the measured platform medallion center; foreground canvas overscan contains only transparent margins while its alpha bbox stays inside the viewport."
+      },
+      "shell": {
+        "bottom": 640,
+        "fontSize": 16,
+        "height": 640,
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "right": 360,
+        "selector": ".final-root-shell",
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "shellOverflow": {
+        "x": "hidden",
+        "y": "hidden"
+      },
+      "targets": {
+        "items": [
+          {
+            "bottom": 229.27,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 120,
+            "width": 96,
+            "x": 24,
+            "y": 138
+          },
+          {
+            "bottom": 243.53,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 336,
+            "width": 96,
+            "x": 240,
+            "y": 138
+          },
+          {
+            "bottom": 357.81,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 228,
+            "width": 96,
+            "x": 132,
+            "y": 221.19
+          },
+          {
+            "bottom": 398.59,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 120,
+            "width": 96,
+            "x": 24,
+            "y": 278.8
+          },
+          {
+            "bottom": 398.59,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 336,
+            "width": 96,
+            "x": 240,
+            "y": 278.8
+          },
+          {
+            "bottom": 563,
+            "fontSize": 16,
+            "height": 44,
+            "id": "safe_navigation_portada",
+            "right": 163.99,
+            "width": 141.19,
+            "x": 22.8,
+            "y": 519
+          },
+          {
+            "bottom": 563,
+            "fontSize": 16,
+            "height": 44,
+            "id": "open_restart_confirmation",
+            "right": 337.2,
+            "width": 141.2,
+            "x": 195.99,
+            "y": 519
+          }
+        ],
+        "min44": true,
+        "overlaps": []
+      },
+      "typography": {
+        "actions": [
+          16,
+          16
+        ],
+        "credits": 14,
+        "h1": 20,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "subtitle": 14
+      },
+      "uniqueH1": 1,
+      "viewport": {
+        "dpr": 1,
+        "height": 640,
+        "width": 360
+      },
+      "console": [],
+      "pageAssets": {
+        "summary": {
+          "byKind": {
+            "font": 1,
+            "image": 48,
+            "other": 0,
+            "script": 129,
+            "stylesheet": 21,
+            "video": 0
+          },
+          "inlineSvgCount": 2,
+          "totalCount": 199
+        },
+        "external": []
+      },
+      "foregroundAlphaViewport": {
+        "x": 60.45,
+        "y": 228.63,
+        "right": 299.56,
+        "bottom": 583.65,
+        "sourceCanvas": [
+          1440,
+          1280
+        ],
+        "sourceAlphaBbox": [
+          293,
+          5,
+          1147,
+          1273
+        ]
+      },
+      "canvasOverscan": [
+        {
+          "bottom": 585.61,
+          "fontSize": 16,
+          "height": 358.38,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 381.59,
+          "selector": ".final-root-foreground__image",
+          "width": 403.19,
+          "x": -21.59,
+          "y": 227.23
+        }
+      ],
+      "essentialContentClipping": [],
+      "visibleContentOverlaps": [],
+      "review": {
+        "scrollPass": true,
+        "contentClippingPass": true,
+        "targetsPass": true,
+        "visibleOverlapPass": true,
+        "assetsPass": true,
+        "consolePass": true,
+        "motionPass": true,
+        "uniqueH1Pass": true
+      }
+    },
+    {
+      "assets": {
+        "external": [],
+        "failed": [],
+        "images": [
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-layer-image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+            "naturalHeight": 2560,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-access__art",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+            "naturalHeight": 1024,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-foreground__image",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+            "naturalHeight": 1280,
+            "naturalWidth": 1440
+          },
+          {
+            "className": "final-root-lia__glow",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+            "naturalHeight": 512,
+            "naturalWidth": 1024
+          },
+          {
+            "className": "final-root-lia__strip",
+            "complete": true,
+            "currentSrc": "http://127.0.0.1:4173/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "declaredSrc": "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+            "naturalHeight": 256,
+            "naturalWidth": 1536
+          }
+        ]
+      },
+      "bboxes": {
+        "accesses": [
+          {
+            "bottom": 201.66,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 110.39
+          },
+          {
+            "bottom": 215.92,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 110.39
+          },
+          {
+            "bottom": 290.25,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 236.25,
+            "width": 97.5,
+            "x": 138.75,
+            "y": 153.63
+          },
+          {
+            "bottom": 336.75,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 216.95
+          },
+          {
+            "bottom": 336.75,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 216.95
+          }
+        ],
+        "actions": {
+          "bottom": 480,
+          "fontSize": 16,
+          "height": 62,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 363.75,
+          "selector": ".final-root-actions",
+          "width": 352.5,
+          "x": 11.25,
+          "y": 418
+        },
+        "credits": {
+          "bottom": 541.44,
+          "fontSize": 16,
+          "height": 56,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 360,
+          "selector": ".final-root-credits",
+          "width": 345,
+          "x": 15,
+          "y": 485.44
+        },
+        "foreground": {
+          "bottom": 501.42,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 128.09
+        },
+        "lia": {
+          "bottom": 392.63,
+          "fontSize": 16,
+          "height": 96,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 235.5,
+          "selector": ".final-root-lia",
+          "width": 96,
+          "x": 139.5,
+          "y": 296.63
+        },
+        "liaVisibleAlpha": {
+          "bottom": 365.63,
+          "height": 55.88,
+          "right": 208.5,
+          "sourceFrameBbox": [
+            54,
+            35,
+            184,
+            184
+          ],
+          "width": 48.75,
+          "x": 159.75,
+          "y": 309.75
+        },
+        "title": {
+          "bottom": 99.69,
+          "fontSize": 16,
+          "height": 86,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "right": 352.5,
+          "selector": ".final-root-title",
+          "width": 330,
+          "x": 22.5,
+          "y": 13.69
+        }
+      },
+      "body": {
+        "clientHeight": 548,
+        "clientWidth": 375,
+        "scrollHeight": 548,
+        "scrollWidth": 375
+      },
+      "compositionVariables": {
+        "accessClusterShiftY": "-6px",
+        "coreShiftY": "-16px",
+        "liaBaseShiftY": "16px",
+        "lowerCoreShiftY": "-28px",
+        "lowerRowShiftY": "-14px"
+      },
+      "creditsText": "Desarrollado por Momotto S.A.S.A cargo del Ing. José David P. Z.",
+      "currentDepth": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "currentEnvironment": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "currentForeground": "http://127.0.0.1:4173/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "document": {
+        "clientHeight": 548,
+        "clientWidth": 375,
+        "scrollHeight": 548,
+        "scrollWidth": 375
+      },
+      "essentialClipping": [
+        {
+          "bottom": 501.42,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 128.09
+        }
+      ],
+      "label": "375x548",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": "none",
+      "orientation": "portrait",
+      "pictorial": {
+        "liaBaselineMinusRail": 13.54,
+        "liaBaselineY": 365.63,
+        "platform": {
+          "method": "manual pictorial anchor measured on canonical foreground asset",
+          "sourceNormalized": [
+            0.5,
+            0.735
+          ],
+          "x": 187.5,
+          "y": 402.49
+        },
+        "platformMinusLiaBaseline": 36.86,
+        "railY": 352.09,
+        "annotation": "Lia F1 baseline is below the railing crest and above the measured platform medallion center; foreground canvas overscan contains only transparent margins while its alpha bbox stays inside the viewport."
+      },
+      "shell": {
+        "bottom": 548,
+        "fontSize": 16,
+        "height": 548,
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "right": 375,
+        "selector": ".final-root-shell",
+        "width": 375,
+        "x": 0,
+        "y": 0
+      },
+      "shellOverflow": {
+        "x": "hidden",
+        "y": "hidden"
+      },
+      "targets": {
+        "items": [
+          {
+            "bottom": 201.66,
+            "fontSize": 16,
+            "height": 91.27,
+            "id": "i",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 110.39
+          },
+          {
+            "bottom": 215.92,
+            "fontSize": 16,
+            "height": 105.53,
+            "id": "ii",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 110.39
+          },
+          {
+            "bottom": 290.25,
+            "fontSize": 16,
+            "height": 136.63,
+            "id": "iii",
+            "right": 236.25,
+            "width": 97.5,
+            "x": 138.75,
+            "y": 153.63
+          },
+          {
+            "bottom": 336.75,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "iv",
+            "right": 123.75,
+            "width": 97.5,
+            "x": 26.25,
+            "y": 216.95
+          },
+          {
+            "bottom": 336.75,
+            "fontSize": 16,
+            "height": 119.8,
+            "id": "v",
+            "right": 348.75,
+            "width": 97.5,
+            "x": 251.25,
+            "y": 216.95
+          },
+          {
+            "bottom": 471,
+            "fontSize": 16,
+            "height": 44,
+            "id": "safe_navigation_portada",
+            "right": 171.5,
+            "width": 148.25,
+            "x": 23.25,
+            "y": 427
+          },
+          {
+            "bottom": 471,
+            "fontSize": 16,
+            "height": 44,
+            "id": "open_restart_confirmation",
+            "right": 351.75,
+            "width": 148.25,
+            "x": 203.5,
+            "y": 427
+          }
+        ],
+        "min44": true,
+        "overlaps": []
+      },
+      "typography": {
+        "actions": [
+          16,
+          16
+        ],
+        "credits": 14,
+        "h1": 20,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "subtitle": 14
+      },
+      "uniqueH1": 1,
+      "viewport": {
+        "dpr": 1,
+        "height": 548,
+        "width": 375
+      },
+      "console": [],
+      "pageAssets": {
+        "summary": {
+          "byKind": {
+            "font": 1,
+            "image": 44,
+            "other": 0,
+            "script": 129,
+            "stylesheet": 21,
+            "video": 0
+          },
+          "inlineSvgCount": 2,
+          "totalCount": 195
+        },
+        "external": []
+      },
+      "foregroundAlphaViewport": {
+        "x": 62.96,
+        "y": 129.55,
+        "right": 312.04,
+        "bottom": 499.38,
+        "sourceCanvas": [
+          1440,
+          1280
+        ],
+        "sourceAlphaBbox": [
+          293,
+          5,
+          1147,
+          1273
+        ]
+      },
+      "canvasOverscan": [
+        {
+          "bottom": 501.42,
+          "fontSize": 16,
+          "height": 373.33,
+          "overflowX": "clip",
+          "overflowY": "clip",
+          "right": 397.5,
+          "selector": ".final-root-foreground__image",
+          "width": 420,
+          "x": -22.5,
+          "y": 128.09
+        }
+      ],
+      "essentialContentClipping": [],
+      "visibleContentOverlaps": [],
+      "review": {
+        "scrollPass": true,
+        "contentClippingPass": true,
+        "targetsPass": true,
+        "visibleOverlapPass": true,
+        "assetsPass": true,
+        "consolePass": true,
+        "motionPass": true,
+        "uniqueH1Pass": true
+      }
+    }
+  ],
+  "directAccess": [
+    {
+      "id": "I",
+      "expected": "/estacion/1",
+      "url": "http://127.0.0.1:4173/estacion/1",
+      "activations": 1,
+      "intermediatePanel": false
+    },
+    {
+      "id": "II",
+      "expected": "/estacion/2",
+      "url": "http://127.0.0.1:4173/estacion/2",
+      "activations": 1,
+      "intermediatePanel": false
+    },
+    {
+      "id": "III",
+      "expected": "/estacion/3",
+      "url": "http://127.0.0.1:4173/estacion/3",
+      "activations": 1,
+      "intermediatePanel": false
+    },
+    {
+      "id": "IV",
+      "expected": "/estacion/4",
+      "url": "http://127.0.0.1:4173/estacion/4",
+      "activations": 1,
+      "intermediatePanel": false
+    },
+    {
+      "id": "V",
+      "expected": "/estacion/5",
+      "url": "http://127.0.0.1:4173/estacion/5",
+      "activations": 1,
+      "intermediatePanel": false
+    }
+  ],
+  "global": {
+    "externalRequests": 0,
+    "consoleErrorsWarnings": 0,
+    "worldsModified": 0
+  },
+  "restart375x548": {
+    "buttons": [
+      {
+        "bottom": 348.34375,
+        "height": 49.5,
+        "right": 182.484375,
+        "text": "Cancelar",
+        "width": 110.609375,
+        "x": 71.875,
+        "y": 298.84375
+      },
+      {
+        "bottom": 348.34375,
+        "height": 49.5,
+        "right": 303.109375,
+        "text": "Reiniciar recorrido",
+        "width": 110.625,
+        "x": 192.484375,
+        "y": 298.84375
+      }
+    ],
+    "clipping": [],
+    "dialog": {
+      "bottom": 384.34375,
+      "height": 220.6875,
+      "right": 347.109375,
+      "width": 319.234375,
+      "x": 27.875,
+      "y": 163.65625
+    },
+    "open": true,
+    "targetsMin44": true,
+    "viewport": {
+      "dpr": 1,
+      "height": 548,
+      "width": 375
+    },
+    "console": []
+  }
+}

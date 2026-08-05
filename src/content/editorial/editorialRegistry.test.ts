@@ -170,7 +170,7 @@ describe("editorialRegistry", () => {
       FINAL_RESTART_CANCEL_BTN_01: "Cancelar",
       FINAL_RESTART_CONFIRM_BTN_01: "Reiniciar recorrido",
       FINAL_CREDITS_01:
-        "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David Pérez Zapata.",
+        "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David P. Z.",
       FINAL_ACCESSIBLE_SCENE_01:
         "Mirador final del jardín con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
       FINAL_ACCESSIBLE_ACCESS_I_01: "Revisar Mundo I: Raíz",

@@ -1,0 +1,1256 @@
+{
+  "schema": "gvo.final.021j.portrait-metrics.v1",
+  "ticket": "GVO_FINAL_021J_STATIC_COMPOSITION_PORTRAIT",
+  "generatedAt": "2026-08-04T20:28:45.531Z",
+  "route": "/final",
+  "browser": "Codex in-app Browser (Chromium)",
+  "baseline": "f310abffb9370dba5f4119c4f012a2104fd36487",
+  "accessSetup": {
+    "mode": "temporary_local_loader_bypass_for_visual_capture",
+    "reason": "Browser sandbox does not expose localStorage writes required by the existing /final guard",
+    "repositoryResidueExpected": false,
+    "guardValidation": "src/app/router.test.tsx"
+  },
+  "states": [
+    {
+      "label": "375x667_idle",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10
+      },
+      "body": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "scrollHeight": 667,
+        "scrollWidth": 375
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 259.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 168.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 273.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 168.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 391.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 254.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 314.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 314.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 598.92,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 536.92
+        },
+        "credits": {
+          "bottom": 646.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 615.19
+        },
+        "lia": {
+          "bottom": 505.23,
+          "fontSize": "16px",
+          "height": 103.38,
+          "lineHeight": "normal",
+          "right": 239.19,
+          "width": 103.38,
+          "x": 135.81,
+          "y": 401.86
+        },
+        "restartDialog": null,
+        "selectionFeedback": null,
+        "title": {
+          "bottom": 106.7,
+          "fontSize": "16px",
+          "height": 90.03,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "document": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "height": 667,
+        "overflowHorizontal": false,
+        "overflowVertical": false,
+        "scrollHeight": 667,
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "overlaps": [],
+      "route": "/final",
+      "selectedAccess": "none",
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20.01px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"],
+        "selectionFeedback": null
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 667,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "expected": [],
+        "unexpectedCritical": []
+      }
+    },
+    {
+      "label": "390x844_idle",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10
+      },
+      "body": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "scrollWidth": 390
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 320.48,
+              "fontSize": "16px",
+              "height": 106.3,
+              "lineHeight": "normal",
+              "right": 128.7,
+              "width": 101.39,
+              "x": 27.3,
+              "y": 214.19
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 335.78,
+              "fontSize": "16px",
+              "height": 121.59,
+              "lineHeight": "normal",
+              "right": 362.7,
+              "width": 101.39,
+              "x": 261.3,
+              "y": 214.19
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 479.22,
+              "fontSize": "16px",
+              "height": 155.31,
+              "lineHeight": "normal",
+              "right": 245.7,
+              "width": 101.39,
+              "x": 144.3,
+              "y": 323.91
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 536.77,
+              "fontSize": "16px",
+              "height": 136.89,
+              "lineHeight": "normal",
+              "right": 128.7,
+              "width": 101.39,
+              "x": 27.3,
+              "y": 399.88
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 536.77,
+              "fontSize": "16px",
+              "height": 136.89,
+              "lineHeight": "normal",
+              "right": 362.7,
+              "width": 101.39,
+              "x": 261.3,
+              "y": 399.88
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 745.63,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 378.3,
+          "width": 366.59,
+          "x": 11.7,
+          "y": 683.63
+        },
+        "credits": {
+          "bottom": 820.69,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 347.4,
+          "width": 304.8,
+          "x": 42.6,
+          "y": 789.06
+        },
+        "lia": {
+          "bottom": 639.31,
+          "fontSize": "16px",
+          "height": 130.81,
+          "lineHeight": "normal",
+          "right": 260.41,
+          "width": 130.81,
+          "x": 129.59,
+          "y": 508.5
+        },
+        "restartDialog": null,
+        "selectionFeedback": null,
+        "title": {
+          "bottom": 129.09,
+          "fontSize": "16px",
+          "height": 108,
+          "lineHeight": "normal",
+          "right": 366.59,
+          "width": 343.19,
+          "x": 23.41,
+          "y": 21.09
+        }
+      },
+      "document": {
+        "clientHeight": 844,
+        "clientWidth": 390,
+        "height": 844,
+        "overflowHorizontal": false,
+        "overflowVertical": false,
+        "scrollHeight": 844,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      "overlaps": [],
+      "route": "/final",
+      "selectedAccess": "none",
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 106.3,
+          "id": "i",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 121.59,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 155.31,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 136.89,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 136.89,
+          "id": "v",
+          "pass44x44": true,
+          "width": 101.39
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 155.3
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 155.3
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "22px",
+        "labels": ["15px", "15px", "15px", "15px", "15px"],
+        "selectionFeedback": null
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 844,
+        "width": 390
+      },
+      "overlapAssessment": {
+        "expected": [],
+        "unexpectedCritical": []
+      }
+    },
+    {
+      "label": "375x667_access_selected",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10
+      },
+      "body": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "scrollHeight": 667,
+        "scrollWidth": 375
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 259.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 168.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 273.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 168.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 391.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 254.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 314.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 314.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 598.92,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 536.92
+        },
+        "credits": {
+          "bottom": 646.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 615.19
+        },
+        "lia": {
+          "bottom": 505.23,
+          "fontSize": "16px",
+          "height": 103.38,
+          "lineHeight": "normal",
+          "right": 239.19,
+          "width": 103.38,
+          "x": 135.81,
+          "y": 401.86
+        },
+        "restartDialog": null,
+        "selectionFeedback": {
+          "bottom": 164.05,
+          "fontSize": "16px",
+          "height": 52,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 112.05
+        },
+        "title": {
+          "bottom": 106.7,
+          "fontSize": "16px",
+          "height": 90.03,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "document": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "height": 667,
+        "overflowHorizontal": false,
+        "overflowVertical": false,
+        "scrollHeight": 667,
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "overlaps": [],
+      "route": "/final",
+      "selectedAccess": "iii",
+      "state": "final_access_iii_selected",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_direct_review_route",
+          "pass44x44": true,
+          "width": 188
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20.01px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"],
+        "selectionFeedback": "12px"
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 667,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "expected": [],
+        "unexpectedCritical": []
+      }
+    },
+    {
+      "label": "375x667_restart_open",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10
+      },
+      "body": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "scrollHeight": 667,
+        "scrollWidth": 375
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 259.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 168.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 273.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 168.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 391.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 236.25,
+              "width": 97.5,
+              "x": 138.75,
+              "y": 254.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 123.75,
+              "width": 97.5,
+              "x": 26.25,
+              "y": 314.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 348.75,
+              "width": 97.5,
+              "x": 251.25,
+              "y": 314.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 598.92,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 363.75,
+          "width": 352.5,
+          "x": 11.25,
+          "y": 536.92
+        },
+        "credits": {
+          "bottom": 646.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 333,
+          "width": 291,
+          "x": 42,
+          "y": 615.19
+        },
+        "lia": {
+          "bottom": 505.23,
+          "fontSize": "16px",
+          "height": 103.38,
+          "lineHeight": "normal",
+          "right": 239.19,
+          "width": 103.38,
+          "x": 135.81,
+          "y": 401.86
+        },
+        "restartDialog": {
+          "bottom": 443.84,
+          "fontSize": "16px",
+          "height": 220.69,
+          "lineHeight": "normal",
+          "right": 347.11,
+          "width": 319.23,
+          "x": 27.88,
+          "y": 223.16
+        },
+        "selectionFeedback": null,
+        "title": {
+          "bottom": 106.7,
+          "fontSize": "16px",
+          "height": 90.03,
+          "lineHeight": "normal",
+          "right": 352.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 16.67
+        }
+      },
+      "document": {
+        "clientHeight": 667,
+        "clientWidth": 375,
+        "height": 667,
+        "overflowHorizontal": false,
+        "overflowVertical": false,
+        "scrollHeight": 667,
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "overlaps": [
+        {
+          "a": "access-i",
+          "area": 3470.97,
+          "b": "restart-dialog",
+          "height": 36.2,
+          "width": 95.88
+        },
+        {
+          "a": "access-ii",
+          "area": 4837.9,
+          "b": "restart-dialog",
+          "height": 50.47,
+          "width": 95.86
+        },
+        {
+          "a": "access-iii",
+          "area": 13320.94,
+          "b": "restart-dialog",
+          "height": 136.63,
+          "width": 97.5
+        },
+        {
+          "a": "access-iv",
+          "area": 11485.53,
+          "b": "restart-dialog",
+          "height": 119.8,
+          "width": 95.88
+        },
+        {
+          "a": "access-v",
+          "area": 11483.65,
+          "b": "restart-dialog",
+          "height": 119.8,
+          "width": 95.86
+        },
+        {
+          "a": "lia",
+          "area": 4340.13,
+          "b": "restart-dialog",
+          "height": 41.98,
+          "width": 103.38
+        }
+      ],
+      "route": "/final",
+      "selectedAccess": "none",
+      "state": "final_restart_confirm",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 97.5
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 148.25
+        },
+        {
+          "height": 49.5,
+          "id": "cancel_restart",
+          "pass44x44": true,
+          "width": 110.61
+        },
+        {
+          "height": 49.5,
+          "id": "confirm_restart_navigation_only",
+          "pass44x44": true,
+          "width": 110.63
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": "16px",
+        "h1": "20.01px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"],
+        "selectionFeedback": null
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 667,
+        "width": 375
+      },
+      "overlapAssessment": {
+        "expected": [
+          {
+            "a": "access-i",
+            "area": 3470.97,
+            "b": "restart-dialog",
+            "height": 36.2,
+            "width": 95.88
+          },
+          {
+            "a": "access-ii",
+            "area": 4837.9,
+            "b": "restart-dialog",
+            "height": 50.47,
+            "width": 95.86
+          },
+          {
+            "a": "access-iii",
+            "area": 13320.94,
+            "b": "restart-dialog",
+            "height": 136.63,
+            "width": 97.5
+          },
+          {
+            "a": "access-iv",
+            "area": 11485.53,
+            "b": "restart-dialog",
+            "height": 119.8,
+            "width": 95.88
+          },
+          {
+            "a": "access-v",
+            "area": 11483.65,
+            "b": "restart-dialog",
+            "height": 119.8,
+            "width": 95.86
+          },
+          {
+            "a": "lia",
+            "area": 4340.13,
+            "b": "restart-dialog",
+            "height": 41.98,
+            "width": 103.38
+          }
+        ],
+        "unexpectedCritical": []
+      }
+    },
+    {
+      "label": "667x375_landscape_functional_smoke",
+      "assets": {
+        "failed": [],
+        "imageCount": 10,
+        "loadedCount": 10
+      },
+      "body": {
+        "clientHeight": 375,
+        "clientWidth": 667,
+        "scrollHeight": 375,
+        "scrollWidth": 667
+      },
+      "boxes": {
+        "accesses": [
+          {
+            "box": {
+              "bottom": 259.36,
+              "fontSize": "16px",
+              "height": 91.27,
+              "lineHeight": "normal",
+              "right": 263,
+              "width": 108,
+              "x": 155,
+              "y": 168.09
+            },
+            "id": "i",
+            "text": "I — Raíz"
+          },
+          {
+            "box": {
+              "bottom": 273.63,
+              "fontSize": "16px",
+              "height": 105.53,
+              "lineHeight": "normal",
+              "right": 497,
+              "width": 108,
+              "x": 389,
+              "y": 168.09
+            },
+            "id": "ii",
+            "text": "II — Pulso invisible"
+          },
+          {
+            "box": {
+              "bottom": 391.42,
+              "fontSize": "16px",
+              "height": 136.63,
+              "lineHeight": "normal",
+              "right": 380,
+              "width": 108,
+              "x": 272,
+              "y": 254.8
+            },
+            "id": "iii",
+            "text": "III — Cuaderno de pruebas"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 263,
+              "width": 108,
+              "x": 155,
+              "y": 314.83
+            },
+            "id": "iv",
+            "text": "IV — Mesa de sistema"
+          },
+          {
+            "box": {
+              "bottom": 434.63,
+              "fontSize": "16px",
+              "height": 119.8,
+              "lineHeight": "normal",
+              "right": 497,
+              "width": 108,
+              "x": 389,
+              "y": 314.83
+            },
+            "id": "v",
+            "text": "V — Mapa del presente"
+          }
+        ],
+        "actions": {
+          "bottom": 602.27,
+          "fontSize": "16px",
+          "height": 62,
+          "lineHeight": "normal",
+          "right": 509.3,
+          "width": 366.59,
+          "x": 142.7,
+          "y": 540.27
+        },
+        "credits": {
+          "bottom": 645.81,
+          "fontSize": "14px",
+          "height": 31.63,
+          "lineHeight": "15.82px",
+          "right": 478.4,
+          "width": 304.8,
+          "x": 173.6,
+          "y": 614.19
+        },
+        "lia": {
+          "bottom": 501.55,
+          "fontSize": "16px",
+          "height": 96,
+          "lineHeight": "normal",
+          "right": 374,
+          "width": 96,
+          "x": 278,
+          "y": 405.55
+        },
+        "restartDialog": null,
+        "selectionFeedback": null,
+        "title": {
+          "bottom": 98,
+          "fontSize": "16px",
+          "height": 86,
+          "lineHeight": "normal",
+          "right": 497.59,
+          "width": 343.19,
+          "x": 154.41,
+          "y": 12
+        }
+      },
+      "document": {
+        "clientHeight": 375,
+        "clientWidth": 667,
+        "height": 375,
+        "overflowHorizontal": false,
+        "overflowVertical": false,
+        "scrollHeight": 375,
+        "scrollWidth": 667,
+        "width": 667
+      },
+      "overlaps": [],
+      "route": "/final",
+      "selectedAccess": "none",
+      "state": "final_intro",
+      "targets": [
+        {
+          "height": 91.27,
+          "id": "i",
+          "pass44x44": true,
+          "width": 108
+        },
+        {
+          "height": 105.53,
+          "id": "ii",
+          "pass44x44": true,
+          "width": 108
+        },
+        {
+          "height": 136.63,
+          "id": "iii",
+          "pass44x44": true,
+          "width": 108
+        },
+        {
+          "height": 119.8,
+          "id": "iv",
+          "pass44x44": true,
+          "width": 108
+        },
+        {
+          "height": 119.8,
+          "id": "v",
+          "pass44x44": true,
+          "width": 108
+        },
+        {
+          "height": 44,
+          "id": "safe_navigation_portada",
+          "pass44x44": true,
+          "width": 155.3
+        },
+        {
+          "height": 44,
+          "id": "open_restart_confirmation",
+          "pass44x44": true,
+          "width": 155.3
+        }
+      ],
+      "textSizes": {
+        "actions": ["16px", "16px"],
+        "credits": "14px",
+        "dialog": null,
+        "h1": "20px",
+        "labels": ["14px", "14px", "14px", "14px", "14px"],
+        "selectionFeedback": null
+      },
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 375,
+        "width": 667
+      },
+      "aestheticEvidence": false,
+      "landscapeStatus": "pending-021k",
+      "controls": {
+        "accessCount": 5,
+        "actionCount": 2,
+        "h1Count": 1,
+        "landscapeStatus": "pending-021k",
+        "rootPresent": true
+      }
+    }
+  ],
+  "runtimeAudit": {
+    "exactAuthorizedPortraitAssetCount": 15,
+    "assets": [
+      "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+      "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+      "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+      "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+      "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_restart_dialog_backplate_v01.png",
+      "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+    ],
+    "dom": {
+      "accessCount": 5,
+      "actionCount": 2,
+      "currentUsedRuntimeAssets": [],
+      "externalRuntimeAssets": [],
+      "greetingRuntimeAssets": [],
+      "h1Count": 1,
+      "landscapeRuntimeAssets": [],
+      "liaFrame": "1",
+      "liaSpriteFrame": "1",
+      "media": {
+        "audio": 0,
+        "canvas": 0,
+        "iframe": 0,
+        "video": 0
+      },
+      "motion": [],
+      "runtimeAssetCount": 14,
+      "runtimeAssets": [
+        "/assets/gvo/stations/final-root/access/final_access_label_backplate_v01.png",
+        "/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
+        "/assets/gvo/stations/final-root/access/final_access_world2_pulse_v01.webp",
+        "/assets/gvo/stations/final-root/access/final_access_world3_notebook_v01.webp",
+        "/assets/gvo/stations/final-root/access/final_access_world4_system_v01.webp",
+        "/assets/gvo/stations/final-root/access/final_access_world5_map_v01.webp",
+        "/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+        "/assets/gvo/stations/final-root/environment/final_mirador_foreground_portrait_v01.webp",
+        "/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+        "/assets/gvo/stations/final-root/lia/final_lia_glow_shadow_v01.png",
+        "/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "/assets/gvo/stations/final-root/ui/final_action_backplate_v01.png",
+        "/assets/gvo/stations/final-root/ui/final_credits_backplate_v01.png",
+        "/assets/gvo/stations/final-root/ui/final_title_backplate_v01.png"
+      ]
+    }
+  },
+  "console": {
+    "errorsAndWarnings": [],
+    "count": 0
+  },
+  "requests": {
+    "observedAssetSummary": {
+      "byKind": {
+        "font": 1,
+        "image": 44,
+        "other": 0,
+        "script": 129,
+        "stylesheet": 21,
+        "video": 0
+      },
+      "inlineSvgCount": 2,
+      "totalCount": 195
+    },
+    "external": [],
+    "externalCount": 0
+  },
+  "technicalCriteria": {
+    "portraitNoHorizontalOverflow": true,
+    "portraitNoVerticalOverflow": true,
+    "portraitNoUnexpectedCriticalOverlap": true,
+    "targets44x44": true,
+    "assetsLoaded": true,
+    "noConsoleErrorsOrWarnings": true,
+    "noExternalRequests": true,
+    "uniqueH1": true,
+    "staticLiaFrame1": true,
+    "noMotionInFinalDom": true,
+    "landscapeFunctionalSmokeOnly": true
+  }
+}

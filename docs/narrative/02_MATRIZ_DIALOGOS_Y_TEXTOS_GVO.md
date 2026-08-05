@@ -60,3 +60,6 @@ Los campos `Texto final`, `Alternativa corta` y `Notas escritor` quedan vacíos 
   ni implementan retorno global, busy, rollback, error o reintento.
 - El paquete heredado `entrega_escritor_gvo_v1/` permanece como snapshot legacy
   de 197 filas y no se reescribe.
+- `GVO_FINAL_021K` aprobó y publicó el carryover puntual de
+  `FINAL_CREDITS_01`: “Desarrollado por Momotto S.A.S.” / “A cargo del Ing.
+  José David P. Z.”, conservando el ID, estado, fuente, locale y salto DOM.

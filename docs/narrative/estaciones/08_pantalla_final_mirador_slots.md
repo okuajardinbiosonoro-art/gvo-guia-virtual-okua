@@ -34,7 +34,7 @@ conservan abajo como referencia histórica, no como bloqueo.
 | `FINAL_RESTART_CONFIRM_01`              | ¿Quieres reiniciar el recorrido completo? Volverás a comenzar desde el inicio.                              | DOM visible bajo confirmación existente             |
 | `FINAL_RESTART_CANCEL_BTN_01`           | Cancelar                                                                                                    | DOM visible bajo confirmación existente             |
 | `FINAL_RESTART_CONFIRM_BTN_01`          | Reiniciar recorrido                                                                                         | DOM visible bajo confirmación existente             |
-| `FINAL_CREDITS_01`                      | Desarrollado por Momotto S.A.S.<br>A cargo del Ing. José David Pérez Zapata.                                | DOM visible con salto `<br>`                        |
+| `FINAL_CREDITS_01`                      | Desarrollado por Momotto S.A.S.<br>A cargo del Ing. José David P. Z.                                        | DOM visible con salto `<br>`                        |
 | `FINAL_ACCESSIBLE_SCENE_01`             | Mirador final del jardín con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido. | Semántica accesible                                 |
 | `FINAL_ACCESSIBLE_ACCESS_I_01`          | Revisar Mundo I: Raíz                                                                                       | Semántica accesible                                 |
 | `FINAL_ACCESSIBLE_ACCESS_II_01`         | Revisar Mundo II: Pulso invisible                                                                           | Semántica accesible                                 |

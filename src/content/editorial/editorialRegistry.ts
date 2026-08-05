@@ -1436,7 +1436,7 @@ export const editorialRegistry = {
         "Copy definitivo aprobado; sus dos líneas se separan con un salto DOM.",
       shortText: "Créditos",
       slotId: "FINAL_CREDITS_01",
-      text: "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David Pérez Zapata.",
+      text: "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David P. Z.",
     }),
   },
   FINAL_ACCESSIBLE_SCENE_01: {
