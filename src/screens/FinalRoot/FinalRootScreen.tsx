@@ -18,6 +18,7 @@ import {
 } from "../../content/finalEditorialSlots";
 import type { FinalEditorialSlotId } from "../../content/finalEditorialSlots";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
+import { FinalLiaMotion } from "./FinalLiaMotion";
 
 type FinalReviewAccessId = "i" | "ii" | "iii" | "iv" | "v";
 
@@ -171,37 +172,6 @@ function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
         <span className="final-root-access__label">{labelSlot.text}</span>
       </NineSlicePanel>
     </Link>
-  );
-}
-
-function FinalStaticLia() {
-  return (
-    <div
-      aria-hidden="true"
-      className="final-root-lia"
-      data-final-lia-frame="1"
-      data-final-lia-mode="static_idle_frame_1"
-    >
-      <img
-        alt=""
-        aria-hidden="true"
-        className="final-root-lia__glow"
-        data-runtime-asset={finalRootAssets.lia.glowShadow}
-        draggable="false"
-        src={finalRootAssets.lia.glowShadow}
-      />
-      <span className="final-root-lia__viewport">
-        <img
-          alt=""
-          aria-hidden="true"
-          className="final-root-lia__strip"
-          data-final-sprite-frame="1"
-          data-runtime-asset={finalRootAssets.lia.idleContemplative6f}
-          draggable="false"
-          src={finalRootAssets.lia.idleContemplative6f}
-        />
-      </span>
-    </div>
   );
 }
 
@@ -403,7 +373,7 @@ export function FinalRootScreen() {
           />
         </picture>
 
-        <FinalStaticLia />
+        <FinalLiaMotion />
 
         <section className="final-root-actions" data-final-metric="actions">
           <NineSlicePanel

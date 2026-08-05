@@ -1,0 +1,168 @@
+{
+  "ticket": "GVO_FINAL_021M",
+  "generatedAt": "2026-08-04",
+  "baseline": "d69d9fa886e4184c17a183dd010c575e42cce26c",
+  "instrumentation": {
+    "deterministic": "Vitest fake timers with data-lia-motion-phase, data-lia-motion-frame, data-lia-frame-duration-ms and data-lia-active-timers",
+    "runtime": "Chromium in-app browser against local Vite runtime",
+    "visualCapture": "Frames were exposed deterministically with a temporary development-only timer hold; the hold and reduced-motion override were reverted before validation",
+    "productionTimersModifiedForFinalValidation": false
+  },
+  "limitsMs": {
+    "shortFrameDeviation": 35,
+    "greetingTotalDeviation": 80,
+    "idleCycleDeviation": 150
+  },
+  "greeting": {
+    "phase": "greeting",
+    "playsPerMount": 1,
+    "expectedDurationsMs": [160, 160, 160, 160],
+    "observedTransitions": [
+      {
+        "timestampMs": 0,
+        "frame": 1,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 160,
+        "frame": 2,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 320,
+        "frame": 3,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 480,
+        "frame": 4,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 640,
+        "phase": "idle",
+        "frame": 1,
+        "durationMs": 4200,
+        "deviationMs": 0,
+        "activeTimers": 1
+      }
+    ],
+    "expectedTotalMs": 640,
+    "observedTotalMs": 640,
+    "totalDeviationMs": 0,
+    "transition": "greeting:F4 -> idle:F1",
+    "restartReplay": false,
+    "resizeReplay": false,
+    "orientationReplay": false,
+    "errors": []
+  },
+  "idle": {
+    "phase": "idle",
+    "expectedDurationsMs": [4200, 180, 160, 160, 180, 320],
+    "observedTransitions": [
+      {
+        "timestampMs": 0,
+        "frame": 1,
+        "durationMs": 4200,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 4200,
+        "frame": 2,
+        "durationMs": 180,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 4380,
+        "frame": 3,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 4540,
+        "frame": 4,
+        "durationMs": 160,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 4700,
+        "frame": 5,
+        "durationMs": 180,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 4880,
+        "frame": 6,
+        "durationMs": 320,
+        "deviationMs": 0,
+        "activeTimers": 1
+      },
+      {
+        "timestampMs": 5200,
+        "phase": "idle",
+        "frame": 1,
+        "durationMs": 4200,
+        "deviationMs": 0,
+        "activeTimers": 1
+      }
+    ],
+    "expectedCycleMs": 5200,
+    "observedCycleMs": 5200,
+    "cycleDeviationMs": 0,
+    "loopTransition": "F6 -> F1",
+    "permanentTimer": false,
+    "maxActiveTimersPerInstance": 1,
+    "errors": []
+  },
+  "reducedMotion": {
+    "runtimeObservation": {
+      "timestampEpochMs": 1785900514000,
+      "phase": "reduced_static",
+      "frame": 1,
+      "durationMs": 0,
+      "activeTimers": 0,
+      "greetingPlayCount": 0,
+      "preference": "reduce",
+      "visibility": "visible"
+    },
+    "initialReduce": "idle F1 static; greeting and idle loop omitted",
+    "changeToReduce": "timer cancelled; reduced_static F1 immediately",
+    "changeFromReduce": "idle F1; greeting not replayed",
+    "errors": []
+  },
+  "visibility": {
+    "hidden": { "phase": "hidden_paused", "frame": 1, "activeTimers": 0 },
+    "visible": { "phase": "idle", "frame": 1, "activeTimers": 1 },
+    "catchUp": false,
+    "greetingReplay": false,
+    "unmountCleanup": "timer and matchMedia/visibilitychange listeners removed",
+    "errors": []
+  },
+  "scheduler": {
+    "mechanism": "single chained setTimeout",
+    "setInterval": false,
+    "requestAnimationFrame": false,
+    "layoutReadsOrWritesPerFrame": false,
+    "srcChangesPerFrame": false,
+    "activeStripsPreloaded": ["greeting4f", "idle6f"]
+  },
+  "validation": {
+    "motionFocal": "PASS 6/6",
+    "FinalRootFocal": "PASS 6/6",
+    "timingContract": "PASS",
+    "errorCount": 0
+  }
+}

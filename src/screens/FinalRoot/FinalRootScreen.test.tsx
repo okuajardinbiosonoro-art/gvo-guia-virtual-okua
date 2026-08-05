@@ -1,6 +1,12 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   FINAL_OPERATIONAL_SLOT_COUNT,
@@ -27,8 +33,29 @@ function renderFinalRootScreen() {
 }
 
 describe("FinalRootScreen", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: vi.fn((query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+      writable: true,
+    });
+  });
+
   afterEach(() => {
     cleanup();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    Reflect.deleteProperty(window, "matchMedia");
   });
 
   it("mantiene los 35 slots finales, un h1 y cinco operativos sin consumo", () => {
@@ -127,8 +154,8 @@ describe("FinalRootScreen", () => {
     expect(runtimeAssets).toContain(finalRootAssets.ui.creditsBackplate);
     expect(runtimeAssets).toContain(finalRootAssets.ui.actionBackplate);
     expect(runtimeAssets).toContain(finalRootAssets.lia.idleContemplative6f);
+    expect(runtimeAssets).toContain(finalRootAssets.lia.greeting4f);
     expect(runtimeAssets).toContain(finalRootAssets.lia.glowShadow);
-    expect(runtimeAssets).not.toContain(finalRootAssets.lia.greeting4f);
     expect(container.innerHTML).not.toContain("current-used");
     const landscapeSources = Array.from(
       container.querySelectorAll<HTMLSourceElement>(
@@ -171,6 +198,10 @@ describe("FinalRootScreen", () => {
       "data-final-lia-frame",
       "1",
     );
+    expect(container.querySelector("[data-lia-motion-phase]")).toHaveAttribute(
+      "data-lia-motion-phase",
+      "greeting",
+    );
     expect(
       container.querySelector("[data-final-sprite-frame]"),
     ).toHaveAttribute("data-final-sprite-frame", "1");
@@ -203,6 +234,7 @@ describe("FinalRootScreen", () => {
 
   it("navega a cada Mundo con un Link y una sola activación", () => {
     const { container } = renderFinalRootScreen();
+    const lia = container.querySelector("[data-lia-motion-phase]");
     const accessExpectations = [
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_I_01.text,
@@ -236,6 +268,7 @@ describe("FinalRootScreen", () => {
       },
     ];
 
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "greeting");
     for (const access of accessExpectations) {
       const accessLink = screen.getByRole("link", {
         name: access.accessible,
@@ -251,6 +284,22 @@ describe("FinalRootScreen", () => {
       expect(screen.getByText(access.label)).toBeInTheDocument();
       expect(screen.getByText(access.confirm)).toBeInTheDocument();
       fireEvent.click(accessLink);
+      expect(screen.getByTestId("current-location")).toHaveTextContent(
+        access.route,
+      );
+    }
+
+    for (let frame = 0; frame < 4; frame += 1) {
+      act(() => vi.advanceTimersByTime(160));
+    }
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "idle");
+    expect(lia).toHaveAttribute("data-lia-motion-frame", "1");
+    for (const access of accessExpectations) {
+      fireEvent.click(
+        screen.getByRole("link", {
+          name: access.accessible,
+        }),
+      );
       expect(screen.getByTestId("current-location")).toHaveTextContent(
         access.route,
       );
@@ -349,7 +398,53 @@ describe("FinalRootScreen", () => {
     );
   });
 
-  it("no añade medios, Mundo VI, permisos, red ni motion", () => {
+  it("no repite greeting por restart, resize, orientación o rerender", () => {
+    const { container, rerender } = renderFinalRootScreen();
+    const lia = container.querySelector("[data-lia-motion-phase]");
+
+    act(() => vi.advanceTimersByTime(160));
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "greeting");
+    expect(lia).toHaveAttribute("data-lia-motion-frame", "2");
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text,
+      }),
+    );
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event("orientationchange"));
+    });
+    rerender(
+      <MemoryRouter initialEntries={["/final"]}>
+        <FinalRootScreen />
+        <LocationProbe />
+      </MemoryRouter>,
+    );
+
+    expect(lia).toHaveAttribute("data-lia-motion-frame", "2");
+    expect(lia).toHaveAttribute("data-lia-greeting-play-count", "1");
+    for (let frame = 0; frame < 3; frame += 1) {
+      act(() => vi.advanceTimersByTime(160));
+    }
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "idle");
+    expect(lia).toHaveAttribute("data-lia-motion-frame", "1");
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
+      }),
+    );
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "idle");
+    expect(lia).toHaveAttribute("data-lia-greeting-play-count", "1");
+  });
+
+  it("no añade medios, Mundo VI, permisos, red ni motion CSS externo", () => {
     const { container } = renderFinalRootScreen();
 
     for (const image of container.querySelectorAll("img")) {

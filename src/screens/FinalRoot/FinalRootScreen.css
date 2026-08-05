@@ -253,11 +253,16 @@
   position: absolute;
   inset: 0 auto auto 0;
   display: block;
-  width: 600%;
+  width: var(--final-lia-strip-width, 600%);
   max-width: none;
   height: 100%;
   object-fit: fill;
-  transform: translateX(0);
+  image-rendering: pixelated;
+  transform: translateX(var(--final-lia-strip-offset, 0%));
+}
+
+.final-root-lia__strip[data-lia-strip-active="false"] {
+  visibility: hidden;
 }
 
 .final-root-actions {

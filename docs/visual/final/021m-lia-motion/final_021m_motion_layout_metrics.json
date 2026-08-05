@@ -1,0 +1,1719 @@
+{
+  "ticket": "GVO_FINAL_021M",
+  "generatedAt": "2026-08-04",
+  "baseline": "d69d9fa886e4184c17a183dd010c575e42cce26c",
+  "measurement": "in-app browser at local Vite runtime",
+  "standardMotionEmulation": {
+    "method": "temporary source-level matchMedia=false override in development server",
+    "reverted": true,
+    "productionCodeUsedForLayout": true,
+    "note": "Only the reduced-motion predicate/listener was bypassed; composition CSS and frame renderer were unchanged."
+  },
+  "viewports": [
+    {
+      "accesses": {
+        "bottom": 667,
+        "height": 667,
+        "right": 375,
+        "width": 375,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 599,
+        "height": 62,
+        "right": 363.75,
+        "width": 352.5,
+        "x": 11.25,
+        "y": 537
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 513.234,
+        "height": 103.375,
+        "right": 239.188,
+        "width": 103.375,
+        "x": 135.813,
+        "y": 409.859
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.691974
+      },
+      "orientation": "portrait",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 667,
+        "scrollWidth": 375,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 667,
+        "innerHeight": 667,
+        "innerWidth": 375,
+        "width": 375
+      },
+      "wrapper": {
+        "bottom": 513.234,
+        "height": 103.375,
+        "right": 239.188,
+        "width": 103.375,
+        "x": 135.813,
+        "y": 409.859
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 157.619,
+            "y": 423.992,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 484.16
+          },
+          {
+            "frame": 2,
+            "x": 158.426,
+            "y": 424.396,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.921,
+            "bottom": 484.564
+          },
+          {
+            "frame": 3,
+            "x": 158.426,
+            "y": 423.992,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.921,
+            "bottom": 484.16
+          },
+          {
+            "frame": 4,
+            "x": 157.619,
+            "y": 423.992,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 484.16
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 157.619,
+            "y": 423.992,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 484.16
+          },
+          {
+            "frame": 2,
+            "x": 157.619,
+            "y": 423.185,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 483.352
+          },
+          {
+            "frame": 3,
+            "x": 157.619,
+            "y": 422.377,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 482.545
+          },
+          {
+            "frame": 4,
+            "x": 157.619,
+            "y": 423.185,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 483.352
+          },
+          {
+            "frame": 5,
+            "x": 157.619,
+            "y": 424.8,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 484.967
+          },
+          {
+            "frame": 6,
+            "x": 157.619,
+            "y": 423.992,
+            "width": 52.495,
+            "height": 60.167,
+            "right": 210.114,
+            "bottom": 484.16
+          }
+        ]
+      },
+      "platform": {
+        "x": 187.5,
+        "y": 490.245,
+        "normalized": [0.5, 0.735]
+      },
+      "glowBBox": {
+        "x": 112.554,
+        "y": 429.5,
+        "width": 149.894,
+        "height": 74.43,
+        "right": 262.448,
+        "bottom": 503.93
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 484.16,
+        "deltaToPlatformY": 6.085,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 844,
+        "height": 844,
+        "right": 390,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 745.625,
+        "height": 62,
+        "right": 378.297,
+        "width": 366.594,
+        "x": 11.703,
+        "y": 683.625
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 665.313,
+        "height": 130.813,
+        "right": 260.406,
+        "width": 130.813,
+        "x": 129.594,
+        "y": 534.5
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.710789
+      },
+      "orientation": "portrait",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 844,
+        "scrollWidth": 390,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 844,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "width": 390
+      },
+      "wrapper": {
+        "bottom": 665.313,
+        "height": 130.813,
+        "right": 260.406,
+        "width": 130.813,
+        "x": 129.594,
+        "y": 534.5
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 157.187,
+            "y": 552.385,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 628.522
+          },
+          {
+            "frame": 2,
+            "x": 158.209,
+            "y": 552.896,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 224.638,
+            "bottom": 629.033
+          },
+          {
+            "frame": 3,
+            "x": 158.209,
+            "y": 552.385,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 224.638,
+            "bottom": 628.522
+          },
+          {
+            "frame": 4,
+            "x": 157.187,
+            "y": 552.385,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 628.522
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 157.187,
+            "y": 552.385,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 628.522
+          },
+          {
+            "frame": 2,
+            "x": 157.187,
+            "y": 551.363,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 627.5
+          },
+          {
+            "frame": 3,
+            "x": 157.187,
+            "y": 550.341,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 626.478
+          },
+          {
+            "frame": 4,
+            "x": 157.187,
+            "y": 551.363,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 627.5
+          },
+          {
+            "frame": 5,
+            "x": 157.187,
+            "y": 553.407,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 629.544
+          },
+          {
+            "frame": 6,
+            "x": 157.187,
+            "y": 552.385,
+            "width": 66.428,
+            "height": 76.137,
+            "right": 223.616,
+            "bottom": 628.522
+          }
+        ]
+      },
+      "platform": {
+        "x": 195,
+        "y": 620.34,
+        "normalized": [0.5, 0.735]
+      },
+      "glowBBox": {
+        "x": 100.161,
+        "y": 559.354,
+        "width": 189.679,
+        "height": 94.185,
+        "right": 289.84,
+        "bottom": 653.539
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 628.522,
+        "deltaToPlatformY": -8.182,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 640,
+        "height": 640,
+        "right": 360,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 572,
+        "height": 62,
+        "right": 349.195,
+        "width": 338.391,
+        "x": 10.805,
+        "y": 510
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 492.781,
+        "height": 99.188,
+        "right": 229.594,
+        "width": 99.188,
+        "x": 130.406,
+        "y": 393.594
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.69248
+      },
+      "orientation": "portrait",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 640,
+        "scrollWidth": 360,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 640,
+        "innerHeight": 640,
+        "innerWidth": 360,
+        "width": 360
+      },
+      "wrapper": {
+        "bottom": 492.781,
+        "height": 99.188,
+        "right": 229.594,
+        "width": 99.188,
+        "x": 130.406,
+        "y": 393.594
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 151.328,
+            "y": 407.155,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.885
+          },
+          {
+            "frame": 2,
+            "x": 152.103,
+            "y": 407.542,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 202.472,
+            "bottom": 465.273
+          },
+          {
+            "frame": 3,
+            "x": 152.103,
+            "y": 407.155,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 202.472,
+            "bottom": 464.885
+          },
+          {
+            "frame": 4,
+            "x": 151.328,
+            "y": 407.155,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.885
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 151.328,
+            "y": 407.155,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.885
+          },
+          {
+            "frame": 2,
+            "x": 151.328,
+            "y": 406.38,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.11
+          },
+          {
+            "frame": 3,
+            "x": 151.328,
+            "y": 405.605,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 463.336
+          },
+          {
+            "frame": 4,
+            "x": 151.328,
+            "y": 406.38,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.11
+          },
+          {
+            "frame": 5,
+            "x": 151.328,
+            "y": 407.93,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 465.66
+          },
+          {
+            "frame": 6,
+            "x": 151.328,
+            "y": 407.155,
+            "width": 50.369,
+            "height": 57.731,
+            "right": 201.697,
+            "bottom": 464.885
+          }
+        ]
+      },
+      "platform": {
+        "x": 180,
+        "y": 470.4,
+        "normalized": [0.5, 0.735]
+      },
+      "glowBBox": {
+        "x": 108.089,
+        "y": 412.44,
+        "width": 143.823,
+        "height": 71.415,
+        "right": 251.912,
+        "bottom": 483.855
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 464.885,
+        "deltaToPlatformY": 5.515,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 548,
+        "height": 548,
+        "right": 375,
+        "width": 375,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 480,
+        "height": 62,
+        "right": 363.75,
+        "width": 352.5,
+        "x": 11.25,
+        "y": 418
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 392.625,
+        "height": 96,
+        "right": 235.5,
+        "width": 96,
+        "x": 139.5,
+        "y": 296.625
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.628878
+      },
+      "orientation": "portrait",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 548,
+        "scrollWidth": 375,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 548,
+        "innerHeight": 548,
+        "innerWidth": 375,
+        "width": 375
+      },
+      "wrapper": {
+        "bottom": 392.625,
+        "height": 96,
+        "right": 235.5,
+        "width": 96,
+        "x": 139.5,
+        "y": 296.625
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 159.75,
+            "y": 309.75,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 365.625
+          },
+          {
+            "frame": 2,
+            "x": 160.5,
+            "y": 310.125,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 209.25,
+            "bottom": 366
+          },
+          {
+            "frame": 3,
+            "x": 160.5,
+            "y": 309.75,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 209.25,
+            "bottom": 365.625
+          },
+          {
+            "frame": 4,
+            "x": 159.75,
+            "y": 309.75,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 365.625
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 159.75,
+            "y": 309.75,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 365.625
+          },
+          {
+            "frame": 2,
+            "x": 159.75,
+            "y": 309,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 364.875
+          },
+          {
+            "frame": 3,
+            "x": 159.75,
+            "y": 308.25,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 364.125
+          },
+          {
+            "frame": 4,
+            "x": 159.75,
+            "y": 309,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 364.875
+          },
+          {
+            "frame": 5,
+            "x": 159.75,
+            "y": 310.5,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 366.375
+          },
+          {
+            "frame": 6,
+            "x": 159.75,
+            "y": 309.75,
+            "width": 48.75,
+            "height": 55.875,
+            "right": 208.5,
+            "bottom": 365.625
+          }
+        ]
+      },
+      "platform": {
+        "x": 187.5,
+        "y": 402.78,
+        "normalized": [0.5, 0.735]
+      },
+      "glowBBox": {
+        "x": 117.9,
+        "y": 314.865,
+        "width": 139.2,
+        "height": 69.12,
+        "right": 257.1,
+        "bottom": 383.985
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 365.625,
+        "deltaToPlatformY": 37.155,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 375,
+        "height": 375,
+        "right": 667,
+        "width": 667,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 367,
+        "height": 60,
+        "right": 655,
+        "width": 300.141,
+        "x": 354.859,
+        "y": 307
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 331.625,
+        "height": 93.75,
+        "right": 380.375,
+        "width": 93.75,
+        "x": 286.625,
+        "y": 237.875
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.759333
+      },
+      "orientation": "landscape",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 375,
+        "scrollWidth": 667,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 375,
+        "innerHeight": 375,
+        "innerWidth": 667,
+        "width": 667
+      },
+      "wrapper": {
+        "bottom": 331.625,
+        "height": 93.75,
+        "right": 380.375,
+        "width": 93.75,
+        "x": 286.625,
+        "y": 237.875
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 306.4,
+            "y": 250.692,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 305.258
+          },
+          {
+            "frame": 2,
+            "x": 307.133,
+            "y": 251.059,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.74,
+            "bottom": 305.624
+          },
+          {
+            "frame": 3,
+            "x": 307.133,
+            "y": 250.692,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.74,
+            "bottom": 305.258
+          },
+          {
+            "frame": 4,
+            "x": 306.4,
+            "y": 250.692,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 305.258
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 306.4,
+            "y": 250.692,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 305.258
+          },
+          {
+            "frame": 2,
+            "x": 306.4,
+            "y": 249.96,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 304.525
+          },
+          {
+            "frame": 3,
+            "x": 306.4,
+            "y": 249.228,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 303.793
+          },
+          {
+            "frame": 4,
+            "x": 306.4,
+            "y": 249.96,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 304.525
+          },
+          {
+            "frame": 5,
+            "x": 306.4,
+            "y": 251.425,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 305.99
+          },
+          {
+            "frame": 6,
+            "x": 306.4,
+            "y": 250.692,
+            "width": 47.607,
+            "height": 54.565,
+            "right": 354.008,
+            "bottom": 305.258
+          }
+        ]
+      },
+      "platform": {
+        "x": 333.5,
+        "y": 307.5,
+        "normalized": [0.5, 0.82]
+      },
+      "glowBBox": {
+        "x": 265.531,
+        "y": 255.688,
+        "width": 135.938,
+        "height": 67.5,
+        "right": 401.469,
+        "bottom": 323.188
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 305.258,
+        "deltaToPlatformY": 2.242,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 360,
+        "height": 360,
+        "right": 800,
+        "width": 800,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 352,
+        "height": 60,
+        "right": 788,
+        "width": 320,
+        "x": 468,
+        "y": 292
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 319.391,
+        "height": 90,
+        "right": 445,
+        "width": 90,
+        "x": 355,
+        "y": 229.391
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.762196
+      },
+      "orientation": "landscape",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 360,
+        "scrollWidth": 800,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 360,
+        "innerHeight": 360,
+        "innerWidth": 800,
+        "width": 800
+      },
+      "wrapper": {
+        "bottom": 319.391,
+        "height": 90,
+        "right": 445,
+        "width": 90,
+        "x": 355,
+        "y": 229.391
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 373.984,
+            "y": 241.696,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 294.078
+          },
+          {
+            "frame": 2,
+            "x": 374.688,
+            "y": 242.047,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 420.391,
+            "bottom": 294.43
+          },
+          {
+            "frame": 3,
+            "x": 374.688,
+            "y": 241.696,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 420.391,
+            "bottom": 294.078
+          },
+          {
+            "frame": 4,
+            "x": 373.984,
+            "y": 241.696,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 294.078
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 373.984,
+            "y": 241.696,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 294.078
+          },
+          {
+            "frame": 2,
+            "x": 373.984,
+            "y": 240.993,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 293.375
+          },
+          {
+            "frame": 3,
+            "x": 373.984,
+            "y": 240.289,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 292.672
+          },
+          {
+            "frame": 4,
+            "x": 373.984,
+            "y": 240.993,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 293.375
+          },
+          {
+            "frame": 5,
+            "x": 373.984,
+            "y": 242.399,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 294.782
+          },
+          {
+            "frame": 6,
+            "x": 373.984,
+            "y": 241.696,
+            "width": 45.703,
+            "height": 52.383,
+            "right": 419.688,
+            "bottom": 294.078
+          }
+        ]
+      },
+      "platform": {
+        "x": 400,
+        "y": 295.2,
+        "normalized": [0.5, 0.82]
+      },
+      "glowBBox": {
+        "x": 334.75,
+        "y": 246.491,
+        "width": 130.5,
+        "height": 64.8,
+        "right": 465.25,
+        "bottom": 311.291
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 294.078,
+        "deltaToPlatformY": 1.122,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 390,
+        "height": 390,
+        "right": 844,
+        "width": 844,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 382,
+        "height": 60,
+        "right": 832,
+        "width": 320,
+        "x": 512,
+        "y": 322
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 343.844,
+        "height": 97.5,
+        "right": 470.75,
+        "width": 97.5,
+        "x": 373.25,
+        "y": 246.344
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.756651
+      },
+      "orientation": "landscape",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 390,
+        "scrollWidth": 844,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 390,
+        "innerHeight": 390,
+        "innerWidth": 844,
+        "width": 844
+      },
+      "wrapper": {
+        "bottom": 343.844,
+        "height": 97.5,
+        "right": 470.75,
+        "width": 97.5,
+        "x": 373.25,
+        "y": 246.344
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 393.816,
+            "y": 259.674,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 316.422
+          },
+          {
+            "frame": 2,
+            "x": 394.578,
+            "y": 260.055,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 444.09,
+            "bottom": 316.803
+          },
+          {
+            "frame": 3,
+            "x": 394.578,
+            "y": 259.674,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 444.09,
+            "bottom": 316.422
+          },
+          {
+            "frame": 4,
+            "x": 393.816,
+            "y": 259.674,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 316.422
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 393.816,
+            "y": 259.674,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 316.422
+          },
+          {
+            "frame": 2,
+            "x": 393.816,
+            "y": 258.912,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 315.66
+          },
+          {
+            "frame": 3,
+            "x": 393.816,
+            "y": 258.151,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 314.899
+          },
+          {
+            "frame": 4,
+            "x": 393.816,
+            "y": 258.912,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 315.66
+          },
+          {
+            "frame": 5,
+            "x": 393.816,
+            "y": 260.436,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 317.184
+          },
+          {
+            "frame": 6,
+            "x": 393.816,
+            "y": 259.674,
+            "width": 49.512,
+            "height": 56.748,
+            "right": 443.328,
+            "bottom": 316.422
+          }
+        ]
+      },
+      "platform": {
+        "x": 422,
+        "y": 319.8,
+        "normalized": [0.5, 0.82]
+      },
+      "glowBBox": {
+        "x": 351.313,
+        "y": 264.869,
+        "width": 141.375,
+        "height": 70.2,
+        "right": 492.688,
+        "bottom": 335.069
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 316.422,
+        "deltaToPlatformY": 3.378,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    },
+    {
+      "accesses": {
+        "bottom": 430,
+        "height": 430,
+        "right": 932,
+        "width": 932,
+        "x": 0,
+        "y": 0
+      },
+      "actions": {
+        "bottom": 422,
+        "height": 60,
+        "right": 920,
+        "width": 320,
+        "x": 600,
+        "y": 362
+      },
+      "activeTimers": 1,
+      "externalUrls": [],
+      "failedImages": [],
+      "frame": 1,
+      "frameViewport": {
+        "bottom": 376.438,
+        "height": 107.5,
+        "right": 519.75,
+        "width": 107.5,
+        "x": 412.25,
+        "y": 268.938
+      },
+      "greetingPlayCount": 1,
+      "layoutContract": "static_021l_locked",
+      "liaCenterNormalized": {
+        "x": 0.5,
+        "y": 0.750436
+      },
+      "orientation": "landscape",
+      "pageOverflow": {
+        "horizontal": false,
+        "scrollHeight": 430,
+        "scrollWidth": 932,
+        "vertical": false
+      },
+      "phase": "idle",
+      "viewport": {
+        "height": 430,
+        "innerHeight": 430,
+        "innerWidth": 932,
+        "width": 932
+      },
+      "wrapper": {
+        "bottom": 376.438,
+        "height": 107.5,
+        "right": 519.75,
+        "width": 107.5,
+        "x": 412.25,
+        "y": 268.938
+      },
+      "screenAlphaBboxes": {
+        "greeting": [
+          {
+            "frame": 1,
+            "x": 434.926,
+            "y": 283.635,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 346.204
+          },
+          {
+            "frame": 2,
+            "x": 435.766,
+            "y": 284.055,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 490.355,
+            "bottom": 346.624
+          },
+          {
+            "frame": 3,
+            "x": 435.766,
+            "y": 283.635,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 490.355,
+            "bottom": 346.204
+          },
+          {
+            "frame": 4,
+            "x": 434.926,
+            "y": 283.635,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 346.204
+          }
+        ],
+        "idle": [
+          {
+            "frame": 1,
+            "x": 434.926,
+            "y": 283.635,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 346.204
+          },
+          {
+            "frame": 2,
+            "x": 434.926,
+            "y": 282.795,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 345.364
+          },
+          {
+            "frame": 3,
+            "x": 434.926,
+            "y": 281.956,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 344.524
+          },
+          {
+            "frame": 4,
+            "x": 434.926,
+            "y": 282.795,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 345.364
+          },
+          {
+            "frame": 5,
+            "x": 434.926,
+            "y": 284.475,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 347.043
+          },
+          {
+            "frame": 6,
+            "x": 434.926,
+            "y": 283.635,
+            "width": 54.59,
+            "height": 62.568,
+            "right": 489.516,
+            "bottom": 346.204
+          }
+        ]
+      },
+      "platform": {
+        "x": 466,
+        "y": 352.6,
+        "normalized": [0.5, 0.82]
+      },
+      "glowBBox": {
+        "x": 388.063,
+        "y": 289.363,
+        "width": 155.875,
+        "height": 77.4,
+        "right": 543.938,
+        "bottom": 366.763
+      },
+      "liaPlatform": {
+        "idleF1AlphaBottom": 346.204,
+        "deltaToPlatformY": 6.396,
+        "centeredX": true
+      },
+      "clipping": {
+        "clippedFrames": [],
+        "alphaClippingFailures": 0,
+        "glowClipped": false
+      },
+      "overlap": {
+        "newOverlap": false,
+        "basis": "021L wrapper geometry and approved access offsets unchanged; contact sheets visually reviewed"
+      },
+      "layoutShift": {
+        "wrapperDeltaPx": 0,
+        "source": "frameDrift measurement"
+      }
+    }
+  ],
+  "frameDrift": [
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "f1": {
+        "frame": 1,
+        "height": 103.375,
+        "phase": "idle",
+        "width": 103.375,
+        "x": 135.813,
+        "y": 409.859
+      },
+      "f4": {
+        "frame": 5,
+        "height": 103.375,
+        "phase": "idle",
+        "width": 103.375,
+        "x": 135.813,
+        "y": 409.859
+      },
+      "delta": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "f1": {
+        "frame": 1,
+        "height": 93.75,
+        "phase": "idle",
+        "width": 93.75,
+        "x": 286.625,
+        "y": 237.875
+      },
+      "f4": {
+        "frame": 4,
+        "height": 93.75,
+        "phase": "idle",
+        "width": 93.75,
+        "x": 286.625,
+        "y": 237.875
+      },
+      "delta": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    }
+  ],
+  "summary": {
+    "viewportCount": 8,
+    "overflowFailures": 0,
+    "failedImages": 0,
+    "externalUrls": 0,
+    "maxWrapperDeltaPx": 0,
+    "alphaClippingFailures": 0,
+    "glowClippingFailures": 0,
+    "newOverlapFailures": 0
+  },
+  "spriteAlphaBboxes": {
+    "greeting": {
+      "canvas": {
+        "width": 1024,
+        "height": 256
+      },
+      "frame": {
+        "width": 256,
+        "height": 256
+      },
+      "boxes": [
+        {
+          "frame": 1,
+          "x": 54,
+          "y": 35,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 184
+        },
+        {
+          "frame": 2,
+          "x": 56,
+          "y": 36,
+          "width": 130,
+          "height": 149,
+          "right": 186,
+          "bottom": 185
+        },
+        {
+          "frame": 3,
+          "x": 56,
+          "y": 35,
+          "width": 130,
+          "height": 149,
+          "right": 186,
+          "bottom": 184
+        },
+        {
+          "frame": 4,
+          "x": 54,
+          "y": 35,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 184
+        }
+      ]
+    },
+    "idle": {
+      "canvas": {
+        "width": 1536,
+        "height": 256
+      },
+      "frame": {
+        "width": 256,
+        "height": 256
+      },
+      "boxes": [
+        {
+          "frame": 1,
+          "x": 54,
+          "y": 35,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 184
+        },
+        {
+          "frame": 2,
+          "x": 54,
+          "y": 33,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 182
+        },
+        {
+          "frame": 3,
+          "x": 54,
+          "y": 31,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 180
+        },
+        {
+          "frame": 4,
+          "x": 54,
+          "y": 33,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 182
+        },
+        {
+          "frame": 5,
+          "x": 54,
+          "y": 37,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 186
+        },
+        {
+          "frame": 6,
+          "x": 54,
+          "y": 35,
+          "width": 130,
+          "height": 149,
+          "right": 184,
+          "bottom": 184
+        }
+      ]
+    }
+  },
+  "glow": {
+    "behavior": "static",
+    "opacity": 0.42,
+    "sourceAlphaBBox": {
+      "canvas": {
+        "width": 1024,
+        "height": 512
+      },
+      "frame": {
+        "width": 1024,
+        "height": 512
+      },
+      "boxes": [
+        {
+          "frame": 1,
+          "x": 135,
+          "y": 0,
+          "width": 749,
+          "height": 511,
+          "right": 884,
+          "bottom": 511
+        }
+      ]
+    }
+  },
+  "platformAnchors": {
+    "portrait": {
+      "normalized": [0.5, 0.735],
+      "source": "approved 021K canonical portrait foreground pictorial medallion"
+    },
+    "landscape": {
+      "normalized": [0.5, 0.82],
+      "source": "approved 021K canonical landscape foreground pictorial medallion"
+    }
+  },
+  "runtimeAudit": {
+    "consoleWarningsOrErrors": [],
+    "externalDomUrls": [],
+    "externalResourceRequests": [],
+    "failedAssets": []
+  }
+}

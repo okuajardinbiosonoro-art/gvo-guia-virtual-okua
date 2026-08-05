@@ -14,18 +14,18 @@ Actualizado: 2026-08-04
 
 ## Estado global verificable
 
-| Tramo         | Estado vigente                                                                                                                                                                                                                                                                                                               |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                                                                                                                                           |
-| Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                                                                                                                                       |
-| Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                                                                                                                                             |
-| Mundo II      | Finalizado para el alcance actual.                                                                                                                                                                                                                                                                                           |
-| Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                                                                                                                                          |
-| Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                   |
-| Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                   |
-| Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                                                                                                                                       |
-| W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                                                                                                                                 |
-| Final         | Cierre editorial `FINAL / human_approved / es`; Gate 5 `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; Gate 6 `STATIC COMPOSITION / HUMAN_APPROVED / COMPLETE`. La composición estática responsive portrait/landscape está publicada; motion, persistencia, offline, fullscreen, retorno global y reset real permanecen abiertos. |
+| Tramo         | Estado vigente                                                                                                                                                                                                                                                                                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                                                                                                                                                                                |
+| Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                                                                                                                                                                            |
+| Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                                                                                                                                                                                  |
+| Mundo II      | Finalizado para el alcance actual.                                                                                                                                                                                                                                                                                                                                |
+| Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                                                                                                                                                                               |
+| Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                                                        |
+| Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                                                        |
+| Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                                                                                                                                                                            |
+| W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                                                                                                                                                                      |
+| Final         | Cierre editorial `FINAL / human_approved / es`; Gate 5 `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; Gate 6 `STATIC COMPOSITION / HUMAN_APPROVED / COMPLETE`; Gate 7 `LIA MOTION / HUMAN_APPROVED / COMPLETE`. Composición estática responsive y motion de Lía publicados; persistencia, offline-first, fullscreen, retorno global y reset real permanecen abiertos. |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -118,15 +118,21 @@ aprobado seis Environment, seis Access, cuatro UI y tres assets de Lía bajo
 `current-used/final-root` y manifest canónico. Gate 5 queda
 `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; las cinco fuentes de producción de
 Lía permanecen fuera de `public`, `dist` y precache. 021J, R1 y 021K consumen
-desde el registry tipado los 18 assets autorizados para la composición estática;
-greeting se conserva sin consumir para el frente de motion.
+desde el registry tipado los 18 assets autorizados para la composición estática.
+021M integra greeting, idle y glow desde el mismo registry tipado, sin cambiar
+binarios ni rutas `current-used`.
 
 `GVO_FINAL_021L` registra la aprobación humana vinculante de portrait,
 landscape, los tres carryovers y la composición responsive. Gate 6 queda
-`STATIC COMPOSITION / HUMAN_APPROVED / COMPLETE` y publicado. La aprobación no
-incluye motion, persistencia, offline, fullscreen, retorno global ni reset real.
+`STATIC COMPOSITION / HUMAN_APPROVED / COMPLETE` y publicado. `GVO_FINAL_021N`
+registra la aprobación humana vinculante de greeting, idle, reduced motion y
+visibility handling; Gate 7 queda `LIA MOTION / HUMAN_APPROVED / COMPLETE` y
+publicado. Estos cierres no incluyen persistencia, offline-first, fullscreen,
+retorno global ni reset real.
 El cierre de assets está en
 [GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md](GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).
 El cierre de composición estática está en
 [GVO_FINAL_021L_STATIC_COMPOSITION_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_FINAL_021L_STATIC_COMPOSITION_HUMAN_APPROVED_AND_PUBLISHED.md).
-Los registros 020A–020H y 021B–021K permanecen históricos y no se reescriben.
+El cierre de motion está en
+[GVO_FINAL_021N_LIA_MOTION_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_FINAL_021N_LIA_MOTION_HUMAN_APPROVED_AND_PUBLISHED.md).
+Los registros 020A–020H y 021B–021M permanecen históricos y no se reescriben.
