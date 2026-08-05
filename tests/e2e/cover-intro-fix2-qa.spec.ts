@@ -4,14 +4,9 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-const fix2QaOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "cover-intro",
-  "qa",
-  "002I-FIX2",
-);
+import { evidenceDirectory } from "./support/evidence";
+
+const fix2QaOutputDir = evidenceDirectory("cover-intro-002i-fix2");
 
 async function prepareFreshCover(page: Page) {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -90,16 +85,38 @@ test.describe("QA visual Portada / Intro 002I-FIX2", () => {
     await capture(page, "cover-intro-fix2-03-portal-ready-390x844.png");
 
     await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-    await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
-    await expect(page.getByTestId("cover-portal-activation-rig")).toBeVisible();
-    await page.waitForTimeout(120);
+    const openingCover = page.locator(
+      'main[data-cover-phase="portal_1_opening_placeholder"]',
+    );
+    await expect(page).toHaveURL(/\/portada$/);
+    await expect(
+      openingCover.getByText("Abriendo Mundo I: Raíz..."),
+    ).toBeVisible();
+    await expect(
+      openingCover.getByTestId("cover-portal-activation-rig"),
+    ).toBeVisible();
+    await expect(
+      openingCover.getByTestId("cover-activation-lia"),
+    ).toBeVisible();
 
-    const activationBox = await page
-      .getByTestId("cover-portal-activation-rig")
-      .boundingBox();
-    const portalBox = await page
-      .locator('[data-portal-id="portal-1"]')
-      .boundingBox();
+    const { activationBox, portalBox } = await openingCover.evaluate((root) => {
+      const readRect = (selector: string) => {
+        const rect = root.querySelector(selector)?.getBoundingClientRect();
+        return rect
+          ? {
+              x: rect.x,
+              y: rect.y,
+              width: rect.width,
+              height: rect.height,
+            }
+          : null;
+      };
+
+      return {
+        activationBox: readRect('[data-testid="cover-portal-activation-rig"]'),
+        portalBox: readRect('[data-portal-id="portal-1"]'),
+      };
+    });
 
     expect(activationBox).not.toBeNull();
     expect(portalBox).not.toBeNull();
@@ -117,9 +134,13 @@ test.describe("QA visual Portada / Intro 002I-FIX2", () => {
     await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
       timeout: 5000,
     });
-    await expect(page.getByText("Preparando la raíz.")).toBeVisible();
-    await expect(page.locator("button")).toHaveCount(0);
-    await expect(page.locator("a")).toHaveCount(0);
+    const transition = page.locator(
+      'main[data-transition-world-id="intro-to-station-1"]',
+    );
+    await expect(transition.getByText("Abriendo Mundo I")).toBeVisible();
+    await expect(transition.getByText("Preparando la raíz.")).toBeVisible();
+    await expect(transition.locator("button")).toHaveCount(0);
+    await expect(transition.locator("a")).toHaveCount(0);
     await capture(
       page,
       "cover-intro-fix2-05-transition-placeholder-390x844.png",

@@ -10,6 +10,7 @@ import { screenAssetBundles } from "./screenAssetBundles";
 
 class MockImage {
   static created = 0;
+  static failuresRemaining = 0;
 
   onload: (() => void) | null = null;
   onerror: (() => void) | null = null;
@@ -29,6 +30,12 @@ class MockImage {
   set src(value: string) {
     this.#src = value;
     queueMicrotask(() => {
+      if (MockImage.failuresRemaining > 0) {
+        MockImage.failuresRemaining -= 1;
+        this.onerror?.();
+        return;
+      }
+
       this.complete = true;
       this.naturalWidth = 1;
       this.onload?.();
@@ -45,6 +52,7 @@ describe("assetPreloader", () => {
     vi.unstubAllGlobals();
     clearAssetPreloadCache();
     MockImage.created = 0;
+    MockImage.failuresRemaining = 0;
   });
 
   it("preloadImage maneja una carga exitosa con decode", async () => {
@@ -69,6 +77,23 @@ describe("assetPreloader", () => {
     expect(summary.total).toBe(2);
     expect(MockImage.created).toBe(2);
     expect(summary.status).toBe("ready");
+  });
+
+  it("conserva éxitos en caché y permite reintentar un resultado fallido", async () => {
+    vi.stubGlobal("Image", MockImage);
+
+    const successfulSource = "/assets/success.png";
+    await preloadImage(successfulSource);
+    await preloadImage(successfulSource);
+    expect(MockImage.created).toBe(1);
+
+    MockImage.failuresRemaining = 1;
+    const firstAttempt = await preloadImage("/assets/retry.png");
+    const secondAttempt = await preloadImage("/assets/retry.png");
+
+    expect(firstAttempt.status).toBe("failed");
+    expect(secondAttempt.status).toBe("decoded");
+    expect(MockImage.created).toBe(3);
   });
 
   it("preloadImages no falla fatalmente con rutas vacias", async () => {
@@ -99,7 +124,9 @@ describe("assetPreloader", () => {
 
   it("los bundles contienen rutas locales esperadas por pantalla", () => {
     expect(
-      screenAssetBundles.loadingInitialCritical.assets.map((asset) => asset.src),
+      screenAssetBundles.loadingInitialCritical.assets.map(
+        (asset) => asset.src,
+      ),
     ).toContain("/assets/runtime/loading-initial/lia/lia_loading_16f.png");
     expect(
       screenAssetBundles.coverIntroCritical.assets.map((asset) => asset.src),

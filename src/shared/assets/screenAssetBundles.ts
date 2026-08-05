@@ -15,6 +15,7 @@ import {
 export type ScreenAssetBundleId =
   | "loadingInitialCritical"
   | "coverIntroCritical"
+  | "coverIntroActivation"
   | "transitionRootCritical"
   | "world1RootInitial"
   | "world1RootRelation"
@@ -109,6 +110,19 @@ export const screenAssetBundles = {
       image("cover_portal_1_glow", coverIntroAssets.portal1Glow, 440),
       image("cover_locked_frame", coverIntroAssets.lockedFrame),
       image("cover_lock", coverIntroAssets.lock, 430),
+    ],
+  },
+  coverIntroActivation: {
+    id: "coverIntroActivation",
+    route: "/portada",
+    description:
+      "Pose de Lía cargada y decodificada antes de la ceremonia del Portal I.",
+    assets: [
+      image(
+        "cover_lia_activate_portal_1",
+        coverIntroAssets.liaActivatePortal1,
+        676,
+      ),
     ],
   },
   transitionRootCritical: {

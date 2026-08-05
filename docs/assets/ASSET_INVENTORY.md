@@ -110,10 +110,10 @@ duplicaron ni alteraron. El archivo rechazado
 
 ## Pantallas posteriores
 
-## Estación V — mapa y cuatro áreas integradas para revisión ST5-020G
+## Estación V — cuatro áreas y cierre publicados
 
-Estado de entrada: `ST5_020F_HUMAN_APPROVED`.
-Estado publicado: `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW`; estación no cerrada.
+Estado vigente: `ST5_020G_HUMAN_APPROVED`, `ST5_020H_HUMAN_APPROVED` y
+`ST5_020I_PUBLISHED_COMPLETE`. Estación V queda cerrada para el alcance actual.
 
 - Runtime: `public/assets/gvo/stations/world-5/present-map/runtime/`.
 - Espejo byte-idéntico: `public/assets/gvo/current-used/world-5-root/`.
@@ -123,9 +123,13 @@ Estado publicado: `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW`; estación no cerrad
   de Espacio, tres WEBP de Visitante y cuatro poses aprobadas de Lía (dos PNG y dos WEBP).
 - Mapa crítico: 1.290.122 bytes; Plantas: 428.412 bytes; Sistema: 328.882
   bytes; Espacio: 324.550 bytes; Visitante: 398.238 bytes; Lía: 1.686.309 bytes.
-- `LIA_WORLD5_APPROVED_ASSETS_INTEGRATED_PENDING_HUMAN_RUNTIME_REVIEW`.
-- Espacio está integrado como área 3/4. Visitante, cierre 4/4 y Final
-  permanecen fuera del alcance.
+- Las cuatro áreas Plantas, Sistema, Espacio y Visitante están integradas; el
+  progreso local alcanza y restaura el cierre interno 4/4.
+- El CTA `Ir al cierre`, la completion global verificada y la salida W5→Final
+  fueron aprobados humanamente y publicados por 020H/020I.
+- Los 24 archivos runtime y los 24 mirrors `current-used` permanecen
+  byte-idénticos. La presencia del mirror documenta el par, pero no sustituye la
+  aprobación funcional registrada por las actas.
 
 El arte procedural anterior dejó de ser la capa principal. Labels, estados,
 nexo, vínculos, foco, controles y pulso siguen siendo DOM/SVG/CSS accesible.

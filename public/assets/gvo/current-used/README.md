@@ -63,16 +63,23 @@ current-used/
   detalle vive en su `README.md`. La experiencia no usa audio, ofrece reduced
   motion completo y mantiene la PWA instalada como no certificada en la
   plataforma de QA.
-- `world-5-root` registra veintiún pares byte-idénticos: once del mapa/Plantas,
-  tres de Sistema, tres de Espacio y cuatro poses aprobadas de Lía. El estado
-  humano de entrada es `ST5_020E_HUMAN_APPROVED_WITH_LANDSCAPE_TEXT_DEBT`; la
-  publicación 020F queda `ST5_020F_PUBLISHED_PENDING_HUMAN_REVIEW` y no declara
-  cierre de Estación V.
+- `world-5-root` registra 24 pares byte-idénticos: ocho del mapa, tres de
+  Plantas, tres de Sistema, tres de Espacio, tres de Visitante y cuatro poses
+  aprobadas de Lía. Plantas, Sistema, Espacio y Visitante están integradas; el
+  progreso local alcanza 4/4 y el cierre global con salida W5→Final está
+  publicado. `ST5_020G_HUMAN_APPROVED`, `ST5_020H_HUMAN_APPROVED` y
+  `ST5_020I_PUBLISHED_COMPLETE` dejan Estación V cerrada para el alcance actual.
+  Esta autoridad procede de las decisiones humanas publicadas, no de la sola
+  existencia del mirror.
 - `final-root` registra 19 pares byte-idénticos aprobados humanamente para el
   Mirador: seis Environment, seis Access, cuatro UI y tres Lía. Gate 5 queda
-  `ASSETS PRODUCED_AND_APPROVED / COMPLETE`, pero el estado runtime sigue
-  `REGISTERED / NOT_YET_COMPOSED`; sus cinco fuentes de producción permanecen
-  fuera de `public` y no tienen mirror ni precache.
+  `ASSETS PRODUCED_AND_APPROVED / COMPLETE`; Gates 6–8 también están
+  `HUMAN_APPROVED / COMPLETE`. Composición responsive, motion, revisita y reset
+  están publicados, y el estado vigente es
+  `GVO FINAL — MIRADOR PHASE / COMPLETE`. La frase histórica
+  `REGISTERED / NOT_YET_COMPOSED` corresponde al corte 021I y fue superada por
+  021P. Las cinco fuentes de producción permanecen fuera de `public` y no tienen
+  mirror ni precache.
 - Cualquier carpeta posterior debe declarar su propio estado. La sola existencia
   del directorio nunca equivale a aprobación de pantalla.
 

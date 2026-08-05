@@ -4,14 +4,9 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-const qaOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "cover-intro",
-  "qa",
-  "002L",
-);
+import { evidenceDirectory } from "./support/evidence";
+
+const qaOutputDir = evidenceDirectory("cover-intro-002l");
 
 async function capture(page: Page, name: string) {
   await page.screenshot({

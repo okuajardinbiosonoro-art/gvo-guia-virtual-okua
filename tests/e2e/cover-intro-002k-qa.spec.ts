@@ -4,14 +4,9 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-const qaOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "cover-intro",
-  "qa",
-  "002K",
-);
+import { evidenceDirectory } from "./support/evidence";
+
+const qaOutputDir = evidenceDirectory("cover-intro-002k");
 
 async function completeIntro(page: Page) {
   await page.goto("/portada?resetIntro=1");

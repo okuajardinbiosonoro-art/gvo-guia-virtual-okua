@@ -1,4 +1,19 @@
+import { mkdirSync } from "node:fs";
+
 import { expect, test, type Page } from "@playwright/test";
+
+import { evidenceDirectory, evidencePath } from "./support/evidence";
+import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+
+const evidenceScope = "world5-st5-020d" as const;
+
+test.beforeAll(() => {
+  mkdirSync(evidenceDirectory(evidenceScope), { recursive: true });
+});
+
+test.beforeEach(async ({ page }) => {
+  await installWorldFiveAccessFixture(page);
+});
 
 const root = (page: Page) => page.locator("[data-station5-state]");
 
@@ -104,16 +119,17 @@ test("ST5-020D conserva overview y persiste Plantas/Sistema solo desde el foco",
     page.getByRole("heading", { name: "MUNDO PRESENTE" }),
   ).toBeVisible();
   await page.screenshot({
-    path: "docs/visual/world5/st5-020d/refresh_completed_overview_390x844.png",
+    path: evidencePath(evidenceScope, "refresh_completed_overview_390x844.png"),
     fullPage: false,
   });
   await expect(page.getByRole("heading", { name: "Espacio" })).toHaveCount(0);
 
-  await page.locator('[data-station5-area="espacio"]').click();
-  await expect(root(page)).toHaveAttribute(
-    "data-station5-state",
-    "map_blocked_feedback",
-  );
+  const space = page.locator('[data-station5-area="espacio"]');
+  await expect(space).toHaveAttribute("data-area-state", "available");
+  await expect(space).toBeEnabled();
+  await expect(
+    page.locator('[data-station5-area="visitante"]'),
+  ).toHaveAttribute("data-area-state", "locked");
   await expect(page).toHaveURL(/\/estacion\/5$/);
   const stored = await page.evaluate(() =>
     JSON.parse(localStorage.getItem("gvo.station5.v1") ?? "{}"),

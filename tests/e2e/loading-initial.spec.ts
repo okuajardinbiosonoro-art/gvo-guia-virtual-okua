@@ -27,14 +27,18 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   await page.goto("/");
 
   const durations = await page.evaluate(() => {
-    const progressFill = document.querySelector(
-      ".loading-initial__progress-fill",
+    const progressFrame = document.querySelector(
+      '[data-testid="loading-initial-progress-real"]',
     );
+    const progressFillPicture = document.querySelector(
+      '[data-testid="loading-initial-progress-fill"]',
+    );
+    const progressFill = progressFillPicture?.parentElement;
     const progressRail = document.querySelector(
-      ".loading-initial__progress-track",
+      '[data-testid="loading-initial-progress-track"]',
     );
-    const progressMarker = document.querySelector(
-      ".loading-initial__progress-marker",
+    const progressSpark = document.querySelector(
+      '[data-testid="loading-initial-progress-spark"]',
     );
     const liaRegistration = document.querySelector(
       ".loading-initial__lia-registration",
@@ -48,8 +52,9 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
     if (
       !progressFill ||
+      !progressFrame ||
       !progressRail ||
-      !progressMarker ||
+      !progressSpark ||
       !liaRegistration ||
       !liaTrack ||
       !scene ||
@@ -65,17 +70,11 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
 
     return {
       progressDuration: getComputedStyle(progressFill).animationDuration,
-      progressMarkerDuration:
-        getComputedStyle(progressMarker).animationDuration,
-      progressTrackHeight: getComputedStyle(progressTrack)
-        .getPropertyValue("--loading-progress-track-height")
-        .trim(),
-      progressCapSize: getComputedStyle(progressTrack)
-        .getPropertyValue("--loading-progress-cap-size")
-        .trim(),
-      progressMarkerSize: getComputedStyle(progressTrack)
-        .getPropertyValue("--loading-progress-marker-size")
-        .trim(),
+      progressSparkDuration: getComputedStyle(progressSpark).animationDuration,
+      progressFamily: progressFrame.getAttribute("data-progress-family"),
+      progressFillAsset: progressFillPicture?.getAttribute("data-asset-id"),
+      progressTrackAsset: progressRail.getAttribute("data-asset-id"),
+      progressSparkAsset: progressSpark.getAttribute("data-asset-id"),
       liaAnimationName: getComputedStyle(liaTrack).animationName,
       liaRegistrationAnimationName:
         getComputedStyle(liaRegistration).animationName,
@@ -124,7 +123,15 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   });
 
   expect(durations.progressDuration).toBe("12s");
-  expect(durations.progressMarkerDuration).toBe("12s");
+  expect(durations.progressSparkDuration).toBe("12s");
+  expect(durations.progressFamily).toBe("transition-root-assets");
+  expect(durations.progressTrackAsset).toBe(
+    "transition_root_progress_track_base",
+  );
+  expect(durations.progressFillAsset).toBe(
+    "transition_root_progress_fill_segment",
+  );
+  expect(durations.progressSparkAsset).toBe("transition_root_progress_spark");
   expect(durations.stageDuration).toBe("12000");
   expect(durations.layoutVersion).toBe("v13");
   expect(durations.motionTimelineVersion).toBe("v13");
@@ -132,9 +139,6 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   expect(durations.frameRegistrationAnchor).toBe("visor-collar");
   expect(durations.frameCount).toBe("16");
   expect(durations.visualScale).toBe("0.9");
-  expect(durations.progressTrackHeight).toBe("2px");
-  expect(durations.progressCapSize).toBe("9px");
-  expect(durations.progressMarkerSize).toBe("9px");
   expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.liaRegistrationAnimationName).toContain(
@@ -157,7 +161,7 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
   expect(durations.waterTarget).toBe("plant");
 });
 
-test("reduced motion reduce duracion y evita riego multi-stream animado", async ({
+test("reduced motion conserva timeline y evita riego multi-stream animado", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -165,29 +169,33 @@ test("reduced motion reduce duracion y evita riego multi-stream animado", async 
 
   const reduced = await page.evaluate(() => {
     const progressFill = document.querySelector(
-      ".loading-initial__progress-fill",
+      '[data-testid="loading-initial-progress-fill"]',
+    )?.parentElement;
+    const progressSpark = document.querySelector(
+      '[data-testid="loading-initial-progress-spark"]',
     );
-    const progressMarker = document.querySelector(
-      ".loading-initial__progress-marker",
-    );
+    const stage = document.querySelector(".loading-initial__stage");
     const waterField = document.querySelector(".loading-initial__water-field");
 
-    if (!progressFill || !progressMarker || !waterField) {
+    if (!progressFill || !progressSpark || !stage || !waterField) {
       throw new Error("Faltan elementos para reduced motion.");
     }
 
     return {
-      progressDuration: getComputedStyle(progressFill).animationDuration,
-      progressMarkerDuration:
-        getComputedStyle(progressMarker).animationDuration,
+      progressAnimationName: getComputedStyle(progressFill).animationName,
+      progressSparkAnimationName: getComputedStyle(progressSpark).animationName,
+      reducedMotionDuration: stage.getAttribute(
+        "data-reduced-motion-duration-ms",
+      ),
       waterDisplay: getComputedStyle(waterField).display,
       overflowHorizontal:
         document.documentElement.scrollWidth > window.innerWidth,
     };
   });
 
-  expect(reduced.progressDuration).toBe("1.3s");
-  expect(reduced.progressMarkerDuration).toBe("1.3s");
+  expect(reduced.progressAnimationName).toBe("none");
+  expect(reduced.progressSparkAnimationName).toBe("none");
+  expect(reduced.reducedMotionDuration).toBe("12000");
   expect(reduced.waterDisplay).toBe("none");
   expect(reduced.overflowHorizontal).toBe(false);
 });

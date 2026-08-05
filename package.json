@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:evidence": "node tools/testing/run-evidence.mjs",
     "lint": "eslint .",
     "format": "prettier . --write",
     "check": "npm run lint && npm run test && npm run build",

@@ -4,14 +4,9 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-const flowOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "transition-world",
-  "validation",
-  "t003e8",
-);
+import { evidenceDirectory } from "./support/evidence";
+
+const flowOutputDir = evidenceDirectory("cover-to-transition-t003e8");
 
 async function finishIntroDialogue(page: Page) {
   await page.getByRole("button", { name: "Comenzar recorrido" }).click();

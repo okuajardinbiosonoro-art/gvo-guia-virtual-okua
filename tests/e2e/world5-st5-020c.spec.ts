@@ -1,5 +1,11 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+
+test.beforeEach(async ({ page }) => {
+  await installWorldFiveAccessFixture(page);
+});
+
 const viewports = [
   [360, 560],
   [360, 640],
@@ -33,10 +39,18 @@ async function assertNormalViewport(page: Page) {
     const boxes = visibleSelectors.flatMap((selector) =>
       [...document.querySelectorAll<HTMLElement>(selector)].map((node) => {
         const rect = node.getBoundingClientRect();
-        return { selector, left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+        return {
+          selector,
+          left: rect.left,
+          top: rect.top,
+          right: rect.right,
+          bottom: rect.bottom,
+        };
       }),
     );
-    const targets = [...document.querySelectorAll<HTMLElement>("button:not([disabled])")].map((node) => {
+    const targets = [
+      ...document.querySelectorAll<HTMLElement>("button:not([disabled])"),
+    ].map((node) => {
       const rect = node.getBoundingClientRect();
       return Math.min(rect.width, rect.height);
     });
@@ -59,31 +73,47 @@ async function assertNormalViewport(page: Page) {
   for (const box of result.boxes) {
     expect(box.left, `${box.selector} left`).toBeGreaterThanOrEqual(-1);
     expect(box.top, `${box.selector} top`).toBeGreaterThanOrEqual(-1);
-    expect(box.right, `${box.selector} right`).toBeLessThanOrEqual(result.clientWidth + 1);
-    expect(box.bottom, `${box.selector} bottom`).toBeLessThanOrEqual(result.clientHeight + 1);
+    expect(box.right, `${box.selector} right`).toBeLessThanOrEqual(
+      result.clientWidth + 1,
+    );
+    expect(box.bottom, `${box.selector} bottom`).toBeLessThanOrEqual(
+      result.clientHeight + 1,
+    );
   }
 }
 
 async function seedPlants(page: Page) {
-  await page.evaluate(() => localStorage.setItem("gvo.station5.v1", JSON.stringify({
-    schemaVersion: 1,
-    completedAreas: ["plantas"],
-    updatedAt: "2026-07-30T12:00:00.000Z",
-  })));
+  await page.evaluate(() =>
+    localStorage.setItem(
+      "gvo.station5.v1",
+      JSON.stringify({
+        schemaVersion: 1,
+        completedAreas: ["plantas"],
+        updatedAt: "2026-07-30T12:00:00.000Z",
+      }),
+    ),
+  );
 }
 
 for (const [width, height] of viewports) {
-  test(`ST5-020C integra mapa, Plantas y Sistema sin scroll a ${width}x${height}`, async ({ page }) => {
+  test(`ST5-020C integra mapa, Plantas y Sistema sin scroll a ${width}x${height}`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width, height });
     await page.goto("/estacion/5");
     await page.evaluate(() => localStorage.clear());
     await page.reload();
     await expect(page.getByText("ESTACIÓN V")).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1, name: "MUNDO PRESENTE" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 1, name: "MUNDO PRESENTE" }),
+    ).toBeVisible();
     await assertNormalViewport(page);
 
     await page.locator('[data-station5-area="plantas"]').click();
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
+    await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+      "data-station5-state",
+      "plants_intro",
+    );
     await assertNormalViewport(page);
     await expect(page.locator(".s5-plants-focus")).toBeInViewport();
     await expect(page.locator(".s5-lia")).toBeInViewport();
@@ -92,7 +122,10 @@ for (const [width, height] of viewports) {
     await seedPlants(page);
     await page.reload();
     await page.locator('[data-station5-area="sistema"]').click();
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
+    await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+      "data-station5-state",
+      "system_intro",
+    );
     await assertNormalViewport(page);
     await expect(page.locator(".s5-system-focus")).toBeInViewport();
     await expect(page.locator(".s5-lia")).toBeInViewport();
@@ -107,24 +140,45 @@ test("ST5-020C permite flujo completo sólo con teclado", async ({ page }) => {
 
   await page.locator('[data-station5-area="plantas"]').focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
-  await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).focus();
-  await expect(page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })).toBeFocused();
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+    "data-station5-state",
+    "plants_intro",
+  );
+  await page
+    .getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })
+    .focus();
+  await expect(
+    page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }),
+  ).toBeFocused();
   await page.keyboard.press("Space");
   await page.getByRole("button", { name: "Volver al mapa" }).focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "map_overview");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+    "data-station5-state",
+    "map_overview",
+  );
 
   await page.locator('[data-station5-area="sistema"]').focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "system_intro");
-  await page.getByRole("button", { name: "Hacer visible la mediación desde el conector del sistema." }).focus();
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+    "data-station5-state",
+    "system_intro",
+  );
+  await page
+    .getByRole("button", {
+      name: "Hacer visible la mediación desde el conector del sistema.",
+    })
+    .focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("status")).toContainText("Mediación visible.");
-  await expect(page.getByRole("button", { name: "Volver al mapa" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Volver al mapa" }),
+  ).toBeEnabled();
 });
 
-test("ST5-020C reflow 200% conserva contenido y controles", async ({ page }) => {
+test("ST5-020C reflow 200% conserva contenido y controles", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 195, height: 422 });
   await page.goto("/estacion/5/plantas");
   const required = [
@@ -146,28 +200,47 @@ test("ST5-020C reflow 200% conserva contenido y controles", async ({ page }) => 
   }));
   expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth + 1);
   expect(overflow.scrollHeight).toBeGreaterThan(overflow.clientHeight);
-  const target = await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).boundingBox();
+  const target = await page
+    .getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })
+    .boundingBox();
   expect(target).not.toBeNull();
-  expect(Math.min(target?.width ?? 0, target?.height ?? 0)).toBeGreaterThanOrEqual(44);
+  expect(
+    Math.min(target?.width ?? 0, target?.height ?? 0),
+  ).toBeGreaterThanOrEqual(44);
 });
 
-test("ST5-020C mantiene reduced motion, consola y red local limpias", async ({ page }) => {
+test("ST5-020C mantiene reduced motion, consola y red local limpias", async ({
+  page,
+}) => {
   const errors: string[] = [];
   const failedResponses: string[] = [];
   const external: string[] = [];
-  page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
   page.on("pageerror", (error) => errors.push(error.message));
-  page.on("response", (response) => { if (response.status() === 404) failedResponses.push(response.url()); });
+  page.on("response", (response) => {
+    if (response.status() === 404) failedResponses.push(response.url());
+  });
   page.on("request", (request) => {
-    if (!request.url().startsWith("http://127.0.0.1:4174")) external.push(request.url());
+    if (!request.url().startsWith("http://127.0.0.1:4174"))
+      external.push(request.url());
   });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/estacion/5");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-reduced-motion", "true");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+    "data-station5-reduced-motion",
+    "true",
+  );
   await page.locator('[data-station5-area="plantas"]').click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute("data-station5-state", "plants_intro");
-  await page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }).press("Enter");
+  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
+    "data-station5-state",
+    "plants_intro",
+  );
+  await page
+    .getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })
+    .press("Enter");
   await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
   expect(errors).toEqual([]);
   expect(failedResponses).toEqual([]);

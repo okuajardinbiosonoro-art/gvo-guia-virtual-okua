@@ -102,6 +102,12 @@ export function preloadImage(
   const promise = loadImage(normalizedSrc, options);
   imagePreloadCache.set(cacheKey, promise);
 
+  void promise.then((result) => {
+    if (!result.ok && imagePreloadCache.get(cacheKey) === promise) {
+      imagePreloadCache.delete(cacheKey);
+    }
+  });
+
   return promise;
 }
 

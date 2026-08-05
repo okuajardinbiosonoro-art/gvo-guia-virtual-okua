@@ -1,6 +1,6 @@
 import "./CoverIntroScreen.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,7 @@ const liaPoseByState = {
 } satisfies Record<CoverIntroDialoguePose | "idle" | "activatePortal1", string>;
 
 const PORTAL_ACTIVATION_TO_TRANSITION_MS = 920;
+const MAX_AUTOMATIC_ACTIVATION_RETRIES = 1;
 
 function createInitialCoverIntroState(): CoverIntroState {
   const shouldResetIntro =
@@ -144,6 +145,14 @@ export function CoverIntroScreen() {
   );
   const [portalActivationDelayComplete, setPortalActivationDelayComplete] =
     useState(false);
+  const [activationPreloadAttempt, setActivationPreloadAttempt] = useState(0);
+  const activationPreload = useAssetPreloader(
+    screenAssetBundles.coverIntroActivation,
+    {
+      timeoutMs: 9000,
+      retryKey: activationPreloadAttempt,
+    },
+  );
   const coverCriticalPreload = useAssetPreloader(
     screenAssetBundles.coverIntroCritical,
     {
@@ -160,6 +169,34 @@ export function CoverIntroScreen() {
   const transitionTimeoutRef = useRef<number | null>(null);
   const portalHandoffStartedRef = useRef(false);
   const portalNavigationDoneRef = useRef(false);
+  const pendingPortalOpenIntentRef = useRef(false);
+  const activationRetryInFlightRef = useRef(false);
+  const automaticActivationRetryCountRef = useRef(0);
+
+  const openPortalOnePlaceholder = useCallback(() => {
+    if (
+      portalHandoffStartedRef.current ||
+      coverState.phase !== "portal_1_ready"
+    ) {
+      return;
+    }
+
+    portalHandoffStartedRef.current = true;
+    portalNavigationDoneRef.current = false;
+    setPortalActivationDelayComplete(false);
+    setCoverState((current) => {
+      if (current.phase !== "portal_1_ready") {
+        return current;
+      }
+
+      return {
+        ...current,
+        phase: "portal_1_opening_placeholder",
+        blockedPortalMessage: null,
+        blockedPortalId: null,
+      };
+    });
+  }, [coverState.phase]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -185,6 +222,38 @@ export function CoverIntroScreen() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (activationPreload.status === "loading") {
+      return;
+    }
+
+    activationRetryInFlightRef.current = false;
+
+    if (
+      (activationPreload.status === "error" ||
+        activationPreload.status === "timeout") &&
+      pendingPortalOpenIntentRef.current &&
+      automaticActivationRetryCountRef.current <
+        MAX_AUTOMATIC_ACTIVATION_RETRIES
+    ) {
+      automaticActivationRetryCountRef.current += 1;
+      activationRetryInFlightRef.current = true;
+      setActivationPreloadAttempt((current) => current + 1);
+      return;
+    }
+
+    if (
+      activationPreload.status !== "ready" ||
+      coverState.phase !== "portal_1_ready" ||
+      !pendingPortalOpenIntentRef.current
+    ) {
+      return;
+    }
+
+    pendingPortalOpenIntentRef.current = false;
+    openPortalOnePlaceholder();
+  }, [activationPreload.status, coverState.phase, openPortalOnePlaceholder]);
 
   useEffect(() => {
     if (coverState.phase !== "portal_1_opening_placeholder") {
@@ -336,34 +405,28 @@ export function CoverIntroScreen() {
     });
   }
 
-  function openPortalOnePlaceholder() {
-    if (
-      portalHandoffStartedRef.current ||
-      coverState.phase !== "portal_1_ready"
-    ) {
+  function requestPortalOneOpening() {
+    if (activationPreload.status === "ready") {
+      pendingPortalOpenIntentRef.current = false;
+      openPortalOnePlaceholder();
       return;
     }
 
-    portalHandoffStartedRef.current = true;
-    portalNavigationDoneRef.current = false;
-    setPortalActivationDelayComplete(false);
-    setCoverState((current) => {
-      if (current.phase !== "portal_1_ready") {
-        return current;
-      }
+    pendingPortalOpenIntentRef.current = true;
 
-      return {
-        ...current,
-        phase: "portal_1_opening_placeholder",
-        blockedPortalMessage: null,
-        blockedPortalId: null,
-      };
-    });
+    if (
+      (activationPreload.status === "error" ||
+        activationPreload.status === "timeout") &&
+      !activationRetryInFlightRef.current
+    ) {
+      activationRetryInFlightRef.current = true;
+      setActivationPreloadAttempt((current) => current + 1);
+    }
   }
 
   function handlePortalOneClick() {
     if (coverState.phase === "portal_1_ready") {
-      openPortalOnePlaceholder();
+      requestPortalOneOpening();
       return;
     }
 
@@ -408,7 +471,7 @@ export function CoverIntroScreen() {
 
   function handleCtaClick() {
     if (coverState.phase === "portal_1_ready") {
-      openPortalOnePlaceholder();
+      requestPortalOneOpening();
       return;
     }
 
@@ -431,6 +494,10 @@ export function CoverIntroScreen() {
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
       data-critical-assets-ready={coverCriticalPreload.ready ? "true" : "false"}
       data-critical-assets-status={coverCriticalPreload.status}
+      data-activation-assets-ready={
+        activationPreload.status === "ready" ? "true" : "false"
+      }
+      data-activation-assets-status={activationPreload.status}
       data-transition-preload-ready={
         transitionRootPreload.ready ? "true" : "false"
       }

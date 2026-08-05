@@ -178,12 +178,27 @@ estaciones, subrutas de Mundo V, transiciones y Final exigen el prefijo completo
 La revisita desde Final también queda condicionada a esa integridad global. El
 reset conserva sin ampliación su allowlist contractual de cuatro keys.
 
-Permanecen pendientes los checkpoints parciales W1–W4, accesibilidad global,
-deudas visuales de Mundo II, registros durables de Mundo III, fullscreen, QR,
-continuidad PWA/offline, optimización del bundle, deuda de assets y frentes
-editoriales no cubiertos por este contrato. La fase `PROJECT DEBT CORRECTION` no
-se declara terminada; el siguiente frente se definirá mediante un ticket
-separado. El Mirador permanece `COMPLETE` bajo la autoridad de `GVO_FINAL_021P`.
+`GVO_DEBT_003` está aprobado y publicado. Su informe histórico conserva
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_003_TEST_EVIDENCE_AND_CANONICAL_STATUS_HYGIENE_FOR_REVIEW.md](GVO_DEBT_003_TEST_EVIDENCE_AND_CANONICAL_STATUS_HYGIENE_FOR_REVIEW.md),
+y su aprobación humana vinculante está registrada en
+[GVO_DEBT_003P_TEST_EVIDENCE_AND_CANONICAL_STATUS_HYGIENE_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_003P_TEST_EVIDENCE_AND_CANONICAL_STATUS_HYGIENE_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+La suite E2E normal queda read-only y validada `93/93`: sus outputs productores
+se alojan en `test-results`, mientras la evidencia tracked requiere un comando
+explícito y un scope allowlisted. Los contratos históricos quedan reconciliados
+con la autoridad posterior. La activación aprobada de Lía en Portada precarga su
+asset dedicado y sólo inicia el Estado A y sus 920 ms tras readiness real, con
+intención única, fallo cerrado y retry controlado. Los resúmenes vivos de assets
+y `current-used` quedan reconciliados sin reescribir actas históricas.
+
+Permanecen pendientes los checkpoints parciales W1–W4, la continuidad de W1/W4,
+la persistencia de Mundo II, los registros durables de Mundo III, la legibilidad
+y safe-area de Mundo II, immersive shell, QR, PWA/precache, route chunking y los
+frentes editoriales no cubiertos por este contrato. La fase
+`PROJECT DEBT CORRECTION` no se declara terminada; el siguiente frente requiere
+un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de
+`GVO_FINAL_021P`.
 
 El cierre de assets está en
 [GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md](GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).

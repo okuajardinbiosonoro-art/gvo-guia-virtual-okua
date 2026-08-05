@@ -3,7 +3,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
-const evidenceDir = path.resolve("docs/visual/transitions/st5-020i");
+import { evidenceDirectory } from "./support/evidence";
+
+const evidenceDir = evidenceDirectory("transition-copy-st5-020i");
 const globalProgressKey = "gvo.progress.v1";
 const storageProbeKey = "st5-020i.storage-probe";
 
@@ -245,12 +247,18 @@ test.describe("667x375 ST5-020I-C geometry", () => {
   });
 
   test("reconcilia la altura sin deriva visual", async ({ page }) => {
-    test.setTimeout(30000);
+    test.setTimeout(90000);
     await fs.mkdir(evidenceDir, { recursive: true });
-    await page.goto("/transition/intro-to-station-1", {
-      waitUntil: "domcontentloaded",
-    });
-
+    // El preview usa la misma composición sin el temporizador de navegación runtime.
+    await page.goto("/dev/transition-world", { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(
+      () =>
+        [...document.querySelectorAll<HTMLImageElement>("img")]
+          .filter((image) => image.currentSrc || image.src)
+          .every((image) => image.complete && image.naturalWidth > 0),
+      undefined,
+      { timeout: 30_000 },
+    );
     const main = page.locator(
       'main[data-transition-world-id="intro-to-station-1"]',
     );

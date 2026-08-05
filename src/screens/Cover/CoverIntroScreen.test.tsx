@@ -8,6 +8,8 @@ import {
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { coverToWorldOneTransitionRoute } from "../../app/routes";
+import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
+import type { ScreenAssetBundle } from "../../shared/assets/screenAssetBundles";
 import { CoverIntroScreen } from "./CoverIntroScreen";
 import { coverIntroAssets } from "./coverIntroAssets";
 import {
@@ -19,13 +21,29 @@ import {
 } from "./coverIntroContent";
 import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
 
-const { navigateMock } = vi.hoisted(() => ({
-  navigateMock: vi.fn(),
-}));
+const { navigateMock, preloaderMockState, useAssetPreloaderMock } = vi.hoisted(
+  () => ({
+    navigateMock: vi.fn(),
+    preloaderMockState: {
+      activation: {
+        status: "ready",
+        progress: 1,
+        ready: true,
+        failed: 0,
+        timedOut: 0,
+        total: 1,
+        summary: null,
+      },
+    },
+    useAssetPreloaderMock: vi.fn(),
+  }),
+);
 
 vi.mock("react-router-dom", async () => {
   const actual =
-    await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+    await vi.importActual<typeof import("react-router-dom")>(
+      "react-router-dom",
+    );
 
   return {
     ...actual,
@@ -33,17 +51,85 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
+vi.mock("../../shared/assets/useAssetPreloader", () => ({
+  useAssetPreloader: useAssetPreloaderMock,
+}));
+
+type ActivationPreloadStatus =
+  | "idle"
+  | "loading"
+  | "ready"
+  | "error"
+  | "timeout";
+
+function setActivationPreload(status: ActivationPreloadStatus) {
+  const isReady = status === "ready";
+  const hasFinished = isReady || status === "error" || status === "timeout";
+
+  preloaderMockState.activation = {
+    status,
+    progress: hasFinished ? 1 : 0,
+    ready: hasFinished,
+    failed: status === "error" ? 1 : 0,
+    timedOut: status === "timeout" ? 1 : 0,
+    total: 1,
+    summary: null,
+  };
+}
+
+function finishIntroDialogue() {
+  fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
+
+  for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
+    fireEvent.click(
+      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
+    );
+  }
+
+  fireEvent.click(
+    screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
+  );
+}
+
 describe("CoverIntroScreen", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.history.replaceState({}, "", "/");
     navigateMock.mockClear();
+    useAssetPreloaderMock.mockReset();
+    setActivationPreload("ready");
+    useAssetPreloaderMock.mockImplementation((bundle: ScreenAssetBundle) =>
+      bundle.id === "coverIntroActivation"
+        ? preloaderMockState.activation
+        : {
+            status: "ready",
+            progress: 1,
+            ready: true,
+            failed: 0,
+            timedOut: 0,
+            total: bundle.assets.length,
+            summary: null,
+          },
+    );
   });
 
   afterEach(() => {
     vi.clearAllTimers();
     vi.useRealTimers();
+    vi.unstubAllGlobals();
     cleanup();
+  });
+
+  it("inicia el preload dedicado de activación al montar Portada", () => {
+    render(<CoverIntroScreen />);
+
+    expect(useAssetPreloaderMock).toHaveBeenCalledWith(
+      screenAssetBundles.coverIntroActivation,
+      {
+        timeoutMs: 9000,
+        retryKey: 0,
+      },
+    );
   });
 
   it("renderiza textos DOM principales y botón de inicio", () => {
@@ -328,6 +414,172 @@ describe("CoverIntroScreen", () => {
       "data-runtime-asset",
       coverIntroAssets.liaActivatePortal1,
     );
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-activation-assets-status",
+      "ready",
+    );
+  });
+
+  it("mantiene una sola intención pendiente mientras carga y la consume al quedar ready", () => {
+    setActivationPreload("loading");
+    const { container, rerender } = render(<CoverIntroScreen />);
+    finishIntroDialogue();
+
+    const enterButton = screen.getByRole("button", {
+      name: coverIntroText.enterWorldOne,
+    });
+    fireEvent.click(enterButton);
+    fireEvent.click(enterButton);
+
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "portal_1_ready",
+    );
+    expect(
+      screen.queryByText(coverIntroTransitionText.opening),
+    ).not.toBeInTheDocument();
+    expect(navigateMock).not.toHaveBeenCalled();
+
+    setActivationPreload("ready");
+    rerender(<CoverIntroScreen />);
+    rerender(<CoverIntroScreen />);
+
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "portal_1_opening_placeholder",
+    );
+    expect(screen.getByTestId("cover-activation-lia")).toHaveAttribute(
+      "data-runtime-asset",
+      coverIntroAssets.liaActivatePortal1,
+    );
+  });
+
+  it("reintenta una vez si una intención pendiente termina en timeout", () => {
+    setActivationPreload("loading");
+    const { container, rerender } = render(<CoverIntroScreen />);
+    finishIntroDialogue();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
+    );
+    setActivationPreload("timeout");
+    rerender(<CoverIntroScreen />);
+
+    const activationCalls = useAssetPreloaderMock.mock.calls.filter(
+      ([bundle]) => bundle.id === "coverIntroActivation",
+    );
+    expect(activationCalls.at(-1)?.[1]).toMatchObject({ retryKey: 1 });
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "portal_1_ready",
+    );
+
+    setActivationPreload("loading");
+    rerender(<CoverIntroScreen />);
+    setActivationPreload("ready");
+    rerender(<CoverIntroScreen />);
+
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "portal_1_opening_placeholder",
+    );
+  });
+
+  it.each(["error", "timeout"] as const)(
+    "permanece listo y solicita retry controlado después de %s",
+    (status) => {
+      setActivationPreload(status);
+      const { container } = render(<CoverIntroScreen />);
+      finishIntroDialogue();
+
+      fireEvent.click(
+        screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
+      );
+
+      expect(container.firstElementChild).toHaveAttribute(
+        "data-cover-phase",
+        "portal_1_ready",
+      );
+      expect(
+        screen.queryByText(coverIntroTransitionText.opening),
+      ).not.toBeInTheDocument();
+      expect(navigateMock).not.toHaveBeenCalled();
+
+      const activationCalls = useAssetPreloaderMock.mock.calls.filter(
+        ([bundle]) => bundle.id === "coverIntroActivation",
+      );
+      expect(activationCalls.at(-1)?.[1]).toMatchObject({ retryKey: 1 });
+    },
+  );
+
+  it("inicia los 920 ms sólo cuando el retry llega a ready y navega una vez", () => {
+    vi.useFakeTimers();
+    setActivationPreload("error");
+    const { container, rerender } = render(<CoverIntroScreen />);
+    finishIntroDialogue();
+    const enterButton = screen.getByRole("button", {
+      name: coverIntroText.enterWorldOne,
+    });
+
+    fireEvent.click(enterButton);
+    act(() => {
+      vi.advanceTimersByTime(920);
+    });
+    expect(navigateMock).not.toHaveBeenCalled();
+
+    setActivationPreload("loading");
+    rerender(<CoverIntroScreen />);
+    fireEvent.click(enterButton);
+    fireEvent.click(enterButton);
+    setActivationPreload("ready");
+    rerender(<CoverIntroScreen />);
+
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-cover-phase",
+      "portal_1_opening_placeholder",
+    );
+    act(() => {
+      vi.advanceTimersByTime(919);
+    });
+    expect(navigateMock).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
+  });
+
+  it("conserva el handoff de 920 ms bajo reduced motion", () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({
+        matches: true,
+        media: "(prefers-reduced-motion: reduce)",
+        onchange: null,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }),
+    );
+    render(<CoverIntroScreen />);
+    finishIntroDialogue();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
+    );
+    act(() => {
+      vi.advanceTimersByTime(919);
+    });
+    expect(navigateMock).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(navigateMock).toHaveBeenCalledTimes(1);
   });
 
   it("navega a la transición runtime una sola vez despues de la activación", () => {
@@ -357,7 +609,9 @@ describe("CoverIntroScreen", () => {
       "data-cover-phase",
       "portal_1_opening_placeholder",
     );
-    expect(screen.queryByText(coverIntroTransitionText.preparing)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(coverIntroTransitionText.preparing),
+    ).not.toBeInTheDocument();
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
     expect(
       screen.queryByText("Ruta base creada para navegación secuencial"),

@@ -70,7 +70,19 @@ test.describe("QA visual Portada / Intro", () => {
     );
 
     await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-    await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
+    const openingCover = page.locator(
+      'main[data-cover-phase="portal_1_opening_placeholder"]',
+    );
+    await expect(page).toHaveURL(/\/portada$/);
+    await expect(
+      openingCover.getByText("Abriendo Mundo I: Raíz..."),
+    ).toBeVisible();
+    await expect(
+      openingCover.getByTestId("cover-portal-activation-rig"),
+    ).toBeVisible();
+    await expect(
+      openingCover.getByTestId("cover-activation-lia"),
+    ).toBeVisible();
     await capture(
       page,
       testInfo,
@@ -80,9 +92,13 @@ test.describe("QA visual Portada / Intro", () => {
     await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
       timeout: 5000,
     });
-    await expect(page.getByText("Preparando la raíz.")).toBeVisible();
-    await expect(page.locator("button")).toHaveCount(0);
-    await expect(page.locator("a")).toHaveCount(0);
+    const transition = page.locator(
+      'main[data-transition-world-id="intro-to-station-1"]',
+    );
+    await expect(transition.getByText("Abriendo Mundo I")).toBeVisible();
+    await expect(transition.getByText("Preparando la raíz.")).toBeVisible();
+    await expect(transition.locator("button")).toHaveCount(0);
+    await expect(transition.locator("a")).toHaveCount(0);
     await capture(
       page,
       testInfo,

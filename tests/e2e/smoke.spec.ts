@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+import { loadingInitialTimeline } from "../../src/screens/LoadingInitial/loadingInitialTimeline";
+
+const loadingNavigationTimeoutMs = loadingInitialTimeline.maxDurationMs + 2_000;
+
 const mobileViewports = [
   { width: 360, height: 640 },
   { width: 375, height: 667 },
@@ -58,7 +62,9 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
     }),
   ).toBeVisible();
   await expect(page.locator('[data-lia-avatar-mode="rig-idle"]')).toBeVisible();
-  await expect(page.locator('[data-lia-rig-layer="eyes-neutral"]')).toBeVisible();
+  await expect(
+    page.locator('[data-lia-rig-layer="eyes-neutral"]'),
+  ).toBeVisible();
   await expect(page.locator('[data-portal-state="locked"]')).toHaveCount(4);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
@@ -176,7 +182,10 @@ test("resetIntro desde / reproduce carga y llega a portada fresca", async ({
   await expect(
     page.getByRole("heading", { name: "Preparando el recorrido" }),
   ).toBeVisible();
-  await expect(page).toHaveURL(/\/portada$/, { timeout: 5000 });
+  await expect(page).toHaveURL(/\/portada$/, {
+    // Margen acotado para preload y navegación sobre el máximo runtime canónico.
+    timeout: loadingNavigationTimeoutMs,
+  });
   await expect(
     page.getByRole("button", { name: "Comenzar recorrido" }),
   ).toBeVisible();

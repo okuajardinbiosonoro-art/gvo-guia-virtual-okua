@@ -81,6 +81,29 @@ async function gotoGuarded(page: Page, route: string) {
   }
 }
 
+async function expectTransitionThenDestination(
+  page: Page,
+  transitionId: string,
+  destination: RegExp,
+) {
+  await expect(page).toHaveURL(new RegExp(`/transition/${transitionId}$`), {
+    timeout: 5_000,
+  });
+  const transition = page.locator(
+    `[data-transition-world-id="${transitionId}"]`,
+  );
+  await expect(transition).toBeVisible();
+  await expect(transition).toHaveAttribute("data-duration-ms", "2300");
+  await expect(transition).toHaveAttribute(
+    "data-critical-assets-ready",
+    "true",
+    {
+      timeout: 15_000,
+    },
+  );
+  await expect(page).toHaveURL(destination, { timeout: 5_000 });
+}
+
 async function completeWorld3Record(
   page: Page,
   record: "planta" | "prototipo" | "senal",
@@ -144,7 +167,11 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
   await page.getByRole("button", { name: "Cerrar raíz" }).click();
   expect(await readCompletedStations(page)).toBeNull();
   await page.getByRole("button", { name: "Continuar" }).click();
-  await expect(page).toHaveURL(/\/estacion\/2$/, { timeout: 10_000 });
+  await expectTransitionThenDestination(
+    page,
+    "world-1-to-world-2",
+    /\/estacion\/2$/,
+  );
   expect(await readCompletedStations(page)).toEqual([1]);
 
   await page.locator('[data-plant-contact-hotspot="016J"]').click();
@@ -167,7 +194,11 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
     timeout: 15_000,
   });
   await page.getByRole("button", { name: "Continuar" }).click();
-  await expect(page).toHaveURL(/\/estacion\/3$/, { timeout: 10_000 });
+  await expectTransitionThenDestination(
+    page,
+    "world-2-to-world-3",
+    /\/estacion\/3$/,
+  );
   expect(await readCompletedStations(page)).toEqual([1, 2]);
 
   await expect(page.locator("[data-station3-state]")).toHaveAttribute(
@@ -225,7 +256,11 @@ test("GVO_DEBT_002 conserva completion de W4 y W5 sin regresión", async ({
       name: "Abrir Mundo V. Ir al Mapa del presente.",
     })
     .click();
-  await expect(page).toHaveURL(/\/estacion\/5$/, { timeout: 10_000 });
+  await expectTransitionThenDestination(
+    page,
+    "world-4-to-world-5",
+    /\/estacion\/5$/,
+  );
 
   await seedJourney(page, {
     completedStations: [1, 2, 3, 4],
@@ -233,7 +268,7 @@ test("GVO_DEBT_002 conserva completion de W4 y W5 sin regresión", async ({
   });
   await page.goto("/estacion/5", { waitUntil: "domcontentloaded" });
   await page.getByRole("button", { name: "Ir al cierre" }).click();
-  await expect(page).toHaveURL(/\/final$/, { timeout: 10_000 });
+  await expectTransitionThenDestination(page, "world-5-to-final", /\/final$/);
   expect(await readCompletedStations(page)).toEqual([1, 2, 3, 4, 5]);
 });
 

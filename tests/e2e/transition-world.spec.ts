@@ -3,14 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "@playwright/test";
 
-const transitionWorldOutputDir = path.join(
-  process.cwd(),
-  "docs",
-  "visual",
-  "transition-world",
-  "validation",
-  "t003e7c",
-);
+import { evidenceDirectory } from "./support/evidence";
+
+const transitionWorldOutputDir = evidenceDirectory("transition-world-t003e7c");
 
 test.beforeAll(() => {
   mkdirSync(transitionWorldOutputDir, { recursive: true });

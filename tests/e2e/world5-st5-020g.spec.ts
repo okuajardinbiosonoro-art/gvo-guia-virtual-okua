@@ -1,5 +1,11 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+
+test.beforeEach(async ({ page }) => {
+  await installWorldFiveAccessFixture(page);
+});
+
 const progressKey = "gvo.station5.v1";
 
 async function seed(page: Page, areas: string[]) {
@@ -36,11 +42,12 @@ test("ST5-020G completa Visitante, conserva 4/4 y permite revisita libre", async
   await page.setViewportSize({ width: 375, height: 667 });
   await seed(page, ["plantas", "sistema", "espacio"]);
   await page.goto("/estacion/5", { waitUntil: "domcontentloaded" });
-  await expect(page.getByText("Toca Visitante para completar el mapa.")).toBeVisible();
-  await expect(page.locator('[data-station5-area="visitante"]')).toHaveAttribute(
-    "data-area-state",
-    "available",
-  );
+  await expect(
+    page.getByText("Toca Visitante para completar el mapa."),
+  ).toBeVisible();
+  await expect(
+    page.locator('[data-station5-area="visitante"]'),
+  ).toHaveAttribute("data-area-state", "available");
 
   await page.locator('[data-station5-area="visitante"]').click();
   await expectState(page, "visitor_intro");
@@ -147,10 +154,18 @@ test("ST5-020G conserva Visitante y 4/4 en reflow dinámico y reduced motion", a
   ]) {
     await page.setViewportSize(viewport);
     await expectState(page, "visitor_intro");
-    await expect(page.getByText("Toca la presencia dentro del aro.")).toBeVisible();
+    await expect(
+      page.getByText("Toca la presencia dentro del aro."),
+    ).toBeVisible();
     const dimensions = await page.evaluate(() => ({
-      client: [document.documentElement.clientWidth, document.documentElement.clientHeight],
-      scroll: [document.documentElement.scrollWidth, document.documentElement.scrollHeight],
+      client: [
+        document.documentElement.clientWidth,
+        document.documentElement.clientHeight,
+      ],
+      scroll: [
+        document.documentElement.scrollWidth,
+        document.documentElement.scrollHeight,
+      ],
     }));
     expect(dimensions.client).toEqual(dimensions.scroll);
   }

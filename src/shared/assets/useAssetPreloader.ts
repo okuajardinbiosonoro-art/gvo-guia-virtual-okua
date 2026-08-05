@@ -1,13 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
-import {
-  type PreloadSummary,
-  preloadImages,
-} from "./assetPreloader";
-import {
-  type ScreenAssetBundle,
-  getBundleSources,
-} from "./screenAssetBundles";
+import { type PreloadSummary, preloadImages } from "./assetPreloader";
+import { type ScreenAssetBundle, getBundleSources } from "./screenAssetBundles";
 
 export type AssetPreloaderHookStatus =
   | "idle"
@@ -31,6 +25,7 @@ type UseAssetPreloaderOptions = {
   decode?: boolean;
   timeoutMs?: number;
   concurrency?: number;
+  retryKey?: number | string;
 };
 
 const TEST_READY_STATE: AssetPreloaderState = {
@@ -64,6 +59,7 @@ export function useAssetPreloader(
     decode = true,
     timeoutMs = 8000,
     concurrency = 4,
+    retryKey = 0,
   }: UseAssetPreloaderOptions = {},
 ) {
   const sources = useMemo(() => getBundleSources(bundle), [bundle]);
@@ -144,7 +140,16 @@ export function useAssetPreloader(
     return () => {
       cancelled = true;
     };
-  }, [bundle.id, concurrency, decode, enabled, sourceKey, sources, timeoutMs]);
+  }, [
+    bundle.id,
+    concurrency,
+    decode,
+    enabled,
+    retryKey,
+    sourceKey,
+    sources,
+    timeoutMs,
+  ]);
 
   return state;
 }

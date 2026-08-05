@@ -10,11 +10,15 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
+import { evidenceDirectory } from "./support/evidence";
+
 const stationProgressKey = "gvo.station5.v1";
 const globalProgressKey = "gvo.progress.v1";
 const closeCopy = "Ir al cierre";
-const closeErrorCopy = "No fue posible guardar el cierre. Inténtalo de nuevo.";
-const evidenceDir = path.resolve("docs/visual/world5/st5-020h");
+const closeErrorCopy =
+  "No fue posible guardar tu progreso. Intenta nuevamente.";
+const evidenceDir = evidenceDirectory("world5-st5-020h");
+const finalRootSelector = '[data-final-root="mirador_editorial_final"]';
 
 const completedAreas = ["plantas", "sistema", "espacio", "visitante"];
 const previousStations = [1, 2, 3, 4];
@@ -211,9 +215,12 @@ async function expectStationState(page: Page, expected: string) {
 
 async function expectFinal(page: Page) {
   await expect(page).toHaveURL(/\/final$/);
-  await expect(
-    page.locator('[data-final-root="mirador_temporal"]'),
-  ).toBeVisible();
+  const finalRoot = page.locator(finalRootSelector);
+  await expect(finalRoot).toBeVisible();
+  await expect(finalRoot).toHaveAttribute(
+    "data-final-screen",
+    "editorial_final_complete_experience",
+  );
 }
 
 async function settleStationVisuals(page: Page) {
@@ -310,7 +317,7 @@ async function captureEvidence(
     const closeButton = [...document.querySelectorAll("button")].find(
       (button) =>
         button.textContent?.trim() === "Ir al cierre" ||
-        button.textContent?.includes("Reintentar cierre"),
+        button.textContent?.trim() === "Reintentar",
     );
     const closeRect = rect(closeButton ?? null);
     const liaRect = rect(document.querySelector(".s5-lia"));
@@ -371,7 +378,7 @@ async function captureEvidence(
       text,
       dimensions,
       hasClosureError: document.body.textContent?.includes(
-        "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
       ),
       transition: {
         id: document
@@ -388,7 +395,7 @@ async function captureEvidence(
           ?.getAttribute("data-duration-ms"),
       },
       finalVisible: visible(
-        document.querySelector('[data-final-root="mirador_temporal"]'),
+        document.querySelector('[data-final-root="mirador_editorial_final"]'),
       ),
     };
   });
@@ -490,6 +497,11 @@ async function makeContactSheet(viewport: string) {
   const cellWidth = thumbnailWidth + 12;
   const cellHeight = thumbnailHeight + 38;
   const layers: sharp.OverlayOptions[] = [];
+
+  expect(
+    files,
+    `Se esperaban seis capturas productoras para ${viewport}.`,
+  ).toHaveLength(6);
 
   for (let index = 0; index < files.length; index += 1) {
     const image = await sharp(path.join(evidenceDir, files[index]))
@@ -690,9 +702,7 @@ test.describe("ST5-020H — cierre controlado de Estación V", () => {
     expect(failed.global.completedStations).toEqual(previousStations);
 
     await setGlobalStorageFailure(page, false);
-    await page
-      .getByRole("button", { name: /Ir al cierre|Reintentar cierre/ })
-      .click();
+    await page.getByRole("button", { name: "Reintentar" }).click();
     await expect(page).toHaveURL(/\/transition\/world-5-to-final$/);
     expect((await storedProgress(page)).global.completedStations).toEqual([
       1, 2, 3, 4, 5,
@@ -716,9 +726,7 @@ test.describe("ST5-020H — cierre controlado de Estación V", () => {
 
     await page.goto("/final", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/estacion\/5$/);
-    await expect(
-      page.locator('[data-final-root="mirador_temporal"]'),
-    ).toHaveCount(0);
+    await expect(page.locator(finalRootSelector)).toHaveCount(0);
 
     await seedProgress(page, completedAreas, [1, 2, 3, 4, 5]);
     await page.goto("/final", { waitUntil: "domcontentloaded" });
@@ -856,9 +864,7 @@ test.describe("ST5-020H — cierre controlado de Estación V", () => {
             ),
           );
           await setGlobalStorageFailure(page, false);
-          await page
-            .getByRole("button", { name: /Ir al cierre|Reintentar cierre/ })
-            .click();
+          await page.getByRole("button", { name: "Reintentar" }).click();
         } else {
           await page.getByRole("button", { name: closeCopy }).click();
         }
@@ -999,22 +1005,26 @@ test.describe("ST5-020H — cierre controlado de Estación V", () => {
           const [width, height] = dimensions[index];
           await page.setViewportSize({ width, height });
           await settleStationVisuals(page);
-          const sample = await page.evaluate(() => ({
-            route: location.pathname,
-            state: document
-              .querySelector("[data-world5-close-state]")
-              ?.getAttribute("data-world5-close-state"),
-            focused:
-              document.activeElement?.textContent?.trim() === "Ir al cierre",
-            client: [
-              document.documentElement.clientWidth,
-              document.documentElement.clientHeight,
-            ],
-            scroll: [
-              document.documentElement.scrollWidth,
-              document.documentElement.scrollHeight,
-            ],
-          }));
+          const sample = await page.evaluate(
+            (expectedFocusCopy) => ({
+              route: location.pathname,
+              state: document
+                .querySelector("[data-world5-close-state]")
+                ?.getAttribute("data-world5-close-state"),
+              focused:
+                document.activeElement?.textContent?.trim() ===
+                expectedFocusCopy,
+              client: [
+                document.documentElement.clientWidth,
+                document.documentElement.clientHeight,
+              ],
+              scroll: [
+                document.documentElement.scrollWidth,
+                document.documentElement.scrollHeight,
+              ],
+            }),
+            state === "closure_error" ? "Reintentar" : "Ir al cierre",
+          );
           const file = `dynamic_${state}_${sequence}_${index + 1}_${width}x${height}.png`;
           await page.screenshot({
             path: path.join(evidenceDir, file),
