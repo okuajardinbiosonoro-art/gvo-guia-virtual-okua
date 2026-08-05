@@ -21,6 +21,10 @@ import {
   ImmersiveModeControl,
   type ImmersiveDisplayMode,
 } from "../../shared/immersive";
+import {
+  PROGRESS_SAVE_ERROR_COPY,
+  PROGRESS_SAVE_RETRY_LABEL,
+} from "../../shared/progress/progressSaveError";
 import { station4Exit, station4Lia, station4Nodes } from "./station4Content";
 import { useWorld4MotionController } from "./useWorld4MotionController";
 import { WORLD4_BACKPLATE_SLICES } from "./world4AssetManifest";
@@ -152,7 +156,9 @@ function useDocumentVisible() {
 }
 
 function completedBeforeMount() {
-  return readProgress().completedStations.includes(STATION_ID);
+  return (
+    readProgress().progress?.completedStations.includes(STATION_ID) ?? false
+  );
 }
 
 function ambientDensityForViewport({
@@ -188,12 +194,39 @@ export function World4RootScreen() {
   const [liaNote, setLiaNote] = useState<string | null>(null);
   const [lockedAlt, setLockedAlt] = useState(false);
   const [tapHintDismissSignal, setTapHintDismissSignal] = useState(0);
+  const [completionFailed, setCompletionFailed] = useState(false);
   const progressRef = useRef(initialProgress);
   const entryStartedRef = useRef(false);
   const chainStartedRef = useRef(false);
   const stationMarkedRef = useRef(persistedRevisit);
   const navigationStartedRef = useRef(false);
   const tapHintAnchorRef = useRef<HTMLButtonElement>(null);
+  const retryButtonRef = useRef<HTMLButtonElement>(null);
+
+  const persistStationCompletion = useCallback(() => {
+    if (stationMarkedRef.current) {
+      setCompletionFailed(false);
+      return true;
+    }
+
+    const result = markStationCompleted(STATION_ID);
+    if (!result.ok) {
+      setCompletionFailed(true);
+      setLiaNote(PROGRESS_SAVE_ERROR_COPY);
+      return false;
+    }
+
+    stationMarkedRef.current = true;
+    setCompletionFailed(false);
+    setLiaNote(null);
+    return true;
+  }, []);
+
+  useEffect(() => {
+    if (completionFailed) {
+      retryButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [completionFailed]);
 
   const onEntrySettled = useCallback(() => {
     setCardMotion("stable");
@@ -225,10 +258,6 @@ export function World4RootScreen() {
         setRevisitActiveIndex(null);
 
         if (target === LAST_INDEX) {
-          if (!stationMarkedRef.current) {
-            markStationCompleted(STATION_ID);
-            stationMarkedRef.current = true;
-          }
           chainStartedRef.current = false;
           setPhase("chain");
         } else {
@@ -244,8 +273,9 @@ export function World4RootScreen() {
   );
 
   const onChainSettled = useCallback(() => {
+    persistStationCompletion();
     setPhase("exit_ready");
-  }, []);
+  }, [persistStationCompletion]);
 
   const onExitSettled = useCallback(() => {
     navigate(worldFourToWorldFiveTransitionRoute);
@@ -364,6 +394,10 @@ export function World4RootScreen() {
       motion.inputLocked ||
       navigationStartedRef.current
     ) {
+      return;
+    }
+
+    if (!persistStationCompletion()) {
       return;
     }
 
@@ -535,7 +569,12 @@ export function World4RootScreen() {
             phase === "exiting" ||
             motion.visualPhase === "exit_reveal" ? (
               <button
-                aria-label={station4Exit.accessibleLabel}
+                ref={retryButtonRef}
+                aria-label={
+                  completionFailed
+                    ? PROGRESS_SAVE_RETRY_LABEL
+                    : station4Exit.accessibleLabel
+                }
                 className="s4-exit"
                 data-backplate={WORLD4_BACKPLATE_SLICES.openWorld5.asset}
                 data-border-image-slice={
@@ -554,7 +593,11 @@ export function World4RootScreen() {
                 }}
                 type="button"
               >
-                <span className="s4-exit__label">{station4Exit.label}</span>
+                <span className="s4-exit__label">
+                  {completionFailed
+                    ? PROGRESS_SAVE_RETRY_LABEL
+                    : station4Exit.label}
+                </span>
                 <span aria-hidden="true" className="s4-exit__arrow">
                   ›
                 </span>

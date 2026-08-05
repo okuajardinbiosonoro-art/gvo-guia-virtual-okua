@@ -17,8 +17,13 @@ import {
   world2LayerDefinitions,
   type World2LayerId,
 } from "../../content/world2EditorialSlots";
+import { markStationCompleted } from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
+import {
+  PROGRESS_SAVE_ERROR_COPY,
+  PROGRESS_SAVE_RETRY_LABEL,
+} from "../../shared/progress/progressSaveError";
 import {
   captureTimelineSteps,
   type CaptureTimelineStepId,
@@ -49,6 +54,7 @@ type RequiredInteractionId =
   | "signal_measured_wave_seen"
   | "capture_data_readout_seen";
 type SignalRevealState = "idle" | "expanded";
+type CompletionPhase = "idle" | "persisting" | "error" | "complete";
 
 type LayerCopy = {
   accessibleLabel: string;
@@ -384,6 +390,8 @@ export function World2RootScreen() {
   const navigate = useNavigate();
   const plantContactHotspotRef = useRef<HTMLButtonElement>(null);
   const signalRevealControlRef = useRef<HTMLButtonElement>(null);
+  const continueButtonRef = useRef<HTMLButtonElement>(null);
+  const completionLockRef = useRef(false);
   const [visualViewportHeight, setVisualViewportHeight] = useState<
     number | null
   >(() => {
@@ -402,6 +410,8 @@ export function World2RootScreen() {
     Math.min(2, world2LayerCount),
   );
   const [journeyComplete, setJourneyComplete] = useState(false);
+  const [completionPhase, setCompletionPhase] =
+    useState<CompletionPhase>("idle");
   const [sonicConvergenceComplete, setSonicConvergenceComplete] =
     useState(false);
   const [softMessage, setSoftMessage] = useState<string | null>(null);
@@ -456,8 +466,10 @@ export function World2RootScreen() {
   const world2State = isReadyToContinue ? "ready_to_continue" : activeLayer.id;
   const isLockedMessage = softMessage === cleanMessages.locked;
   const activeDialogue =
-    softMessage ??
-    (isReadyToContinue ? cleanMessages.complete : activeCopy.dialogue);
+    completionPhase === "error"
+      ? PROGRESS_SAVE_ERROR_COPY
+      : (softMessage ??
+        (isReadyToContinue ? cleanMessages.complete : activeCopy.dialogue));
   const activeAmbient = isReadyToContinue
     ? "La ruta de mediación queda completa para continuar."
     : activeCopy.ambient;
@@ -504,6 +516,12 @@ export function World2RootScreen() {
         "--world2-visual-vh": `${visualViewportHeight}px`,
       } as World2RootStyle)
     : undefined;
+
+  useEffect(() => {
+    if (completionPhase === "error") {
+      continueButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [completionPhase]);
 
   useEffect(() => {
     const updateVisualViewportHeight = () => {
@@ -631,6 +649,24 @@ export function World2RootScreen() {
     setJourneyComplete(true);
     setSoftMessage(cleanMessages.complete);
   }, []);
+
+  function continueJourney() {
+    if (!isReadyToContinue || completionLockRef.current) {
+      return;
+    }
+
+    completionLockRef.current = true;
+    setCompletionPhase("persisting");
+    const result = markStationCompleted(2);
+    if (!result.ok) {
+      completionLockRef.current = false;
+      setCompletionPhase("error");
+      return;
+    }
+
+    setCompletionPhase("complete");
+    navigate(worldTwoToWorldThreeTransitionRoute);
+  }
 
   return (
     <main
@@ -1087,9 +1123,14 @@ export function World2RootScreen() {
                 <p
                   className="world2-dialogue__copy"
                   data-world2-slot-id={
-                    isReadyToContinue
-                      ? "W2_COMPLETE_LIA_01"
-                      : activeLayer.hintSlot
+                    completionPhase === "error"
+                      ? undefined
+                      : isReadyToContinue
+                        ? "W2_COMPLETE_LIA_01"
+                        : activeLayer.hintSlot
+                  }
+                  data-progress-save-error={
+                    completionPhase === "error" ? "true" : undefined
                   }
                   data-world2-text-sweep={activeLayer.id}
                   data-editorial-status="TEMP"
@@ -1104,14 +1145,17 @@ export function World2RootScreen() {
               <div className="world2-dialogue__actions">
                 {isReadyToContinue ? (
                   <button
+                    ref={continueButtonRef}
                     className="world2-action world2-action--continue"
                     type="button"
+                    aria-busy={
+                      completionPhase === "persisting" ? "true" : undefined
+                    }
+                    disabled={completionPhase === "persisting"}
                     data-world2-slot-id="W2_CONTINUE_BTN_01"
                     data-world2-exit-action="navigate_to_transition"
                     data-editorial-status="TEMP"
-                    onClick={() =>
-                      navigate(worldTwoToWorldThreeTransitionRoute)
-                    }
+                    onClick={continueJourney}
                   >
                     <img
                       src={world2RuntimeAssets.ctaButton}
@@ -1120,7 +1164,11 @@ export function World2RootScreen() {
                       data-runtime-asset={world2RuntimeAssets.ctaButton}
                       loading="lazy"
                     />
-                    <span>Continuar</span>
+                    <span>
+                      {completionPhase === "error"
+                        ? PROGRESS_SAVE_RETRY_LABEL
+                        : "Continuar"}
+                    </span>
                   </button>
                 ) : null}
               </div>

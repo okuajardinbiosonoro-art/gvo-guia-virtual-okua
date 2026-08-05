@@ -145,6 +145,7 @@ describe("World4RootScreen — Mesa de sistema", () => {
 
   afterEach(() => {
     cleanup();
+    vi.restoreAllMocks();
     vi.useRealTimers();
     Reflect.deleteProperty(window, "matchMedia");
     Object.defineProperty(document, "hidden", {
@@ -953,13 +954,20 @@ describe("World4RootScreen — Mesa de sistema", () => {
   });
 
   it("persiste estación 4 una sola vez, completa la ruta y protege doble navegación", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1, 2, 3], updatedAt: null }),
+    );
     const { container } = renderStation4();
     completeChain(container);
 
     const stored = JSON.parse(
       window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}",
     ) as { completedStations?: number[] };
-    expect(stored.completedStations).toContain(4);
+    expect(stored).toMatchObject({
+      schemaVersion: 1,
+      completedStations: [1, 2, 3, 4],
+    });
     expect(
       container.querySelector("[data-world4-route-completed-count='7']"),
     ).toBeInTheDocument();
@@ -969,6 +977,49 @@ describe("World4RootScreen — Mesa de sistema", () => {
     });
     fireEvent.click(exit);
     fireEvent.click(exit);
+    advance(700);
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-4-to-world-5",
+    );
+  });
+
+  it("conserva la cadena completa y permite retry si falla completion global", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1, 2, 3], updatedAt: null }),
+    );
+    const nativeSetItem = Storage.prototype.setItem;
+    let storageFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === GVO_PROGRESS_STORAGE_KEY && storageFails) {
+        throw new Error("quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderStation4();
+
+    completeChain(container);
+
+    expect(getState(container)).toBe("station4_ready_to_exit");
+    expect(
+      screen.getByText(
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(
+      container.querySelector("[data-world4-route-completed-count='7']"),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/4",
+    );
+
+    storageFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
     advance(700);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-4-to-world-5",
@@ -1161,10 +1212,7 @@ describe("World4RootScreen — Mesa de sistema", () => {
 
     expect(root).toHaveAttribute("data-station4-state", "station4_entering");
     expect(root).toHaveAttribute("data-station4-input-locked", "false");
-    expect(root).toHaveAttribute(
-      "data-station4-document-visibility",
-      "hidden",
-    );
+    expect(root).toHaveAttribute("data-station4-document-visibility", "hidden");
     advance(0);
     expect(vi.getTimerCount()).toBe(0);
 

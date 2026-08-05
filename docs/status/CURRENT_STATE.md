@@ -163,10 +163,27 @@ registro histórico `PENDING_HUMAN_REVIEW` en
 [GVO_DEBT_001_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_FOR_REVIEW.md](GVO_DEBT_001_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_FOR_REVIEW.md)
 y su aprobación humana vinculante está publicada en
 [GVO_DEBT_001P_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_001P_PROJECT_DEBT_AUDIT_AND_PRIORITIZATION_HUMAN_APPROVED_AND_PUBLISHED.md).
-Este cierre es documental: todavía no se ha implementado ninguna deuda
-funcional. El siguiente paso es la definición y publicación del primer ticket
-funcional aprobado. El Mirador permanece `COMPLETE` bajo la autoridad de
-`GVO_FINAL_021P`; este estado no declara terminado todo GVO.
+
+`GVO_DEBT_002` corrige y publica el primer frente funcional de esta fase. Su
+informe histórico conserva `PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_002_PROGRESS_CORE_AND_GLOBAL_ACCESS_INTEGRITY_FOR_REVIEW.md](GVO_DEBT_002_PROGRESS_CORE_AND_GLOBAL_ACCESS_INTEGRITY_FOR_REVIEW.md),
+y su aprobación humana vinculante está registrada en
+[GVO_DEBT_002P_PROGRESS_CORE_AND_GLOBAL_ACCESS_INTEGRITY_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_002P_PROGRESS_CORE_AND_GLOBAL_ACCESS_INTEGRITY_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+La integridad global de completion y guards queda corregida: el payload
+`gvo.progress.v1` usa `schemaVersion: 1`, acepta legacy sin inventar progreso,
+falla cerrado ante corrupción, versión desconocida o storage no disponible y
+verifica cada escritura. Mundos I–V registran completion global en sus cierres;
+estaciones, subrutas de Mundo V, transiciones y Final exigen el prefijo completo.
+La revisita desde Final también queda condicionada a esa integridad global. El
+reset conserva sin ampliación su allowlist contractual de cuatro keys.
+
+Permanecen pendientes los checkpoints parciales W1–W4, accesibilidad global,
+deudas visuales de Mundo II, registros durables de Mundo III, fullscreen, QR,
+continuidad PWA/offline, optimización del bundle, deuda de assets y frentes
+editoriales no cubiertos por este contrato. La fase `PROJECT DEBT CORRECTION` no
+se declara terminada; el siguiente frente se definirá mediante un ticket
+separado. El Mirador permanece `COMPLETE` bajo la autoridad de `GVO_FINAL_021P`.
 
 El cierre de assets está en
 [GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md](GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md).

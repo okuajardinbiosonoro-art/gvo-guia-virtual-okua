@@ -4,9 +4,14 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { finalEntryRoute } from "../routes";
+import { finalEntryRoute, stationEntryRoutes } from "../routes";
 import { finalEditorialSlots } from "../../content/finalEditorialSlots";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
+import {
+  canOpenFinal,
+  mostAdvancedAvailableStation,
+  readProgress,
+} from "../../domain/progress/progress.storage";
 import {
   clearFinalReviewContext,
   finalReviewWorldForPathname,
@@ -19,6 +24,7 @@ import type {
 
 type FinalReviewModeLayoutProps = {
   children: ReactNode;
+  progressStorage?: ProgressStorage | null;
   storage?: ProgressStorage | null;
   world: FinalReviewWorld;
 };
@@ -27,8 +33,27 @@ function defaultSessionStorage(): ProgressStorage | null {
   return typeof window === "undefined" ? null : window.sessionStorage;
 }
 
+function defaultProgressStorage(): ProgressStorage | null {
+  return typeof window === "undefined" ? null : window.localStorage;
+}
+
+function resolveAuthorizedFinalReviewContext(
+  state: unknown,
+  world: FinalReviewWorld,
+  storage: ProgressStorage | null,
+  progressStorage: ProgressStorage | null,
+): FinalReviewContext | null {
+  if (!canOpenFinal(readProgress(progressStorage))) {
+    clearFinalReviewContext(storage);
+    return null;
+  }
+
+  return resolveFinalReviewContext(state, world, storage);
+}
+
 export function FinalReviewModeLayout({
   children,
+  progressStorage = defaultProgressStorage(),
   storage = defaultSessionStorage(),
   world,
 }: FinalReviewModeLayoutProps) {
@@ -40,7 +65,12 @@ export function FinalReviewModeLayout({
       return null;
     }
 
-    return resolveFinalReviewContext(location.state, world, storage);
+    return resolveAuthorizedFinalReviewContext(
+      location.state,
+      world,
+      storage,
+      progressStorage,
+    );
   });
 
   useEffect(() => {
@@ -50,13 +80,26 @@ export function FinalReviewModeLayout({
       return;
     }
 
-    setContext(resolveFinalReviewContext(location.state, world, storage));
-  }, [location.pathname, location.state, storage, world]);
+    setContext(
+      resolveAuthorizedFinalReviewContext(
+        location.state,
+        world,
+        storage,
+        progressStorage,
+      ),
+    );
+  }, [location.pathname, location.state, progressStorage, storage, world]);
 
   function returnToFinal() {
     clearFinalReviewContext(storage);
     setContext(null);
-    navigate(finalEntryRoute);
+    const progress = readProgress(progressStorage);
+    navigate(
+      canOpenFinal(progress)
+        ? finalEntryRoute
+        : stationEntryRoutes[mostAdvancedAvailableStation(progress)],
+      canOpenFinal(progress) ? undefined : { replace: true },
+    );
   }
 
   return (

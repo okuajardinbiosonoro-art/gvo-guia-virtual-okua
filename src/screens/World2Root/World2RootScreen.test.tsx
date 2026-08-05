@@ -6,14 +6,16 @@ import {
   screen,
 } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { worldTwoToWorldThreeTransitionRoute } from "../../app/routes";
 import {
   WORLD2_REQUIRED_SLOT_COUNT,
   world2EditorialSlots,
   world2LayerDefinitions,
   type World2LayerId,
 } from "../../content/world2EditorialSlots";
+import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { World2RootScreen } from "./World2RootScreen";
 import { world2RuntimeAssets } from "./world2RuntimeAssets";
 
@@ -180,8 +182,13 @@ function progressToLayer(container: HTMLElement, targetLayerId: World2LayerId) {
 }
 
 describe("World2RootScreen", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
+
   afterEach(() => {
     vi.useRealTimers();
+    vi.restoreAllMocks();
     cleanup();
   });
 
@@ -716,6 +723,10 @@ describe("World2RootScreen", () => {
 
   it("avanza por tokens inferiores, permite revisión libre y llega a ready_to_continue", () => {
     vi.useFakeTimers();
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1], updatedAt: null }),
+    );
     const { container } = renderWorld2RootScreen();
     const getState = () =>
       container
@@ -845,6 +856,55 @@ describe("World2RootScreen", () => {
     fireEvent.click(continueButton);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-2-to-world-3",
+    );
+    expect(
+      JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}"),
+    ).toMatchObject({ schemaVersion: 1, completedStations: [1, 2] });
+  });
+
+  it("no marca por capas parciales y reintenta sólo la escritura del cierre", () => {
+    vi.useFakeTimers();
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1], updatedAt: null }),
+    );
+    const nativeSetItem = Storage.prototype.setItem;
+    let storageFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === GVO_PROGRESS_STORAGE_KEY && storageFails) {
+        throw new Error("quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderWorld2RootScreen();
+
+    progressToLayer(container, "mapeo");
+    expect(
+      JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}")
+        .completedStations,
+    ).toEqual([1]);
+    clickLayer(container, "resultado_mediado");
+    act(() => vi.advanceTimersByTime(9000));
+    fireEvent.click(screen.getByRole("button", { name: "Continuar" }));
+
+    expect(
+      screen.getByText(
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/2",
+    );
+
+    storageFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      worldTwoToWorldThreeTransitionRoute,
     );
   });
 

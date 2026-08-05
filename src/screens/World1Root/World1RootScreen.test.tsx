@@ -6,7 +6,7 @@ import {
   screen,
 } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
 import {
@@ -14,6 +14,7 @@ import {
   world1ConceptCopy,
   world1EditorialSlots,
 } from "../../content/world1EditorialSlots";
+import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
@@ -63,8 +64,13 @@ function configureNarrativeOverflow(
 }
 
 describe("World1RootScreen", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
+
   afterEach(() => {
     vi.useRealTimers();
+    vi.restoreAllMocks();
     vi.unstubAllGlobals();
     cleanup();
   });
@@ -606,6 +612,50 @@ describe("World1RootScreen", () => {
 
     fireEvent.click(continueButton);
 
+    expect(screen.getByTestId("current-route")).toHaveTextContent(
+      worldOneToWorldTwoTransitionRoute,
+    );
+    expect(
+      JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}"),
+    ).toMatchObject({ schemaVersion: 1, completedStations: [1] });
+  });
+
+  it("falla cerrado y reintenta completion sin repetir la narrativa", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let storageFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === GVO_PROGRESS_STORAGE_KEY && storageFails) {
+        throw new Error("quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderWorld1RootScreen();
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
+    fireEvent.click(screen.getByRole("button", { name: "Continuar" }));
+
+    expect(
+      screen.getByText(
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(screen.getByTestId("current-route")).toHaveTextContent(
+      "/estacion/1",
+    );
+    expect(container).toHaveTextContent("LISTO PARA CONTINUAR");
+
+    storageFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
     expect(screen.getByTestId("current-route")).toHaveTextContent(
       worldOneToWorldTwoTransitionRoute,
     );

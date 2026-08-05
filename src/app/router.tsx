@@ -9,7 +9,10 @@ import {
 
 import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
 import {
+  canOpenStation,
+  canOpenTransition,
   canOpenFinal,
+  mostAdvancedAvailableStation,
   readProgress,
 } from "../domain/progress/progress.storage";
 import { CoverIntroScreen } from "../screens/Cover";
@@ -39,9 +42,12 @@ import {
   FinalReviewContextInvalidator,
   FinalReviewModeLayout,
 } from "./review/FinalReviewModeLayout";
+import { clearFinalReviewContext } from "./review/finalReviewContext";
 import {
   coverToWorldOneTransitionRoute,
   finalEntryRoute,
+  stationEntryRoutes,
+  worldOneEntryRoute,
   worldFiveEntryRoute,
   worldFivePlantsRoute,
   worldFiveSpaceRoute,
@@ -117,15 +123,37 @@ function JourneyLoadingRoute() {
 }
 
 export function requireFinalAccess() {
-  try {
-    if (canOpenFinal(readProgress())) {
-      return null;
-    }
-  } catch {
-    // Storage unavailable must fail closed before TransitionWorld or Final mount.
+  const progress = readProgress();
+  if (canOpenFinal(progress)) {
+    return null;
   }
 
-  return replace(worldFiveEntryRoute);
+  clearFinalReviewContext();
+  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
+}
+
+export function requireStationAccess(
+  stationId: keyof typeof stationEntryRoutes,
+) {
+  const progress = readProgress();
+  if (canOpenStation(stationId, progress)) {
+    return null;
+  }
+
+  clearFinalReviewContext();
+  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
+}
+
+export function requireTransitionAccess(
+  completedOriginStation: keyof typeof stationEntryRoutes,
+) {
+  const progress = readProgress();
+  if (canOpenTransition(completedOriginStation, progress)) {
+    return null;
+  }
+
+  clearFinalReviewContext();
+  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
 }
 
 function TransitionWorldRuntimeRoute({
@@ -186,6 +214,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldOneToWorldTwoTransitionRoute,
+    loader: () => requireTransitionAccess(1),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={worldOneToWorldTwoTransition} />
@@ -194,6 +223,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldTwoToWorldThreeTransitionRoute,
+    loader: () => requireTransitionAccess(2),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={worldTwoToWorldThreeTransition} />
@@ -202,6 +232,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldThreeToWorldFourTransitionRoute,
+    loader: () => requireTransitionAccess(3),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={worldThreeToWorldFourTransition} />
@@ -210,6 +241,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFourToWorldFiveTransitionRoute,
+    loader: () => requireTransitionAccess(4),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={worldFourToWorldFiveTransition} />
@@ -226,7 +258,8 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/estacion/1",
+    path: worldOneEntryRoute,
+    loader: () => requireStationAccess(1),
     element: (
       <FinalReviewModeLayout world={1}>
         <World1RootScreen />
@@ -235,6 +268,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldTwoEntryRoute,
+    loader: () => requireStationAccess(2),
     element: (
       <FinalReviewModeLayout world={2}>
         <World2RootScreen />
@@ -243,6 +277,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldThreeEntryRoute,
+    loader: () => requireStationAccess(3),
     element: (
       <FinalReviewModeLayout world={3}>
         <World3RootScreen />
@@ -251,6 +286,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFourEntryRoute,
+    loader: () => requireStationAccess(4),
     element: (
       <FinalReviewModeLayout world={4}>
         <World4RootScreen />
@@ -259,6 +295,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFiveEntryRoute,
+    loader: () => requireStationAccess(5),
     element: (
       <FinalReviewModeLayout world={5}>
         <World5RootScreen />
@@ -267,6 +304,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFivePlantsRoute,
+    loader: () => requireStationAccess(5),
     element: (
       <FinalReviewModeLayout world={5}>
         <World5RootScreen />
@@ -275,6 +313,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFiveSystemRoute,
+    loader: () => requireStationAccess(5),
     element: (
       <FinalReviewModeLayout world={5}>
         <World5RootScreen />
@@ -283,6 +322,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFiveSpaceRoute,
+    loader: () => requireStationAccess(5),
     element: (
       <FinalReviewModeLayout world={5}>
         <World5RootScreen />
@@ -291,6 +331,7 @@ export const router = createBrowserRouter([
   },
   {
     path: worldFiveVisitorRoute,
+    loader: () => requireStationAccess(5),
     element: (
       <FinalReviewModeLayout world={5}>
         <World5RootScreen />

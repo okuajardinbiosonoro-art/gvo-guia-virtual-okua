@@ -16,6 +16,10 @@ import {
   markStationCompleted,
   readProgress,
 } from "../../domain/progress/progress.storage";
+import {
+  PROGRESS_SAVE_ERROR_COPY,
+  PROGRESS_SAVE_RETRY_LABEL,
+} from "../../shared/progress/progressSaveError";
 import { ProjectedRasterStage } from "./ProjectedRasterStage";
 import {
   station5Areas,
@@ -179,13 +183,9 @@ export function World5RootScreen() {
   const [blockedArea, setBlockedArea] = useState<Station5AreaId | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const [closurePhase, setClosurePhase] = useState<ClosurePhase>("idle");
-  const [globalComplete, setGlobalComplete] = useState(() => {
-    try {
-      return canOpenFinal(readProgress());
-    } catch {
-      return false;
-    }
-  });
+  const [globalComplete, setGlobalComplete] = useState(() =>
+    canOpenFinal(readProgress()),
+  );
   const epochRef = useRef(0);
   const timerRef = useRef<number | null>(null);
   const closureLockRef = useRef(false);
@@ -232,6 +232,12 @@ export function World5RootScreen() {
   }, []);
 
   useEffect(() => clearTimeline, [clearTimeline]);
+
+  useEffect(() => {
+    if (closurePhase === "error") {
+      closeButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [closurePhase]);
 
   useEffect(() => {
     const requestedArea = routeArea(location.pathname);
@@ -476,29 +482,18 @@ export function World5RootScreen() {
     setClosurePhase("persisting");
     setAnnouncement("");
 
-    try {
-      const currentGlobalProgress = readProgress();
-      if (!currentGlobalProgress.completedStations.includes(5)) {
-        markStationCompleted(5);
-      }
-
-      const verifiedGlobalProgress = readProgress();
-      if (!canOpenFinal(verifiedGlobalProgress)) {
-        throw new Error("station_5_completion_not_verified");
-      }
-
-      setGlobalComplete(true);
-      setClosurePhase("complete");
-      navigate(worldFiveToFinalTransitionRoute);
-    } catch {
+    const result = markStationCompleted(5);
+    if (!result.ok || !canOpenFinal(result.progress)) {
       closureLockRef.current = false;
       setGlobalComplete(false);
       setClosurePhase("error");
-      setAnnouncement("No fue posible guardar el cierre. Inténtalo de nuevo.");
-      window.queueMicrotask(() => {
-        closeButtonRef.current?.focus({ preventScroll: true });
-      });
+      setAnnouncement(PROGRESS_SAVE_ERROR_COPY);
+      return;
     }
+
+    setGlobalComplete(true);
+    setClosurePhase("complete");
+    navigate(worldFiveToFinalTransitionRoute);
   }, [closeReady, navigate]);
 
   const returnToMap = useCallback(() => {
@@ -1038,7 +1033,9 @@ export function World5RootScreen() {
                   disabled={closurePhase === "persisting"}
                   onClick={closeStation}
                 >
-                  {station5FixedCta}
+                  {closurePhase === "error"
+                    ? PROGRESS_SAVE_RETRY_LABEL
+                    : station5FixedCta}
                 </button>
               ) : undefined
             }
@@ -1064,9 +1061,7 @@ export function World5RootScreen() {
                 : overviewCopy.support
             }
             status={
-              closurePhase === "error"
-                ? "No fue posible guardar el cierre. Inténtalo de nuevo."
-                : undefined
+              closurePhase === "error" ? PROGRESS_SAVE_ERROR_COPY : undefined
             }
             liaAsset={liaAsset}
             liaRole={liaRole}

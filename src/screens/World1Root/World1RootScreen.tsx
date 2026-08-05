@@ -12,8 +12,13 @@ import {
   world1ConceptCopy,
   world1EditorialSlots,
 } from "../../content/world1EditorialSlots";
+import { markStationCompleted } from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
+import {
+  PROGRESS_SAVE_ERROR_COPY,
+  PROGRESS_SAVE_RETRY_LABEL,
+} from "../../shared/progress/progressSaveError";
 import { World1RootStageFrame } from "./layout";
 import { world1RootAssets } from "./world1RootAssets";
 
@@ -42,6 +47,7 @@ const backgroundLayerStyle = {
 
 type World1Concept = World1ConceptId;
 type World1NodeState = "locked" | "available" | "active" | "completed";
+type CompletionPhase = "idle" | "persisting" | "error" | "complete";
 
 type World1Node = {
   id: "relation" | "perception" | "mediation";
@@ -267,6 +273,10 @@ export function World1RootScreen() {
   const narrativeViewportRef = useRef<HTMLDivElement>(null);
   const narrativeTrackRef = useRef<HTMLDivElement>(null);
   const narrativeSwipeAnchorRef = useRef<HTMLSpanElement>(null);
+  const continueButtonRef = useRef<HTMLButtonElement>(null);
+  const completionLockRef = useRef(false);
+  const [completionPhase, setCompletionPhase] =
+    useState<CompletionPhase>("idle");
   const motionRootRef = useWorld1MotionRoot(activeConcept);
   const initialPreload = useAssetPreloader(
     screenAssetBundles.world1RootInitial,
@@ -299,6 +309,12 @@ export function World1RootScreen() {
     enabled: activeConcept === "mediation",
     timeoutMs: 8000,
   });
+
+  useEffect(() => {
+    if (completionPhase === "error") {
+      continueButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [completionPhase]);
   const copy = world1ConceptCopy[activeConcept];
   const isReadyToContinue = activeConcept === "ready_to_continue";
   const shouldRenderNarrativeHint =
@@ -402,6 +418,24 @@ export function World1RootScreen() {
       nextDismissedHints.add(activeConcept);
       return nextDismissedHints;
     });
+  }
+
+  function continueJourney() {
+    if (!isReadyToContinue || completionLockRef.current) {
+      return;
+    }
+
+    completionLockRef.current = true;
+    setCompletionPhase("persisting");
+    const result = markStationCompleted(1);
+    if (!result.ok) {
+      completionLockRef.current = false;
+      setCompletionPhase("error");
+      return;
+    }
+
+    setCompletionPhase("complete");
+    navigate(worldOneToWorldTwoTransitionRoute);
   }
 
   return (
@@ -679,10 +713,19 @@ export function World1RootScreen() {
                 </h1>
                 <p
                   className="world1-root-narrative__body"
-                  data-world1-slot-id={copy.body.slotId}
-                  data-editorial-status={copy.body.status}
+                  data-world1-slot-id={
+                    completionPhase === "error" ? undefined : copy.body.slotId
+                  }
+                  data-editorial-status={
+                    completionPhase === "error" ? "TEMP" : copy.body.status
+                  }
+                  data-progress-save-error={
+                    completionPhase === "error" ? "true" : undefined
+                  }
                 >
-                  {copy.body.text}
+                  {completionPhase === "error"
+                    ? PROGRESS_SAVE_ERROR_COPY
+                    : copy.body.text}
                 </p>
               </div>
             </div>
@@ -733,17 +776,24 @@ export function World1RootScreen() {
 
           {isReadyToContinue ? (
             <button
+              ref={continueButtonRef}
               className="world1-root-continue world1-root-continue--ready"
               type="button"
-              aria-disabled="false"
+              aria-busy={completionPhase === "persisting" ? "true" : undefined}
+              aria-disabled={
+                completionPhase === "persisting" ? "true" : "false"
+              }
+              disabled={completionPhase === "persisting"}
               data-world1-exit-target={worldOneToWorldTwoTransitionRoute}
               data-world1-slot-id="W1_CONTINUE_BTN_01"
               data-editorial-status={
                 world1EditorialSlots.W1_CONTINUE_BTN_01.status
               }
-              onClick={() => navigate(worldOneToWorldTwoTransitionRoute)}
+              onClick={continueJourney}
             >
-              {world1EditorialSlots.W1_CONTINUE_BTN_01.text}
+              {completionPhase === "error"
+                ? PROGRESS_SAVE_RETRY_LABEL
+                : world1EditorialSlots.W1_CONTINUE_BTN_01.text}
             </button>
           ) : null}
         </div>

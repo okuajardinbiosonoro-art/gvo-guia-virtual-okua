@@ -17,6 +17,7 @@ import sharp from "sharp";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { gestureHintAssets } from "../../components/GestureHint/gestureHintAssets";
+import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { station3Lia, station3Records } from "./station3Content";
 import {
   PLANT_NARRATIVE_EXIT_MS,
@@ -236,11 +237,13 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     vi.stubGlobal("MutationObserver", undefined);
+    window.localStorage.clear();
   });
 
   afterEach(() => {
     cleanup();
     vi.useRealTimers();
+    vi.restoreAllMocks();
     vi.unstubAllGlobals();
     Reflect.deleteProperty(window, "matchMedia");
     window.history.replaceState({}, "", "/");
@@ -2244,6 +2247,10 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
   });
 
   it("Continuar se habilita tras el sello y navega a la transición W3→W4", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1, 2], updatedAt: null }),
+    );
     const { container } = renderStation3();
     enterStation(container);
 
@@ -2261,6 +2268,57 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     expect(getState(container)).toBe("station3_exiting");
     advance(400);
 
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-3-to-world-4",
+    );
+    expect(
+      JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}"),
+    ).toMatchObject({ schemaVersion: 1, completedStations: [1, 2, 3] });
+  });
+
+  it("falla cerrado en el sello final y reintenta sin repetir registros", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({ completedStations: [1, 2], updatedAt: null }),
+    );
+    const nativeSetItem = Storage.prototype.setItem;
+    let storageFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === GVO_PROGRESS_STORAGE_KEY && storageFails) {
+        throw new Error("quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderStation3();
+    enterStation(container);
+    completeRecord(container, "planta");
+    completeRecord(container, "prototipo");
+    completeRecord(container, "senal");
+    advance(1600);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
+    );
+
+    expect(getState(container)).toBe("station3_ready_to_continue");
+    expect(
+      screen.getByText(
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-completed-count",
+      "3",
+    );
+
+    storageFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    advance(400);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-3-to-world-4",
     );

@@ -69,7 +69,8 @@ function seededBackends(
 ) {
   const localStorage = new FakeStorage(
     {
-      "gvo.progress.v1": '{"completedStations":[1,2,3,4,5]}',
+      "gvo.progress.v1":
+        '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
       "gvo.station5.v1": '{"completedAreas":["plantas"]}',
       "gvo.coverIntro.introCompleted.v1": "true",
       "gvo:accessibility:contrast": "high",
@@ -132,7 +133,7 @@ describe("resetGvoJourney", () => {
     expect(snapshot).toHaveLength(4);
     expect(snapshot.every((entry) => entry.existed)).toBe(true);
     expect(snapshot.find((entry) => entry.key === "gvo.progress.v1")?.raw).toBe(
-      '{"completedStations":[1,2,3,4,5]}',
+      '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
     );
 
     const result = await resetGvoJourney({ storage });
@@ -158,7 +159,11 @@ describe("resetGvoJourney", () => {
   it("restablece el guard de Final y elimina contexto real en success", async () => {
     window.localStorage.setItem(
       "gvo.progress.v1",
-      JSON.stringify({ completedStations: [1, 2, 3, 4, 5] }),
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3, 4, 5],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
     );
     window.localStorage.setItem("gvo.station5.v1", "world-five");
     window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
@@ -274,5 +279,23 @@ describe("resetGvoJourney", () => {
     expect(
       storage.sessionStorage?.getItem("gvo.final.reviewContext.v1"),
     ).toBeNull();
+  });
+
+  it("restaura byte-exacto payloads globales legacy y versionados", () => {
+    for (const raw of [
+      '{"completedStations":[4,5],"updatedAt":"legacy"}',
+      '{"schemaVersion":1,"completedStations":[1,4,5],"updatedAt":null}',
+    ]) {
+      const { localStorage, storage } = seededBackends();
+      localStorage.setItem("gvo.progress.v1", raw);
+      const snapshot = createJourneyResetSnapshot(
+        GVO_JOURNEY_RESET_ALLOWLIST,
+        storage,
+      );
+
+      localStorage.setItem("gvo.progress.v1", "mutated");
+      expect(restoreJourneyResetSnapshot(snapshot, storage)).toBe(true);
+      expect(localStorage.getItem("gvo.progress.v1")).toBe(raw);
+    }
   });
 });

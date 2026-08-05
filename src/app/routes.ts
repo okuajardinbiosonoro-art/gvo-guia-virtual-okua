@@ -1,7 +1,8 @@
+import type { StationId } from "../data/stations";
+
 export const coverIntroRoute = "/portada";
 
-export const coverToWorldOneTransitionRoute =
-  "/transition/intro-to-station-1";
+export const coverToWorldOneTransitionRoute = "/transition/intro-to-station-1";
 
 export const worldOneToWorldTwoTransitionRoute =
   "/transition/world-1-to-world-2";
@@ -15,8 +16,7 @@ export const worldThreeToWorldFourTransitionRoute =
 export const worldFourToWorldFiveTransitionRoute =
   "/transition/world-4-to-world-5";
 
-export const worldFiveToFinalTransitionRoute =
-  "/transition/world-5-to-final";
+export const worldFiveToFinalTransitionRoute = "/transition/world-5-to-final";
 
 export const worldOneEntryRoute = "/estacion/1";
 
@@ -39,3 +39,11 @@ export const worldFiveSpaceRoute = "/estacion/5/espacio";
 export const worldFiveVisitorRoute = "/estacion/5/visitante";
 
 export const finalEntryRoute = "/final";
+
+export const stationEntryRoutes: Readonly<Record<StationId, string>> = {
+  1: worldOneEntryRoute,
+  2: worldTwoEntryRoute,
+  3: worldThreeEntryRoute,
+  4: worldFourEntryRoute,
+  5: worldFiveEntryRoute,
+};

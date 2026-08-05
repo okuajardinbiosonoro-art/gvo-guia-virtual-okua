@@ -68,6 +68,10 @@ function closeButton() {
   return screen.getByRole("button", { name: station5FixedCta });
 }
 
+function retryCloseButton() {
+  return screen.getByRole("button", { name: "Reintentar" });
+}
+
 function state(container: HTMLElement) {
   return container
     .querySelector("[data-station5-state]")
@@ -647,12 +651,13 @@ describe("World5RootScreen — ST5-020G/ST5-020H", () => {
         "false",
       );
       expect(screen.getByRole("status")).toHaveTextContent(
-        "No fue posible guardar el cierre. Inténtalo de nuevo.",
+        "No fue posible guardar tu progreso. Intenta nuevamente.",
       );
       expect(screen.getByTestId("current-location")).toHaveTextContent(
         "/estacion/5",
       );
-      expect(closeButton()).toBeEnabled();
+      expect(retryCloseButton()).toBeEnabled();
+      expect(retryCloseButton()).toHaveFocus();
     });
 
     it("permite reintentar tras una excepción de storage y navega solo al verificar", () => {
@@ -682,7 +687,7 @@ describe("World5RootScreen — ST5-020G/ST5-020H", () => {
       );
 
       storageFails = false;
-      fireEvent.click(closeButton());
+      fireEvent.click(retryCloseButton());
 
       expect(readGlobalProgress().completedStations).toEqual([1, 2, 3, 4, 5]);
       expect(closeTelemetry(container)).toHaveAttribute(

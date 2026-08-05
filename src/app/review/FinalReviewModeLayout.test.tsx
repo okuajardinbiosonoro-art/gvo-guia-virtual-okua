@@ -18,6 +18,16 @@ function LocationProbe() {
   return <span data-testid="location">{location.pathname}</span>;
 }
 
+function seedGlobalProgress(completedStations = [1, 2, 3, 4, 5]) {
+  const raw = JSON.stringify({
+    schemaVersion: 1,
+    completedStations,
+    updatedAt: "2026-08-05T12:00:00.000Z",
+  });
+  window.localStorage.setItem(GVO_PROGRESS_STORAGE_KEY, raw);
+  return raw;
+}
+
 function renderWorld(path: string, world: 1 | 2 | 3 | 4 | 5, state?: unknown) {
   return render(
     <MemoryRouter initialEntries={[{ pathname: path, state }]}>
@@ -49,16 +59,14 @@ describe("FinalReviewModeLayout", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
+    seedGlobalProgress();
   });
 
   afterEach(cleanup);
 
   it("muestra el control sólo con context de revisita y vuelve una vez a Final", () => {
     const state = beginFinalReview(1);
-    window.localStorage.setItem(
-      GVO_PROGRESS_STORAGE_KEY,
-      "progreso-byte-exacto",
-    );
+    const progressBefore = seedGlobalProgress();
     renderWorld("/estacion/1", 1, state);
 
     const control = screen.getByRole("button", {
@@ -80,7 +88,7 @@ describe("FinalReviewModeLayout", () => {
       window.sessionStorage.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY),
     ).toBeNull();
     expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBe(
-      "progreso-byte-exacto",
+      progressBefore,
     );
   });
 
@@ -106,6 +114,38 @@ describe("FinalReviewModeLayout", () => {
         finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text,
       ),
     ).not.toBeInTheDocument();
+  });
+
+  it("invalida revisita sintácticamente válida si el progreso global no autoriza Final", () => {
+    const state = beginFinalReview(1);
+    seedGlobalProgress([1]);
+    renderWorld("/estacion/1", 1, state);
+
+    expect(
+      screen.queryByText(
+        finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      window.sessionStorage.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY),
+    ).toBeNull();
+  });
+
+  it("no vuelve a Final si el progreso se vuelve incoherente durante la revisita", () => {
+    const state = beginFinalReview(1);
+    renderWorld("/estacion/1", 1, state);
+    seedGlobalProgress([1]);
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text,
+      }),
+    );
+
+    expect(screen.getByTestId("location")).toHaveTextContent("/estacion/2");
+    expect(
+      window.sessionStorage.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY),
+    ).toBeNull();
   });
 
   it("invalida el contexto al entrar a Portada o a flujo normal", () => {

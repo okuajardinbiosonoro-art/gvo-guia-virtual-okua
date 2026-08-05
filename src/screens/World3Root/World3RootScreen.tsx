@@ -11,6 +11,11 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { worldThreeToWorldFourTransitionRoute } from "../../app/routes";
+import { markStationCompleted } from "../../domain/progress/progress.storage";
+import {
+  PROGRESS_SAVE_ERROR_COPY,
+  PROGRESS_SAVE_RETRY_LABEL,
+} from "../../shared/progress/progressSaveError";
 import { GestureHint } from "../../components/GestureHint/GestureHint";
 import { PlantNotebookAnnotations } from "./PlantNotebookAnnotations";
 import {
@@ -412,6 +417,8 @@ function beginPageTurnTrace(
 
 export function World3RootScreen() {
   const navigate = useNavigate();
+  const continueButtonRef = useRef<HTMLButtonElement | null>(null);
+  const completionLockRef = useRef(false);
   const recordButtonRefs = useRef<
     Partial<Record<Station3RecordId, HTMLButtonElement | null>>
   >({});
@@ -445,6 +452,8 @@ export function World3RootScreen() {
   const [signalAnnotationStage, setSignalAnnotationStage] =
     useState<SignalNarrativeStage>("capturing");
   const [exiting, setExiting] = useState(false);
+  const [completionPersisting, setCompletionPersisting] = useState(false);
+  const [completionFailed, setCompletionFailed] = useState(false);
   const [pageGeometry, setPageGeometry] = useState<{
     width: number;
     height: number;
@@ -454,6 +463,12 @@ export function World3RootScreen() {
   const turnMs = reducedMotion ? 120 : 680;
   const stampMs = reducedMotion ? 320 : 1500;
   const revisitMode = completed.size === station3Records.length;
+
+  useEffect(() => {
+    if (completionFailed) {
+      continueButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [completionFailed]);
 
   useLayoutEffect(() => {
     if (phase.kind === "turning") {
@@ -1081,13 +1096,27 @@ export function World3RootScreen() {
   }
 
   function handleContinue() {
-    if (exiting) {
+    if (exiting || completionLockRef.current) {
       return;
     }
     if (stampStage !== "ready") {
       setLiaMessage(station3Lia.continueLocked);
       return;
     }
+
+    completionLockRef.current = true;
+    setCompletionPersisting(true);
+    setCompletionFailed(false);
+    const result = markStationCompleted(3);
+    if (!result.ok) {
+      completionLockRef.current = false;
+      setCompletionPersisting(false);
+      setCompletionFailed(true);
+      setLiaMessage(PROGRESS_SAVE_ERROR_COPY);
+      return;
+    }
+
+    setCompletionPersisting(false);
     setExiting(true);
     window.setTimeout(
       () => navigate(worldThreeToWorldFourTransitionRoute),
@@ -1889,14 +1918,23 @@ export function World3RootScreen() {
           >
             {stampStage === "ready" ? (
               <button
+                ref={continueButtonRef}
                 className="s3-continue"
                 type="button"
-                aria-label={station3Continue.accessibleLabel}
+                aria-busy={completionPersisting ? "true" : undefined}
+                aria-label={
+                  completionFailed
+                    ? PROGRESS_SAVE_RETRY_LABEL
+                    : station3Continue.accessibleLabel
+                }
                 data-continue-enabled="true"
                 data-station3-action="continue"
+                disabled={completionPersisting}
                 onClick={handleContinue}
               >
-                {station3Continue.label}
+                {completionFailed
+                  ? PROGRESS_SAVE_RETRY_LABEL
+                  : station3Continue.label}
               </button>
             ) : null}
             <div className="s3-indicator" aria-hidden="true">
