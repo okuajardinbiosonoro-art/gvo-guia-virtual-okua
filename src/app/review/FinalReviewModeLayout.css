@@ -1,16 +1,113 @@
 .final-review-mode-layout {
+  --gvo-final-review-clearance-top: 0px;
+  --gvo-final-review-clearance-right: 0px;
+  --gvo-final-review-clearance-bottom: 0px;
+  --gvo-final-review-clearance-left: 0px;
+  --gvo-final-review-dock-block-size: 0px;
+  --gvo-final-review-dock-inline-size: 0px;
+  --gvo-final-review-dock-edge-gap: 12px;
+  --gvo-final-review-content-gap: 10px;
+  --gvo-final-review-visual-offset-left: 0px;
+  --gvo-final-review-visual-offset-right: 0px;
+  --gvo-final-review-visual-offset-top: 0px;
+
   position: relative;
   width: 100%;
   min-height: 100%;
 }
 
-.final-review-return-control {
+.final-review-mode-layout[data-final-review-active="true"] {
+  width: 100%;
+}
+
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="reserved"] {
+  --gvo-final-review-clearance-top: calc(
+    var(--gvo-final-review-visual-offset-top) + env(safe-area-inset-top, 0px) +
+      var(--gvo-final-review-dock-edge-gap) +
+      var(--gvo-final-review-dock-block-size) +
+      var(--gvo-final-review-content-gap)
+  );
+
+  display: grid;
+  grid-template-rows:
+    var(--gvo-final-review-clearance-top)
+    minmax(0, 1fr);
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="reserved"][data-final-review-placement="top-end"] {
+  --gvo-final-review-clearance-right: calc(
+    var(--gvo-final-review-visual-offset-right) +
+      env(safe-area-inset-right, 0px) + var(--gvo-final-review-dock-edge-gap) +
+      var(--gvo-final-review-dock-inline-size) +
+      var(--gvo-final-review-content-gap)
+  );
+}
+
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="reserved"][data-final-review-placement="top-start"] {
+  --gvo-final-review-clearance-left: calc(
+    var(--gvo-final-review-visual-offset-left) +
+      env(safe-area-inset-left, 0px) + var(--gvo-final-review-dock-edge-gap) +
+      var(--gvo-final-review-dock-inline-size) +
+      var(--gvo-final-review-content-gap)
+  );
+}
+
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="reserved"]
+  > :not(.final-review-return-dock) {
+  grid-row: 2;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.final-review-return-dock {
   position: fixed;
   z-index: 1000;
-  right: max(12px, env(safe-area-inset-right));
-  bottom: max(12px, env(safe-area-inset-bottom));
-  min-width: 44px;
-  min-height: 44px;
+  top: calc(
+    var(--gvo-final-review-visual-offset-top) + env(safe-area-inset-top, 0px) +
+      var(--gvo-final-review-dock-edge-gap)
+  );
+  max-width: calc(
+    100vw - var(--gvo-final-review-visual-offset-right) -
+      env(safe-area-inset-right, 0px) - env(safe-area-inset-left, 0px) - 24px
+  );
+  pointer-events: none;
+}
+
+.final-review-return-dock[data-final-review-dock-placement="top-end"],
+.final-review-return-dock[data-final-review-dock-placement="below-end"] {
+  right: calc(
+    var(--gvo-final-review-visual-offset-right) +
+      env(safe-area-inset-right, 0px) + var(--gvo-final-review-dock-edge-gap)
+  );
+}
+
+.final-review-return-dock[data-final-review-dock-placement="below-end"] {
+  top: calc(
+    var(--gvo-final-review-visual-offset-top) + env(safe-area-inset-top, 0px) +
+      var(--gvo-final-review-dock-edge-gap) +
+      var(--gvo-final-review-dock-block-size) +
+      var(--gvo-final-review-content-gap) + 4px
+  );
+}
+
+.final-review-return-dock[data-final-review-dock-placement="top-start"] {
+  left: calc(
+    var(--gvo-final-review-visual-offset-left) +
+      env(safe-area-inset-left, 0px) + var(--gvo-final-review-dock-edge-gap)
+  );
+}
+
+.final-review-return-control {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  max-width: 100%;
   padding: 10px 16px;
   border: 2px solid #f4dda6;
   border-radius: 999px;
@@ -18,9 +115,13 @@
   font: 700 15px/1.1 var(--gvo-font-ui);
   text-align: center;
   text-shadow: 0 1px 1px rgb(24 14 18 / 80%);
+  overflow-wrap: anywhere;
   background: rgb(51 37 50 / 94%);
   box-shadow: 0 4px 14px rgb(14 8 15 / 40%);
   cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  white-space: normal;
 }
 
 .final-review-return-control:focus-visible {
@@ -28,10 +129,8 @@
   outline-offset: 3px;
 }
 
-@media (orientation: landscape) {
+@media (prefers-reduced-motion: reduce) {
   .final-review-return-control {
-    top: max(10px, env(safe-area-inset-top));
-    right: max(12px, env(safe-area-inset-right));
-    bottom: auto;
+    transition: none;
   }
 }

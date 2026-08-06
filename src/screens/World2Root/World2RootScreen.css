@@ -31,7 +31,10 @@
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   width: 100%;
   height: var(--world2-visual-vh, 100svh);
-  height: min(100dvh, var(--world2-visual-vh, 100svh));
+  height: calc(
+    min(100dvh, var(--world2-visual-vh, 100svh)) -
+      var(--gvo-final-review-clearance-top, 0px)
+  );
   min-height: 0;
   padding: clamp(0.44rem, 1.8vw, 0.78rem);
   overflow: hidden;

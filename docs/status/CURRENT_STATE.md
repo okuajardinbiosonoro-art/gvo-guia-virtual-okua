@@ -236,6 +236,20 @@ de revisita. El sello `AJUSTADO` deriva del prefix durable y completion global
 permanece separada bajo `Continuar`. El reset transaccional cubre ahora ocho
 keys con snapshot, verificación, rollback byte-exacto y retry.
 
+`GVO_DEBT_007A` está aprobado y publicado. Sus informes históricos conservan
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_007_FINAL_REVIEW_RETURN_SAFE_AREA_LAYOUT_FOR_REVIEW.md](GVO_DEBT_007_FINAL_REVIEW_RETURN_SAFE_AREA_LAYOUT_FOR_REVIEW.md)
+y
+[GVO_DEBT_007A_REVIEW_DOCK_COMPACT_PLACEMENT_FOR_REVIEW.md](GVO_DEBT_007A_REVIEW_DOCK_COMPACT_PLACEMENT_FOR_REVIEW.md);
+la aprobación humana vinculante está registrada en
+[GVO_DEBT_007AP_REVIEW_DOCK_COMPACT_PLACEMENT_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_007AP_REVIEW_DOCK_COMPACT_PLACEMENT_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+El retorno desde Final usa un dock compacto compartido en las nueve rutas:
+`44/72` combinaciones flotan y `28/72` reservan clearance sólo cuando la
+geometría lo requiere. La matriz conserva `0/72` colisiones, safe-area,
+accesibilidad y modo normal intacto; reduce `51,22%` el área reservada y
+`61,11%` la altura reservada promedio.
+
 Permanecen pendientes la legibilidad, Captura visual, reflow y safe-area de
 Mundo II; immersive shell, QR, PWA/precache, route chunking y el copy
 operativo/editorial `TEMP`.
