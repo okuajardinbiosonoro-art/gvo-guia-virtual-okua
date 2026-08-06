@@ -1136,6 +1136,7 @@ export function World2RootScreen() {
       data-world2-option3-capture-final-polish="016L"
       data-world2-option3-capture-swipe-timeline="016R"
       data-world2-responsive-parity="016M"
+      data-world2-legibility="debt-008-responsive"
       data-world2-required-interactions="016R"
       data-capture-cinema="016R"
       data-world2-completed-required-interactions={
@@ -1306,6 +1307,7 @@ export function World2RootScreen() {
                   data-signal-cinema="016J"
                   data-signal-reveal-state={signalRevealState}
                   data-world2-signal-base-mode="static-unified-probe-leaf-attached"
+                  data-world2-signal-contact-alignment="probe-to-plant"
                   data-world2-signal-expanded-mode="scene-focus-large-projected-waveform-moving-alpha-mask"
                   data-world2-signal-contact-source="unified-image-asset"
                   data-world2-primary-signal-asset={

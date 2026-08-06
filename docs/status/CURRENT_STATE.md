@@ -19,7 +19,7 @@ Actualizado: 2026-08-06
 | Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                                                                                                                                             |
 | Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                                                                                                                                         |
 | Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                                                                                                                                               |
-| Mundo II      | Finalizado para el alcance actual.                                                                                                                                                                                                                                                                                             |
+| Mundo II      | `GVO_DEBT_008 — WORLD II LEGIBILITY AND RESPONSIVE READABILITY / HUMAN_APPROVED / PUBLISHED`; seis capas, reflow, zoom `200%`, targets `44×44` y revisita desde Mirador validados.                                                                                                                                                |
 | Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                                                                                                                                            |
 | Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                     |
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                     |
@@ -250,8 +250,20 @@ geometría lo requiere. La matriz conserva `0/72` colisiones, safe-area,
 accesibilidad y modo normal intacto; reduce `51,22%` el área reservada y
 `61,11%` la altura reservada promedio.
 
-Permanecen pendientes la legibilidad, Captura visual, reflow y safe-area de
-Mundo II; immersive shell, QR, PWA/precache, route chunking y el copy
+`GVO_DEBT_008` está aprobado y publicado. Su informe histórico conserva
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_008_WORLD2_LEGIBILITY_AND_RESPONSIVE_READABILITY_FOR_REVIEW.md](GVO_DEBT_008_WORLD2_LEGIBILITY_AND_RESPONSIVE_READABILITY_FOR_REVIEW.md),
+y su aprobación humana vinculante está registrada en
+[GVO_DEBT_008P_WORLD2_LEGIBILITY_AND_RESPONSIVE_READABILITY_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_008P_WORLD2_LEGIBILITY_AND_RESPONSIVE_READABILITY_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+Mundo II conserva sus seis capas y su comportamiento funcional. La publicación
+elimina textos bajo piso, recortes, controles menores de `44px` y colisiones en
+la matriz auditada; valida zoom `200%`, reflow `320px`, Planta separada de Lía,
+electrodo alineado antes de `Onda medida` y revisita sin solapamientos en Señal,
+Captura ni Mapeo.
+
+Permanecen pendientes una eventual reconstrucción visual de Captura fuera de
+este alcance, immersive shell, QR, PWA/precache, route chunking y el copy
 operativo/editorial `TEMP`.
 La fase `PROJECT DEBT CORRECTION` no se declara terminada; cada frente requiere
 un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de

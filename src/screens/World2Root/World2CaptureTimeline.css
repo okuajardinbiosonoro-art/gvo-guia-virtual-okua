@@ -310,3 +310,83 @@
     transition: none;
   }
 }
+
+/* GVO_DEBT_008: readable capture copy and accessible control targets. */
+.world2-capture-timeline {
+  gap: clamp(0.4rem, 1.4vw, 0.68rem);
+  overflow: visible;
+}
+
+.world2-capture-timeline__header {
+  min-height: 2rem;
+}
+
+.world2-capture-timeline__eyebrow {
+  color: #bff7fa;
+  font-size: clamp(0.625rem, 1.65vw, 0.72rem);
+  line-height: 1.2;
+}
+
+.world2-capture-timeline__progress {
+  min-height: 44px;
+  padding: 0.45rem 0.62rem;
+  font-size: clamp(0.75rem, 2vw, 0.84rem);
+  line-height: 1.2;
+}
+
+.world2-capture-timeline__step-label {
+  font-size: clamp(0.6875rem, 2vw, 0.78rem);
+  line-height: 1.2;
+}
+
+.world2-capture-timeline__readout {
+  width: min(100%, 27rem);
+  min-height: 5rem;
+  padding-block: 0.6rem 0.75rem;
+  background: rgb(4 7 18 / 96%);
+}
+
+.world2-capture-timeline__readout strong,
+.world2-capture-timeline__readout p {
+  font-size: clamp(0.75rem, 2vw, 0.84rem);
+  line-height: 1.35;
+}
+
+.world2-capture-timeline__readout p {
+  color: #fffdf6;
+}
+
+.world2-capture-timeline__step-control {
+  min-height: 44px;
+  padding: 0.48rem;
+  color: #fff;
+  background: rgb(4 7 18 / 92%);
+}
+
+.world2-capture-timeline__control-label {
+  overflow: visible;
+  font-size: clamp(0.6875rem, 1.55vw, 0.76rem);
+  line-height: 1.25;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 899px), (max-height: 700px) {
+  .world2-capture-timeline {
+    inset: 1rem;
+    grid-template-rows: auto minmax(12rem, 1fr) auto auto;
+  }
+
+  .world2-capture-timeline__swipe-zone {
+    min-height: 12rem;
+  }
+
+  .world2-capture-timeline__readout {
+    width: min(calc(100% - 96px), 27rem);
+  }
+
+  .world2-capture-timeline__controls {
+    gap: 0.4rem;
+  }
+}

@@ -393,6 +393,10 @@ describe("World2RootScreen", () => {
     expect(
       container.querySelector("[data-world2-responsive-parity]"),
     ).toHaveAttribute("data-world2-responsive-parity", "016M");
+    expect(container.querySelector("[data-world2-legibility]")).toHaveAttribute(
+      "data-world2-legibility",
+      "debt-008-responsive",
+    );
     expect(
       container.querySelector("[data-world2-required-interactions]"),
     ).toHaveAttribute("data-world2-required-interactions", "016R");
@@ -1114,6 +1118,10 @@ describe("World2RootScreen", () => {
     expect(signalCinema).toHaveAttribute(
       "data-world2-signal-base-mode",
       "static-unified-probe-leaf-attached",
+    );
+    expect(signalCinema).toHaveAttribute(
+      "data-world2-signal-contact-alignment",
+      "probe-to-plant",
     );
     expect(signalCinema).toHaveAttribute(
       "data-world2-signal-expanded-mode",
