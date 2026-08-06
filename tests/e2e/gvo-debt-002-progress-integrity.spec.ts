@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
+const WORLD3_CHECKPOINT_KEY = "gvo.station3.v1";
 const WORLD4_CHECKPOINT_KEY = "gvo.station4.v1";
 const WORLD5_PROGRESS_KEY = "gvo.station5.v1";
 const COVER_PROGRESS_KEY = "gvo.coverIntro.introCompleted.v1";
@@ -26,6 +27,7 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       globalKey,
       world1Key,
       world2Key,
+      world3Key,
       world4Key,
       world5Key,
       coverKey,
@@ -34,6 +36,7 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       localStorage.removeItem(globalKey);
       localStorage.removeItem(world1Key);
       localStorage.removeItem(world2Key);
+      localStorage.removeItem(world3Key);
       localStorage.removeItem(world4Key);
       localStorage.removeItem(world5Key);
       localStorage.removeItem(coverKey);
@@ -68,6 +71,7 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       globalKey: GLOBAL_PROGRESS_KEY,
       world1Key: WORLD1_CHECKPOINT_KEY,
       world2Key: WORLD2_CHECKPOINT_KEY,
+      world3Key: WORLD3_CHECKPOINT_KEY,
       world4Key: WORLD4_CHECKPOINT_KEY,
       world5Key: WORLD5_PROGRESS_KEY,
       coverKey: COVER_PROGRESS_KEY,
@@ -398,14 +402,16 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
   });
   await page.goto("/final", { waitUntil: "domcontentloaded" });
   await page.evaluate(
-    ({ world1Key, world2Key, world4Key }) => {
+    ({ world1Key, world2Key, world3Key, world4Key }) => {
       localStorage.setItem(world1Key, "world-one-checkpoint");
       localStorage.setItem(world2Key, "world-two-checkpoint");
+      localStorage.setItem(world3Key, "world-three-checkpoint");
       localStorage.setItem(world4Key, "world-four-checkpoint");
     },
     {
       world1Key: WORLD1_CHECKPOINT_KEY,
       world2Key: WORLD2_CHECKPOINT_KEY,
+      world3Key: WORLD3_CHECKPOINT_KEY,
       world4Key: WORLD4_CHECKPOINT_KEY,
     },
   );
@@ -422,12 +428,13 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
         GLOBAL_PROGRESS_KEY,
         WORLD1_CHECKPOINT_KEY,
         WORLD2_CHECKPOINT_KEY,
+        WORLD3_CHECKPOINT_KEY,
         WORLD4_CHECKPOINT_KEY,
         WORLD5_PROGRESS_KEY,
         COVER_PROGRESS_KEY,
       ],
     ),
-  ).toEqual([null, null, null, null, null, null]);
+  ).toEqual([null, null, null, null, null, null, null]);
   expect(
     await page.evaluate(
       (key) => sessionStorage.getItem(key),

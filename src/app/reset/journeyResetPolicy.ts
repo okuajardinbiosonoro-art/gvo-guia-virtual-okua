@@ -1,6 +1,7 @@
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { WORLD1_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world1Checkpoint";
 import { WORLD2_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world2Checkpoint";
+import { WORLD3_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world3Checkpoint";
 import { WORLD4_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world4Checkpoint";
 import { COVER_INTRO_STORAGE_KEY } from "../../screens/Cover/coverIntroState";
 import { WORLD5_PROGRESS_STORAGE_KEY } from "../../screens/World5Root/world5Progress";
@@ -16,6 +17,7 @@ export type JourneyResetPolicyEntry = Readonly<{
     | "global-progress"
     | "world-one-state"
     | "world-two-state"
+    | "world-three-state"
     | "world-four-state"
     | "world-five-state"
     | "final-review-context";
@@ -36,6 +38,11 @@ export const GVO_JOURNEY_RESET_ALLOWLIST = [
     backend: "localStorage",
     key: WORLD2_CHECKPOINT_STORAGE_KEY,
     purpose: "world-two-state",
+  },
+  {
+    backend: "localStorage",
+    key: WORLD3_CHECKPOINT_STORAGE_KEY,
+    purpose: "world-three-state",
   },
   {
     backend: "localStorage",

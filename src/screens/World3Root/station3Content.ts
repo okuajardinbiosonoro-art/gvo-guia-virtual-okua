@@ -1,11 +1,13 @@
+import type { Station3RecordId } from "../../domain/checkpoints/world3Checkpoint";
+
+export type { Station3RecordId } from "../../domain/checkpoints/world3Checkpoint";
+
 /**
  * Copy de Estación III — Cuaderno Pixel de Pruebas.
  * Fuente: docs/narrative/source_txt/05_estacion_iii_cuaderno_pixel_especificacion_v1.txt
  * (texto sugerido de la especificación aprobada). Sustituye a los TEMP de
  * world3EditorialSlots para esta estación; ver docs/status/GVO_STATION3_COMPLETE.md.
  */
-
-export type Station3RecordId = "planta" | "prototipo" | "senal";
 
 export type Station3PlantNarrativeStep = {
   id: "observe" | "care" | "record";

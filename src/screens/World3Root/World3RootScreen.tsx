@@ -11,7 +11,17 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { worldThreeToWorldFourTransitionRoute } from "../../app/routes";
-import { markStationCompleted } from "../../domain/progress/progress.storage";
+import {
+  readProgress,
+  markStationCompleted,
+} from "../../domain/progress/progress.storage";
+import {
+  readWorld3Checkpoint,
+  removeWorld3Checkpoint,
+  WORLD3_RECORD_ORDER,
+  writeWorld3Checkpoint,
+  type Station3RecordId,
+} from "../../domain/checkpoints/world3Checkpoint";
 import {
   PROGRESS_SAVE_ERROR_COPY,
   PROGRESS_SAVE_RETRY_LABEL,
@@ -49,7 +59,6 @@ import {
   station3Records,
   station3Stamp,
   type Station3RecordContent,
-  type Station3RecordId,
 } from "./station3Content";
 import { PixelCheck } from "./station3PixelArt";
 import { world3RuntimeAssets } from "./world3RuntimeAssets";
@@ -90,6 +99,22 @@ type ReturnModality = "pointer" | "keyboard";
 
 type StampStage = "hidden" | "unlocking" | "ready";
 
+type World3RecoveryStatus =
+  | "corrupt"
+  | "unknown_version"
+  | "storage_unavailable";
+
+type PendingRecordSave = Readonly<{
+  completedRecordIds: readonly Station3RecordId[];
+  recordId: Station3RecordId;
+}>;
+
+type World3InitialState = Readonly<{
+  completedRecordIds: readonly Station3RecordId[];
+  recoveryStatus: World3RecoveryStatus | null;
+  stampStage: StampStage;
+}>;
+
 type World3IndexLayout =
   | "compact-scroll"
   | "portrait-balanced"
@@ -116,6 +141,36 @@ const recordStateVisualLabel: Record<RecordVisualState, string> = {
 
 const recordIndexAssets: Record<Station3RecordId, string> =
   world3RuntimeAssets.records;
+
+function resolveWorld3InitialState(): World3InitialState {
+  const progress = readProgress();
+  if (progress.progress?.completedStations.includes(3)) {
+    return {
+      completedRecordIds: [...WORLD3_RECORD_ORDER],
+      recoveryStatus: null,
+      stampStage: "ready",
+    };
+  }
+
+  const checkpoint = readWorld3Checkpoint();
+  if (checkpoint.status === "ok") {
+    return {
+      completedRecordIds: [...checkpoint.checkpoint.completedRecordIds],
+      recoveryStatus: null,
+      stampStage:
+        checkpoint.checkpoint.completedRecordIds.length ===
+        WORLD3_RECORD_ORDER.length
+          ? "ready"
+          : "hidden",
+    };
+  }
+
+  return {
+    completedRecordIds: [],
+    recoveryStatus: checkpoint.status === "empty" ? null : checkpoint.status,
+    stampStage: "hidden",
+  };
+}
 
 function resolveQaMotionOverride() {
   if (!import.meta.env.DEV || typeof window === "undefined") {
@@ -417,8 +472,11 @@ function beginPageTurnTrace(
 
 export function World3RootScreen() {
   const navigate = useNavigate();
+  const [initialWorld3State] = useState(resolveWorld3InitialState);
   const continueButtonRef = useRef<HTMLButtonElement | null>(null);
   const completionLockRef = useRef(false);
+  const recordSaveLockRef = useRef(false);
+  const recordRetryButtonRef = useRef<HTMLButtonElement | null>(null);
   const recordButtonRefs = useRef<
     Partial<Record<Station3RecordId, HTMLButtonElement | null>>
   >({});
@@ -429,12 +487,23 @@ export function World3RootScreen() {
   const indexLayout = useWorld3IndexLayout();
   const [phase, setPhase] = useState<Station3Phase>({ kind: "entering" });
   const [completed, setCompleted] = useState<ReadonlySet<Station3RecordId>>(
-    () => new Set(),
+    () => new Set(initialWorld3State.completedRecordIds),
   );
-  const [stampStage, setStampStage] = useState<StampStage>("hidden");
+  const [stampStage, setStampStage] = useState<StampStage>(
+    initialWorld3State.stampStage,
+  );
   const [liaMessage, setLiaMessage] = useState<string | null>(
-    station3Lia.intro,
+    initialWorld3State.completedRecordIds.length === WORLD3_RECORD_ORDER.length
+      ? station3Lia.revisit
+      : station3Lia.intro,
   );
+  const [checkpointRecovery, setCheckpointRecovery] =
+    useState<World3RecoveryStatus | null>(initialWorld3State.recoveryStatus);
+  const [checkpointRecoveryConfirming, setCheckpointRecoveryConfirming] =
+    useState(false);
+  const [pendingRecordSave, setPendingRecordSave] =
+    useState<PendingRecordSave | null>(null);
+  const [recordSavePersisting, setRecordSavePersisting] = useState(false);
   const [lockedNudgeAlt, setLockedNudgeAlt] = useState(false);
   const [restoreRecordFocus, setRestoreRecordFocus] =
     useState<Station3RecordId | null>(null);
@@ -469,6 +538,12 @@ export function World3RootScreen() {
       continueButtonRef.current?.focus({ preventScroll: true });
     }
   }, [completionFailed]);
+
+  useEffect(() => {
+    if (pendingRecordSave) {
+      recordRetryButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [pendingRecordSave]);
 
   useLayoutEffect(() => {
     if (phase.kind === "turning") {
@@ -579,6 +654,8 @@ export function World3RootScreen() {
 
       setLiaMessage(null);
       const confirmationTimeout = window.setTimeout(() => {
+        setCompleted((current) => new Set(current).add("planta"));
+        setNewlyAvailableRecord("prototipo");
         resetWorld3NotebookScroll();
         freezePageGeometry();
         beginPageTurnTrace("planta", "close", turnMs);
@@ -612,11 +689,7 @@ export function World3RootScreen() {
       }
 
       const confirmationTimeout = window.setTimeout(() => {
-        setCompleted((current) => {
-          const next = new Set(current);
-          next.add("prototipo");
-          return next;
-        });
+        setCompleted((current) => new Set(current).add("prototipo"));
         setNewlyAvailableRecord("senal");
         resetWorld3NotebookScroll();
         freezePageGeometry();
@@ -651,11 +724,7 @@ export function World3RootScreen() {
       }
 
       const confirmationTimeout = window.setTimeout(() => {
-        setCompleted((current) => {
-          const next = new Set(current);
-          next.add("senal");
-          return next;
-        });
+        setCompleted((current) => new Set(current).add("senal"));
         setNewlyAvailableRecord(null);
         resetWorld3NotebookScroll();
         freezePageGeometry();
@@ -862,7 +931,7 @@ export function World3RootScreen() {
   }
 
   function openRecord(record: Station3RecordContent) {
-    if (phase.kind !== "index" || exiting) {
+    if (phase.kind !== "index" || exiting || checkpointRecovery) {
       return;
     }
     const state = recordVisualState(record);
@@ -901,23 +970,124 @@ export function World3RootScreen() {
     });
   }
 
+  function applyRecoveredState(recordIds: readonly Station3RecordId[]) {
+    setCompleted(new Set(recordIds));
+    setStampStage(
+      recordIds.length === WORLD3_RECORD_ORDER.length ? "ready" : "hidden",
+    );
+    setCheckpointRecovery(null);
+    setCheckpointRecoveryConfirming(false);
+    setPendingRecordSave(null);
+    setNewlyAvailableRecord(null);
+    setLiaMessage(
+      recordIds.length === WORLD3_RECORD_ORDER.length
+        ? station3Lia.revisit
+        : station3Lia.intro,
+    );
+  }
+
+  function retryCheckpointRecovery() {
+    const progress = readProgress();
+    if (progress.progress?.completedStations.includes(3)) {
+      applyRecoveredState(WORLD3_RECORD_ORDER);
+      return;
+    }
+
+    const checkpoint = readWorld3Checkpoint();
+    if (checkpoint.status === "ok") {
+      applyRecoveredState(checkpoint.checkpoint.completedRecordIds);
+      return;
+    }
+    if (checkpoint.status === "empty") {
+      applyRecoveredState([]);
+      return;
+    }
+
+    setCheckpointRecovery(checkpoint.status);
+    setCheckpointRecoveryConfirming(false);
+  }
+
+  function discardInvalidCheckpoint() {
+    const result = removeWorld3Checkpoint();
+    if (!result.ok) {
+      setCheckpointRecovery("storage_unavailable");
+      setCheckpointRecoveryConfirming(false);
+      return;
+    }
+    applyRecoveredState([]);
+  }
+
+  function persistRecord(
+    recordId: Station3RecordId,
+    completedRecordIds: readonly Station3RecordId[],
+  ) {
+    if (recordSaveLockRef.current) {
+      return;
+    }
+
+    recordSaveLockRef.current = true;
+    setRecordSavePersisting(true);
+    const result = writeWorld3Checkpoint({ completedRecordIds });
+    recordSaveLockRef.current = false;
+    setRecordSavePersisting(false);
+
+    if (!result.ok) {
+      setPendingRecordSave({ completedRecordIds, recordId });
+      setLiaMessage(PROGRESS_SAVE_ERROR_COPY);
+      return;
+    }
+
+    setPendingRecordSave(null);
+    setPhase((current) => {
+      if (current.kind !== "page") {
+        return current;
+      }
+      if (
+        recordId === "planta" &&
+        current.record === "planta" &&
+        current.plantPhase === "ready"
+      ) {
+        return { kind: "page", record: "planta", plantPhase: "confirmed" };
+      }
+      if (
+        recordId === "prototipo" &&
+        current.record === "prototipo" &&
+        current.prototypePhase === "ready"
+      ) {
+        return {
+          kind: "page",
+          record: "prototipo",
+          prototypePhase: "confirmed",
+        };
+      }
+      if (
+        recordId === "senal" &&
+        current.record === "senal" &&
+        current.signalPhase === "ready"
+      ) {
+        return { kind: "page", record: "senal", signalPhase: "confirmed" };
+      }
+      return current;
+    });
+  }
+
+  function retryPendingRecordSave() {
+    if (!pendingRecordSave) {
+      return;
+    }
+    persistRecord(
+      pendingRecordSave.recordId,
+      pendingRecordSave.completedRecordIds,
+    );
+  }
+
   function closeRecord(record: Station3RecordContent) {
-    if (phase.kind !== "page") {
+    if (phase.kind !== "page" || checkpointRecovery || recordSavePersisting) {
       return;
     }
     if (record.id === "planta" && phase.record === "planta") {
       if (phase.plantPhase === "ready") {
-        setCompleted((current) => {
-          const next = new Set(current);
-          next.add("planta");
-          return next;
-        });
-        setNewlyAvailableRecord("prototipo");
-        setPhase({
-          kind: "page",
-          record: "planta",
-          plantPhase: "confirmed",
-        });
+        persistRecord("planta", ["planta"]);
         return;
       }
       if (phase.plantPhase === "revisit") {
@@ -935,11 +1105,7 @@ export function World3RootScreen() {
     }
     if (record.id === "prototipo" && phase.record === "prototipo") {
       if (phase.prototypePhase === "ready") {
-        setPhase({
-          kind: "page",
-          record: "prototipo",
-          prototypePhase: "confirmed",
-        });
+        persistRecord("prototipo", ["planta", "prototipo"]);
         return;
       }
       if (phase.prototypePhase === "revisit") {
@@ -957,11 +1123,7 @@ export function World3RootScreen() {
     }
     if (record.id === "senal" && phase.record === "senal") {
       if (phase.signalPhase === "ready") {
-        setPhase({
-          kind: "page",
-          record: "senal",
-          signalPhase: "confirmed",
-        });
+        persistRecord("senal", ["planta", "prototipo", "senal"]);
         return;
       }
       if (phase.signalPhase === "revisit") {
@@ -976,16 +1138,6 @@ export function World3RootScreen() {
         });
       }
       return;
-    }
-    if (!completed.has(record.id)) {
-      setCompleted((current) => {
-        const next = new Set(current);
-        next.add(record.id);
-        return next;
-      });
-      if (record.id === "prototipo") {
-        setNewlyAvailableRecord("senal");
-      }
     }
     resetWorld3NotebookScroll();
     freezePageGeometry();
@@ -1127,7 +1279,8 @@ export function World3RootScreen() {
   const turning = phase.kind === "turning";
   const activeRecord: Station3RecordId | null =
     phase.kind === "page" || phase.kind === "turning" ? phase.record : null;
-  const indexIsInteractive = phase.kind === "index" && !exiting;
+  const indexIsInteractive =
+    phase.kind === "index" && !exiting && checkpointRecovery === null;
   const indexIsVisible =
     phase.kind === "entering" ||
     phase.kind === "index" ||
@@ -1179,6 +1332,7 @@ export function World3RootScreen() {
                   type="button"
                   aria-label={`${record.accessibleLabel} ${recordStateLabel[state]}.`}
                   aria-hidden={decorative || undefined}
+                  disabled={!decorative && checkpointRecovery !== null}
                   tabIndex={decorative ? -1 : undefined}
                   data-station3-record={record.id}
                   data-record-state={state}
@@ -1513,17 +1667,34 @@ export function World3RootScreen() {
               >
                 {prototypeShowAction ? (
                   <button
+                    ref={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? recordRetryButtonRef
+                        : undefined
+                    }
                     className="s3-detail__confirm s3-prototype__action"
                     type="button"
-                    data-station3-action="close-record"
+                    aria-busy={recordSavePersisting ? "true" : undefined}
+                    data-station3-action={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? "retry-record-save"
+                        : "close-record"
+                    }
                     data-station3-record-confirm="prototipo"
+                    disabled={recordSavePersisting}
                     onPointerDown={() => markPrototypeReturnModality("pointer")}
                     onKeyDown={handlePrototypeReturnKeyDown}
-                    onClick={() => closeRecord(record)}
+                    onClick={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? retryPendingRecordSave
+                        : () => closeRecord(record)
+                    }
                   >
-                    {prototypeRevisit
-                      ? record.prototypePage.revisitLabel
-                      : record.confirmLabel}
+                    {pendingRecordSave?.recordId === "prototipo"
+                      ? PROGRESS_SAVE_RETRY_LABEL
+                      : prototypeRevisit
+                        ? record.prototypePage.revisitLabel
+                        : record.confirmLabel}
                   </button>
                 ) : null}
               </div>
@@ -1638,17 +1809,34 @@ export function World3RootScreen() {
               >
                 {signalShowAction ? (
                   <button
+                    ref={
+                      pendingRecordSave?.recordId === "senal"
+                        ? recordRetryButtonRef
+                        : undefined
+                    }
                     className="s3-detail__confirm s3-signal__action"
                     type="button"
-                    data-station3-action="close-record"
+                    aria-busy={recordSavePersisting ? "true" : undefined}
+                    data-station3-action={
+                      pendingRecordSave?.recordId === "senal"
+                        ? "retry-record-save"
+                        : "close-record"
+                    }
                     data-station3-record-confirm="senal"
+                    disabled={recordSavePersisting}
                     onPointerDown={() => markSignalReturnModality("pointer")}
                     onKeyDown={handleSignalReturnKeyDown}
-                    onClick={() => closeRecord(record)}
+                    onClick={
+                      pendingRecordSave?.recordId === "senal"
+                        ? retryPendingRecordSave
+                        : () => closeRecord(record)
+                    }
                   >
-                    {signalRevisit
-                      ? record.signalPage.revisitLabel
-                      : record.confirmLabel}
+                    {pendingRecordSave?.recordId === "senal"
+                      ? PROGRESS_SAVE_RETRY_LABEL
+                      : signalRevisit
+                        ? record.signalPage.revisitLabel
+                        : record.confirmLabel}
                   </button>
                 ) : null}
               </div>
@@ -1668,6 +1856,14 @@ export function World3RootScreen() {
       data-station3-revisit={revisitMode}
       data-station3-completed-count={completed.size}
       data-station3-reduced-motion={reducedMotion}
+      data-station3-checkpoint-recovery={checkpointRecovery ?? "none"}
+      data-station3-record-save={
+        recordSavePersisting
+          ? "persisting"
+          : pendingRecordSave
+            ? `retry-${pendingRecordSave.recordId}`
+            : "idle"
+      }
       data-world3-index-layout={indexLayout}
       data-station3-return-modality={returnModality}
       data-station3-record-highlight={
@@ -1781,19 +1977,98 @@ export function World3RootScreen() {
             ) : null}
           </div>
 
+          {checkpointRecovery ? (
+            <div
+              className="s3-prototype__actions"
+              data-station3-checkpoint-recovery-action={checkpointRecovery}
+              role="alert"
+            >
+              <p>
+                {checkpointRecovery === "storage_unavailable"
+                  ? "No fue posible acceder al guardado de Mundo III. Reintenta antes de continuar."
+                  : "El guardado de Mundo III no puede leerse de forma segura. Puedes conservarlo o descartarlo con confirmación."}
+              </p>
+              {checkpointRecovery === "storage_unavailable" ? (
+                <button
+                  className="s3-detail__confirm"
+                  type="button"
+                  data-station3-action="retry-checkpoint-read"
+                  onClick={retryCheckpointRecovery}
+                >
+                  Reintentar acceso al guardado
+                </button>
+              ) : checkpointRecoveryConfirming ? (
+                <>
+                  <button
+                    className="s3-detail__confirm"
+                    type="button"
+                    data-station3-action="confirm-discard-checkpoint"
+                    onClick={discardInvalidCheckpoint}
+                  >
+                    Confirmar descarte
+                  </button>
+                  <button
+                    className="s3-detail__confirm"
+                    type="button"
+                    data-station3-action="cancel-discard-checkpoint"
+                    onClick={() => setCheckpointRecoveryConfirming(false)}
+                  >
+                    Conservar guardado
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="s3-detail__confirm"
+                    type="button"
+                    data-station3-action="retry-checkpoint-read"
+                    onClick={retryCheckpointRecovery}
+                  >
+                    Reintentar lectura
+                  </button>
+                  <button
+                    className="s3-detail__confirm"
+                    type="button"
+                    data-station3-action="request-discard-checkpoint"
+                    onClick={() => setCheckpointRecoveryConfirming(true)}
+                  >
+                    Descartar guardado inválido
+                  </button>
+                </>
+              )}
+            </div>
+          ) : null}
+
           {phase.kind === "page" &&
           phase.record === "planta" &&
           (phase.plantPhase === "ready" || phase.plantPhase === "revisit") ? (
             <button
+              ref={
+                pendingRecordSave?.recordId === "planta"
+                  ? recordRetryButtonRef
+                  : undefined
+              }
               className="s3-detail__confirm s3-plant__action"
               type="button"
-              data-station3-action="close-record"
+              aria-busy={recordSavePersisting ? "true" : undefined}
+              data-station3-action={
+                pendingRecordSave?.recordId === "planta"
+                  ? "retry-record-save"
+                  : "close-record"
+              }
               data-station3-record-confirm="planta"
-              onClick={() => closeRecord(station3Records[0])}
+              disabled={recordSavePersisting}
+              onClick={
+                pendingRecordSave?.recordId === "planta"
+                  ? retryPendingRecordSave
+                  : () => closeRecord(station3Records[0])
+              }
             >
-              {phase.plantPhase === "revisit"
-                ? station3Records[0].plantPage?.revisitLabel
-                : station3Records[0].confirmLabel}
+              {pendingRecordSave?.recordId === "planta"
+                ? PROGRESS_SAVE_RETRY_LABEL
+                : phase.plantPhase === "revisit"
+                  ? station3Records[0].plantPage?.revisitLabel
+                  : station3Records[0].confirmLabel}
             </button>
           ) : null}
 
@@ -1837,17 +2112,34 @@ export function World3RootScreen() {
               >
                 {prototypeShowAction ? (
                   <button
+                    ref={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? recordRetryButtonRef
+                        : undefined
+                    }
                     className="s3-detail__confirm s3-prototype__action"
                     type="button"
-                    data-station3-action="close-record"
+                    aria-busy={recordSavePersisting ? "true" : undefined}
+                    data-station3-action={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? "retry-record-save"
+                        : "close-record"
+                    }
                     data-station3-record-confirm="prototipo"
+                    disabled={recordSavePersisting}
                     onPointerDown={() => markPrototypeReturnModality("pointer")}
                     onKeyDown={handlePrototypeReturnKeyDown}
-                    onClick={() => closeRecord(prototypeRecord)}
+                    onClick={
+                      pendingRecordSave?.recordId === "prototipo"
+                        ? retryPendingRecordSave
+                        : () => closeRecord(prototypeRecord)
+                    }
                   >
-                    {prototypeRevisit
-                      ? prototypeRecord.prototypePage.revisitLabel
-                      : prototypeRecord.confirmLabel}
+                    {pendingRecordSave?.recordId === "prototipo"
+                      ? PROGRESS_SAVE_RETRY_LABEL
+                      : prototypeRevisit
+                        ? prototypeRecord.prototypePage.revisitLabel
+                        : prototypeRecord.confirmLabel}
                   </button>
                 ) : null}
               </div>
@@ -1895,17 +2187,34 @@ export function World3RootScreen() {
               >
                 {signalShowAction ? (
                   <button
+                    ref={
+                      pendingRecordSave?.recordId === "senal"
+                        ? recordRetryButtonRef
+                        : undefined
+                    }
                     className="s3-detail__confirm s3-signal__action"
                     type="button"
-                    data-station3-action="close-record"
+                    aria-busy={recordSavePersisting ? "true" : undefined}
+                    data-station3-action={
+                      pendingRecordSave?.recordId === "senal"
+                        ? "retry-record-save"
+                        : "close-record"
+                    }
                     data-station3-record-confirm="senal"
+                    disabled={recordSavePersisting}
                     onPointerDown={() => markSignalReturnModality("pointer")}
                     onKeyDown={handleSignalReturnKeyDown}
-                    onClick={() => closeRecord(signalRecord)}
+                    onClick={
+                      pendingRecordSave?.recordId === "senal"
+                        ? retryPendingRecordSave
+                        : () => closeRecord(signalRecord)
+                    }
                   >
-                    {signalRevisit
-                      ? signalRecord.signalPage.revisitLabel
-                      : signalRecord.confirmLabel}
+                    {pendingRecordSave?.recordId === "senal"
+                      ? PROGRESS_SAVE_RETRY_LABEL
+                      : signalRevisit
+                        ? signalRecord.signalPage.revisitLabel
+                        : signalRecord.confirmLabel}
                   </button>
                 ) : null}
               </div>

@@ -17,6 +17,7 @@ import sharp from "sharp";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { gestureHintAssets } from "../../components/GestureHint/gestureHintAssets";
+import { WORLD3_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world3Checkpoint";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { station3Lia, station3Records } from "./station3Content";
 import {
@@ -233,6 +234,22 @@ function stubViewport(width: number, height: number) {
   act(() => window.dispatchEvent(new Event("resize")));
 }
 
+function seedWorld3Checkpoint(completedRecordIds: readonly string[]) {
+  window.localStorage.setItem(
+    WORLD3_CHECKPOINT_STORAGE_KEY,
+    JSON.stringify({
+      completedRecordIds,
+      schemaVersion: 1,
+      updatedAt: "2026-08-05T16:00:00.000Z",
+    }),
+  );
+}
+
+function readWorld3PrefixForTest() {
+  const raw = window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY);
+  return raw ? JSON.parse(raw).completedRecordIds : [];
+}
+
 describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -285,6 +302,357 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     expect(
       screen.queryByText("Sin audio · Sin Internet · Mobile-first"),
     ).not.toBeInTheDocument();
+  });
+
+  it("no escribe al montar una sesión fresh", () => {
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
+    const { container } = renderStation3();
+
+    enterStation(container);
+    expect(setItem).not.toHaveBeenCalled();
+    expect(
+      window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+  });
+
+  it("restaura un prefijo parcial sin escribir ni repetir PLANTA o PROTOTIPO", () => {
+    seedWorld3Checkpoint(["planta", "prototipo"]);
+    const rawBefore = window.localStorage.getItem(
+      WORLD3_CHECKPOINT_STORAGE_KEY,
+    );
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
+    const { container } = renderStation3();
+
+    advance(1000);
+    expect(getState(container)).toBe("station3_signal_unlocked");
+    expect(recordButton(container, "planta")).toHaveAttribute(
+      "data-record-state",
+      "completed",
+    );
+    expect(recordButton(container, "prototipo")).toHaveAttribute(
+      "data-record-state",
+      "completed",
+    );
+    expect(recordButton(container, "senal")).toHaveAttribute(
+      "data-record-state",
+      "available",
+    );
+    expect(container.querySelector(".s3-stamp")).not.toBeInTheDocument();
+    expect(setItem).not.toHaveBeenCalled();
+    expect(window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY)).toBe(
+      rawBefore,
+    );
+  });
+
+  it("restaura checkpoint completo con sello listo sin repetir unlocking", () => {
+    seedWorld3Checkpoint(["planta", "prototipo", "senal"]);
+    const { container } = renderStation3();
+
+    advance(1000);
+    expect(getState(container)).toBe("station3_ready_to_continue");
+    expect(container.querySelector(".s3-stamp")).toHaveAttribute(
+      "data-stamp-stage",
+      "ready",
+    );
+    expect(
+      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
+    ).toBeVisible();
+    advance(30_000);
+    expect(container.querySelector(".s3-stamp")).toHaveAttribute(
+      "data-stamp-stage",
+      "ready",
+    );
+  });
+
+  it.each([
+    ["planta", [], "station3_index", "observing"],
+    ["prototipo", ["planta"], "station3_prototype_unlocked", "assembly"],
+    ["senal", ["planta", "prototipo"], "station3_signal_unlocked", "capturing"],
+  ] as const)(
+    "reinicia %s no guardado desde su primera etapa tras remontar",
+    (recordId, prefix, restoredState, firstPhase) => {
+      if (prefix.length > 0) seedWorld3Checkpoint(prefix);
+      const first = renderStation3();
+      advance(1000);
+      openRecord(first.container, recordId);
+      expect(
+        first.container.querySelector(
+          `[data-station3-${recordId === "planta" ? "plant" : recordId === "prototipo" ? "prototype" : "signal"}-phase="${firstPhase}"]`,
+        ),
+      ).toBeInTheDocument();
+      first.unmount();
+
+      const second = renderStation3();
+      advance(1000);
+      expect(getState(second.container)).toBe(restoredState);
+      openRecord(second.container, recordId);
+      expect(
+        second.container.querySelector(
+          `[data-station3-${recordId === "planta" ? "plant" : recordId === "prototipo" ? "prototype" : "signal"}-phase="${firstPhase}"]`,
+        ),
+      ).toBeInTheDocument();
+      expect(readWorld3PrefixForTest()).toEqual(prefix);
+    },
+  );
+
+  it("prioriza completion global sobre un checkpoint W3 inválido y preserva su raw", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        completedStations: [1, 2, 3],
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T16:00:00.000Z",
+      }),
+    );
+    const invalidRaw = "{world-three-corrupt::raw";
+    window.localStorage.setItem(WORLD3_CHECKPOINT_STORAGE_KEY, invalidRaw);
+    const { container } = renderStation3();
+
+    advance(1000);
+    expect(getState(container)).toBe("station3_ready_to_continue");
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-checkpoint-recovery",
+      "none",
+    );
+    expect(window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY)).toBe(
+      invalidRaw,
+    );
+  });
+
+  it("preserva raw corrupto, bloquea entradas y descarta sólo W3 tras confirmación", () => {
+    const invalidRaw = "{world-three-corrupt::raw";
+    window.localStorage.setItem(WORLD3_CHECKPOINT_STORAGE_KEY, invalidRaw);
+    window.localStorage.setItem("unrelated.token", "preserved");
+    const { container } = renderStation3();
+
+    enterStation(container);
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-checkpoint-recovery",
+      "corrupt",
+    );
+    expect(recordButton(container, "planta")).toBeDisabled();
+    fireEvent.click(recordButton(container, "planta"));
+    expect(getState(container)).toBe("station3_index");
+    expect(window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY)).toBe(
+      invalidRaw,
+    );
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Descartar guardado inválido" }),
+    );
+    expect(window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY)).toBe(
+      invalidRaw,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Confirmar descarte" }));
+    expect(
+      window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(window.localStorage.getItem("unrelated.token")).toBe("preserved");
+    expect(recordButton(container, "planta")).not.toBeDisabled();
+  });
+
+  it("ante storage_unavailable exige reintentar lectura antes de habilitar entradas", () => {
+    const nativeGetItem = Storage.prototype.getItem;
+    let unavailable = true;
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(function (
+      this: Storage,
+      key,
+    ) {
+      if (unavailable && key === WORLD3_CHECKPOINT_STORAGE_KEY) {
+        throw new Error("storage unavailable");
+      }
+      return nativeGetItem.call(this, key);
+    });
+    const { container } = renderStation3();
+
+    enterStation(container);
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-checkpoint-recovery",
+      "storage_unavailable",
+    );
+    expect(recordButton(container, "planta")).toBeDisabled();
+
+    unavailable = false;
+    fireEvent.click(
+      screen.getByRole("button", { name: "Reintentar acceso al guardado" }),
+    );
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-checkpoint-recovery",
+      "none",
+    );
+    expect(recordButton(container, "planta")).not.toBeDisabled();
+  });
+
+  it("falla cerrado al guardar PLANTA y reintenta sólo la escritura pendiente", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let storageFails = true;
+    const setItem = vi
+      .spyOn(Storage.prototype, "setItem")
+      .mockImplementation(function (this: Storage, key, value) {
+        if (key === WORLD3_CHECKPOINT_STORAGE_KEY && storageFails) {
+          throw new Error("quota");
+        }
+        nativeSetItem.call(this, key, value);
+      });
+    const { container } = renderStation3();
+    enterStation(container);
+    openRecord(container, "planta");
+    finishPlantNarrative(container);
+
+    fireEvent.click(screen.getByRole("button", { name: "Guardar registro" }));
+
+    expect(
+      container.querySelector('[data-station3-plant-phase="ready"]'),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-completed-count",
+      "0",
+    );
+    expect(recordButton(container, "prototipo")).toHaveAttribute(
+      "data-record-state",
+      "locked",
+    );
+    expect(
+      window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+
+    storageFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(
+      container.querySelector('[data-station3-plant-phase="confirmed"]'),
+    ).toBeInTheDocument();
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY) ?? "{}",
+      ),
+    ).toMatchObject({ completedRecordIds: ["planta"], schemaVersion: 1 });
+    expect(
+      setItem.mock.calls.filter(
+        ([key]) => key === WORLD3_CHECKPOINT_STORAGE_KEY,
+      ),
+    ).toHaveLength(2);
+
+    advance(680);
+    advance(700);
+    expect(getState(container)).toBe("station3_prototype_unlocked");
+  });
+
+  it("falla cerrado al guardar PROTOTIPO y retry inicia un solo cierre", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let prototypeWriteFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      const isPrototypeWrite =
+        key === WORLD3_CHECKPOINT_STORAGE_KEY &&
+        JSON.parse(value).completedRecordIds?.length === 2;
+      if (isPrototypeWrite && prototypeWriteFails) throw new Error("quota");
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderStation3();
+    enterStation(container);
+    completeRecord(container, "planta");
+    openRecord(container, "prototipo");
+    finishPrototypeNarrative(container);
+
+    fireEvent.click(screen.getByRole("button", { name: "Guardar registro" }));
+    expect(
+      container.querySelector('[data-station3-prototype-phase="ready"]'),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-completed-count",
+      "1",
+    );
+    expect(recordButton(container, "senal")).toHaveAttribute(
+      "data-record-state",
+      "locked",
+    );
+
+    prototypeWriteFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(
+      container.querySelector('[data-station3-prototype-phase="confirmed"]'),
+    ).toBeInTheDocument();
+    advance(799);
+    expect(getState(container)).toBe("station3_prototype_page");
+    advance(1);
+    expect(getState(container)).toBe("station3_returning_from_prototype");
+    advance(700);
+    expect(getState(container)).toBe("station3_signal_unlocked");
+  });
+
+  it("falla cerrado al guardar SEÑAL y no muestra sello hasta retry verificado", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let signalWriteFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      const isSignalWrite =
+        key === WORLD3_CHECKPOINT_STORAGE_KEY &&
+        JSON.parse(value).completedRecordIds?.length === 3;
+      if (isSignalWrite && signalWriteFails) throw new Error("quota");
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderStation3();
+    enterStation(container);
+    completeRecord(container, "planta");
+    completeRecord(container, "prototipo");
+    openRecord(container, "senal");
+    finishSignalNarrative(container);
+
+    fireEvent.click(screen.getByRole("button", { name: "Guardar registro" }));
+    expect(
+      container.querySelector('[data-station3-signal-phase="ready"]'),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
+      "data-station3-completed-count",
+      "2",
+    );
+    expect(container.querySelector(".s3-stamp")).not.toBeInTheDocument();
+
+    signalWriteFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(
+      container.querySelector('[data-station3-signal-phase="confirmed"]'),
+    ).toBeInTheDocument();
+    advance(800);
+    advance(700);
+    expect(getState(container)).toBe("station3_adjusted_unlocked");
+    expect(container.querySelector(".s3-stamp")).toHaveAttribute(
+      "data-stamp-stage",
+      "unlocking",
+    );
+  });
+
+  it("hace idempotente el doble click de Guardar registro", () => {
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
+    const { container } = renderStation3();
+    enterStation(container);
+    openRecord(container, "planta");
+    finishPlantNarrative(container);
+    const save = screen.getByRole("button", { name: "Guardar registro" });
+
+    fireEvent.click(save);
+    fireEvent.click(save);
+
+    expect(
+      setItem.mock.calls.filter(
+        ([key]) => key === WORLD3_CHECKPOINT_STORAGE_KEY,
+      ),
+    ).toHaveLength(1);
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY) ?? "{}",
+      ).completedRecordIds,
+    ).toEqual(["planta"]);
+    advance(680);
+    advance(700);
+    expect(getState(container)).toBe("station3_prototype_unlocked");
   });
 
   it("no usa audio, video, canvas, iframes ni medios externos", () => {
@@ -2315,6 +2683,11 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
       "data-station3-completed-count",
       "3",
     );
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY) ?? "{}",
+      ).completedRecordIds,
+    ).toEqual(["planta", "prototipo", "senal"]);
 
     storageFails = false;
     fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
