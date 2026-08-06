@@ -1,4 +1,5 @@
 import { act, cleanup, render, screen } from "@testing-library/react";
+import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { World2MappingPanel } from "./World2MappingPanel";
@@ -12,12 +13,21 @@ describe("World2MappingPanel 016U", () => {
   it("presenta una sola relación y avanza automáticamente por los tres mapeos", () => {
     vi.useFakeTimers();
     const onFirstRunComplete = vi.fn();
+    function Harness() {
+      const [complete, setComplete] = useState(false);
+      return (
+        <World2MappingPanel
+          cleanSignalAsset="/clean-signal.png"
+          firstRunComplete={complete}
+          onFirstRunComplete={() => {
+            onFirstRunComplete();
+            setComplete(true);
+          }}
+        />
+      );
+    }
     const { container } = render(
-      <World2MappingPanel
-        cleanSignalAsset="/clean-signal.png"
-        firstRunComplete={false}
-        onFirstRunComplete={onFirstRunComplete}
-      />,
+      <Harness />,
     );
     const panel = screen.getByRole("group", {
       name: "Mapeo secuencial: un rasgo de la señal se interpreta como un parámetro sonoro",

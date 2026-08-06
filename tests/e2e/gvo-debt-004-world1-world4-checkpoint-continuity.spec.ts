@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
+const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
 const WORLD4_CHECKPOINT_KEY = "gvo.station4.v1";
 const WORLD5_PROGRESS_KEY = "gvo.station5.v1";
 const COVER_PROGRESS_KEY = "gvo.coverIntro.introCompleted.v1";
@@ -22,6 +23,7 @@ async function openCleanOrigin(page: Page) {
       localKeys: [
         GLOBAL_PROGRESS_KEY,
         WORLD1_CHECKPOINT_KEY,
+        WORLD2_CHECKPOINT_KEY,
         WORLD4_CHECKPOINT_KEY,
         WORLD5_PROGRESS_KEY,
         COVER_PROGRESS_KEY,
@@ -256,12 +258,13 @@ test("GVO_DEBT_004 W4 restaura reading, chain_pending, completion_retry y revisi
   await expect(plant).toHaveAttribute("data-node-state", "active");
 });
 
-test("GVO_DEBT_004 reset real elimina seis keys y preserva familias ajenas", async ({
+test("GVO_DEBT_004 reset real elimina siete keys y preserva familias ajenas", async ({
   page,
 }) => {
-  const sixKeys = [
+  const sevenKeys = [
     GLOBAL_PROGRESS_KEY,
     WORLD1_CHECKPOINT_KEY,
+    WORLD2_CHECKPOINT_KEY,
     WORLD4_CHECKPOINT_KEY,
     WORLD5_PROGRESS_KEY,
     COVER_PROGRESS_KEY,
@@ -278,13 +281,14 @@ test("GVO_DEBT_004 reset real elimina seis keys y preserva familias ajenas", asy
       );
       localStorage.setItem(localKeys[1], "{corrupt-world-one");
       localStorage.setItem(localKeys[2], '{"schemaVersion":99}');
-      localStorage.setItem(localKeys[3], "world-five-state");
-      localStorage.setItem(localKeys[4], "true");
+      localStorage.setItem(localKeys[3], '{"schemaVersion":77}');
+      localStorage.setItem(localKeys[4], "world-five-state");
+      localStorage.setItem(localKeys[5], "true");
       sessionStorage.setItem(reviewKey, "review-context");
       localStorage.setItem("gvo:accessibility:contrast", "high");
       sessionStorage.setItem("gvo:world4:tap-hint:shown", "1");
     },
-    { localKeys: sixKeys, reviewKey: REVIEW_CONTEXT_KEY },
+    { localKeys: sevenKeys, reviewKey: REVIEW_CONTEXT_KEY },
   );
   await page.goto("/final", { waitUntil: "domcontentloaded" });
   await page.locator('[data-final-action="open_restart_confirmation"]').click();
@@ -299,9 +303,9 @@ test("GVO_DEBT_004 reset real elimina seis keys y preserva familias ajenas", asy
         local: localKeys.map((key) => localStorage.getItem(key)),
         review: sessionStorage.getItem(reviewKey),
       }),
-      { localKeys: sixKeys, reviewKey: REVIEW_CONTEXT_KEY },
+      { localKeys: sevenKeys, reviewKey: REVIEW_CONTEXT_KEY },
     ),
-  ).toEqual({ local: [null, null, null, null, null], review: null });
+  ).toEqual({ local: [null, null, null, null, null, null], review: null });
   expect(
     await page.evaluate(() => ({
       contrast: localStorage.getItem("gvo:accessibility:contrast"),

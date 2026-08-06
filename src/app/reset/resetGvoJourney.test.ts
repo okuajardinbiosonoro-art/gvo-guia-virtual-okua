@@ -73,6 +73,8 @@ function seededBackends(
         '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
       "gvo.station1.v1":
         '{"schemaVersion":1,"activeConcept":"relation","highestReachedConcept":"perception","updatedAt":"2026-08-05T12:01:00.000Z"}',
+      "gvo.station2.v1":
+        '{"schemaVersion":1,"activeLayerId":"senal","visitedLayerIds":["planta_viva","senal"],"highestUnlockedLayerOrder":3,"completedRequiredInteractions":["plant_contact_readout_seen"],"capture":{"currentStepId":"contact","visitedStepIds":["contact"]},"mappingFirstRunComplete":false,"resultState":"not_started","updatedAt":"2026-08-05T12:01:30.000Z"}',
       "gvo.station4.v1":
         '{"schemaVersion":1,"highestSettledIndex":3,"resumeMode":"reading","updatedAt":"2026-08-05T12:02:00.000Z"}',
       "gvo.station5.v1": '{"completedAreas":["plantas"]}',
@@ -105,7 +107,7 @@ describe("resetGvoJourney", () => {
     window.sessionStorage.clear();
   });
 
-  it("usa una allowlist tipada de seis claves auditadas y preserve explícito", () => {
+  it("usa una allowlist tipada de siete claves auditadas y preserve explícito", () => {
     expect(GVO_JOURNEY_RESET_ALLOWLIST).toEqual([
       expect.objectContaining({
         backend: "localStorage",
@@ -115,6 +117,11 @@ describe("resetGvoJourney", () => {
         backend: "localStorage",
         key: "gvo.station1.v1",
         purpose: "world-one-state",
+      }),
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.station2.v1",
+        purpose: "world-two-state",
       }),
       expect.objectContaining({
         backend: "localStorage",
@@ -144,7 +151,7 @@ describe("resetGvoJourney", () => {
       storage,
     );
 
-    expect(snapshot).toHaveLength(6);
+    expect(snapshot).toHaveLength(7);
     expect(snapshot.every((entry) => entry.existed)).toBe(true);
     expect(snapshot.find((entry) => entry.key === "gvo.progress.v1")?.raw).toBe(
       '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
@@ -153,7 +160,7 @@ describe("resetGvoJourney", () => {
     const result = await resetGvoJourney({ storage });
     expect(result).toMatchObject({
       ok: true,
-      snapshotCount: 6,
+      snapshotCount: 7,
       verifiedInitialState: true,
     });
     for (const entry of GVO_JOURNEY_RESET_ALLOWLIST) {
@@ -181,6 +188,7 @@ describe("resetGvoJourney", () => {
     );
     window.localStorage.setItem("gvo.station5.v1", "world-five");
     window.localStorage.setItem("gvo.station1.v1", "world-one");
+    window.localStorage.setItem("gvo.station2.v1", "world-two");
     window.localStorage.setItem("gvo.station4.v1", "world-four");
     window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
     beginFinalReview(5);
@@ -315,7 +323,7 @@ describe("resetGvoJourney", () => {
     }
   });
 
-  it("restaura checkpoints W1/W4 corruptos byte-exacto después de un fallo intermedio", async () => {
+  it("restaura checkpoints W1/W2/W4 corruptos byte-exacto después de un fallo intermedio", async () => {
     const { localStorage, sessionStorage, storage } = seededBackends({
       local: {
         removeItem: (_key, count) => {
@@ -324,8 +332,10 @@ describe("resetGvoJourney", () => {
       },
     });
     const world1Raw = "{world-one-corrupt::raw";
+    const world2Raw = '{"schemaVersion":88,"opaque":"world-two"}';
     const world4Raw = '{"schemaVersion":77,"opaque":"world-four"}';
     localStorage.setItem("gvo.station1.v1", world1Raw);
+    localStorage.setItem("gvo.station2.v1", world2Raw);
     localStorage.setItem("gvo.station4.v1", world4Raw);
     const beforeLocal = new Map(localStorage.values);
     const beforeSession = new Map(sessionStorage.values);
@@ -335,15 +345,39 @@ describe("resetGvoJourney", () => {
       failedStage: "delete",
       ok: false,
       rollbackVerified: true,
-      snapshotCount: 6,
+      snapshotCount: 7,
     });
     expect(localStorage.values).toEqual(beforeLocal);
     expect(sessionStorage.values).toEqual(beforeSession);
     expect(localStorage.getItem("gvo.station1.v1")).toBe(world1Raw);
+    expect(localStorage.getItem("gvo.station2.v1")).toBe(world2Raw);
     expect(localStorage.getItem("gvo.station4.v1")).toBe(world4Raw);
   });
 
-  it("retry toma un snapshot nuevo de las seis claves", async () => {
+  it("restaura raw W2 corrupto y unknown byte-exacto en rollback", async () => {
+    for (const world2Raw of [
+      "{world-two-corrupt::raw",
+      '{"schemaVersion":88,"opaque":"world-two"}',
+    ]) {
+      const { localStorage, storage } = seededBackends({
+        local: {
+          removeItem: (_key, count) => {
+            if (count === 5) throw new Error("delete failure after W2");
+          },
+        },
+      });
+      localStorage.setItem("gvo.station2.v1", world2Raw);
+
+      expect(await resetGvoJourney({ storage })).toMatchObject({
+        ok: false,
+        rollbackVerified: true,
+        snapshotCount: 7,
+      });
+      expect(localStorage.getItem("gvo.station2.v1")).toBe(world2Raw);
+    }
+  });
+
+  it("retry toma un snapshot nuevo de las siete claves", async () => {
     let fail = true;
     const { localStorage, storage } = seededBackends({
       local: {
@@ -358,7 +392,7 @@ describe("resetGvoJourney", () => {
     fail = false;
     expect(await resetGvoJourney({ storage })).toMatchObject({
       ok: true,
-      snapshotCount: 6,
+      snapshotCount: 7,
     });
     expect(localStorage.getItem("gvo.station1.v1")).toBeNull();
   });

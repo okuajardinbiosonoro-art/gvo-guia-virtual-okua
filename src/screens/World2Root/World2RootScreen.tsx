@@ -1,7 +1,6 @@
 import "./World2RootScreen.css";
 
 import {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -17,7 +16,21 @@ import {
   world2LayerDefinitions,
   type World2LayerId,
 } from "../../content/world2EditorialSlots";
-import { markStationCompleted } from "../../domain/progress/progress.storage";
+import {
+  completedWorld2CheckpointState,
+  freshWorld2CheckpointState,
+  readWorld2Checkpoint,
+  removeWorld2Checkpoint,
+  type CaptureTimelineStepId,
+  type RequiredInteractionId,
+  type World2CheckpointState,
+  type World2ResultState,
+  writeWorld2Checkpoint,
+} from "../../domain/checkpoints/world2Checkpoint";
+import {
+  markStationCompleted,
+  readProgress,
+} from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import {
@@ -26,7 +39,6 @@ import {
 } from "../../shared/progress/progressSaveError";
 import {
   captureTimelineSteps,
-  type CaptureTimelineStepId,
   World2CaptureTimeline,
 } from "./World2CaptureTimeline";
 import { World2LiaActor } from "./World2LiaActor";
@@ -49,12 +61,41 @@ type LayerStatus =
   | "active"
   | "completed";
 type PlantContactReadoutState = "idle" | "expanded";
-type RequiredInteractionId =
-  | "plant_contact_readout_seen"
-  | "signal_measured_wave_seen"
-  | "capture_data_readout_seen";
 type SignalRevealState = "idle" | "expanded";
 type CompletionPhase = "idle" | "persisting" | "error" | "complete";
+type CheckpointRecoveryStatus =
+  | "corrupt"
+  | "unknown_version"
+  | "storage_unavailable"
+  | null;
+
+type PendingCheckpointAction =
+  | Readonly<{
+      kind: "plant_interaction";
+      nextState: World2CheckpointState;
+    }>
+  | Readonly<{
+      kind: "layer_change";
+      layerId: World2LayerId;
+      nextState: World2CheckpointState;
+    }>
+  | Readonly<{
+      kind: "signal_interaction";
+      nextState: World2CheckpointState;
+    }>
+  | Readonly<{
+      kind: "capture_step";
+      nextState: World2CheckpointState;
+      stepId: CaptureTimelineStepId;
+    }>
+  | Readonly<{
+      kind: "mapping_completion";
+      nextState: World2CheckpointState;
+    }>
+  | Readonly<{
+      kind: "result_completion";
+      nextState: World2CheckpointState;
+    }>;
 
 type LayerCopy = {
   accessibleLabel: string;
@@ -335,6 +376,7 @@ function getLayerStatus(
   visitedLayerIds: ReadonlySet<World2LayerId>,
   highestUnlockedLayerOrder: number,
   completedRequiredInteractions: ReadonlySet<RequiredInteractionId>,
+  mappingFirstRunComplete: boolean,
 ): LayerStatus {
   const layerOrder = getLayerIndex(layerId) + 1;
 
@@ -347,6 +389,9 @@ function getLayerStatus(
   }
 
   if (layerOrder <= highestUnlockedLayerOrder) {
+    if (layerId === "resultado_mediado" && !mappingFirstRunComplete) {
+      return "next-but-gated";
+    }
     if (getRequiredInteractionGate(layerId, completedRequiredInteractions)) {
       return "next-but-gated";
     }
@@ -386,12 +431,79 @@ function getLayerGlyphStyle(index: number): LayerGlyphStyle {
   };
 }
 
+function cloneWorld2StableState(
+  checkpoint: World2CheckpointState,
+): World2CheckpointState {
+  return {
+    activeLayerId: checkpoint.activeLayerId,
+    visitedLayerIds: [...checkpoint.visitedLayerIds],
+    highestUnlockedLayerOrder: checkpoint.highestUnlockedLayerOrder,
+    completedRequiredInteractions: [
+      ...checkpoint.completedRequiredInteractions,
+    ],
+    capture: {
+      currentStepId: checkpoint.capture.currentStepId,
+      visitedStepIds: [...checkpoint.capture.visitedStepIds],
+    },
+    mappingFirstRunComplete: checkpoint.mappingFirstRunComplete,
+    resultState: checkpoint.resultState,
+  };
+}
+
+function globalWorld2Complete() {
+  return readProgress().progress?.completedStations.includes(2) ?? false;
+}
+
+function readInitialWorld2State(): World2CheckpointState & {
+  recoveryStatus: CheckpointRecoveryStatus;
+} {
+  const completed = globalWorld2Complete();
+  const checkpoint = readWorld2Checkpoint();
+  const recoveryStatus: CheckpointRecoveryStatus =
+    checkpoint.status === "empty" || checkpoint.status === "ok"
+      ? null
+      : checkpoint.status;
+
+  if (completed) {
+    return {
+      ...completedWorld2CheckpointState(
+        checkpoint.status === "ok"
+          ? checkpoint.checkpoint.activeLayerId
+          : "resultado_mediado",
+      ),
+      recoveryStatus,
+    };
+  }
+
+  if (checkpoint.status === "ok") {
+    return {
+      ...cloneWorld2StableState(checkpoint.checkpoint),
+      recoveryStatus: null,
+    };
+  }
+
+  return { ...freshWorld2CheckpointState(), recoveryStatus };
+}
+
+function highestUnlockedForVisited(
+  visitedLayerIds: readonly World2LayerId[],
+): 1 | 2 | 3 | 4 | 5 | 6 {
+  return Math.min(visitedLayerIds.length + 1, 6) as 1 | 2 | 3 | 4 | 5 | 6;
+}
+
 export function World2RootScreen() {
   const navigate = useNavigate();
+  const [initialState] = useState(readInitialWorld2State);
+  const rootRef = useRef<HTMLElement>(null);
   const plantContactHotspotRef = useRef<HTMLButtonElement>(null);
   const signalRevealControlRef = useRef<HTMLButtonElement>(null);
   const continueButtonRef = useRef<HTMLButtonElement>(null);
+  const checkpointRetryButtonRef = useRef<HTMLButtonElement>(null);
   const completionLockRef = useRef(false);
+  const checkpointWriteLockRef = useRef(false);
+  const pendingCheckpointActionRef = useRef<PendingCheckpointAction | null>(
+    null,
+  );
   const [visualViewportHeight, setVisualViewportHeight] = useState<
     number | null
   >(() => {
@@ -402,35 +514,66 @@ export function World2RootScreen() {
     return Math.round(window.visualViewport?.height ?? window.innerHeight);
   });
   const [activeLayerId, setActiveLayerId] =
-    useState<World2LayerId>("planta_viva");
+    useState<World2LayerId>(initialState.activeLayerId);
   const [visitedLayerIds, setVisitedLayerIds] = useState<
     ReadonlySet<World2LayerId>
-  >(() => new Set<World2LayerId>(["planta_viva"]));
-  const [highestUnlockedLayerOrder, setHighestUnlockedLayerOrder] = useState(
-    Math.min(2, world2LayerCount),
+  >(() => new Set<World2LayerId>(initialState.visitedLayerIds));
+  const [highestUnlockedLayerOrder, setHighestUnlockedLayerOrder] =
+    useState<World2CheckpointState["highestUnlockedLayerOrder"]>(
+      initialState.highestUnlockedLayerOrder,
+    );
+  const [journeyComplete, setJourneyComplete] = useState(
+    initialState.resultState === "ready_to_continue",
   );
-  const [journeyComplete, setJourneyComplete] = useState(false);
   const [completionPhase, setCompletionPhase] =
     useState<CompletionPhase>("idle");
   const [sonicConvergenceComplete, setSonicConvergenceComplete] =
-    useState(false);
+    useState(initialState.resultState === "ready_to_continue");
   const [softMessage, setSoftMessage] = useState<string | null>(null);
   const [signalRevealState, setSignalRevealState] =
-    useState<SignalRevealState>("idle");
+    useState<SignalRevealState>(
+      initialState.completedRequiredInteractions.includes(
+        "signal_measured_wave_seen",
+      )
+        ? "expanded"
+        : "idle",
+    );
   const [plantContactReadoutState, setPlantContactReadoutState] =
-    useState<PlantContactReadoutState>("idle");
+    useState<PlantContactReadoutState>(
+      initialState.completedRequiredInteractions.includes(
+        "plant_contact_readout_seen",
+      )
+        ? "expanded"
+        : "idle",
+    );
   const [captureTimelineStepId, setCaptureTimelineStepId] =
-    useState<CaptureTimelineStepId>("contact");
+    useState<CaptureTimelineStepId>(initialState.capture.currentStepId);
   const [captureVisitedStepIds, setCaptureVisitedStepIds] = useState<
     ReadonlySet<CaptureTimelineStepId>
-  >(() => new Set<CaptureTimelineStepId>(["contact"]));
+  >(() =>
+    new Set<CaptureTimelineStepId>(initialState.capture.visitedStepIds),
+  );
   const [captureTimelineInteracted, setCaptureTimelineInteracted] =
-    useState(false);
-  const [mappingFirstRunComplete, setMappingFirstRunComplete] = useState(false);
+    useState(initialState.capture.visitedStepIds.length > 1);
+  const [mappingFirstRunComplete, setMappingFirstRunComplete] = useState(
+    initialState.mappingFirstRunComplete,
+  );
+  const [resultState, setResultState] = useState<World2ResultState>(
+    initialState.resultState,
+  );
   const [completedRequiredInteractions, setCompletedRequiredInteractions] =
     useState<ReadonlySet<RequiredInteractionId>>(
-      () => new Set<RequiredInteractionId>(),
+      () =>
+        new Set<RequiredInteractionId>(
+          initialState.completedRequiredInteractions,
+        ),
     );
+  const [checkpointRecoveryStatus, setCheckpointRecoveryStatus] =
+    useState<CheckpointRecoveryStatus>(initialState.recoveryStatus);
+  const [checkpointResetConfirmation, setCheckpointResetConfirmation] =
+    useState(false);
+  const [pendingCheckpointAction, setPendingCheckpointAction] =
+    useState<PendingCheckpointAction | null>(null);
   const initialPreload = useAssetPreloader(
     screenAssetBundles.world2RootInitial,
     {
@@ -460,16 +603,59 @@ export function World2RootScreen() {
         .join(","),
     [completedRequiredInteractions],
   );
+  const currentStableState = useMemo<World2CheckpointState>(
+    () => ({
+      activeLayerId,
+      visitedLayerIds: world2LayerDefinitions
+        .filter((layer) => visitedLayerIds.has(layer.id))
+        .map((layer) => layer.id),
+      highestUnlockedLayerOrder,
+      completedRequiredInteractions: requiredInteractionOrder.filter(
+        (interactionId) =>
+          completedRequiredInteractions.has(interactionId),
+      ),
+      capture: {
+        currentStepId: captureTimelineStepId,
+        visitedStepIds: captureTimelineSteps
+          .filter((step) => captureVisitedStepIds.has(step.id))
+          .map((step) => step.id),
+      },
+      mappingFirstRunComplete,
+      resultState,
+    }),
+    [
+      activeLayerId,
+      captureTimelineStepId,
+      captureVisitedStepIds,
+      completedRequiredInteractions,
+      highestUnlockedLayerOrder,
+      mappingFirstRunComplete,
+      resultState,
+      visitedLayerIds,
+    ],
+  );
   const activeCopy = layerCopy[activeLayer.id];
   const isReadyToContinue =
-    journeyComplete && activeLayer.id === "resultado_mediado";
+    resultState === "ready_to_continue" &&
+    journeyComplete &&
+    activeLayer.id === "resultado_mediado";
   const world2State = isReadyToContinue ? "ready_to_continue" : activeLayer.id;
   const isLockedMessage = softMessage === cleanMessages.locked;
+  const checkpointInputBlocked =
+    checkpointRecoveryStatus !== null || pendingCheckpointAction !== null;
+  const checkpointOperationalMessage = checkpointRecoveryStatus
+    ? checkpointResetConfirmation
+      ? "¿Restablecer el avance guardado de este mundo?"
+      : "No fue posible recuperar el avance de este mundo."
+    : pendingCheckpointAction
+      ? PROGRESS_SAVE_ERROR_COPY
+      : null;
   const activeDialogue =
-    completionPhase === "error"
+    checkpointOperationalMessage ??
+    (completionPhase === "error"
       ? PROGRESS_SAVE_ERROR_COPY
       : (softMessage ??
-        (isReadyToContinue ? cleanMessages.complete : activeCopy.dialogue));
+        (isReadyToContinue ? cleanMessages.complete : activeCopy.dialogue)));
   const activeAmbient = isReadyToContinue
     ? "La ruta de mediación queda completa para continuar."
     : activeCopy.ambient;
@@ -524,6 +710,12 @@ export function World2RootScreen() {
   }, [completionPhase]);
 
   useEffect(() => {
+    if (pendingCheckpointAction) {
+      checkpointRetryButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [pendingCheckpointAction]);
+
+  useEffect(() => {
     const updateVisualViewportHeight = () => {
       setVisualViewportHeight(
         Math.round(window.visualViewport?.height ?? window.innerHeight),
@@ -554,26 +746,185 @@ export function World2RootScreen() {
     };
   }, []);
 
-  function completeRequiredInteraction(interactionId: RequiredInteractionId) {
-    setCompletedRequiredInteractions((currentCompletedInteractions) => {
-      if (currentCompletedInteractions.has(interactionId)) {
-        return currentCompletedInteractions;
+  function focusAfterCheckpointAction(action: PendingCheckpointAction) {
+    window.requestAnimationFrame(() => {
+      if (action.kind === "plant_interaction") {
+        plantContactHotspotRef.current?.focus({ preventScroll: true });
+        return;
       }
-
-      const nextCompletedInteractions = new Set(currentCompletedInteractions);
-      nextCompletedInteractions.add(interactionId);
-      return nextCompletedInteractions;
+      if (action.kind === "signal_interaction") {
+        signalRevealControlRef.current?.focus({ preventScroll: true });
+        return;
+      }
+      if (action.kind === "capture_step") {
+        rootRef.current
+          ?.querySelector<HTMLButtonElement>(
+            `[data-world2-capture-control="${action.stepId}"]`,
+          )
+          ?.focus({ preventScroll: true });
+        return;
+      }
+      if (action.kind === "result_completion") {
+        continueButtonRef.current?.focus({ preventScroll: true });
+        return;
+      }
+      const layerId =
+        action.kind === "layer_change" ? action.layerId : "mapeo";
+      rootRef.current
+        ?.querySelector<HTMLButtonElement>(`[data-world2-layer="${layerId}"]`)
+        ?.focus({ preventScroll: true });
     });
   }
 
-  function selectLayer(layerId: World2LayerId, layerIndex: number) {
-    const layerOrder = layerIndex + 1;
+  function applyStableState(
+    nextState: World2CheckpointState,
+    action: PendingCheckpointAction | null = null,
+    focusAfter = false,
+  ) {
+    setActiveLayerId(nextState.activeLayerId);
+    setVisitedLayerIds(new Set(nextState.visitedLayerIds));
+    setHighestUnlockedLayerOrder(nextState.highestUnlockedLayerOrder);
+    setCompletedRequiredInteractions(
+      new Set(nextState.completedRequiredInteractions),
+    );
+    setPlantContactReadoutState(
+      nextState.completedRequiredInteractions.includes(
+        "plant_contact_readout_seen",
+      )
+        ? "expanded"
+        : "idle",
+    );
+    setSignalRevealState(
+      nextState.completedRequiredInteractions.includes(
+        "signal_measured_wave_seen",
+      )
+        ? "expanded"
+        : "idle",
+    );
+    setCaptureTimelineStepId(nextState.capture.currentStepId);
+    setCaptureVisitedStepIds(new Set(nextState.capture.visitedStepIds));
+    setCaptureTimelineInteracted(nextState.capture.visitedStepIds.length > 1);
+    setMappingFirstRunComplete(nextState.mappingFirstRunComplete);
+    setResultState(nextState.resultState);
+    setJourneyComplete(nextState.resultState === "ready_to_continue");
+    setSonicConvergenceComplete(
+      nextState.resultState === "ready_to_continue",
+    );
+    pendingCheckpointActionRef.current = null;
+    setPendingCheckpointAction(null);
+
+    if (
+      nextState.resultState === "ready_to_continue" &&
+      nextState.activeLayerId === "resultado_mediado"
+    ) {
+      setSoftMessage(cleanMessages.complete);
+    } else if (action?.kind === "layer_change") {
+      setSoftMessage(
+        action.nextState.visitedLayerIds.includes(action.layerId) &&
+          currentStableState.visitedLayerIds.includes(action.layerId)
+          ? cleanMessages.review
+          : null,
+      );
+    } else {
+      setSoftMessage(null);
+    }
+
+    if (focusAfter && action) {
+      focusAfterCheckpointAction(action);
+    }
+  }
+
+  function persistCheckpointAction(
+    action: PendingCheckpointAction,
+    retry = false,
+  ) {
+    if (
+      checkpointRecoveryStatus ||
+      checkpointWriteLockRef.current ||
+      (!retry && pendingCheckpointActionRef.current)
+    ) {
+      return false;
+    }
+
+    checkpointWriteLockRef.current = true;
+    const written = writeWorld2Checkpoint(action.nextState);
+    checkpointWriteLockRef.current = false;
+    if (!written.ok) {
+      pendingCheckpointActionRef.current = action;
+      setPendingCheckpointAction(action);
+      if (written.reason === "corrupt" || written.reason === "unknown_version") {
+        setCheckpointRecoveryStatus(written.reason);
+        setCheckpointResetConfirmation(false);
+      }
+      return false;
+    }
+
+    applyStableState(action.nextState, action, retry);
+    return true;
+  }
+
+  function retryPendingCheckpoint() {
+    const action =
+      pendingCheckpointActionRef.current ?? pendingCheckpointAction;
+    if (!action) return;
+    pendingCheckpointActionRef.current = null;
+    setPendingCheckpointAction(null);
+    persistCheckpointAction(action, true);
+  }
+
+  function retryCheckpointRead() {
+    const next = readInitialWorld2State();
+    setCheckpointRecoveryStatus(next.recoveryStatus);
+    setCheckpointResetConfirmation(false);
+    if (!next.recoveryStatus) {
+      applyStableState(next);
+    }
+  }
+
+  function confirmCheckpointReset() {
+    const removed = removeWorld2Checkpoint();
+    if (!removed.ok) {
+      setCheckpointRecoveryStatus("storage_unavailable");
+      setCheckpointResetConfirmation(false);
+      return;
+    }
+
+    pendingCheckpointActionRef.current = null;
+    setPendingCheckpointAction(null);
+    setCheckpointRecoveryStatus(null);
+    setCheckpointResetConfirmation(false);
+    const safeState = globalWorld2Complete()
+      ? completedWorld2CheckpointState()
+      : freshWorld2CheckpointState();
+    applyStableState(safeState);
+    window.requestAnimationFrame(() => {
+      rootRef.current
+        ?.querySelector<HTMLButtonElement>(
+          `[data-world2-layer="${safeState.activeLayerId}"]`,
+        )
+        ?.focus({ preventScroll: true });
+    });
+  }
+
+  function stableCheckpointActionBlocked() {
+    if (pendingCheckpointActionRef.current) {
+      checkpointRetryButtonRef.current?.focus({ preventScroll: true });
+      return true;
+    }
+    return checkpointRecoveryStatus !== null;
+  }
+
+  function selectLayer(layerId: World2LayerId) {
+    if (stableCheckpointActionBlocked()) {
+      return;
+    }
     const status = getLayerStatus(
       layerId,
       activeLayerId,
       visitedLayerIds,
       highestUnlockedLayerOrder,
       completedRequiredInteractions,
+      mappingFirstRunComplete,
     );
     const requiredInteractionGate = getRequiredInteractionGate(
       layerId,
@@ -592,67 +943,167 @@ export function World2RootScreen() {
       return;
     }
 
-    if (layerId !== "senal") {
-      setSignalRevealState("idle");
+    if (
+      status === "next-but-gated" &&
+      layerId === "resultado_mediado" &&
+      !mappingFirstRunComplete
+    ) {
+      setSoftMessage("Espera a que termine la primera secuencia de Mapeo.");
+      return;
     }
 
-    setVisitedLayerIds((currentVisitedLayerIds) => {
-      const nextVisitedLayerIds = new Set(currentVisitedLayerIds);
-      nextVisitedLayerIds.add(layerId);
-      return nextVisitedLayerIds;
-    });
-    setHighestUnlockedLayerOrder((currentHighestUnlockedLayerOrder) =>
-      Math.max(
-        currentHighestUnlockedLayerOrder,
-        Math.min(layerOrder + 1, world2LayerCount),
+    if (layerId === activeLayerId) return;
+
+    const nextVisitedLayerIds = currentStableState.visitedLayerIds.includes(
+      layerId,
+    )
+      ? [...currentStableState.visitedLayerIds]
+      : [...currentStableState.visitedLayerIds, layerId];
+    const nextResultState: World2ResultState =
+      layerId === "resultado_mediado" &&
+      currentStableState.resultState === "not_started"
+        ? "convergence_pending"
+        : currentStableState.resultState;
+    const nextState: World2CheckpointState = {
+      ...currentStableState,
+      activeLayerId: layerId,
+      visitedLayerIds: nextVisitedLayerIds,
+      highestUnlockedLayerOrder: highestUnlockedForVisited(
+        nextVisitedLayerIds,
       ),
-    );
-    setActiveLayerId(layerId);
-    setSoftMessage(
-      journeyComplete && layerId === "resultado_mediado"
-        ? cleanMessages.complete
-        : status === "completed"
-          ? cleanMessages.review
-          : null,
-    );
+      resultState: nextResultState,
+    };
+
+    persistCheckpointAction({
+      kind: "layer_change",
+      layerId,
+      nextState,
+    });
   }
 
   function expandPlantContactReadout() {
-    setPlantContactReadoutState("expanded");
-    completeRequiredInteraction("plant_contact_readout_seen");
+    if (
+      stableCheckpointActionBlocked() ||
+      completedRequiredInteractions.has("plant_contact_readout_seen")
+    ) {
+      return;
+    }
+    persistCheckpointAction({
+      kind: "plant_interaction",
+      nextState: {
+        ...currentStableState,
+        completedRequiredInteractions: ["plant_contact_readout_seen"],
+      },
+    });
   }
 
   function expandSignalReveal() {
-    setSignalRevealState("expanded");
-    completeRequiredInteraction("signal_measured_wave_seen");
+    if (
+      stableCheckpointActionBlocked() ||
+      completedRequiredInteractions.has("signal_measured_wave_seen")
+    ) {
+      return;
+    }
+    persistCheckpointAction({
+      kind: "signal_interaction",
+      nextState: {
+        ...currentStableState,
+        completedRequiredInteractions: [
+          "plant_contact_readout_seen",
+          "signal_measured_wave_seen",
+        ],
+      },
+    });
   }
 
   function selectCaptureTimelineStep(stepId: CaptureTimelineStepId) {
-    const nextVisitedStepIds = new Set(captureVisitedStepIds);
-    nextVisitedStepIds.add(stepId);
-
-    setCaptureTimelineInteracted(true);
-    setCaptureTimelineStepId(stepId);
-    setCaptureVisitedStepIds(nextVisitedStepIds);
-    if (nextVisitedStepIds.size === captureTimelineSteps.length) {
-      completeRequiredInteraction("capture_data_readout_seen");
+    if (stableCheckpointActionBlocked()) {
+      return;
     }
-    setSoftMessage(null);
+    if (stepId === captureTimelineStepId) return;
+
+    const stepIndex = captureTimelineSteps.findIndex(
+      (step) => step.id === stepId,
+    );
+    if (stepIndex > currentStableState.capture.visitedStepIds.length) {
+      setSoftMessage("Recorre Captura paso a paso.");
+      return;
+    }
+
+    const nextVisitedStepIds = currentStableState.capture.visitedStepIds.includes(
+      stepId,
+    )
+      ? [...currentStableState.capture.visitedStepIds]
+      : [...currentStableState.capture.visitedStepIds, stepId];
+    const captureComplete =
+      nextVisitedStepIds.length === captureTimelineSteps.length;
+    persistCheckpointAction({
+      kind: "capture_step",
+      stepId,
+      nextState: {
+        ...currentStableState,
+        completedRequiredInteractions: captureComplete
+          ? [
+              "plant_contact_readout_seen",
+              "signal_measured_wave_seen",
+              "capture_data_readout_seen",
+            ]
+          : currentStableState.completedRequiredInteractions,
+        capture: {
+          currentStepId: stepId,
+          visitedStepIds: nextVisitedStepIds,
+        },
+      },
+    });
   }
 
-  const completeMappingFirstRun = useCallback(() => {
-    setMappingFirstRunComplete(true);
-  }, []);
+  function completeMappingFirstRun() {
+    if (mappingFirstRunComplete || pendingCheckpointActionRef.current) return;
+    persistCheckpointAction({
+      kind: "mapping_completion",
+      nextState: { ...currentStableState, mappingFirstRunComplete: true },
+    });
+  }
 
-  const completeSonicConvergence = useCallback(() => {
-    setSonicConvergenceComplete(true);
-    setJourneyComplete(true);
-    setSoftMessage(cleanMessages.complete);
-  }, []);
+  function completeSonicConvergence() {
+    if (
+      resultState !== "convergence_pending" ||
+      pendingCheckpointActionRef.current
+    ) {
+      return;
+    }
+    persistCheckpointAction({
+      kind: "result_completion",
+      nextState: { ...currentStableState, resultState: "ready_to_continue" },
+    });
+  }
 
   function continueJourney() {
     if (!isReadyToContinue || completionLockRef.current) {
       return;
+    }
+
+    const checkpoint = readWorld2Checkpoint();
+    if (
+      checkpoint.status !== "ok" ||
+      checkpoint.checkpoint.resultState !== "ready_to_continue"
+    ) {
+      if (
+        checkpoint.status === "corrupt" ||
+        checkpoint.status === "unknown_version" ||
+        checkpoint.status === "storage_unavailable"
+      ) {
+        setCheckpointRecoveryStatus(checkpoint.status);
+        return;
+      }
+      if (
+        !persistCheckpointAction({
+          kind: "result_completion",
+          nextState: currentStableState,
+        })
+      ) {
+        return;
+      }
     }
 
     completionLockRef.current = true;
@@ -670,6 +1121,7 @@ export function World2RootScreen() {
 
   return (
     <main
+      ref={rootRef}
       className="world2-root-screen"
       style={world2RootStyle}
       data-world2-experience="option6-closure-centering-post-completion-revisit-fix-r2"
@@ -695,6 +1147,13 @@ export function World2RootScreen() {
       data-world2-highest-unlocked-layer={highestUnlockedLayerOrder}
       data-world2-visited-layers={visitedLayerOrderList}
       data-world2-completed-count={visitedLayerIds.size}
+      data-world2-checkpoint-blocked={checkpointInputBlocked ? "true" : "false"}
+      data-world2-checkpoint-pending={pendingCheckpointAction?.kind ?? "none"}
+      data-world2-checkpoint-recovery={checkpointRecoveryStatus ?? "none"}
+      data-world2-mapping-first-run-complete={
+        mappingFirstRunComplete ? "true" : "false"
+      }
+      data-world2-result-state={resultState}
       data-world2-semantic-layer-count={world2SemanticAssetManifest.length}
       data-world2-slot-count={Object.keys(world2EditorialSlots).length}
       data-world2-label-system="015V"
@@ -1085,7 +1544,9 @@ export function World2RootScreen() {
           data-world2-zone="dialogue"
           data-world2-dialogue-layer={activeLayer.id}
           data-world2-dialogue-suppressed={
-            activeLayer.id === "resultado_mediado" && !isReadyToContinue
+            activeLayer.id === "resultado_mediado" &&
+            !isReadyToContinue &&
+            !checkpointOperationalMessage
               ? "option6-sequence"
               : undefined
           }
@@ -1123,14 +1584,16 @@ export function World2RootScreen() {
                 <p
                   className="world2-dialogue__copy"
                   data-world2-slot-id={
-                    completionPhase === "error"
+                    completionPhase === "error" || checkpointOperationalMessage
                       ? undefined
                       : isReadyToContinue
                         ? "W2_COMPLETE_LIA_01"
                         : activeLayer.hintSlot
                   }
                   data-progress-save-error={
-                    completionPhase === "error" ? "true" : undefined
+                    completionPhase === "error" || pendingCheckpointAction
+                      ? "true"
+                      : undefined
                   }
                   data-world2-text-sweep={activeLayer.id}
                   data-editorial-status="TEMP"
@@ -1138,12 +1601,69 @@ export function World2RootScreen() {
                 >
                   {activeDialogue}
                 </p>
+                {checkpointResetConfirmation ? (
+                  <p
+                    className="world2-dialogue__copy"
+                    data-editorial-status="TEMP"
+                  >
+                    El progreso global del recorrido se conservará.
+                  </p>
+                ) : null}
               </div>
               {isReadyToContinue ? null : (
                 <p className="world2-dialogue__hint">{activeHint}</p>
               )}
               <div className="world2-dialogue__actions">
-                {isReadyToContinue ? (
+                {checkpointRecoveryStatus === "storage_unavailable" ? (
+                  <button
+                    ref={checkpointRetryButtonRef}
+                    className="world2-action world2-action--continue"
+                    type="button"
+                    data-editorial-status="TEMP"
+                    onClick={retryCheckpointRead}
+                  >
+                    <span>{PROGRESS_SAVE_RETRY_LABEL}</span>
+                  </button>
+                ) : checkpointRecoveryStatus &&
+                  !checkpointResetConfirmation ? (
+                  <button
+                    className="world2-action world2-action--continue"
+                    type="button"
+                    data-editorial-status="TEMP"
+                    onClick={() => setCheckpointResetConfirmation(true)}
+                  >
+                    <span>Restablecer avance de este mundo</span>
+                  </button>
+                ) : checkpointRecoveryStatus && checkpointResetConfirmation ? (
+                  <>
+                    <button
+                      className="world2-action world2-action--continue"
+                      type="button"
+                      data-editorial-status="TEMP"
+                      onClick={() => setCheckpointResetConfirmation(false)}
+                    >
+                      <span>Cancelar</span>
+                    </button>
+                    <button
+                      className="world2-action world2-action--continue"
+                      type="button"
+                      data-editorial-status="TEMP"
+                      onClick={confirmCheckpointReset}
+                    >
+                      <span>Restablecer</span>
+                    </button>
+                  </>
+                ) : pendingCheckpointAction ? (
+                  <button
+                    ref={checkpointRetryButtonRef}
+                    className="world2-action world2-action--continue"
+                    type="button"
+                    data-editorial-status="TEMP"
+                    onClick={retryPendingCheckpoint}
+                  >
+                    <span>{PROGRESS_SAVE_RETRY_LABEL}</span>
+                  </button>
+                ) : isReadyToContinue ? (
                   <button
                     ref={continueButtonRef}
                     className="world2-action world2-action--continue"
@@ -1190,6 +1710,7 @@ export function World2RootScreen() {
                 visitedLayerIds,
                 highestUnlockedLayerOrder,
                 completedRequiredInteractions,
+                mappingFirstRunComplete,
               );
               const requiredInteractionGate = getRequiredInteractionGate(
                 layer.id,
@@ -1214,16 +1735,20 @@ export function World2RootScreen() {
                     data-layer-locked={isLocked || isGated}
                     type="button"
                     aria-pressed={status === "active"}
-                    aria-disabled={isLocked || isGated}
+                    aria-disabled={
+                      isLocked || isGated || checkpointInputBlocked
+                    }
                     aria-label={
                       isGated && requiredInteractionGate
                         ? `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. Primero toca ${requiredInteractionCopy[requiredInteractionGate].triggerLabel}.`
+                        : isGated && layer.id === "resultado_mediado"
+                          ? `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. Espera a que termine la primera secuencia de Mapeo.`
                         : status === "next"
                           ? `Siguiente capa. Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel} disponible.`
                           : `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. ${getStatusLabel(status)}.`
                     }
                     aria-describedby={`world2-accessible-${layer.id}`}
-                    onClick={() => selectLayer(layer.id, index)}
+                    onClick={() => selectLayer(layer.id)}
                   >
                     <img
                       className="world2-layer-button__token world2-layer-button__token--base"

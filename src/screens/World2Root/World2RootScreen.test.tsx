@@ -15,6 +15,7 @@ import {
   world2LayerDefinitions,
   type World2LayerId,
 } from "../../content/world2EditorialSlots";
+import { WORLD2_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world2Checkpoint";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { World2RootScreen } from "./World2RootScreen";
 import { world2RuntimeAssets } from "./world2RuntimeAssets";
@@ -326,12 +327,20 @@ describe("World2RootScreen", () => {
 
     expect(contactControl).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(systemControl);
+    expect(timeline).toHaveAttribute("data-world2-capture-step", "contact");
+    expectLayerState(container, "acondicionamiento", "next-but-gated");
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Mostrar paso 2: Señal tomada",
+      }),
+    );
+    fireEvent.click(systemControl);
     expect(timeline).toHaveAttribute("data-world2-capture-step", "system");
     expect(timeline).toHaveAttribute(
       "data-world2-capture-visited",
-      "contact,system",
+      "contact,signal,system",
     );
-    expectLayerState(container, "acondicionamiento", "next-but-gated");
+    expectLayerState(container, "acondicionamiento", "next");
 
     fireEvent.click(contactControl);
     expect(timeline).toHaveAttribute("data-world2-capture-step", "contact");
@@ -771,6 +780,10 @@ describe("World2RootScreen", () => {
           completeCaptureDataIfVisible(container);
         }
 
+        if (layer.id === "mapeo") {
+          act(() => vi.advanceTimersByTime(9600));
+        }
+
         fireEvent.click(
           screen.getByRole("button", {
             name: `Siguiente capa. Capa ${nextLayer.order} de 6. ${layerCopyLabelForTest(
@@ -887,6 +900,7 @@ describe("World2RootScreen", () => {
       JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}")
         .completedStations,
     ).toEqual([1]);
+    act(() => vi.advanceTimersByTime(9600));
     clickLayer(container, "resultado_mediado");
     act(() => vi.advanceTimersByTime(9000));
     fireEvent.click(screen.getByRole("button", { name: "Continuar" }));
@@ -912,6 +926,7 @@ describe("World2RootScreen", () => {
     vi.useFakeTimers();
     const { container } = renderWorld2RootScreen();
     progressToLayer(container, "mapeo");
+    act(() => vi.advanceTimersByTime(9600));
     clickLayer(container, "resultado_mediado");
 
     act(() => vi.advanceTimersByTime(9000));
@@ -989,6 +1004,7 @@ describe("World2RootScreen", () => {
   });
 
   it("016K preserva base 016H, safe-area 016I y desbloquea Captura con Onda medida", () => {
+    vi.useFakeTimers();
     const { container } = renderWorld2RootScreen();
     const scene = () =>
       container.querySelector<HTMLElement>("[data-world2-zone='scene']");
@@ -1735,6 +1751,7 @@ describe("World2RootScreen", () => {
       ),
     ).not.toBeInTheDocument();
 
+    act(() => vi.advanceTimersByTime(9600));
     fireEvent.click(
       screen.getByRole("button", {
         name: "Siguiente capa. Capa 6 de 6. Resultado mediado disponible.",
@@ -1857,7 +1874,7 @@ describe("World2RootScreen", () => {
     expect(root()).toHaveAttribute("data-world2-current-layer", "5");
     expect(root()).toHaveAttribute("data-world2-highest-unlocked-layer", "6");
     expect(root()).toHaveAttribute("data-world2-visited-layers", "1,2,3,4,5");
-    expectLayerState(container, "resultado_mediado", "next");
+    expectLayerState(container, "resultado_mediado", "next-but-gated");
 
     clickLayer(container, "planta_viva");
 
@@ -1869,7 +1886,7 @@ describe("World2RootScreen", () => {
     expectLayerState(container, "captura", "completed");
     expectLayerState(container, "acondicionamiento", "completed");
     expectLayerState(container, "mapeo", "completed");
-    expectLayerState(container, "resultado_mediado", "next");
+    expectLayerState(container, "resultado_mediado", "next-but-gated");
 
     for (const layerId of [
       "senal",
@@ -1880,7 +1897,7 @@ describe("World2RootScreen", () => {
       clickLayer(container, layerId);
       expectLayerState(container, layerId, "active");
       expect(root()).toHaveAttribute("data-world2-highest-unlocked-layer", "6");
-      expectLayerState(container, "resultado_mediado", "next");
+      expectLayerState(container, "resultado_mediado", "next-but-gated");
     }
   });
 
@@ -1931,7 +1948,7 @@ describe("World2RootScreen", () => {
     expectLayerState(container, "captura", "completed");
     expectLayerState(container, "acondicionamiento", "completed");
     expectLayerState(container, "mapeo", "completed");
-    expectLayerState(container, "resultado_mediado", "next");
+    expectLayerState(container, "resultado_mediado", "next-but-gated");
   });
 
   it("015W mantiene capa 6 bloqueada hasta desbloquearla secuencialmente", () => {
@@ -1945,7 +1962,7 @@ describe("World2RootScreen", () => {
     clickLayer(container, "mapeo");
 
     expectLayerState(container, "mapeo", "active");
-    expectLayerState(container, "resultado_mediado", "next");
+    expectLayerState(container, "resultado_mediado", "next-but-gated");
   });
 
   it("015O mantiene las estructuras semánticas al volver y revisitar capas 1 a 5", () => {
@@ -2018,7 +2035,7 @@ describe("World2RootScreen", () => {
         `[data-runtime-asset="${world2RuntimeAssets.mappingConstellation}"]`,
       ),
     ).not.toBeInTheDocument();
-    expectLayerState(container, "resultado_mediado", "next");
+    expectLayerState(container, "resultado_mediado", "next-but-gated");
   });
 
   it("016U-R5 conserva la revisión habilitada al salir y volver a Mapeo", () => {
@@ -2063,6 +2080,413 @@ describe("World2RootScreen", () => {
         (button) => !button.disabled,
       ),
     ).toBe(true);
+  });
+
+  it("DEBT_005 fresh no escribe al montar y restaura Planta, Señal y Captura", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    const writes: string[] = [];
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY) writes.push(value);
+      nativeSetItem.call(this, key, value);
+    });
+
+    let rendered = renderWorld2RootScreen();
+    expect(writes).toEqual([]);
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-active-layer",
+      "planta_viva",
+    );
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Abrir Punto de lectura" }),
+    );
+    expect(writes).toHaveLength(1);
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    expect(
+      screen.getByRole("button", { name: "Abrir Punto de lectura" }),
+    ).toHaveAttribute("aria-expanded", "true");
+    expectLayerState(rendered.container, "senal", "next");
+
+    clickLayer(rendered.container, "senal");
+    fireEvent.click(
+      rendered.container.querySelector(
+        '[data-world2-signal-reveal-control="onda-medida"]',
+      ) as HTMLElement,
+    );
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-active-layer",
+      "senal",
+    );
+    expect(
+      rendered.container.querySelector('[data-signal-reveal-state="expanded"]'),
+    ).toBeInTheDocument();
+
+    clickLayer(rendered.container, "captura");
+    fireEvent.click(
+      screen.getByRole("button", { name: "Mostrar paso 2: Señal tomada" }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Mostrar paso 3: Datos al sistema",
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "Mostrar paso 1: Contacto" }),
+    );
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    const timeline = rendered.container.querySelector(
+      '[data-world2-capture-timeline="016R"]',
+    );
+    expect(timeline).toHaveAttribute("data-world2-capture-step", "contact");
+    expect(timeline).toHaveAttribute(
+      "data-world2-capture-visited",
+      "contact,signal,system",
+    );
+    expectLayerState(rendered.container, "acondicionamiento", "next");
+  });
+
+  it("DEBT_005 Mapeo incompleto reinicia y Mapeo completo restaura review", () => {
+    vi.useFakeTimers();
+    let rendered = renderWorld2RootScreen();
+    progressToLayer(rendered.container, "mapeo");
+    let panel = rendered.container.querySelector(
+      '[data-world2-mapping-mode="sequential-pedagogic-r2"]',
+    );
+    act(() => vi.advanceTimersByTime(3200));
+    expect(panel).toHaveAttribute("data-world2-mapping-step", "2");
+
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    panel = rendered.container.querySelector(
+      '[data-world2-mapping-mode="sequential-pedagogic-r2"]',
+    );
+    expect(panel).toHaveAttribute("data-world2-mapping-step", "1");
+    expect(panel).toHaveAttribute("data-world2-mapping-controls", "locked");
+
+    act(() => vi.advanceTimersByTime(9600));
+    expect(panel).toHaveAttribute("data-world2-mapping-controls", "review");
+    expectLayerState(rendered.container, "resultado_mediado", "next");
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    panel = rendered.container.querySelector(
+      '[data-world2-mapping-mode="sequential-pedagogic-r2"]',
+    );
+    expect(panel).toHaveAttribute("data-world2-mapping-step", "3");
+    expect(panel).toHaveAttribute("data-world2-mapping-controls", "review");
+  });
+
+  it("DEBT_005 fallo y retry de Mapeo no repite autoplay", () => {
+    vi.useFakeTimers();
+    const { container } = renderWorld2RootScreen();
+    progressToLayer(container, "mapeo");
+    const nativeSetItem = Storage.prototype.setItem;
+    let fail = true;
+    let attempts = 0;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY) {
+        attempts += 1;
+        if (fail) throw new Error("mapping checkpoint failure");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+
+    act(() => vi.advanceTimersByTime(9600));
+    const panel = container.querySelector(
+      '[data-world2-mapping-mode="sequential-pedagogic-r2"]',
+    );
+    expect(panel).toHaveAttribute("data-world2-mapping-step", "3");
+    expect(panel).toHaveAttribute("data-world2-mapping-controls", "locked");
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(attempts).toBe(1);
+
+    fail = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(panel).toHaveAttribute("data-world2-mapping-controls", "review");
+    act(() => vi.advanceTimersByTime(20_000));
+    expect(attempts).toBe(2);
+  });
+
+  it("DEBT_005 Resultado pending reinicia y ready no repite convergencia", () => {
+    vi.useFakeTimers();
+    let rendered = renderWorld2RootScreen();
+    progressToLayer(rendered.container, "mapeo");
+    act(() => vi.advanceTimersByTime(9600));
+    clickLayer(rendered.container, "resultado_mediado");
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-result-state",
+      "convergence_pending",
+    );
+    act(() => vi.advanceTimersByTime(4200));
+    expect(
+      rendered.container.querySelector(
+        '[data-world2-option6-stage="pitch"]',
+      ),
+    ).toBeInTheDocument();
+
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    expect(
+      rendered.container.querySelector(
+        '[data-world2-option6-stage="intensity"]',
+      ),
+    ).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(9000));
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-result-state",
+      "ready_to_continue",
+    );
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeEnabled();
+
+    cleanup();
+    rendered = renderWorld2RootScreen();
+    expect(
+      rendered.container.querySelector('[data-world2-option6-complete="true"]'),
+    ).toHaveAttribute("data-world2-option6-stage", "resolved");
+    act(() => vi.advanceTimersByTime(12_000));
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-result-state",
+      "ready_to_continue",
+    );
+  });
+
+  it("DEBT_005 fallo y retry de Resultado bloquea CTA sin repetir secuencia", () => {
+    vi.useFakeTimers();
+    const { container } = renderWorld2RootScreen();
+    progressToLayer(container, "mapeo");
+    act(() => vi.advanceTimersByTime(9600));
+    clickLayer(container, "resultado_mediado");
+    const nativeSetItem = Storage.prototype.setItem;
+    let fail = true;
+    let attempts = 0;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY) {
+        attempts += 1;
+        if (fail) throw new Error("result checkpoint failure");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+
+    act(() => vi.advanceTimersByTime(9000));
+    expect(
+      container.querySelector('[data-world2-option6-stage="resolved"]'),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Continuar" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    expect(attempts).toBe(1);
+
+    fail = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeEnabled();
+    act(() => vi.advanceTimersByTime(12_000));
+    expect(attempts).toBe(2);
+  });
+
+  it("DEBT_005 completion global prevalece y conserva active layer válida", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2],
+        updatedAt: "2026-08-05T18:00:00.000Z",
+      }),
+    );
+    let rendered = renderWorld2RootScreen();
+    expect(getWorld2Root(rendered.container)).toHaveAttribute(
+      "data-world2-state",
+      "ready_to_continue",
+    );
+    expect(
+      window.localStorage.getItem(WORLD2_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+
+    cleanup();
+    window.localStorage.setItem(
+      WORLD2_CHECKPOINT_STORAGE_KEY,
+      JSON.stringify({
+        activeLayerId: "senal",
+        visitedLayerIds: ["planta_viva", "senal"],
+        highestUnlockedLayerOrder: 3,
+        completedRequiredInteractions: ["plant_contact_readout_seen"],
+        capture: { currentStepId: "contact", visitedStepIds: ["contact"] },
+        mappingFirstRunComplete: false,
+        resultState: "not_started",
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T18:01:00.000Z",
+      }),
+    );
+    rendered = renderWorld2RootScreen();
+    const root = getWorld2Root(rendered.container);
+    expect(root).toHaveAttribute("data-world2-active-layer", "senal");
+    expect(root).toHaveAttribute("data-world2-result-state", "ready_to_continue");
+    expect(root).toHaveAttribute("data-world2-visited-layers", "1,2,3,4,5,6");
+    expect(
+      rendered.container.querySelector('[data-signal-reveal-state="expanded"]'),
+    ).toBeInTheDocument();
+  });
+
+  it("DEBT_005 corrupción exige recovery explícito y preserva familias ajenas", () => {
+    const corruptRaw = "{world-two-corrupt::raw";
+    window.localStorage.setItem(WORLD2_CHECKPOINT_STORAGE_KEY, corruptRaw);
+    window.localStorage.setItem("gvo.station1.v1", "world-one-preserved");
+    window.localStorage.setItem("gvo.station4.v1", "world-four-preserved");
+    window.localStorage.setItem("gvo.station5.v1", "world-five-preserved");
+    const { container } = renderWorld2RootScreen();
+
+    expect(
+      screen.getByText("No fue posible recuperar el avance de este mundo."),
+    ).toBeVisible();
+    expect(window.localStorage.getItem(WORLD2_CHECKPOINT_STORAGE_KEY)).toBe(
+      corruptRaw,
+    );
+    clickLayer(container, "senal");
+    expect(getWorld2Root(container)).toHaveAttribute(
+      "data-world2-active-layer",
+      "planta_viva",
+    );
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Restablecer avance de este mundo" }),
+    );
+    expect(
+      screen.getByText("¿Restablecer el avance guardado de este mundo?"),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "Restablecer" }));
+    expect(
+      window.localStorage.getItem(WORLD2_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(window.localStorage.getItem("gvo.station1.v1")).toBe(
+      "world-one-preserved",
+    );
+    expect(window.localStorage.getItem("gvo.station4.v1")).toBe(
+      "world-four-preserved",
+    );
+    expect(window.localStorage.getItem("gvo.station5.v1")).toBe(
+      "world-five-preserved",
+    );
+  });
+
+  it("DEBT_005 storage unavailable ofrece Reintentar, no reset", () => {
+    const nativeGetItem = Storage.prototype.getItem;
+    let unavailable = true;
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(function (
+      this: Storage,
+      key,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY && unavailable) {
+        throw new Error("checkpoint storage unavailable");
+      }
+      return nativeGetItem.call(this, key);
+    });
+    const { container } = renderWorld2RootScreen();
+
+    expect(getWorld2Root(container)).toHaveAttribute(
+      "data-world2-checkpoint-recovery",
+      "storage_unavailable",
+    );
+    expect(
+      screen.queryByRole("button", {
+        name: "Restablecer avance de este mundo",
+      }),
+    ).toBeNull();
+    unavailable = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(getWorld2Root(container)).toHaveAttribute(
+      "data-world2-checkpoint-recovery",
+      "none",
+    );
+  });
+
+  it("DEBT_005 write failure conserva UI, enfoca retry y double click es idempotente", () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let fail = true;
+    let attempts = 0;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY) {
+        attempts += 1;
+        if (fail) throw new Error("stable transition failure");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderWorld2RootScreen();
+    const contact = screen.getByRole("button", {
+      name: "Abrir Punto de lectura",
+    });
+    fireEvent.click(contact);
+    fireEvent.click(contact);
+    expect(contact).toHaveAttribute("aria-expanded", "false");
+    expectLayerState(container, "senal", "next-but-gated");
+    expect(attempts).toBe(1);
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+
+    fail = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(contact).toHaveAttribute("aria-expanded", "true");
+    expectLayerState(container, "senal", "next");
+    expect(attempts).toBe(2);
+  });
+
+  it("DEBT_005 retry de layer y Captura aplica sólo la transición pendiente", () => {
+    const { container } = renderWorld2RootScreen();
+    completePlantContactIfVisible(container);
+    const nativeSetItem = Storage.prototype.setItem;
+    let fail = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD2_CHECKPOINT_STORAGE_KEY && fail) {
+        throw new Error("pending transition failure");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+
+    clickLayer(container, "senal");
+    expect(getWorld2Root(container)).toHaveAttribute(
+      "data-world2-active-layer",
+      "planta_viva",
+    );
+    fail = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(getWorld2Root(container)).toHaveAttribute(
+      "data-world2-active-layer",
+      "senal",
+    );
+
+    completeSignalWaveIfVisible(container);
+    clickLayer(container, "captura");
+    fail = true;
+    fireEvent.click(
+      screen.getByRole("button", { name: "Mostrar paso 2: Señal tomada" }),
+    );
+    expect(
+      container.querySelector('[data-world2-capture-timeline="016R"]'),
+    ).toHaveAttribute("data-world2-capture-step", "contact");
+    fail = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(
+      container.querySelector('[data-world2-capture-timeline="016R"]'),
+    ).toHaveAttribute("data-world2-capture-step", "signal");
   });
 });
 

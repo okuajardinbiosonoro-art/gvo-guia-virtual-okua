@@ -3,8 +3,9 @@ import "./World2CaptureTimeline.css";
 import { useRef, type PointerEvent as ReactPointerEvent } from "react";
 
 import { GestureHint } from "../../components/GestureHint/GestureHint";
+import type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Checkpoint";
 
-export type CaptureTimelineStepId = "contact" | "signal" | "system";
+export type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Checkpoint";
 
 type CaptureTimelineStep = {
   id: CaptureTimelineStepId;

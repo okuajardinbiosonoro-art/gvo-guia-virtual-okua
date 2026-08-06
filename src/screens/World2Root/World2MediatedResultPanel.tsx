@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type SonicConvergenceStage =
   | "intensity"
@@ -34,23 +34,37 @@ export function World2MediatedResultPanel({
   const [stage, setStage] = useState<SonicConvergenceStage>(
     complete ? "resolved" : "intensity",
   );
+  const [sequenceFinished, setSequenceFinished] = useState(complete);
+  const onCompleteRef = useRef(onComplete);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     if (complete) {
       setStage("resolved");
+      setSequenceFinished(true);
+      return;
+    }
+
+    if (sequenceFinished) {
       return;
     }
 
     const stageTimers = stageSequence.map(({ delay, stage: nextStage }) =>
       window.setTimeout(() => setStage(nextStage), delay),
     );
-    const completionTimer = window.setTimeout(onComplete, 9000);
+    const completionTimer = window.setTimeout(() => {
+      setSequenceFinished(true);
+      onCompleteRef.current();
+    }, 9000);
 
     return () => {
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(completionTimer);
     };
-  }, [complete, onComplete]);
+  }, [complete, sequenceFinished]);
 
   return (
     <div

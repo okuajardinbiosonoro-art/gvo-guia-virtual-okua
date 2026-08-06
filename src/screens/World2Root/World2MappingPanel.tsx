@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type World2MappingPanelProps = {
   cleanSignalAsset: string;
@@ -70,15 +70,25 @@ export function World2MappingPanel({
   const [activeStepIndex, setActiveStepIndex] = useState(
     firstRunComplete ? mappingRelations.length - 1 : 0,
   );
-  const [localFirstRunComplete, setLocalFirstRunComplete] =
-    useState(firstRunComplete);
+  const [autoplayFinished, setAutoplayFinished] = useState(firstRunComplete);
   const [animationRevision, setAnimationRevision] = useState(0);
-  const reviewEnabled = firstRunComplete || localFirstRunComplete;
+  const onFirstRunCompleteRef = useRef(onFirstRunComplete);
+  const reviewEnabled = firstRunComplete;
   const activeRelation =
     mappingRelations[activeStepIndex] ?? mappingRelations[0];
 
   useEffect(() => {
-    if (reviewEnabled) {
+    onFirstRunCompleteRef.current = onFirstRunComplete;
+  }, [onFirstRunComplete]);
+
+  useEffect(() => {
+    if (firstRunComplete) {
+      setActiveStepIndex(mappingRelations.length - 1);
+      setAutoplayFinished(true);
+      return;
+    }
+
+    if (autoplayFinished) {
       return;
     }
 
@@ -92,15 +102,15 @@ export function World2MappingPanel({
       );
 
     const completionTimer = window.setTimeout(() => {
-      setLocalFirstRunComplete(true);
-      onFirstRunComplete();
+      setAutoplayFinished(true);
+      onFirstRunCompleteRef.current();
     }, mappingAutoplayMs);
 
     return () => {
       timers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(completionTimer);
     };
-  }, [onFirstRunComplete, reviewEnabled]);
+  }, [autoplayFinished, firstRunComplete]);
 
   function reviewStep(index: number) {
     if (!reviewEnabled) {
