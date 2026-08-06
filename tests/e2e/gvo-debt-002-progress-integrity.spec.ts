@@ -1,6 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
+const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
+const WORLD4_CHECKPOINT_KEY = "gvo.station4.v1";
 const WORLD5_PROGRESS_KEY = "gvo.station5.v1";
 const COVER_PROGRESS_KEY = "gvo.coverIntro.introCompleted.v1";
 const REVIEW_CONTEXT_KEY = "gvo.final.reviewContext.v1";
@@ -21,11 +23,15 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       world5Areas,
       coverComplete,
       globalKey,
+      world1Key,
+      world4Key,
       world5Key,
       coverKey,
       reviewKey,
     }) => {
       localStorage.removeItem(globalKey);
+      localStorage.removeItem(world1Key);
+      localStorage.removeItem(world4Key);
       localStorage.removeItem(world5Key);
       localStorage.removeItem(coverKey);
       sessionStorage.removeItem(reviewKey);
@@ -57,6 +63,8 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
     {
       ...fixture,
       globalKey: GLOBAL_PROGRESS_KEY,
+      world1Key: WORLD1_CHECKPOINT_KEY,
+      world4Key: WORLD4_CHECKPOINT_KEY,
       world5Key: WORLD5_PROGRESS_KEY,
       coverKey: COVER_PROGRESS_KEY,
       reviewKey: REVIEW_CONTEXT_KEY,
@@ -382,6 +390,16 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
     coverComplete: true,
   });
   await page.goto("/final", { waitUntil: "domcontentloaded" });
+  await page.evaluate(
+    ({ world1Key, world4Key }) => {
+      localStorage.setItem(world1Key, "world-one-checkpoint");
+      localStorage.setItem(world4Key, "world-four-checkpoint");
+    },
+    {
+      world1Key: WORLD1_CHECKPOINT_KEY,
+      world4Key: WORLD4_CHECKPOINT_KEY,
+    },
+  );
   await page.locator('[data-final-action="open_restart_confirmation"]').click();
   await page
     .locator('[data-final-action="confirm_restart_transaction"]')
@@ -391,9 +409,15 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
   expect(
     await page.evaluate(
       (keys) => keys.map((key) => localStorage.getItem(key)),
-      [GLOBAL_PROGRESS_KEY, WORLD5_PROGRESS_KEY, COVER_PROGRESS_KEY],
+      [
+        GLOBAL_PROGRESS_KEY,
+        WORLD1_CHECKPOINT_KEY,
+        WORLD4_CHECKPOINT_KEY,
+        WORLD5_PROGRESS_KEY,
+        COVER_PROGRESS_KEY,
+      ],
     ),
-  ).toEqual([null, null, null]);
+  ).toEqual([null, null, null, null, null]);
   expect(
     await page.evaluate(
       (key) => sessionStorage.getItem(key),

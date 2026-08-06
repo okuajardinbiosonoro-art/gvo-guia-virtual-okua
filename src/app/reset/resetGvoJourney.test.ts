@@ -71,6 +71,10 @@ function seededBackends(
     {
       "gvo.progress.v1":
         '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
+      "gvo.station1.v1":
+        '{"schemaVersion":1,"activeConcept":"relation","highestReachedConcept":"perception","updatedAt":"2026-08-05T12:01:00.000Z"}',
+      "gvo.station4.v1":
+        '{"schemaVersion":1,"highestSettledIndex":3,"resumeMode":"reading","updatedAt":"2026-08-05T12:02:00.000Z"}',
       "gvo.station5.v1": '{"completedAreas":["plantas"]}',
       "gvo.coverIntro.introCompleted.v1": "true",
       "gvo:accessibility:contrast": "high",
@@ -101,11 +105,21 @@ describe("resetGvoJourney", () => {
     window.sessionStorage.clear();
   });
 
-  it("usa una allowlist tipada de cuatro claves auditadas y preserve explícito", () => {
+  it("usa una allowlist tipada de seis claves auditadas y preserve explícito", () => {
     expect(GVO_JOURNEY_RESET_ALLOWLIST).toEqual([
       expect.objectContaining({
         backend: "localStorage",
         key: "gvo.progress.v1",
+      }),
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.station1.v1",
+        purpose: "world-one-state",
+      }),
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.station4.v1",
+        purpose: "world-four-state",
       }),
       expect.objectContaining({
         backend: "localStorage",
@@ -130,7 +144,7 @@ describe("resetGvoJourney", () => {
       storage,
     );
 
-    expect(snapshot).toHaveLength(4);
+    expect(snapshot).toHaveLength(6);
     expect(snapshot.every((entry) => entry.existed)).toBe(true);
     expect(snapshot.find((entry) => entry.key === "gvo.progress.v1")?.raw).toBe(
       '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
@@ -139,7 +153,7 @@ describe("resetGvoJourney", () => {
     const result = await resetGvoJourney({ storage });
     expect(result).toMatchObject({
       ok: true,
-      snapshotCount: 4,
+      snapshotCount: 6,
       verifiedInitialState: true,
     });
     for (const entry of GVO_JOURNEY_RESET_ALLOWLIST) {
@@ -166,6 +180,8 @@ describe("resetGvoJourney", () => {
       }),
     );
     window.localStorage.setItem("gvo.station5.v1", "world-five");
+    window.localStorage.setItem("gvo.station1.v1", "world-one");
+    window.localStorage.setItem("gvo.station4.v1", "world-four");
     window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
     beginFinalReview(5);
 
@@ -297,5 +313,53 @@ describe("resetGvoJourney", () => {
       expect(restoreJourneyResetSnapshot(snapshot, storage)).toBe(true);
       expect(localStorage.getItem("gvo.progress.v1")).toBe(raw);
     }
+  });
+
+  it("restaura checkpoints W1/W4 corruptos byte-exacto después de un fallo intermedio", async () => {
+    const { localStorage, sessionStorage, storage } = seededBackends({
+      local: {
+        removeItem: (_key, count) => {
+          if (count === 5) throw new Error("delete failure");
+        },
+      },
+    });
+    const world1Raw = "{world-one-corrupt::raw";
+    const world4Raw = '{"schemaVersion":77,"opaque":"world-four"}';
+    localStorage.setItem("gvo.station1.v1", world1Raw);
+    localStorage.setItem("gvo.station4.v1", world4Raw);
+    const beforeLocal = new Map(localStorage.values);
+    const beforeSession = new Map(sessionStorage.values);
+
+    expect(await resetGvoJourney({ storage })).toMatchObject({
+      copySafe: true,
+      failedStage: "delete",
+      ok: false,
+      rollbackVerified: true,
+      snapshotCount: 6,
+    });
+    expect(localStorage.values).toEqual(beforeLocal);
+    expect(sessionStorage.values).toEqual(beforeSession);
+    expect(localStorage.getItem("gvo.station1.v1")).toBe(world1Raw);
+    expect(localStorage.getItem("gvo.station4.v1")).toBe(world4Raw);
+  });
+
+  it("retry toma un snapshot nuevo de las seis claves", async () => {
+    let fail = true;
+    const { localStorage, storage } = seededBackends({
+      local: {
+        removeItem: (_key, count) => {
+          if (fail && count === 2) throw new Error("first delete failure");
+        },
+      },
+    });
+
+    expect(await resetGvoJourney({ storage })).toMatchObject({ ok: false });
+    localStorage.setItem("gvo.station1.v1", "new-snapshot-world-one");
+    fail = false;
+    expect(await resetGvoJourney({ storage })).toMatchObject({
+      ok: true,
+      snapshotCount: 6,
+    });
+    expect(localStorage.getItem("gvo.station1.v1")).toBeNull();
   });
 });

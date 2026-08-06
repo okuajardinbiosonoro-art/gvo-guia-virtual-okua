@@ -4,6 +4,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -15,6 +16,10 @@ import {
   world1EditorialSlots,
 } from "../../content/world1EditorialSlots";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
+import {
+  WORLD1_CHECKPOINT_STORAGE_KEY,
+  type World1CheckpointV1,
+} from "../../domain/checkpoints/world1Checkpoint";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
@@ -715,6 +720,206 @@ describe("World1RootScreen", () => {
     expect(
       container.querySelector('[data-world1-lia-pose="guide_mediation"]'),
     ).not.toBeInTheDocument();
+  });
+
+  it("persiste active/highest, permite volver y restaura visitados tras reload", () => {
+    const first = renderWorld1RootScreen();
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+
+    expect(
+      first.container.querySelector(".world1-root-screen"),
+    ).toHaveAttribute("data-world1-highest-reached", "perception");
+    expect(
+      first.container.querySelector('[data-world1-root-node="perception"]'),
+    ).toHaveAttribute("data-node-state", "completed");
+    expect(
+      first.container.querySelector<HTMLButtonElement>(
+        '[data-world1-root-node="perception"]',
+      ),
+    ).toBeEnabled();
+    const saved = JSON.parse(
+      window.localStorage.getItem(WORLD1_CHECKPOINT_STORAGE_KEY) ?? "null",
+    ) as World1CheckpointV1;
+    expect(saved).toMatchObject({
+      activeConcept: "relation",
+      highestReachedConcept: "perception",
+      schemaVersion: 1,
+    });
+
+    first.unmount();
+    const restored = renderWorld1RootScreen();
+    expect(
+      restored.container.querySelector(".world1-root-screen"),
+    ).toHaveAttribute("data-world1-root-state", "relation");
+    expect(
+      restored.container.querySelector(".world1-root-screen"),
+    ).toHaveAttribute("data-world1-highest-reached", "perception");
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explorar PERCEPCIÓN" }),
+    );
+    expect(
+      restored.container.querySelector(".world1-root-screen"),
+    ).toHaveAttribute("data-world1-root-state", "perception");
+  });
+
+  it("persiste ready antes de completion y lo restaura sin marcar progreso global", () => {
+    const first = renderWorld1RootScreen();
+    for (const label of [
+      "Explorar RELACIÓN",
+      "Explorar PERCEPCIÓN",
+      "Explorar MEDIACIÓN",
+    ]) {
+      fireEvent.click(screen.getByRole("button", { name: label }));
+    }
+    fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
+
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD1_CHECKPOINT_STORAGE_KEY) ?? "null",
+      ),
+    ).toMatchObject({
+      activeConcept: "ready_to_continue",
+      highestReachedConcept: "ready_to_continue",
+    });
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+
+    first.unmount();
+    const restored = renderWorld1RootScreen();
+    expect(
+      restored.container.querySelector(".world1-root-screen"),
+    ).toHaveAttribute("data-world1-root-state", "ready_to_continue");
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeVisible();
+  });
+
+  it("completion global ausente de checkpoint reabre en ready", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
+    );
+    const { container } = renderWorld1RootScreen();
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-root-state",
+      "ready_to_continue",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-highest-reached",
+      "ready_to_continue",
+    );
+  });
+
+  it("completion global conserva active previo pero eleva highest para revisita", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
+    );
+    window.localStorage.setItem(
+      WORLD1_CHECKPOINT_STORAGE_KEY,
+      JSON.stringify({
+        activeConcept: "relation",
+        highestReachedConcept: "relation",
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T12:01:00.000Z",
+      }),
+    );
+    const { container } = renderWorld1RootScreen();
+    const root = container.querySelector(".world1-root-screen");
+    expect(root).toHaveAttribute("data-world1-root-state", "relation");
+    expect(root).toHaveAttribute(
+      "data-world1-highest-reached",
+      "ready_to_continue",
+    );
+    expect(
+      container.querySelector('[data-world1-root-node="mediation"]'),
+    ).toHaveAttribute("data-node-state", "completed");
+    fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
+    fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeVisible();
+  });
+
+  it("fallo de checkpoint mantiene UI y retry aplica sólo la persistencia pendiente", async () => {
+    const nativeSetItem = Storage.prototype.setItem;
+    let stationWriteFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD1_CHECKPOINT_STORAGE_KEY && stationWriteFails) {
+        throw new Error("checkpoint quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+    const { container } = renderWorld1RootScreen();
+
+    fireEvent.click(screen.getByRole("button", { name: "Explorar RELACIÓN" }));
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-root-state",
+      "intro",
+    );
+    expect(
+      window.localStorage.getItem(WORLD1_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toBeVisible();
+
+    stationWriteFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-root-state",
+      "relation",
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "Explorar RELACIÓN" }),
+      ).toHaveFocus(),
+    );
+  });
+
+  it("corrupción se preserva y recovery explícito elimina sólo station1", () => {
+    const corruptRaw = "{world-one-corrupt::raw";
+    window.localStorage.setItem(WORLD1_CHECKPOINT_STORAGE_KEY, corruptRaw);
+    window.localStorage.setItem("gvo.station4.v1", "world-four-preserved");
+    window.localStorage.setItem(GVO_PROGRESS_STORAGE_KEY, "global-preserved");
+    const { container } = renderWorld1RootScreen();
+
+    expect(
+      screen.getByText("No fue posible recuperar el avance de este mundo."),
+    ).toBeVisible();
+    expect(window.localStorage.getItem(WORLD1_CHECKPOINT_STORAGE_KEY)).toBe(
+      corruptRaw,
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "Restablecer avance de este mundo" }),
+    );
+    expect(
+      screen.getByText("¿Restablecer el avance guardado de este mundo?"),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "Restablecer" }));
+
+    expect(
+      window.localStorage.getItem(WORLD1_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(window.localStorage.getItem("gvo.station4.v1")).toBe(
+      "world-four-preserved",
+    );
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBe(
+      "global-preserved",
+    );
+    expect(container.querySelector(".world1-root-screen")).toHaveAttribute(
+      "data-world1-root-state",
+      "intro",
+    );
   });
 
   it("no muestra controles ni guias de calibracion en runtime", () => {

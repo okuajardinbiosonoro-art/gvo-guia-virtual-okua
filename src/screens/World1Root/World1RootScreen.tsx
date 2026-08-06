@@ -12,7 +12,17 @@ import {
   world1ConceptCopy,
   world1EditorialSlots,
 } from "../../content/world1EditorialSlots";
-import { markStationCompleted } from "../../domain/progress/progress.storage";
+import {
+  readWorld1Checkpoint,
+  removeWorld1Checkpoint,
+  type World1CheckpointConcept,
+  world1ConceptIndex,
+  writeWorld1Checkpoint,
+} from "../../domain/checkpoints/world1Checkpoint";
+import {
+  markStationCompleted,
+  readProgress,
+} from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import {
@@ -48,6 +58,16 @@ const backgroundLayerStyle = {
 type World1Concept = World1ConceptId;
 type World1NodeState = "locked" | "available" | "active" | "completed";
 type CompletionPhase = "idle" | "persisting" | "error" | "complete";
+type CheckpointRecoveryStatus =
+  | "corrupt"
+  | "unknown_version"
+  | "storage_unavailable"
+  | null;
+
+type World1StableState = Readonly<{
+  activeConcept: World1Concept;
+  highestReachedConcept: World1Concept;
+}>;
 
 type World1Node = {
   id: "relation" | "perception" | "mediation";
@@ -233,38 +253,65 @@ function useWorld1MotionRoot(
 
 function getNodeState(
   nodeId: World1Node["id"],
-  concept: World1Concept,
+  activeConcept: World1Concept,
+  highestReachedConcept: World1Concept,
 ): World1NodeState {
-  if (concept === "intro") {
-    return nodeId === "relation" ? "available" : "locked";
+  const nodeIndex = world1ConceptIndex(nodeId);
+  const highestIndex = world1ConceptIndex(highestReachedConcept);
+
+  if (nodeId === activeConcept) return "active";
+  if (nodeIndex <= highestIndex) return "completed";
+  if (nodeIndex === highestIndex + 1) return "available";
+  return "locked";
+}
+
+function globalWorld1Complete() {
+  return readProgress().progress?.completedStations.includes(1) ?? false;
+}
+
+function readInitialWorld1State(): World1StableState & {
+  recoveryStatus: CheckpointRecoveryStatus;
+} {
+  const completed = globalWorld1Complete();
+  const checkpoint = readWorld1Checkpoint();
+  const safeState: World1StableState = completed
+    ? {
+        activeConcept: "ready_to_continue",
+        highestReachedConcept: "ready_to_continue",
+      }
+    : { activeConcept: "intro", highestReachedConcept: "intro" };
+
+  if (checkpoint.status !== "ok") {
+    return {
+      ...safeState,
+      recoveryStatus: checkpoint.status === "empty" ? null : checkpoint.status,
+    };
   }
 
-  if (concept === "relation") {
-    if (nodeId === "relation") {
-      return "active";
-    }
-
-    return nodeId === "perception" ? "available" : "locked";
-  }
-
-  if (concept === "perception") {
-    if (nodeId === "relation") {
-      return "completed";
-    }
-
-    return nodeId === "perception" ? "active" : "available";
-  }
-
-  if (concept === "mediation") {
-    return nodeId === "mediation" ? "active" : "completed";
-  }
-
-  return "completed";
+  return {
+    activeConcept: checkpoint.checkpoint.activeConcept,
+    highestReachedConcept: completed
+      ? "ready_to_continue"
+      : checkpoint.checkpoint.highestReachedConcept,
+    recoveryStatus: null,
+  };
 }
 
 export function World1RootScreen() {
   const navigate = useNavigate();
-  const [activeConcept, setActiveConcept] = useState<World1Concept>("intro");
+  const [initialState] = useState(readInitialWorld1State);
+  const [activeConcept, setActiveConcept] = useState<World1Concept>(
+    initialState.activeConcept,
+  );
+  const [highestReachedConcept, setHighestReachedConcept] =
+    useState<World1Concept>(initialState.highestReachedConcept);
+  const [checkpointRecoveryStatus, setCheckpointRecoveryStatus] =
+    useState<CheckpointRecoveryStatus>(initialState.recoveryStatus);
+  const [checkpointResetConfirmation, setCheckpointResetConfirmation] =
+    useState(false);
+  const [pendingCheckpoint, setPendingCheckpoint] =
+    useState<World1StableState | null>(null);
+  const [checkpointSaveFailed, setCheckpointSaveFailed] = useState(false);
   const [narrativeNeedsScroll, setNarrativeNeedsScroll] = useState(false);
   const [isSmallMobileHeight, setIsSmallMobileHeight] = useState(false);
   const [dismissedNarrativeHints, setDismissedNarrativeHints] = useState<
@@ -315,6 +362,102 @@ export function World1RootScreen() {
       continueButtonRef.current?.focus({ preventScroll: true });
     }
   }, [completionPhase]);
+
+  function applyStableState(next: World1StableState, focusAfter = false) {
+    setActiveConcept(next.activeConcept);
+    setHighestReachedConcept(next.highestReachedConcept);
+    setPendingCheckpoint(null);
+    setCheckpointSaveFailed(false);
+
+    if (focusAfter) {
+      window.requestAnimationFrame(() => {
+        if (next.activeConcept === "ready_to_continue") {
+          continueButtonRef.current?.focus({ preventScroll: true });
+          return;
+        }
+        motionRootRef.current
+          ?.querySelector<HTMLButtonElement>(
+            `[data-world1-root-node="${next.activeConcept}"]`,
+          )
+          ?.focus({ preventScroll: true });
+      });
+    }
+  }
+
+  function persistStableState(next: World1StableState, focusAfter = false) {
+    const result = writeWorld1Checkpoint({
+      activeConcept: next.activeConcept as World1CheckpointConcept,
+      highestReachedConcept:
+        next.highestReachedConcept as World1CheckpointConcept,
+    });
+    if (!result.ok) {
+      setPendingCheckpoint(next);
+      if (result.reason === "corrupt" || result.reason === "unknown_version") {
+        setCheckpointRecoveryStatus(result.reason);
+        setCheckpointResetConfirmation(false);
+      } else {
+        setCheckpointSaveFailed(true);
+      }
+      return false;
+    }
+
+    applyStableState(next, focusAfter);
+    return true;
+  }
+
+  function activateConcept(nextConcept: World1Concept) {
+    if (checkpointRecoveryStatus || checkpointSaveFailed) return;
+    const nextHighest =
+      world1ConceptIndex(nextConcept) >
+      world1ConceptIndex(highestReachedConcept)
+        ? nextConcept
+        : highestReachedConcept;
+    if (
+      nextConcept === activeConcept &&
+      nextHighest === highestReachedConcept
+    ) {
+      return;
+    }
+    persistStableState({
+      activeConcept: nextConcept,
+      highestReachedConcept: nextHighest,
+    });
+  }
+
+  function retryPendingCheckpoint() {
+    if (pendingCheckpoint) {
+      persistStableState(pendingCheckpoint, true);
+    }
+  }
+
+  function retryCheckpointRead() {
+    const next = readInitialWorld1State();
+    setCheckpointRecoveryStatus(next.recoveryStatus);
+    if (!next.recoveryStatus) {
+      applyStableState(next, true);
+    }
+  }
+
+  function confirmCheckpointReset() {
+    const removed = removeWorld1Checkpoint();
+    if (!removed.ok) {
+      setCheckpointRecoveryStatus("storage_unavailable");
+      setCheckpointResetConfirmation(false);
+      return;
+    }
+    const safeConcept: World1Concept = globalWorld1Complete()
+      ? "ready_to_continue"
+      : "intro";
+    setCheckpointRecoveryStatus(null);
+    setCheckpointResetConfirmation(false);
+    applyStableState(
+      {
+        activeConcept: safeConcept,
+        highestReachedConcept: safeConcept,
+      },
+      true,
+    );
+  }
   const copy = world1ConceptCopy[activeConcept];
   const isReadyToContinue = activeConcept === "ready_to_continue";
   const shouldRenderNarrativeHint =
@@ -446,6 +589,8 @@ export function World1RootScreen() {
       data-world1-root-version="004E-5A-static-ready"
       data-world1-mobile-stabilization="004F-1C"
       data-world1-root-state={activeConcept}
+      data-world1-highest-reached={highestReachedConcept}
+      data-world1-checkpoint-recovery={checkpointRecoveryStatus ?? "none"}
       data-world1-layout-mode="full-bleed-prudent"
       data-world1-narrative-motion="manual-scroll"
       data-world1-narrative-control="vertical-manual"
@@ -583,10 +728,14 @@ export function World1RootScreen() {
             aria-label="Nodos conceptuales de Mundo I"
           >
             {conceptNodes.map((node) => {
-              const nodeState = getNodeState(node.id, activeConcept);
+              const nodeState = getNodeState(
+                node.id,
+                activeConcept,
+                highestReachedConcept,
+              );
               const isLocked = nodeState === "locked";
               const isPressed = nodeState === "active";
-              const isClickable = nodeState === "available" || isPressed;
+              const isClickable = !isLocked && !checkpointRecoveryStatus;
 
               return (
                 <button
@@ -600,16 +749,7 @@ export function World1RootScreen() {
                   aria-pressed={isClickable ? isPressed : undefined}
                   disabled={!isClickable}
                   onClick={
-                    isClickable
-                      ? () =>
-                          setActiveConcept(
-                            node.id === "mediation"
-                              ? "mediation"
-                              : node.id === "perception"
-                                ? "perception"
-                                : "relation",
-                          )
-                      : undefined
+                    isClickable ? () => activateConcept(node.id) : undefined
                   }
                 >
                   <span className="world1-root-node__label">{node.label}</span>
@@ -714,19 +854,39 @@ export function World1RootScreen() {
                 <p
                   className="world1-root-narrative__body"
                   data-world1-slot-id={
-                    completionPhase === "error" ? undefined : copy.body.slotId
+                    completionPhase === "error" ||
+                    checkpointSaveFailed ||
+                    checkpointRecoveryStatus
+                      ? undefined
+                      : copy.body.slotId
                   }
                   data-editorial-status={
-                    completionPhase === "error" ? "TEMP" : copy.body.status
+                    completionPhase === "error" ||
+                    checkpointSaveFailed ||
+                    checkpointRecoveryStatus
+                      ? "TEMP"
+                      : copy.body.status
                   }
                   data-progress-save-error={
                     completionPhase === "error" ? "true" : undefined
                   }
                 >
-                  {completionPhase === "error"
-                    ? PROGRESS_SAVE_ERROR_COPY
-                    : copy.body.text}
+                  {checkpointRecoveryStatus
+                    ? checkpointResetConfirmation
+                      ? "¿Restablecer el avance guardado de este mundo?"
+                      : "No fue posible recuperar el avance de este mundo."
+                    : checkpointSaveFailed || completionPhase === "error"
+                      ? PROGRESS_SAVE_ERROR_COPY
+                      : copy.body.text}
                 </p>
+                {checkpointResetConfirmation ? (
+                  <p
+                    className="world1-root-narrative__body"
+                    data-editorial-status="TEMP"
+                  >
+                    El progreso global del recorrido se conservará.
+                  </p>
+                ) : null}
               </div>
             </div>
             {shouldRenderNarrativeHint ? (
@@ -757,7 +917,53 @@ export function World1RootScreen() {
               <span />
               <span />
             </span>
-            {activeConcept === "mediation" ? (
+            {checkpointRecoveryStatus === "storage_unavailable" ? (
+              <button
+                className="world1-root-narrative__action"
+                data-editorial-status="TEMP"
+                onClick={retryCheckpointRead}
+                type="button"
+              >
+                Reintentar
+              </button>
+            ) : checkpointRecoveryStatus && !checkpointResetConfirmation ? (
+              <button
+                className="world1-root-narrative__action"
+                data-editorial-status="TEMP"
+                onClick={() => setCheckpointResetConfirmation(true)}
+                type="button"
+              >
+                Restablecer avance de este mundo
+              </button>
+            ) : checkpointRecoveryStatus && checkpointResetConfirmation ? (
+              <>
+                <button
+                  className="world1-root-narrative__action"
+                  data-editorial-status="TEMP"
+                  onClick={() => setCheckpointResetConfirmation(false)}
+                  type="button"
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="world1-root-narrative__action"
+                  data-editorial-status="TEMP"
+                  onClick={confirmCheckpointReset}
+                  type="button"
+                >
+                  Restablecer
+                </button>
+              </>
+            ) : checkpointSaveFailed ? (
+              <button
+                className="world1-root-narrative__action"
+                data-editorial-status="TEMP"
+                onClick={retryPendingCheckpoint}
+                type="button"
+              >
+                {PROGRESS_SAVE_RETRY_LABEL}
+              </button>
+            ) : activeConcept === "mediation" ? (
               <button
                 className="world1-root-narrative__action"
                 type="button"
@@ -766,7 +972,7 @@ export function World1RootScreen() {
                   world1EditorialSlots.W1_CLOSE_ROOT_BTN_01.status
                 }
                 onClick={() => {
-                  setActiveConcept("ready_to_continue");
+                  activateConcept("ready_to_continue");
                 }}
               >
                 {world1EditorialSlots.W1_CLOSE_ROOT_BTN_01.text}

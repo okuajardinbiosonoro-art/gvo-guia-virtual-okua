@@ -136,6 +136,7 @@ El contexto de revisita usa navigation state preferido y respaldo de refresh en
 `sessionStorage:gvo.final.reviewContext.v1`. El control global se limita a las
 nueve rutas válidas de Mundos I–V y vuelve a `/final` sin alterar el progreso.
 El reset elimina exclusivamente `localStorage:gvo.progress.v1`,
+`localStorage:gvo.station1.v1`, `localStorage:gvo.station4.v1`,
 `localStorage:gvo.station5.v1`,
 `localStorage:gvo.coverIntro.introCompleted.v1` y
 `sessionStorage:gvo.final.reviewContext.v1`; preserva preferencias, hints,
@@ -175,8 +176,9 @@ La integridad global de completion y guards queda corregida: el payload
 falla cerrado ante corrupción, versión desconocida o storage no disponible y
 verifica cada escritura. Mundos I–V registran completion global en sus cierres;
 estaciones, subrutas de Mundo V, transiciones y Final exigen el prefijo completo.
-La revisita desde Final también queda condicionada a esa integridad global. El
-reset conserva sin ampliación su allowlist contractual de cuatro keys.
+La revisita desde Final también queda condicionada a esa integridad global. La
+allowlist de cuatro keys publicada por DEBT_002 queda ampliada a seis por la
+autoridad posterior de `GVO_DEBT_004`.
 
 `GVO_DEBT_003` está aprobado y publicado. Su informe histórico conserva
 `PENDING_HUMAN_REVIEW` en
@@ -192,10 +194,23 @@ asset dedicado y sólo inicia el Estado A y sus 920 ms tras readiness real, con
 intención única, fallo cerrado y retry controlado. Los resúmenes vivos de assets
 y `current-used` quedan reconciliados sin reescribir actas históricas.
 
-Permanecen pendientes los checkpoints parciales W1–W4, la continuidad de W1/W4,
-la persistencia de Mundo II, los registros durables de Mundo III, la legibilidad
-y safe-area de Mundo II, immersive shell, QR, PWA/precache, route chunking y los
-frentes editoriales no cubiertos por este contrato. La fase
+`GVO_DEBT_004` está aprobado y publicado. Su informe histórico conserva
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_004_WORLD1_WORLD4_CHECKPOINT_CONTINUITY_FOR_REVIEW.md](GVO_DEBT_004_WORLD1_WORLD4_CHECKPOINT_CONTINUITY_FOR_REVIEW.md),
+y su aprobación humana vinculante está registrada en
+[GVO_DEBT_004P_WORLD1_WORLD4_CHECKPOINT_CONTINUITY_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_004P_WORLD1_WORLD4_CHECKPOINT_CONTINUITY_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+Mundo I conserva un checkpoint durable versionado bajo `gvo.station1.v1` y
+restaura `activeConcept` y `highestReachedConcept` sin reducir el máximo al
+volver atrás. Mundo IV conserva un checkpoint durable bajo `gvo.station4.v1`
+y persiste sólo estados estables: `reading`, `chain_pending` y
+`completion_retry`. El reset transaccional cubre ahora seis keys con snapshot,
+verificación, rollback byte-exacto y retry.
+
+Permanecen pendientes los checkpoints y la persistencia de Mundo II, los
+registros durables y la semántica de guardado de Mundo III, la legibilidad,
+reflow y safe-area de Mundo II, immersive shell, QR, PWA/precache, route
+chunking y los frentes editoriales no cubiertos por este contrato. La fase
 `PROJECT DEBT CORRECTION` no se declara terminada; el siguiente frente requiere
 un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de
 `GVO_FINAL_021P`.

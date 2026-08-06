@@ -18,6 +18,7 @@ import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
+import { WORLD4_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world4Checkpoint";
 import { station4Lia, station4Nodes } from "./station4Content";
 import {
   WORLD4_APPROVED_ASSET_HASHES,
@@ -1020,9 +1021,262 @@ describe("World4RootScreen — Mesa de sistema", () => {
 
     storageFails = false;
     fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/4",
+    );
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Abrir Mundo V. Ir al Mapa del presente.",
+      }),
+    );
     advance(700);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-4-to-world-5",
+    );
+  });
+
+  it("persiste un nodo asentado antes de desbloquear el siguiente", () => {
+    const { container } = renderStation4();
+    enterStation(container);
+    advanceToNode(container, "planta");
+
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY) ?? "null",
+      ),
+    ).toMatchObject({
+      highestSettledIndex: 0,
+      resumeMode: "reading",
+      schemaVersion: 1,
+    });
+    expect(nodeButton(container, "bionosificador")).toHaveAttribute(
+      "data-node-state",
+      "available",
+    );
+  });
+
+  it.each([
+    [-1, "planta"],
+    [0, "planta"],
+    [3, "midi"],
+    [6, "sistema_central"],
+  ] as const)(
+    "restaura reading index %s con entrada abreviada sin reanudar moving",
+    (highestSettledIndex, activeNodeId) => {
+      stubReducedMotion(true);
+      window.localStorage.setItem(
+        WORLD4_CHECKPOINT_STORAGE_KEY,
+        JSON.stringify({
+          highestSettledIndex,
+          resumeMode: "reading",
+          schemaVersion: 1,
+          updatedAt: "2026-08-05T12:00:00.000Z",
+        }),
+      );
+      const { container } = renderStation4();
+      const root = container.querySelector("[data-station4-state]");
+
+      expect(root).toHaveAttribute("data-station4-entry-mode", "abbreviated");
+      advance(180);
+      expect(root).toHaveAttribute("data-station4-motion-kind", "none");
+      expect(root).toHaveAttribute(
+        "data-station4-progress",
+        String(highestSettledIndex + 1),
+      );
+      expect(root).toHaveAttribute("data-station4-active-node", activeNodeId);
+      expect(getState(container)).not.toContain("activating");
+    },
+  );
+
+  it("fallo al guardar nodo conserva visual, bloquea input y retry no repite motion", () => {
+    const { container } = renderStation4();
+    enterStation(container);
+    const nativeSetItem = Storage.prototype.setItem;
+    let stationWriteFails = true;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === WORLD4_CHECKPOINT_STORAGE_KEY && stationWriteFails) {
+        throw new Error("checkpoint quota");
+      }
+      nativeSetItem.call(this, key, value);
+    });
+
+    fireEvent.click(nodeButton(container, "planta"));
+    advance(1200);
+    const root = container.querySelector("[data-station4-state]");
+    expect(root).toHaveAttribute("data-station4-checkpoint-blocked", "true");
+    expect(root).toHaveAttribute("data-station4-progress", "0");
+    expect(nodeButton(container, "planta")).toHaveAttribute(
+      "data-node-state",
+      "active",
+    );
+    expect(nodeButton(container, "bionosificador")).toHaveAttribute(
+      "data-node-state",
+      "locked",
+    );
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    const epoch = root?.getAttribute("data-station4-motion-epoch");
+
+    stationWriteFails = false;
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(root).toHaveAttribute("data-station4-checkpoint-blocked", "false");
+    expect(root).toHaveAttribute("data-station4-progress", "1");
+    expect(root).toHaveAttribute("data-station4-motion-epoch", epoch);
+    expect(nodeButton(container, "bionosificador")).toHaveAttribute(
+      "data-node-state",
+      "available",
+    );
+  });
+
+  it("restaura chain_pending y ejecuta la cadena completa una sola vez", () => {
+    stubReducedMotion(true);
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
+    );
+    window.localStorage.setItem(
+      WORLD4_CHECKPOINT_STORAGE_KEY,
+      JSON.stringify({
+        highestSettledIndex: 7,
+        resumeMode: "chain_pending",
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T12:01:00.000Z",
+      }),
+    );
+    const { container } = renderStation4();
+    const root = container.querySelector("[data-station4-state]");
+
+    advance(180);
+    expect(root).toHaveAttribute("data-station4-motion-kind", "chain");
+    const epoch = root?.getAttribute("data-station4-motion-epoch");
+    advance(300);
+    expect(getState(container)).toBe("station4_ready_to_exit");
+    expect(root).toHaveAttribute("data-station4-motion-epoch", epoch);
+    expect(
+      window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "null",
+      ).completedStations,
+    ).toEqual([1, 2, 3, 4]);
+  });
+
+  it("restaura completion_retry sin cadena y retry sólo verifica completion", () => {
+    stubReducedMotion(true);
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
+    );
+    window.localStorage.setItem(
+      WORLD4_CHECKPOINT_STORAGE_KEY,
+      JSON.stringify({
+        highestSettledIndex: 7,
+        resumeMode: "completion_retry",
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T12:01:00.000Z",
+      }),
+    );
+    const { container } = renderStation4();
+    const root = container.querySelector("[data-station4-state]");
+
+    advance(180);
+    expect(getState(container)).toBe("station4_ready_to_exit");
+    expect(root).toHaveAttribute("data-station4-motion-kind", "none");
+    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/estacion/4",
+    );
+    expect(
+      window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "null",
+      ).completedStations,
+    ).toEqual([1, 2, 3, 4]);
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Abrir Mundo V. Ir al Mapa del presente.",
+      }),
+    );
+    advance(180);
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      "/transition/world-4-to-world-5",
+    );
+  });
+
+  it("completion global prevalece sobre checkpoint parcial y conserva revisita", () => {
+    stubReducedMotion(true);
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3, 4],
+        updatedAt: "2026-08-05T12:00:00.000Z",
+      }),
+    );
+    window.localStorage.setItem(
+      WORLD4_CHECKPOINT_STORAGE_KEY,
+      JSON.stringify({
+        highestSettledIndex: 2,
+        resumeMode: "reading",
+        schemaVersion: 1,
+        updatedAt: "2026-08-05T12:01:00.000Z",
+      }),
+    );
+    const { container } = renderStation4();
+    advance(180);
+    expect(getState(container)).toBe("station4_ready_to_exit");
+    expect(container.querySelector("[data-station4-state]")).toHaveAttribute(
+      "data-station4-progress",
+      "8",
+    );
+    expect(nodeButton(container, "planta")).toBeEnabled();
+  });
+
+  it("recovery explícito preserva global y station1 al eliminar sólo station4", () => {
+    const corruptRaw = "{world-four-corrupt::raw";
+    window.localStorage.setItem(WORLD4_CHECKPOINT_STORAGE_KEY, corruptRaw);
+    window.localStorage.setItem("gvo.station1.v1", "world-one-preserved");
+    window.localStorage.setItem(GVO_PROGRESS_STORAGE_KEY, "global-preserved");
+    const { container } = renderStation4();
+
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "No fue posible recuperar el avance de este mundo.",
+    );
+    expect(window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY)).toBe(
+      corruptRaw,
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "Restablecer avance de este mundo" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Restablecer" }));
+    expect(
+      window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
+    ).toBeNull();
+    expect(window.localStorage.getItem("gvo.station1.v1")).toBe(
+      "world-one-preserved",
+    );
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBe(
+      "global-preserved",
+    );
+    expect(container.querySelector("[data-station4-state]")).toHaveAttribute(
+      "data-station4-entry-mode",
+      "full",
     );
   });
 
@@ -1246,6 +1500,8 @@ describe("World4RootScreen — Mesa de sistema", () => {
     });
     act(() => document.dispatchEvent(new Event("visibilitychange")));
     expect(getState(second.container)).toBe("station4_node_1_active");
+    // La escritura verificada del checkpoint encola el StorageEvent de jsdom.
+    advance(0);
     expect(vi.getTimerCount()).toBe(0);
     Object.defineProperty(document, "hidden", {
       configurable: true,
