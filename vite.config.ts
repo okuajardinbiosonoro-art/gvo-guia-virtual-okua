@@ -36,7 +36,8 @@ export default defineConfig({
         globPatterns: [
           "index.html",
           "registerSW.js",
-          "assets/*.{js,css,woff2}",
+          "assets/index-*.{js,css}",
+          "assets/pixelify-*.woff2",
           "assets/runtime/loading-initial-pre-portada.png",
           "assets/runtime/loading-initial/**/*.{png,json}",
           "assets/runtime/cover-intro/**/*.{png,json}",
@@ -50,7 +51,7 @@ export default defineConfig({
             urlPattern: ({ url }) =>
               url.origin === self.location.origin &&
               url.pathname.startsWith("/assets/") &&
-              /\.(?:json|png|svg|webp|woff2)$/.test(url.pathname),
+              /\.(?:css|js|json|png|svg|webp|woff2)$/.test(url.pathname),
             handler: "StaleWhileRevalidate",
             options: {
               cacheName: "gvo-runtime-assets-v1",

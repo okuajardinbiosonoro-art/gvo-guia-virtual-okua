@@ -1,6 +1,7 @@
 export {
   exitImmersiveMode,
   getDisplayMode,
+  isFullscreenAvailable,
   isImmersiveMode,
   requestImmersiveMode,
   type ImmersiveDisplayMode,

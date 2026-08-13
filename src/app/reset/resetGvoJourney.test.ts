@@ -4,6 +4,7 @@ import {
   canOpenFinal,
   readProgress,
 } from "../../domain/progress/progress.storage";
+import { GVO_LANGUAGE_STORAGE_KEY } from "../preferences/languagePreference";
 import { beginFinalReview } from "../review/finalReviewContext";
 import {
   GVO_JOURNEY_PRESERVE_POLICY,
@@ -81,6 +82,7 @@ function seededBackends(
         '{"schemaVersion":1,"highestSettledIndex":3,"resumeMode":"reading","updatedAt":"2026-08-05T12:02:00.000Z"}',
       "gvo.station5.v1": '{"completedAreas":["plantas"]}',
       "gvo.coverIntro.introCompleted.v1": "true",
+      [GVO_LANGUAGE_STORAGE_KEY]: "en",
       "gvo:accessibility:contrast": "high",
       "gvo-dev-world1-layout-calibrator-v2": "developer-preset",
       "unrelated.token": "opaque-byte-value",
@@ -174,6 +176,7 @@ describe("resetGvoJourney", () => {
       expect(storage[entry.backend]?.getItem(entry.key)).toBeNull();
     }
     expect(localStorage.getItem("gvo:accessibility:contrast")).toBe("high");
+    expect(localStorage.getItem(GVO_LANGUAGE_STORAGE_KEY)).toBe("en");
     expect(localStorage.getItem("unrelated.token")).toBe("opaque-byte-value");
     expect(sessionStorage.getItem("gvo:orientation-hint:dismissed")).toBe("1");
     expect(

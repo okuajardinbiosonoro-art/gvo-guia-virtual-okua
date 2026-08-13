@@ -2,6 +2,8 @@ import type { StationId } from "../data/stations";
 
 export const coverIntroRoute = "/portada";
 
+export const initialExperienceRoute = "/inicio";
+
 export const coverToWorldOneTransitionRoute = "/transition/intro-to-station-1";
 
 export const worldOneToWorldTwoTransitionRoute =

@@ -2,6 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
+import { GVO_LANGUAGE_STORAGE_KEY } from "../preferences/languagePreference";
 import {
   GlobalImmersiveShell,
   isImmersiveShellAuthorizedPath,
@@ -36,6 +37,8 @@ function renderAt(pathname: string) {
 
 afterEach(() => {
   cleanup();
+  localStorage.clear();
+  document.documentElement.lang = "es";
   Reflect.deleteProperty(document, "fullscreenEnabled");
   Reflect.deleteProperty(document, "fullscreenElement");
   Reflect.deleteProperty(document.documentElement, "requestFullscreen");
@@ -60,6 +63,7 @@ describe("GlobalImmersiveShell", () => {
     for (const pathname of [
       "/",
       "/carga",
+      "/inicio",
       "/portada",
       "/transition/world-1-to-world-2",
       "/final",
@@ -98,5 +102,13 @@ describe("GlobalImmersiveShell", () => {
     expect(
       screen.queryByRole("button", { name: "Activar pantalla completa" }),
     ).not.toBeInTheDocument();
+  });
+
+  it("aplica la preferencia de idioma persistida al shell completo", () => {
+    localStorage.setItem(GVO_LANGUAGE_STORAGE_KEY, "en");
+
+    renderAt("/estacion/1");
+
+    expect(document.documentElement.lang).toBe("en");
   });
 });

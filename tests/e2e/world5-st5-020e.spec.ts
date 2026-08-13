@@ -94,6 +94,10 @@ test("ST5-020E recupera stage y compacta tarjeta en móviles contractuales", asy
   ]) {
     await page.setViewportSize(viewport);
     await page.goto("/estacion/5", { waitUntil: "domcontentloaded" });
+    await expect(root(page)).toHaveAttribute(
+      "data-station5-state",
+      "map_overview",
+    );
     const measured = await page.evaluate(() => {
       const stage = document
         .querySelector(".s5-stage")!
@@ -207,6 +211,10 @@ test("ST5-020E conserva el contacto de Plantas en 360x560 → 360x640 → 360x56
 }) => {
   await page.setViewportSize({ width: 360, height: 560 });
   await page.goto("/estacion/5/plantas", { waitUntil: "domcontentloaded" });
+  await expect(root(page)).toHaveAttribute(
+    "data-station5-state",
+    "plants_intro",
+  );
   const samples = [];
   for (const height of [560, 640, 560]) {
     await page.setViewportSize({ width: 360, height });

@@ -7,6 +7,8 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 ## Carpetas principales
 
 - `src/app`: aplicación, router, rutas y providers.
+- `src/app/preferences`: preferencias no pedagógicas persistidas, incluido
+  idioma `es/en`.
 - `src/app/qr`: contrato tipado y resolución read-only de entradas QR.
 - `src/app/shell`: shell inmersivo transversal y autorización por ruta.
 - `src/components`: componentes reutilizables, incluido `GestureHint`.
@@ -26,7 +28,9 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 
 | Ruta                             | Componente / contrato                                                                         |
 | -------------------------------- | --------------------------------------------------------------------------------------------- |
-| `/` y `/carga`                   | `LoadingInitialScreen`.                                                                       |
+| `/`                              | `LoadingInitialScreen`; entrega la entrada normal en `/inicio`.                               |
+| `/carga`                         | `LoadingInitialScreen` aislada, sin navegación automática.                                    |
+| `/inicio`                        | `InitialExperienceScreen`: idioma, fullscreen opcional e inicio a Portada.                    |
 | `/portada`                       | `CoverIntroScreen`.                                                                           |
 | `/transition/intro-to-station-1` | `TransitionWorldRuntimeRoute`.                                                                |
 | `/estacion/1`                    | `World1RootScreen`.                                                                           |
@@ -43,6 +47,23 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 | `/qr/:stationId`                 | Entrada QR tipada; redirige mediante los guards secuenciales existentes.                      |
 
 Las rutas `/dev/*` son herramientas aisladas y no se deben presentar como pantallas finales.
+
+## Entrada inicial e idioma
+
+`GVO_DEBT_012` intercala `InitialExperienceScreen` entre la Carga inicial y
+Portada sólo en la entrada normal `/`. La ruta `/inicio` usa controles nativos
+y exige una selección explícita `es` o `en` antes de habilitar el inicio. El
+valor validado vive en `gvo.language.v1`; storage ausente, bloqueado o corrupto
+falla a `es` sin impedir la visita. `GlobalImmersiveShell` aplica la preferencia
+a `document.documentElement.lang` también al recargar o entrar directamente.
+
+La pantalla reutiliza `requestImmersiveMode` y sólo solicita la Fullscreen API
+desde el gesto del botón correspondiente. API ausente o petición denegada
+producen estado visible, pero no bloquean `Iniciar recorrido`. El selector no
+traduce contenido editorial: sólo localiza la microinterfaz operacional de
+entrada y registra preferencia. El reset real conserva la clave porque no es
+progreso ni checkpoint. La decisión completa está en
+[ADR-0006](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md).
 
 ## Shell inmersivo y entradas QR
 
@@ -165,13 +186,24 @@ permisos sensibles como bloqueados. Estación IV añade fullscreen opt-in, sin
 permisos persistentes; la instalación PWA no se certificó en la plataforma QA
 y un despliegue LAN instalable requiere origen seguro.
 
-`GVO_DEBT_010` separa el precache crítico del cache runtime sin dividir el
-bundle por rutas. La clase A —shell, bundle, fuentes, Carga inicial y Portada—
-se precachea. Los assets compartidos del recorrido y los assets específicos de
-estación permanecen desplegados y usan `StaleWhileRevalidate` same-origin al
-solicitarse; el matcher queda restringido a `/assets/` locales con extensiones
+`GVO_DEBT_010` separa el precache crítico del cache runtime. La clase A —shell,
+JS/CSS inicial, fuentes, Carga inicial y Portada— se precachea. Los assets
+compartidos del recorrido y los recursos específicos de estación permanecen
+desplegados y usan `StaleWhileRevalidate` same-origin al solicitarse; el
+matcher queda restringido a `/assets/` locales con extensiones `css`, `js`,
 `json`, `png`, `svg`, `webp` o `woff2`. El fallback de navegación continúa en
 `/index.html` y la limpieza de precaches obsoletos permanece activa.
+
+`GVO_DEBT_011` mantiene Carga inicial y Portada en el bundle crítico y separa
+Transición, Mundos I–V y Mirador mediante loaders dinámicos declarados en
+`src/app/routeModules.ts`. El portal I precarga Transición sólo después de una
+intención explícita; cada transición precarga su destino antes de navegar. Un
+único límite `Suspense` ofrece fallback accesible y la navegación completa a
+la misma ruta queda como recuperación ante fallo de importación. Los chunks
+JS/CSS de ruta no entran al precache: el cache runtime existente los conserva
+después de su primera solicitud, sin ampliar la garantía offline a estaciones
+no visitadas. La decisión completa está en
+[ADR-0005](decisions/ADR-0005-route-chunking-y-preload-controlado.md).
 
 Los mirrors `public/assets/gvo/current-used`, las bibliotecas no consumidas y
 los README/manifests documentales se conservan como fuentes tracked, pero el

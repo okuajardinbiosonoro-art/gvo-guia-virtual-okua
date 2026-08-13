@@ -41,7 +41,7 @@ async function finishIntroDialogue(page: Page) {
 }
 
 test.describe("QA visual Portada / Intro 002J-FIX", () => {
-  test.describe.configure({ timeout: 90_000 });
+  test.describe.configure({ timeout: 120_000 });
 
   test.beforeAll(() => {
     mkdirSync(qaOutputDir, { recursive: true });
@@ -178,12 +178,12 @@ test.describe("QA visual Portada / Intro 002J-FIX", () => {
     );
 
     await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
-      timeout: 5000,
+      timeout: 20_000,
     });
     const transition = page.locator(
       'main[data-transition-world-id="intro-to-station-1"]',
     );
-    await expect(transition).toBeVisible();
+    await expect(transition).toBeVisible({ timeout: 30_000 });
     await expect(transition.getByText("Abriendo Mundo I")).toBeVisible();
     await expect(transition.locator("#transition-world-subtitle")).toHaveText(
       "Preparando la raíz.",

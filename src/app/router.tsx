@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   createBrowserRouter,
   replace,
@@ -15,11 +22,10 @@ import {
   readProgress,
 } from "../domain/progress/progress.storage";
 import { CoverIntroScreen } from "../screens/Cover";
-import { FinalRootScreen } from "../screens/FinalRoot";
+import { InitialExperienceScreen } from "../screens/InitialExperience";
 import { LoadingInitialScreen } from "../screens/LoadingInitial";
 import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
-import { TransitionWorld } from "../screens/TransitionWorld";
 import {
   introToStationOneTransition,
   worldFourToWorldFiveTransition,
@@ -29,12 +35,6 @@ import {
   worldOneToWorldTwoTransition,
 } from "../screens/TransitionWorld/transitionWorld.config";
 import type { TransitionWorldConfig } from "../screens/TransitionWorld/transitionWorld.types";
-import { World1RootScreen } from "../screens/World1Root";
-import { World1RootLayoutCalibrator } from "../screens/World1Root/dev";
-import { World2RootScreen } from "../screens/World2Root";
-import { World3RootScreen } from "../screens/World3Root";
-import { World4RootScreen } from "../screens/World4Root";
-import { World5RootScreen } from "../screens/World5Root";
 import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
 import {
@@ -44,8 +44,15 @@ import {
 import { clearFinalReviewContext } from "./review/finalReviewContext";
 import { resolveQrNavigation } from "./qr/qrNavigation";
 import {
+  journeyRouteModuleLoaders,
+  preloadJourneyRouteModule,
+  routeModuleForDestination,
+  type JourneyRouteModuleId,
+} from "./routeModules";
+import {
   coverToWorldOneTransitionRoute,
   finalEntryRoute,
+  initialExperienceRoute,
   qrEntryRoutePattern,
   qrFallbackRoutePattern,
   stationEntryRoutes,
@@ -65,6 +72,92 @@ import {
   worldTwoEntryRoute,
 } from "./routes";
 import { GlobalImmersiveShell } from "./shell/GlobalImmersiveShell";
+
+const TransitionWorld = lazy(() =>
+  journeyRouteModuleLoaders.transition().then((module) => ({
+    default: module.TransitionWorld,
+  })),
+);
+const World1RootScreen = lazy(() =>
+  journeyRouteModuleLoaders.world1().then((module) => ({
+    default: module.World1RootScreen,
+  })),
+);
+const World2RootScreen = lazy(() =>
+  journeyRouteModuleLoaders.world2().then((module) => ({
+    default: module.World2RootScreen,
+  })),
+);
+const World3RootScreen = lazy(() =>
+  journeyRouteModuleLoaders.world3().then((module) => ({
+    default: module.World3RootScreen,
+  })),
+);
+const World4RootScreen = lazy(() =>
+  journeyRouteModuleLoaders.world4().then((module) => ({
+    default: module.World4RootScreen,
+  })),
+);
+const World5RootScreen = lazy(() =>
+  journeyRouteModuleLoaders.world5().then((module) => ({
+    default: module.World5RootScreen,
+  })),
+);
+const FinalRootScreen = lazy(() =>
+  journeyRouteModuleLoaders.final().then((module) => ({
+    default: module.FinalRootScreen,
+  })),
+);
+const World1RootLayoutCalibrator = lazy(() =>
+  import("../screens/World1Root/dev").then((module) => ({
+    default: module.World1RootLayoutCalibrator,
+  })),
+);
+
+function RouteModuleFallback({ moduleId }: { moduleId: string }) {
+  return (
+    <main
+      className="mobile-shell"
+      data-route-module-fallback={moduleId}
+      role="status"
+      aria-live="polite"
+    >
+      <section className="base-panel">
+        <p>Preparando el recorrido</p>
+      </section>
+    </main>
+  );
+}
+
+function RouteModuleBoundary({
+  children,
+  moduleId,
+}: {
+  children: ReactNode;
+  moduleId: string;
+}) {
+  return (
+    <Suspense fallback={<RouteModuleFallback moduleId={moduleId} />}>
+      {children}
+    </Suspense>
+  );
+}
+
+function LazyStationRoute({
+  moduleId,
+  screen,
+  world,
+}: {
+  moduleId: JourneyRouteModuleId;
+  screen: ReactNode;
+  world: 1 | 2 | 3 | 4 | 5;
+}) {
+  return (
+    <FinalReviewModeLayout world={world}>
+      <RouteModuleBoundary moduleId={moduleId}>{screen}</RouteModuleBoundary>
+    </FinalReviewModeLayout>
+  );
+}
 
 function JourneyLoadingRoute() {
   const navigate = useNavigate();
@@ -101,7 +194,9 @@ function JourneyLoadingRoute() {
 
     const searchParams = new URLSearchParams(location.search);
     const shouldResetIntro = searchParams.get("resetIntro") === "1";
-    const destination = shouldResetIntro ? "/portada?resetIntro=1" : "/portada";
+    const destination = shouldResetIntro
+      ? "/portada?resetIntro=1"
+      : initialExperienceRoute;
 
     navigate(destination, { replace: true });
   }, [
@@ -169,17 +264,38 @@ function TransitionWorldRuntimeRoute({
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const targetModuleId = routeModuleForDestination(config.toRoute);
+
+  useEffect(() => {
+    if (targetModuleId) {
+      void preloadJourneyRouteModule(targetModuleId).catch(() => undefined);
+    }
+  }, [targetModuleId]);
+
   const handleComplete = useCallback(() => {
-    navigate(config.toRoute, { replace: true });
-  }, [config.toRoute, navigate]);
+    if (!targetModuleId) {
+      navigate(config.toRoute, { replace: true });
+      return;
+    }
+
+    void preloadJourneyRouteModule(targetModuleId)
+      .then(() => {
+        navigate(config.toRoute, { replace: true });
+      })
+      .catch(() => {
+        window.location.replace(config.toRoute);
+      });
+  }, [config.toRoute, navigate, targetModuleId]);
 
   return (
-    <TransitionWorld
-      config={config}
-      variant="runtime"
-      isReducedMotion={prefersReducedMotion}
-      onComplete={handleComplete}
-    />
+    <RouteModuleBoundary moduleId="transition">
+      <TransitionWorld
+        config={config}
+        variant="runtime"
+        isReducedMotion={prefersReducedMotion}
+        onComplete={handleComplete}
+      />
+    </RouteModuleBoundary>
   );
 }
 
@@ -193,6 +309,10 @@ const journeyRoutes: RouteObject[] = [
     element: <LoadingInitialScreen />,
   },
   {
+    path: initialExperienceRoute,
+    element: <InitialExperienceScreen />,
+  },
+  {
     path: "/portada",
     element: (
       <FinalReviewContextInvalidator>
@@ -202,11 +322,19 @@ const journeyRoutes: RouteObject[] = [
   },
   {
     path: "/dev/transition-world",
-    element: <TransitionWorld />,
+    element: (
+      <RouteModuleBoundary moduleId="transition-preview">
+        <TransitionWorld />
+      </RouteModuleBoundary>
+    ),
   },
   {
     path: "/dev/world1-root-layout",
-    element: <World1RootLayoutCalibrator />,
+    element: (
+      <RouteModuleBoundary moduleId="world1-layout-calibrator">
+        <World1RootLayoutCalibrator />
+      </RouteModuleBoundary>
+    ),
   },
   {
     path: coverToWorldOneTransitionRoute,
@@ -265,81 +393,99 @@ const journeyRoutes: RouteObject[] = [
     path: worldOneEntryRoute,
     loader: () => requireStationAccess(1),
     element: (
-      <FinalReviewModeLayout world={1}>
-        <World1RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world1"
+        screen={<World1RootScreen />}
+        world={1}
+      />
     ),
   },
   {
     path: worldTwoEntryRoute,
     loader: () => requireStationAccess(2),
     element: (
-      <FinalReviewModeLayout world={2}>
-        <World2RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world2"
+        screen={<World2RootScreen />}
+        world={2}
+      />
     ),
   },
   {
     path: worldThreeEntryRoute,
     loader: () => requireStationAccess(3),
     element: (
-      <FinalReviewModeLayout world={3}>
-        <World3RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world3"
+        screen={<World3RootScreen />}
+        world={3}
+      />
     ),
   },
   {
     path: worldFourEntryRoute,
     loader: () => requireStationAccess(4),
     element: (
-      <FinalReviewModeLayout world={4}>
-        <World4RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world4"
+        screen={<World4RootScreen />}
+        world={4}
+      />
     ),
   },
   {
     path: worldFiveEntryRoute,
     loader: () => requireStationAccess(5),
     element: (
-      <FinalReviewModeLayout world={5}>
-        <World5RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world5"
+        screen={<World5RootScreen />}
+        world={5}
+      />
     ),
   },
   {
     path: worldFivePlantsRoute,
     loader: () => requireStationAccess(5),
     element: (
-      <FinalReviewModeLayout world={5}>
-        <World5RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world5"
+        screen={<World5RootScreen />}
+        world={5}
+      />
     ),
   },
   {
     path: worldFiveSystemRoute,
     loader: () => requireStationAccess(5),
     element: (
-      <FinalReviewModeLayout world={5}>
-        <World5RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world5"
+        screen={<World5RootScreen />}
+        world={5}
+      />
     ),
   },
   {
     path: worldFiveSpaceRoute,
     loader: () => requireStationAccess(5),
     element: (
-      <FinalReviewModeLayout world={5}>
-        <World5RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world5"
+        screen={<World5RootScreen />}
+        world={5}
+      />
     ),
   },
   {
     path: worldFiveVisitorRoute,
     loader: () => requireStationAccess(5),
     element: (
-      <FinalReviewModeLayout world={5}>
-        <World5RootScreen />
-      </FinalReviewModeLayout>
+      <LazyStationRoute
+        moduleId="world5"
+        screen={<World5RootScreen />}
+        world={5}
+      />
     ),
   },
   {
@@ -351,7 +497,9 @@ const journeyRoutes: RouteObject[] = [
     loader: requireFinalAccess,
     element: (
       <FinalReviewContextInvalidator>
-        <FinalRootScreen />
+        <RouteModuleBoundary moduleId="final">
+          <FinalRootScreen />
+        </RouteModuleBoundary>
       </FinalReviewContextInvalidator>
     ),
   },

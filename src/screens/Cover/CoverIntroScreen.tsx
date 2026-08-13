@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { coverToWorldOneTransitionRoute } from "../../app/routes";
+import { preloadJourneyRouteModule } from "../../app/routeModules";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { coverIntroAssets } from "./coverIntroAssets";
@@ -406,6 +407,8 @@ export function CoverIntroScreen() {
   }
 
   function requestPortalOneOpening() {
+    void preloadJourneyRouteModule("transition").catch(() => undefined);
+
     if (activationPreload.status === "ready") {
       pendingPortalOpenIntentRef.current = false;
       openPortalOnePlaceholder();

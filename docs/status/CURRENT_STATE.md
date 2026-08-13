@@ -28,6 +28,8 @@ Actualizado: 2026-08-13
 | Final         | `GVO FINAL — MIRADOR PHASE / COMPLETE`. Gates 5–8 `HUMAN_APPROVED / COMPLETE`: assets, copy, composición responsive, motion/reduced motion, retorno en revisita y reset real con snapshot, rollback y retry publicados. Las deudas transversales se transfieren a `PROJECT DEBT CORRECTION`; no se declara terminado todo GVO. |
 | Shell / QR    | `GVO_DEBT_009AB — QR SMOKE STABILITY / HUMAN_APPROVED / PUBLISHED`; acceso inmersivo compartido, contrato QR de producción, guards y matriz E2E integral `141/141` publicados.                                                                                                                                                 |
 | PWA / deploy  | `GVO_DEBT_010 — PWA AND DEPLOYMENT FOOTPRINT / HUMAN_APPROVED / PUBLISHED`; `dist` reducido `51,46%`, precache reducido `88,21%` en bytes, cache runtime local y exclusión segura de clase D publicados.                                                                                                                       |
+| Rendimiento   | `GVO_DEBT_011 — ROUTE CHUNKING AND INITIAL LOAD PERFORMANCE / IMPLEMENTATION_COMPLETE_FOR_REVIEW`; siete familias de ruta separadas y `0` chunks de ruta en precache. Conserva `PENDING_HUMAN_REVIEW`.                                                                                                                         |
+| Entrada       | `GVO_DEBT_012 — INITIAL EXPERIENCE LANGUAGE AND IMMERSIVE ENTRY / HUMAN_APPROVED / PUBLISHED`; `/inicio`, selección `es/en`, persistencia de idioma, fullscreen por gesto y fallback no bloqueante publicados.                                                                                                                 |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -296,8 +298,35 @@ queda fuera sólo de `dist`. El artefacto baja de `247.700.044` a `120.234.304`
 bytes y el precache de `278` a `49` entradas, sin modificar assets canónicos,
 QR, progreso, Mirador ni `docs/visual`.
 
+`GVO_DEBT_011` está implementado y técnicamente completo para revisión. Su
+informe histórico conserva `PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_011_ROUTE_CHUNKING_AND_INITIAL_LOAD_PERFORMANCE_FOR_REVIEW.md](GVO_DEBT_011_ROUTE_CHUNKING_AND_INITIAL_LOAD_PERFORMANCE_FOR_REVIEW.md)
+y su decisión se registra en
+[ADR-0005](../decisions/ADR-0005-route-chunking-y-preload-controlado.md).
+
+Transición, Mundos I–V y Mirador se entregan como chunks de ruta; la entrada
+inicial y Portada permanecen en el bundle crítico. Los siete pares JS/CSS están
+separados, se solicitan por intención o navegación y no forman parte del
+precache. `GVO_DEBT_012P` no cambia el estado humano de este frente.
+
+`GVO_DEBT_012` está aprobado y publicado. Su informe histórico conserva
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_012_INITIAL_EXPERIENCE_LANGUAGE_AND_IMMERSIVE_ENTRY_FOR_REVIEW.md](GVO_DEBT_012_INITIAL_EXPERIENCE_LANGUAGE_AND_IMMERSIVE_ENTRY_FOR_REVIEW.md),
+la decisión se conserva en
+[ADR-0006](../decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md) y la
+aprobación humana vinculante está registrada en
+[GVO_DEBT_012P_INITIAL_EXPERIENCE_LANGUAGE_AND_IMMERSIVE_ENTRY_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_012P_INITIAL_EXPERIENCE_LANGUAGE_AND_IMMERSIVE_ENTRY_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+La entrada normal pasa por `/inicio` después de Carga y antes de Portada. El
+visitante elige `es` o `en`; `gvo.language.v1` persiste como preferencia y
+actualiza `document.documentElement.lang`. Fullscreen sólo se solicita mediante
+un gesto explícito y su indisponibilidad o rechazo no bloquea el recorrido. No
+hay traducción editorial automática, instalación, permisos adicionales ni
+fullscreen automático.
+
 Permanecen pendientes una eventual reconstrucción visual de Captura fuera de
-este alcance, route chunking y el copy operativo/editorial `TEMP`.
+este alcance, la aprobación humana independiente de `GVO_DEBT_011` y el copy
+operativo/editorial `TEMP`.
 La fase `PROJECT DEBT CORRECTION` no se declara terminada; cada frente requiere
 un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de
 `GVO_FINAL_021P`.

@@ -1,8 +1,10 @@
 import "./GlobalImmersiveShell.css";
 
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { ImmersiveModeControl } from "../../shared/immersive";
+import { applyDocumentLanguage } from "../preferences/languagePreference";
 import {
   stationEntryRoutes,
   worldFivePlantsRoute,
@@ -34,6 +36,10 @@ export function isImmersiveShellAuthorizedPath(pathname: string) {
 export function GlobalImmersiveShell() {
   const location = useLocation();
   const authorized = isImmersiveShellAuthorizedPath(location.pathname);
+
+  useEffect(() => {
+    applyDocumentLanguage();
+  }, []);
 
   return (
     <div

@@ -117,7 +117,7 @@ async function expectTransitionThenDestination(
       timeout: 15_000,
     },
   );
-  await expect(page).toHaveURL(destination, { timeout: 5_000 });
+  await expect(page).toHaveURL(destination, { timeout: 20_000 });
 }
 
 async function completeWorld3Record(

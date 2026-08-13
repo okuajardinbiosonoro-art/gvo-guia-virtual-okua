@@ -554,6 +554,9 @@ test("reflow equivalente a 320 CSS px permanece visible y sin overflow", async (
   await page.setViewportSize({ width: 320, height: 640 });
   await seedCompletedJourney(page);
   await openReviewRoute(page, 2, "/estacion/2");
+  await expect(page.locator(".world2-root-screen")).toBeVisible({
+    timeout: 20_000,
+  });
 
   const control = page.locator('[data-final-review-return="active"]');
   await expect(control).toBeVisible();
