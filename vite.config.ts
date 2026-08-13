@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import { VitePWA } from "vite-plugin-pwa";
 
+import { excludeNonDeployablePublicArtifacts } from "./tools/vite/exclude-nondeployable-public.mjs";
+
 export default defineConfig({
   plugins: [
     react(),
@@ -32,16 +34,43 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: [
-          "**/*.{js,css,html,svg,png,webp,json,webmanifest,woff2}",
+          "index.html",
+          "registerSW.js",
+          "assets/*.{js,css,woff2}",
+          "assets/runtime/loading-initial-pre-portada.png",
+          "assets/runtime/loading-initial/**/*.{png,json}",
+          "assets/runtime/cover-intro/**/*.{png,json}",
         ],
         globIgnores: ["assets/gvo/current-used/**/*", "**/*.md", "**/.gitkeep"],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: "/index.html",
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) =>
+              url.origin === self.location.origin &&
+              url.pathname.startsWith("/assets/") &&
+              /\.(?:json|png|svg|webp|woff2)$/.test(url.pathname),
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "gvo-runtime-assets-v1",
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+              expiration: {
+                maxEntries: 256,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+                purgeOnQuotaError: true,
+              },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: false,
       },
     }),
+    excludeNonDeployablePublicArtifacts(),
   ],
   test: {
     environment: "jsdom",

@@ -27,6 +27,7 @@ Actualizado: 2026-08-13
 | W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                                                                                                                                   |
 | Final         | `GVO FINAL — MIRADOR PHASE / COMPLETE`. Gates 5–8 `HUMAN_APPROVED / COMPLETE`: assets, copy, composición responsive, motion/reduced motion, retorno en revisita y reset real con snapshot, rollback y retry publicados. Las deudas transversales se transfieren a `PROJECT DEBT CORRECTION`; no se declara terminado todo GVO. |
 | Shell / QR    | `GVO_DEBT_009AB — QR SMOKE STABILITY / HUMAN_APPROVED / PUBLISHED`; acceso inmersivo compartido, contrato QR de producción, guards y matriz E2E integral `141/141` publicados.                                                                                                                                                 |
+| PWA / deploy  | `GVO_DEBT_010 — PWA AND DEPLOYMENT FOOTPRINT / HUMAN_APPROVED / PUBLISHED`; `dist` reducido `51,46%`, precache reducido `88,21%` en bytes, cache runtime local y exclusión segura de clase D publicados.                                                                                                                       |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -280,9 +281,23 @@ seguro y cero mutaciones de almacenamiento. La reconciliación E2E acota los
 selectores por pantalla, observa estados DOM explícitos y sincroniza la
 revisita; la suite integral cierra `141/141` sin modificar ese runtime.
 
+`GVO_DEBT_010` está aprobado y publicado. Su informe histórico conserva
+`PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_010_PWA_AND_DEPLOYMENT_FOOTPRINT_FOR_REVIEW.md](GVO_DEBT_010_PWA_AND_DEPLOYMENT_FOOTPRINT_FOR_REVIEW.md),
+la estrategia se conserva en
+[ADR-0004](../decisions/ADR-0004-pwa-precache-y-cache-runtime.md) y la
+aprobación humana vinculante está registrada en
+[GVO_DEBT_010P_PWA_AND_DEPLOYMENT_FOOTPRINT_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_010P_PWA_AND_DEPLOYMENT_FOOTPRINT_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+El deploy conserva el contrato `QR → navegador → recorrido`, sin instalación
+obligatoria ni permisos. La clase A permanece en precache; B/C se despliegan y
+entran en cache runtime local al solicitarse; D conserva sus fuentes tracked y
+queda fuera sólo de `dist`. El artefacto baja de `247.700.044` a `120.234.304`
+bytes y el precache de `278` a `49` entradas, sin modificar assets canónicos,
+QR, progreso, Mirador ni `docs/visual`.
+
 Permanecen pendientes una eventual reconstrucción visual de Captura fuera de
-este alcance, PWA/precache, route chunking y el copy operativo/editorial
-`TEMP`.
+este alcance, route chunking y el copy operativo/editorial `TEMP`.
 La fase `PROJECT DEBT CORRECTION` no se declara terminada; cada frente requiere
 un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de
 `GVO_FINAL_021P`.

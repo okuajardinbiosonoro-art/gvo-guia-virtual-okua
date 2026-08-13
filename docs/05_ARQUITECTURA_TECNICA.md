@@ -1,6 +1,6 @@
 # Arquitectura técnica
 
-Actualizado: 2026-08-06
+Actualizado: 2026-08-13
 
 La base usa Vite, React, TypeScript y React Router. La aplicación es local-first, silenciosa y empaqueta sus recursos requeridos en el build; las pantallas runtime no dependen de recursos remotos obligatorios.
 
@@ -16,30 +16,31 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 - `src/screens`: pantallas runtime y herramientas de desarrollo autorizadas.
 - `src/shared/assets`: preloader y contratos compartidos de assets.
 - `src/styles`: tokens y estilos globales.
-- `public/assets/gvo`: assets empaquetados y registro `current-used`.
+- `public/assets/gvo`: assets runtime y registro fuente `current-used`; el
+  registro documental no se copia al artefacto de despliegue.
 - `docs`: contratos canónicos, inventarios y registros históricos.
 - `tools`: scripts de auditoría y estado.
 - `tests/e2e`: pruebas end-to-end.
 
 ## Rutas runtime relevantes
 
-| Ruta | Componente / contrato |
-| --- | --- |
-| `/` y `/carga` | `LoadingInitialScreen`. |
-| `/portada` | `CoverIntroScreen`. |
-| `/transition/intro-to-station-1` | `TransitionWorldRuntimeRoute`. |
-| `/estacion/1` | `World1RootScreen`. |
-| `/transition/world-1-to-world-2` | Transición compartida. |
-| `/estacion/2` | `World2RootScreen`. |
-| `/transition/world-2-to-world-3` | Transición pasiva final hacia Estación III. |
-| `/estacion/3` | `World3RootScreen`, Estación III aprobada. |
-| `/transition/world-3-to-world-4` | Transición compartida; copy editorial todavía `TEMP`. |
-| `/estacion/4` | `World4RootScreen`, Estación IV cerrada y aprobada. |
-| `/transition/world-4-to-world-5` | Transición compartida; copy editorial todavía `TEMP`. |
-| `/estacion/5` | `World5RootScreen`, base Fable funcional con visuales procedurales reemplazables; no cerrada. |
-| `/transition/world-5-to-final` | Transición compartida; copy editorial todavía `TEMP`. |
-| `/final` | `FinalRootScreen`. |
-| `/qr/:stationId` | Entrada QR tipada; redirige mediante los guards secuenciales existentes. |
+| Ruta                             | Componente / contrato                                                                         |
+| -------------------------------- | --------------------------------------------------------------------------------------------- |
+| `/` y `/carga`                   | `LoadingInitialScreen`.                                                                       |
+| `/portada`                       | `CoverIntroScreen`.                                                                           |
+| `/transition/intro-to-station-1` | `TransitionWorldRuntimeRoute`.                                                                |
+| `/estacion/1`                    | `World1RootScreen`.                                                                           |
+| `/transition/world-1-to-world-2` | Transición compartida.                                                                        |
+| `/estacion/2`                    | `World2RootScreen`.                                                                           |
+| `/transition/world-2-to-world-3` | Transición pasiva final hacia Estación III.                                                   |
+| `/estacion/3`                    | `World3RootScreen`, Estación III aprobada.                                                    |
+| `/transition/world-3-to-world-4` | Transición compartida; copy editorial todavía `TEMP`.                                         |
+| `/estacion/4`                    | `World4RootScreen`, Estación IV cerrada y aprobada.                                           |
+| `/transition/world-4-to-world-5` | Transición compartida; copy editorial todavía `TEMP`.                                         |
+| `/estacion/5`                    | `World5RootScreen`, base Fable funcional con visuales procedurales reemplazables; no cerrada. |
+| `/transition/world-5-to-final`   | Transición compartida; copy editorial todavía `TEMP`.                                         |
+| `/final`                         | `FinalRootScreen`.                                                                            |
+| `/qr/:stationId`                 | Entrada QR tipada; redirige mediante los guards secuenciales existentes.                      |
 
 Las rutas `/dev/*` son herramientas aisladas y no se deben presentar como pantallas finales.
 
@@ -158,7 +159,25 @@ y highlights estáticos.
 
 ## PWA y permisos
 
-La PWA mantiene manifest, service worker y cache local. No usa notificaciones push ni solicita permisos innecesarios. Estación III declara cámara, QR y permisos sensibles como bloqueados. Estación IV añade fullscreen opt-in, sin permisos persistentes; la instalación PWA no se certificó en la plataforma QA y un despliegue LAN instalable requiere origen seguro.
+La PWA mantiene manifest, service worker y cache local. No usa notificaciones
+push ni solicita permisos innecesarios. Estación III declara cámara, QR y
+permisos sensibles como bloqueados. Estación IV añade fullscreen opt-in, sin
+permisos persistentes; la instalación PWA no se certificó en la plataforma QA
+y un despliegue LAN instalable requiere origen seguro.
+
+`GVO_DEBT_010` separa el precache crítico del cache runtime sin dividir el
+bundle por rutas. La clase A —shell, bundle, fuentes, Carga inicial y Portada—
+se precachea. Los assets compartidos del recorrido y los assets específicos de
+estación permanecen desplegados y usan `StaleWhileRevalidate` same-origin al
+solicitarse; el matcher queda restringido a `/assets/` locales con extensiones
+`json`, `png`, `svg`, `webp` o `woff2`. El fallback de navegación continúa en
+`/index.html` y la limpieza de precaches obsoletos permanece activa.
+
+Los mirrors `public/assets/gvo/current-used`, las bibliotecas no consumidas y
+los README/manifests documentales se conservan como fuentes tracked, pero el
+plugin de build los excluye de `dist` mediante una lista cerrada y validada.
+No se alteran assets canónicos ni imports runtime. La decisión completa está en
+[ADR-0004](decisions/ADR-0004-pwa-precache-y-cache-runtime.md).
 
 ## Estado y límites
 
