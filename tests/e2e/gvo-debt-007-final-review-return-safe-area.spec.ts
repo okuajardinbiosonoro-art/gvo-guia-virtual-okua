@@ -283,7 +283,9 @@ async function assertRouteCriticalControls(page: Page, route: string) {
     ).toHaveCount(3);
   } else if (route === "/estacion/4") {
     await expect(page.locator("[data-station4-node]")).toHaveCount(8);
-    await expect(page.locator(".s4-immersive-control")).toBeVisible();
+    await expect(
+      page.locator('[data-gvo-immersive-control="fullscreen"]'),
+    ).toBeVisible();
   } else if (route === "/estacion/5") {
     await expect(page.locator("[data-station5-area]")).toHaveCount(4);
   } else {

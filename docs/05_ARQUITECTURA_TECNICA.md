@@ -1,12 +1,14 @@
 # Arquitectura técnica
 
-Actualizado: 2026-07-22
+Actualizado: 2026-08-06
 
 La base usa Vite, React, TypeScript y React Router. La aplicación es local-first, silenciosa y empaqueta sus recursos requeridos en el build; las pantallas runtime no dependen de recursos remotos obligatorios.
 
 ## Carpetas principales
 
 - `src/app`: aplicación, router, rutas y providers.
+- `src/app/qr`: contrato tipado y resolución read-only de entradas QR.
+- `src/app/shell`: shell inmersivo transversal y autorización por ruta.
 - `src/components`: componentes reutilizables, incluido `GestureHint`.
 - `src/content`: slots y copy editorial compartido.
 - `src/data`: datos estáticos del flujo.
@@ -37,9 +39,26 @@ La base usa Vite, React, TypeScript y React Router. La aplicación es local-firs
 | `/estacion/5` | `World5RootScreen`, base Fable funcional con visuales procedurales reemplazables; no cerrada. |
 | `/transition/world-5-to-final` | Transición compartida; copy editorial todavía `TEMP`. |
 | `/final` | `FinalRootScreen`. |
-| `/qr/:stationId` | Entrada QR técnica. |
+| `/qr/:stationId` | Entrada QR tipada; redirige mediante los guards secuenciales existentes. |
 
 Las rutas `/dev/*` son herramientas aisladas y no se deben presentar como pantallas finales.
+
+## Shell inmersivo y entradas QR
+
+`GlobalImmersiveShell` es un layout único del router. Autoriza el control sólo
+en las cinco rutas base de estaciones y las cuatro subrutas de Mundo V. El
+shell reutiliza `ImmersiveModeControl` y el núcleo estándar de
+`shared/immersive`; no replica controles por pantalla, no activa fullscreen de
+forma automática y no solicita permisos sensibles. Su dock fijo usa safe-area,
+un área interactiva de `44px × 44px` y `pointer-events: none` fuera del botón.
+
+`qrNavigation.ts` deriva cinco contratos desde `stations` y
+`stationEntryRoutes`. La resolución acepta únicamente identificadores exactos
+`1…5`, consulta el progreso mediante `readProgress`, reutiliza
+`canOpenStation` y aplica `mostAdvancedAvailableStation` como fallback. El
+loader limpia exclusivamente un posible contexto de revisita; no escribe ni
+normaliza `gvo.progress.v1`. `/qr/*` captura variantes inválidas o manipuladas
+sin añadir scanner, cámara, red externa ni dependencias.
 
 ## Arquitectura de Estación III
 

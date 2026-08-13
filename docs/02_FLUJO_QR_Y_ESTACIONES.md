@@ -27,6 +27,30 @@ El recorrido se organiza como una secuencia de pantallas locales. El acceso prin
 - `/final`
 - `/qr/:stationId`
 
+## Contrato de entrada QR
+
+Las rutas locales `/qr/1` a `/qr/5` son enlaces físicos tipados; no abren un
+scanner interno ni solicitan cámara. Cada entrada se resuelve contra la misma
+regla secuencial usada por los guards de las estaciones:
+
+- con progreso suficiente, redirige a la estación solicitada;
+- sin progreso suficiente, redirige a la estación más avanzada autorizada;
+- con un identificador inválido, manipulado o fuera de `1…5`, aplica el mismo
+  fallback seguro;
+- la resolución es read-only respecto a `gvo.progress.v1` y no concede ni
+  inventa progreso.
+
+La cámara nativa del dispositivo puede abrir la URL local codificada en un QR,
+pero GVO no activa `getUserMedia`, scanner, micrófono ni permisos sensibles.
+
+## Shell inmersivo
+
+Las rutas reales de Estaciones I–V y las cuatro subrutas de Mundo V comparten
+un único `ImmersiveModeControl`. El control solicita fullscreen estándar sólo
+después de un gesto explícito, respeta safe-area y reduced motion, y no se
+muestra en carga, portada, transiciones, Mirador, rutas QR intermedias ni rutas
+de desarrollo.
+
 ## Regla secuencial
 
 La Portada / Intro entrega el flujo a `/transition/intro-to-station-1`, que conduce a `/estacion/1`. El recorrido consolidado continúa por Mundo I y Mundo II hasta la transición definitiva `/transition/world-2-to-world-3`, que avanza automáticamente a `/estacion/3`.

@@ -19,6 +19,10 @@ const closeErrorCopy =
   "No fue posible guardar tu progreso. Intenta nuevamente.";
 const evidenceDir = evidenceDirectory("world5-st5-020h");
 const finalRootSelector = '[data-final-root="mirador_editorial_final"]';
+// The legacy 020G/020H raster contract isolates station content. DEBT_009
+// validates the transversal shell independently across both orientations.
+const stationOnlyScreenshotStyle =
+  ".gvo-immersive-shell__dock { visibility: hidden !important; }";
 
 const completedAreas = ["plantas", "sistema", "espacio", "visitante"];
 const previousStations = [1, 2, 3, 4];
@@ -1119,6 +1123,7 @@ test.describe("ST5-020H — cierre controlado de Estación V", () => {
       await page.screenshot({
         path: path.join(evidenceDir, `protected_${id}_intro_375x667.png`),
         scale: "css",
+        style: stationOnlyScreenshotStyle,
       });
     }
 

@@ -25,7 +25,6 @@ import {
 } from "../../domain/progress/progress.storage";
 import {
   getDisplayMode,
-  ImmersiveModeControl,
   type ImmersiveDisplayMode,
 } from "../../shared/immersive";
 import {
@@ -824,8 +823,6 @@ export function World4RootScreen() {
       data-visual-viewport-width={visualViewport.width}
       style={viewportStyle}
     >
-      <ImmersiveModeControl className="s4-immersive-control" />
-
       <header className="s4-title">
         <svg
           aria-hidden="true"

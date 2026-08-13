@@ -58,28 +58,6 @@
   text-align: center;
 }
 
-.s4-screen > .s4-immersive-control {
-  position: absolute;
-  top: max(0.45rem, env(safe-area-inset-top));
-  right: max(0.45rem, env(safe-area-inset-right));
-  z-index: 20;
-  width: 44px;
-  min-width: 44px;
-  padding: 0;
-  overflow: hidden;
-  color: transparent;
-  font-size: 0;
-  line-height: 0;
-  white-space: nowrap;
-}
-
-.s4-screen > .s4-immersive-control::before {
-  content: "⛶";
-  color: rgb(241 250 247 / 96%);
-  font-size: 1.25rem;
-  line-height: 1;
-}
-
 .s4-orientation-hint {
   position: relative;
   z-index: 20;
@@ -886,8 +864,7 @@
 
   .s4-screen[data-station4-motion-phase="station_enter"][data-station4-entry-mode="full"]
     .s4-node-stack__halo--entry-invitation {
-    animation: s4-entry-invitation 280ms 1120ms var(--st4-ease-standard)
-      both;
+    animation: s4-entry-invitation 280ms 1120ms var(--st4-ease-standard) both;
   }
 
   .s4-screen[data-station4-motion-phase="station_enter"][data-station4-entry-mode="abbreviated"]
@@ -928,18 +905,15 @@ body:has(.s4-tap-hint) .s4-ambient__mote {
 .s4-screen[data-station4-document-visibility="hidden"] .s4-stage__haze,
 .s4-screen[data-station4-document-visibility="hidden"] .s4-ambient__ribbon,
 .s4-screen[data-station4-document-visibility="hidden"] .s4-ambient__mote,
-.s4-screen[data-station4-document-visibility="hidden"]
-  .s4-node-stack__halo,
-.s4-screen[data-station4-document-visibility="hidden"]
-  .s4-lia-guide__traveler,
+.s4-screen[data-station4-document-visibility="hidden"] .s4-node-stack__halo,
+.s4-screen[data-station4-document-visibility="hidden"] .s4-lia-guide__traveler,
 .s4-screen[data-station4-motion-phase="exiting"] .s4-stage__haze,
 .s4-screen[data-station4-motion-phase="exiting"] .s4-ambient__ribbon,
 .s4-screen[data-station4-motion-phase="exiting"] .s4-ambient__mote,
 .s4-screen[data-station4-motion-phase="exiting"]
   .s4-node-stack--available
   .s4-node-stack__halo,
-.s4-screen[data-station4-motion-phase="exiting"]
-  .s4-lia-guide__traveler {
+.s4-screen[data-station4-motion-phase="exiting"] .s4-lia-guide__traveler {
   animation-play-state: paused !important;
 }
 

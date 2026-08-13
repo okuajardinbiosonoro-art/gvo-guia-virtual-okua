@@ -40,6 +40,19 @@ export const worldFiveVisitorRoute = "/estacion/5/visitante";
 
 export const finalEntryRoute = "/final";
 
+export const qrEntryRoutePattern = "/qr/:qrId";
+
+export const qrFallbackRoutePattern = "/qr/*";
+
+export const qrJourneyStartRoute = "/qr/start";
+
+export const qrWorldEntryRoutes = {
+  2: "/qr/w2",
+  3: "/qr/w3",
+  4: "/qr/w4",
+  5: "/qr/w5",
+} as const satisfies Readonly<Record<Exclude<StationId, 1>, string>>;
+
 export const stationEntryRoutes: Readonly<Record<StationId, string>> = {
   1: worldOneEntryRoute,
   2: worldTwoEntryRoute,

@@ -1,8 +1,10 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 import { loadingInitialTimeline } from "../../src/screens/LoadingInitial/loadingInitialTimeline";
 
 const loadingNavigationTimeoutMs = loadingInitialTimeline.maxDurationMs + 2_000;
+const coverActivationReadyTimeoutMs = 20_000;
+const transitionDestinationTimeoutMs = 15_000;
 
 const mobileViewports = [
   { width: 360, height: 640 },
@@ -11,6 +13,46 @@ const mobileViewports = [
   { width: 414, height: 896 },
   { width: 430, height: 932 },
 ];
+
+async function expectCoverToWorldOneHandoff(page: Page): Promise<Locator> {
+  const openingCover = page.locator(
+    'main[data-cover-phase="portal_1_opening_placeholder"]',
+  );
+
+  await expect(openingCover).toBeVisible({
+    timeout: coverActivationReadyTimeoutMs,
+  });
+  await expect(page).toHaveURL(/\/portada$/);
+  await expect(openingCover).toHaveAttribute(
+    "data-activation-assets-ready",
+    "true",
+  );
+  await expect(
+    openingCover.getByText("Abriendo Mundo I: Raíz...", { exact: true }),
+  ).toBeVisible();
+
+  const transition = page.locator(
+    'main[data-transition-world-id="intro-to-station-1"]',
+  );
+  await expect(transition).toBeVisible({
+    timeout: transitionDestinationTimeoutMs,
+  });
+  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/);
+  await expect(transition).toHaveAttribute(
+    "data-critical-assets-ready",
+    "true",
+  );
+  await Promise.all([
+    expect(
+      transition.getByRole("heading", { name: "Abriendo Mundo I" }),
+    ).toBeVisible(),
+    expect(transition.locator("#transition-world-subtitle")).toHaveText(
+      "Preparando la raíz.",
+    ),
+  ]);
+
+  return transition;
+}
 
 test("muestra la carga inicial en la primera ruta del recorrido", async ({
   page,
@@ -131,20 +173,18 @@ test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
     ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  await expect(page.getByText("Abriendo Mundo I")).toBeVisible();
-  await expect(page.getByText("Preparando la raíz.")).toBeVisible();
-  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
-    timeout: 5000,
-  });
-  await expect(page.locator("button")).toHaveCount(0);
-  await expect(page.locator("a")).toHaveCount(0);
+  const transition = await expectCoverToWorldOneHandoff(page);
+  await expect(transition.locator("button")).toHaveCount(0);
+  await expect(transition.locator("a")).toHaveCount(0);
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
   expect(overflow).toBe(false);
 
-  await expect(page).toHaveURL(/\/estacion\/1$/, { timeout: 5000 });
+  await expect(page).toHaveURL(/\/estacion\/1$/, {
+    timeout: transitionDestinationTimeoutMs,
+  });
   await expect(page.getByText("Antes de escuchar")).toBeVisible();
   await expect(page.getByText("RELACIÓN")).toBeVisible();
   await expect(page.getByText("PERCEPCIÓN")).toBeVisible();
@@ -219,13 +259,9 @@ test("reduced motion conserva diálogos y gating en /portada", async ({
     page.getByRole("button", { name: "Entrar a Mundo I" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  await expect(page.getByText("Abriendo Mundo I")).toBeVisible();
-  await expect(page.getByText("Preparando la raíz.")).toBeVisible();
-  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
-    timeout: 5000,
-  });
-  await expect(page.locator("button")).toHaveCount(0);
-  await expect(page.locator("a")).toHaveCount(0);
+  const transition = await expectCoverToWorldOneHandoff(page);
+  await expect(transition.locator("button")).toHaveCount(0);
+  await expect(transition.locator("a")).toHaveCount(0);
   await expect(page.locator("audio")).toHaveCount(0);
   await expect(page.locator("video")).toHaveCount(0);
 });

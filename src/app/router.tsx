@@ -2,12 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import {
   createBrowserRouter,
   replace,
+  type RouteObject,
   useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
 
-import { QrAccessPlaceholder } from "../components/qr/QrAccessPlaceholder";
 import {
   canOpenStation,
   canOpenTransition,
@@ -43,9 +42,12 @@ import {
   FinalReviewModeLayout,
 } from "./review/FinalReviewModeLayout";
 import { clearFinalReviewContext } from "./review/finalReviewContext";
+import { resolveQrNavigation } from "./qr/qrNavigation";
 import {
   coverToWorldOneTransitionRoute,
   finalEntryRoute,
+  qrEntryRoutePattern,
+  qrFallbackRoutePattern,
   stationEntryRoutes,
   worldOneEntryRoute,
   worldFiveEntryRoute,
@@ -62,11 +64,7 @@ import {
   worldTwoToWorldThreeTransitionRoute,
   worldTwoEntryRoute,
 } from "./routes";
-
-function QrRoute() {
-  const { stationId } = useParams();
-  return <QrAccessPlaceholder stationId={stationId ?? "sin-id"} />;
-}
+import { GlobalImmersiveShell } from "./shell/GlobalImmersiveShell";
 
 function JourneyLoadingRoute() {
   const navigate = useNavigate();
@@ -156,6 +154,12 @@ export function requireTransitionAccess(
   return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
 }
 
+export function requireQrAccess(qrId: string | null | undefined) {
+  const resolution = resolveQrNavigation(qrId);
+  clearFinalReviewContext();
+  return replace(resolution.destination);
+}
+
 function TransitionWorldRuntimeRoute({
   config,
 }: {
@@ -179,7 +183,7 @@ function TransitionWorldRuntimeRoute({
   );
 }
 
-export const router = createBrowserRouter([
+const journeyRoutes: RouteObject[] = [
   {
     path: "/",
     element: <JourneyLoadingRoute />,
@@ -352,7 +356,18 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/qr/:stationId",
-    element: <QrRoute />,
+    path: qrEntryRoutePattern,
+    loader: ({ params }) => requireQrAccess(params.qrId),
+  },
+  {
+    path: qrFallbackRoutePattern,
+    loader: ({ params }) => requireQrAccess(params["*"]),
+  },
+];
+
+export const router = createBrowserRouter([
+  {
+    element: <GlobalImmersiveShell />,
+    children: journeyRoutes,
   },
 ]);

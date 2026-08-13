@@ -1,6 +1,6 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-08-06
+Actualizado: 2026-08-13
 
 ## Estado canónico
 
@@ -19,13 +19,14 @@ Actualizado: 2026-08-06
 | Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                                                                                                                                             |
 | Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                                                                                                                                         |
 | Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                                                                                                                                               |
-| Mundo II      | `GVO_DEBT_008 — WORLD II LEGIBILITY AND RESPONSIVE READABILITY / HUMAN_APPROVED / PUBLISHED`; seis capas, reflow, zoom `200%`, targets `44×44` y revisita desde Mirador validados.                                                                                                                                                |
+| Mundo II      | `GVO_DEBT_008 — WORLD II LEGIBILITY AND RESPONSIVE READABILITY / HUMAN_APPROVED / PUBLISHED`; seis capas, reflow, zoom `200%`, targets `44×44` y revisita desde Mirador validados.                                                                                                                                             |
 | Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                                                                                                                                            |
 | Mundo III     | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                     |
 | Mundo IV      | `CERRADA_APROBADA_FINAL / HUMAN_APPROVED`.                                                                                                                                                                                                                                                                                     |
 | Mundo V       | `ST5_020H_HUMAN_APPROVED`; `ESTACIÓN V CERRADA PARA EL ALCANCE ACTUAL`, con 4/4, CTA, persistencia global, guardas y salida validados.                                                                                                                                                                                         |
 | W5→Final      | Copy final `Abriendo el Mirador / Preparando el cierre del recorrido.`; ruta protegida, pasiva y automática.                                                                                                                                                                                                                   |
 | Final         | `GVO FINAL — MIRADOR PHASE / COMPLETE`. Gates 5–8 `HUMAN_APPROVED / COMPLETE`: assets, copy, composición responsive, motion/reduced motion, retorno en revisita y reset real con snapshot, rollback y retry publicados. Las deudas transversales se transfieren a `PROJECT DEBT CORRECTION`; no se declara terminado todo GVO. |
+| Shell / QR    | `GVO_DEBT_009AB — QR SMOKE STABILITY / HUMAN_APPROVED / PUBLISHED`; acceso inmersivo compartido, contrato QR de producción, guards y matriz E2E integral `141/141` publicados.                                                                                                                                                 |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -262,9 +263,26 @@ la matriz auditada; valida zoom `200%`, reflow `320px`, Planta separada de Lía,
 electrodo alineado antes de `Onda medida` y revisita sin solapamientos en Señal,
 Captura ni Mapeo.
 
+`GVO_DEBT_009`, `GVO_DEBT_009A` y `GVO_DEBT_009AB` están aprobados y
+publicados. Sus informes históricos conservan `PENDING_HUMAN_REVIEW` en
+[GVO_DEBT_009_IMMERSIVE_SHELL_AND_QR_NAVIGATION_FOR_REVIEW.md](GVO_DEBT_009_IMMERSIVE_SHELL_AND_QR_NAVIGATION_FOR_REVIEW.md),
+[GVO_DEBT_009A_PRODUCTION_QR_CONTRACT_ALIGNMENT_FOR_REVIEW.md](GVO_DEBT_009A_PRODUCTION_QR_CONTRACT_ALIGNMENT_FOR_REVIEW.md)
+y
+[GVO_DEBT_009AB_QR_SMOKE_STABILITY_FOR_REVIEW.md](GVO_DEBT_009AB_QR_SMOKE_STABILITY_FOR_REVIEW.md).
+La aprobación humana vinculante de la reconciliación final está registrada en
+[GVO_DEBT_009ABP_QR_SMOKE_STABILITY_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_009ABP_QR_SMOKE_STABILITY_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+El shell inmersivo global conserva una sola instancia en las nueve rutas de
+estación autorizadas, safe-area, targets de `44px`, teclado, touch y reduced
+motion. El contrato QR de producción publica `/qr/start` y `/qr/w2`–`/qr/w5`,
+sin QR para Mundo I, con identificadores estrictos, guards canónicos, fallback
+seguro y cero mutaciones de almacenamiento. La reconciliación E2E acota los
+selectores por pantalla, observa estados DOM explícitos y sincroniza la
+revisita; la suite integral cierra `141/141` sin modificar ese runtime.
+
 Permanecen pendientes una eventual reconstrucción visual de Captura fuera de
-este alcance, immersive shell, QR, PWA/precache, route chunking y el copy
-operativo/editorial `TEMP`.
+este alcance, PWA/precache, route chunking y el copy operativo/editorial
+`TEMP`.
 La fase `PROJECT DEBT CORRECTION` no se declara terminada; cada frente requiere
 un ticket separado. El Mirador permanece `COMPLETE` bajo la autoridad de
 `GVO_FINAL_021P`.
