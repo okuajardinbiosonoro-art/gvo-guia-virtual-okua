@@ -49,38 +49,52 @@ export const coverIntroDialogues = [
 export const coverIntroPortals = [
   {
     id: "portal-1",
+    world: 1,
     roman: "I",
     title: "Estación I — Mundo I: Raíz",
     state: "available",
     ariaLabel: "Estación I, Mundo Raíz, disponible.",
+    reviewAriaLabel: "Estación I, Mundo Raíz, disponible para revisar.",
   },
   {
     id: "portal-2",
+    world: 2,
     roman: "II",
     title: "Estación II — Mundo II: Lía y el pulso invisible",
     state: "locked",
     ariaLabel: "Estación II, bloqueada hasta completar Mundo I.",
+    reviewAriaLabel:
+      "Estación II, Mundo Lía y el pulso invisible, disponible para revisar.",
   },
   {
     id: "portal-3",
+    world: 3,
     roman: "III",
     title: "Estación III — Mundo III: Cuaderno de pruebas",
     state: "locked",
     ariaLabel: "Estación III, bloqueada hasta avanzar en el recorrido.",
+    reviewAriaLabel:
+      "Estación III, Mundo Cuaderno de pruebas, disponible para revisar.",
   },
   {
     id: "portal-4",
+    world: 4,
     roman: "IV",
     title: "Estación IV — Mundo IV: Mesa de sistema",
     state: "locked",
     ariaLabel: "Estación IV, bloqueada hasta conocer la mediación.",
+    reviewAriaLabel:
+      "Estación IV, Mundo Mesa de sistema, disponible para revisar.",
   },
   {
     id: "portal-5",
+    world: 5,
     roman: "V",
     title: "Estación V — Mundo V: Mapa del presente",
     state: "locked",
     ariaLabel: "Estación V, bloqueada hasta el final del recorrido.",
+    reviewAriaLabel:
+      "Estación V, Mundo Mapa del presente, disponible para revisar.",
   },
 ] as const;
 

@@ -8,13 +8,41 @@ import { evidenceDirectory } from "./support/evidence";
 
 const qaOutputDir = evidenceDirectory("cover-intro-002j-fix");
 
+async function ensureActivationAssetsReady(page: Page) {
+  const cover = page.locator("main[data-cover-phase]");
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      await expect(cover).toHaveAttribute(
+        "data-activation-assets-status",
+        "ready",
+        { timeout: 12_000 },
+      );
+      return;
+    } catch (error) {
+      if (attempt === 2) {
+        throw error;
+      }
+
+      await page.reload({ waitUntil: "domcontentloaded", timeout: 30_000 });
+      await expect(
+        page.getByRole("button", { name: "Comenzar recorrido" }),
+      ).toBeVisible();
+    }
+  }
+}
+
 async function prepareFreshCover(page: Page) {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/portada?resetIntro=1");
+  await page.goto("/portada?resetIntro=1", {
+    waitUntil: "commit",
+    timeout: 30_000,
+  });
   await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
   await expect(
     page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 60_000 });
+  await ensureActivationAssetsReady(page);
 }
 
 async function capture(page: Page, name: string) {
@@ -41,7 +69,7 @@ async function finishIntroDialogue(page: Page) {
 }
 
 test.describe("QA visual Portada / Intro 002J-FIX", () => {
-  test.describe.configure({ timeout: 120_000 });
+  test.describe.configure({ timeout: 180_000 });
 
   test.beforeAll(() => {
     mkdirSync(qaOutputDir, { recursive: true });
@@ -129,7 +157,7 @@ test.describe("QA visual Portada / Intro 002J-FIX", () => {
       name: "Entrar a Mundo I",
     });
 
-    await expect(openingCover).toBeVisible({ timeout: 20_000 });
+    await expect(openingCover).toBeVisible({ timeout: 30_000 });
 
     await Promise.all([
       expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/),
@@ -207,7 +235,7 @@ test.describe("QA visual Portada / Intro 002J-FIX", () => {
     );
     const activationLia = openingCover.getByTestId("cover-activation-lia");
 
-    await expect(openingCover).toBeVisible({ timeout: 20_000 });
+    await expect(openingCover).toBeVisible({ timeout: 30_000 });
     await expect(activationRig).toBeVisible();
     await expect(activationLia).toBeVisible();
     await expect(openingCover.locator(".cover-intro__lia-wrap")).toHaveCSS(

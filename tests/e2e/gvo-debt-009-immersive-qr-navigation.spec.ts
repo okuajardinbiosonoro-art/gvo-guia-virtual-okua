@@ -300,12 +300,12 @@ test("reduced motion elimina transiciones y el estado no depende sólo de color"
   expect(afterGlyph).not.toBe(before.glyph);
 });
 
-test("el control desaparece fuera de estaciones y no colisiona con revisita", async ({
+test("DEBT_014 extiende el control a Portada/Final y no colisiona con revisita", async ({
   page,
 }) => {
   await installRuntimeContract(page, [1, 2, 3, 4, 5]);
 
-  for (const route of ["/carga", "/portada", "/final", "/estacion/6"]) {
+  for (const route of ["/carga", "/inicio", "/estacion/6"]) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
     await expect(
       page.locator('[data-gvo-immersive-shell="inactive"]'),
@@ -313,6 +313,16 @@ test("el control desaparece fuera de estaciones y no colisiona con revisita", as
     await expect(
       page.locator('[data-gvo-immersive-control="fullscreen"]'),
     ).toHaveCount(0);
+  }
+
+  for (const route of ["/portada", "/final"]) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await expect(
+      page.locator('[data-gvo-immersive-shell="active"]'),
+    ).toBeAttached();
+    await expect(
+      page.locator('[data-gvo-immersive-control="fullscreen"]'),
+    ).toHaveCount(1);
   }
 
   await page.goto("/final", { waitUntil: "domcontentloaded" });

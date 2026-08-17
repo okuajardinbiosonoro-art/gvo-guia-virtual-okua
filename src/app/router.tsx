@@ -314,11 +314,7 @@ const journeyRoutes: RouteObject[] = [
   },
   {
     path: "/portada",
-    element: (
-      <FinalReviewContextInvalidator>
-        <CoverIntroScreen />
-      </FinalReviewContextInvalidator>
-    ),
+    element: <CoverIntroScreen />,
   },
   {
     path: "/dev/transition-world",

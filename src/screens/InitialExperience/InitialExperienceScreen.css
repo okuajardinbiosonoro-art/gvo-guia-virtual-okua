@@ -1,4 +1,6 @@
 .initial-experience {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   min-height: 100svh;
   min-height: 100dvh;
@@ -8,16 +10,118 @@
     max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom))
     max(16px, env(safe-area-inset-left));
   color: var(--gvo-text);
-  background: var(--gvo-bg);
+  background: #2d242b;
+  overflow-x: hidden;
+}
+
+.initial-experience::after {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 44%, rgb(255 246 219 / 12%), transparent 48%),
+    linear-gradient(180deg, rgb(42 30 39 / 18%), rgb(36 27 35 / 64%));
+  content: "";
+  pointer-events: none;
+}
+
+.initial-experience__backdrop {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background-image: var(--initial-experience-backdrop);
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.86) contrast(0.96);
+  transform: scale(1.015);
+}
+
+.initial-experience__layout {
+  position: relative;
+  width: min(100%, 1060px);
+  display: grid;
+  grid-template-columns: minmax(360px, 520px) minmax(360px, 460px);
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.initial-experience__journey-art {
+  position: relative;
+  min-width: 0;
+  min-height: min(60svh, 560px);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  place-items: center;
+  pointer-events: none;
+}
+
+.initial-experience__journey-orbit {
+  position: absolute;
+  inset: 8% 12%;
+  border: 1px solid rgb(255 245 213 / 28%);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 26px rgb(240 207 145 / 10%),
+    0 0 34px rgb(220 187 230 / 12%);
+}
+
+.initial-experience__journey-orbit::before,
+.initial-experience__journey-orbit::after {
+  position: absolute;
+  inset: 14%;
+  border: 1px solid rgb(231 209 238 / 18%);
+  border-radius: 50%;
+  content: "";
+}
+
+.initial-experience__journey-orbit::after {
+  inset: 36%;
+  background: radial-gradient(circle, rgb(255 235 180 / 38%), transparent 68%);
+  box-shadow: 0 0 30px rgb(255 232 172 / 24%);
+}
+
+.initial-experience__station-asset {
+  z-index: 1;
+  width: clamp(118px, 13vw, 170px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 16px rgb(28 17 28 / 28%));
+}
+
+.initial-experience__station-asset[data-entry-cover-station-asset="world-1-root"] {
+  grid-area: 1 / 3 / 2 / 5;
+}
+
+.initial-experience__station-asset[data-entry-cover-station-asset="world-2-pulse"] {
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+.initial-experience__station-asset[data-entry-cover-station-asset="world-3-notebook"] {
+  grid-area: 2 / 3 / 3 / 5;
+}
+
+.initial-experience__station-asset[data-entry-cover-station-asset="world-4-system"] {
+  grid-area: 2 / 5 / 3 / 7;
+}
+
+.initial-experience__station-asset[data-entry-cover-station-asset="world-5-map"] {
+  grid-area: 3 / 3 / 4 / 5;
 }
 
 .initial-experience__panel {
-  width: min(100%, 460px);
+  position: relative;
+  z-index: 2;
+  width: 100%;
   padding: clamp(22px, 7vw, 34px);
-  border: 1px solid var(--gvo-border);
+  border: 1px solid rgb(255 247 226 / 58%);
   border-radius: var(--gvo-radius);
-  background: var(--gvo-surface);
-  box-shadow: var(--gvo-shadow);
+  background: rgb(255 251 241 / 92%);
+  box-shadow:
+    0 24px 54px rgb(27 17 27 / 34%),
+    inset 0 1px 0 rgb(255 255 255 / 70%);
+  backdrop-filter: blur(8px);
 }
 
 .initial-experience__eyebrow {
@@ -110,6 +214,14 @@
   font-weight: var(--gvo-font-weight-semibold);
 }
 
+.initial-experience__fullscreen-status[data-initial-immersive-fallback="browser-optimized"] {
+  padding: 10px 12px;
+  border: 1px solid rgb(47 111 94 / 24%);
+  border-radius: var(--gvo-radius);
+  color: var(--gvo-accent);
+  background: rgb(47 111 94 / 7%);
+}
+
 .initial-experience__immersive {
   margin-top: 22px;
   padding-top: 20px;
@@ -141,8 +253,84 @@
     place-items: start center;
   }
 
+  .initial-experience__layout {
+    grid-template-columns: minmax(220px, 0.72fr) minmax(480px, 1.28fr);
+    align-items: start;
+    gap: 22px;
+  }
+
+  .initial-experience__journey-art {
+    position: sticky;
+    top: max(18px, env(safe-area-inset-top));
+    min-height: 350px;
+  }
+
+  .initial-experience__station-asset {
+    width: clamp(82px, 12vw, 112px);
+  }
+
   .initial-experience__panel {
-    width: min(100%, 680px);
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) and (orientation: portrait) {
+  .initial-experience__layout {
+    display: block;
+    width: min(100%, 460px);
+    padding-top: 76px;
+  }
+
+  .initial-experience__journey-art {
+    position: absolute;
+    z-index: 3;
+    top: -8px;
+    left: 50%;
+    width: min(94%, 390px);
+    min-height: 88px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    transform: translateX(-50%);
+  }
+
+  .initial-experience__journey-orbit {
+    inset: 18px 2% 8px;
+    border-radius: 50%;
+  }
+
+  .initial-experience__journey-orbit::before {
+    inset: 10px 12%;
+  }
+
+  .initial-experience__journey-orbit::after {
+    display: none;
+  }
+
+  .initial-experience__station-asset {
+    width: clamp(56px, 17vw, 70px);
+    grid-row: 1 !important;
+    align-self: center;
+  }
+
+  .initial-experience__station-asset[data-entry-cover-station-asset="world-1-root"] {
+    grid-column: 1;
+  }
+
+  .initial-experience__station-asset[data-entry-cover-station-asset="world-2-pulse"] {
+    grid-column: 2;
+  }
+
+  .initial-experience__station-asset[data-entry-cover-station-asset="world-3-notebook"] {
+    grid-column: 3;
+  }
+
+  .initial-experience__station-asset[data-entry-cover-station-asset="world-4-system"] {
+    grid-column: 4;
+  }
+
+  .initial-experience__station-asset[data-entry-cover-station-asset="world-5-map"] {
+    grid-column: 5;
   }
 }
 

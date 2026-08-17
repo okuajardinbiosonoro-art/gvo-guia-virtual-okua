@@ -419,6 +419,15 @@ describe("FinalRootScreen", () => {
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/portada",
     );
+    expect(
+      JSON.parse(
+        window.sessionStorage.getItem("gvo.final.reviewContext.v1") ?? "null",
+      ),
+    ).toMatchObject({
+      mode: "final-cover-revisit",
+      origin: "/final",
+      version: 1,
+    });
   });
 
   it("expone busy accesible, deshabilita controles y bloquea doble ejecución", async () => {

@@ -7,11 +7,17 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { coverToWorldOneTransitionRoute } from "../../app/routes";
+import { beginFinalCoverRevisit } from "../../app/review/finalReviewContext";
+import {
+  coverToWorldOneTransitionRoute,
+  stationEntryRoutes,
+} from "../../app/routes";
+import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import type { ScreenAssetBundle } from "../../shared/assets/screenAssetBundles";
 import { CoverIntroScreen } from "./CoverIntroScreen";
 import { coverIntroAssets } from "./coverIntroAssets";
+import { coverPortalInteriorAssets } from "./coverPortalInteriorAssets";
 import {
   coverIntroDialogues,
   coverIntroPortals,
@@ -21,23 +27,27 @@ import {
 } from "./coverIntroContent";
 import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
 
-const { navigateMock, preloaderMockState, useAssetPreloaderMock } = vi.hoisted(
-  () => ({
-    navigateMock: vi.fn(),
-    preloaderMockState: {
-      activation: {
-        status: "ready",
-        progress: 1,
-        ready: true,
-        failed: 0,
-        timedOut: 0,
-        total: 1,
-        summary: null,
-      },
+const {
+  locationStateMock,
+  navigateMock,
+  preloaderMockState,
+  useAssetPreloaderMock,
+} = vi.hoisted(() => ({
+  locationStateMock: { current: null as unknown },
+  navigateMock: vi.fn(),
+  preloaderMockState: {
+    activation: {
+      status: "ready",
+      progress: 1,
+      ready: true,
+      failed: 0,
+      timedOut: 0,
+      total: 1,
+      summary: null,
     },
-    useAssetPreloaderMock: vi.fn(),
-  }),
-);
+  },
+  useAssetPreloaderMock: vi.fn(),
+}));
 
 vi.mock("react-router-dom", async () => {
   const actual =
@@ -47,6 +57,13 @@ vi.mock("react-router-dom", async () => {
 
   return {
     ...actual,
+    useLocation: () => ({
+      hash: "",
+      key: "cover-test",
+      pathname: "/portada",
+      search: "",
+      state: locationStateMock.current,
+    }),
     useNavigate: () => navigateMock,
   };
 });
@@ -94,7 +111,9 @@ function finishIntroDialogue() {
 describe("CoverIntroScreen", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    window.sessionStorage.clear();
     window.history.replaceState({}, "", "/");
+    locationStateMock.current = null;
     navigateMock.mockClear();
     useAssetPreloaderMock.mockReset();
     setActivationPreload("ready");
@@ -190,6 +209,124 @@ describe("CoverIntroScreen", () => {
         screen.getByRole("button", { name: portal.ariaLabel }),
       ).toHaveAttribute("data-portal-state", "locked");
     }
+  });
+
+  it("no desbloquea II–V con progreso completo sin contexto de Mirador", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3, 4, 5],
+        updatedAt: "2026-08-16T12:00:00.000Z",
+      }),
+    );
+
+    const { container } = render(<CoverIntroScreen />);
+
+    expect(
+      container.querySelectorAll('[data-portal-state="locked"]'),
+    ).toHaveLength(4);
+    expect(
+      container.querySelector("[data-cover-revisit='inactive']"),
+    ).toBeInTheDocument();
+  });
+
+  it("desbloquea I–V sólo en revisita válida y navega a cada entrada canónica", () => {
+    window.localStorage.setItem(
+      GVO_PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        completedStations: [1, 2, 3, 4, 5],
+        updatedAt: "2026-08-16T12:00:00.000Z",
+      }),
+    );
+    locationStateMock.current = beginFinalCoverRevisit(
+      window.sessionStorage,
+      () => 1_787_000_000_000,
+    );
+
+    const { container } = render(<CoverIntroScreen />);
+
+    expect(
+      container.querySelector("[data-cover-revisit='active']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelectorAll('[data-portal-state="available"]'),
+    ).toHaveLength(5);
+    expect(
+      container.querySelectorAll(".cover-intro__portal-lock"),
+    ).toHaveLength(0);
+
+    for (const portal of coverIntroPortals) {
+      fireEvent.click(
+        screen.getByRole("button", { name: portal.reviewAriaLabel }),
+      );
+      expect(navigateMock).toHaveBeenLastCalledWith(
+        stationEntryRoutes[portal.world],
+        expect.objectContaining({
+          state: expect.objectContaining({
+            finalReview: expect.objectContaining({ world: portal.world }),
+          }),
+        }),
+      );
+    }
+  });
+
+  it("mantiene el gating si existe contexto de Mirador pero falta progreso", () => {
+    locationStateMock.current = beginFinalCoverRevisit(
+      window.sessionStorage,
+      () => 1_787_000_000_000,
+    );
+
+    const { container } = render(<CoverIntroScreen />);
+
+    expect(
+      container.querySelector("[data-cover-revisit='inactive']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelectorAll('[data-portal-state="locked"]'),
+    ).toHaveLength(4);
+    expect(
+      window.sessionStorage.getItem("gvo.final.reviewContext.v1"),
+    ).toBeNull();
+  });
+
+  it("declara el clip exclusivo de Portal I sin alterar el selector base", () => {
+    const { container } = render(<CoverIntroScreen />);
+
+    expect(
+      container.querySelectorAll('[data-portal-clip="primary-safe"]'),
+    ).toHaveLength(1);
+    expect(
+      container.querySelectorAll('[data-portal-clip="base"]'),
+    ).toHaveLength(4);
+    expect(
+      container.querySelector('[data-portal-id="portal-1"] [data-portal-clip]'),
+    ).toHaveAttribute("data-portal-clip", "primary-safe");
+  });
+
+  it("completa los cinco interiores dedicados sin reutilizar Mirador", () => {
+    const { container } = render(<CoverIntroScreen />);
+    const interiors = container.querySelectorAll(
+      ".cover-intro__portal-interior[data-cover-portal-interior]",
+    );
+
+    expect(interiors).toHaveLength(5);
+    expect(
+      Array.from(interiors).map((asset) =>
+        asset.getAttribute("data-runtime-asset"),
+      ),
+    ).toEqual(coverPortalInteriorAssets.map((asset) => asset.src));
+    expect(
+      new Set(
+        Array.from(interiors).map((asset) =>
+          asset.getAttribute("data-cover-portal-interior"),
+        ),
+      ).size,
+    ).toBe(5);
+    expect(
+      container.querySelector("[data-entry-cover-station-asset]"),
+    ).not.toBeInTheDocument();
   });
 
   it("usa assets locales staged de cover-intro", () => {

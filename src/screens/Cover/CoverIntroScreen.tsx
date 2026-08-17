@@ -2,13 +2,23 @@ import "./CoverIntroScreen.css";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { coverToWorldOneTransitionRoute } from "../../app/routes";
+import {
+  beginFinalReview,
+  clearFinalReviewContext,
+  resolveFinalCoverRevisitContext,
+} from "../../app/review/finalReviewContext";
+import {
+  coverToWorldOneTransitionRoute,
+  stationEntryRoutes,
+} from "../../app/routes";
 import { preloadJourneyRouteModule } from "../../app/routeModules";
+import { readProgress } from "../../domain/progress/progress.storage";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
 import { coverIntroAssets } from "./coverIntroAssets";
+import { coverPortalInteriorAssets } from "./coverPortalInteriorAssets";
 import { LiaHybridAvatar } from "./LiaHybridAvatar";
 import type { LiaRigExpression } from "./LiaHybridAvatar";
 import {
@@ -29,6 +39,7 @@ import {
   resetCoverIntroCompleted,
 } from "./coverIntroState";
 import type { CoverIntroPhase, CoverIntroState } from "./coverIntroState";
+import { isCoverRevisitUnlocked } from "./coverRevisitPolicy";
 
 const liaPoseByState = {
   idle: coverIntroAssets.liaIdle,
@@ -141,6 +152,17 @@ function getLiaRigExpression(
 
 export function CoverIntroScreen() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [coverRevisitActive] = useState(() => {
+    const context = resolveFinalCoverRevisitContext(location.state);
+    const active = isCoverRevisitUnlocked(context, readProgress());
+
+    if (context && !active) {
+      clearFinalReviewContext();
+    }
+
+    return active;
+  });
   const [coverState, setCoverState] = useState<CoverIntroState>(
     createInitialCoverIntroState,
   );
@@ -443,6 +465,11 @@ export function CoverIntroScreen() {
     startIntroDialogue();
   }
 
+  function handleRevisitPortalClick(world: 1 | 2 | 3 | 4 | 5) {
+    const reviewState = beginFinalReview(world);
+    navigate(stationEntryRoutes[world], { state: reviewState });
+  }
+
   function showBlockedPortalMessage(portalId: LockedPortalId) {
     if (
       isDialoguePhase(coverState.phase) ||
@@ -494,6 +521,7 @@ export function CoverIntroScreen() {
       aria-labelledby="cover-intro-title"
       style={stageStyle}
       data-cover-phase={coverState.phase}
+      data-cover-revisit={coverRevisitActive ? "active" : "inactive"}
       data-intro-completed={coverState.introCompleted ? "true" : "false"}
       data-critical-assets-ready={coverCriticalPreload.ready ? "true" : "false"}
       data-critical-assets-status={coverCriticalPreload.status}
@@ -631,17 +659,23 @@ export function CoverIntroScreen() {
                   />
                 </div>
               ) : null}
-              {coverIntroPortals.map((portal) => {
-                const available = portal.state === "available";
-                const frameSrc = available
-                  ? coverIntroAssets.portal1Frame
-                  : coverIntroAssets.lockedFrame;
+              {coverIntroPortals.map((portal, portalIndex) => {
+                const available =
+                  coverRevisitActive || portal.state === "available";
+                const portalInterior = coverPortalInteriorAssets[portalIndex];
+                const frameSrc =
+                  portal.id === "portal-1"
+                    ? coverIntroAssets.portal1Frame
+                    : coverIntroAssets.lockedFrame;
                 const portalClassNames = [
                   "cover-intro__portal",
-                  `cover-intro__portal--${portal.state}`,
+                  `cover-intro__portal--${available ? "available" : "locked"}`,
                   portal.id === "portal-1"
                     ? "cover-intro__portal--primary"
                     : "cover-intro__portal--locked-secondary",
+                  coverRevisitActive
+                    ? "cover-intro__portal--review-available"
+                    : "",
                   portal.id === "portal-1" && portalOneReady
                     ? "cover-intro__portal--ready"
                     : "",
@@ -654,8 +688,9 @@ export function CoverIntroScreen() {
                 ]
                   .filter(Boolean)
                   .join(" ");
-                const ariaLabel =
-                  portal.id === "portal-1"
+                const ariaLabel = coverRevisitActive
+                  ? portal.reviewAriaLabel
+                  : portal.id === "portal-1"
                     ? portalOneReady
                       ? "Estación I, Mundo Raíz, lista para abrir."
                       : "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía."
@@ -670,18 +705,26 @@ export function CoverIntroScreen() {
                     aria-disabled={available ? undefined : "true"}
                     data-portal-id={portal.id}
                     data-portal-state={
-                      portal.id === "portal-1" && portalOneReady
-                        ? "ready"
-                        : portal.state
+                      coverRevisitActive
+                        ? "available"
+                        : portal.id === "portal-1" && portalOneReady
+                          ? "ready"
+                          : portal.state
                     }
-                    disabled={portal.id === "portal-1" && portalOneOpening}
+                    disabled={
+                      !coverRevisitActive &&
+                      portal.id === "portal-1" &&
+                      portalOneOpening
+                    }
                     onClick={
-                      portal.id === "portal-1"
-                        ? handlePortalOneClick
-                        : () => showBlockedPortalMessage(portal.id)
+                      coverRevisitActive
+                        ? () => handleRevisitPortalClick(portal.world)
+                        : portal.id === "portal-1"
+                          ? handlePortalOneClick
+                          : () => showBlockedPortalMessage(portal.id)
                     }
                   >
-                    {available ? (
+                    {portal.id === "portal-1" ? (
                       <img
                         className="cover-intro__portal-glow"
                         src={coverIntroAssets.portal1Glow}
@@ -690,6 +733,18 @@ export function CoverIntroScreen() {
                         data-runtime-asset={coverIntroAssets.portal1Glow}
                       />
                     ) : null}
+                    <img
+                      className="cover-intro__portal-interior"
+                      src={portalInterior.src}
+                      alt=""
+                      aria-hidden="true"
+                      decoding="async"
+                      data-cover-portal-interior={portalInterior.id}
+                      data-portal-clip={
+                        portal.id === "portal-1" ? "primary-safe" : "base"
+                      }
+                      data-runtime-asset={portalInterior.src}
+                    />
                     <img
                       className="cover-intro__portal-frame"
                       src={frameSrc}

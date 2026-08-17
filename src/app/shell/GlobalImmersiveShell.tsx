@@ -3,9 +3,14 @@ import "./GlobalImmersiveShell.css";
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import { ImmersiveModeControl } from "../../shared/immersive";
+import {
+  getFullscreenCapability,
+  ImmersiveModeControl,
+} from "../../shared/immersive";
 import { applyDocumentLanguage } from "../preferences/languagePreference";
 import {
+  coverIntroRoute,
+  finalEntryRoute,
   stationEntryRoutes,
   worldFivePlantsRoute,
   worldFiveSpaceRoute,
@@ -14,6 +19,8 @@ import {
 } from "../routes";
 
 const authorizedPaths = new Set([
+  coverIntroRoute,
+  finalEntryRoute,
   ...Object.values(stationEntryRoutes),
   worldFivePlantsRoute,
   worldFiveSystemRoute,
@@ -36,6 +43,8 @@ export function isImmersiveShellAuthorizedPath(pathname: string) {
 export function GlobalImmersiveShell() {
   const location = useLocation();
   const authorized = isImmersiveShellAuthorizedPath(location.pathname);
+  const fullscreenAvailableOnPlatform =
+    getFullscreenCapability() !== "unavailable-on-platform";
 
   useEffect(() => {
     applyDocumentLanguage();
@@ -47,7 +56,7 @@ export function GlobalImmersiveShell() {
       data-gvo-immersive-shell={authorized ? "active" : "inactive"}
     >
       <Outlet />
-      {authorized ? (
+      {authorized && fullscreenAvailableOnPlatform ? (
         <div
           aria-label="Control de visualización"
           className="gvo-immersive-shell__dock"

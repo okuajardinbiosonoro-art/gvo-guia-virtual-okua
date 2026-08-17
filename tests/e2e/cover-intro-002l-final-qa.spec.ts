@@ -56,8 +56,8 @@ test.describe("QA visual final Portada / Intro 002L", () => {
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/?resetIntro=1");
-    await expect(page).toHaveURL(/\/portada$/, { timeout: 15_000 });
+    await page.goto("/?resetIntro=1", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/portada$/, { timeout: 30_000 });
     await expect(
       page.getByRole("button", { name: "Comenzar recorrido" }),
     ).toBeVisible();

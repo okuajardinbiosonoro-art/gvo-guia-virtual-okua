@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { coverIntroAssets } from "../../screens/Cover/coverIntroAssets";
+import { coverPortalInteriorAssets } from "../../screens/Cover/coverPortalInteriorAssets";
 import { screenAssetBundles } from "./screenAssetBundles";
 
 describe("screenAssetBundles", () => {
@@ -14,6 +15,18 @@ describe("screenAssetBundles", () => {
     ]);
     expect(screenAssetBundles.coverIntroCritical.assets).not.toContainEqual(
       expect.objectContaining({ src: coverIntroAssets.liaActivatePortal1 }),
+    );
+  });
+
+  it("precarga los cinco interiores dedicados en el primer frame de Portada", () => {
+    const criticalSources = screenAssetBundles.coverIntroCritical.assets.map(
+      (asset) => asset.src,
+    );
+
+    expect(criticalSources).toEqual(
+      expect.arrayContaining(
+        coverPortalInteriorAssets.map((asset) => asset.src),
+      ),
     );
   });
 });

@@ -12,12 +12,16 @@ import {
 } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import { GVO_LANGUAGE_STORAGE_KEY } from "../../app/preferences/languagePreference";
 import { ImmersiveModeControl } from "./ImmersiveModeControl";
 import {
-  exitImmersiveMode,
+  exitFullscreen,
+  getFullscreenCapability,
+  getFullscreenExitMethod,
+  getFullscreenRequestMethod,
   getDisplayMode,
-  isImmersiveMode,
-  requestImmersiveMode,
+  isFullscreenActive,
+  requestFullscreenFromUserGesture,
 } from "./immersiveMode";
 
 type FullscreenStub = {
@@ -26,7 +30,15 @@ type FullscreenStub = {
   setElement: (element: Element | null) => void;
 };
 
-function installFullscreenStub(): FullscreenStub {
+type FullscreenStubOptions = {
+  enabled?: boolean;
+  policyAllowsFullscreen?: boolean;
+  userActivation?: boolean;
+};
+
+function installFullscreenStub(
+  options: FullscreenStubOptions = {},
+): FullscreenStub {
   let fullscreenElement: Element | null = null;
   const requestFullscreen = vi.fn(async () => {
     fullscreenElement = document.documentElement;
@@ -39,7 +51,7 @@ function installFullscreenStub(): FullscreenStub {
 
   Object.defineProperty(document, "fullscreenEnabled", {
     configurable: true,
-    value: true,
+    value: options.enabled ?? true,
   });
   Object.defineProperty(document, "fullscreenElement", {
     configurable: true,
@@ -53,6 +65,24 @@ function installFullscreenStub(): FullscreenStub {
     configurable: true,
     value: exitFullscreen,
   });
+  Object.defineProperty(document, "featurePolicy", {
+    configurable: true,
+    value:
+      options.policyAllowsFullscreen === undefined
+        ? undefined
+        : {
+            allowsFeature: vi.fn(
+              () => options.policyAllowsFullscreen as boolean,
+            ),
+          },
+  });
+  Object.defineProperty(navigator, "userActivation", {
+    configurable: true,
+    value: {
+      isActive: options.userActivation ?? false,
+      hasBeenActive: options.userActivation ?? false,
+    },
+  });
 
   return {
     requestFullscreen,
@@ -61,6 +91,37 @@ function installFullscreenStub(): FullscreenStub {
       fullscreenElement = element;
     },
   };
+}
+
+function installWebkitFullscreenStub() {
+  let fullscreenElement: Element | null = null;
+  const requestFullscreen = vi.fn(() => {
+    fullscreenElement = document.documentElement;
+    document.dispatchEvent(new Event("webkitfullscreenchange"));
+  });
+  const exitFullscreen = vi.fn(() => {
+    fullscreenElement = null;
+    document.dispatchEvent(new Event("webkitfullscreenchange"));
+  });
+
+  Object.defineProperty(document, "webkitFullscreenEnabled", {
+    configurable: true,
+    value: true,
+  });
+  Object.defineProperty(document, "webkitFullscreenElement", {
+    configurable: true,
+    get: () => fullscreenElement,
+  });
+  Object.defineProperty(document.documentElement, "webkitRequestFullscreen", {
+    configurable: true,
+    value: requestFullscreen,
+  });
+  Object.defineProperty(document, "webkitExitFullscreen", {
+    configurable: true,
+    value: exitFullscreen,
+  });
+
+  return { requestFullscreen, exitFullscreen };
 }
 
 function installMatchMedia(activeModes: string[]) {
@@ -86,10 +147,19 @@ afterEach(() => {
   Reflect.deleteProperty(document, "fullscreenEnabled");
   Reflect.deleteProperty(document, "fullscreenElement");
   Reflect.deleteProperty(document, "exitFullscreen");
+  Reflect.deleteProperty(document, "featurePolicy");
+  Reflect.deleteProperty(document, "webkitFullscreenEnabled");
+  Reflect.deleteProperty(document, "webkitFullscreenElement");
+  Reflect.deleteProperty(document, "webkitExitFullscreen");
+  Reflect.deleteProperty(document, "webkitCancelFullScreen");
   Reflect.deleteProperty(document.documentElement, "requestFullscreen");
+  Reflect.deleteProperty(document.documentElement, "webkitRequestFullscreen");
+  Reflect.deleteProperty(document.documentElement, "webkitRequestFullScreen");
   Reflect.deleteProperty(window, "matchMedia");
   Reflect.deleteProperty(navigator, "userActivation");
   Reflect.deleteProperty(navigator, "standalone");
+  localStorage.clear();
+  document.documentElement.lang = "es";
   vi.restoreAllMocks();
 });
 
@@ -97,27 +167,41 @@ describe("immersive mode utilities", () => {
   it("reports only the fullscreen state actually granted by the document", () => {
     const stub = installFullscreenStub();
 
-    expect(isImmersiveMode()).toBe(false);
+    expect(isFullscreenActive()).toBe(false);
     stub.setElement(document.documentElement);
-    expect(isImmersiveMode()).toBe(true);
+    expect(isFullscreenActive()).toBe(true);
   });
 
-  it("requests fullscreen only when the browser reports active user activation", async () => {
-    const stub = installFullscreenStub();
-    Object.defineProperty(navigator, "userActivation", {
-      configurable: true,
-      value: { isActive: false },
-    });
+  it("keeps capability supported before click even when transient activation is false", async () => {
+    const stub = installFullscreenStub({ userActivation: false });
 
-    await expect(requestImmersiveMode()).resolves.toBe(false);
-    expect(stub.requestFullscreen).not.toHaveBeenCalled();
-
-    Object.defineProperty(navigator, "userActivation", {
-      configurable: true,
-      value: { isActive: true },
-    });
-    await expect(requestImmersiveMode()).resolves.toBe(true);
+    expect(getFullscreenCapability()).toBe("supported");
+    await expect(requestFullscreenFromUserGesture()).resolves.toBe(true);
     expect(stub.requestFullscreen).toHaveBeenCalledTimes(1);
+  });
+
+  it("distinguishes a missing API from a policy-blocked context", () => {
+    expect(getFullscreenCapability()).toBe("unavailable-on-platform");
+
+    installFullscreenStub({ policyAllowsFullscreen: false });
+    expect(getFullscreenCapability()).toBe("blocked-by-context");
+  });
+
+  it("uses a demonstrated prefixed contract only when the standard API is absent", async () => {
+    const stub = installWebkitFullscreenStub();
+
+    expect(getFullscreenRequestMethod()).toBe("webkit");
+    expect(getFullscreenExitMethod()).toBe("webkit");
+    expect(getFullscreenCapability()).toBe("supported");
+    await expect(requestFullscreenFromUserGesture()).resolves.toBe(true);
+    expect(stub.requestFullscreen).toHaveBeenCalledTimes(1);
+    await expect(exitFullscreen()).resolves.toBe(true);
+    expect(stub.exitFullscreen).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports a capable API with fullscreenEnabled false as blocked by context", () => {
+    installFullscreenStub({ enabled: false });
+    expect(getFullscreenCapability()).toBe("blocked-by-context");
   });
 
   it("degrades to false when a controlled fullscreen request is denied", async () => {
@@ -126,20 +210,20 @@ describe("immersive mode utilities", () => {
       new DOMException("Denied by test stub", "NotAllowedError"),
     );
 
-    await expect(requestImmersiveMode()).resolves.toBe(false);
-    expect(isImmersiveMode()).toBe(false);
+    await expect(requestFullscreenFromUserGesture()).resolves.toBe(false);
+    expect(isFullscreenActive()).toBe(false);
   });
 
   it("exits an active controlled state and treats an inactive state as a no-op", async () => {
     const stub = installFullscreenStub();
 
-    await expect(exitImmersiveMode()).resolves.toBe(true);
+    await expect(exitFullscreen()).resolves.toBe(true);
     expect(stub.exitFullscreen).not.toHaveBeenCalled();
 
     stub.setElement(document.documentElement);
-    await expect(exitImmersiveMode()).resolves.toBe(true);
+    await expect(exitFullscreen()).resolves.toBe(true);
     expect(stub.exitFullscreen).toHaveBeenCalledTimes(1);
-    expect(isImmersiveMode()).toBe(false);
+    expect(isFullscreenActive()).toBe(false);
   });
 
   it("detects the granted display-mode with fullscreen priority", () => {
@@ -161,12 +245,43 @@ describe("immersive mode utilities", () => {
 });
 
 describe("ImmersiveModeControl", () => {
-  it("does not render a control when the standard API is unavailable", () => {
-    render(<ImmersiveModeControl />);
+  it("renders no dead control when fullscreen is unavailable on the platform", () => {
+    const { container } = render(<ImmersiveModeControl />);
 
     expect(
-      screen.queryByRole("button", { name: "Activar pantalla completa" }),
+      container.querySelector("[data-gvo-immersive-control='fullscreen']"),
     ).not.toBeInTheDocument();
+  });
+
+  it("distinguishes a policy-blocked context from an unsupported browser", () => {
+    installFullscreenStub({ policyAllowsFullscreen: false });
+    render(<ImmersiveModeControl />);
+
+    const button = screen.getByRole("button", {
+      name: "Pantalla completa bloqueada en este contexto",
+    });
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute("data-gvo-immersive-state", "blocked");
+    expect(button).toHaveAttribute(
+      "data-gvo-fullscreen-capability",
+      "blocked-by-context",
+    );
+  });
+
+  it("respects gvo.language.v1 for English enter and exit labels", () => {
+    const stub = installFullscreenStub({ userActivation: false });
+    localStorage.setItem(GVO_LANGUAGE_STORAGE_KEY, "en");
+    const { rerender } = render(<ImmersiveModeControl />);
+
+    expect(
+      screen.getByRole("button", { name: "Enter fullscreen" }),
+    ).toBeInTheDocument();
+    stub.setElement(document.documentElement);
+    act(() => document.dispatchEvent(new Event("fullscreenchange")));
+    rerender(<ImmersiveModeControl />);
+    expect(
+      screen.getByRole("button", { name: "Exit fullscreen" }),
+    ).toHaveAttribute("aria-pressed", "true");
   });
 
   it("uses a native button and requests only after its explicit click", async () => {
@@ -179,6 +294,7 @@ describe("ImmersiveModeControl", () => {
     expect(button.tagName).toBe("BUTTON");
     expect(button).toHaveAttribute("type", "button");
     expect(button).toHaveAttribute("aria-pressed", "false");
+    expect(button).toBeEnabled();
     expect(stub.requestFullscreen).not.toHaveBeenCalled();
 
     await act(async () => fireEvent.click(button));

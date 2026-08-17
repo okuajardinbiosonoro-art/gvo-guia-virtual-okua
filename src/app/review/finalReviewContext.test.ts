@@ -1,13 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
+  beginFinalCoverRevisit,
   beginFinalReview,
   clearFinalReviewContext,
+  createFinalCoverRevisitContext,
   createFinalReviewContext,
   FINAL_REVIEW_CONTEXT_STORAGE_KEY,
   finalReviewWorldForPathname,
+  parseFinalCoverRevisitContext,
   parseFinalReviewContext,
+  readFinalCoverRevisitContext,
   readFinalReviewContext,
+  resolveFinalCoverRevisitContext,
   resolveFinalReviewContext,
 } from "./finalReviewContext";
 
@@ -34,6 +39,39 @@ describe("finalReviewContext", () => {
       },
     });
     expect(readFinalReviewContext()).toEqual(state.finalReview);
+  });
+
+  it("crea un contexto distinguible y persistente para Mirador → Portada", () => {
+    const state = beginFinalCoverRevisit(
+      window.sessionStorage,
+      () => 1_785_849_600_000,
+    );
+
+    expect(state).toEqual({
+      finalCoverRevisit: {
+        origin: "/final",
+        mode: "final-cover-revisit",
+        startedAt: "2026-08-04T13:20:00.000Z",
+        timestamp: 1_785_849_600_000,
+        version: 1,
+      },
+    });
+    expect(readFinalCoverRevisitContext()).toEqual(state.finalCoverRevisit);
+    expect(resolveFinalCoverRevisitContext(state)).toEqual(
+      state.finalCoverRevisit,
+    );
+  });
+
+  it("no confunde una revisión de Mundo con la revisita de Portada", () => {
+    beginFinalReview(2);
+
+    expect(readFinalCoverRevisitContext()).toBeNull();
+    expect(
+      parseFinalCoverRevisitContext(createFinalReviewContext(2)),
+    ).toBeNull();
+    expect(
+      parseFinalReviewContext(createFinalCoverRevisitContext()),
+    ).toBeNull();
   });
 
   it("prefiere navigation state y conserva el contexto para refresh", () => {

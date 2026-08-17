@@ -22,6 +22,7 @@ docs/assets/ASSET_INVENTORY.md
 ```text
 current-used/
   loading-initial/
+  initial-experience/
   cover-intro/
   transition-world/
   world-1-root/
@@ -48,9 +49,14 @@ current-used/
 
 ## Estado por bloque
 
-- `loading-initial`, `cover-intro`, `transition-world`, `world-1-root`,
-  `world-2-root`, `shared` y `global` conservan sus registros runtime
-  preexistentes.
+- `loading-initial`, `transition-world`, `world-1-root`, `world-2-root`,
+  `shared` y `global` conservan sus registros runtime preexistentes.
+- `initial-experience` registra por referencia el fondo aprobado de Portada y
+  conserva los cinco emblemas aprobados del Mirador. `cover-intro` registra
+  cinco interiores dedicados, aprobados y byte-idénticos a sus pares runtime
+  bajo `public/assets/runtime/cover-intro/portals/portal_1..5/interior/`. Las
+  rutas de ambos consumidores quedan desacopladas por `GVO_DEBT_013C`; las
+  composiciones permanecen `PENDING_HUMAN_REVIEW`.
 - `world-3-root` contiene los 15 espejos aprobados de Estación III. Cada archivo
   es byte-idéntico a su par bajo
   `public/assets/gvo/stations/world-3/notebook-pixel/runtime/`; rutas,

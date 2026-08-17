@@ -2,79 +2,123 @@ import "./ImmersiveModeControl.css";
 
 import { useCallback, useEffect, useState } from "react";
 
+import { readLanguagePreference } from "../../app/preferences/languagePreference";
 import {
-  exitImmersiveMode,
-  isFullscreenAvailable,
-  isImmersiveMode,
-  requestImmersiveMode,
+  exitFullscreen,
+  getFullscreenCapability,
+  isFullscreenActive,
+  requestFullscreenFromUserGesture,
+  subscribeFullscreenEvents,
+  type FullscreenCapability,
 } from "./immersiveMode";
 
 export type ImmersiveModeControlProps = {
   className?: string;
 };
 
-type ImmersiveControlState = "inactive" | "pending" | "active" | "error";
+type ImmersiveControlState =
+  | "blocked"
+  | "inactive"
+  | "pending"
+  | "active"
+  | "error";
+
+const fullscreenCopy = {
+  es: {
+    enter: "Activar pantalla completa",
+    exit: "Salir de pantalla completa",
+    blocked: "Pantalla completa bloqueada en este contexto",
+  },
+  en: {
+    enter: "Enter fullscreen",
+    exit: "Exit fullscreen",
+    blocked: "Fullscreen blocked in this context",
+  },
+} as const;
+
+function resolveControlLanguage() {
+  const stored = readLanguagePreference();
+  if (stored) {
+    return stored;
+  }
+
+  return typeof document !== "undefined" &&
+    document.documentElement.lang.toLowerCase().startsWith("en")
+    ? "en"
+    : "es";
+}
 
 export function ImmersiveModeControl({ className }: ImmersiveModeControlProps) {
-  const [supported, setSupported] = useState(isFullscreenAvailable);
-  const [active, setActive] = useState(isImmersiveMode);
+  const [capability, setCapability] = useState<FullscreenCapability>(
+    getFullscreenCapability,
+  );
+  const [active, setActive] = useState(isFullscreenActive);
   const [pending, setPending] = useState(false);
   const [failed, setFailed] = useState(false);
 
   const syncGrantedState = useCallback(() => {
-    setActive(isImmersiveMode());
-    setSupported(isFullscreenAvailable());
+    setActive(isFullscreenActive());
+    setCapability(getFullscreenCapability());
     setPending(false);
     setFailed(false);
   }, []);
 
   useEffect(() => {
     const handleFullscreenError = () => {
-      setActive(isImmersiveMode());
+      setActive(isFullscreenActive());
+      setCapability(getFullscreenCapability());
       setPending(false);
       setFailed(true);
     };
 
-    document.addEventListener("fullscreenchange", syncGrantedState);
-    document.addEventListener("fullscreenerror", handleFullscreenError);
-
-    return () => {
-      document.removeEventListener("fullscreenchange", syncGrantedState);
-      document.removeEventListener("fullscreenerror", handleFullscreenError);
-    };
+    return subscribeFullscreenEvents(
+      syncGrantedState,
+      handleFullscreenError,
+    );
   }, [syncGrantedState]);
 
   const handleActivation = async () => {
-    if (pending) {
+    if (pending || capability !== "supported") {
       return;
     }
 
+    const activation = active
+      ? exitFullscreen()
+      : requestFullscreenFromUserGesture();
     setPending(true);
     setFailed(false);
 
-    const succeeded = active
-      ? await exitImmersiveMode()
-      : await requestImmersiveMode();
+    const succeeded = await activation;
 
-    setActive(isImmersiveMode());
+    setActive(isFullscreenActive());
+    setCapability(getFullscreenCapability());
     setPending(false);
     setFailed(!succeeded);
   };
 
-  if (!supported) {
+  const copy = fullscreenCopy[resolveControlLanguage()];
+  const label =
+    capability === "supported"
+      ? active
+        ? copy.exit
+        : copy.enter
+      : capability === "blocked-by-context"
+        ? copy.blocked
+        : copy.enter;
+  const state: ImmersiveControlState =
+    capability === "blocked-by-context"
+        ? "blocked"
+        : pending
+          ? "pending"
+          : failed
+            ? "error"
+            : active
+              ? "active"
+              : "inactive";
+
+  if (capability === "unavailable-on-platform") {
     return null;
   }
-
-  const label = active
-    ? "Salir de pantalla completa"
-    : "Activar pantalla completa";
-  const state: ImmersiveControlState = pending
-    ? "pending"
-    : failed
-      ? "error"
-      : active
-        ? "active"
-        : "inactive";
 
   return (
     <button
@@ -86,7 +130,8 @@ export function ImmersiveModeControl({ className }: ImmersiveModeControlProps) {
       aria-pressed={active}
       data-gvo-immersive-control="fullscreen"
       data-gvo-immersive-state={state}
-      disabled={pending}
+      data-gvo-fullscreen-capability={capability}
+      disabled={capability !== "supported" || pending}
       onClick={handleActivation}
     >
       {label}

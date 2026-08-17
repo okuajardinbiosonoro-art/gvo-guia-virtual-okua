@@ -1,6 +1,6 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-08-13
+Actualizado: 2026-08-17
 
 ## Estado canónico
 
@@ -17,7 +17,7 @@ Actualizado: 2026-08-13
 | Tramo         | Estado vigente                                                                                                                                                                                                                                                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Carga inicial | `APROBADA_PARA_AVANZAR / 7.2_DE_10`, con deuda visual documentada.                                                                                                                                                                                                                                                             |
-| Portada       | `APROBADA_PARA_AVANZAR / 7.8_DE_10`, no cerrada final.                                                                                                                                                                                                                                                                         |
+| Portada       | `GVO_DEBT_013C / GVO_DEBT_014 — HUMAN_APPROVED / PUBLISHED`; cinco interiores HUMAN_APPROVED específicos, Portal I sin overflow, revisita Mirador → Portada con I–V desbloqueados y gating normal preservado.                                                                                                                  |
 | Mundo I       | Runtime activo, interacción refinada y deuda visual documentada.                                                                                                                                                                                                                                                               |
 | Mundo II      | `GVO_DEBT_008 — WORLD II LEGIBILITY AND RESPONSIVE READABILITY / HUMAN_APPROVED / PUBLISHED`; seis capas, reflow, zoom `200%`, targets `44×44` y revisita desde Mirador validados.                                                                                                                                             |
 | Transiciones  | `TRANSITION_COPY_AUDIT_COMPLETE`: seis rutas y doce piezas finales `FINAL / human_approved`; pasivas y automáticas.                                                                                                                                                                                                            |
@@ -29,7 +29,8 @@ Actualizado: 2026-08-13
 | Shell / QR    | `GVO_DEBT_009AB — QR SMOKE STABILITY / HUMAN_APPROVED / PUBLISHED`; acceso inmersivo compartido, contrato QR de producción, guards y matriz E2E integral `141/141` publicados.                                                                                                                                                 |
 | PWA / deploy  | `GVO_DEBT_010 — PWA AND DEPLOYMENT FOOTPRINT / HUMAN_APPROVED / PUBLISHED`; `dist` reducido `51,46%`, precache reducido `88,21%` en bytes, cache runtime local y exclusión segura de clase D publicados.                                                                                                                       |
 | Rendimiento   | `GVO_DEBT_011 — ROUTE CHUNKING AND INITIAL LOAD PERFORMANCE / IMPLEMENTATION_COMPLETE_FOR_REVIEW`; siete familias de ruta separadas y `0` chunks de ruta en precache. Conserva `PENDING_HUMAN_REVIEW`.                                                                                                                         |
-| Entrada       | `GVO_DEBT_012 — INITIAL EXPERIENCE LANGUAGE AND IMMERSIVE ENTRY / HUMAN_APPROVED / PUBLISHED`; `/inicio`, selección `es/en`, persistencia de idioma, fullscreen por gesto y fallback no bloqueante publicados.                                                                                                                 |
+| Entrada       | `GVO_DEBT_012 / GVO_DEBT_013 — HUMAN_APPROVED / PUBLISHED`; `/inicio`, selección `es/en`, persistencia, contrato inmersivo y preparación visual de Entrada/Portada publicados.                                                                                                                                                 |
+| Fullscreen    | `GVO_DEBT_014A — DESKTOP REAL FULLSCREEN / HUMAN_APPROVED / PUBLISHED`; `GVO_DEBT_014B — MOBILE CONTRACT AND FALLBACK / HUMAN_APPROVED_WITH_ACCEPTED_TECHNICAL_DEBT / PUBLISHED`.                                                                                |
 
 Los documentos históricos conservan el estado real de su fecha. En particular,
 los flags parciales de `018C_R1` y `018D` no se reescriben: `018E` incorpora la
@@ -323,6 +324,35 @@ actualiza `document.documentElement.lang`. Fullscreen sólo se solicita mediante
 un gesto explícito y su indisponibilidad o rechazo no bloquea el recorrido. No
 hay traducción editorial automática, instalación, permisos adicionales ni
 fullscreen automático.
+
+`GVO_DEBT_013`, `GVO_DEBT_013C`, `GVO_DEBT_014`, `GVO_DEBT_014A` y
+`GVO_DEBT_014B` están aprobados y publicados. `GVO_DEBT_013A` y
+`GVO_DEBT_013B` forman parte de la misma cadena publicada como inventario y
+paquete de capturas de producción. Sus informes históricos `FOR_REVIEW`
+permanecen intactos; la autoridad humana posterior está registrada en
+[GVO_DEBT_014BP_COVER_GLOBAL_FULLSCREEN_MOBILE_DEBT_HUMAN_APPROVED_AND_PUBLISHED.md](GVO_DEBT_014BP_COVER_GLOBAL_FULLSCREEN_MOBILE_DEBT_HUMAN_APPROVED_AND_PUBLISHED.md).
+
+La publicación conserva cinco interiores HUMAN_APPROVED específicos para los
+Portales I–V, con sus fuentes, masters, copias runtime y mirrors `current-used`.
+Portal I cierra con `0 px` de overflow. Una revisita válida desde Mirador usa
+`gvo.final.reviewContext.v1`, progreso completo y guards canónicos para mostrar
+I–V desbloqueados; la primera visita y el progreso parcial no obtienen bypass.
+
+El fullscreen real de escritorio está certificado en Chrome, Edge y Opera GX.
+El shell mantiene una única autoridad global en Portada, Mundos I–V y Mirador;
+`/inicio` conserva su gesto propio sin duplicar controles. La ausencia, bloqueo
+o rechazo de la API no interrumpe el recorrido.
+
+### Deuda técnica abierta
+
+| Deuda | Estado canónico |
+| ----- | --------------- |
+| `MOBILE REAL FULLSCREEN / PHYSICAL DEVICE CERTIFICATION` | `DEFERRED / NON_BLOCKING`: desktop Chromium-family certificado; Android físico pendiente por marcas, navegadores y contexto LAN; iPhone/iOS sujeto a la capacidad real de plataforma; fallback honesto y no bloqueante publicado; no requiere instalación, PWA ni Add to Home Screen. |
+
+Esta deuda no autoriza declarar `ANDROID_REAL_FULLSCREEN_PASS` ni fullscreen real
+en iPhone/iOS sin evidencia física futura. El contrato visitante permanece
+`QR → navegador → experiencia`; la herramienta `/qa/fullscreen/index.html` es
+sólo diagnóstica y no está enlazada desde el recorrido.
 
 Permanecen pendientes una eventual reconstrucción visual de Captura fuera de
 este alcance, la aprobación humana independiente de `GVO_DEBT_011` y el copy

@@ -1,5 +1,6 @@
 import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/transition-root-assets";
 import { coverIntroAssets } from "../../screens/Cover/coverIntroAssets";
+import { coverPortalInteriorAssets } from "../../screens/Cover/coverPortalInteriorAssets";
 import { loadingInitialAssets } from "../../screens/LoadingInitial/loadingInitialAssets";
 import { world1RootAssets } from "../../screens/World1Root/world1RootAssets";
 import { world2InitialRuntimeAssetSources } from "../../screens/World2Root/world2RuntimeAssets";
@@ -110,6 +111,7 @@ export const screenAssetBundles = {
       image("cover_portal_1_glow", coverIntroAssets.portal1Glow, 440),
       image("cover_locked_frame", coverIntroAssets.lockedFrame),
       image("cover_lock", coverIntroAssets.lock, 430),
+      ...coverPortalInteriorAssets.map((asset) => image(asset.id, asset.src)),
     ],
   },
   coverIntroActivation: {

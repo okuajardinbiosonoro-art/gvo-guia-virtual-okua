@@ -21,6 +21,10 @@ function installFullscreenSupport() {
     configurable: true,
     value: async () => undefined,
   });
+  Object.defineProperty(document, "exitFullscreen", {
+    configurable: true,
+    value: async () => undefined,
+  });
 }
 
 function renderAt(pathname: string) {
@@ -42,11 +46,13 @@ afterEach(() => {
   Reflect.deleteProperty(document, "fullscreenEnabled");
   Reflect.deleteProperty(document, "fullscreenElement");
   Reflect.deleteProperty(document.documentElement, "requestFullscreen");
+  Reflect.deleteProperty(document, "exitFullscreen");
 });
 
 describe("GlobalImmersiveShell", () => {
-  it("authorizes only the real station routes, including trailing slashes", () => {
+  it("authorizes Cover, Final and every real station route", () => {
     for (const pathname of [
+      "/portada",
       "/estacion/1",
       "/estacion/2/",
       "/estacion/3",
@@ -56,6 +62,7 @@ describe("GlobalImmersiveShell", () => {
       "/estacion/5/sistema",
       "/estacion/5/espacio",
       "/estacion/5/visitante/",
+      "/final",
     ]) {
       expect(isImmersiveShellAuthorizedPath(pathname)).toBe(true);
     }
@@ -64,9 +71,7 @@ describe("GlobalImmersiveShell", () => {
       "/",
       "/carga",
       "/inicio",
-      "/portada",
       "/transition/world-1-to-world-2",
-      "/final",
       "/qr/2",
       "/estacion/6",
       "/dev/transition-world",
@@ -91,9 +96,9 @@ describe("GlobalImmersiveShell", () => {
     ).toHaveAttribute("data-gvo-immersive-safe-area", "top-inline-end");
   });
 
-  it("removes the control outside an authorized route", () => {
+  it("keeps /inicio on its approved local CTA without a shell duplicate", () => {
     installFullscreenSupport();
-    const { container } = renderAt("/final");
+    const { container } = renderAt("/inicio");
 
     expect(container.firstElementChild).toHaveAttribute(
       "data-gvo-immersive-shell",
@@ -101,6 +106,31 @@ describe("GlobalImmersiveShell", () => {
     );
     expect(
       screen.queryByRole("button", { name: "Activar pantalla completa" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders exactly one global control on Cover and Final", () => {
+    installFullscreenSupport();
+
+    for (const pathname of ["/portada", "/final"]) {
+      const rendered = renderAt(pathname);
+      expect(
+        rendered.container.querySelectorAll(
+          '[data-gvo-immersive-control="fullscreen"]',
+        ),
+      ).toHaveLength(1);
+      rendered.unmount();
+    }
+  });
+
+  it("renders zero global controls and no dock when the platform has no API", () => {
+    const { container } = renderAt("/portada");
+
+    expect(
+      container.querySelectorAll("[data-gvo-immersive-control='fullscreen']"),
+    ).toHaveLength(0);
+    expect(
+      container.querySelector("[data-gvo-immersive-safe-area]"),
     ).not.toBeInTheDocument();
   });
 

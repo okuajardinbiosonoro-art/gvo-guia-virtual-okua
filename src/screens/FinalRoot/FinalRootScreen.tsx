@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
+  beginFinalCoverRevisit,
   beginFinalReview,
-  clearFinalReviewContext,
   type FinalReviewWorld,
 } from "../../app/review/finalReviewContext";
 import {
@@ -285,9 +285,8 @@ export function FinalRootScreen({
   }
 
   function navigateToHome() {
-    clearFinalReviewContext();
     setExperienceState("final_return");
-    navigate(coverIntroRoute);
+    navigate(coverIntroRoute, { state: beginFinalCoverRevisit() });
   }
 
   async function executeRestart() {

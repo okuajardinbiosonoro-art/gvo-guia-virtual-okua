@@ -1,9 +1,9 @@
 {
   "screen": "cover-intro",
   "visualName": "El Archivo Vivo de OKÚA",
-  "version": "v1",
-  "status": "asset-staged",
-  "generatedFrom": "GVO_archivos_iniciales/portada_intro_v1/02_aprobadas",
+  "version": "v3",
+  "status": "integrated-for-human-review",
+  "generatedFrom": "GVO_archivos_iniciales/portada_intro_v1/02_aprobadas + GVO_COVER_PORTAL_INTERIORS_APPROVED_V01.zip",
   "rules": {
     "noExternalResources": true,
     "noAudio": true,
@@ -11,7 +11,7 @@
     "textAsDom": true,
     "buttonsAsDom": true,
     "dialogsAsDom": true,
-    "portalInteriorsDeferred": true
+    "portalInteriorsDeferred": false
   },
   "assets": {
     "background": {
@@ -60,15 +60,42 @@
     },
     "locks": {
       "softGold": "/assets/runtime/cover-intro/locks/lock_soft_gold_v1.png"
+    },
+    "portalInteriors": {
+      "portal1": {
+        "src": "/assets/runtime/cover-intro/portals/portal_1/interior/cover_portal_world1_root_interior_v01.webp",
+        "dimensions": "1024x1872",
+        "sha256": "31a0635850af15531ee75dc9c2a3e4d1edfe322fa9d4569d6d94513434255c92"
+      },
+      "portal2": {
+        "src": "/assets/runtime/cover-intro/portals/portal_2/interior/cover_portal_world2_pulse_interior_v01.webp",
+        "dimensions": "1024x1872",
+        "sha256": "50c605cdc891f8b21d9ed792d299a8be14a28954a78d1bd25c85bb1915f3a941"
+      },
+      "portal3": {
+        "src": "/assets/runtime/cover-intro/portals/portal_3/interior/cover_portal_world3_notebook_interior_v01.webp",
+        "dimensions": "1024x1872",
+        "sha256": "d2298b810e358474b75fe3df60ff92b0ece15a2b7b06c85bdaf2aaf8cbdd6659"
+      },
+      "portal4": {
+        "src": "/assets/runtime/cover-intro/portals/portal_4/interior/cover_portal_world4_system_interior_v01.webp",
+        "dimensions": "1024x1872",
+        "sha256": "96a961322fe58371c60b078df03a11b240f6672929359afed539bf485e1ce939"
+      },
+      "portal5": {
+        "src": "/assets/runtime/cover-intro/portals/portal_5/interior/cover_portal_world5_map_interior_v01.webp",
+        "dimensions": "1024x1872",
+        "sha256": "cc95e888b472d8e14295f8b9623144262f699d7583d5a2b1062085cdd5019563"
+      }
     }
   },
-  "deferred": {
-    "portalInteriors": [
-      "portal_1_inner_raiz_v1",
-      "portal_2_inner_pulso_invisible_v1",
-      "portal_3_inner_cuaderno_pruebas_v1",
-      "portal_4_inner_mesa_sistema_v1",
-      "portal_5_inner_mapa_presente_v1"
-    ]
+  "approvedPackage": {
+    "filename": "GVO_COVER_PORTAL_INTERIORS_APPROVED_V01.zip",
+    "sha256": "b70b2604dd5e960a0057c10d269f756c18e3cd47411d84348b395e0f119a78cc",
+    "productionSources": "docs/assets/cover-intro/production-sources/portal_1..5/",
+    "runtimeMirrorParity": true,
+    "binaryMutation": false,
+    "sourceStatus": "human-approved",
+    "consumerStatus": "pending-human-review"
   }
 }

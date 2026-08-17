@@ -210,15 +210,37 @@ test("sin Fullscreen API conserva un fallback visible y el botón de recorrido",
       configurable: true,
       value: undefined,
     });
+    Object.defineProperty(Document.prototype, "exitFullscreen", {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(Element.prototype, "webkitRequestFullscreen", {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(Element.prototype, "webkitRequestFullScreen", {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(Document.prototype, "webkitExitFullscreen", {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(Document.prototype, "webkitCancelFullScreen", {
+      configurable: true,
+      value: undefined,
+    });
   });
   await page.goto("/inicio");
 
   await page.getByRole("button", { name: "Español" }).click();
   await expect(
     page.getByRole("button", { name: "Activar pantalla completa" }),
-  ).toBeDisabled();
+  ).toHaveCount(0);
   await expect(
-    page.getByText("Pantalla completa no está disponible.", { exact: false }),
+    page.getByText(
+      "La vista de navegador ya está optimizada para este dispositivo.",
+    ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Iniciar recorrido" }).click();
   await expect(page).toHaveURL(/\/portada$/);

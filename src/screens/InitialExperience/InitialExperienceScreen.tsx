@@ -1,6 +1,6 @@
 import "./InitialExperienceScreen.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -11,13 +11,19 @@ import {
 } from "../../app/preferences/languagePreference";
 import { coverIntroRoute } from "../../app/routes";
 import {
-  isFullscreenAvailable,
-  isImmersiveMode,
-  requestImmersiveMode,
+  entryCoverBackdropAsset,
+  entryCoverStationAssets,
+} from "../../shared/assets/entryCoverAssets";
+import {
+  getFullscreenCapability,
+  isFullscreenActive,
+  requestFullscreenFromUserGesture,
+  subscribeFullscreenEvents,
 } from "../../shared/immersive";
 
 type FullscreenEntryState =
-  | "unsupported"
+  | "fallback"
+  | "blocked"
   | "inactive"
   | "pending"
   | "active"
@@ -37,8 +43,10 @@ const copy = {
     fullscreen: "Activar pantalla completa",
     fullscreenActive: "Pantalla completa activa",
     fullscreenPending: "Activando pantalla completa…",
-    fullscreenUnsupported:
-      "Pantalla completa no está disponible. Puedes continuar normalmente.",
+    browserOptimized:
+      "La vista de navegador ya está optimizada para este dispositivo.",
+    fullscreenBlocked:
+      "Este contexto bloquea la pantalla completa. Abre GVO directamente en el navegador.",
     fullscreenError:
       "No fue posible activar pantalla completa. Puedes continuar normalmente.",
     fullscreenHelp:
@@ -58,8 +66,10 @@ const copy = {
     fullscreen: "Enter fullscreen",
     fullscreenActive: "Fullscreen active",
     fullscreenPending: "Entering fullscreen…",
-    fullscreenUnsupported:
-      "Fullscreen is unavailable. You can continue normally.",
+    browserOptimized:
+      "The browser view is already optimized for this device.",
+    fullscreenBlocked:
+      "This context blocks fullscreen. Open GVO directly in the browser.",
     fullscreenError:
       "Fullscreen could not be enabled. You can continue normally.",
     fullscreenHelp:
@@ -77,12 +87,20 @@ const neutralCopy = {
   languageLegend: "Idioma / Language",
 } as const;
 
+const neutralBrowserOptimized =
+  "La vista de navegador ya está optimizada para este dispositivo. / The browser view is already optimized for this device.";
+
 function initialFullscreenState(): FullscreenEntryState {
-  if (isImmersiveMode()) {
+  if (isFullscreenActive()) {
     return "active";
   }
 
-  return isFullscreenAvailable() ? "inactive" : "unsupported";
+  const capability = getFullscreenCapability();
+  return capability === "supported"
+    ? "inactive"
+    : capability === "blocked-by-context"
+      ? "blocked"
+      : "fallback";
 }
 
 export function InitialExperienceScreen() {
@@ -96,6 +114,12 @@ export function InitialExperienceScreen() {
   const [fullscreenState, setFullscreenState] = useState<FullscreenEntryState>(
     initialFullscreenState,
   );
+  const fullscreenCapability =
+    fullscreenState === "blocked"
+      ? "blocked-by-context"
+      : fullscreenState === "fallback"
+        ? "unavailable-on-platform"
+        : "supported";
   const localizedCopy = language ? copy[language] : null;
 
   useEffect(() => {
@@ -114,13 +138,10 @@ export function InitialExperienceScreen() {
       setFullscreenState("error");
     };
 
-    document.addEventListener("fullscreenchange", syncFullscreenState);
-    document.addEventListener("fullscreenerror", handleFullscreenError);
-
-    return () => {
-      document.removeEventListener("fullscreenchange", syncFullscreenState);
-      document.removeEventListener("fullscreenerror", handleFullscreenError);
-    };
+    return subscribeFullscreenEvents(
+      syncFullscreenState,
+      handleFullscreenError,
+    );
   }, []);
 
   const selectLanguage = (nextLanguage: GvoLanguage) => {
@@ -135,19 +156,24 @@ export function InitialExperienceScreen() {
     if (
       fullscreenState === "pending" ||
       fullscreenState === "active" ||
-      fullscreenState === "unsupported"
+      fullscreenState === "blocked" ||
+      fullscreenState === "fallback"
     ) {
       return;
     }
 
+    const activation = requestFullscreenFromUserGesture();
     setFullscreenState("pending");
-    const succeeded = await requestImmersiveMode();
+    const succeeded = await activation;
+    const capability = getFullscreenCapability();
     setFullscreenState(
-      succeeded && isImmersiveMode()
+      succeeded && isFullscreenActive()
         ? "active"
-        : isFullscreenAvailable()
+        : capability === "supported"
           ? "error"
-          : "unsupported",
+          : capability === "blocked-by-context"
+            ? "blocked"
+            : "fallback",
     );
   };
 
@@ -160,26 +186,57 @@ export function InitialExperienceScreen() {
     : "Pantalla completa / Fullscreen";
 
   const fullscreenStatus = localizedCopy
-    ? fullscreenState === "unsupported"
-      ? localizedCopy.fullscreenUnsupported
-      : fullscreenState === "error"
-        ? localizedCopy.fullscreenError
-        : fullscreenState === "active"
-          ? localizedCopy.fullscreenActive
-          : localizedCopy.fullscreenHelp
-    : "Opcional y disponible sólo mediante tu gesto. / Optional and available only through your gesture.";
+    ? fullscreenState === "fallback"
+      ? localizedCopy.browserOptimized
+      : fullscreenState === "blocked"
+        ? localizedCopy.fullscreenBlocked
+        : fullscreenState === "error"
+          ? localizedCopy.fullscreenError
+          : fullscreenState === "active"
+            ? localizedCopy.fullscreenActive
+            : localizedCopy.fullscreenHelp
+    : fullscreenState === "fallback"
+      ? neutralBrowserOptimized
+      : "Opcional y disponible sólo mediante tu gesto. / Optional and available only through your gesture.";
+  const visualStyle = {
+    "--initial-experience-backdrop": `url(${entryCoverBackdropAsset})`,
+  } as CSSProperties;
 
   return (
     <main
       className="initial-experience"
+      style={visualStyle}
       data-initial-experience="debt-012"
+      data-initial-experience-visual="debt-013"
       data-initial-language={language ?? "unselected"}
       data-initial-language-persistence={persistenceState}
       data-initial-fullscreen-state={fullscreenState}
+      data-gvo-fullscreen-capability={fullscreenCapability}
       aria-labelledby="initial-experience-title"
       aria-describedby="initial-experience-description"
     >
-      <section className="initial-experience__panel">
+      <div
+        className="initial-experience__backdrop"
+        data-runtime-asset={entryCoverBackdropAsset}
+        aria-hidden="true"
+      />
+      <div className="initial-experience__layout">
+        <div className="initial-experience__journey-art" aria-hidden="true">
+          <span className="initial-experience__journey-orbit" />
+          {entryCoverStationAssets.map((asset) => (
+            <img
+              key={asset.id}
+              className="initial-experience__station-asset"
+              src={asset.src}
+              alt=""
+              decoding="async"
+              data-entry-cover-station-asset={asset.id}
+              data-runtime-asset={asset.src}
+            />
+          ))}
+        </div>
+
+        <section className="initial-experience__panel">
         <p className="initial-experience__eyebrow">GVO · GUÍA VIRTUAL OKÚA</p>
         <h1 id="initial-experience-title" ref={headingRef} tabIndex={-1}>
           {localizedCopy?.title ?? neutralCopy.title}
@@ -233,24 +290,30 @@ export function InitialExperienceScreen() {
           <h2 id="initial-experience-immersive-title">
             {language === "en" ? "Immersive entry" : "Entrada inmersiva"}
           </h2>
-          <button
-            type="button"
-            className="initial-experience__fullscreen"
-            aria-label={fullscreenLabel}
-            aria-pressed={fullscreenState === "active"}
-            data-initial-fullscreen-action="request"
-            disabled={
-              fullscreenState === "unsupported" ||
-              fullscreenState === "pending" ||
-              fullscreenState === "active"
-            }
-            onClick={requestFullscreen}
-          >
-            {fullscreenLabel}
-          </button>
+          {fullscreenState !== "fallback" ? (
+            <button
+              type="button"
+              className="initial-experience__fullscreen"
+              aria-label={fullscreenLabel}
+              aria-pressed={fullscreenState === "active"}
+              data-initial-fullscreen-action="request"
+              data-gvo-fullscreen-capability={fullscreenCapability}
+              disabled={
+                fullscreenState === "blocked" ||
+                fullscreenState === "pending" ||
+                fullscreenState === "active"
+              }
+              onClick={requestFullscreen}
+            >
+              {fullscreenLabel}
+            </button>
+          ) : null}
           <p
             className="initial-experience__fullscreen-status"
             data-initial-fullscreen-status={fullscreenState}
+            data-initial-immersive-fallback={
+              fullscreenState === "fallback" ? "browser-optimized" : undefined
+            }
             aria-live="polite"
           >
             {fullscreenStatus}
@@ -263,16 +326,17 @@ export function InitialExperienceScreen() {
           </p>
         ) : null}
 
-        <button
-          type="button"
-          className="initial-experience__start"
-          data-initial-experience-action="start"
-          disabled={!language}
-          onClick={() => navigate(coverIntroRoute)}
-        >
-          {localizedCopy?.start ?? "Iniciar / Start"}
-        </button>
-      </section>
+          <button
+            type="button"
+            className="initial-experience__start"
+            data-initial-experience-action="start"
+            disabled={!language}
+            onClick={() => navigate(coverIntroRoute)}
+          >
+            {localizedCopy?.start ?? "Iniciar / Start"}
+          </button>
+        </section>
+      </div>
     </main>
   );
 }

@@ -270,7 +270,7 @@
 
 .cover-intro__dialogue-button {
   justify-self: end;
-  min-height: 29px;
+  min-height: 44px;
   padding: 5px 10px;
   border: 1px solid rgb(184 150 196 / 44%);
   border-radius: 999px;
@@ -366,6 +366,10 @@
 
 .cover-intro__portal--locked-secondary {
   z-index: 2;
+}
+
+.cover-intro__portal--locked-secondary.cover-intro__portal--review-available {
+  --portal-y: 0px;
 }
 
 .cover-intro__portal[data-portal-id="portal-2"] {
@@ -520,11 +524,53 @@
 }
 
 .cover-intro__portal-glow {
+  z-index: 0;
   opacity: 0.34;
   mix-blend-mode: screen;
   transition:
     opacity 220ms ease-out,
     filter 220ms ease-out;
+}
+
+.cover-intro__portal-interior {
+  position: absolute;
+  z-index: 1;
+  top: 6%;
+  left: 50%;
+  width: 50%;
+  height: 88%;
+  border-radius: 50% / 18%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.86;
+  clip-path: inset(0 round 50% / 18%);
+  pointer-events: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 4px 7px rgb(43 27 40 / 32%));
+  transition:
+    opacity 180ms ease-out,
+    filter 180ms ease-out;
+}
+
+.cover-intro__portal--locked .cover-intro__portal-interior {
+  opacity: 0.52;
+  filter: grayscale(0.52) saturate(0.56) brightness(0.76)
+    drop-shadow(0 3px 5px rgb(43 27 40 / 24%));
+}
+
+.cover-intro__portal--primary .cover-intro__portal-interior {
+  top: 8%;
+  height: 84%;
+  opacity: 0.94;
+  clip-path: inset(1px 0 round 50% / 18%);
+}
+
+.cover-intro__portal--opening .cover-intro__portal-interior {
+  opacity: 0;
+}
+
+.cover-intro__portal-frame {
+  z-index: 2;
 }
 
 .cover-intro__portal--locked .cover-intro__portal-frame {
@@ -534,7 +580,7 @@
 
 .cover-intro__portal-roman {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -557,7 +603,7 @@
 
 .cover-intro__portal-lock {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   left: 50%;
   bottom: 18%;
   width: 35%;
@@ -732,7 +778,7 @@
 }
 
 .cover-intro__cta {
-  min-height: 42px;
+  min-height: 44px;
   padding: 10px 18px;
   border: 2px solid var(--cover-lavender);
   border-radius: 0;
@@ -1065,8 +1111,8 @@
   }
 
   .cover-intro__dialogue-button {
-    min-height: 26px;
-    padding-block: 4px;
+    min-height: 44px;
+    padding-block: 7px;
   }
 
   .cover-intro__transition-overlay {
@@ -1097,7 +1143,7 @@
   }
 
   .cover-intro__cta {
-    min-height: 38px;
+    min-height: 44px;
     padding-block: 8px;
   }
 }

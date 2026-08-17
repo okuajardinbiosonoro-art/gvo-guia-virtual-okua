@@ -18,6 +18,18 @@ export type FinalReviewNavigationState = Readonly<{
   finalReview: FinalReviewContext;
 }>;
 
+export type FinalCoverRevisitContext = Readonly<{
+  mode: "final-cover-revisit";
+  origin: "/final";
+  startedAt: string;
+  timestamp: number;
+  version: 1;
+}>;
+
+export type FinalCoverRevisitNavigationState = Readonly<{
+  finalCoverRevisit: FinalCoverRevisitContext;
+}>;
+
 const FINAL_REVIEW_WORLDS = [1, 2, 3, 4, 5] as const;
 
 function getDefaultSessionStorage(): ProgressStorage | null {
@@ -67,6 +79,36 @@ export function parseFinalReviewContext(
   };
 }
 
+export function parseFinalCoverRevisitContext(
+  value: unknown,
+): FinalCoverRevisitContext | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  const candidate = value as Partial<FinalCoverRevisitContext>;
+  if (
+    candidate.origin !== "/final" ||
+    candidate.mode !== "final-cover-revisit" ||
+    candidate.version !== FINAL_REVIEW_CONTEXT_VERSION ||
+    typeof candidate.startedAt !== "string" ||
+    Number.isNaN(Date.parse(candidate.startedAt)) ||
+    typeof candidate.timestamp !== "number" ||
+    !Number.isFinite(candidate.timestamp) ||
+    candidate.timestamp <= 0
+  ) {
+    return null;
+  }
+
+  return {
+    origin: "/final",
+    mode: "final-cover-revisit",
+    startedAt: candidate.startedAt,
+    timestamp: candidate.timestamp,
+    version: FINAL_REVIEW_CONTEXT_VERSION,
+  };
+}
+
 export function createFinalReviewContext(
   world: FinalReviewWorld,
   now: () => number = Date.now,
@@ -77,6 +119,20 @@ export function createFinalReviewContext(
     origin: "/final",
     mode: "final-review",
     world,
+    startedAt: new Date(timestamp).toISOString(),
+    timestamp,
+    version: FINAL_REVIEW_CONTEXT_VERSION,
+  };
+}
+
+export function createFinalCoverRevisitContext(
+  now: () => number = Date.now,
+): FinalCoverRevisitContext {
+  const timestamp = now();
+
+  return {
+    origin: "/final",
+    mode: "final-cover-revisit",
     startedAt: new Date(timestamp).toISOString(),
     timestamp,
     version: FINAL_REVIEW_CONTEXT_VERSION,
@@ -108,6 +164,26 @@ export function beginFinalReview(
   persistFinalReviewContext(finalReview, storage);
 
   return { finalReview };
+}
+
+export function beginFinalCoverRevisit(
+  storage: ProgressStorage | null = getDefaultSessionStorage(),
+  now: () => number = Date.now,
+): FinalCoverRevisitNavigationState {
+  const finalCoverRevisit = createFinalCoverRevisitContext(now);
+
+  if (storage) {
+    try {
+      storage.setItem(
+        FINAL_REVIEW_CONTEXT_STORAGE_KEY,
+        JSON.stringify(finalCoverRevisit),
+      );
+    } catch {
+      // Navigation state remains authoritative when session storage is blocked.
+    }
+  }
+
+  return { finalCoverRevisit };
 }
 
 export function clearFinalReviewContext(
@@ -146,6 +222,64 @@ export function readFinalReviewContext(
     clearFinalReviewContext(storage);
     return null;
   }
+}
+
+export function readFinalCoverRevisitContext(
+  storage: ProgressStorage | null = getDefaultSessionStorage(),
+): FinalCoverRevisitContext | null {
+  if (!storage) {
+    return null;
+  }
+
+  try {
+    const raw = storage.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY);
+    if (!raw) {
+      return null;
+    }
+
+    const parsed = parseFinalCoverRevisitContext(JSON.parse(raw));
+    if (!parsed) {
+      clearFinalReviewContext(storage);
+    }
+    return parsed;
+  } catch {
+    clearFinalReviewContext(storage);
+    return null;
+  }
+}
+
+export function resolveFinalCoverRevisitContext(
+  state: unknown,
+  storage: ProgressStorage | null = getDefaultSessionStorage(),
+): FinalCoverRevisitContext | null {
+  const hasNavigationContext =
+    state !== null &&
+    state !== undefined &&
+    typeof state === "object" &&
+    "finalCoverRevisit" in state;
+  if (hasNavigationContext) {
+    const navigationContext = parseFinalCoverRevisitContext(
+      (state as Partial<FinalCoverRevisitNavigationState>).finalCoverRevisit,
+    );
+    if (!navigationContext) {
+      clearFinalReviewContext(storage);
+      return null;
+    }
+
+    if (storage) {
+      try {
+        storage.setItem(
+          FINAL_REVIEW_CONTEXT_STORAGE_KEY,
+          JSON.stringify(navigationContext),
+        );
+      } catch {
+        // Navigation state remains sufficient for the current SPA handoff.
+      }
+    }
+    return navigationContext;
+  }
+
+  return readFinalCoverRevisitContext(storage);
 }
 
 export function resolveFinalReviewContext(

@@ -44,6 +44,11 @@
   opacity: 0.68;
 }
 
+.gvo-immersive-mode-control[data-gvo-immersive-state="blocked"] {
+  cursor: default;
+  opacity: 0.52;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gvo-immersive-mode-control {
     transition: none;

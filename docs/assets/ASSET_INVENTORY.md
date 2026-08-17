@@ -15,6 +15,41 @@ Los archivos byte-idénticos entre runtime y `current-used` son pares deliberado
 de política, no duplicados accidentales. El Atlas visual sigue siendo referencia
 documental y no sustituye ninguno de estos dos árboles.
 
+## GVO_DEBT_013 — `/inicio` y Portada
+
+Estado: `INTEGRATED_FOR_REVIEW / PENDING_HUMAN_REVIEW`.
+
+`/inicio` conserva el fondo aprobado de Portada y las cinco representaciones de
+Mundo I–V aprobadas y publicadas para el Mirador. `GVO_DEBT_013C` desacopla
+Portada: sus cinco portales consumen interiores verticales dedicados del paquete
+humano aprobado `GVO_COVER_PORTAL_INTERIORS_APPROVED_V01.zip` (SHA-256
+`B70B2604DD5E960A0057C10D269F756C18E3CD47411D84348B395E0F119A78CC`).
+Los WebP se copiaron sin transformación a runtime y a su mirror canónico:
+
+```text
+public/assets/gvo/current-used/initial-experience/README.md
+public/assets/gvo/current-used/cover-intro/README.md
+```
+
+`/inicio` mantiene `src/shared/assets/entryCoverAssets.ts`; Portada usa el
+registro dedicado `src/screens/Cover/coverPortalInteriorAssets.ts`. Fondo,
+labels, controles, números romanos, locks, estados y copy conservan sus
+responsabilidades previas. La aprobación de los binarios no sustituye la
+revisión humana de la composición.
+
+| Portal | Ruta relativa bajo `public/assets/runtime/cover-intro/` y `public/assets/gvo/current-used/cover-intro/` | Formato / dimensiones | SHA-256                                                            | Función / consumidor                                 | Estado                                         |
+| ------ | ------------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
+| I      | `portals/portal_1/interior/cover_portal_world1_root_interior_v01.webp`                                  | WEBP RGB / 1024×1872  | `31A0635850AF15531EE75DC9C2A3E4D1EDFE322FA9D4569D6D94513434255C92` | Interior full-bleed Mundo Raíz / `CoverIntroScreen`  | Asset aprobado; pantalla pendiente de revisión |
+| II     | `portals/portal_2/interior/cover_portal_world2_pulse_interior_v01.webp`                                 | WEBP RGB / 1024×1872  | `50C605CDC891F8B21D9ED792D299A8BE14A28954A78D1BD25C85BB1915F3A941` | Interior full-bleed Mundo Pulso / `CoverIntroScreen` | Asset aprobado; pantalla pendiente de revisión |
+| III    | `portals/portal_3/interior/cover_portal_world3_notebook_interior_v01.webp`                              | WEBP RGB / 1024×1872  | `D2298B810E358474B75FE3DF60FF92B0ECE15A2B7B06C85BDAF2AAF8CBDD6659` | Interior full-bleed Cuaderno / `CoverIntroScreen`    | Asset aprobado; pantalla pendiente de revisión |
+| IV     | `portals/portal_4/interior/cover_portal_world4_system_interior_v01.webp`                                | WEBP RGB / 1024×1872  | `96A961322FE58371C60B078DF03A11B240F6672929359AFED539BF485E1CE939` | Interior full-bleed Sistema / `CoverIntroScreen`     | Asset aprobado; pantalla pendiente de revisión |
+| V      | `portals/portal_5/interior/cover_portal_world5_map_interior_v01.webp`                                   | WEBP RGBA / 1024×1872 | `CC95E888B472D8E14295F8B9623144262F699D7583D5A2B1062085CDD5019563` | Interior full-bleed Mapa / `CoverIntroScreen`        | Asset aprobado; pantalla pendiente de revisión |
+
+Las cinco fuentes nativas y los cinco masters PNG 2048×3744 se conservan fuera
+de despliegue en `docs/assets/cover-intro/production-sources/portal_1..5/` con
+los hashes exactos del manifiesto aprobado. Los cinco WebP runtime suman
+707.514 bytes.
+
 ## Estación III — 15 pares aprobados
 
 Estado de cierre: `APROBADO`. La ruta de la primera columna es relativa a las dos
