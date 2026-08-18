@@ -14,18 +14,29 @@ No se usa la cámara nativa como bypass del recorrido normal y no se ejecutan UR
 
 En una revisita autorizada desde Mirador no se monta el gate y no se solicita cámara.
 
-## Origen seguro local
+## Origen seguro local de laboratorio
+
+```text
+LAB / DEVELOPMENT QA ONLY
+NOT FIELD VISITOR DEPLOYMENT
+```
 
 `npm run dev` ejecuta `tools/dev/ensure_https_certificate.ps1` mediante un wrapper Node controlado. El script:
 
 1. conserva una autoridad local estable en `Cert:\CurrentUser`;
 2. detecta todas las IPv4 activas en cada arranque;
 3. genera un certificado servidor con SAN dinámicos cuando cambia la red;
-4. exporta sólo la autoridad pública para iOS/Android;
+4. exporta sólo la autoridad pública para dispositivos controlados de QA;
 5. inicia Vite sobre HTTPS y `0.0.0.0`.
 
 La dirección concreta no forma parte del código ni de los QR. Se usa la URL `https://<IP-ACTUAL>:5173` que imprime Vite. Tras cambiar de red se reinicia el proceso para renovar SAN.
 
-La instalación de confianza y la matriz física están documentadas en `docs/qa/GVO_DEBT_015_LOCAL_HTTPS_DEVICE_SETUP.md` y `docs/qa/GVO_DEBT_015_IN_APP_QR_SCANNER_PHYSICAL_QA.md`.
+La instalación de confianza de laboratorio y la matriz física están
+documentadas en `docs/qa/GVO_DEBT_015_LOCAL_HTTPS_DEVICE_SETUP.md` y
+`docs/qa/GVO_DEBT_015_IN_APP_QR_SCANNER_PHYSICAL_QA.md`.
+
+El despliegue de campo debe usar hostname estable y TLS confiable mediante la
+confianza normal del navegador. El visitante no instala CA, certificado, PWA,
+app ni extensión.
 
 Decisión arquitectónica: `docs/decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md`.

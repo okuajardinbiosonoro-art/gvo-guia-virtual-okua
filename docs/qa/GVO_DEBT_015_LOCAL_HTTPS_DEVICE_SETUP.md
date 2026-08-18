@@ -1,5 +1,14 @@
 # GVO_DEBT_015 — Preparación HTTPS local para iOS y Android
 
+```text
+LAB / DEVELOPMENT QA ONLY
+NOT FIELD VISITOR DEPLOYMENT
+```
+
+Este procedimiento sirve para desarrollo y QA controlado. El despliegue final
+no puede exigir que el visitante instale esta CA, un certificado, una PWA o una
+aplicación.
+
 ## 1. Arranque del servidor
 
 En la raíz del repositorio:

@@ -1,216 +1,117 @@
 # Arquitectura técnica
 
-Actualizado: 2026-08-13
+Actualizado: 2026-08-18
 
-La base usa Vite, React, TypeScript y React Router. La aplicación es local-first, silenciosa y empaqueta sus recursos requeridos en el build; las pantallas runtime no dependen de recursos remotos obligatorios.
+GVO usa Vite, React, TypeScript y React Router. Es una aplicación web
+local-first, mobile-first e insonora. Todos los recursos runtime requeridos se
+sirven desde el mismo origen; no hay CDN, APIs, fuentes ni imágenes remotas.
 
-## Carpetas principales
-
-- `src/app`: aplicación, router, rutas y providers.
-- `src/app/preferences`: preferencias no pedagógicas persistidas, incluido
-  idioma `es/en`.
-- `src/app/qr`: contrato tipado y resolución read-only de entradas QR.
-- `src/app/shell`: shell inmersivo transversal y autorización por ruta.
-- `src/components`: componentes reutilizables, incluido `GestureHint`.
-- `src/content`: slots y copy editorial compartido.
-- `src/data`: datos estáticos del flujo.
-- `src/domain`: utilidades aisladas de dominio.
-- `src/screens`: pantallas runtime y herramientas de desarrollo autorizadas.
-- `src/shared/assets`: preloader y contratos compartidos de assets.
-- `src/styles`: tokens y estilos globales.
-- `public/assets/gvo`: assets runtime y registro fuente `current-used`; el
-  registro documental no se copia al artefacto de despliegue.
-- `docs`: contratos canónicos, inventarios y registros históricos.
-- `tools`: scripts de auditoría y estado.
-- `tests/e2e`: pruebas end-to-end.
-
-## Rutas runtime relevantes
-
-| Ruta                             | Componente / contrato                                                                         |
-| -------------------------------- | --------------------------------------------------------------------------------------------- |
-| `/`                              | `LoadingInitialScreen`; entrega la entrada normal en `/inicio`.                               |
-| `/carga`                         | `LoadingInitialScreen` aislada, sin navegación automática.                                    |
-| `/inicio`                        | `InitialExperienceScreen`: idioma, fullscreen opcional e inicio a Portada.                    |
-| `/portada`                       | `CoverIntroScreen`.                                                                           |
-| `/transition/intro-to-station-1` | `TransitionWorldRuntimeRoute`.                                                                |
-| `/estacion/1`                    | `World1RootScreen`.                                                                           |
-| `/transition/world-1-to-world-2` | Transición compartida.                                                                        |
-| `/estacion/2`                    | `World2RootScreen`.                                                                           |
-| `/transition/world-2-to-world-3` | Transición pasiva final hacia Estación III.                                                   |
-| `/estacion/3`                    | `World3RootScreen`, Estación III aprobada.                                                    |
-| `/transition/world-3-to-world-4` | Transición compartida; copy editorial todavía `TEMP`.                                         |
-| `/estacion/4`                    | `World4RootScreen`, Estación IV cerrada y aprobada.                                           |
-| `/transition/world-4-to-world-5` | Transición compartida; copy editorial todavía `TEMP`.                                         |
-| `/estacion/5`                    | `World5RootScreen`, base Fable funcional con visuales procedurales reemplazables; no cerrada. |
-| `/transition/world-5-to-final`   | Transición compartida; copy editorial todavía `TEMP`.                                         |
-| `/final`                         | `FinalRootScreen`.                                                                            |
-| `/qr/:stationId`                 | Entrada QR tipada; redirige mediante los guards secuenciales existentes.                      |
-
-Las rutas `/dev/*` son herramientas aisladas y no se deben presentar como pantallas finales.
-
-## Entrada inicial e idioma
-
-`GVO_DEBT_012` intercala `InitialExperienceScreen` entre la Carga inicial y
-Portada sólo en la entrada normal `/`. La ruta `/inicio` usa controles nativos
-y exige una selección explícita `es` o `en` antes de habilitar el inicio. El
-valor validado vive en `gvo.language.v1`; storage ausente, bloqueado o corrupto
-falla a `es` sin impedir la visita. `GlobalImmersiveShell` aplica la preferencia
-a `document.documentElement.lang` también al recargar o entrar directamente.
-
-La pantalla reutiliza `requestImmersiveMode` y sólo solicita la Fullscreen API
-desde el gesto del botón correspondiente. API ausente o petición denegada
-producen estado visible, pero no bloquean `Iniciar recorrido`. El selector no
-traduce contenido editorial: sólo localiza la microinterfaz operacional de
-entrada y registra preferencia. El reset real conserva la clave porque no es
-progreso ni checkpoint. La decisión completa está en
-[ADR-0006](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md).
-
-## Shell inmersivo y entradas QR
-
-`GlobalImmersiveShell` es un layout único del router. Autoriza el control sólo
-en las cinco rutas base de estaciones y las cuatro subrutas de Mundo V. El
-shell reutiliza `ImmersiveModeControl` y el núcleo estándar de
-`shared/immersive`; no replica controles por pantalla, no activa fullscreen de
-forma automática y no solicita permisos sensibles. Su dock fijo usa safe-area,
-un área interactiva de `44px × 44px` y `pointer-events: none` fuera del botón.
-
-`qrNavigation.ts` deriva cinco contratos desde `stations` y
-`stationEntryRoutes`. La resolución acepta únicamente identificadores exactos
-`1…5`, consulta el progreso mediante `readProgress`, reutiliza
-`canOpenStation` y aplica `mostAdvancedAvailableStation` como fallback. El
-loader limpia exclusivamente un posible contexto de revisita; no escribe ni
-normaliza `gvo.progress.v1`. `/qr/*` captura variantes inválidas o manipuladas
-sin añadir scanner, cámara, red externa ni dependencias.
-
-## Arquitectura de Estación III
-
-La ruta `/estacion/3` monta `World3RootScreen`. Este componente coordina índice, gates, páginas narrativas, giro de hoja, Lía, ayuda gestual, responsive y salida; el copy específico vive en `station3Content.ts`.
-
-### Estado y progreso
-
-La máquina distingue cuatro fases superiores:
+## Contrato operativo
 
 ```text
-entering → index ↔ turning ↔ page
+QR → navegador → experiencia
+INSTALACIONES EN EL DISPOSITIVO = 0
 ```
 
-Las páginas tienen subfases propias. PLANTA recorre observación; PROTOTIPO recorre ensamble, prueba y aprendizaje; SEÑAL recorre captura, inspección y evidencia. Los registros usan `locked`, `available` y `completed`, y solo el siguiente registro de `PLANTA → PROTOTIPO → SEÑAL` queda disponible. Al completar los tres, el sello pasa de `hidden` a `unlocking` y `ready`, habilitando `Continuar`.
+El navegador móvil es el cliente. No se exige app, PWA, CA, certificado,
+extensión o scanner externo al visitante.
 
-El conjunto `completed`, las subfases y el modo revisita viven en estado React de la instancia montada. No se escriben en `localStorage` ni `sessionStorage`; recargar desmonta la pantalla y reinicia Estación III. La utilidad aislada `src/domain/progress/progress.storage.ts` no está conectada a este runtime.
+## Módulos principales
 
-### Page-turn
+- `src/app`: router, rutas, shell, preferencias, revisión y QR.
+- `src/app/qr`: cámara, allowlist de payloads y gate scanner compartido.
+- `src/domain/progress`: progreso global versionado y guards secuenciales.
+- `src/domain/checkpoints`: checkpoints durables de los Mundos.
+- `src/screens`: Carga, Entrada, Portada, Transiciones, Mundos I–V y Mirador.
+- `src/shared/assets`: preload y contratos compartidos de assets.
+- `public/assets/gvo`: assets locales de runtime y espejos `current-used`.
+- `docs/assets/qr/interstation`: QR físicos documentales, no cargados en runtime.
+- `tools`: generación, auditoría y verificadores reproducibles.
+- `tests/e2e`: contratos integrales sobre HTTPS local.
 
-`World3PageTurnLayer` consume la hoja real declarada en `world3RuntimeAssets.notebook.turnPage`. `world3PageTurnGeometryContract` fija `680 ms` en movimiento normal y `120 ms` con reduced motion. La geometría se congela durante el giro y compensa los límites alfa desde `left center`; índice y detalle permanecen montados, pero solo la capa activa es interactiva.
+## Rutas canónicas
 
-### Actor de Lía
+| Ruta | Contrato |
+| --- | --- |
+| `/` | Carga inicial; entrega la entrada normal a `/inicio` |
+| `/carga` | Carga aislada para revisión |
+| `/inicio` | Idioma, preflight de cámara y entrada inmersiva |
+| `/portada` | Archivo Vivo y Portales I–V |
+| `/estacion/1`…`/estacion/5` | Mundos I–V protegidos por progreso |
+| `/transition/*` | Transiciones pasivas y automáticas |
+| `/final` | Mirador, revisita y reset real |
+| `/qr/start` | Entrada lógica al inicio; QR físico aún no generado |
+| `/qr/w2`…`/qr/w5` | Entradas QR tipadas y payloads del scanner interno |
 
-`World3LiaActor` resuelve las poses `idle`, `pointing`, `observing`, `confirming` y `closure` desde el manifest runtime. La pose es decorativa y responde a la fase; los mensajes accesibles permanecen como texto DOM.
+Las rutas `/dev/*` son herramientas locales y no forman parte del recorrido del
+visitante.
 
-### Assets y manifests
+## Entrada, idioma y cámara
 
-- `world3RuntimeAssets.ts`: fuente única de rutas para textura, cuaderno, hoja, cinco poses de Lía, tres figuras de registros y cuatro sprite sheets.
-- `world3SemanticAssetManifest.ts`: contrato de rol, modo de consumo, grilla y responsabilidad semántica.
-- `public/assets/gvo/stations/world-3/notebook-pixel/runtime/`: paquete runtime aprobado.
-- `public/assets/gvo/current-used/world-3-root/`: copia auditable de assets usados.
+La carga normal navega a `/inicio`. El visitante elige `es` o `en`; la
+preferencia `gvo.language.v1` está fuera del reset pedagógico. El botón de
+inicio solicita cámara desde un gesto explícito con `audio: false` y cámara
+trasera ideal. El preflight detiene el stream inmediatamente después del grant.
 
-Las sprite sheets aportan anotaciones decorativas por fase. Narrativa, estados, controles, traza, checks y etiquetas no se rasterizan: permanecen semánticos y testeables.
+Denegación, dispositivo ausente, cámara ocupada, origen inseguro o API no
+disponible mantienen estados distintos y nunca conceden un permiso ficticio.
+Los tracks se detienen al cerrar, ocultar, desmontar, navegar o completar.
 
-### Traza de SEÑAL
+## Scanner QR interestación
 
-`SignalTraceDisplay` usa arrays constantes de puntos para captura, inspección y evidencia. La revelación ocurre una sola vez en movimiento normal, sin bucle; luego la traza se congela con regiones deterministas de ruido, caída y límite. Reduced motion presenta el resultado sin barrido animado.
+`InterstationQrGate` se comparte en Mundos I–IV y se renderiza mediante portal
+en `document.body`, fuera de transforms y overflow de las estaciones. Acepta
+exclusivamente `/qr/w2`, `/qr/w3`, `/qr/w4` o `/qr/w5` según el Mundo actual.
 
-### Gates, revisitas y ayudas de mano
+```text
+QR válido
+→ detener decoder y tracks
+→ persistir completion existente
+→ verificar relectura
+→ navegar a transición
+```
 
-El índice calcula el siguiente registro disponible desde el número de completados. `GestureHint` se ancla a ese control y no altera el gate ni sustituye su nombre accesible. Los registros completados siguen disponibles para revisita. Después de cerrar una página, se restaura el foco al índice y se conserva la modalidad pointer/teclado para QA.
+Un QR incorrecto o desconocido no escribe progreso. Si la persistencia falla,
+el retry reutiliza la lectura válida sin exigir otro escaneo. En revisita desde
+Mirador el gate no se monta y no abre cámara. No hay botones de avance
+interestación.
 
-### Responsive y accesibilidad
+## Progreso, checkpoints y reset
 
-`World3RootScreen` clasifica la composición como `compact-scroll`, `portrait-balanced`, `tablet-portrait` o `tablet-landscape`. La narrativa puede moverse fuera del cuaderno en tablet landscape sin duplicar elementos interactivos. Controles nativos, `aria-label`, `aria-hidden`, `inert`, restauración de foco y bloqueo explícito de cámara/QR mantienen el contrato accesible. `prefers-reduced-motion` reduce transiciones y elimina movimiento repetitivo sin ocultar estados finales.
+`gvo.progress.v1` es la autoridad secuencial global y falla cerrado ante datos
+corruptos, versiones desconocidas o storage no disponible. Los checkpoints
+`gvo.station1.v1`…`gvo.station5.v1` preservan únicamente estados estables de
+cada Mundo. Las escrituras críticas se verifican mediante relectura.
 
-## Transición Mundo II → Mundo III
+El reset de Mirador usa allowlist, snapshot, verificación, rollback y retry. No
+borra preferencias, caches, configuración, credenciales ni datos ajenos al
+recorrido.
 
-`worldTwoToWorldThreeTransition` usa `TransitionWorldRuntimeRoute` y `TransitionWorld`. El contrato es pasivo y automático, sin CTA: espera `2300 ms` en movimiento normal o `1000 ms` con reduced motion y navega a `/estacion/3` con reemplazo de historial. La aprobación humana de este comportamiento forma parte del cierre de Estación III.
+## Rutas diferidas, PWA y cache
 
-## Arquitectura de Estación IV
+Carga y Portada permanecen en el bundle crítico. Transiciones, Mundos I–V y
+Mirador se cargan mediante módulos de ruta diferidos. El decoder ZXing también
+es lazy. Los chunks de ruta no entran al precache; el cache runtime same-origin
+los conserva después de su primera solicitud.
 
-La ruta `/estacion/4` monta `World4RootScreen`. La máquina pedagógica mantiene
-una sola fuente de progreso y recorre `entering`, `reading`, `moving`, `chain`,
-`exit_ready` y `exiting`. `useWorld4MotionController` deriva fases visuales,
-epoch, input lock y timers cancelables sin persistir una segunda máquina.
+El build excluye bibliotecas documentales y espejos `current-used` del artefacto
+de deployment sin cambiar las rutas runtime. El service worker mantiene shell,
+manifest, fallback de navegación y limpieza de caches obsoletos.
 
-### Composición y geometría
+## HTTPS de laboratorio y deuda de campo
 
-- `world4Geometry.ts` fija artboard `1536×1024`, ocho anchors y z-order.
-- `World4Stage.tsx` compone environment, rear plane, haze, sombra, base, mesa,
-  ruta pasiva, nodos, Lía y UI.
-- `World4NodeStack.tsx` resuelve halo, pedestal, objeto, FX y hit target.
-- z1 permanece retenido; z5 se conserva como asset pero no se renderiza por
-  `front-edge-disabled-by-human-review`.
-- El layout se escala como una sola escena; no usa offsets por viewport.
+`npm run dev` detecta las IPv4 activas y genera un certificado servidor con SAN
+dinámicos firmado por una CA local persistente. Este mecanismo es
+`LAB / DEVELOPMENT QA ONLY` y permite QA de cámara en una red cambiante.
 
-### Assets
+El despliegue final debe usar un hostname estable y TLS confiable para el
+navegador sin instalar CA al visitante. El host provisional es `gvo`; el FQDN
+final debe pertenecer a un dominio real controlado por OKÚA. No se usa `.local`
+como solución TLS pública ni se hornea una IP en QR canónicos.
 
-- `world4RuntimeAssets.ts`: fuente única de 20 rutas runtime.
-- `world4AssetManifest.ts`: hashes aprobados, dimensiones, alpha bounds, slices
-  y sentinel del master genérico rechazado.
-- Runtime: `public/assets/gvo/stations/world-4/system-table/runtime/`.
-- Espejos auditables: `public/assets/gvo/current-used/world-4-root/`.
-- Los 20 pares son byte-idénticos. Lía reutiliza assets compartidos existentes;
-  no duplica nuevas poses.
+Decisiones relacionadas:
 
-### Motion e interacción
-
-- `World4RoutePulse` superpone siete segmentos SVG al PNG pasivo.
-- `World4NodeFx` y `world4NodeFxConfig` aplican un efecto semántico por nodo
-  en coordenadas normalizadas al bbox alfa.
-- `World4LiaGuide` reutiliza `greeting` y `explain_calm` con WAAPI puntual.
-- `World4AmbientLayer` limita ambiente a haze, ribbons, motes y pool local.
-- `World4TapHint` reutiliza `GestureHint` una vez por sesión.
-- Chain complete revela el CTA y la revisita habilita los ocho nodos sin
-  alterar progreso.
-
-### Responsive, fullscreen y accesibilidad
-
-Portrait es soportado y mobile landscape recomendado. `OrientationHint` es
-no bloqueante; `ImmersiveModeControl` sólo solicita fullscreen mediante gesto
-explícito. Los controles son nativos, admiten pointer/Enter/Space, mantienen
-focus visible y hit targets ≥44×44. Estados completed no dependen sólo del
-color. Reduced motion conserva secuencia, copy, CTA y revisita mediante fades
-y highlights estáticos.
-
-## PWA y permisos
-
-La PWA mantiene manifest, service worker y cache local. No usa notificaciones
-push ni solicita permisos innecesarios. Estación III declara cámara, QR y
-permisos sensibles como bloqueados. Estación IV añade fullscreen opt-in, sin
-permisos persistentes; la instalación PWA no se certificó en la plataforma QA
-y un despliegue LAN instalable requiere origen seguro.
-
-`GVO_DEBT_010` separa el precache crítico del cache runtime. La clase A —shell,
-JS/CSS inicial, fuentes, Carga inicial y Portada— se precachea. Los assets
-compartidos del recorrido y los recursos específicos de estación permanecen
-desplegados y usan `StaleWhileRevalidate` same-origin al solicitarse; el
-matcher queda restringido a `/assets/` locales con extensiones `css`, `js`,
-`json`, `png`, `svg`, `webp` o `woff2`. El fallback de navegación continúa en
-`/index.html` y la limpieza de precaches obsoletos permanece activa.
-
-`GVO_DEBT_011` mantiene Carga inicial y Portada en el bundle crítico y separa
-Transición, Mundos I–V y Mirador mediante loaders dinámicos declarados en
-`src/app/routeModules.ts`. El portal I precarga Transición sólo después de una
-intención explícita; cada transición precarga su destino antes de navegar. Un
-único límite `Suspense` ofrece fallback accesible y la navegación completa a
-la misma ruta queda como recuperación ante fallo de importación. Los chunks
-JS/CSS de ruta no entran al precache: el cache runtime existente los conserva
-después de su primera solicitud, sin ampliar la garantía offline a estaciones
-no visitadas. La decisión completa está en
-[ADR-0005](decisions/ADR-0005-route-chunking-y-preload-controlado.md).
-
-Los mirrors `public/assets/gvo/current-used`, las bibliotecas no consumidas y
-los README/manifests documentales se conservan como fuentes tracked, pero el
-plugin de build los excluye de `dist` mediante una lista cerrada y validada.
-No se alteran assets canónicos ni imports runtime. La decisión completa está en
-[ADR-0004](decisions/ADR-0004-pwa-precache-y-cache-runtime.md).
-
-## Estado y límites
-
-Estaciones III y IV están `CERRADA_APROBADA_FINAL` (`HUMAN_APPROVED`). Mundo V conserva una base Fable funcional, pero sus visuales son procedurales/reemplazables y no está cerrado ni aprobado. Los documentos numerados bajo `docs/status/` son registros históricos; el estado vigente se consulta en [CURRENT_STATE.md](status/CURRENT_STATE.md) y los contratos completos en [GVO_STATION3_COMPLETE.md](status/GVO_STATION3_COMPLETE.md) y [GVO_ST4_018E_STATION4_CLOSEOUT.md](status/GVO_ST4_018E_STATION4_CLOSEOUT.md).
+- [ADR-0004 — PWA/cache](decisions/ADR-0004-pwa-precache-y-cache-runtime.md)
+- [ADR-0005 — Route chunking](decisions/ADR-0005-route-chunking-y-preload-controlado.md)
+- [ADR-0006 — Entrada e idioma](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md)
+- [ADR-0007 — HTTPS local y scanner](decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md)

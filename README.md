@@ -1,107 +1,157 @@
 # GVO — Guía Virtual OKÚA
 
-GVO es la Guía Virtual OKÚA: una aplicación web local, mobile-first e insonora para acompañar el recorrido OKÚA mediante QR físicos dentro de una red MikroTik sin Internet.
+GVO es una aplicación web local, mobile-first e insonora que acompaña el
+recorrido físico de OKÚA. Funciona en el navegador del visitante dentro de una
+red de sitio y mantiene todos los recursos runtime en el propio despliegue.
 
-## Qué problema resuelve
+## Contrato del visitante
 
-El visitante debe poder abrir una guía visual desde el navegador de su celular sin instalar nada. La experiencia ocurre en sitio, dentro de una red local controlada. Por eso GVO no puede depender de CDN, APIs externas, fuentes remotas, imágenes remotas ni servicios en línea.
-
-## Reglas de operación local sin Internet
-
-- La app debe funcionar servida desde una máquina local dentro de la red MikroTik.
-- El visitante accede con QR físicos que abren URLs locales.
-- No se deben cargar recursos externos en runtime.
-- No se debe pedir instalación al visitante.
-- No se debe reproducir sonido.
-- La experiencia debe priorizar pantallas móviles.
-
-## Flujo general
-
-1. Carga inicial
-2. Portada
-3. Estación I — Mundo I: Raíz
-4. Estación II — Mundo II: Lía y el pulso invisible
-5. Estación III — Mundo III: Cuaderno Pixel de Pruebas
-6. Estación IV — Mundo IV: Mesa de sistema
-7. Estación V — Mundo V: Mapa del presente
-8. Final — Mirador final del jardín
-
-También existe una pantalla reutilizable de transición entre mundos. El tramo definitivo Mundo II → Mundo III es pasivo y automático: muestra `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…` y avanza sin CTA tras 2300 ms (1000 ms con reduced motion).
-
-## Stack técnico
-
-- Vite
-- React
-- TypeScript
-- React Router
-- Motion for React
-- @zxing/browser
-- vite-plugin-pwa
-- Vitest
-- Playwright
-- ESLint
-- Prettier
-
-## Comandos
-
-Ejecutar comandos según el alcance del ticket activo. En tickets de solo lectura no ejecutar comandos que instalen dependencias, escriban artefactos o regeneren archivos.
-
-```powershell
-npm install
-npm run dev
-npm run assets:normalize:loading
-npm run assets:validate:loading
-npm run build
-npm run test
-npm run check
+```text
+QR → navegador → experiencia
+INSTALACIONES EN EL DISPOSITIVO = 0
 ```
 
-Comandos auxiliares:
+El visitante no instala app, PWA, CA, certificado, extensión ni scanner
+externo. El runtime no depende de Internet, CDN, APIs, fuentes o imágenes
+remotas. No reproduce audio ni solicita micrófono.
 
-```powershell
-npm run status
-npm run audit:assets
-npm run test:e2e
+## Recorrido vigente
+
+```text
+Carga
+→ /inicio: idioma + preflight de cámara
+→ Portada
+→ Mundo I
+→ scanner /qr/w2
+→ Mundo II
+→ scanner /qr/w3
+→ Mundo III
+→ scanner /qr/w4
+→ Mundo IV
+→ scanner /qr/w5
+→ Mundo V
+→ Mirador
 ```
+
+El avance entre Mundos I–V ocurre exclusivamente al escanear el QR físico de
+la siguiente estación dentro de GVO. Un payload incorrecto no concede progreso
+ni navega. Mundo V → Mirador conserva su cierre automático contractual.
 
 ## Estado actual
 
-La fuente de verdad es [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El recorrido con aprobación humana cierra Estación V para el alcance actual:
+- Rama operativa única: `main`.
+- Fase actual: `FIELD DEPLOYMENT PREPARATION`.
+- GVO_DEBT_001→015: implementados, reconciliados y publicados.
+- Scanner QR interno y cámara: aprobados con deuda de despliegue físico.
+- Entorno de desarrollo: HTTPS local reproducible con CA de laboratorio.
+- Campo: pendientes MikroTik, hostname/DNS estable, TLS confiable sin instalar
+  nada al visitante, certificación física de cámara y QR de red/inicio.
 
-- Mundo I funcional en `/estacion/1`.
-- Mundo II finalizado para el alcance actual en `/estacion/2`.
-- Transición Mundo II → Mundo III definitiva, pasiva y automática.
-- Mundo III / Estación III cerrada y aprobada por revisión humana en `/estacion/3`.
-- Estación III ofrece índice progresivo, PLANTA, PROTOTIPO, SEÑAL, sello AJUSTADO, revisitas, ayudas de interacción, assets runtime y espejos `current-used`, responsive y reduced motion.
-- Mundo IV / Estación IV cerrada y aprobada por revisión humana en `/estacion/4`: cadena Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido, 20 assets runtime con espejos, ruta SVG, Lía, fullscreen, responsive y reduced motion.
-- Las seis transiciones runtime y sus doce piezas editoriales están cerradas como `FINAL / human_approved` por `TRANSITION_COPY_AUDIT_COMPLETE`.
-- Mundo V conserva mapa, Plantas, Sistema, Espacio, Visitante, 4/4, `Ir al cierre`, persistencia global, guardas y salida bajo `ST5_020H_HUMAN_APPROVED`.
-- Final / Mirador está cerrado y publicado para su fase: Gate 5 registra 19 assets canónicos y 19 mirrors byte-idénticos; Gate 6 cierra la composición responsive portrait/landscape; Gate 7 cierra motion, reduced motion y visibility handling de Lía; Gate 8 cierra el retorno en revisita y el reset real con snapshot, rollback y retry. Los Gates 5–8 están `HUMAN_APPROVED / COMPLETE` y la fase queda `GVO FINAL — MIRADOR PHASE / COMPLETE`.
+La fuente de verdad viva es
+[`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El traspaso al
+PC de campo está en
+[`docs/field/FIELD_PC_HANDOFF.md`](docs/field/FIELD_PC_HANDOFF.md).
 
-Este cierre no declara terminado todo GVO. La consistencia transversal de progreso, persistencia versionada, hidratación previa a guards, continuidad offline-first y tras reload/reconexión, fullscreen, auditoría de Mundos I–V y optimización del chunk principal se transfieren a la fase de corrección de deudas del proyecto.
+## QR físicos interestación
 
-Los contratos integrales están en [`docs/status/GVO_STATION3_COMPLETE.md`](docs/status/GVO_STATION3_COMPLETE.md) y [`docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md`](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md). El umbral de revisión vigente está en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+Los archivos imprimibles y su manifest están en
+[`docs/assets/qr/interstation/`](docs/assets/qr/interstation/README.md):
 
-## Metodología de avance por pantalla
+| Archivo base | Payload exacto |
+| --- | --- |
+| `gvo_qr_world1_to_world2_v01` | `/qr/w2` |
+| `gvo_qr_world2_to_world3_v01` | `/qr/w3` |
+| `gvo_qr_world3_to_world4_v01` | `/qr/w4` |
+| `gvo_qr_world4_to_world5_v01` | `/qr/w5` |
 
-GVO se desarrolla por pantallas secuenciales. Una pantalla puede avanzar bajo dos estados documentados:
+Cada base existe como PNG y SVG. No contienen IP, hostname, SSID, contraseña ni
+URL absoluta. Los QR de red y `/qr/start` no se generan hasta cerrar la red,
+el hostname y el TLS de campo.
 
-- `APROBADA_PARA_AVANZAR`: calificación visual del usuario igual o superior a 7/10, aprobación explícita del usuario Ing. José David, estabilidad técnica, reglas no negociables cumplidas y deuda visual documentada.
-- `CERRADA_APROBADA_FINAL`: calificación objetivo igual o superior a 9/10 y sin deuda visual importante.
+## Instalación desde un clone limpio
 
-`main` puede contener pantallas aprobadas para avanzar, no necesariamente finales. El aprobador visual explícito es el usuario Ing. José David. La metodología completa está en `docs/process/METODOLOGIA_AVANCE_POR_UMBRAL_VISUAL.md`.
+Requisitos: Git, Node.js compatible con el proyecto y npm.
 
-Estado actual:
+```powershell
+git clone https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git
+cd gvo-guia-virtual-okua
+git checkout main
+npm ci
+```
 
-- Carga inicial: APROBADA_PARA_AVANZAR / 7.2_DE_10 / DEUDA_VISUAL_DOCUMENTADA
-- Portada: APROBADA_PARA_AVANZAR / 7.8_DE_10 / DEUDA_VISUAL_DOCUMENTADA / NO_CERRADA_FINAL
-- Transición: APROBADA_PARA_AVANZAR / 7.9_DE_10 / FUNCIONAL_INTEGRADA / DEUDA_VISUAL_DOCUMENTADA
-- Estación I: RUNTIME ACTIVO / INTERACCION REFINADA / DEUDA VISUAL DOCUMENTADA
-- Estación II: FINALIZADA PARA EL ALCANCE ACTUAL / RUNTIME 016V-R2
-- Estación III: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
-- Estación IV: CERRADA_APROBADA_FINAL / HUMAN_APPROVED
-- Estación V: ST5_020H_HUMAN_APPROVED / CERRADA PARA EL ALCANCE ACTUAL
-- Transiciones: ST5_020I_PUBLISHED_COMPLETE / TRANSITION_COPY_AUDIT_COMPLETE
-- Final: GATES 1–8 CERRADOS / MIRADOR PHASE COMPLETE / HUMAN_APPROVED / PUBLICADO
+Para actualizar una copia limpia de campo:
 
-Consulta el [índice documental](docs/README.md), los contratos finales de [Estación II](docs/worlds/WORLD_II_FINAL.md), [Estación III](docs/status/GVO_STATION3_COMPLETE.md) y [Estación IV](docs/status/GVO_ST4_018E_STATION4_CLOSEOUT.md), el [inventario de assets](docs/assets/ASSET_INVENTORY.md), el [handoff de inicio de Estación V](GVO-HANDOFF-INICIO-ESTACION-V.md), la [aprobación de preproducción del Mirador](docs/status/GVO_FINAL_021C_APROBACION_HUMANA_ART_BIBLE_CAMARA_Y_DIRECCION_VISUAL.md), los cierres de [Gate 5](docs/status/GVO_FINAL_021I_APPROVED_ASSET_REGISTRATION_AND_GATE5_CLOSEOUT.md), [Gate 6](docs/status/GVO_FINAL_021L_STATIC_COMPOSITION_HUMAN_APPROVED_AND_PUBLISHED.md), [Gate 7](docs/status/GVO_FINAL_021N_LIA_MOTION_HUMAN_APPROVED_AND_PUBLISHED.md) y [Gate 8](docs/status/GVO_FINAL_021P_REVISIT_RESET_HUMAN_APPROVED_AND_MIRADOR_PHASE_COMPLETE.md), además del [cierre general de la fase Mirador](docs/status/GVO_FINAL_MIRADOR_PHASE_COMPLETE.md).
+```powershell
+git fetch origin
+git checkout main
+git pull --ff-only origin main
+npm ci
+```
+
+## Comandos reales
+
+```powershell
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm test
+npm run test:watch
+npm run test:e2e
+npm run test:e2e:evidence
+npm run check
+npm run status
+npm run audit:assets
+npm run assets:normalize:loading
+npm run assets:validate:loading
+npm run validate:cover-intro-assets
+npm run validate:transition-root-assets
+```
+
+`npm run dev` genera o reutiliza certificados locales y sirve Vite por HTTPS
+en las IPv4 activas del PC. Esa CA es `LAB / DEVELOPMENT QA ONLY`; no es una
+solución de despliegue para visitantes.
+
+## Validación
+
+Gate técnico completo para cambios de runtime:
+
+```powershell
+npm run audit:assets
+npm run lint
+npm test
+npx tsc -b --pretty false
+npm run build
+npm run test:e2e
+```
+
+Validaciones focales de la publicación QR:
+
+```powershell
+node tools/qa/gvo_debt_015_verify_interstation_qr.mjs
+node tools/qa/gvo_debt_013c_verify_cover_portal_interiors.mjs
+node tools/qa/gvo_debt_014_verify_global_experience.mjs
+node tools/qa/gvo_field_handoff_docs_audit.mjs
+```
+
+## Documentación canónica
+
+Orden recomendado:
+
+1. [`AGENTS.md`](AGENTS.md)
+2. [`docs/field/FIELD_PC_HANDOFF.md`](docs/field/FIELD_PC_HANDOFF.md)
+3. [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md)
+4. [`docs/01_REGLAS_NO_NEGOCIABLES.md`](docs/01_REGLAS_NO_NEGOCIABLES.md)
+5. [`docs/05_ARQUITECTURA_TECNICA.md`](docs/05_ARQUITECTURA_TECNICA.md)
+6. [`docs/02_FLUJO_QR_Y_ESTACIONES.md`](docs/02_FLUJO_QR_Y_ESTACIONES.md)
+7. [`docs/ROADMAP.md`](docs/ROADMAP.md)
+
+El índice corto vive en [`docs/README.md`](docs/README.md). Los documentos
+`FOR_REVIEW` son evidencia histórica; las actas `HUMAN_APPROVED/PUBLISHED` y
+`CURRENT_STATE.md` tienen autoridad posterior.
+
+## Política de ramas y publicación
+
+`main` es la única rama operativa. No se crean Pull Requests. Un ticket que
+autorice publicación se valida, se commitea y se empuja directamente a `main`.
+No se abre otra rama salvo instrucción explícita de un ticket humano.

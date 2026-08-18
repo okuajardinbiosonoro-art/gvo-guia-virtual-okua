@@ -2,13 +2,29 @@
 
 Estado: `NOT_EXECUTED_ON_REAL_DEVICE`
 
+```text
+FIELD CERTIFICATION
+CLIENT INSTALLATION = 0
+```
+
 Este documento separa la evidencia automatizada del ensayo físico. Los mocks de navegador prueban el contrato funcional, pero no certifican cámara, enfoque, iluminación, impresión ni origen seguro del despliegue de campo.
 
-## Precondiciones
+## Perfiles de prueba
 
-- Ejecutar `npm run dev` después de conectar el servidor a la red de prueba.
-- Instalar y confiar `GVO_LOCAL_DEVELOPMENT_CA.cer` según `GVO_DEBT_015_LOCAL_HTTPS_DEVICE_SETUP.md`.
-- Abrir una URL `https://<IP-ACTUAL>:5173` impresa por Vite, nunca `http://<IP-LAN>`.
+El procedimiento de
+`GVO_DEBT_015_LOCAL_HTTPS_DEVICE_SETUP.md` puede usarse en un laboratorio
+controlado para depurar cámara. Instalar allí una CA de desarrollo no certifica
+el deployment final.
+
+La matriz de este documento sólo cambia el estado de campo cuando se ejecuta
+con el FQDN final, HTTPS confiable mediante la confianza normal del navegador y
+cero instalaciones en el dispositivo visitante.
+
+## Precondiciones de campo
+
+- Servir el build aprobado desde el PC de campo dentro de la red MikroTik.
+- Resolver el FQDN final bajo un dominio real controlado por OKÚA.
+- Abrir el FQDN por HTTPS sin advertencia y sin instalar CA o certificado.
 - Confirmar en el dispositivo que `window.isSecureContext === true` y que `navigator.mediaDevices.getUserMedia` existe.
 - Mostrar los QR desde un segundo dispositivo o imprimirlos sin recortar el quiet zone.
 - Usar únicamente los cuatro archivos de `docs/assets/qr/interstation/`.
@@ -29,7 +45,7 @@ Este documento separa la evidencia automatizada del ensayo físico. Los mocks de
 | Lifecycle            | Abrir scanner y probar cerrar, ocultar pestaña, cambiar ruta y completar | Todos los tracks terminan en cada caso                                           | `NOT_EXECUTED` |
 | iPhone SE 2 portrait | Repetir `/inicio` y gate de Mundo I en 375×667                           | Idioma, fullscreen, inicio, CTA QR, preview y close completos, sin corte lateral | `NOT_EXECUTED` |
 | Móvil landscape      | Abrir y cerrar scanner en 667×375                                        | Preview, estados y close íntegros; scroll interno disponible si fuera necesario  | `NOT_EXECUTED` |
-| Android HTTPS        | Instalar CA, abrir URL HTTPS impresa y pulsar Iniciar                    | Cámara habilitada, sin warning TLS y sin recortes del viewport                    | `NOT_EXECUTED` |
+| Android HTTPS        | Abrir el FQDN final sin instalar CA y pulsar Iniciar                     | Cámara habilitada, sin warning TLS y sin recortes del viewport                    | `NOT_EXECUTED` |
 | Revisión Mirador     | Volver a Mundo I–IV desde Mirador                                        | Return dock visible, sin gate QR, sin write y sin cámara automática              | `NOT_EXECUTED` |
 | W5→Final             | Completar Mundo V                                                        | Conserva el cierre existente hacia Mirador                                       | `NOT_EXECUTED` |
 
@@ -49,4 +65,8 @@ FIELD_CAMERA_SECURE_ORIGIN_CERTIFICATION = NOT_CERTIFIED
 FIELD_CAMERA_SECURE_ORIGIN_NOT_CERTIFIED
 ```
 
-La prueba humana previa confirmó bloqueo de cámara sobre `http://<IP-LAN>` tanto en iPhone como en Android. El ticket ahora configura HTTPS local dinámico y la prueba automatizada confirma `https:` + secure context; aun así, no se declara `field-ready` hasta repetir esta matriz en ambos dispositivos con la autoridad instalada y registrar el resultado real.
+La prueba humana previa confirmó bloqueo de cámara sobre `http://<IP-LAN>`
+tanto en iPhone como en Android. El HTTPS local dinámico confirma el contrato en
+laboratorio, pero no se declara el deployment certificado hasta repetir esta
+matriz en ambos dispositivos con el FQDN final, confianza normal del navegador
+y cero instalaciones del lado visitante.

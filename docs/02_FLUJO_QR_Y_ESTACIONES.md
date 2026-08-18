@@ -1,68 +1,84 @@
 # Flujo QR y estaciones
 
-El recorrido se organiza como una secuencia de pantallas locales. El acceso principal se piensa para QR físicos colocados en el espacio OKÚA.
+Actualizado: 2026-08-18
 
-## Orden del recorrido
+## Contrato del visitante
 
-1. Carga inicial pre-portada
-2. Portada / Intro
-3. Estación I — Mundo I: Raíz
-4. Estación II — Mundo II: Lía y el pulso invisible
-5. Estación III — Mundo III: Cuaderno Pixel de Pruebas
-6. Estación IV — Mundo IV: Mesa de sistema
-7. Estación V — Mundo V: Mapa del presente
-8. Final — Mirador final del jardín
+```text
+QR → navegador → experiencia
+INSTALACIONES EN EL DISPOSITIVO = 0
+AVANCE INTERESTACIÓN POR BOTÓN = PROHIBIDO
+```
 
-## Rutas base
+El visitante usa el navegador y la cámara integrada por GVO. No instala app,
+PWA, CA, certificado, extensión ni scanner externo.
 
-- `/`
-- `/carga`
-- `/portada`
-- `/transition/intro-to-station-1`
-- `/estacion/1`
-- `/estacion/2`
-- `/estacion/3`
-- `/estacion/4`
-- `/estacion/5`
-- `/final`
-- `/qr/:stationId`
+## Entrada al recorrido
 
-## Contrato de entrada QR
+```text
+Carga → /inicio → idioma + preflight de cámara → Portada → Mundo I
+```
 
-Las rutas locales `/qr/1` a `/qr/5` son enlaces físicos tipados; no abren un
-scanner interno ni solicitan cámara. Cada entrada se resuelve contra la misma
-regla secuencial usada por los guards de las estaciones:
+La ruta lógica `/qr/start` existe, pero su QR físico aún no se genera. También
+siguen diferidos el QR Wi-Fi y cualquier QR de red. Sólo se crearán después de
+cerrar MikroTik, hostname y TLS de campo.
 
-- con progreso suficiente, redirige a la estación solicitada;
-- sin progreso suficiente, redirige a la estación más avanzada autorizada;
-- con un identificador inválido, manipulado o fuera de `1…5`, aplica el mismo
-  fallback seguro;
-- la resolución es read-only respecto a `gvo.progress.v1` y no concede ni
-  inventa progreso.
+## Avance interestación
 
-La cámara nativa del dispositivo puede abrir la URL local codificada en un QR,
-pero GVO no activa `getUserMedia`, scanner, micrófono ni permisos sensibles.
+| Estación actual | Payload aceptado | Completion verificada | Transición |
+| --- | --- | --- | --- |
+| Mundo I | `/qr/w2` | Estación 1 | W1→W2 |
+| Mundo II | `/qr/w3` | Estación 2 | W2→W3 |
+| Mundo III | `/qr/w4` | Estación 3 | W3→W4 |
+| Mundo IV | `/qr/w5` | Estación 4 | W4→W5 |
 
-## Shell inmersivo
+Al terminar el contenido pedagógico se muestra el CTA para abrir el scanner,
+no para avanzar directamente. El scanner acepta coincidencia exacta después de
+`trim()`. No interpreta URL, scheme ni contenido ejecutable.
 
-Las rutas reales de Estaciones I–V y las cuatro subrutas de Mundo V comparten
-un único `ImmersiveModeControl`. El control solicita fullscreen estándar sólo
-después de un gesto explícito, respeta safe-area y reduced motion, y no se
-muestra en carga, portada, transiciones, Mirador, rutas QR intermedias ni rutas
-de desarrollo.
+```text
+lectura válida
+→ cierre de cámara y decoder
+→ escritura de completion
+→ relectura verificada
+→ transición automática
+```
 
-## Regla secuencial
+Un QR de otra estación o desconocido mantiene la ruta, no concede completion y
+permite seguir escaneando. Un fallo de almacenamiento bloquea la navegación y
+ofrece retry sin exigir un segundo escaneo.
 
-La Portada / Intro entrega el flujo a `/transition/intro-to-station-1`, que conduce a `/estacion/1`. El recorrido consolidado continúa por Mundo I y Mundo II hasta la transición definitiva `/transition/world-2-to-world-3`, que avanza automáticamente a `/estacion/3`.
+## QR físicos canónicos
 
-Mundo III exige la primera pasada `PLANTA → PROTOTIPO → SEÑAL → AJUSTADO`; después permite revisitas y habilita `Continuar`. El avance conduce a la transición W3→W4, cuyo copy sigue siendo `TEMP`.
+Directorio: [`assets/qr/interstation/`](assets/qr/interstation/README.md).
 
-Mundo IV exige la primera pasada `Planta → Bionosificador → ESP32 → MIDI → Wi‑Fi/UDP → Router → Sistema central → Sonido`. Al completar la cadena habilita CTA y revisitas. Estación IV está cerrada y aprobada; su salida usa la ruta W4→W5 existente, cuyo copy editorial continúa `TEMP`.
+```text
+gvo_qr_world1_to_world2_v01.* → /qr/w2
+gvo_qr_world2_to_world3_v01.* → /qr/w3
+gvo_qr_world3_to_world4_v01.* → /qr/w4
+gvo_qr_world4_to_world5_v01.* → /qr/w5
+```
 
-Mundo V posee una base Fable funcional con cuatro áreas (`PLANTAS → SISTEMA → ESPACIO → VISITANTE`) y revisitas posteriores. Sus visuales siguen siendo procedurales/reemplazables: la estación no está cerrada ni aprobada por revisión humana.
+Cada QR existe en PNG y SVG, usa blanco/negro opaco, ECC H y margen de cuatro
+módulos. No contiene IP, hostname ni URL absoluta.
 
-## Transición entre mundos
+## Revisita y cierre
 
-La pantalla de transición reutilizable cubre los tramos del recorrido. La transición W2→W3 es pasiva y automática, usa `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…`, dura 2300 ms en movimiento normal y 1000 ms en reduced motion, y no expone CTA, link ni hotspot. La preview técnica se conserva en `/dev/transition-world`.
+La revisita autorizada desde Mirador omite el gate QR, no abre cámara y no
+reescribe progreso. El return dock vuelve a `/final`. Mundo V completa su 4/4,
+verifica progreso global y navega por la transición W5→Final sin scanner
+adicional.
 
-Las rutas W3→W4, W4→W5 y W5→Final existen y funcionan con el componente compartido, pero su copy permanece `TEMP`; no se documentan como transiciones definitivas. Estación IV no modifica esos contratos durante 018E.
+## Despliegue de campo
+
+Los QR interestación son independientes de la red porque contienen tokens
+relativos. El QR de inicio futuro sí depende de una dirección estable y sólo se
+genera después de cerrar:
+
+1. red MikroTik;
+2. hostname/FQDN controlado por OKÚA;
+3. TLS confiable sin instalación en visitantes;
+4. certificación física de cámara.
+
+La CA local de `npm run dev` es sólo laboratorio. No es parte del contrato del
+visitante ni se distribuye como solución final.
