@@ -9,6 +9,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldTwoToWorldThreeTransitionRoute } from "../../app/routes";
 import { GestureHint } from "../../components/GestureHint/GestureHint";
 import {
@@ -497,7 +498,6 @@ export function World2RootScreen() {
   const rootRef = useRef<HTMLElement>(null);
   const plantContactHotspotRef = useRef<HTMLButtonElement>(null);
   const signalRevealControlRef = useRef<HTMLButtonElement>(null);
-  const continueButtonRef = useRef<HTMLButtonElement>(null);
   const checkpointRetryButtonRef = useRef<HTMLButtonElement>(null);
   const completionLockRef = useRef(false);
   const checkpointWriteLockRef = useRef(false);
@@ -513,31 +513,31 @@ export function World2RootScreen() {
 
     return Math.round(window.visualViewport?.height ?? window.innerHeight);
   });
-  const [activeLayerId, setActiveLayerId] =
-    useState<World2LayerId>(initialState.activeLayerId);
+  const [activeLayerId, setActiveLayerId] = useState<World2LayerId>(
+    initialState.activeLayerId,
+  );
   const [visitedLayerIds, setVisitedLayerIds] = useState<
     ReadonlySet<World2LayerId>
   >(() => new Set<World2LayerId>(initialState.visitedLayerIds));
-  const [highestUnlockedLayerOrder, setHighestUnlockedLayerOrder] =
-    useState<World2CheckpointState["highestUnlockedLayerOrder"]>(
-      initialState.highestUnlockedLayerOrder,
-    );
+  const [highestUnlockedLayerOrder, setHighestUnlockedLayerOrder] = useState<
+    World2CheckpointState["highestUnlockedLayerOrder"]
+  >(initialState.highestUnlockedLayerOrder);
   const [journeyComplete, setJourneyComplete] = useState(
     initialState.resultState === "ready_to_continue",
   );
   const [completionPhase, setCompletionPhase] =
     useState<CompletionPhase>("idle");
-  const [sonicConvergenceComplete, setSonicConvergenceComplete] =
-    useState(initialState.resultState === "ready_to_continue");
+  const [sonicConvergenceComplete, setSonicConvergenceComplete] = useState(
+    initialState.resultState === "ready_to_continue",
+  );
   const [softMessage, setSoftMessage] = useState<string | null>(null);
-  const [signalRevealState, setSignalRevealState] =
-    useState<SignalRevealState>(
-      initialState.completedRequiredInteractions.includes(
-        "signal_measured_wave_seen",
-      )
-        ? "expanded"
-        : "idle",
-    );
+  const [signalRevealState, setSignalRevealState] = useState<SignalRevealState>(
+    initialState.completedRequiredInteractions.includes(
+      "signal_measured_wave_seen",
+    )
+      ? "expanded"
+      : "idle",
+  );
   const [plantContactReadoutState, setPlantContactReadoutState] =
     useState<PlantContactReadoutState>(
       initialState.completedRequiredInteractions.includes(
@@ -550,11 +550,10 @@ export function World2RootScreen() {
     useState<CaptureTimelineStepId>(initialState.capture.currentStepId);
   const [captureVisitedStepIds, setCaptureVisitedStepIds] = useState<
     ReadonlySet<CaptureTimelineStepId>
-  >(() =>
-    new Set<CaptureTimelineStepId>(initialState.capture.visitedStepIds),
+  >(() => new Set<CaptureTimelineStepId>(initialState.capture.visitedStepIds));
+  const [captureTimelineInteracted, setCaptureTimelineInteracted] = useState(
+    initialState.capture.visitedStepIds.length > 1,
   );
-  const [captureTimelineInteracted, setCaptureTimelineInteracted] =
-    useState(initialState.capture.visitedStepIds.length > 1);
   const [mappingFirstRunComplete, setMappingFirstRunComplete] = useState(
     initialState.mappingFirstRunComplete,
   );
@@ -611,8 +610,7 @@ export function World2RootScreen() {
         .map((layer) => layer.id),
       highestUnlockedLayerOrder,
       completedRequiredInteractions: requiredInteractionOrder.filter(
-        (interactionId) =>
-          completedRequiredInteractions.has(interactionId),
+        (interactionId) => completedRequiredInteractions.has(interactionId),
       ),
       capture: {
         currentStepId: captureTimelineStepId,
@@ -705,7 +703,11 @@ export function World2RootScreen() {
 
   useEffect(() => {
     if (completionPhase === "error") {
-      continueButtonRef.current?.focus({ preventScroll: true });
+      document
+        .querySelector<HTMLButtonElement>(
+          '[data-interstation-qr-action="retry-completion"]',
+        )
+        ?.focus({ preventScroll: true });
     }
   }, [completionPhase]);
 
@@ -765,11 +767,14 @@ export function World2RootScreen() {
         return;
       }
       if (action.kind === "result_completion") {
-        continueButtonRef.current?.focus({ preventScroll: true });
+        rootRef.current
+          ?.querySelector<HTMLButtonElement>(
+            '[data-interstation-qr-action="open"]',
+          )
+          ?.focus({ preventScroll: true });
         return;
       }
-      const layerId =
-        action.kind === "layer_change" ? action.layerId : "mapeo";
+      const layerId = action.kind === "layer_change" ? action.layerId : "mapeo";
       rootRef.current
         ?.querySelector<HTMLButtonElement>(`[data-world2-layer="${layerId}"]`)
         ?.focus({ preventScroll: true });
@@ -807,9 +812,7 @@ export function World2RootScreen() {
     setMappingFirstRunComplete(nextState.mappingFirstRunComplete);
     setResultState(nextState.resultState);
     setJourneyComplete(nextState.resultState === "ready_to_continue");
-    setSonicConvergenceComplete(
-      nextState.resultState === "ready_to_continue",
-    );
+    setSonicConvergenceComplete(nextState.resultState === "ready_to_continue");
     pendingCheckpointActionRef.current = null;
     setPendingCheckpointAction(null);
 
@@ -852,7 +855,10 @@ export function World2RootScreen() {
     if (!written.ok) {
       pendingCheckpointActionRef.current = action;
       setPendingCheckpointAction(action);
-      if (written.reason === "corrupt" || written.reason === "unknown_version") {
+      if (
+        written.reason === "corrupt" ||
+        written.reason === "unknown_version"
+      ) {
         setCheckpointRecoveryStatus(written.reason);
         setCheckpointResetConfirmation(false);
       }
@@ -968,9 +974,7 @@ export function World2RootScreen() {
       ...currentStableState,
       activeLayerId: layerId,
       visitedLayerIds: nextVisitedLayerIds,
-      highestUnlockedLayerOrder: highestUnlockedForVisited(
-        nextVisitedLayerIds,
-      ),
+      highestUnlockedLayerOrder: highestUnlockedForVisited(nextVisitedLayerIds),
       resultState: nextResultState,
     };
 
@@ -1030,11 +1034,10 @@ export function World2RootScreen() {
       return;
     }
 
-    const nextVisitedStepIds = currentStableState.capture.visitedStepIds.includes(
-      stepId,
-    )
-      ? [...currentStableState.capture.visitedStepIds]
-      : [...currentStableState.capture.visitedStepIds, stepId];
+    const nextVisitedStepIds =
+      currentStableState.capture.visitedStepIds.includes(stepId)
+        ? [...currentStableState.capture.visitedStepIds]
+        : [...currentStableState.capture.visitedStepIds, stepId];
     const captureComplete =
       nextVisitedStepIds.length === captureTimelineSteps.length;
     persistCheckpointAction({
@@ -1078,9 +1081,9 @@ export function World2RootScreen() {
     });
   }
 
-  function continueJourney() {
+  function persistCompletionAfterQr() {
     if (!isReadyToContinue || completionLockRef.current) {
-      return;
+      return false;
     }
 
     const checkpoint = readWorld2Checkpoint();
@@ -1094,7 +1097,7 @@ export function World2RootScreen() {
         checkpoint.status === "storage_unavailable"
       ) {
         setCheckpointRecoveryStatus(checkpoint.status);
-        return;
+        return false;
       }
       if (
         !persistCheckpointAction({
@@ -1102,7 +1105,7 @@ export function World2RootScreen() {
           nextState: currentStableState,
         })
       ) {
-        return;
+        return false;
       }
     }
 
@@ -1112,11 +1115,11 @@ export function World2RootScreen() {
     if (!result.ok) {
       completionLockRef.current = false;
       setCompletionPhase("error");
-      return;
+      return false;
     }
 
     setCompletionPhase("complete");
-    navigate(worldTwoToWorldThreeTransitionRoute);
+    return true;
   }
 
   return (
@@ -1159,8 +1162,8 @@ export function World2RootScreen() {
       data-world2-slot-count={Object.keys(world2EditorialSlots).length}
       data-world2-label-system="015V"
       data-world2-nav-mode="stable-visible-row"
-      data-sensitive-permissions="blocked"
-      data-qr-camera="blocked"
+      data-sensitive-permissions="camera-on-explicit-gesture"
+      data-qr-camera="interstation-gate"
       data-critical-assets-ready={initialPreload.ready ? "true" : "false"}
       data-critical-assets-status={initialPreload.status}
       data-world2-exit-target={
@@ -1626,8 +1629,7 @@ export function World2RootScreen() {
                   >
                     <span>{PROGRESS_SAVE_RETRY_LABEL}</span>
                   </button>
-                ) : checkpointRecoveryStatus &&
-                  !checkpointResetConfirmation ? (
+                ) : checkpointRecoveryStatus && !checkpointResetConfirmation ? (
                   <button
                     className="world2-action world2-action--continue"
                     type="button"
@@ -1666,32 +1668,14 @@ export function World2RootScreen() {
                     <span>{PROGRESS_SAVE_RETRY_LABEL}</span>
                   </button>
                 ) : isReadyToContinue ? (
-                  <button
-                    ref={continueButtonRef}
-                    className="world2-action world2-action--continue"
-                    type="button"
-                    aria-busy={
-                      completionPhase === "persisting" ? "true" : undefined
+                  <InterstationQrGate
+                    originWorld={2}
+                    ready={isReadyToContinue}
+                    persistCompletion={persistCompletionAfterQr}
+                    onCompleted={() =>
+                      navigate(worldTwoToWorldThreeTransitionRoute)
                     }
-                    disabled={completionPhase === "persisting"}
-                    data-world2-slot-id="W2_CONTINUE_BTN_01"
-                    data-world2-exit-action="navigate_to_transition"
-                    data-editorial-status="TEMP"
-                    onClick={continueJourney}
-                  >
-                    <img
-                      src={world2RuntimeAssets.ctaButton}
-                      alt=""
-                      aria-hidden="true"
-                      data-runtime-asset={world2RuntimeAssets.ctaButton}
-                      loading="lazy"
-                    />
-                    <span>
-                      {completionPhase === "error"
-                        ? PROGRESS_SAVE_RETRY_LABEL
-                        : "Continuar"}
-                    </span>
-                  </button>
+                  />
                 ) : null}
               </div>
             </div>
@@ -1745,9 +1729,9 @@ export function World2RootScreen() {
                         ? `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. Primero toca ${requiredInteractionCopy[requiredInteractionGate].triggerLabel}.`
                         : isGated && layer.id === "resultado_mediado"
                           ? `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. Espera a que termine la primera secuencia de Mapeo.`
-                        : status === "next"
-                          ? `Siguiente capa. Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel} disponible.`
-                          : `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. ${getStatusLabel(status)}.`
+                          : status === "next"
+                            ? `Siguiente capa. Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel} disponible.`
+                            : `Capa ${layer.order} de ${world2LayerCount}. ${copy.accessibleLabel}. ${getStatusLabel(status)}.`
                     }
                     aria-describedby={`world2-accessible-${layer.id}`}
                     onClick={() => selectLayer(layer.id)}

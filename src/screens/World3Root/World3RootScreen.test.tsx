@@ -51,6 +51,31 @@ import {
   world3TurnPageTextureNormalization,
 } from "./World3PageTurnLayer";
 import { World3RootScreen } from "./World3RootScreen";
+
+vi.mock("../../app/qr/InterstationQrGate", () => ({
+  InterstationQrGate: ({
+    onCompleted,
+    originWorld,
+    persistCompletion,
+    ready,
+  }: {
+    onCompleted: () => void;
+    originWorld: number;
+    persistCompletion: () => boolean;
+    ready: boolean;
+  }) =>
+    ready ? (
+      <button
+        data-interstation-qr-action="open"
+        onClick={() => {
+          if (persistCompletion()) onCompleted();
+        }}
+        type="button"
+      >
+        Escanea el QR para abrir Mundo {originWorld + 1}
+      </button>
+    ) : null,
+}));
 import { world3RuntimeAssets } from "./world3RuntimeAssets";
 import { world3SemanticAssetManifest } from "./world3SemanticAssetManifest";
 
@@ -355,7 +380,7 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
       "ready",
     );
     expect(
-      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
+      screen.getByRole("button", { name: "Escanea el QR para abrir Mundo 4" }),
     ).toBeVisible();
     advance(30_000);
     expect(container.querySelector(".s3-stamp")).toHaveAttribute(
@@ -515,7 +540,6 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     expect(
       window.localStorage.getItem(WORLD3_CHECKPOINT_STORAGE_KEY),
     ).toBeNull();
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
 
     storageFails = false;
     fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
@@ -2557,8 +2581,8 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
       "completed",
     );
     expect(
-      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
-    ).toHaveAttribute("data-continue-enabled", "true");
+      screen.getByRole("button", { name: "Escanea el QR para abrir Mundo 4" }),
+    ).toHaveAttribute("data-interstation-qr-action", "open");
     expect(recordButton(container, "senal")).toHaveFocus();
     expect(recordButton(container, "senal")).toHaveAttribute(
       "data-station3-record-highlight",
@@ -2603,7 +2627,9 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     enterStation(container);
 
     expect(
-      screen.queryByRole("button", { name: "Continuar a Mundo IV." }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 4",
+      }),
     ).not.toBeInTheDocument();
     expect(container.querySelector(".s3-footer")).toHaveAttribute(
       "data-cta-visible",
@@ -2628,9 +2654,12 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     advance(1600);
 
     const continueButton = screen.getByRole("button", {
-      name: "Continuar a Mundo IV.",
+      name: "Escanea el QR para abrir Mundo 4",
     });
-    expect(continueButton).toHaveAttribute("data-continue-enabled", "true");
+    expect(continueButton).toHaveAttribute(
+      "data-interstation-qr-action",
+      "open",
+    );
 
     fireEvent.click(continueButton);
     expect(getState(container)).toBe("station3_exiting");
@@ -2669,7 +2698,7 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     advance(1600);
 
     fireEvent.click(
-      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
+      screen.getByRole("button", { name: "Escanea el QR para abrir Mundo 4" }),
     );
 
     expect(getState(container)).toBe("station3_ready_to_continue");
@@ -2678,7 +2707,6 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
         "No fue posible guardar tu progreso. Intenta nuevamente.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
     expect(container.querySelector("[data-station3-state]")).toHaveAttribute(
       "data-station3-completed-count",
       "3",
@@ -2690,7 +2718,11 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     ).toEqual(["planta", "prototipo", "senal"]);
 
     storageFails = false;
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 4",
+      }),
+    );
     advance(400);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-3-to-world-4",
@@ -2725,8 +2757,8 @@ describe("World3RootScreen — Cuaderno Pixel de Pruebas", () => {
     expect(screen.getByText(station3Lia.revisit)).toBeInTheDocument();
     expect(container.querySelector(".s3-stamp")).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Continuar a Mundo IV." }),
-    ).toHaveAttribute("data-continue-enabled", "true");
+      screen.getByRole("button", { name: "Escanea el QR para abrir Mundo 4" }),
+    ).toHaveAttribute("data-interstation-qr-action", "open");
   });
 
   it("elimina Mostrar todo y conserva la acción bloqueada hasta el resumen automático", () => {

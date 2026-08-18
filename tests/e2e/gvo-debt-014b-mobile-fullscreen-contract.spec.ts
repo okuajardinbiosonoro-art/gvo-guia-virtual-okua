@@ -23,6 +23,18 @@ async function installMobileContract(page: Page, mode: MobileContractMode) {
       configurable: true,
       get: () => ({ isActive: false, hasBeenActive: false }),
     });
+    const mediaDevices = navigator.mediaDevices ?? {};
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: mediaDevices,
+    });
+    Object.defineProperty(mediaDevices, "getUserMedia", {
+      configurable: true,
+      value: async () =>
+        ({
+          getTracks: () => [{ stop: () => undefined }],
+        }) as unknown as MediaStream,
+    });
 
     const enter = function enterFullscreen(this: Element) {
       state.requests += 1;
@@ -52,8 +64,7 @@ async function installMobileContract(page: Page, mode: MobileContractMode) {
 
     Object.defineProperty(Document.prototype, "fullscreenElement", {
       configurable: true,
-      get: () =>
-        contractMode === "webkit" ? null : state.fullscreenElement,
+      get: () => (contractMode === "webkit" ? null : state.fullscreenElement),
     });
     Object.defineProperty(Document.prototype, "featurePolicy", {
       configurable: true,
@@ -169,9 +180,7 @@ test.describe("GVO_DEBT_014B MOBILE_CONTRACT_AUTOMATION — not real-device evid
     await expect(page.locator("#diagnostic")).toContainText(
       '"permissionsPolicyFullscreen"',
     );
-    await expect(page.locator("#diagnostic")).toContainText(
-      '"requestOutcome"',
-    );
+    await expect(page.locator("#diagnostic")).toContainText('"requestOutcome"');
   });
 
   test("standard API: tap, SPA persistence and exit share one global authority", async ({
@@ -297,9 +306,7 @@ test.describe("GVO_DEBT_014B MOBILE_CONTRACT_AUTOMATION — not real-device evid
   }) => {
     await installMobileContract(page, "standard");
     await page.goto("/estacion/1");
-    const controls = page.locator(
-      "[data-gvo-immersive-control='fullscreen']",
-    );
+    const controls = page.locator("[data-gvo-immersive-control='fullscreen']");
     await expect(controls).toHaveCount(1);
     await expect(
       page.locator("[data-gvo-immersive-safe-area]", { has: controls }),

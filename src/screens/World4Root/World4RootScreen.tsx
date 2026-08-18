@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldFourToWorldFiveTransitionRoute } from "../../app/routes";
 import { OrientationHint } from "../../components/OrientationHint/OrientationHint";
 import {
@@ -31,7 +32,7 @@ import {
   PROGRESS_SAVE_ERROR_COPY,
   PROGRESS_SAVE_RETRY_LABEL,
 } from "../../shared/progress/progressSaveError";
-import { station4Exit, station4Lia, station4Nodes } from "./station4Content";
+import { station4Lia, station4Nodes } from "./station4Content";
 import { useWorld4MotionController } from "./useWorld4MotionController";
 import { WORLD4_BACKPLATE_SLICES } from "./world4AssetManifest";
 import type { World4AmbientDensity } from "./World4AmbientLayer";
@@ -268,7 +269,6 @@ export function World4RootScreen() {
   const stationMarkedRef = useRef(persistedRevisit);
   const navigationStartedRef = useRef(false);
   const tapHintAnchorRef = useRef<HTMLButtonElement>(null);
-  const retryButtonRef = useRef<HTMLButtonElement>(null);
   const checkpointRetryButtonRef = useRef<HTMLButtonElement>(null);
 
   const checkpointInputBlocked =
@@ -295,7 +295,11 @@ export function World4RootScreen() {
 
   useEffect(() => {
     if (completionFailed && phase === "exit_ready") {
-      retryButtonRef.current?.focus({ preventScroll: true });
+      document
+        .querySelector<HTMLButtonElement>(
+          '[data-interstation-qr-action="retry-completion"]',
+        )
+        ?.focus({ preventScroll: true });
     }
   }, [completionFailed, phase]);
 
@@ -376,37 +380,8 @@ export function World4RootScreen() {
   );
 
   const onChainSettled = useCallback(() => {
-    if (!persistStationCompletion()) {
-      const written = writeWorld4Checkpoint({
-        highestSettledIndex: LAST_INDEX as World4SettledIndex,
-        resumeMode: "completion_retry",
-      });
-      if (!written.ok) {
-        if (
-          written.reason === "corrupt" ||
-          written.reason === "unknown_version"
-        ) {
-          setCheckpointRecoveryStatus(written.reason);
-          setCheckpointResetConfirmation(false);
-        } else {
-          setPendingCheckpointAction({ kind: "completion_retry" });
-        }
-      } else {
-        setResumeMode("completion_retry");
-      }
-      setPhase("exit_ready");
-      return;
-    }
-
-    const removed = removeWorld4Checkpoint();
-    if (!removed.ok) {
-      setPendingCheckpointAction({ kind: "cleanup" });
-      setLiaNote(PROGRESS_SAVE_ERROR_COPY);
-    } else {
-      setResumeMode("completed");
-    }
     setPhase("exit_ready");
-  }, [persistStationCompletion]);
+  }, []);
 
   const onExitSettled = useCallback(() => {
     navigate(worldFourToWorldFiveTransitionRoute);
@@ -525,7 +500,11 @@ export function World4RootScreen() {
     if (state === "active") {
       return;
     }
-    if (state === "completed" && !stationMarkedRef.current) {
+    if (
+      state === "completed" &&
+      !stationMarkedRef.current &&
+      phase !== "exit_ready"
+    ) {
       return;
     }
 
@@ -542,34 +521,33 @@ export function World4RootScreen() {
     }
   }
 
-  function handleExit() {
+  function persistCompletionAfterQr() {
     setTapHintDismissSignal((value) => value + 1);
     if (
       phase !== "exit_ready" ||
       motion.inputLocked ||
       navigationStartedRef.current
     ) {
-      return;
+      return false;
     }
 
-    const completionRetryOnly =
-      completionFailed || resumeMode === "completion_retry";
     if (!persistStationCompletion()) {
-      return;
+      return false;
     }
 
     const removed = removeWorld4Checkpoint();
     if (!removed.ok) {
       setPendingCheckpointAction({ kind: "cleanup" });
       setLiaNote(PROGRESS_SAVE_ERROR_COPY);
-      return;
+      return false;
     }
+    setPendingCheckpointAction(null);
     setResumeMode("completed");
-    if (completionRetryOnly) {
-      setLiaNote(null);
-      return;
-    }
+    setLiaNote(null);
+    return true;
+  }
 
+  function startExitAfterQr() {
     const epoch = motion.startExit();
     if (epoch === null) {
       return;
@@ -603,7 +581,11 @@ export function World4RootScreen() {
         setPendingCheckpointAction(null);
         setLiaNote(null);
         setResumeMode("completed");
-        retryButtonRef.current?.focus({ preventScroll: true });
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-interstation-qr-action="retry-completion"]',
+          )
+          ?.focus({ preventScroll: true });
       }
       return;
     }
@@ -639,7 +621,11 @@ export function World4RootScreen() {
       setResumeMode("completion_retry");
       setCompletionFailed(true);
       setLiaNote(PROGRESS_SAVE_ERROR_COPY);
-      retryButtonRef.current?.focus({ preventScroll: true });
+      document
+        .querySelector<HTMLButtonElement>(
+          '[data-interstation-qr-action="retry-completion"]',
+        )
+        ?.focus({ preventScroll: true });
       return;
     }
     applyPersistedStep(target);
@@ -799,8 +785,8 @@ export function World4RootScreen() {
       className="s4-screen"
       data-display-mode={displayMode}
       data-layout-contract="controls-stage-gap-then-trailing-space"
-      data-qr-camera="blocked"
-      data-sensitive-permissions="blocked"
+      data-qr-camera="interstation-gate"
+      data-sensitive-permissions="camera-on-explicit-gesture"
       data-station4-active-node={activeNode.id}
       data-station4-card-motion={cardMotion}
       data-station4-document-visibility={documentVisible ? "visible" : "hidden"}
@@ -932,46 +918,13 @@ export function World4RootScreen() {
                   {PROGRESS_SAVE_RETRY_LABEL}
                 </span>
               </button>
-            ) : phase === "exit_ready" ||
-              phase === "exiting" ||
-              motion.visualPhase === "exit_reveal" ? (
-              <button
-                ref={retryButtonRef}
-                aria-label={
-                  completionFailed || pendingCheckpointAction
-                    ? PROGRESS_SAVE_RETRY_LABEL
-                    : station4Exit.accessibleLabel
-                }
-                className="s4-exit"
-                data-backplate={WORLD4_BACKPLATE_SLICES.openWorld5.asset}
-                data-border-image-slice={
-                  WORLD4_BACKPLATE_SLICES.openWorld5.borderImageSlice
-                }
-                data-runtime-asset={WORLD4_BACKPLATE_SLICES.openWorld5.asset}
-                data-stage-layer="z12"
-                data-station4-action="open-world5"
-                disabled={phase === "exiting" || motion.inputLocked}
-                onClick={
-                  pendingCheckpointAction ? retryPendingCheckpoint : handleExit
-                }
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    if (pendingCheckpointAction) retryPendingCheckpoint();
-                    else handleExit();
-                  }
-                }}
-                type="button"
-              >
-                <span className="s4-exit__label">
-                  {completionFailed || pendingCheckpointAction
-                    ? PROGRESS_SAVE_RETRY_LABEL
-                    : station4Exit.label}
-                </span>
-                <span aria-hidden="true" className="s4-exit__arrow">
-                  ›
-                </span>
-              </button>
+            ) : phase === "exit_ready" ? (
+              <InterstationQrGate
+                originWorld={4}
+                ready={!motion.inputLocked}
+                persistCompletion={persistCompletionAfterQr}
+                onCompleted={startExitAfterQr}
+              />
             ) : null}
           </div>
         </div>

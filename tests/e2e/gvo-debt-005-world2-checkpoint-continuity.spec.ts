@@ -1,5 +1,10 @@
 import { expect, test, type BrowserContext, type Page } from "@playwright/test";
 
+import {
+  installInterstationQrTestMode,
+  scanInterstationQrForTest,
+} from "./support/interstation-qr";
+
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
@@ -66,7 +71,9 @@ async function completeCaptureThroughMapping(page: Page) {
 
   const capture = page.locator('[data-world2-capture-timeline="016R"]');
   if (await capture.isVisible()) {
-    if ((await capture.getAttribute("data-world2-capture-complete")) !== "true") {
+    if (
+      (await capture.getAttribute("data-world2-capture-complete")) !== "true"
+    ) {
       await page
         .getByRole("button", { name: "Mostrar paso 2: Señal tomada" })
         .click();
@@ -123,6 +130,7 @@ async function expectSameWorld2State(page: Page, expected: string) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await installInterstationQrTestMode(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
 });
@@ -134,7 +142,10 @@ test("GVO_DEBT_005 recorrido parcial restaura readouts, Captura, visited y gates
   const root = page.locator("[data-world2-state]");
   await expect(root).toHaveAttribute("data-world2-active-layer", "planta_viva");
   expect(
-    await page.evaluate((key) => localStorage.getItem(key), WORLD2_CHECKPOINT_KEY),
+    await page.evaluate(
+      (key) => localStorage.getItem(key),
+      WORLD2_CHECKPOINT_KEY,
+    ),
   ).toBeNull();
 
   await page.locator('[data-plant-contact-hotspot="016J"]').click();
@@ -173,19 +184,16 @@ test("GVO_DEBT_005 recorrido parcial restaura readouts, Captura, visited y gates
   await page
     .getByRole("button", { name: "Mostrar paso 3: Datos al sistema" })
     .click();
-  await page
-    .getByRole("button", { name: "Mostrar paso 1: Contacto" })
-    .click();
+  await page.getByRole("button", { name: "Mostrar paso 1: Contacto" }).click();
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(timeline).toHaveAttribute("data-world2-capture-step", "contact");
   await expect(timeline).toHaveAttribute(
     "data-world2-capture-visited",
     "contact,signal,system",
   );
-  await expect(page.locator('[data-world2-layer="acondicionamiento"]')).toHaveAttribute(
-    "data-layer-state",
-    "next",
-  );
+  await expect(
+    page.locator('[data-world2-layer="acondicionamiento"]'),
+  ).toHaveAttribute("data-layer-state", "next");
   await expect(root).toHaveAttribute("data-world2-visited-layers", "1,2,3");
   await expect(root).toHaveAttribute("data-world2-highest-unlocked-layer", "4");
 });
@@ -212,7 +220,10 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
   );
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(mapping).toHaveAttribute("data-world2-mapping-step", "3");
-  await expect(mapping).toHaveAttribute("data-world2-mapping-controls", "review");
+  await expect(mapping).toHaveAttribute(
+    "data-world2-mapping-controls",
+    "review",
+  );
 
   await page.locator('[data-world2-layer="resultado_mediado"]').click();
   const result = page.locator(
@@ -222,8 +233,13 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
     timeout: 3_500,
   });
   await page.reload({ waitUntil: "domcontentloaded" });
-  await expect(result).toHaveAttribute("data-world2-option6-stage", "intensity");
-  await expect(page.getByRole("button", { name: "Continuar" })).toBeVisible({
+  await expect(result).toHaveAttribute(
+    "data-world2-option6-stage",
+    "intensity",
+  );
+  await expect(
+    page.locator('[data-interstation-origin-world="2"]'),
+  ).toBeVisible({
     timeout: 12_000,
   });
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -231,11 +247,14 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
   await expect(result).toHaveAttribute("data-world2-option6-complete", "true");
 
   expect(await completedStations(page)).toEqual([1]);
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await scanInterstationQrForTest(page, 2);
   await expect.poll(() => completedStations(page)).toEqual([1, 2]);
-  await expect(page).toHaveURL(/\/(transition\/world-2-to-world-3|estacion\/3)$/i, {
-    timeout: 10_000,
-  });
+  await expect(page).toHaveURL(
+    /\/(transition\/world-2-to-world-3|estacion\/3)$/i,
+    {
+      timeout: 10_000,
+    },
+  );
 });
 
 test("GVO_DEBT_005 error y retry preservan UI y no repiten timers", async ({
@@ -264,15 +283,21 @@ test("GVO_DEBT_005 error y retry preservan UI y no repiten timers", async ({
   const result = page.locator(
     '[data-world2-option6-mode="final-sonic-convergence"]',
   );
-  await expect(result).toHaveAttribute("data-world2-option6-stage", "resolved", {
-    timeout: 7_000,
-  });
+  await expect(result).toHaveAttribute(
+    "data-world2-option6-stage",
+    "resolved",
+    {
+      timeout: 7_000,
+    },
+  );
   await expect(page.getByRole("button", { name: "Reintentar" })).toBeFocused({
     timeout: 4_000,
   });
   await expect(page.getByRole("button", { name: "Continuar" })).toHaveCount(0);
   await page.getByRole("button", { name: "Reintentar" }).click();
-  await expect(page.getByRole("button", { name: "Continuar" })).toBeVisible();
+  await expect(
+    page.locator('[data-interstation-origin-world="2"]'),
+  ).toBeVisible();
   await expect(result).toHaveAttribute("data-world2-option6-stage", "resolved");
   await page.waitForTimeout(2_500);
   await expect(result).toHaveAttribute("data-world2-option6-stage", "resolved");
@@ -355,7 +380,7 @@ test("GVO_DEBT_005 reapertura, revisita desde Final y reset de siete keys", asyn
   await page.locator('[data-final-review-world="2"]').click();
   await expectWorld2Review(page);
   await page.locator('[data-world2-layer="resultado_mediado"]').click();
-  await expect(page.getByRole("button", { name: "Continuar" })).toBeVisible();
+  await expect(page.locator("[data-interstation-qr-gate]")).toHaveCount(0);
   await expect(
     page.locator('[data-world2-option6-stage="resolved"]'),
   ).toBeVisible();

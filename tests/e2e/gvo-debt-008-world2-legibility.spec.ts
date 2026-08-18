@@ -208,15 +208,15 @@ async function seedCompletedWorld2(page: Page) {
 }
 
 async function writeSignalBeforeReveal(page: Page) {
-  await page.evaluate(({ checkpoint, checkpointKey }) => {
-    localStorage.setItem(
-      checkpointKey,
-      JSON.stringify(checkpoint),
-    );
-  }, {
-    checkpoint: SIGNAL_BEFORE_REVEAL_CHECKPOINT,
-    checkpointKey: WORLD2_CHECKPOINT_KEY,
-  });
+  await page.evaluate(
+    ({ checkpoint, checkpointKey }) => {
+      localStorage.setItem(checkpointKey, JSON.stringify(checkpoint));
+    },
+    {
+      checkpoint: SIGNAL_BEFORE_REVEAL_CHECKPOINT,
+      checkpointKey: WORLD2_CHECKPOINT_KEY,
+    },
+  );
 }
 
 async function seedSignalBeforeReveal(page: Page) {
@@ -279,7 +279,19 @@ async function activateLayer(page: Page, layer: (typeof LAYERS)[number]) {
     await expect(
       page.locator('[data-world2-option6-mode="final-sonic-convergence"]'),
     ).toBeVisible();
-    await expect(page.getByRole("button", { name: "Continuar" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Continuar" })).toHaveCount(
+      0,
+    );
+    const reviewActive = await page
+      .locator('[data-final-review-active="true"]')
+      .count();
+    if (reviewActive > 0) {
+      await expect(page.locator("[data-interstation-qr-gate]")).toHaveCount(0);
+    } else {
+      await expect(
+        page.locator('[data-interstation-origin-world="2"]'),
+      ).toBeVisible();
+    }
   }
 }
 
@@ -620,7 +632,10 @@ test("refinamientos humanos: Planta despeja a Lía y Señal conserva el contacto
   await seedSignalBeforeReveal(page);
   const signalCinema = page.locator('[data-signal-cinema="016J"]');
   const signalProbe = page.locator(".world2-signal-cinema__static-base");
-  await expect(signalCinema).toHaveAttribute("data-signal-reveal-state", "idle");
+  await expect(signalCinema).toHaveAttribute(
+    "data-signal-reveal-state",
+    "idle",
+  );
   await expect(signalProbe).toBeVisible();
   await expect(page.getByRole("button", { name: "Onda medida" })).toBeVisible();
   if (PHASE === "after") {
@@ -629,11 +644,15 @@ test("refinamientos humanos: Planta despeja a Lía y Señal conserva el contacto
       "probe-to-plant",
     );
   }
-  await saveEvidence("portrait-390x844-senal-before-reveal", {
-    plantLia: plantLiaRect,
-    plantReadout: plantReadoutRect,
-    signalProbe: await signalProbe.boundingBox(),
-  }, page);
+  await saveEvidence(
+    "portrait-390x844-senal-before-reveal",
+    {
+      plantLia: plantLiaRect,
+      plantReadout: plantReadoutRect,
+      signalProbe: await signalProbe.boundingBox(),
+    },
+    page,
+  );
 });
 
 test("regreso desde Mirador conserva los refinamientos y separa los controles", async ({
@@ -656,10 +675,14 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   expect(plantReadoutRect!.x + plantReadoutRect!.width).toBeLessThanOrEqual(
     plantLiaRect!.x + 1,
   );
-  await saveEvidence("review-portrait-390x844-planta_viva", {
-    plantLia: plantLiaRect,
-    plantReadout: plantReadoutRect,
-  }, page);
+  await saveEvidence(
+    "review-portrait-390x844-planta_viva",
+    {
+      plantLia: plantLiaRect,
+      plantReadout: plantReadoutRect,
+    },
+    page,
+  );
 
   await page.locator('[data-world2-layer="senal"]').click();
   const signalCinema = page.locator('[data-signal-cinema="016J"]');
@@ -674,13 +697,17 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   expect(reviewDockRect).not.toBeNull();
   expect(signalControlRect).not.toBeNull();
   expect(overlapArea(reviewDockRect!, signalControlRect!)).toBe(0);
-  await saveEvidence("review-portrait-390x844-senal-expanded", {
-    reviewDock: reviewDockRect,
-    signalControl: signalControlRect,
-    signalProbe: await page
-      .locator(".world2-signal-cinema__static-base")
-      .boundingBox(),
-  }, page);
+  await saveEvidence(
+    "review-portrait-390x844-senal-expanded",
+    {
+      reviewDock: reviewDockRect,
+      signalControl: signalControlRect,
+      signalProbe: await page
+        .locator(".world2-signal-cinema__static-base")
+        .boundingBox(),
+    },
+    page,
+  );
 
   await page.locator('[data-world2-layer="captura"]').click();
   await expect(
@@ -695,13 +722,17 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   expect(
     captureReadoutTextRect!.y + captureReadoutTextRect!.height,
   ).toBeLessThanOrEqual(captureControlsRect!.y);
-  await saveEvidence("review-portrait-390x844-captura", {
-    controls: captureControlsRect,
-    readout: await page
-      .locator(".world2-capture-timeline__readout")
-      .boundingBox(),
-    readoutText: captureReadoutTextRect,
-  }, page);
+  await saveEvidence(
+    "review-portrait-390x844-captura",
+    {
+      controls: captureControlsRect,
+      readout: await page
+        .locator(".world2-capture-timeline__readout")
+        .boundingBox(),
+      readoutText: captureReadoutTextRect,
+    },
+    page,
+  );
 
   const remainingReviewLayers: Geometry[] = [];
   for (const layer of [

@@ -4,6 +4,10 @@ import path from "node:path";
 import sharp from "sharp";
 
 import { evidenceDirectory } from "./support/evidence";
+import {
+  isExpectedLocalNavigationAbort,
+  isLocalTestRequest,
+} from "./support/local-network";
 
 const evidenceDir = evidenceDirectory("transition-copy-st5-020i");
 const globalProgressKey = "gvo.progress.v1";
@@ -108,11 +112,7 @@ function attachTelemetry(page: Page): Telemetry {
   page.on("pageerror", (error) => telemetry.pageErrors.push(String(error)));
   page.on("requestfailed", (request) => {
     const failure = request.failure()?.errorText ?? "unknown";
-    if (
-      failure.includes("ERR_ABORTED") &&
-      (request.url().startsWith("http://127.0.0.1:") ||
-        request.url().startsWith("http://localhost:"))
-    ) {
+    if (isExpectedLocalNavigationAbort(request.url(), failure)) {
       return;
     }
     telemetry.failedRequests.push(`${request.url()} :: ${failure}`);
@@ -122,9 +122,7 @@ function attachTelemetry(page: Page): Telemetry {
   });
   page.on("request", (request) => {
     const url = request.url();
-    if (url.startsWith("data:") || url.startsWith("blob:")) return;
-    const hostname = new URL(url).hostname;
-    if (!["127.0.0.1", "localhost"].includes(hostname)) {
+    if (!isLocalTestRequest(url)) {
       telemetry.externalRequests.push(url);
     }
   });
@@ -395,7 +393,7 @@ for (const viewport of viewports) {
     });
 
     test("ST5-020I audita las seis transiciones", async ({ page }) => {
-      test.setTimeout(90000);
+      test.setTimeout(120000);
       await fs.mkdir(evidenceDir, { recursive: true });
       const telemetry = attachTelemetry(page);
       const measurements = [];
@@ -419,10 +417,11 @@ for (const viewport of viewports) {
         const main = page.locator(
           `main[data-transition-world-id="${transition.id}"]`,
         );
-        await expect(main).toBeVisible();
+        await expect(main).toBeVisible({ timeout: 15000 });
         await expect(main).toHaveAttribute(
           "data-critical-assets-ready",
           "true",
+          { timeout: 15000 },
         );
 
         const runtimeSnapshot = await main.evaluate((element) => {

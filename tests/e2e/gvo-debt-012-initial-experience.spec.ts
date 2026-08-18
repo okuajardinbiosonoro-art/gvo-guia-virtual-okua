@@ -57,6 +57,34 @@ async function installFullscreenStub(page: Page, outcome: "grant" | "deny") {
   }, outcome);
 }
 
+async function installCameraGrantStub(page: Page) {
+  await page.addInitScript(() => {
+    const state = { requests: 0, stops: 0 };
+    const mediaDevices = navigator.mediaDevices ?? {};
+    Object.defineProperty(window, "__gvoDebt012Camera", {
+      configurable: true,
+      value: state,
+    });
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: mediaDevices,
+    });
+    Object.defineProperty(mediaDevices, "getUserMedia", {
+      configurable: true,
+      value: async () => {
+        state.requests += 1;
+        return {
+          getTracks: () => [{ stop: () => (state.stops += 1) }],
+        } as unknown as MediaStream;
+      },
+    });
+  });
+}
+
+test.beforeEach(async ({ page }) => {
+  await installCameraGrantStub(page);
+});
+
 async function fullscreenRequests(page: Page) {
   return page.evaluate(
     () =>

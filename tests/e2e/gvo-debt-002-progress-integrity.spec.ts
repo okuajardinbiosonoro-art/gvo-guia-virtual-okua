@@ -1,5 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import {
+  installInterstationQrTestMode,
+  scanInterstationQrForTest,
+} from "./support/interstation-qr";
+
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
@@ -139,6 +144,7 @@ async function completeWorld3Record(
 }
 
 test.beforeEach(async ({ page }) => {
+  await installInterstationQrTestMode(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
 });
@@ -182,7 +188,7 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
   expect(await readCompletedStations(page)).toBeNull();
   await page.getByRole("button", { name: "Cerrar raíz" }).click();
   expect(await readCompletedStations(page)).toBeNull();
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await scanInterstationQrForTest(page, 1);
   await expectTransitionThenDestination(
     page,
     "world-1-to-world-2",
@@ -209,10 +215,7 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
     page.locator('[data-world2-mapping-review-enabled="true"]'),
   ).toBeVisible({ timeout: 15_000 });
   await page.locator('[data-world2-layer="resultado_mediado"]').click();
-  await expect(page.getByRole("button", { name: "Continuar" })).toBeVisible({
-    timeout: 15_000,
-  });
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await scanInterstationQrForTest(page, 2);
   await expectTransitionThenDestination(
     page,
     "world-2-to-world-3",
@@ -230,10 +233,7 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
   await completeWorld3Record(page, "prototipo");
   expect(await readCompletedStations(page)).toEqual([1, 2]);
   await completeWorld3Record(page, "senal");
-  await expect(
-    page.getByRole("button", { name: "Continuar a Mundo IV." }),
-  ).toBeVisible({ timeout: 10_000 });
-  await page.getByRole("button", { name: "Continuar a Mundo IV." }).click();
+  await scanInterstationQrForTest(page, 3);
   await expect(page).toHaveURL(/\/transition\/world-3-to-world-4$/, {
     timeout: 5_000,
   });
@@ -264,17 +264,8 @@ test("GVO_DEBT_002 conserva completion de W4 y W5 sin regresión", async ({
     await control.click();
   }
 
-  await expect(
-    page.getByRole("button", {
-      name: "Abrir Mundo V. Ir al Mapa del presente.",
-    }),
-  ).toBeVisible({ timeout: 10_000 });
-  await expect.poll(() => readCompletedStations(page)).toEqual([1, 2, 3, 4]);
-  await page
-    .getByRole("button", {
-      name: "Abrir Mundo V. Ir al Mapa del presente.",
-    })
-    .click();
+  await expect.poll(() => readCompletedStations(page)).toEqual([1, 2, 3]);
+  await scanInterstationQrForTest(page, 4);
   await expectTransitionThenDestination(
     page,
     "world-4-to-world-5",

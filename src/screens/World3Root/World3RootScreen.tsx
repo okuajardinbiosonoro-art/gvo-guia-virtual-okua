@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldThreeToWorldFourTransitionRoute } from "../../app/routes";
 import {
   readProgress,
@@ -54,7 +55,6 @@ import { World3LiaActor, type World3LiaPose } from "./World3LiaActor";
 import { World3IndexNotebookMarks } from "./World3IndexNotebookMarks";
 import { World3PageTurnLayer } from "./World3PageTurnLayer";
 import {
-  station3Continue,
   station3Lia,
   station3Records,
   station3Stamp,
@@ -473,7 +473,6 @@ function beginPageTurnTrace(
 export function World3RootScreen() {
   const navigate = useNavigate();
   const [initialWorld3State] = useState(resolveWorld3InitialState);
-  const continueButtonRef = useRef<HTMLButtonElement | null>(null);
   const completionLockRef = useRef(false);
   const recordSaveLockRef = useRef(false);
   const recordRetryButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -535,7 +534,11 @@ export function World3RootScreen() {
 
   useEffect(() => {
     if (completionFailed) {
-      continueButtonRef.current?.focus({ preventScroll: true });
+      document
+        .querySelector<HTMLButtonElement>(
+          '[data-interstation-qr-action="retry-completion"]',
+        )
+        ?.focus({ preventScroll: true });
     }
   }, [completionFailed]);
 
@@ -1247,13 +1250,13 @@ export function World3RootScreen() {
     );
   }
 
-  function handleContinue() {
+  function persistCompletionAfterQr() {
     if (exiting || completionLockRef.current) {
-      return;
+      return false;
     }
     if (stampStage !== "ready") {
       setLiaMessage(station3Lia.continueLocked);
-      return;
+      return false;
     }
 
     completionLockRef.current = true;
@@ -1265,10 +1268,14 @@ export function World3RootScreen() {
       setCompletionPersisting(false);
       setCompletionFailed(true);
       setLiaMessage(PROGRESS_SAVE_ERROR_COPY);
-      return;
+      return false;
     }
 
     setCompletionPersisting(false);
+    return true;
+  }
+
+  function startTransitionAfterQr() {
     setExiting(true);
     window.setTimeout(
       () => navigate(worldThreeToWorldFourTransitionRoute),
@@ -1869,8 +1876,8 @@ export function World3RootScreen() {
       data-station3-record-highlight={
         highlightedRecord ? "keyboard-focus" : "none"
       }
-      data-sensitive-permissions="blocked"
-      data-qr-camera="blocked"
+      data-sensitive-permissions="camera-on-explicit-gesture"
+      data-qr-camera="interstation-gate"
       aria-labelledby="station3-title"
     >
       <div
@@ -2225,27 +2232,12 @@ export function World3RootScreen() {
             className="s3-footer"
             data-cta-visible={stampStage === "ready"}
           >
-            {stampStage === "ready" ? (
-              <button
-                ref={continueButtonRef}
-                className="s3-continue"
-                type="button"
-                aria-busy={completionPersisting ? "true" : undefined}
-                aria-label={
-                  completionFailed
-                    ? PROGRESS_SAVE_RETRY_LABEL
-                    : station3Continue.accessibleLabel
-                }
-                data-continue-enabled="true"
-                data-station3-action="continue"
-                disabled={completionPersisting}
-                onClick={handleContinue}
-              >
-                {completionFailed
-                  ? PROGRESS_SAVE_RETRY_LABEL
-                  : station3Continue.label}
-              </button>
-            ) : null}
+            <InterstationQrGate
+              originWorld={3}
+              ready={stampStage === "ready" && !completionPersisting}
+              persistCompletion={persistCompletionAfterQr}
+              onCompleted={startTransitionAfterQr}
+            />
             <div className="s3-indicator" aria-hidden="true">
               <span className="s3-indicator__dot" />
               <span className="s3-indicator__dot" />

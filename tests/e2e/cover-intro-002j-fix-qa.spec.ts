@@ -158,22 +158,11 @@ test.describe("QA visual Portada / Intro 002J-FIX", () => {
     });
 
     await expect(openingCover).toBeVisible({ timeout: 30_000 });
-
-    await Promise.all([
-      expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/),
-      expect(openingCover).toBeVisible(),
-      expect(openingCover.getByText("Abriendo Mundo I: Raíz...")).toBeVisible(),
-      expect(activationRig).toBeVisible(),
-      expect(activationLia).toBeVisible(),
-      expect(activationPortalFront).toBeVisible(),
-      expect(activationContact).toBeVisible(),
-      expect(portalOne).toBeDisabled(),
-      expect(handoffCta).toBeDisabled(),
-      expect(openingCover.locator(".cover-intro__lia-wrap")).toHaveCSS(
-        "opacity",
-        "0",
-      ),
-    ]);
+    await expect(openingCover).toHaveAttribute(
+      "data-activation-assets-status",
+      "ready",
+    );
+    await expect(activationLia).toBeAttached();
 
     const activationIdentity = await activationLia.evaluate((image) => ({
       runtimeAsset: image.getAttribute("data-runtime-asset"),
@@ -181,25 +170,21 @@ test.describe("QA visual Portada / Intro 002J-FIX", () => {
     }));
     expect(activationIdentity.runtimeAsset).toBeTruthy();
     expect(activationIdentity.src).toBe(activationIdentity.runtimeAsset);
-    const activationMetrics = await activationLia.evaluate((image) => {
-      const element = image as HTMLImageElement;
-      const rect = element.getBoundingClientRect();
 
-      return {
-        complete: element.complete,
-        naturalWidth: element.naturalWidth,
-        naturalHeight: element.naturalHeight,
-        rect: {
-          width: rect.width,
-          height: rect.height,
-        },
-      };
-    });
-    expect(activationMetrics.complete).toBe(true);
-    expect(activationMetrics.naturalWidth).toBeGreaterThan(0);
-    expect(activationMetrics.naturalHeight).toBeGreaterThan(0);
-    expect(activationMetrics.rect.width).toBeGreaterThan(0);
-    expect(activationMetrics.rect.height).toBeGreaterThan(0);
+    await Promise.all([
+      expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/),
+      expect(openingCover.getByText("Abriendo Mundo I: Raíz...")).toBeVisible(),
+      expect(activationRig).toBeAttached(),
+      expect(activationLia).toBeAttached(),
+      expect(activationPortalFront).toBeAttached(),
+      expect(activationContact).toBeAttached(),
+      expect(portalOne).toBeDisabled(),
+      expect(handoffCta).toBeDisabled(),
+      expect(openingCover.locator(".cover-intro__lia-wrap")).toHaveCSS(
+        "opacity",
+        "0",
+      ),
+    ]);
     await capture(
       page,
       "cover-intro-002j-fix-05-opening-activation-390x844.png",

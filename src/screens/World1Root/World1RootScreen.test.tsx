@@ -24,6 +24,31 @@ import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { World1RootLayoutCalibrator } from "./dev";
 import { WORLD1_ROOT_COORDINATE_SYSTEM_ID } from "./layout";
 import { World1RootScreen } from "./World1RootScreen";
+
+vi.mock("../../app/qr/InterstationQrGate", () => ({
+  InterstationQrGate: ({
+    onCompleted,
+    originWorld,
+    persistCompletion,
+    ready,
+  }: {
+    onCompleted: () => void;
+    originWorld: number;
+    persistCompletion: () => boolean;
+    ready: boolean;
+  }) =>
+    ready ? (
+      <button
+        data-interstation-qr-action="open"
+        onClick={() => {
+          if (persistCompletion()) onCompleted();
+        }}
+        type="button"
+      >
+        Escanea el QR para abrir Mundo {originWorld + 1}
+      </button>
+    ) : null,
+}));
 import { world1RootAssets } from "./world1RootAssets";
 
 function LocationProbe() {
@@ -185,7 +210,9 @@ describe("World1RootScreen", () => {
     expect(screen.getByText("PERCEPCIÓN")).toBeInTheDocument();
     expect(screen.getByText("MEDIACIÓN")).toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "Continuar" }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "Lía, guía visual de OKÚA" }),
@@ -349,7 +376,9 @@ describe("World1RootScreen", () => {
     renderWorld1RootScreen();
 
     expect(
-      screen.queryByRole("button", { name: "Continuar" }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
     ).not.toBeInTheDocument();
   });
 
@@ -414,7 +443,9 @@ describe("World1RootScreen", () => {
       String(world1ConceptCopy.relation.durationMs),
     );
     expect(
-      screen.queryByRole("button", { name: "Continuar" }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
     ).not.toBeInTheDocument();
   });
 
@@ -473,7 +504,9 @@ describe("World1RootScreen", () => {
       container.querySelector('[data-world1-lia-pose="look_perception"]'),
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "Continuar" }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
     ).not.toBeInTheDocument();
   });
 
@@ -538,7 +571,9 @@ describe("World1RootScreen", () => {
       ),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "Continuar" }),
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
     ).not.toBeInTheDocument();
   });
 
@@ -602,19 +637,14 @@ describe("World1RootScreen", () => {
       ),
     ).not.toBeInTheDocument();
 
-    const continueButton = screen.getByRole("button", { name: "Continuar" });
+    const continueButton = screen.getByRole("button", {
+      name: "Escanea el QR para abrir Mundo 2",
+    });
     expect(continueButton).not.toBeDisabled();
-    expect(continueButton).toHaveAttribute("aria-disabled", "false");
     expect(continueButton).toHaveAttribute(
-      "data-world1-slot-id",
-      "W1_CONTINUE_BTN_01",
+      "data-interstation-qr-action",
+      "open",
     );
-    expect(continueButton).toHaveAttribute("data-editorial-status", "TEMP");
-    expect(continueButton).toHaveAttribute(
-      "data-world1-exit-target",
-      worldOneToWorldTwoTransitionRoute,
-    );
-
     fireEvent.click(continueButton);
 
     expect(screen.getByTestId("current-route")).toHaveTextContent(
@@ -646,21 +676,28 @@ describe("World1RootScreen", () => {
     );
     fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
     fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
-    fireEvent.click(screen.getByRole("button", { name: "Continuar" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
+    );
 
     expect(
       screen.getByText(
         "No fue posible guardar tu progreso. Intenta nuevamente.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
     expect(screen.getByTestId("current-route")).toHaveTextContent(
       "/estacion/1",
     );
     expect(container).toHaveTextContent("LISTO PARA CONTINUAR");
 
     storageFails = false;
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
+    );
     expect(screen.getByTestId("current-route")).toHaveTextContent(
       worldOneToWorldTwoTransitionRoute,
     );
@@ -792,7 +829,11 @@ describe("World1RootScreen", () => {
     expect(
       restored.container.querySelector(".world1-root-screen"),
     ).toHaveAttribute("data-world1-root-state", "ready_to_continue");
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeVisible();
+    expect(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
+    ).toBeVisible();
   });
 
   it("completion global ausente de checkpoint reabre en ready", () => {
@@ -845,7 +886,11 @@ describe("World1RootScreen", () => {
     ).toHaveAttribute("data-node-state", "completed");
     fireEvent.click(screen.getByRole("button", { name: "Explorar MEDIACIÓN" }));
     fireEvent.click(screen.getByRole("button", { name: "Cerrar raíz" }));
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeVisible();
+    expect(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 2",
+      }),
+    ).toBeVisible();
   });
 
   it("fallo de checkpoint mantiene UI y retry aplica sólo la persistencia pendiente", async () => {

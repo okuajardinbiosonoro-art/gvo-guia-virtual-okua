@@ -1,7 +1,14 @@
 import "./FinalReviewModeLayout.css";
 
 import type { CSSProperties, ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { finalEntryRoute, stationEntryRoutes } from "../routes";
@@ -46,6 +53,12 @@ type ReviewLayoutStyle = CSSProperties & {
   "--gvo-final-review-visual-offset-right": string;
   "--gvo-final-review-visual-offset-top": string;
 };
+
+const FinalReviewModeContext = createContext(false);
+
+export function useFinalReviewMode(): boolean {
+  return useContext(FinalReviewModeContext);
+}
 
 const DEFAULT_REVIEW_DOCK_METRICS: ReviewDockMetrics = {
   blockSize: 44,
@@ -298,42 +311,44 @@ export function FinalReviewModeLayout({
   };
 
   return (
-    <div
-      className="final-review-mode-layout"
-      data-final-review-active={context ? "true" : "false"}
-      data-final-review-clearance-mode={
-        context && dockMetrics.clearanceRequired ? "reserved" : "floating"
-      }
-      data-final-review-placement={context ? dockMetrics.placement : "none"}
-      data-final-review-world={context?.world ?? "none"}
-      style={layoutStyle}
-    >
-      {children}
-      {context ? (
-        <div
-          className="final-review-return-dock"
-          data-final-review-clearance={`${dockMetrics.blockSize}x${dockMetrics.inlineSize}`}
-          data-final-review-dock="active"
-          data-final-review-dock-placement={dockMetrics.placement}
-          ref={dockRef}
-        >
-          <button
-            aria-label={
-              finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text
-            }
-            className="final-review-return-control"
-            data-editorial-status="FINAL"
-            data-final-review-return="active"
-            data-final-slot-id="FINAL_RETURN_TO_MIRADOR_BTN_01"
-            data-final-accessible-slot-id="FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01"
-            type="button"
-            onClick={returnToFinal}
+    <FinalReviewModeContext.Provider value={context !== null}>
+      <div
+        className="final-review-mode-layout"
+        data-final-review-active={context ? "true" : "false"}
+        data-final-review-clearance-mode={
+          context && dockMetrics.clearanceRequired ? "reserved" : "floating"
+        }
+        data-final-review-placement={context ? dockMetrics.placement : "none"}
+        data-final-review-world={context?.world ?? "none"}
+        style={layoutStyle}
+      >
+        {children}
+        {context ? (
+          <div
+            className="final-review-return-dock"
+            data-final-review-clearance={`${dockMetrics.blockSize}x${dockMetrics.inlineSize}`}
+            data-final-review-dock="active"
+            data-final-review-dock-placement={dockMetrics.placement}
+            ref={dockRef}
           >
-            {finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text}
-          </button>
-        </div>
-      ) : null}
-    </div>
+            <button
+              aria-label={
+                finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text
+              }
+              className="final-review-return-control"
+              data-editorial-status="FINAL"
+              data-final-review-return="active"
+              data-final-slot-id="FINAL_RETURN_TO_MIRADOR_BTN_01"
+              data-final-accessible-slot-id="FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01"
+              type="button"
+              onClick={returnToFinal}
+            >
+              {finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text}
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </FinalReviewModeContext.Provider>
   );
 }
 

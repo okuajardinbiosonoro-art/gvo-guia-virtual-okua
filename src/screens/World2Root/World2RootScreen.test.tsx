@@ -18,6 +18,31 @@ import {
 import { WORLD2_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world2Checkpoint";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import { World2RootScreen } from "./World2RootScreen";
+
+vi.mock("../../app/qr/InterstationQrGate", () => ({
+  InterstationQrGate: ({
+    onCompleted,
+    originWorld,
+    persistCompletion,
+    ready,
+  }: {
+    onCompleted: () => void;
+    originWorld: number;
+    persistCompletion: () => boolean;
+    ready: boolean;
+  }) =>
+    ready ? (
+      <button
+        data-interstation-qr-action="open"
+        onClick={() => {
+          if (persistCompletion()) onCompleted();
+        }}
+        type="button"
+      >
+        Escanea el QR para abrir Mundo {originWorld + 1}
+      </button>
+    ) : null,
+}));
 import { world2RuntimeAssets } from "./world2RuntimeAssets";
 
 function LocationProbe() {
@@ -430,10 +455,13 @@ describe("World2RootScreen", () => {
     );
     expect(
       container.querySelector("[data-sensitive-permissions]"),
-    ).toHaveAttribute("data-sensitive-permissions", "blocked");
+    ).toHaveAttribute(
+      "data-sensitive-permissions",
+      "camera-on-explicit-gesture",
+    );
     expect(container.querySelector("[data-qr-camera]")).toHaveAttribute(
       "data-qr-camera",
-      "blocked",
+      "interstation-gate",
     );
     expect(
       container.querySelector("[data-world2-zone='scene']"),
@@ -863,12 +891,12 @@ describe("World2RootScreen", () => {
     ).toBeInTheDocument();
 
     const continueButton = screen.getByRole("button", {
-      name: "Continuar",
+      name: "Escanea el QR para abrir Mundo 3",
     });
 
     expect(continueButton).toHaveAttribute(
-      "data-world2-exit-action",
-      "navigate_to_transition",
+      "data-interstation-qr-action",
+      "open",
     );
     fireEvent.click(continueButton);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
@@ -907,20 +935,27 @@ describe("World2RootScreen", () => {
     act(() => vi.advanceTimersByTime(9600));
     clickLayer(container, "resultado_mediado");
     act(() => vi.advanceTimersByTime(9000));
-    fireEvent.click(screen.getByRole("button", { name: "Continuar" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    );
 
     expect(
       screen.getByText(
         "No fue posible guardar tu progreso. Intenta nuevamente.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/estacion/2",
     );
 
     storageFails = false;
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    );
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       worldTwoToWorldThreeTransitionRoute,
     );
@@ -1004,7 +1039,11 @@ describe("World2RootScreen", () => {
         '[data-world2-closure-layout="centered-balanced"]',
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    ).toBeEnabled();
   });
 
   it("016K preserva base 016H, safe-area 016I y desbloquea Captura con Onda medida", () => {
@@ -2238,9 +2277,7 @@ describe("World2RootScreen", () => {
     );
     act(() => vi.advanceTimersByTime(4200));
     expect(
-      rendered.container.querySelector(
-        '[data-world2-option6-stage="pitch"]',
-      ),
+      rendered.container.querySelector('[data-world2-option6-stage="pitch"]'),
     ).toBeInTheDocument();
 
     cleanup();
@@ -2255,7 +2292,11 @@ describe("World2RootScreen", () => {
       "data-world2-result-state",
       "ready_to_continue",
     );
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    ).toBeEnabled();
 
     cleanup();
     rendered = renderWorld2RootScreen();
@@ -2294,13 +2335,21 @@ describe("World2RootScreen", () => {
     expect(
       container.querySelector('[data-world2-option6-stage="resolved"]'),
     ).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Continuar" })).toBeNull();
+    expect(
+      screen.queryByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    ).toBeNull();
     expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
     expect(attempts).toBe(1);
 
     fail = false;
     fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
-    expect(screen.getByRole("button", { name: "Continuar" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 3",
+      }),
+    ).toBeEnabled();
     act(() => vi.advanceTimersByTime(12_000));
     expect(attempts).toBe(2);
   });
@@ -2341,7 +2390,10 @@ describe("World2RootScreen", () => {
     rendered = renderWorld2RootScreen();
     const root = getWorld2Root(rendered.container);
     expect(root).toHaveAttribute("data-world2-active-layer", "senal");
-    expect(root).toHaveAttribute("data-world2-result-state", "ready_to_continue");
+    expect(root).toHaveAttribute(
+      "data-world2-result-state",
+      "ready_to_continue",
+    );
     expect(root).toHaveAttribute("data-world2-visited-layers", "1,2,3,4,5,6");
     expect(
       rendered.container.querySelector('[data-signal-reveal-state="expanded"]'),

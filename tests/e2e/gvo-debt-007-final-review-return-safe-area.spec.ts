@@ -393,7 +393,7 @@ for (const viewport of VIEWPORTS) {
   });
 }
 
-test("Mundo II conserva nav, Captura y CTA accionables durante revisita", async ({
+test("Mundo II conserva nav, Captura y retorno accionables durante revisita", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -436,7 +436,11 @@ test("Mundo II conserva nav, Captura y CTA accionables durante revisita", async 
   ).toEqual([]);
 
   await page.locator('[data-world2-layer="resultado_mediado"]').click();
-  await expect(page.getByRole("button", { name: /Continuar/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Continuar/ })).toHaveCount(0);
+  await expect(page.locator("[data-interstation-qr-gate]")).toHaveCount(0);
+  await expect(
+    page.locator('[data-final-review-return="active"]'),
+  ).toBeVisible();
   await expect(
     page.locator('[data-final-review-active="true"]'),
   ).toHaveAttribute("data-final-review-clearance-mode", "floating");

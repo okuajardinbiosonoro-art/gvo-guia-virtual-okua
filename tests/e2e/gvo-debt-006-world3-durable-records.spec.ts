@@ -1,5 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import {
+  installInterstationQrTestMode,
+  scanInterstationQrForTest,
+} from "./support/interstation-qr";
+
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
@@ -94,6 +99,7 @@ async function readWorld3Prefix(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await installInterstationQrTestMode(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
 });
@@ -181,9 +187,11 @@ test("GVO_DEBT_006 guarda, reabre, reintenta y completa Mundo III por UI real", 
   ]);
 
   await setSyntheticStorageFailure(page, GLOBAL_PROGRESS_KEY);
-  await page.getByRole("button", { name: "Continuar a Mundo IV." }).click();
+  await scanInterstationQrForTest(page, 3);
   await expect(page).toHaveURL(/\/estacion\/3$/);
-  await expect(page.getByRole("button", { name: "Reintentar" })).toBeFocused();
+  await expect(
+    page.getByRole("button", { name: "Reintentar guardado verificado" }),
+  ).toBeFocused();
   await expect(page.locator(".s3-stamp")).toHaveAttribute(
     "data-stamp-stage",
     "ready",
@@ -195,7 +203,9 @@ test("GVO_DEBT_006 guarda, reabre, reintenta y completa Mundo III por UI real", 
   ]);
 
   await setSyntheticStorageFailure(page, null);
-  await page.getByRole("button", { name: "Reintentar" }).click();
+  await page
+    .getByRole("button", { name: "Reintentar guardado verificado" })
+    .click();
   await expect(page).toHaveURL(/\/estacion\/4$/, { timeout: 10_000 });
 
   await page.evaluate((key) => {

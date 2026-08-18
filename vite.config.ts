@@ -1,12 +1,33 @@
 /// <reference types="vitest" />
 
+// @ts-expect-error The project intentionally omits broad Node typings.
+import { existsSync, readFileSync } from "node:fs";
+// @ts-expect-error The project intentionally omits broad Node typings.
+import { resolve } from "node:path";
+
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import { VitePWA } from "vite-plugin-pwa";
 
 import { excludeNonDeployablePublicArtifacts } from "./tools/vite/exclude-nondeployable-public.mjs";
 
-export default defineConfig({
+const devCertificatePath = resolve(
+  ".gvo-dev-certs/gvo-dev-server.pfx",
+);
+const devCertificatePassphrase = "gvo-local-development-only";
+
+export default defineConfig(({ command }) => ({
+  server:
+    command === "serve" && existsSync(devCertificatePath)
+      ? {
+          https: {
+            passphrase: devCertificatePassphrase,
+            pfx: readFileSync(devCertificatePath),
+          },
+          port: 5173,
+          strictPort: true,
+        }
+      : undefined,
   plugins: [
     react(),
     VitePWA({
@@ -79,4 +100,4 @@ export default defineConfig({
     exclude: ["tests/e2e/**", "node_modules/**", "dist/**"],
     setupFiles: "./src/app/providers/test.setup.ts",
   },
-});
+}));

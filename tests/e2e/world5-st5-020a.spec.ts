@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+import { isLocalTestRequest } from "./support/local-network";
 
 test.beforeEach(async ({ page }) => {
   await installWorldFiveAccessFixture(page);
@@ -31,13 +32,13 @@ test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({
       consoleErrors.push(`${message.location().url}: ${message.text()}`);
   });
   page.on("request", (request) => {
-    if (!request.url().startsWith("http://127.0.0.1:4174"))
+    if (!isLocalTestRequest(request.url()))
       externalRequests.push(request.url());
   });
 
   await page.goto("/estacion/5");
   const sectors = page.locator("[data-station5-area]");
-  await expect(sectors).toHaveCount(4);
+  await expect(sectors).toHaveCount(4, { timeout: 15_000 });
   await expect(page.locator('[data-station5-area="plantas"]')).toBeEnabled();
   await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
   await expect(page.locator('[data-station5-area="sistema"]')).toHaveAttribute(

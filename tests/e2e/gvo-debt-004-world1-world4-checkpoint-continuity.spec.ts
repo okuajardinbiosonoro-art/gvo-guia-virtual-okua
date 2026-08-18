@@ -1,5 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import {
+  installInterstationQrTestMode,
+  scanInterstationQrForTest,
+} from "./support/interstation-qr";
+
 const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
@@ -42,6 +47,7 @@ async function completedStations(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await installInterstationQrTestMode(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await openCleanOrigin(page);
@@ -112,7 +118,7 @@ test("GVO_DEBT_004 W1 conserva active/highest, retry, reload, nueva pestaña y r
     "data-world1-root-state",
     "ready_to_continue",
   );
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await scanInterstationQrForTest(page, 1);
   await expect(page).toHaveURL(/\/estacion\/2$/, { timeout: 10_000 });
   expect(await completedStations(page)).toEqual([1]);
 
@@ -213,7 +219,9 @@ test("GVO_DEBT_004 W4 restaura reading, chain_pending, completion_retry y revisi
     "data-station4-resume-mode",
     "chain_pending",
   );
-  await expect(page.getByRole("button", { name: "Reintentar" })).toBeVisible();
+  await expect(
+    page.locator('[data-interstation-origin-world="4"]'),
+  ).toBeVisible();
   await expect
     .poll(() =>
       page.evaluate((key) => {
@@ -221,21 +229,28 @@ test("GVO_DEBT_004 W4 restaura reading, chain_pending, completion_retry y revisi
         return raw ? JSON.parse(raw).resumeMode : null;
       }, WORLD4_CHECKPOINT_KEY),
     )
-    .toBe("completion_retry");
+    .toBe("chain_pending");
 
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(root).toHaveAttribute(
     "data-station4-resume-mode",
-    "completion_retry",
+    "chain_pending",
   );
   await expect(root).toHaveAttribute("data-station4-motion-kind", "none");
-  await expect(page.getByRole("button", { name: "Reintentar" })).toBeFocused();
+  expect(await completedStations(page)).toEqual([1, 2, 3]);
+  await scanInterstationQrForTest(page, 4);
+  await expect(
+    page.getByRole("button", { name: "Reintentar guardado verificado" }),
+  ).toBeFocused();
+  await expect(page).toHaveURL(/\/estacion\/4$/);
   await page.evaluate(
     (key) => sessionStorage.setItem(key, "false"),
     SYNTHETIC_GLOBAL_FAILURE_KEY,
   );
-  await page.getByRole("button", { name: "Reintentar" }).click();
-  await expect(page).toHaveURL(/\/estacion\/4$/);
+  await page
+    .getByRole("button", { name: "Reintentar guardado verificado" })
+    .click();
+  await expect(page).toHaveURL(/\/estacion\/5$/, { timeout: 10_000 });
   expect(await completedStations(page)).toEqual([1, 2, 3, 4]);
   expect(
     await page.evaluate(
@@ -243,13 +258,6 @@ test("GVO_DEBT_004 W4 restaura reading, chain_pending, completion_retry y revisi
       WORLD4_CHECKPOINT_KEY,
     ),
   ).toBeNull();
-
-  await page
-    .getByRole("button", {
-      name: "Abrir Mundo V. Ir al Mapa del presente.",
-    })
-    .click();
-  await expect(page).toHaveURL(/\/estacion\/5$/, { timeout: 10_000 });
 
   await page.goto("/estacion/4", { waitUntil: "domcontentloaded" });
   await expect(root).toHaveAttribute("data-station4-progress", "8");

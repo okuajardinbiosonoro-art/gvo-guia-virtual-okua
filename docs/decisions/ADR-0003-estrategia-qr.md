@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptado.
+Reemplazado por `ADR-0007`.
 
 ## Contexto
 
@@ -11,6 +11,8 @@ El recorrido avanza mediante QR físicos. El scanner interno con cámara puede r
 ## Decisión
 
 El flujo principal usa QR físicos que abren URLs locales con la cámara nativa del celular. El scanner interno queda como mejora opcional, no como bloqueo.
+
+Esta fue la decisión histórica inicial. GVO_DEBT_015 la reemplaza por scanner interno obligatorio y handoff interstation QR-only.
 
 ## Consecuencias
 

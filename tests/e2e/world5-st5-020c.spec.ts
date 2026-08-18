@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+import { isLocalTestRequest } from "./support/local-network";
 
 test.beforeEach(async ({ page }) => {
   await installWorldFiveAccessFixture(page);
@@ -223,7 +224,7 @@ test("ST5-020C mantiene reduced motion, consola y red local limpias", async ({
     if (response.status() === 404) failedResponses.push(response.url());
   });
   page.on("request", (request) => {
-    if (!request.url().startsWith("http://127.0.0.1:4174"))
+    if (!isLocalTestRequest(request.url()))
       external.push(request.url());
   });
   await page.emulateMedia({ reducedMotion: "reduce" });

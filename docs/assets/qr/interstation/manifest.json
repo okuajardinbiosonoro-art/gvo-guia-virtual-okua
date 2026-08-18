@@ -1,0 +1,81 @@
+{
+  "contract": "GVO_DEBT_015_INTERSTATION_QR_V01",
+  "generator": {
+    "package": "qrcode",
+    "version": "1.5.4"
+  },
+  "files": [
+    {
+      "dimensions": "vector",
+      "ecc": "H",
+      "filename": "gvo_qr_world1_to_world2_v01.svg",
+      "format": "svg",
+      "marginModules": 4,
+      "payload": "/qr/w2",
+      "sha256": "6b241edc4a4a320e245784ca04f4a6d33cfa18df71bf4dd5dbd8fc7b2016bf5d"
+    },
+    {
+      "dimensions": "2048x2048",
+      "ecc": "H",
+      "filename": "gvo_qr_world1_to_world2_v01.png",
+      "format": "png",
+      "marginModules": 4,
+      "payload": "/qr/w2",
+      "sha256": "7312fa524532b98af0eed223642fa7ce595b2690323c19aa5f1ae4b8367fe84f"
+    },
+    {
+      "dimensions": "vector",
+      "ecc": "H",
+      "filename": "gvo_qr_world2_to_world3_v01.svg",
+      "format": "svg",
+      "marginModules": 4,
+      "payload": "/qr/w3",
+      "sha256": "a18ee918dc2c735f9f7a09daa411a20ec772406669c299302288d387ba37be6a"
+    },
+    {
+      "dimensions": "2048x2048",
+      "ecc": "H",
+      "filename": "gvo_qr_world2_to_world3_v01.png",
+      "format": "png",
+      "marginModules": 4,
+      "payload": "/qr/w3",
+      "sha256": "1dac0254c3a49aca99ab8615d274aec29d8628c06951319cea7389b2a9272925"
+    },
+    {
+      "dimensions": "vector",
+      "ecc": "H",
+      "filename": "gvo_qr_world3_to_world4_v01.svg",
+      "format": "svg",
+      "marginModules": 4,
+      "payload": "/qr/w4",
+      "sha256": "3e709e0ff93b00a724648e3d49de44770ad764e7a1310abb2d88bfffd43af7c4"
+    },
+    {
+      "dimensions": "2048x2048",
+      "ecc": "H",
+      "filename": "gvo_qr_world3_to_world4_v01.png",
+      "format": "png",
+      "marginModules": 4,
+      "payload": "/qr/w4",
+      "sha256": "8d477040db369c95a1edfc561f4754cde79d256e6448d728e77b1b5fb5768795"
+    },
+    {
+      "dimensions": "vector",
+      "ecc": "H",
+      "filename": "gvo_qr_world4_to_world5_v01.svg",
+      "format": "svg",
+      "marginModules": 4,
+      "payload": "/qr/w5",
+      "sha256": "516eeb13d143c944eba93a9e985bd7a47856b4c26cbd8a08f8a3736071cea73e"
+    },
+    {
+      "dimensions": "2048x2048",
+      "ecc": "H",
+      "filename": "gvo_qr_world4_to_world5_v01.png",
+      "format": "png",
+      "marginModules": 4,
+      "payload": "/qr/w5",
+      "sha256": "00462cd8e57f7c233bfb53a0227f8679e4e48b60e9a36f1786a1a8501db4dd75"
+    }
+  ]
+}

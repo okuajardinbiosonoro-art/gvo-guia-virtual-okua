@@ -4,6 +4,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 import { evidenceDirectory, evidencePath } from "./support/evidence";
 import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+import { isLocalTestRequest } from "./support/local-network";
 
 const evidenceScope = "world5-st5-020b" as const;
 
@@ -82,7 +83,7 @@ test("ST5-020B recorre Sistema, integra Lía y no usa red externa", async ({
       consoleErrors.push(`${message.location().url}: ${message.text()}`);
   });
   page.on("request", (request) => {
-    if (!request.url().startsWith("http://127.0.0.1:4174"))
+    if (!isLocalTestRequest(request.url()))
       externalRequests.push(request.url());
   });
 

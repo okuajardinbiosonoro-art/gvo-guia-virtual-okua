@@ -11,6 +11,10 @@ import path from "node:path";
 import sharp from "sharp";
 
 import { evidenceDirectory } from "./support/evidence";
+import {
+  isExpectedLocalNavigationAbort,
+  isLocalTestRequest,
+} from "./support/local-network";
 
 const stationProgressKey = "gvo.station5.v1";
 const globalProgressKey = "gvo.progress.v1";
@@ -79,11 +83,7 @@ function attachTelemetry(page: Page): Telemetry {
   page.on("pageerror", (error) => telemetry.pageErrors.push(String(error)));
   page.on("requestfailed", (request) => {
     const failure = request.failure()?.errorText ?? "unknown";
-    if (
-      failure.includes("ERR_ABORTED") &&
-      (request.url().startsWith("http://127.0.0.1:") ||
-        request.url().startsWith("http://localhost:"))
-    ) {
+    if (isExpectedLocalNavigationAbort(request.url(), failure)) {
       return;
     }
     telemetry.failedRequests.push(`${request.url()} :: ${failure}`);
@@ -93,13 +93,7 @@ function attachTelemetry(page: Page): Telemetry {
   });
   page.on("request", (request) => {
     const url = request.url();
-    if (url.startsWith("data:") || url.startsWith("blob:")) return;
-    try {
-      const parsed = new URL(url);
-      if (!["127.0.0.1", "localhost"].includes(parsed.hostname)) {
-        telemetry.externalRequests.push(url);
-      }
-    } catch {
+    if (!isLocalTestRequest(url)) {
       telemetry.externalRequests.push(url);
     }
   });

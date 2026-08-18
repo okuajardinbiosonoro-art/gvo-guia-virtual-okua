@@ -4,6 +4,7 @@ import type { CSSProperties, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
 import { GestureHint } from "../../components/GestureHint/GestureHint";
 import {
@@ -320,7 +321,6 @@ export function World1RootScreen() {
   const narrativeViewportRef = useRef<HTMLDivElement>(null);
   const narrativeTrackRef = useRef<HTMLDivElement>(null);
   const narrativeSwipeAnchorRef = useRef<HTMLSpanElement>(null);
-  const continueButtonRef = useRef<HTMLButtonElement>(null);
   const completionLockRef = useRef(false);
   const [completionPhase, setCompletionPhase] =
     useState<CompletionPhase>("idle");
@@ -359,7 +359,11 @@ export function World1RootScreen() {
 
   useEffect(() => {
     if (completionPhase === "error") {
-      continueButtonRef.current?.focus({ preventScroll: true });
+      document
+        .querySelector<HTMLButtonElement>(
+          '[data-interstation-qr-action="retry-completion"]',
+        )
+        ?.focus({ preventScroll: true });
     }
   }, [completionPhase]);
 
@@ -372,7 +376,11 @@ export function World1RootScreen() {
     if (focusAfter) {
       window.requestAnimationFrame(() => {
         if (next.activeConcept === "ready_to_continue") {
-          continueButtonRef.current?.focus({ preventScroll: true });
+          document
+            .querySelector<HTMLButtonElement>(
+              '[data-interstation-qr-action="open"]',
+            )
+            ?.focus({ preventScroll: true });
           return;
         }
         motionRootRef.current
@@ -563,9 +571,9 @@ export function World1RootScreen() {
     });
   }
 
-  function continueJourney() {
+  function persistCompletionAfterQr() {
     if (!isReadyToContinue || completionLockRef.current) {
-      return;
+      return false;
     }
 
     completionLockRef.current = true;
@@ -574,11 +582,11 @@ export function World1RootScreen() {
     if (!result.ok) {
       completionLockRef.current = false;
       setCompletionPhase("error");
-      return;
+      return false;
     }
 
     setCompletionPhase("complete");
-    navigate(worldOneToWorldTwoTransitionRoute);
+    return true;
   }
 
   return (
@@ -980,28 +988,12 @@ export function World1RootScreen() {
             ) : null}
           </div>
 
-          {isReadyToContinue ? (
-            <button
-              ref={continueButtonRef}
-              className="world1-root-continue world1-root-continue--ready"
-              type="button"
-              aria-busy={completionPhase === "persisting" ? "true" : undefined}
-              aria-disabled={
-                completionPhase === "persisting" ? "true" : "false"
-              }
-              disabled={completionPhase === "persisting"}
-              data-world1-exit-target={worldOneToWorldTwoTransitionRoute}
-              data-world1-slot-id="W1_CONTINUE_BTN_01"
-              data-editorial-status={
-                world1EditorialSlots.W1_CONTINUE_BTN_01.status
-              }
-              onClick={continueJourney}
-            >
-              {completionPhase === "error"
-                ? PROGRESS_SAVE_RETRY_LABEL
-                : world1EditorialSlots.W1_CONTINUE_BTN_01.text}
-            </button>
-          ) : null}
+          <InterstationQrGate
+            originWorld={1}
+            ready={isReadyToContinue}
+            persistCompletion={persistCompletionAfterQr}
+            onCompleted={() => navigate(worldOneToWorldTwoTransitionRoute)}
+          />
         </div>
       </World1RootStageFrame>
     </main>

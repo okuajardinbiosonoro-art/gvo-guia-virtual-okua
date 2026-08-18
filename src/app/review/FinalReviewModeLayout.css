@@ -93,7 +93,7 @@
     var(--gvo-final-review-visual-offset-top) + env(safe-area-inset-top, 0px) +
       var(--gvo-final-review-dock-edge-gap) +
       var(--gvo-final-review-dock-block-size) +
-      var(--gvo-final-review-content-gap) + 4px
+      var(--gvo-final-review-content-gap) + 8px
   );
 }
 

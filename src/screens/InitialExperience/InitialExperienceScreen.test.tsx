@@ -27,6 +27,24 @@ function renderScreen() {
   );
 }
 
+function installCameraStub({ denied = false }: { denied?: boolean } = {}) {
+  const stop = vi.fn();
+  const stream = { getTracks: () => [{ stop }] } as unknown as MediaStream;
+  const getUserMedia = vi.fn(async () => {
+    if (denied) throw new DOMException("Denied", "NotAllowedError");
+    return stream;
+  });
+  Object.defineProperty(window, "isSecureContext", {
+    configurable: true,
+    value: true,
+  });
+  Object.defineProperty(navigator, "mediaDevices", {
+    configurable: true,
+    value: { getUserMedia },
+  });
+  return { getUserMedia, stop };
+}
+
 function installFullscreenStub({
   policyAllowsFullscreen,
   rejectRequest = false,
@@ -83,6 +101,7 @@ function installFullscreenStub({
 beforeEach(() => {
   localStorage.clear();
   document.documentElement.lang = "es";
+  installCameraStub();
 });
 
 afterEach(() => {
@@ -93,6 +112,8 @@ afterEach(() => {
   Reflect.deleteProperty(document, "featurePolicy");
   Reflect.deleteProperty(document.documentElement, "requestFullscreen");
   Reflect.deleteProperty(navigator, "userActivation");
+  Reflect.deleteProperty(window, "isSecureContext");
+  Reflect.deleteProperty(navigator, "mediaDevices");
   vi.restoreAllMocks();
 });
 
@@ -100,8 +121,9 @@ describe("InitialExperienceScreen", () => {
   it("integra el fondo aprobado y las cinco estaciones como decoración local", () => {
     const { container } = renderScreen();
 
-    expect(container.querySelector("[data-initial-experience-visual='debt-013']"))
-      .toBeInTheDocument();
+    expect(
+      container.querySelector("[data-initial-experience-visual='debt-013']"),
+    ).toBeInTheDocument();
     expect(
       container.querySelector(
         `[data-runtime-asset="${entryCoverBackdropAsset}"]`,
@@ -141,7 +163,8 @@ describe("InitialExperienceScreen", () => {
     );
   });
 
-  it("guarda English, actualiza lang y entra a Portada sin mutar progreso", () => {
+  it("guarda English, obtiene cámara, detiene tracks y entra a Portada sin mutar progreso", async () => {
+    const { stop } = installCameraStub();
     localStorage.setItem("gvo.progress.v1", "progress-sentinel");
     renderScreen();
 
@@ -151,7 +174,25 @@ describe("InitialExperienceScreen", () => {
     expect(screen.getByRole("button", { name: "Start journey" })).toBeEnabled();
 
     fireEvent.click(screen.getByRole("button", { name: "Start journey" }));
-    expect(screen.getByText("Portada alcanzada")).toBeInTheDocument();
+    expect(await screen.findByText("Portada alcanzada")).toBeInTheDocument();
+    expect(stop).toHaveBeenCalledTimes(1);
+    expect(localStorage.getItem("gvo.progress.v1")).toBe("progress-sentinel");
+  });
+
+  it("permiso denegado permanece en inicio y permite reintentar sin tocar progreso", async () => {
+    installCameraStub({ denied: true });
+    localStorage.setItem("gvo.progress.v1", "progress-sentinel");
+    renderScreen();
+    fireEvent.click(screen.getByRole("button", { name: "Español" }));
+    fireEvent.click(screen.getByRole("button", { name: "Iniciar recorrido" }));
+
+    expect(
+      await screen.findByText(/El permiso de cámara fue denegado/i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Reintentar cámara" }),
+    ).toBeEnabled();
+    expect(screen.queryByText("Portada alcanzada")).not.toBeInTheDocument();
     expect(localStorage.getItem("gvo.progress.v1")).toBe("progress-sentinel");
   });
 
@@ -202,9 +243,10 @@ describe("InitialExperienceScreen", () => {
         "Este contexto bloquea la pantalla completa. Abre GVO directamente en el navegador.",
       ),
     ).toBeInTheDocument();
-    expect(
-      document.querySelector("[data-initial-experience]"),
-    ).toHaveAttribute("data-initial-fullscreen-state", "blocked");
+    expect(document.querySelector("[data-initial-experience]")).toHaveAttribute(
+      "data-initial-fullscreen-state",
+      "blocked",
+    );
   });
 
   it("sustituye una API ausente por fallback honesto y mantiene el CTA disponible", () => {
@@ -219,10 +261,7 @@ describe("InitialExperienceScreen", () => {
       screen.getByText(
         "La vista de navegador ya está optimizada para este dispositivo. / The browser view is already optimized for this device.",
       ),
-    ).toHaveAttribute(
-      "data-initial-immersive-fallback",
-      "browser-optimized",
-    );
+    ).toHaveAttribute("data-initial-immersive-fallback", "browser-optimized");
 
     fireEvent.click(screen.getByRole("button", { name: "Español" }));
     expect(
@@ -233,11 +272,10 @@ describe("InitialExperienceScreen", () => {
     expect(
       screen.getByRole("button", { name: "Iniciar recorrido" }),
     ).toBeEnabled();
-    expect(document.querySelector("[data-initial-experience]"))
-      .toHaveAttribute(
-        "data-gvo-fullscreen-capability",
-        "unavailable-on-platform",
-      );
+    expect(document.querySelector("[data-initial-experience]")).toHaveAttribute(
+      "data-gvo-fullscreen-capability",
+      "unavailable-on-platform",
+    );
   });
 
   it("mantiene Iniciar recorrido disponible si la solicitud se rechaza", async () => {

@@ -34,6 +34,31 @@ import {
   WORLD4_Z_ORDER,
 } from "./world4Geometry";
 import { World4RootScreen } from "./World4RootScreen";
+
+vi.mock("../../app/qr/InterstationQrGate", () => ({
+  InterstationQrGate: ({
+    onCompleted,
+    originWorld,
+    persistCompletion,
+    ready,
+  }: {
+    onCompleted: () => void;
+    originWorld: number;
+    persistCompletion: () => boolean;
+    ready: boolean;
+  }) =>
+    ready ? (
+      <button
+        data-interstation-qr-action="open"
+        onClick={() => {
+          if (persistCompletion()) onCompleted();
+        }}
+        type="button"
+      >
+        Escanea el QR para abrir Mundo {originWorld + 1}
+      </button>
+    ) : null,
+}));
 import {
   world4RuntimeAssetPaths,
   world4RuntimeAssets,
@@ -331,14 +356,14 @@ describe("World4RootScreen — Mesa de sistema", () => {
     enterStation(container);
 
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).not.toBeInTheDocument();
 
     advanceToNode(container, "planta");
     advanceToNode(container, "bionosificador");
 
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).not.toBeInTheDocument();
   });
 
@@ -360,7 +385,7 @@ describe("World4RootScreen — Mesa de sistema", () => {
       "available",
     );
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).not.toBeInTheDocument();
   });
 
@@ -371,13 +396,13 @@ describe("World4RootScreen — Mesa de sistema", () => {
     expect(screen.getByText(station4Lia.revisit)).toBeInTheDocument();
 
     const exit = screen.getByRole("button", {
-      name: "Abrir Mundo V. Ir al Mapa del presente.",
+      name: "Escanea el QR para abrir Mundo 5",
     });
     expect(exit).toBeInTheDocument();
 
     fireEvent.click(exit);
     expect(getState(container)).toBe("station4_exiting");
-    expect(exit).toBeDisabled();
+    expect(exit).not.toBeInTheDocument();
     advance(700);
 
     expect(screen.getByTestId("current-location")).toHaveTextContent(
@@ -396,15 +421,15 @@ describe("World4RootScreen — Mesa de sistema", () => {
     expect(getState(container)).toBe("station4_chain_completed");
     advance(1039);
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).not.toBeInTheDocument();
     advance(1);
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
-    ).toBeDisabled();
+      container.querySelector('[data-interstation-qr-action="open"]'),
+    ).not.toBeInTheDocument();
     advance(240);
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).toBeEnabled();
   });
 
@@ -423,7 +448,7 @@ describe("World4RootScreen — Mesa de sistema", () => {
     expect(screen.getByRole("heading", { name: "Planta" })).toBeInTheDocument();
     expect(
       screen.getByRole("button", {
-        name: "Abrir Mundo V. Ir al Mapa del presente.",
+        name: "Escanea el QR para abrir Mundo 5",
       }),
     ).toBeInTheDocument();
 
@@ -643,23 +668,20 @@ describe("World4RootScreen — Mesa de sistema", () => {
     expect(card?.querySelector("img")).not.toBeInTheDocument();
   });
 
-  it("aplica el backplate neutral a la CTA sin alterar su condición ni ruta", () => {
+  it("sustituye el backplate CTA por el gate QR sin alterar la ruta", () => {
     const { container } = renderStation4();
     expect(
-      container.querySelector('[data-station4-action="open-world5"]'),
+      container.querySelector('[data-interstation-qr-action="open"]'),
     ).not.toBeInTheDocument();
 
     completeChain(container);
     const exit = container.querySelector(
-      '[data-station4-action="open-world5"]',
+      '[data-interstation-qr-action="open"]',
     );
-    expect(exit).toHaveAttribute(
-      "data-backplate",
-      WORLD4_BACKPLATE_SLICES.openWorld5.asset,
-    );
-    expect(exit).toHaveAttribute("data-border-image-slice", "144 192 fill");
+    expect(exit).toHaveAttribute("data-interstation-qr-action", "open");
+    expect(exit).not.toHaveAttribute("data-backplate");
 
-    fireEvent.keyDown(exit as HTMLButtonElement, { key: "Enter" });
+    fireEvent.click(exit as HTMLButtonElement);
     advance(700);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-4-to-world-5",
@@ -962,22 +984,23 @@ describe("World4RootScreen — Mesa de sistema", () => {
     const { container } = renderStation4();
     completeChain(container);
 
-    const stored = JSON.parse(
+    const storedBeforeQr = JSON.parse(
       window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}",
     ) as { completedStations?: number[] };
-    expect(stored).toMatchObject({
-      schemaVersion: 1,
-      completedStations: [1, 2, 3, 4],
-    });
+    expect(storedBeforeQr).toMatchObject({ completedStations: [1, 2, 3] });
     expect(
       container.querySelector("[data-world4-route-completed-count='7']"),
     ).toBeInTheDocument();
 
     const exit = screen.getByRole("button", {
-      name: "Abrir Mundo V. Ir al Mapa del presente.",
+      name: "Escanea el QR para abrir Mundo 5",
     });
     fireEvent.click(exit);
     fireEvent.click(exit);
+    expect(
+      JSON.parse(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "{}")
+        .completedStations,
+    ).toEqual([1, 2, 3, 4]);
     advance(700);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-4-to-world-5",
@@ -1005,13 +1028,18 @@ describe("World4RootScreen — Mesa de sistema", () => {
 
     completeChain(container);
 
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 5",
+      }),
+    );
+
     expect(getState(container)).toBe("station4_ready_to_exit");
     expect(
       screen.getByText(
         "No fue posible guardar tu progreso. Intenta nuevamente.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
     expect(
       container.querySelector("[data-world4-route-completed-count='7']"),
     ).toBeInTheDocument();
@@ -1020,13 +1048,9 @@ describe("World4RootScreen — Mesa de sistema", () => {
     );
 
     storageFails = false;
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/estacion/4",
-    );
     fireEvent.click(
       screen.getByRole("button", {
-        name: "Abrir Mundo V. Ir al Mapa del presente.",
+        name: "Escanea el QR para abrir Mundo 5",
       }),
     );
     advance(700);
@@ -1161,6 +1185,20 @@ describe("World4RootScreen — Mesa de sistema", () => {
     expect(root).toHaveAttribute("data-station4-motion-epoch", epoch);
     expect(
       window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
+    ).not.toBeNull();
+    expect(
+      JSON.parse(
+        window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY) ?? "null",
+      ).completedStations,
+    ).toEqual([1, 2, 3]);
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 5",
+      }),
+    );
+    expect(
+      window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
     ).toBeNull();
     expect(
       JSON.parse(
@@ -1194,10 +1232,10 @@ describe("World4RootScreen — Mesa de sistema", () => {
     advance(180);
     expect(getState(container)).toBe("station4_ready_to_exit");
     expect(root).toHaveAttribute("data-station4-motion-kind", "none");
-    expect(screen.getByRole("button", { name: "Reintentar" })).toHaveFocus();
-    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/estacion/4",
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "Escanea el QR para abrir Mundo 5",
+      }),
     );
     expect(
       window.localStorage.getItem(WORLD4_CHECKPOINT_STORAGE_KEY),
@@ -1208,11 +1246,6 @@ describe("World4RootScreen — Mesa de sistema", () => {
       ).completedStations,
     ).toEqual([1, 2, 3, 4]);
 
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: "Abrir Mundo V. Ir al Mapa del presente.",
-      }),
-    );
     advance(180);
     expect(screen.getByTestId("current-location")).toHaveTextContent(
       "/transition/world-4-to-world-5",
@@ -1314,7 +1347,7 @@ describe("World4RootScreen — Mesa de sistema", () => {
     ).toHaveLength(0);
     expect(
       screen.getByRole("button", {
-        name: "Abrir Mundo V. Ir al Mapa del presente.",
+        name: "Escanea el QR para abrir Mundo 5",
       }),
     ).toBeInTheDocument();
   });
