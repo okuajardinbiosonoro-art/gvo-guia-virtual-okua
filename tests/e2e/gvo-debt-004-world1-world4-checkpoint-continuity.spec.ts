@@ -190,11 +190,29 @@ test("GVO_DEBT_004 W4 restaura reading, chain_pending, completion_retry y revisi
   await expect(root).toHaveAttribute("data-station4-progress", "1");
 
   await page.reload({ waitUntil: "domcontentloaded" });
-  await expect(root).toHaveAttribute("data-station4-entry-mode", "abbreviated");
+  await expect(root).toHaveAttribute("data-station4-resume-mode", "reading");
   await expect(root).toHaveAttribute("data-station4-progress", "1");
   await expect(
     page.locator('[data-station4-node="bionosificador"]'),
   ).toHaveAttribute("data-node-state", "available");
+  await expect
+    .poll(() =>
+      page.evaluate((key) => {
+        const raw = localStorage.getItem(key);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return {
+          highestSettledIndex: parsed.highestSettledIndex,
+          resumeMode: parsed.resumeMode,
+          schemaVersion: parsed.schemaVersion,
+        };
+      }, WORLD4_CHECKPOINT_KEY),
+    )
+    .toEqual({
+      highestSettledIndex: 0,
+      resumeMode: "reading",
+      schemaVersion: 1,
+    });
 
   await page.evaluate(
     ({ checkpointKey, syntheticFailureKey }) => {

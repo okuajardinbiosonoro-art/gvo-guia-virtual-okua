@@ -15,11 +15,23 @@ const WORLD1_KEY = "gvo.station1.v1";
 
 type CameraMode = "grant" | "deny";
 
+type CameraTestState = {
+  constraints: MediaStreamConstraints | null;
+  mode: CameraMode;
+  rejects: number;
+  requests: number;
+  resolves: number;
+  stops: number;
+};
+
 async function installCameraContract(page: Page, mode: CameraMode = "grant") {
   await page.addInitScript((cameraMode) => {
-    const state = {
+    const state: CameraTestState = {
       constraints: null as MediaStreamConstraints | null,
+      mode: cameraMode,
+      rejects: 0,
       requests: 0,
+      resolves: 0,
       stops: 0,
     };
     Object.defineProperty(window, "__GVO_QR_TEST_MODE__", {
@@ -31,23 +43,23 @@ async function installCameraContract(page: Page, mode: CameraMode = "grant") {
       configurable: true,
       value: state,
     });
-    const mediaDevices = navigator.mediaDevices ?? {};
-    Object.defineProperty(navigator, "mediaDevices", {
-      configurable: true,
-      value: mediaDevices,
-    });
-    Object.defineProperty(mediaDevices, "getUserMedia", {
-      configurable: true,
-      value: async (constraints: MediaStreamConstraints) => {
+    const syntheticMediaDevices = {
+      getUserMedia: async (constraints: MediaStreamConstraints) => {
         state.requests += 1;
         state.constraints = constraints;
         if (cameraMode === "deny") {
+          state.rejects += 1;
           throw new DOMException("Denied by GVO_DEBT_015", "NotAllowedError");
         }
+        state.resolves += 1;
         return {
           getTracks: () => [{ stop: () => (state.stops += 1) }],
         } as unknown as MediaStream;
       },
+    };
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: syntheticMediaDevices,
     });
   }, mode);
 }
@@ -98,11 +110,7 @@ async function cameraState(page: Page) {
     () =>
       (
         window as typeof window & {
-          __gvoDebt015Camera?: {
-            constraints: MediaStreamConstraints | null;
-            requests: number;
-            stops: number;
-          };
+          __gvoDebt015Camera?: CameraTestState;
         }
       ).__gvoDebt015Camera,
   );
@@ -138,9 +146,33 @@ async function expectFullyInsideViewport(page: Page, selector: string) {
 }
 
 async function openWorld1Scanner(page: Page) {
+  const world1 = page.locator(".world1-root-screen");
+  await expect(world1).toHaveAttribute(
+    "data-world1-root-state",
+    "ready_to_continue",
+  );
+  await expect(world1).toHaveAttribute("data-critical-assets-ready", "true");
+  const previous = await cameraState(page);
+  expect(previous).toBeDefined();
   await page
     .getByRole("button", { name: "Escanea el QR para abrir Mundo 2" })
     .click();
+  await expect
+    .poll(async () => {
+      const current = await cameraState(page);
+      return current
+        ? {
+            rejects: current.rejects,
+            requests: current.requests,
+            resolves: current.resolves,
+          }
+        : null;
+    })
+    .toEqual({
+      rejects: previous!.rejects,
+      requests: previous!.requests + 1,
+      resolves: previous!.resolves + 1,
+    });
   await expect(page.locator("[data-interstation-qr-gate]")).toHaveAttribute(
     "data-camera-status",
     "camera-granted",
@@ -162,7 +194,10 @@ test("/inicio grant usa sólo cámara environment, detiene stream y abre Portada
       audio: false,
       video: { facingMode: { ideal: "environment" } },
     },
+    mode: "grant",
+    rejects: 0,
     requests: 1,
+    resolves: 1,
     stops: 1,
   });
 });
@@ -247,6 +282,17 @@ test("/inicio deny permanece, informa y ofrece retry sin permiso persistido", as
   expect(
     await page.evaluate(() => localStorage.getItem("gvo.camera.permission")),
   ).toBeNull();
+  expect(await cameraState(page)).toEqual({
+    constraints: {
+      audio: false,
+      video: { facingMode: { ideal: "environment" } },
+    },
+    mode: "deny",
+    rejects: 1,
+    requests: 1,
+    resolves: 0,
+    stops: 0,
+  });
 });
 
 test("origen inseguro conserva diagnóstico separado y no llama getUserMedia", async ({

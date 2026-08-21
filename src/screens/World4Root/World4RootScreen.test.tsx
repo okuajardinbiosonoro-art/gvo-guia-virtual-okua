@@ -1102,6 +1102,8 @@ describe("World4RootScreen — Mesa de sistema", () => {
 
       expect(root).toHaveAttribute("data-station4-entry-mode", "abbreviated");
       advance(180);
+      expect(root).toHaveAttribute("data-station4-entry-mode", "none");
+      expect(root).toHaveAttribute("data-station4-resume-mode", "reading");
       expect(root).toHaveAttribute("data-station4-motion-kind", "none");
       expect(root).toHaveAttribute(
         "data-station4-progress",
