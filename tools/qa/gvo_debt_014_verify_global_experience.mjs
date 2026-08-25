@@ -163,14 +163,20 @@ if (
   fail("handoff Mirador → Portada no reutiliza la autoridad canónica");
 }
 if (
+  !cover.includes('className="cover-intro__portal-art"') ||
+  !coverCss.includes(".cover-intro__portal-art") ||
+  !coverCss.includes("aspect-ratio: 941 / 1672") ||
+  !coverCss.includes("calc(var(--portal-height) * 0.562799)") ||
+  !coverCss.includes("top: 2.3%") ||
+  !coverCss.includes("height: 95.4%") ||
   !coverCss.includes(
     ".cover-intro__portal--primary .cover-intro__portal-interior",
   ) ||
-  !coverCss.includes("top: 8%") ||
-  !coverCss.includes("height: 84%") ||
+  !coverCss.includes("top: 5.4%") ||
+  !coverCss.includes("height: 89.2%") ||
   !coverCss.includes("clip-path: inset(1px 0 round 50% / 18%)")
 ) {
-  fail("contrato de clip exclusivo Portal I ausente");
+  fail("contrato local de marco/interior y clip Portal I ausente");
 }
 if ((registry.match(/id: "cover-portal-/g) ?? []).length !== 5) {
   fail("registry no conserva cinco interiores HUMAN_APPROVED");
@@ -217,5 +223,5 @@ if (runtimeManifest !== mirrorManifest) {
 }
 
 console.log(
-  "GVO_DEBT_014 verifier PASS: shell global único; /inicio sin duplicado; revisita canónica; Portal I clip CSS; 5 runtime + 5 mirrors SHA-256 preservados",
+  "GVO_DEBT_014 verifier PASS: shell global único; /inicio sin duplicado; revisita canónica; contrato local marco/interior + clip Portal I; 5 runtime + 5 mirrors SHA-256 preservados",
 );

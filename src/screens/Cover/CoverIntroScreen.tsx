@@ -724,34 +724,36 @@ export function CoverIntroScreen() {
                           : () => showBlockedPortalMessage(portal.id)
                     }
                   >
-                    {portal.id === "portal-1" ? (
+                    <span
+                      className="cover-intro__portal-art"
+                      aria-hidden="true"
+                    >
+                      {portal.id === "portal-1" ? (
+                        <img
+                          className="cover-intro__portal-glow"
+                          src={coverIntroAssets.portal1Glow}
+                          alt=""
+                          data-runtime-asset={coverIntroAssets.portal1Glow}
+                        />
+                      ) : null}
                       <img
-                        className="cover-intro__portal-glow"
-                        src={coverIntroAssets.portal1Glow}
+                        className="cover-intro__portal-interior"
+                        src={portalInterior.src}
                         alt=""
-                        aria-hidden="true"
-                        data-runtime-asset={coverIntroAssets.portal1Glow}
+                        decoding="async"
+                        data-cover-portal-interior={portalInterior.id}
+                        data-portal-clip={
+                          portal.id === "portal-1" ? "primary-safe" : "base"
+                        }
+                        data-runtime-asset={portalInterior.src}
                       />
-                    ) : null}
-                    <img
-                      className="cover-intro__portal-interior"
-                      src={portalInterior.src}
-                      alt=""
-                      aria-hidden="true"
-                      decoding="async"
-                      data-cover-portal-interior={portalInterior.id}
-                      data-portal-clip={
-                        portal.id === "portal-1" ? "primary-safe" : "base"
-                      }
-                      data-runtime-asset={portalInterior.src}
-                    />
-                    <img
-                      className="cover-intro__portal-frame"
-                      src={frameSrc}
-                      alt=""
-                      aria-hidden="true"
-                      data-runtime-asset={frameSrc}
-                    />
+                      <img
+                        className="cover-intro__portal-frame"
+                        src={frameSrc}
+                        alt=""
+                        data-runtime-asset={frameSrc}
+                      />
+                    </span>
                     <span
                       className="cover-intro__portal-roman"
                       aria-hidden="true"

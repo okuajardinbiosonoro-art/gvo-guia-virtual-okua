@@ -513,6 +513,22 @@
   animation: cover-lock-soft-pulse 240ms ease-out 1;
 }
 
+.cover-intro__portal-art {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: min(
+    var(--portal-width),
+    calc(var(--portal-height) * 0.562799)
+  );
+  aspect-ratio: 941 / 1672;
+  overflow: visible;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
 .cover-intro__portal-frame,
 .cover-intro__portal-glow {
   position: absolute;
@@ -535,10 +551,10 @@
 .cover-intro__portal-interior {
   position: absolute;
   z-index: 1;
-  top: 6%;
+  top: 2.3%;
   left: 50%;
   width: 50%;
-  height: 88%;
+  height: 95.4%;
   border-radius: 50% / 18%;
   object-fit: cover;
   object-position: center;
@@ -559,8 +575,8 @@
 }
 
 .cover-intro__portal--primary .cover-intro__portal-interior {
-  top: 8%;
-  height: 84%;
+  top: 5.4%;
+  height: 89.2%;
   opacity: 0.94;
   clip-path: inset(1px 0 round 50% / 18%);
 }
@@ -1145,6 +1161,84 @@
   .cover-intro__cta {
     min-height: 44px;
     padding-block: 8px;
+  }
+}
+
+@media (min-width: 481px) and (min-height: 701px) {
+  .cover-intro {
+    --cover-stage-width: clamp(480px, min(72vw, 80svh), 720px);
+    --cover-stage-padding-x: clamp(
+      24px,
+      calc(var(--cover-stage-width) * 0.05),
+      36px
+    );
+  }
+
+  .cover-intro__lia-wrap {
+    right: clamp(-32px, calc(var(--cover-stage-width) * -0.05), -24px);
+    width: clamp(248px, calc(var(--cover-stage-width) * 0.48), 330px);
+  }
+
+  .cover-intro__dialogue {
+    top: clamp(210px, 30svh, 300px);
+    left: clamp(20px, calc(var(--cover-stage-width) * 0.04), 28px);
+    width: min(calc(var(--cover-stage-width) * 0.65), 420px);
+  }
+
+  .cover-intro__portal-stage {
+    --portal-primary-width: clamp(
+      118px,
+      calc(var(--cover-stage-width) * 0.2458),
+      176px
+    );
+    --portal-primary-height: calc(var(--portal-primary-width) * 1.776833);
+    --portal-secondary-width: clamp(
+      84px,
+      calc(var(--cover-stage-width) * 0.175),
+      126px
+    );
+    --portal-activation-width: clamp(
+      206px,
+      calc(var(--cover-stage-width) * 0.43),
+      280px
+    );
+    --portal-activation-height: calc(var(--portal-activation-width) * 1.54369);
+    --portal-activation-lia-width: clamp(
+      204px,
+      calc(var(--cover-stage-width) * 0.42),
+      280px
+    );
+
+    width: min(100%, calc(var(--cover-stage-width) * 0.9));
+    height: max(
+      clamp(228px, 34svh, calc(var(--cover-stage-width) * 0.68)),
+      calc(
+        var(--portal-primary-height) + var(--portal-primary-bottom) + 16px
+      )
+    );
+  }
+
+  .cover-intro__portal {
+    --portal-width: var(--portal-secondary-width);
+    --portal-height: calc(var(--portal-secondary-width) * 1.776833);
+  }
+
+  .cover-intro__portal--primary {
+    --portal-width: var(--portal-primary-width);
+    --portal-height: var(--portal-primary-height);
+  }
+
+  .cover-intro__portal-activation-contact {
+    width: clamp(50px, calc(var(--cover-stage-width) * 0.1), 68px);
+    height: clamp(38px, calc(var(--cover-stage-width) * 0.07), 48px);
+  }
+
+  .cover-intro__portal-roman {
+    font-size: clamp(
+      1.25rem,
+      calc(var(--cover-stage-width) * 0.04),
+      1.75rem
+    );
   }
 }
 

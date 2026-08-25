@@ -137,6 +137,26 @@ try {
           configurable: true,
           value: undefined,
         });
+        Object.defineProperty(Document.prototype, "exitFullscreen", {
+          configurable: true,
+          value: undefined,
+        });
+        Object.defineProperty(Element.prototype, "webkitRequestFullscreen", {
+          configurable: true,
+          value: undefined,
+        });
+        Object.defineProperty(Element.prototype, "webkitRequestFullScreen", {
+          configurable: true,
+          value: undefined,
+        });
+        Object.defineProperty(Document.prototype, "webkitExitFullscreen", {
+          configurable: true,
+          value: undefined,
+        });
+        Object.defineProperty(Document.prototype, "webkitCancelFullScreen", {
+          configurable: true,
+          value: undefined,
+        });
       });
     }
     if (
@@ -314,7 +334,7 @@ try {
       }
       if (
         scenario.kind === "inicio-fallback" &&
-        metrics.fullscreenState !== "unsupported"
+        metrics.fullscreenState !== "fallback"
       ) {
         throw new Error(`${scenario.id}: fallback fullscreen ausente`);
       }
