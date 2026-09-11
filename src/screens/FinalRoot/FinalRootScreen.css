@@ -608,7 +608,7 @@
 .final-root-lia-entry {
   position: absolute;
   z-index: 12;
-  top: 68%;
+  top: calc(clamp(12px, 2.5vh, 24px) + clamp(86px, 13.5vh, 108px) + 8px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -634,6 +634,7 @@
 }
 @media (orientation: landscape) {
   .final-root-lia-entry {
-    top: 66%;
+    top: auto;
+    bottom: max(16px, env(safe-area-inset-bottom));
   }
 }

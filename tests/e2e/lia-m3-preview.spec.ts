@@ -29,6 +29,22 @@ test("direct preview access retains the journey completion guard", async ({ brow
     await expect(page.locator("[data-lia-preview]")).toHaveCount(0);
   } finally { await context.close(); }
 });
+test("Mirador preview entry does not overlap artwork or existing controls", async ({ page }) => {
+  for (const viewport of [{width:360,height:640},{width:393,height:852},{width:844,height:390},{width:1280,height:800}]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/final");
+    await expect(page.locator("#lia-preview-entry")).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const collisions = await page.evaluate(() => {
+      const entry = document.querySelector("#lia-preview-entry")!.getBoundingClientRect();
+      return [...document.querySelectorAll(".final-root-title, .final-root-lia, [data-final-review-world], .final-root-actions, .final-root-credits")].filter(element => {
+        const rect = element.getBoundingClientRect();
+        return Math.min(entry.right,rect.right)>Math.max(entry.left,rect.left) && Math.min(entry.bottom,rect.bottom)>Math.max(entry.top,rect.top);
+      }).map(element => element.className);
+    });
+    expect(collisions,JSON.stringify(viewport)).toEqual([]);
+  }
+});
 test("Mirador entry, supported excerpt, friendly source and return focus", async ({ page }) => {
   await open(page); await ask(page, question);
   await expect(page.locator("[data-lia-state]").last()).toHaveAttribute("data-lia-state", "supported");
