@@ -155,3 +155,7 @@ El índice corto vive en [`docs/README.md`](docs/README.md). Los documentos
 `main` es la única rama operativa. No se crean Pull Requests. Un ticket que
 autorice publicación se valida, se commitea y se empuja directamente a `main`.
 No se abre otra rama salvo instrucción explícita de un ticket humano.
+
+## Lía M3 — preview de desarrollo
+
+Ver [integración](docs/lia/EXTRACTIVE_PREVIEW.md) y ADR-0008. Pantalla dedicada desde el Mirador, flag desactivado por defecto, SAFE_EXTRACTIVE sin modelos. Copy/aceptación humana final pendientes. No modifica el estado de deployment/campo ni autoriza M4.

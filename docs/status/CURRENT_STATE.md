@@ -103,3 +103,7 @@ No permanece deuda editorial `TEMP` en las transiciones canónicas.
 Los informes `FOR_REVIEW` conservan su estado histórico. Una aprobación o
 reconciliación posterior no los reescribe: prevalecen esta fuente viva y las
 actas humanas publicadas.
+
+## Lía M3 — preview de desarrollo
+
+Ver [integración](../lia/EXTRACTIVE_PREVIEW.md) y ADR-0008. Pantalla dedicada desde el Mirador, flag desactivado por defecto, SAFE_EXTRACTIVE sin modelos. Copy/aceptación humana final pendientes. No modifica el estado de deployment/campo ni autoriza M4.

@@ -15,6 +15,7 @@ export const journeyRouteModuleLoaders = {
   world4: () => import("../screens/World4Root/World4RootScreen"),
   world5: () => import("../screens/World5Root/World5RootScreen"),
   final: () => import("../screens/FinalRoot/FinalRootScreen"),
+  liaPreview: () => import("../screens/LiaPreview/LiaPreviewScreen"),
 } as const;
 
 export type JourneyRouteModuleId = keyof typeof journeyRouteModuleLoaders;

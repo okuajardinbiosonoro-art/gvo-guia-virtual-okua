@@ -100,3 +100,7 @@ current-used/
   copia física del mismo asset.
 - Registrar formato, dimensiones, SHA-256, función, consumidor y estado de cada
   asset aprobado en el inventario correspondiente.
+
+## Lía Preview — LIA-M3-01
+
+`current-used/lia-preview/` registra el reuse canónico de Lía para la pantalla dedicada `/final/lia`. Tira WebP 1536×256, frame estático 256×256, 28306 bytes; SHA-256 `D3171A70C467EFCDA6D1FBB553FA2BEC5D3CFF0DE1A3B00306F5FF121F18CCDE`. Función: avatar guía. Consumidor: `LiaPreview`. Asset `HUMAN_APPROVED_CANONICAL_REUSE`; pantalla/copy pendientes del gate final. No cambia el original ni el Mirador con flag apagado.

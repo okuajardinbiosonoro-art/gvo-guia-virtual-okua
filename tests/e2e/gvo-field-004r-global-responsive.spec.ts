@@ -248,8 +248,12 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
       await page.setViewportSize(viewport);
       for (const route of journeyRoutes) {
         await page.goto(route, { waitUntil: "domcontentloaded" });
-        await waitForRouteReady(page, route);
-        const audit = await page.evaluate(() => {
+        if (!route.startsWith("/transition/")) await waitForRouteReady(page, route);
+        // Observe readiness and geometry in one browser task, before a timed
+        // transition can advance between separate automation round trips.
+        const geometry = await page.waitForFunction((expectedRoute) => {
+          if (location.pathname !== expectedRoute || document.fonts.status !== "loaded") return false;
+          if (expectedRoute.startsWith("/transition/") && !document.querySelector("main[data-transition-world-id][data-critical-assets-ready='true']")) return false;
           const root = document.documentElement;
           const main = document.querySelector("main")?.getBoundingClientRect();
           const horizontallyLostControls = Array.from(
@@ -280,7 +284,10 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
               ? { width: main.width, height: main.height }
               : { width: 0, height: 0 },
           };
-        });
+        }, route);
+        const audit = await geometry.jsonValue();
+        await geometry.dispose();
+        if (!audit) throw new Error("Route geometry was not observed");
 
         expect(audit.actualRoute, `${viewport.name} ${route}`).toBe(route);
         expect(

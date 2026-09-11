@@ -27,6 +27,13 @@ import {
 } from "../../content/finalEditorialSlots";
 import type { FinalEditorialSlotId } from "../../content/finalEditorialSlots";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
+import { liaPreviewCopy } from "../../content/liaPreviewCopy";
+import {
+  liaPreviewEnabled,
+  liaPreviewEntryId,
+  takeLiaReturn,
+} from "../../features/lia-preview/config";
+import { liaPreviewRoute } from "../../app/routes";
 import { FinalLiaMotion } from "./FinalLiaMotion";
 
 type FinalReviewAccessId = "i" | "ii" | "iii" | "iv" | "v";
@@ -251,6 +258,8 @@ export function FinalRootScreen({
 
   useEffect(() => {
     mountedRef.current = true;
+    if (liaPreviewEnabled && takeLiaReturn())
+      document.getElementById(liaPreviewEntryId)?.focus();
     return () => {
       mountedRef.current = false;
     };
@@ -501,6 +510,16 @@ export function FinalRootScreen({
         </picture>
 
         <FinalLiaMotion />
+        {liaPreviewEnabled && (
+          <Link
+            id={liaPreviewEntryId}
+            className="final-root-lia-entry"
+            to={liaPreviewRoute}
+            data-copy-status={liaPreviewCopy.status}
+          >
+            {liaPreviewCopy.entry}
+          </Link>
+        )}
 
         <section className="final-root-actions" data-final-metric="actions">
           <NineSlicePanel

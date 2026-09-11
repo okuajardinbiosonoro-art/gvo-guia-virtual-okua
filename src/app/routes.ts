@@ -41,6 +41,7 @@ export const worldFiveSpaceRoute = "/estacion/5/espacio";
 export const worldFiveVisitorRoute = "/estacion/5/visitante";
 
 export const finalEntryRoute = "/final";
+export const liaPreviewRoute = "/final/lia";
 
 export const qrEntryRoutePattern = "/qr/:qrId";
 
