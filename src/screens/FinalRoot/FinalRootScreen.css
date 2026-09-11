@@ -615,8 +615,9 @@
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  max-width: 85%;
-  padding: 0.6rem 1.2rem;
+  width: 30%;
+  max-width: 170px;
+  padding: 0.4rem;
   border: 2px solid #66765a;
   border-radius: 0.8rem;
   background: #f5f1e7;
@@ -634,7 +635,9 @@
 }
 @media (orientation: landscape) {
   .final-root-lia-entry {
-    top: auto;
-    bottom: max(16px, env(safe-area-inset-bottom));
+    top: 66%;
+    left: calc(50% - 160px);
+    width: auto;
+    padding: 0.6rem 1.2rem;
   }
 }
