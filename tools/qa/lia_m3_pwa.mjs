@@ -41,6 +41,7 @@ try {
     assert.equal(await page.locator("#lia-preview-entry").count(), 0);
     await page.goto(origin + "/final/lia");
     await page.waitForURL(origin + "/final");
+    await page.locator("[data-final-root]").waitFor();
     assert.equal(await page.locator("[data-lia-preview]").count(), 0);
     assert.equal(await page.locator("[data-final-review-world]").count(), 5);
     result.flag_off_preserves_final = true;
