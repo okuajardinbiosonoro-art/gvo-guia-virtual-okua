@@ -603,3 +603,41 @@
     border-image-width: 15px 19px;
   }
 }
+
+/* Optional M3 entry; absent entirely with the flag disabled. */
+.final-root-lia-entry {
+  position: absolute;
+  z-index: 12;
+  top: calc(clamp(12px, 2.5vh, 24px) + clamp(86px, 13.5vh, 108px) + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: 30%;
+  max-width: 170px;
+  padding: 0.4rem;
+  border: 2px solid #66765a;
+  border-radius: 0.8rem;
+  background: #f5f1e7;
+  color: #20362f;
+  text-decoration: none;
+  text-align: center;
+  font:
+    600 clamp(0.8rem, 2vw, 1rem)/1.25 system-ui,
+    sans-serif;
+  box-shadow: 0 2px 8px #20362f33;
+}
+.final-root-lia-entry:focus-visible {
+  outline: 3px solid #744b91;
+  outline-offset: 3px;
+}
+@media (orientation: landscape) {
+  .final-root-lia-entry {
+    top: 66%;
+    left: calc(50% - 160px);
+    width: auto;
+    padding: 0.6rem 1.2rem;
+  }
+}

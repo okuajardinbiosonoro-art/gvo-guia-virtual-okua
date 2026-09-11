@@ -71,6 +71,8 @@ import {
   worldTwoToWorldThreeTransitionRoute,
   worldTwoEntryRoute,
 } from "./routes";
+import { liaPreviewEnabled } from "../features/lia-preview/config";
+import { liaPreviewRoute } from "./routes";
 import { GlobalImmersiveShell } from "./shell/GlobalImmersiveShell";
 
 const TransitionWorld = lazy(() =>
@@ -107,6 +109,11 @@ const FinalRootScreen = lazy(() =>
   journeyRouteModuleLoaders.final().then((module) => ({
     default: module.FinalRootScreen,
   })),
+);
+const LiaPreviewScreen = lazy(() =>
+  journeyRouteModuleLoaders
+    .liaPreview()
+    .then((module) => ({ default: module.LiaPreviewScreen })),
 );
 const World1RootLayoutCalibrator = lazy(() =>
   import("../screens/World1Root/dev").then((module) => ({
@@ -487,6 +494,18 @@ const journeyRoutes: RouteObject[] = [
   {
     path: "/estacion/:stationId",
     element: <StationPlaceholder />,
+  },
+  {
+    path: liaPreviewRoute,
+    loader: () =>
+      liaPreviewEnabled ? requireFinalAccess() : replace(finalEntryRoute),
+    element: (
+      <FinalReviewContextInvalidator>
+        <RouteModuleBoundary moduleId="liaPreview">
+          <LiaPreviewScreen />
+        </RouteModuleBoundary>
+      </FinalReviewContextInvalidator>
+    ),
   },
   {
     path: finalEntryRoute,

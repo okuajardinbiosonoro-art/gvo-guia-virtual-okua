@@ -1,0 +1,24 @@
+{
+  "ticket": "LIA-M3-01",
+  "assets": [
+    {
+      "runtime_path": "public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/lia/final_lia_idle_contemplative_6f_v01.webp",
+      "format": "webp",
+      "dimensions": [
+        1536,
+        256
+      ],
+      "frame_dimensions": [
+        256,
+        256
+      ],
+      "bytes": 28306,
+      "sha256": "D3171A70C467EFCDA6D1FBB553FA2BEC5D3CFF0DE1A3B00306F5FF121F18CCDE",
+      "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
+      "consumer": "LiaPreview",
+      "function": "Static first-frame guide avatar, CSS crop, five petals preserved",
+      "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
+    }
+  ]
+}

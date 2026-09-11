@@ -23,6 +23,7 @@ describe("route module contract", () => {
       "world4",
       "world5",
       "final",
+      "liaPreview",
     ]);
 
     for (const loader of Object.values(journeyRouteModuleLoaders)) {
