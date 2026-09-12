@@ -14,6 +14,7 @@ vi.mock("../../features/lia-preview/client", () => ({ askLia: vi.fn() }));
 afterEach(() => {
   cleanup();
   vi.resetAllMocks();
+  vi.unstubAllGlobals();
 });
 function mount() {
   return render(
@@ -29,6 +30,59 @@ function submit(question = "¿Las plantas hacen música por sí solas?") {
   fireEvent.click(screen.getByRole("button", { name: copy.send }));
 }
 describe("dedicated visitor conversation", () => {
+  it("never replaces the current answer pose with a late listening decode", async () => {
+    const decodes: { url: string; done: () => void }[] = [];
+    vi.stubGlobal(
+      "Image",
+      class {
+        src = "";
+        decode() {
+          return new Promise<void>((done) =>
+            decodes.push({ url: this.src, done }),
+          );
+        }
+      },
+    );
+    vi.mocked(askLia).mockResolvedValue({
+      state: "supported",
+      answer: "Respuesta preparada",
+      citations: [],
+    });
+    const { container } = mount();
+    const pose = () =>
+      container.querySelector("[data-asset-id]")?.getAttribute("data-asset-id");
+    fireEvent.pointerDown(screen.getByLabelText(copy.prompt));
+    expect(pose()).toBe("LIA-M4-GREETING-A");
+    submit();
+    await screen.findByText("Respuesta preparada");
+    decodes
+      .filter((d) => d.url.includes("explaining"))
+      .forEach((d) => d.done());
+    await waitFor(() => expect(pose()).toBe("LIA-M4-EXPLAINING-A"));
+    decodes
+      .filter((d) => !d.url.includes("explaining"))
+      .forEach((d) => d.done());
+    await waitFor(() => expect(pose()).toBe("LIA-M4-EXPLAINING-A"));
+  });
+  it("keeps greeting on automatic focus and explaining after reply focus restoration", async () => {
+    vi.mocked(askLia).mockResolvedValue({
+      state: "supported",
+      answer: "Fragmento",
+      citations: [],
+    });
+    const { container } = mount();
+    const pose = () =>
+      container.querySelector("[data-asset-id]")?.getAttribute("data-asset-id");
+    expect(pose()).toBe("LIA-M4-GREETING-A");
+    fireEvent.pointerDown(screen.getByLabelText(copy.prompt));
+    expect(pose()).toBe("LIA-M4-LISTENING-A");
+    submit();
+    await screen.findByText("Fragmento");
+    await waitFor(() => expect(pose()).toBe("LIA-M4-EXPLAINING-A"));
+    expect(screen.getByLabelText(copy.prompt)).toBe(document.activeElement);
+    fireEvent.click(screen.getByRole("button", { name: copy.clear }));
+    expect(pose()).toBe("LIA-M4-GREETING-A");
+  });
   it("escapes user text, shows approved citations and clears all session state", async () => {
     vi.mocked(askLia).mockResolvedValue({
       state: "supported",

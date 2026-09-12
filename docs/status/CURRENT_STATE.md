@@ -107,3 +107,11 @@ actas humanas publicadas.
 ## Lía M3 — preview de desarrollo
 
 Ver [integración](../lia/EXTRACTIVE_PREVIEW.md) y ADR-0008. Pantalla dedicada desde el Mirador, flag desactivado por defecto, SAFE_EXTRACTIVE sin modelos. Copy/aceptación humana final pendientes. No modifica el estado de deployment/campo ni autoriza M4.
+
+## LIA-M4 active ticket
+
+CONCEPT_A direction approved. Experience and knowledge foundation build under review; final approval pending. CTA/title are FINAL_COPY under LIA-M4-01. Production and field are unchanged. Details: [M4 status](LIA_M4_FOUNDATION.md).
+
+## LIA-M4-FINAL-01 authorized correction
+
+Prior M4 terminal outcome preserved: PRs remained Draft (presence 6). The same M4 branch and PRs now implement the explicitly authorized presence/identity correction. Only the three human-approved source poses are promoted. New final human gate pending; feature default remains off. No field/production or M5 authorization. See [correction](../lia/m4/FINAL_CORRECTION.md).

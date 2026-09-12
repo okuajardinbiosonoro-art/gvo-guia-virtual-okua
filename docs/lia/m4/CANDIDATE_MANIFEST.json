@@ -1,0 +1,277 @@
+{
+  "program_run_id": "OKUA-LIA-M4-20260911T220122889Z-828C3DE3",
+  "tool": "image_gen.imagegen",
+  "capability": "IMAGE_GENERATION_AVAILABLE",
+  "successful_candidates": 7,
+  "interrupted_attempts_without_output": 1,
+  "maximum_candidates": 12,
+  "runtime_selected": [],
+  "candidates": [
+    {
+      "asset_id": "LIA-M4-EXPLAINING-A",
+      "state": "explaining",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-EXPLAINING-A. Canonical reference is a four-frame strip of ONE Lía character. Generate ONE explaining-state candidate, whole frontal floating figure centered with 12% safe margin on a genuinely transparent 512x512 PNG. Preserve exactly five petals: one top, two upper lateral, two lower lateral; opalescent crystal head, closed crescent eyes, amber collar and segmented lower bulb. Match ivory/gold/lavender colors, proportions, silhouette and pixel-art style of reference. Poised explanatory posture with warm attentive collar glow, no added anatomy. No mouth, nose, eyebrows, arms, hands, feet, legs, symbols, diagrams, text, labels, logos, watermark, scenery or clipping. Transparency must be real alpha, never a painted checkerboard. Candidate for CONCEPT_A Mirador vivo; not final.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-12T14:01:41.402Z",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "89297153A015937E82D2B020A159C4254100ABE10016BEE89C6AC81B41A11C6F",
+      "bytes": 669128,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-FAREWELL-A",
+      "state": "farewell",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-FAREWELL-A. Canonical reference is a four-frame strip of ONE Lía character. Generate ONE farewell-state candidate, whole frontal floating figure centered with 12% safe margin on a genuinely transparent 512x512 PNG. Preserve exactly five petals: one top, two upper lateral, two lower lateral; opalescent crystal head, closed crescent eyes, amber collar and segmented lower bulb. Match ivory/gold/lavender colors, proportions, silhouette and pixel-art style of reference. Express a calm goodbye with a small courteous downward tilt and soft warm collar glow only. No mouth, nose, eyebrows, arms, hands, feet, legs, human gestures, symbols, text, labels, logos, watermark, scenery or clipping. Real alpha, never painted checkerboard. Candidate for CONCEPT_A Mirador vivo; not final.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-12T14:06:50.201Z",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "1C3231DAC47E4B2A572572E440545E0880C0B04488C6D27F9EC101831E685405",
+      "bytes": 596144,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-GREETING-A",
+      "state": "greeting",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-GREETING-A. Reference image is the approved canonical Lía sprite strip; it shows four animation frames of ONE character, not four characters. Create ONE new greeting-state candidate sprite, frontal floating figure centered on a genuinely transparent 512x512 PNG canvas, full silhouette with 12% safe margin. Preserve canonical five petals exactly (one top, two upper lateral, two lower lateral), opalescent crystal face with crescent closed eyes, amber luminous collar, segmented cream lower bulb, ivory/gold/pale lavender palette and crisp pixel-art discipline. Express greeting with a subtle welcoming tilt and gentle collar glow only. Match reference identity and proportions closely. No mouth, nose, eyebrows, arms, hands, legs, feet, additional anatomy, characters, text, labels, logos, watermark, background scenery, excessive glow, or clipping. This is a candidate for CONCEPT_A Mirador vivo, not an approved final asset.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "source_concept": "CONCEPT_A",
+      "rights_provenance": "Generated using OKUA canonical artwork; pending human final selection",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "timestamp": "2026-09-11T23:13:28.801Z",
+      "sha256": "3C4A4C454758D3C5380ED9405C4AD534D97FCCA553281CCDBF2E56CAE939D4F3",
+      "bytes": 536285,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-LISTENING-A",
+      "state": "listening",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-LISTENING-A. Reference image is the approved canonical Lía sprite strip; it shows four animation frames of ONE character, not four characters. Create ONE new listening-state candidate sprite, frontal floating figure centered on a genuinely transparent 512x512 PNG canvas, full silhouette with 12% safe margin. Preserve canonical five petals exactly (one top, two upper lateral, two lower lateral), opalescent crystal face with crescent closed eyes, amber luminous collar, segmented cream lower bulb, ivory/gold/pale lavender palette and crisp pixel-art discipline. Express listening with a very subtle attentive tilt to the viewer's left and calm steady collar glow only. Match reference identity and proportions closely. No mouth, nose, eyebrows, arms, hands, legs, feet, additional anatomy, characters, text, labels, logos, watermark, background scenery, excessive glow, or clipping. This is a candidate for CONCEPT_A Mirador vivo, not an approved final asset.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-11T23:14:37.269107+00:00",
+      "timestamp_basis": "generated output file mtime; exact tool prompt recovered from conversation",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "B08125CA85720D50EEEF8A4DDABB52645CE41D5C5C98F53CC3D266503F1DF714",
+      "bytes": 423566,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-THINKING-A",
+      "state": "thinking",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-THINKING-A. Reference image is the approved canonical Lía sprite strip; it shows four animation frames of ONE character, not four characters. Create ONE new thinking-state candidate sprite, frontal floating figure centered on a genuinely transparent 512x512 PNG canvas, full silhouette with 12% safe margin. Preserve canonical five petals exactly (one top, two upper lateral, two lower lateral), opalescent crystal face with crescent closed eyes, amber luminous collar, segmented cream lower bulb, ivory/gold/pale lavender palette and crisp pixel-art discipline. Express thinking with a tiny thoughtful tilt to the viewer's right, balanced still floating posture and restrained amber collar glow only; retain the closed crescent eyes, no new anatomy or thought bubbles. Match reference identity and proportions closely. No mouth, nose, eyebrows, arms, hands, legs, feet, additional anatomy, characters, text, labels, logos, watermark, background scenery, excessive glow, or clipping. This is a candidate for CONCEPT_A Mirador vivo, not an approved final asset.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-11T23:17:51.417994+00:00",
+      "timestamp_basis": "generated output file mtime; exact tool prompt recovered from conversation",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "0A3AEF8744F29BE3DF3A58C851DDF948A8778482DFC61A7936B98E9AD7C509DA",
+      "bytes": 1551750,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "true_transparency": false,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection",
+        "No transparent alpha; painted checkerboard candidate rejected for runtime"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-THINKING-B",
+      "state": "thinking",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-THINKING-B. Reference is the canonical four-frame strip of ONE Lía. Generate one thinking-state sprite on a REAL transparent RGBA PNG background. Absolutely do NOT paint checkerboard squares, white, grey or black backdrop: all empty pixels must have alpha zero. Request 512x512 canvas, full centered figure, 12% safe margin. Preserve exactly FIVE petals (top, upper left/right, lower left/right), ivory gold lavender pixel-art style, closed crescent eyes on opalescent crystal head, amber collar, segmented lower bulb. No mouth, nose, eyebrows, limbs, hands, feet, symbols or added anatomy. Subtle contemplative side tilt and quiet collar glow only. Whole silhouette without cropping, no text, watermark or effects outside the figure. Candidate, not final, for CONCEPT_A Mirador vivo. Preserve identity and proportions of reference.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-12T14:13:08.459Z",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "97205D9D61503270BA8668F669609FE322408DF8F3BE0671021D68C2A3C2BC32",
+      "bytes": 666989,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    },
+    {
+      "asset_id": "LIA-M4-UNCERTAIN-A",
+      "state": "uncertain",
+      "status": "CANDIDATE",
+      "prompt": "Use case: identity-preserve. Asset ID LIA-M4-UNCERTAIN-A. Canonical reference is a four-frame strip of ONE Lía character. Generate ONE uncertain-state candidate, whole frontal floating figure centered with 12% safe margin on a genuinely transparent 512x512 PNG. Preserve exactly five petals: one top, two upper lateral, two lower lateral; opalescent crystal head, closed crescent eyes, amber collar and segmented lower bulb. Match ivory/gold/lavender colors, proportions, silhouette and pixel-art style of reference. Express gentle uncertainty through a tiny side tilt and subdued but visible collar glow only, never a sad human face. No mouth, nose, eyebrows, arms, hands, feet, legs, symbols, question marks, text, labels, logos, watermark, scenery or clipping. Real alpha, never painted checkerboard. Candidate for CONCEPT_A Mirador vivo; not final.",
+      "tool": "image_gen.imagegen",
+      "model": "Not returned by tool",
+      "timestamp": "2026-09-12T14:04:44.406Z",
+      "source_concept": "CONCEPT_A",
+      "requested_dimensions": [
+        512,
+        512
+      ],
+      "rights_provenance": "Generated using OKUA canonical reference; pending human selection",
+      "sha256": "17B7058E4BB412FF449321B25D86E2762B73CCAB80222F57F79E585C67B87A58",
+      "bytes": 509978,
+      "format": "PNG",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "true_transparency": true,
+      "requested_dimensions_met": false,
+      "source_reference": "GVO approved final_lia_greeting_4f_v01.webp",
+      "source_reference_sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "runtime_selected": false,
+      "visual_review": "Five petals and canonical nonhuman anatomy observed; candidate only, subtle state differences need human review",
+      "negative_constraints": "No anatomy additions, text, logos, scenery, clipping or painted transparency",
+      "review_limits": [
+        "Tool returned larger canvas than requested; original bytes preserved",
+        "Final export and perceived state distinction require human selection"
+      ]
+    }
+  ]
+}

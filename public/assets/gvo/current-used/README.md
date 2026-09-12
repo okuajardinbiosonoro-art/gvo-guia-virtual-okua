@@ -104,3 +104,15 @@ current-used/
 ## Lía Preview — LIA-M3-01
 
 `current-used/lia-preview/` registra el reuse canónico de Lía para la pantalla dedicada `/final/lia`. Tira WebP 1536×256, frame estático 256×256, 28306 bytes; SHA-256 `D3171A70C467EFCDA6D1FBB553FA2BEC5D3CFF0DE1A3B00306F5FF121F18CCDE`. Función: avatar guía. Consumidor: `LiaPreview`. Asset `HUMAN_APPROVED_CANONICAL_REUSE`; pantalla/copy pendientes del gate final. No cambia el original ni el Mirador con flag apagado.
+
+## LIA-M4 CONCEPT_A
+
+The Lía preview screen reuses four unchanged approved FinalRoot assets. The exact runtime/mirror registry is `public/assets/gvo/current-used/lia-preview/manifest.json`; generated candidates are excluded from runtime pending human selection.
+
+## LIA-M4-FINAL-01 approved presence
+
+This entry supersedes the earlier candidate-only runtime status for exactly three originals. The original human review approved Greeting A, Listening A and Explaining A; LIA-M4-FINAL-01 authorizes their deterministic runtime integration. Screen acceptance remains pending. Four prior canonical assets remain; rejected poses are excluded. [Correction details](../../../../docs/lia/m4/FINAL_CORRECTION.md).
+
+- `LIA-M4-GREETING-A`: source `assets-source/lia-m4/LIA-M4-GREETING-A.png` SHA256 `3C4A4C454758D3C5380ED9405C4AD534D97FCCA553281CCDBF2E56CAE939D4F3`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-greeting-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-greeting-a.webp`; WebP RGBA [1254, 1254], 385836 bytes, SHA256 `82DC04328F41E959DC9C731B7EEDEEFE745EC278F538EC379B119D79AB6D2193`; consumer LiaPreview, state greeting; HUMAN_APPROVED_SOURCE_DERIVATION.
+- `LIA-M4-LISTENING-A`: source `assets-source/lia-m4/LIA-M4-LISTENING-A.png` SHA256 `B08125CA85720D50EEEF8A4DDABB52645CE41D5C5C98F53CC3D266503F1DF714`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-listening-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-listening-a.webp`; WebP RGBA [1254, 1254], 288932 bytes, SHA256 `7150C930446C4AF85EA5B3E1D81EC45EECC61D1C081C5D65146136166CF6C93E`; consumer LiaPreview, state listening; HUMAN_APPROVED_SOURCE_DERIVATION.
+- `LIA-M4-EXPLAINING-A`: source `assets-source/lia-m4/LIA-M4-EXPLAINING-A.png` SHA256 `89297153A015937E82D2B020A159C4254100ABE10016BEE89C6AC81B41A11C6F`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-explaining-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-explaining-a.webp`; WebP RGBA [1254, 1254], 473646 bytes, SHA256 `96C9AD6AFA43A66BE982434BE36FCD112B4F3DDB8BB1369C0678E744CC0C384E`; consumer LiaPreview, state explaining; HUMAN_APPROVED_SOURCE_DERIVATION.

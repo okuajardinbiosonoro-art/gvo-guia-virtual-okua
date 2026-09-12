@@ -1,0 +1,246 @@
+{
+  "available_capability": "IMAGE_GENERATION_AVAILABLE",
+  "priority_states": [
+    "greeting",
+    "listening",
+    "thinking",
+    "explaining",
+    "uncertain",
+    "farewell"
+  ],
+  "budget": {
+    "states": 6,
+    "variants_each": 2,
+    "max_candidates": 12,
+    "actual_generated": 0
+  },
+  "prompts": [
+    {
+      "asset_id": "LIA-M4-GREETING-A",
+      "state": "greeting",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state greeting, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express greeting through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-GREETING-B",
+      "state": "greeting",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state greeting, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express greeting through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-LISTENING-A",
+      "state": "listening",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state listening, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express listening through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-LISTENING-B",
+      "state": "listening",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state listening, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express listening through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-THINKING-A",
+      "state": "thinking",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state thinking, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express thinking through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-THINKING-B",
+      "state": "thinking",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state thinking, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express thinking through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-EXPLAINING-A",
+      "state": "explaining",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state explaining, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express explaining through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-EXPLAINING-B",
+      "state": "explaining",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state explaining, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express explaining through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-UNCERTAIN-A",
+      "state": "uncertain",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state uncertain, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express uncertain through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-UNCERTAIN-B",
+      "state": "uncertain",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state uncertain, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express uncertain through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-FAREWELL-A",
+      "state": "farewell",
+      "variant": "A",
+      "prompt": "Create one candidate sprite of canonical Lía for state farewell, variant A. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express farewell through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    },
+    {
+      "asset_id": "LIA-M4-FAREWELL-B",
+      "state": "farewell",
+      "variant": "B",
+      "prompt": "Create one candidate sprite of canonical Lía for state farewell, variant B. Follow the approved five-petal reference exactly: soft robotic botanical body, opalescent crystal head with crescent closed eyes, amber luminous collar, segmented lower bulb. Preserve silhouette and palette from canonical references. Pixel-art edge discipline consistent with the GVO Mirador. Single frontal three-quarter floating figure, centered, whole silhouette, no text, transparent background, 512x512 canvas, safe margin 12 percent. Express farewell through subtle tilt, collar intensity and composition only; no new anatomy. Variant A is neutral/low amplitude; variant B changes tilt slightly, never identity.",
+      "negative_constraints": "No extra or missing petals; no mouth, nose, eyebrows, limbs, hands, feet, humanoid anatomy, text, logos, signatures, new characters, heavy effects, photo-realism or unapproved redesign. No clipping. No generated text baked into image.",
+      "reference_paths": [
+        "04_worktrees/gvo/docs/03_IDENTIDAD_LIA.md",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
+        "04_worktrees/gvo/public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp"
+      ],
+      "tool": "image_gen.imagegen available in current session; actual capability rechecked at build",
+      "generation_authorized_now": false,
+      "status": "PROMPT_ONLY",
+      "timestamp": null,
+      "digest": null,
+      "rights_provenance": "OKUA canonical references; generated candidate provenance recorded on creation; no automatic approval"
+    }
+  ],
+  "review_rubric": [
+    "Exactly five petals",
+    "Recognizable canonical silhouette",
+    "Palette and pixel density match",
+    "No invented anatomy/text",
+    "Readability at 96/144/240px",
+    "True alpha and safe bounds",
+    "Meaning conveyed without motion",
+    "Digest/provenance recorded"
+  ],
+  "fallback": "If tool unavailable at build, deliver executable prompts and canonical reuse; max one explicit P1 asset-generation debt"
+}

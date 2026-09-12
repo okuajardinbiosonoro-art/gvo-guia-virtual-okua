@@ -159,3 +159,7 @@ No se abre otra rama salvo instrucción explícita de un ticket humano.
 ## Lía M3 — preview de desarrollo
 
 Ver [integración](docs/lia/EXTRACTIVE_PREVIEW.md) y ADR-0008. Pantalla dedicada desde el Mirador, flag desactivado por defecto, SAFE_EXTRACTIVE sin modelos. Copy/aceptación humana final pendientes. No modifica el estado de deployment/campo ni autoriza M4.
+
+## LIA-M4 foundation
+
+See [M4 status](docs/status/LIA_M4_FOUNDATION.md). The existing Lía flag remains off by default; the optional target laboratory is development-only.
