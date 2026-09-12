@@ -1,5 +1,3 @@
-# Lía Preview — asset utilizado
+# Lía M4 current-used
 
-Reuse de la tira canónica aprobada `final_lia_idle_contemplative_6f_v01.webp`. El primer frame se presenta mediante CSS, sin editar/reexportar el original. Cinco pétalos conservados.
-
-El manifest registra ambas rutas, función, consumidor, dimensiones y SHA-256. Mirror byte-idéntico; runtime consume la ruta original `stations/final-root/lia`. `current-used` no se distribuye. La aprobación publicada del asset tiene precedencia sobre registros históricos NOT_YET_COMPOSED. Copy y pantalla pendientes de aceptación humana M3.
+CONCEPT_A uses the unchanged canonical FinalRoot avatar, greeting strip and portrait/landscape valley backgrounds. `manifest.json` records exact runtime/mirror pairs, SHA-256, dimensions, consumer and source approval. Only the first sprite frame is displayed, with CSS float disabled for reduced motion. Generated candidates remain in the M4 run asset lab and are not runtime assets. Final screen acceptance is pending.

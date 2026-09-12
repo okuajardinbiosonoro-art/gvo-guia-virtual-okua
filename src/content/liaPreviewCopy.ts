@@ -1,11 +1,19 @@
-/** Working visitor copy. Final human decision is recorded in the M3 gate. */
+/** CTA and title: HUMAN_APPROVED / FINAL_COPY, LIA-M4-01 section 5. */
 export const liaPreviewCopy = {
-  status: "DRAFT_COPY",
+  status: "FINAL_COPY",
   entry: "Conversar con Lía",
-  badge: "Vista previa",
+  badge: "Fragmentos del recorrido",
   title: "Conversar con Lía",
   introduction:
     "Revisitemos el jardín. Puedo compartir fragmentos del recorrido y mostrarte sus fuentes.",
+  chapter: "EL RECORRIDO CONTINÚA",
+  reading: "Cuaderno de conversación",
+  presence: "Una pregunta abre otro camino.",
+  greeting: "Te escucho",
+  listening: "Preparando tu pregunta",
+  explaining: "Volvamos a lo que recorriste",
+  showingSources: "Las palabras y sus fuentes",
+  farewell: "Volvemos al Mirador",
   scope:
     "Esta conversación usa extractos del recorrido. Si no encuentro información suficiente, te lo diré.",
   empty: "¿Qué te gustaría recordar del recorrido?",

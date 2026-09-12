@@ -1,5 +1,5 @@
 {
-  "ticket": "LIA-M3-01",
+  "ticket": "LIA-M4-01",
   "assets": [
     {
       "runtime_path": "public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
@@ -19,6 +19,52 @@
       "consumer": "LiaPreview",
       "function": "Static first-frame guide avatar, CSS crop, five petals preserved",
       "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
+    },
+    {
+      "runtime_path": "public/assets/gvo/stations/final-root/lia/final_lia_greeting_4f_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/lia/final_lia_greeting_4f_v01.webp",
+      "format": "webp",
+      "dimensions": [
+        1024,
+        256
+      ],
+      "bytes": 30182,
+      "sha256": "80F30DB75C3ABD1A795F8519EF75218B27981DBCE4F1ADAB4DD6941741CD22DD",
+      "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
+      "consumer": "LiaPreview",
+      "function": "First-frame greeting; five canonical petals",
+      "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
+    },
+    {
+      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_valley_depth_landscape_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_valley_depth_landscape_v01.webp",
+      "format": "webp",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "bytes": 107632,
+      "sha256": "FA9999A33EA636F57FA901D8C06B4FF9694A27F66704DAE7968B9E2DC45EC42B",
+      "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
+      "consumer": "LiaPreview",
+      "function": "Desktop/landscape conversation background",
+      "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
+    },
+    {
+      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_valley_depth_portrait_v01.webp",
+      "format": "webp",
+      "dimensions": [
+        1440,
+        2560
+      ],
+      "bytes": 108270,
+      "sha256": "F64326254C5215CB44E0F9D93134B425E8806EA41E27556A4BBC40EA36D71E99",
+      "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
+      "consumer": "LiaPreview",
+      "function": "Portrait conversation background",
+      "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
     }
-  ]
+  ],
+  "concept": "CONCEPT_A"
 }
