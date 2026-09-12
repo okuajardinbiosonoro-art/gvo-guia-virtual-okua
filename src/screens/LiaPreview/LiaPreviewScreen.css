@@ -469,6 +469,10 @@
 .lia-preview__header p {
   color: #fff2da;
 }
+.lia-preview__target-controls p {
+  color: #fff2da;
+  font-family: var(--gvo-font-system-readable);
+}
 .lia-preview__journal p,
 .lia-preview__journal blockquote {
   font-family: var(--gvo-font-system-readable);
@@ -479,16 +483,26 @@
 .lia-preview__question p {
   color: #65523e;
 }
+@media (max-width: 700px) {
+  .lia-preview__header {
+    grid-template-columns: 120px 1fr;
+  }
+  .lia-preview__avatar {
+    width: 140px;
+    height: 140px;
+    margin: 0 -10px;
+  }
+}
 @media (max-width: 700px) and (max-height: 700px) and (orientation: portrait) {
   .lia-preview__layout {
     gap: 18px;
   }
   .lia-preview__header {
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 110px 1fr;
   }
   .lia-preview__avatar {
-    width: 90px;
-    height: 90px;
+    width: 130px;
+    height: 130px;
   }
   .lia-preview h1 {
     font-size: 26px;
