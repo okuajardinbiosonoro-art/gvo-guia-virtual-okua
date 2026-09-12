@@ -12,3 +12,5 @@ Automatic focus on entry and after a reply does not switch artwork to listening;
 Farewell-A, Thinking-A/B and Uncertain-A remain outside runtime; guard cases reject all four IDs and hashes anywhere in the runtime manifest. The earlier CANDIDATE_MANIFEST is a historical lab inventory, not runtime authorization. Asset approval is not final screen acceptance. Remaining P1 debts: unapproved pose retouch and knowledge authority expansion. No automatic M5, models, field access or deployment.
 
 Validation commands: node tools/qa/lia_m4_guards.mjs --production; unit presence/UI tests; legacy, M3/M4 and normal-mode presence browser suites; PWA and clean clone checks. See the correction run receipts for actual results and the final human evaluation; never infer a score from tests.
+
+The three approved poses are preloaded. A state switch keeps the previous complete pose until the new image has decoded; late completions cannot replace a newer state. Validation screenshots wait for decoded assets and disable animations to record stable artwork. Original dynamic behavior remains active unless reduced motion is requested.

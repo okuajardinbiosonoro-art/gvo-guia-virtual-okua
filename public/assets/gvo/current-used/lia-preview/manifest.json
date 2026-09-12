@@ -1,5 +1,5 @@
 {
-  "ticket": "LIA-M4-01",
+  "ticket": "LIA-M4-FINAL-01",
   "assets": [
     {
       "runtime_path": "public/assets/gvo/stations/final-root/lia/final_lia_idle_contemplative_6f_v01.webp",
@@ -64,6 +64,117 @@
       "consumer": "LiaPreview",
       "function": "Portrait conversation background",
       "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
+    },
+    {
+      "asset_id": "LIA-M4-GREETING-A",
+      "source_path": "assets-source/lia-m4/LIA-M4-GREETING-A.png",
+      "source_sha256": "3C4A4C454758D3C5380ED9405C4AD534D97FCCA553281CCDBF2E56CAE939D4F3",
+      "runtime_path": "public/assets/gvo/lia-preview/lia/lia-m4-greeting-a.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/lia/lia-m4-greeting-a.webp",
+      "sha256": "82DC04328F41E959DC9C731B7EEDEEFE745EC278F538EC379B119D79AB6D2193",
+      "bytes": 385836,
+      "format": "webp",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "human_approval": "HUMAN_APPROVED_SOURCE_DERIVATION",
+      "consumer": "LiaPreview",
+      "function": "greeting",
+      "derivation": {
+        "recipe": "tools/assets/derive_lia_m4_assets.mjs",
+        "version": 1,
+        "sharp": "0.34.5",
+        "vips": "8.17.3",
+        "options": {
+          "lossless": true,
+          "effort": 6,
+          "force": true
+        },
+        "crop": false,
+        "resize": false,
+        "redraw": false,
+        "width": 1254,
+        "height": 1254,
+        "transparent_pixels": 1272834,
+        "visible_pixels": 299682,
+        "alpha_identical": true,
+        "visible_pixels_identical": true
+      }
+    },
+    {
+      "asset_id": "LIA-M4-LISTENING-A",
+      "source_path": "assets-source/lia-m4/LIA-M4-LISTENING-A.png",
+      "source_sha256": "B08125CA85720D50EEEF8A4DDABB52645CE41D5C5C98F53CC3D266503F1DF714",
+      "runtime_path": "public/assets/gvo/lia-preview/lia/lia-m4-listening-a.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/lia/lia-m4-listening-a.webp",
+      "sha256": "7150C930446C4AF85EA5B3E1D81EC45EECC61D1C081C5D65146136166CF6C93E",
+      "bytes": 288932,
+      "format": "webp",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "human_approval": "HUMAN_APPROVED_SOURCE_DERIVATION",
+      "consumer": "LiaPreview",
+      "function": "listening",
+      "derivation": {
+        "recipe": "tools/assets/derive_lia_m4_assets.mjs",
+        "version": 1,
+        "sharp": "0.34.5",
+        "vips": "8.17.3",
+        "options": {
+          "lossless": true,
+          "effort": 6,
+          "force": true
+        },
+        "crop": false,
+        "resize": false,
+        "redraw": false,
+        "width": 1254,
+        "height": 1254,
+        "transparent_pixels": 1321778,
+        "visible_pixels": 250738,
+        "alpha_identical": true,
+        "visible_pixels_identical": true
+      }
+    },
+    {
+      "asset_id": "LIA-M4-EXPLAINING-A",
+      "source_path": "assets-source/lia-m4/LIA-M4-EXPLAINING-A.png",
+      "source_sha256": "89297153A015937E82D2B020A159C4254100ABE10016BEE89C6AC81B41A11C6F",
+      "runtime_path": "public/assets/gvo/lia-preview/lia/lia-m4-explaining-a.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/lia/lia-m4-explaining-a.webp",
+      "sha256": "96C9AD6AFA43A66BE982434BE36FCD112B4F3DDB8BB1369C0678E744CC0C384E",
+      "bytes": 473646,
+      "format": "webp",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "human_approval": "HUMAN_APPROVED_SOURCE_DERIVATION",
+      "consumer": "LiaPreview",
+      "function": "explaining",
+      "derivation": {
+        "recipe": "tools/assets/derive_lia_m4_assets.mjs",
+        "version": 1,
+        "sharp": "0.34.5",
+        "vips": "8.17.3",
+        "options": {
+          "lossless": true,
+          "effort": 6,
+          "force": true
+        },
+        "crop": false,
+        "resize": false,
+        "redraw": false,
+        "width": 1254,
+        "height": 1254,
+        "transparent_pixels": 1216362,
+        "visible_pixels": 356154,
+        "alpha_identical": true,
+        "visible_pixels_identical": true
+      }
     }
   ],
   "concept": "CONCEPT_A"

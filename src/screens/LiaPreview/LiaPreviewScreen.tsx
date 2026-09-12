@@ -17,6 +17,10 @@ import {
   MAX_TURNS,
 } from "../../features/lia-preview/config";
 import { liaPreviewAssets } from "../../shared/assets/liaPreviewAssets";
+import {
+  presenceFor,
+  type PresenceState,
+} from "../../features/lia-preview/presence";
 import "./LiaPreviewScreen.css";
 
 const TargetReview =
@@ -31,6 +35,47 @@ type Turn = {
   unavailable?: boolean;
   target?: boolean;
 };
+function PresenceArtwork({ state }: { state: PresenceState }) {
+  const requested = presenceFor(state);
+  const [visible, setVisible] = useState(requested);
+  useEffect(() => {
+    // Warm only the approved local image resources; no visitor data is retained.
+    for (const next of ["greeting", "listening", "explaining"] as const) {
+      const preload = new Image();
+      preload.src = presenceFor(next).url;
+      void preload.decode?.().catch(() => undefined);
+    }
+  }, []);
+  useEffect(() => {
+    let active = true;
+    const image = new Image();
+    image.src = requested.url;
+    if (image.decode) {
+      // Keep the previous complete pose until the next one can be painted whole.
+      void image
+        .decode()
+        .then(() => {
+          if (active) setVisible(requested);
+        })
+        .catch(() => undefined);
+    } else setVisible(requested);
+    return () => {
+      active = false;
+    };
+  }, [requested]);
+  return (
+    <span
+      key={visible.id}
+      className="lia-preview__avatar"
+      aria-hidden="true"
+      data-asset-id={visible.id}
+      style={{
+        backgroundImage: `url("${visible.url}")`,
+        backgroundSize: `${visible.frames * 100}% 100%`,
+      }}
+    />
+  );
+}
 export function LiaPreviewScreen() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -40,12 +85,19 @@ export function LiaPreviewScreen() {
   const [targetLabel, setTargetLabel] = useState("");
   const [targetReply, setTargetReply] = useState<LiaReply | null>(null);
   const [sourcesOpen, setSourcesOpen] = useState(false);
+  const [inputEngaged, setInputEngaged] = useState(false);
+  const restoringFocus = useRef(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const request = useRef<AbortController | null>(null);
   const generation = useRef(0);
   const end = useRef<HTMLDivElement>(null);
-  useEffect(() => {
+  function restoreInputFocus() {
+    restoringFocus.current = true;
     input.current?.focus({ preventScroll: true });
+    restoringFocus.current = false;
+  }
+  useEffect(() => {
+    restoreInputFocus();
     return () => {
       generation.current++;
       request.current?.abort();
@@ -64,7 +116,8 @@ export function LiaPreviewScreen() {
     setMessage("");
     setLoading(false);
     setNotice(copy.cleared);
-    input.current?.focus({ preventScroll: true });
+    setInputEngaged(false);
+    restoreInputFocus();
   }
   function back() {
     request.current?.abort();
@@ -82,6 +135,7 @@ export function LiaPreviewScreen() {
       return;
     const id = ++generation.current;
     const question = message.trim();
+    setInputEngaged(false);
     if (targetReply && TargetReview) {
       setTurns((old) => [
         ...old.slice(-(MAX_TURNS - 1)),
@@ -112,32 +166,34 @@ export function LiaPreviewScreen() {
       if (id === generation.current) {
         request.current = null;
         setLoading(false);
-        input.current?.focus({ preventScroll: true });
+        restoreInputFocus();
       }
     }
   }
   const last = turns.at(-1);
-  const experienceState = sourcesOpen
-    ? "showing_sources"
-    : loading
-      ? "thinking"
-      : message
-        ? "listening"
-        : last?.unavailable
-          ? "unavailable"
-          : last?.reply?.state === "abstain"
-            ? "uncertain"
-            : last?.reply?.state === "refused"
-              ? "safe_refusal"
-              : turns.length
-                ? "explaining"
-                : "greeting";
-  const presenceLabel = sourcesOpen
-    ? copy.showingSources
-    : loading
-      ? copy.loading
-      : message
-        ? copy.listening
+  const experienceState: PresenceState = loading
+    ? "thinking"
+    : message
+      ? "user_typing"
+      : inputEngaged
+        ? "input_focus"
+        : sourcesOpen
+          ? "showing_sources"
+          : last?.unavailable
+            ? "unavailable"
+            : last?.reply?.state === "abstain"
+              ? "uncertain"
+              : last?.reply?.state === "refused"
+                ? "safe_refusal"
+                : turns.length
+                  ? "explaining"
+                  : "greeting";
+  const presenceLabel = loading
+    ? copy.loading
+    : message || inputEngaged
+      ? copy.listening
+      : sourcesOpen
+        ? copy.showingSources
         : last?.unavailable
           ? copy.unavailable
           : last?.reply
@@ -166,14 +222,12 @@ export function LiaPreviewScreen() {
         </nav>
         <div className="lia-preview__layout">
           <header className="lia-preview__header">
-            <span
-              className="lia-preview__avatar"
-              aria-hidden="true"
-              style={{
-                backgroundImage: `url("${turns.length ? liaPreviewAssets.avatar : liaPreviewAssets.greeting}")`,
-                backgroundSize: `${turns.length ? 600 : 400}% 100%`,
-              }}
-            />
+            <div
+              className="lia-preview__stage"
+              data-presence-cue={experienceState}
+            >
+              <PresenceArtwork state={experienceState} />
+            </div>
             <div>
               <span className="lia-preview__chapter">{copy.chapter}</span>
               <h1 id="lia-title">{copy.title}</h1>
@@ -224,7 +278,11 @@ export function LiaPreviewScreen() {
                         {!!turn.reply?.citations.length && (
                           <details
                             onToggle={(event) =>
-                              setSourcesOpen(event.currentTarget.open)
+                              setSourcesOpen(
+                                !!event.currentTarget
+                                  .closest("ol")
+                                  ?.querySelector("details[open]"),
+                              )
                             }
                           >
                             <summary>
@@ -266,6 +324,11 @@ export function LiaPreviewScreen() {
                 rows={3}
                 placeholder={copy.placeholder}
                 aria-describedby="lia-limit"
+                onFocus={() => {
+                  if (!restoringFocus.current) setInputEngaged(true);
+                }}
+                onPointerDown={() => setInputEngaged(true)}
+                onBlur={() => setInputEngaged(false)}
                 onChange={(e) => setMessage(e.target.value)}
               />
               <div className="lia-preview__composer-actions">

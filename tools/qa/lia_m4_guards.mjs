@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { validateAssets } from "../assets/derive_lia_m4_assets.mjs";
 
 const root = process.cwd();
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
@@ -31,7 +32,8 @@ assert.doesNotMatch(
 const manifest = JSON.parse(
   read("public/assets/gvo/current-used/lia-preview/manifest.json"),
 );
-assert.equal(manifest.assets.length, 4);
+assert.equal(manifest.assets.length, 7);
+await validateAssets();
 for (const item of manifest.assets) {
   const runtime = fs.readFileSync(path.join(root, item.runtime_path));
   assert.equal(
@@ -42,7 +44,12 @@ for (const item of manifest.assets) {
     runtime,
     fs.readFileSync(path.join(root, item.current_used_mirror)),
   );
-  assert.equal(item.human_approval, "HUMAN_APPROVED_CANONICAL_REUSE");
+  assert.equal(
+    item.human_approval,
+    item.source_sha256
+      ? "HUMAN_APPROVED_SOURCE_DERIVATION"
+      : "HUMAN_APPROVED_CANONICAL_REUSE",
+  );
 }
 function files(directory) {
   return fs
@@ -69,6 +76,7 @@ console.log(
     status: "PASS",
     copy: "FINAL_COPY",
     canonical_assets: 4,
+    approved_derivatives: 3,
     dev_only_target: true,
     production_checked: process.argv.includes("--production"),
   }),
