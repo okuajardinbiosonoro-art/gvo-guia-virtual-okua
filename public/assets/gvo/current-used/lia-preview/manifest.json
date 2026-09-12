@@ -36,30 +36,30 @@
       "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
     },
     {
-      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_valley_depth_landscape_v01.webp",
-      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_valley_depth_landscape_v01.webp",
+      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_environment_landscape_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_environment_landscape_v01.webp",
       "format": "webp",
       "dimensions": [
         2560,
         1440
       ],
-      "bytes": 107632,
-      "sha256": "FA9999A33EA636F57FA901D8C06B4FF9694A27F66704DAE7968B9E2DC45EC42B",
+      "bytes": 212234,
+      "sha256": "EDB75703A398724B9084D800CF21B888D72B6028C4199DC1D7A2C5F5CC0D1D84",
       "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
       "consumer": "LiaPreview",
       "function": "Desktop/landscape conversation background",
       "source_approval": "Published FinalRoot inventory; source package 4E2AB2A95437411EC9519AF77D46BCFAD3E44B5B88F2A2B17EDC83402348644F"
     },
     {
-      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_valley_depth_portrait_v01.webp",
-      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_valley_depth_portrait_v01.webp",
+      "runtime_path": "public/assets/gvo/stations/final-root/environment/final_environment_portrait_v01.webp",
+      "current_used_mirror": "public/assets/gvo/current-used/lia-preview/environment/final_environment_portrait_v01.webp",
       "format": "webp",
       "dimensions": [
         1440,
         2560
       ],
-      "bytes": 108270,
-      "sha256": "F64326254C5215CB44E0F9D93134B425E8806EA41E27556A4BBC40EA36D71E99",
+      "bytes": 157294,
+      "sha256": "1E8B599BE197EE26E346B1B1974CAA571DE42AF4B8587758C801C914C04C1347",
       "human_approval": "HUMAN_APPROVED_CANONICAL_REUSE",
       "consumer": "LiaPreview",
       "function": "Portrait conversation background",

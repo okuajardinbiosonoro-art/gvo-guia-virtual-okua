@@ -27,7 +27,7 @@ test("approved composition, final copy and initial viewport", async ({
     background: getComputedStyle(node).backgroundImage,
     overflow: document.documentElement.scrollWidth > innerWidth,
   }));
-  expect(result.background).toContain("final_valley_depth_");
+  expect(result.background).toContain("final_environment_");
   expect(result.overflow).toBe(false);
 });
 

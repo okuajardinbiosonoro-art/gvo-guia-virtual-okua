@@ -3,7 +3,7 @@ import { finalRootAssets } from "./finalRootAssets";
 export const liaPreviewAssets = {
   avatar: finalRootAssets.lia.idleContemplative6f,
   greeting: finalRootAssets.lia.greeting4f,
-  valley: finalRootAssets.environment.valleyDepthLandscape,
-  valleyPortrait: finalRootAssets.environment.valleyDepthPortrait,
+  valley: finalRootAssets.environment.landscape,
+  valleyPortrait: finalRootAssets.environment.portrait,
   action: finalRootAssets.ui.actionBackplate,
 } as const;

@@ -464,3 +464,58 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Keep route text independent from global muted paragraph styling. */
+.lia-preview__header p {
+  color: #fff2da;
+}
+.lia-preview__journal p,
+.lia-preview__journal blockquote {
+  font-family: var(--gvo-font-system-readable);
+}
+.lia-preview__answer p {
+  color: #392a25;
+}
+.lia-preview__question p {
+  color: #65523e;
+}
+@media (max-width: 700px) and (max-height: 700px) and (orientation: portrait) {
+  .lia-preview__layout {
+    gap: 18px;
+  }
+  .lia-preview__header {
+    grid-template-columns: 90px 1fr;
+  }
+  .lia-preview__avatar {
+    width: 90px;
+    height: 90px;
+  }
+  .lia-preview h1 {
+    font-size: 26px;
+  }
+  .lia-preview__header p {
+    font-size: 14px;
+  }
+  .lia-preview__journal {
+    padding: 16px 14px 12px;
+  }
+  .lia-preview__journal-top {
+    padding-bottom: 10px;
+  }
+  .lia-preview__conversation {
+    max-height: 210px;
+    min-height: 140px;
+  }
+  .lia-preview__empty h2 {
+    font-size: 25px;
+    margin: 8px 0 12px;
+  }
+  .lia-preview__empty p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .lia-preview__empty button {
+    font-size: 16px;
+    padding: 8px 4px;
+  }
+}
