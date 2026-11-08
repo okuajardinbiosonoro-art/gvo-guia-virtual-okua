@@ -1,3 +1,17 @@
+<!-- CONTINUIDAD_DOCUMENTAL_20261107 -->
+### Documentación verificada · 7 de noviembre de 2026
+
+La herramienta editorial local v4 y la candidata OBS05 conservan su revisión humana pendiente. Su validación local no publica el runtime del visitante ni certifica campo.
+
+Base de código conservada al publicar esta revisión: `79a31106a6286367db83b4075926862eaed7b716`.
+Los informes IEEE editables y sus PDF están en la biblioteca privada del responsable; el acceso requiere su cuenta autorizada.
+
+- [P10: informe, fuente LaTeX y trazabilidad](https://github.com/okuajardinbiosonoro/okua-memoria-tecnica/tree/main/proyectos/P10)
+- [P12: informe, fuente LaTeX y trazabilidad](https://github.com/okuajardinbiosonoro/okua-memoria-tecnica/tree/main/proyectos/P12)
+
+Esta sección es un índice de navegación. La actualización documental no publica cambios de producto pendientes, no reanuda trabajos pausados ni modifica aprobaciones. El contenido anterior se conserva debajo como antecedente fechado.
+<!-- /CONTINUIDAD_DOCUMENTAL_20261107 -->
+
 # GVO — Guía Virtual OKÚA
 
 GVO es una aplicación web local, mobile-first e insonora que acompaña el
