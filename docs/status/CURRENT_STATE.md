@@ -2,12 +2,17 @@
 
 Actualizado: 2026-11-12
 
-## GVO 1.0.0 · base oficial
+## GVO 1.1.0 · versión oficial del recorrido
 
-José David aprobó el recorrido y el retoque final de Sala V tras revisarlos
-en el iPhone. El [acta de versión](../releases/GVO_1.0.0.md) registra la
-versión de referencia, su alcance y las comprobaciones. El movimiento
-ambiental del Mirador y la foto con Lía son trabajo posterior a esta base.
+José David completó el recorrido de 1.1 en su iPhone, confirmó el nivel de
+sonido y comprobó que el cuaderno de Sala III abre al primer toque. Autorizó el
+cierre y el registro en `main`. El [acta de 1.1.0](../releases/GVO_1.1.0.md)
+registra el alcance, la validación y los límites de campo.
+
+La versión incluye la foto con Lía, el movimiento ambiental del Mirador, los
+14 MP3 originales, el volumen general y la precarga de audio y recursos por
+sala. La [versión 1.0.0](../releases/GVO_1.0.0.md) y las revisiones anteriores
+se conservan como antecedentes.
 
 ## Retoque visual de Sala V · candidata para revisita
 

@@ -1,3 +1,4 @@
+import { playJourneySound } from "../../app/audio/journeySound";
 import {
   useCallback,
   useEffect,
@@ -237,10 +238,15 @@ export function World4OrderingGame({
         setPending(next);
         return false;
       }
+      const previous = stateRef.current;
       stateRef.current = next;
       setState(next);
       setViewRemaining(next.remainingActiveMs);
       setPending(null);
+      if (previous.phase === "introduction" && next.phase === "playing") playJourneySound("gameStart");
+      else if (previous.phase === "playing" && next.outcome === "solved_by_visitor") playJourneySound("gameSolved");
+      else if (previous.phase === "playing" && next.outcome === "assisted_timeout") playJourneySound("gameTimeout");
+      else if (previous.phase === "playing" && next.phase === "playing" && next.permutation !== previous.permutation) playJourneySound("gameSwap");
       return true;
     },
     [attemptId],
@@ -447,8 +453,10 @@ export function World4OrderingGame({
     const transaction = callbacks.current;
     setBusy(true);
     if (state.phase === "review" && state.reviewIndex < 7) {
-      if (await transaction.onAdvance("review", state.reviewIndex))
+      if (await transaction.onAdvance("review", state.reviewIndex)) {
+        playJourneySound("interaction", { replace: true });
         send({ type: "next_review" });
+      }
     } else if (state.outcome) {
       // Verified local closure is retained if the root acknowledgement fails;
       // retrying cannot turn an assisted result into a visitor success.
@@ -456,6 +464,7 @@ export function World4OrderingGame({
       if (save(next)) {
         const closed = await transaction.onClosed(next.outcome!);
         if (!isCurrentAttempt(attemptId)) return;
+        if (closed) playJourneySound("roomComplete");
         setSemanticError(!closed);
         if (!closed) setAnnouncement(copy.saveError);
       }

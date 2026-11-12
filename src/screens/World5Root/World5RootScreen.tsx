@@ -1,3 +1,4 @@
+import { playJourneySound } from "../../app/audio/journeySound";
 import "./World5QuizExperience.css";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -182,6 +183,10 @@ export function World5RootScreen() {
   function applyAnswer(action: World5RoundCommand) {
     const result = commit(action);
     if (!result) return false;
+    if (action.kind === "answer") {
+      const feedback = result.read.round?.outcomes[action.area]?.kind;
+      if (feedback === "correct" || feedback === "incorrect") playJourneySound(feedback);
+    }
     const focused = document.activeElement;
     if (action.kind === "answer" && focused instanceof HTMLElement && (focused.matches("[data-answer]") || focused.closest(".s5-quiz-error"))) {
       answeredFocusOrigin.current = focused;
@@ -217,6 +222,7 @@ export function World5RootScreen() {
       if (result.ok) {
         setSaveError(false);
         const next = WORLD5_QUIZ_AREA_ORDER[WORLD5_QUIZ_AREA_ORDER.indexOf(area) + 1];
+        playJourneySound("interaction", { replace: true });
         navigate(next ? "/estacion/5/" + next : worldFiveEntryRoute, { replace: true });
       } else fail("advance");
     } finally { lock.current = false; setBusy(false); }
@@ -227,6 +233,7 @@ export function World5RootScreen() {
     lock.current = true;
     const result = commit(saved ?? command({ kind: "begin_retry" }), canCommit);
     if (result && canCommit()) {
+      playJourneySound("interaction", { replace: true });
       setAwardedArea(null); setFeedbackOwnsFocus(false);
       setView("plantas"); navigate("/estacion/5/plantas", { replace: true });
     }
@@ -239,7 +246,10 @@ export function World5RootScreen() {
     try {
       const result = await closeEssentialRoom({ ...input, cause: "visitor_close" });
       if (!canCommit()) return;
-      if (result.ok && acceptJourneyIntent({ from: 5, to: "/final", kind: "result_closure", attemptId: input.attemptId })) navigate(worldFiveToFinalTransitionRoute);
+      if (result.ok && acceptJourneyIntent({ from: 5, to: "/final", kind: "result_closure", attemptId: input.attemptId })) {
+        if (!result.alreadyApplied) playJourneySound("roomComplete");
+        navigate(worldFiveToFinalTransitionRoute);
+      }
       else fail("close");
     } finally { lock.current = false; setBusy(false); }
   }
@@ -277,7 +287,8 @@ export function World5RootScreen() {
       return;
     }
     const path = "/estacion/5/" + id;
-    if (resolveView(rounds.current, path) !== id) return;
+    if (view === id || resolveView(rounds.current, path) !== id) return;
+    playJourneySound("interaction", { replace: true });
     navigate(path, { replace: true });
   }
   const lia = (

@@ -64,6 +64,79 @@
   transform: none;
 }
 
+.final-root-atmosphere {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+}
+
+/* Same cover rectangle as the original picture, including short viewports. */
+.final-root-atmosphere__canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 56.25cqh);
+  aspect-ratio: 9 / 16;
+  transform: translate(-50%, -50%);
+}
+
+.final-root-atmosphere__canvas::before,
+.final-root-atmosphere__canvas::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.final-root-atmosphere__canvas::before {
+  background: radial-gradient(ellipse 16% 10% at 51.3% 32.6%, #fff2b77d, #ffd68924 58%, transparent);
+  animation: final-sunlight 14s ease-in-out infinite alternate;
+}
+
+.final-root-atmosphere__canvas::after {
+  background: repeating-linear-gradient(174deg, transparent 0 32px, #ffe6a983 44px, transparent 57px 102px);
+  background-size: 100% 130%;
+  clip-path: polygon(51% 37%, 49% 41%, 52.6% 44%, 48.4% 46%, 56% 48%, 49% 50%, 53.5% 52%, 47% 55%, 53% 57%, 47.5% 58%, 55.5% 61%, 48% 64%, 54% 67%, 46% 70%, 54% 73%, 47% 76%, 42% 79%, 32% 83%, 37% 85%, 29% 84%, 29% 82.5%, 39% 78%, 44% 75%, 51% 73%, 43% 70%, 51% 67%, 45% 64%, 52.5% 61%, 45% 58%, 50% 57%, 44% 55%, 51% 52%, 47% 50%, 53% 48%, 46% 46%, 50% 44%, 47.5% 41%);
+  animation: final-riverlight 17s linear infinite;
+}
+
+.final-root-experience[data-final-active="false"] .final-root-atmosphere__canvas::before,
+.final-root-experience[data-final-active="false"] .final-root-atmosphere__canvas::after {
+  animation-play-state: paused;
+}
+
+@keyframes final-sunlight {
+  from { opacity: 0.14; }
+  to { opacity: 0.7; }
+}
+
+@keyframes final-riverlight {
+  from { background-position: 0 0; opacity: 0; }
+  20%, 75% { opacity: 0.43; }
+  to { background-position: 0 100%; opacity: 0; }
+}
+
+@media (orientation: landscape) {
+  .final-root-atmosphere__canvas {
+    width: max(100cqw, 177.778cqh);
+    aspect-ratio: 16 / 9;
+  }
+
+  .final-root-atmosphere__canvas::before {
+    background: radial-gradient(ellipse 14% 19% at 50.4% 31.2%, #fff2b783, #ffd68924 58%, transparent);
+  }
+
+  .final-root-atmosphere__canvas::after {
+    clip-path: polygon(51% 39%, 49% 45%, 54.7% 50.5%, 45% 58%, 54.7% 64%, 51% 70%, 35.5% 76%, 23% 85%, 19% 85%, 32.5% 76%, 48.5% 70%, 51.5% 64%, 42.5% 58%, 52% 50.5%, 46.5% 45%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .final-root-atmosphere { display: none; }
+}
+
 .final-root-title {
   position: absolute;
   z-index: 80;
@@ -275,6 +348,48 @@
   width: min(94%, 390px);
   gap: 8px;
   transform: translateX(-50%);
+}
+
+.final-root-photo-entry {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: max-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.35em 0.85em;
+  transform: translateX(-50%);
+  border: 1px solid #d1a175;
+  border-radius: 8px;
+  background: linear-gradient(165deg, #4a3544, #302333);
+  color: #fff1d5;
+  box-shadow: 0 3px 12px #231822aa, inset 0 0 0 2px #ffd19119;
+  font: 650 clamp(0.95rem, 3.8vw, 1.05rem)/1.15 var(--gvo-font-ui);
+  cursor: pointer;
+}
+
+.final-root-photo-entry svg {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  color: #f3cd98;
+}
+
+.final-root-photo-entry:focus-visible {
+  outline: 3px solid #fff1d5;
+  outline-offset: 3px;
+}
+
+@media (orientation: landscape) {
+  .final-root-photo-entry {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
 }
 
 .final-root-action-panel {

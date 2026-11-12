@@ -1,8 +1,9 @@
 import "./FinalRootScreen.css";
 
 import type { CSSProperties, MouseEvent, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useJourneyActivity } from "../../app/journey/JourneyActivation";
+import { playJourneySound } from "../../app/audio/journeySound";
 import { readLanguagePreference } from "../../app/preferences/languagePreference";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -37,6 +38,8 @@ import {
 } from "../../features/lia-preview/config";
 import { liaPreviewRoute } from "../../app/routes";
 import { FinalLiaMotion } from "./FinalLiaMotion";
+
+const FinalLiaPhoto = lazy(() => import("./FinalLiaPhoto"));
 
 type FinalReviewAccessId = "i" | "ii" | "iii" | "iv" | "v";
 
@@ -185,6 +188,7 @@ function FinalAccessLink({ access, slots: finalEditorialSlots }: { access: Final
 
     event.preventDefault();
     const state = beginFinalReview(access.world);
+    playJourneySound("interaction", { replace: true });
     navigate(access.route, { state });
   }
 
@@ -251,6 +255,8 @@ export function FinalRootScreen({
   const [experienceState, setExperienceState] =
     useState<FinalExperienceState>("final_intro");
   const [restartState, setRestartState] = useState<FinalRestartState>("idle");
+  const [photoOpen, setPhotoOpen] = useState(false);
+  const photoTriggerRef = useRef<HTMLButtonElement>(null);
   const [resetFailure, setResetFailure] = useState<
     Extract<JourneyResetResult, { ok: false }> | undefined
   >();
@@ -285,6 +291,7 @@ export function FinalRootScreen({
   }, [restartState, active]);
 
   function openRestartConfirmation() {
+    playJourneySound("interaction", { replace: true });
     setResetFailure(undefined);
     setRestartState("confirm");
     setExperienceState("final_restart_confirm");
@@ -296,12 +303,14 @@ export function FinalRootScreen({
     }
 
     returnFocusAfterCloseRef.current = true;
+    playJourneySound("interaction", { replace: true });
     setResetFailure(undefined);
     setRestartState("idle");
     setExperienceState("final_restart");
   }
 
   function navigateToHome() {
+    playJourneySound("interaction", { replace: true });
     setExperienceState("final_return");
     navigate(coverIntroRoute, { state: beginFinalCoverRevisit() });
   }
@@ -312,6 +321,7 @@ export function FinalRootScreen({
     }
 
     resetInFlightRef.current = true;
+    playJourneySound("interaction", { replace: true });
     setResetFailure(undefined);
     setRestartState("busy");
     setExperienceState("final_restart_busy");
@@ -372,6 +382,7 @@ export function FinalRootScreen({
         data-final-editorial-locale={locale}
         data-final-editorial-source="delegated_integration_for_review"
         data-final-operational-slots="consumed_021o"
+        data-final-active={active}
         data-final-root="mirador_editorial_final"
         data-final-screen="editorial_final_complete_experience"
         data-final-slot-count={FINAL_REQUIRED_SLOT_COUNT}
@@ -427,6 +438,10 @@ export function FinalRootScreen({
             src={finalRootAssets.environment.valleyDepthPortrait}
           />
         </picture>
+
+        <div className="final-root-atmosphere" aria-hidden="true">
+          <div className="final-root-atmosphere__canvas" />
+        </div>
 
         <header className="final-root-title" data-final-metric="title">
           <NineSlicePanel
@@ -530,6 +545,19 @@ export function FinalRootScreen({
         )}
 
         <section className="final-root-actions" data-final-metric="actions">
+          <button
+            ref={photoTriggerRef}
+            className="final-root-photo-entry"
+            aria-haspopup="dialog"
+            type="button"
+            onClick={() => { playJourneySound("interaction", { replace: true }); setPhotoOpen(true); }}
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+              <path d="M3 7h4l2-3h6l2 3h4v13H3z" />
+              <circle cx="12" cy="13" r="3.4" />
+            </svg>
+            {locale === "en" ? "A photo with Lía" : "Una foto con Lía"}
+          </button>
           <NineSlicePanel
             asset={finalRootAssets.ui.actionBackplate}
             className="final-root-action-panel final-root-action-panel--home"
@@ -689,6 +717,17 @@ export function FinalRootScreen({
           </div>
         ) : null}
       </section>
+      {active && photoOpen && (
+        <Suspense fallback={<span className="final-root-sr-only" role="status">{locale === "en" ? "Opening photo…" : "Abriendo foto…"}</span>}>
+          <FinalLiaPhoto
+            locale={locale}
+            onClose={() => {
+              setPhotoOpen(false);
+              photoTriggerRef.current?.focus();
+            }}
+          />
+        </Suspense>
+      )}
     </main>
   );
 }

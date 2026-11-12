@@ -1,0 +1,35 @@
+{
+  "status": "APPROVED_RUNTIME_GVO_1_1_0",
+  "license": "MIT",
+  "picojs_revision": "afffa50ec4134a47005f2cbf8112eaa69f65f37e",
+  "pico_revision": "7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8",
+  "picojs_source": "https://github.com/nenadmarkus/picojs",
+  "cascade_source": "https://github.com/nenadmarkus/pico/tree/7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8/rnt/cascades",
+  "module_changes": "Declaracion local, variable de bucle y exportacion ESM. Algoritmo sin cambios.",
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/stations/final-root/photo/tracking/pico.module.js",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/tracking/pico.module.js",
+      "bytes": 5622,
+      "sha256": "ba11d3aaadc60890e3f929186612a12fbef46451e886e238d6ca203adc00be88",
+      "consumer": "FinalLiaPhoto / FinalLiaLivePreview",
+      "purpose": "Detector local en JavaScript"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/final-root/photo/tracking/facefinder.bin",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/tracking/facefinder.bin",
+      "bytes": 239632,
+      "sha256": "d8014993e7298c7b1865d1f8b855d6dbf4ec5c808bf879e2091ab6837abf90cd",
+      "consumer": "FinalLiaPhoto / FinalLiaLivePreview",
+      "purpose": "Cascada facial de Pico"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/final-root/photo/tracking/LICENSE.txt",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/tracking/LICENSE.txt",
+      "bytes": 1072,
+      "sha256": "3769f26981094bcd4e45134dc3101f9e2fbde28c2bfe15534557b4c089f2f521",
+      "consumer": "FinalLiaPhoto / FinalLiaLivePreview",
+      "purpose": "Aviso de licencia MIT"
+    }
+  ]
+}

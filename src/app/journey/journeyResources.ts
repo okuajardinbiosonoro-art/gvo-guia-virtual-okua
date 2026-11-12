@@ -4,7 +4,7 @@ import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 import { getWorld3CriticalAssetSources } from "../../screens/World3Root/world3RuntimeAssets";
 import { world4RuntimeAssets } from "../../screens/World4Root/world4RuntimeAssets";
 import { world4OrderingObjectAssets } from "../../screens/World4Root/world4OrderingContent";
-import { getWorld5CriticalAssetSources } from "../../screens/World5Root/world5RuntimeAssets";
+import { getWorld5CriticalAssetSources, world5OptionAssets } from "../../screens/World5Root/world5RuntimeAssets";
 import { readWorld5Rounds } from "../../screens/World5Root/world5Quiz";
 import { resolveWorld5QuizView, type World5QuizView } from "../../screens/World5Root/world5QuizView";
 import { getWorld1CriticalAssetSources } from "../../screens/World1Root/world1RootAssets";
@@ -33,22 +33,19 @@ export function getJourneyResourceManifest({ route, locale, orientation, restore
   // consumers. Path-wide /lia/ filtering would silently drop the latter.
   else if (screen === "cover") images = [...screenAssetBundles.coverIntroCritical.assets, ...screenAssetBundles.coverIntroActivation.assets].map((a) => a.src);
   else if (screen === 1) {
-    const step = s?.stations[1].activeStepId;
-    const concept = step === "relacion" ? "relation" : step === "percepcion" ? "perception" : step === "mediacion" ? "mediation" : "intro";
-    images = getWorld1CriticalAssetSources(concept);
+    images = (["intro", "relation", "perception", "mediation"] as const).flatMap(getWorld1CriticalAssetSources);
   } else if (screen === 2) {
-    const step = s?.stations[2].activeStepId;
-    images = getWorld2CriticalAssetSources(step === "planta" || !step ? "planta_viva" : step === "musica" ? "resultado_mediado" : step as "senal");
+    images = (["planta_viva", "senal", "captura", "acondicionamiento", "mapeo", "resultado_mediado"] as const).flatMap(getWorld2CriticalAssetSources);
   } else if (screen === 3) {
-    const room = s?.stations[3];
-    const pageByStep = { INTRO: "planta", "PASO A PASO": "prototipo", BENEFICIOS: "senal" } as const;
-    const page = room && room.confirmedStepIds.length > 0 && !room.closed ? pageByStep[room.activeStepId as keyof typeof pageByStep] ?? null : null;
-    images = getWorld3CriticalAssetSources(page);
+    images = ([null, "planta", "prototipo", "senal"] as const).flatMap(getWorld3CriticalAssetSources);
   }
   else if (screen === 4) images = [world4RuntimeAssets.environment.portraitTable, ...Object.values(world4OrderingObjectAssets)];
   else if (screen === 5) {
     world5View = quizView ?? getWorld5ResourceView(route);
-    images = getWorld5CriticalAssetSources(world5View, orientation as "portrait" | "landscape");
+    images = [
+      ...getWorld5CriticalAssetSources(world5View, orientation as "portrait" | "landscape"),
+      ...Object.values(world5OptionAssets).flatMap((choices) => Object.values(choices)),
+    ];
   }
   else if (screen === "final") images = paths(finalRootAssets).filter((path) => !path.includes(orientation === "portrait" ? "landscape" : "portrait"));
   else images = screenAssetBundles.loadingInitialCritical.assets.map((a) => a.src);

@@ -1,3 +1,4 @@
+import { playJourneySound } from "../../app/audio/journeySound";
 import "./CoverIntroScreen.css";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -89,6 +90,7 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
         ? await closeEssentialRoom({ screen: "cover", contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" })
         : await confirmEssentialStep({ screen: "cover", stepId: dialogue.stepId, contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" });
       if (!result.ok) { justClosedRef.current = false; setError(copy.saveError); }
+      else if (!result.alreadyApplied) playJourneySound("interaction");
     } finally { savingRef.current = false; setSaving(false); }
   }
 
@@ -182,7 +184,7 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
         <footer className="cover-intro__footer">
           <h1 id="cover-intro-title" className="cover-intro__title">{copy.archiveTitle}</h1>
           {!started && !portalReady ? <button type="button" className="cover-intro__cta" disabled={!active}
-            onClick={() => { if (active) { setError(null); setStarted(true); } }}>{copy.cta}</button> : null}
+            onClick={() => { if (active) { playJourneySound("interaction"); setError(null); setStarted(true); } }}>{copy.cta}</button> : null}
           {portalReady && !coverRevisitActive && !opening ? <p className="cover-intro__portal-announcement" role="status">{copy.portalAnnouncement}</p> : null}
           {opening ? <p className="cover-intro__opening" role="status">{copy.openingWorldOne}</p> : null}
           {error ? <p className="cover-intro__blocked-message" role="alert">{error}</p> : null}

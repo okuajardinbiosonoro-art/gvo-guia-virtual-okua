@@ -52,6 +52,17 @@ export function externalResourceScanContent(file, content) {
     const fallback = 'const origin = typeof window === "undefined" ? "http://gvo.invalid" : window.location.origin;';
     return content.replace(fallback, fallback.replace('"http://gvo.invalid"', '"[SSR parser base]"'));
   }
+  const picoPath = "final-root/photo/tracking/pico.module.js";
+  if (normalized === `public/assets/gvo/stations/${picoPath}` || normalized === `public/assets/gvo/current-used/${picoPath}`) {
+    // The vendored first-line comment attributes the license and cannot load a URL.
+    return content.replace(/^\/\* This library is released under the MIT license, see https:\/\/github\.com\/nenadmarkus\/picojs \*\//, "");
+  }
+  if (normalized === "public/assets/gvo/current-used/final-root/photo/tracking/manifest.json") {
+    JSON.parse(content);
+    return content
+      .replace(/^  "picojs_source": "https:\/\/github\.com\/nenadmarkus\/picojs",$/m, "")
+      .replace(/^  "cascade_source": "https:\/\/github\.com\/nenadmarkus\/pico\/tree\/7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8\/rnt\/cascades",$/m, "");
+  }
   const legacyGenerated = normalized === "public/assets/gvo/current-used/world-3-root/integration-2026-10-23.json";
   const allowedThread = legacyGenerated ? documentaryImagesThread : documentaryThreadManifests.get(normalized);
   if (!allowedThread) return content;

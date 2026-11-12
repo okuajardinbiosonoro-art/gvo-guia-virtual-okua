@@ -130,15 +130,13 @@ describe("GlobalImmersiveShell", () => {
     }
   });
 
-  it("renders zero global controls and no dock when the platform has no API", () => {
+  it("keeps the sound control available without the fullscreen API", () => {
     const { container } = renderAt("/portada");
 
     expect(
       container.querySelectorAll("[data-gvo-immersive-control='fullscreen']"),
     ).toHaveLength(0);
-    expect(
-      container.querySelector("[data-gvo-immersive-safe-area]"),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Sonido del recorrido" })).toBeInTheDocument();
   });
 
   it("aplica la preferencia de idioma persistida al shell completo", () => {

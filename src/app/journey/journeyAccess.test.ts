@@ -237,7 +237,7 @@ describe("OBS03.2 — all26 documented evidence classifications before room moun
 });
 
 describe("legacy review compatibility is a predicate, not a migration classification", () => {
-  it("prepares the actual first pending V pair when a direct URL requests a still-locked question", async () => {
+  it("preloads the gallery while keeping the first pending V question selected for a locked URL", async () => {
     const progress = await import("../../domain/progress/progress.storage");
     for (const id of [1, 2, 3, 4] as const)
       expect(progress.markStationCompleted(id).ok).toBe(true);
@@ -251,19 +251,10 @@ describe("legacy review compatibility is a predicate, not a migration classifica
       locale: "es",
       orientation: "portrait",
     });
-    expect(manifest.images).toContain(world5OptionAssets.plantas.agreement);
-    expect(manifest.images).toContain(world5OptionAssets.plantas.disagreement);
-    expect(manifest.images).not.toContain(
-      world5OptionAssets.visitante.agreement,
-    );
+    expect(JSON.parse(manifest.contextKey).normalized).toBe("plantas");
     expect(
       manifest.images.filter((src) => src.includes("/options/")).sort(),
-    ).toEqual([
-      world5OptionAssets.plantas.agreement,
-      world5OptionAssets.plantas.disagreement,
-      // The registered System illustration also identifies gallery navigation.
-      world5OptionAssets.sistema.agreement,
-    ].sort());
+    ).toEqual(Object.values(world5OptionAssets).flatMap(Object.values).sort());
   });
   it.each([
     ["/portada/", "cover"],

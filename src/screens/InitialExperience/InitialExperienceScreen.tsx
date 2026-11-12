@@ -1,6 +1,6 @@
 import "./InitialExperienceScreen.css";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -17,6 +17,7 @@ import {
 } from "../../app/qr/camera";
 import { coverIntroRoute } from "../../app/routes";
 import { useJourneyActivity } from "../../app/journey/JourneyActivation";
+import { getJourneySoundVolume, setJourneySoundVolume, subscribeToJourneySound } from "../../app/audio/journeySound";
 import {
   entryCoverBackdropAsset,
   entryCoverStationAssets,
@@ -167,6 +168,7 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
         ? "unavailable-on-platform"
         : "supported";
   const localizedCopy = language ? copy[language] : null;
+  const volume = useSyncExternalStore(subscribeToJourneySound, getJourneySoundVolume);
 
   useEffect(() => {
     if (active) applyDocumentLanguage(language);
@@ -389,6 +391,12 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
               </button>
             </div>
           </fieldset>
+
+          <label className="initial-experience__volume">
+            <span>{language === "es" ? "Volumen" : language === "en" ? "Volume" : "Volumen / Volume"}</span>
+            <input type="range" min={0} max={100} step={5} value={volume} disabled={!active}
+              aria-valuetext={`${volume} %`} onChange={(event) => setJourneySoundVolume(event.currentTarget.valueAsNumber)} />
+          </label>
 
           {language && persistenceState !== "idle" ? (
             <p

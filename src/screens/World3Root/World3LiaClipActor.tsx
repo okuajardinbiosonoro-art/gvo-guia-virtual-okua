@@ -13,7 +13,7 @@ export function World3LiaClipActor({ active, reducedMotion, target, replayKey = 
   const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
   const eventKey = `${activity.attemptId}:${clipId}:${target}:${replayKey}`;
   const bundle = useMemo<ScreenAssetBundle>(() => ({ id: "world3Notebook", route: "/estacion/3", description: `Registered pixel Lia clip ${clipId}`, assets: [{ id: `world3-lia-${clipId}`, kind: "image", src: clip.src }] }), [clipId, clip.src]);
-  const resources = useAssetPreloader(bundle, { concurrency: 1, contextKey: `${activity.attemptId}:${clipId}` });
+  const resources = useAssetPreloader(bundle, { concurrency: 1, reuseVerified: true, contextKey: `${activity.attemptId}:${clipId}` });
   const consumed = useRef<string | null>(null);
   const [playEvent, setPlayEvent] = useState<string | null>(null);
   const live = active && activity.active && visible && resources.ready;

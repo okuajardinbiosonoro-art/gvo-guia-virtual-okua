@@ -1,0 +1,90 @@
+{
+  "screen": "final-root",
+  "feature": "photo-with-lia",
+  "status": "HUMAN_APPROVED",
+  "source": "ChatGPT Images · GVO portrait companion poses, 2026-11-12",
+  "source_sha256": "cab5ad7935b60d17ff59100a737826549cecdff56f0edbb38c6d47a08d77a8cc",
+  "source_canvas": [
+    1774,
+    887
+  ],
+  "assets": [
+    {
+      "id": "FINAL-PHOTO-LIA-SHOULDER-003",
+      "pose": "Al hombro",
+      "consumer": "FinalLiaPhoto",
+      "runtime": "public/assets/gvo/stations/final-root/photo/lia-photo-shoulder-v03.webp",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/lia-photo-shoulder-v03.webp",
+      "dimensions": [
+        447,
+        480
+      ],
+      "format": "WEBP RGBA lossless",
+      "alpha_bbox": [
+        0,
+        0,
+        447,
+        480
+      ],
+      "source_cell": 0,
+      "bytes": 161648,
+      "sha256": "5c1f817c6f44c3f24f9760173c489073e7257cd8a8374d109b6077d3c7009cc5",
+      "visual_petals": 5
+    },
+    {
+      "id": "FINAL-PHOTO-LIA-PEEK-003",
+      "pose": "Se asoma",
+      "consumer": "FinalLiaPhoto",
+      "runtime": "public/assets/gvo/stations/final-root/photo/lia-photo-peek-v03.webp",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/lia-photo-peek-v03.webp",
+      "dimensions": [
+        480,
+        473
+      ],
+      "format": "WEBP RGBA lossless",
+      "alpha_bbox": [
+        0,
+        2,
+        478,
+        473
+      ],
+      "source_cell": 1,
+      "bytes": 183936,
+      "sha256": "a163b0935d3a2c63790c5d983a7c9cf2b07af1ff52dac5b7c01e50b0d7a72503",
+      "visual_petals": 5
+    },
+    {
+      "id": "FINAL-PHOTO-ENGRAVING-001",
+      "consumer": "FinalLiaPhoto",
+      "runtime": "public/assets/gvo/stations/final-root/photo/okua-photo-engraving-v01.webp",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/okua-photo-engraving-v01.webp",
+      "dimensions": [
+        256,
+        254
+      ],
+      "format": "WEBP RGBA lossless",
+      "alpha_bbox": [
+        0,
+        0,
+        256,
+        254
+      ],
+      "bytes": 41364,
+      "sha256": "e26cb6ed48b42cd2b07e54fe37017f803adfa271c168e9ea7b60c7605a0e9a0b",
+      "source": "ChatGPT Images · GVO print engraving, 2026-11-12",
+      "source_sha256": "8d51f2865a967d2cf514ed861da26213ddb8bb2a468d6949fcd893c755eb806a"
+    }
+  ],
+  "reused_brand_assets": [
+    {
+      "runtime": "public/assets/runtime/cover-intro/brand/okua-jardin-biosonoro-logo-v01.png",
+      "sha256": "02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a",
+      "mirror": "public/assets/gvo/current-used/cover-intro/brand/okua-jardin-biosonoro-logo-v01.png"
+    },
+    {
+      "runtime": "public/assets/runtime/cover-intro/brand/okua-emblem-material-v03.png",
+      "sha256": "476cf4dbef9cc320b5144f599982c692f22bac69dbb4d5eb32487486ad52b283",
+      "mirror": "public/assets/gvo/current-used/cover-intro/brand/okua-emblem-material-v03.png"
+    }
+  ]
+}

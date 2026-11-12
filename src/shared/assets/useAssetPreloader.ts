@@ -13,10 +13,11 @@ const IDLE: AssetPreloaderState = { status: "idle", progress: 0, ready: false, f
 
 export function useAssetPreloader(bundle: ScreenAssetBundle, {
   enabled = true, decode = true, timeoutMs = 8000, concurrency = 2,
+  reuseVerified = false,
   retryKey = 0, contextKey = "", signal, deadlineAt, onProgress,
 }: UseAssetPreloaderOptions = {}) {
   const sources = useMemo(() => getBundleSources(bundle), [bundle]);
-  const sourceKey = JSON.stringify([bundle.id, sources, decode, timeoutMs, concurrency, retryKey, contextKey, deadlineAt]);
+  const sourceKey = JSON.stringify([bundle.id, sources, decode, timeoutMs, concurrency, reuseVerified, retryKey, contextKey, deadlineAt]);
   const [current, setCurrent] = useState<{ key: string; signal: AbortSignal | undefined; state: AssetPreloaderState }>({ key: "", signal: undefined, state: IDLE });
   const generationRef = useRef(0);
   const onProgressRef = useRef(onProgress);
@@ -31,7 +32,7 @@ export function useAssetPreloader(bundle: ScreenAssetBundle, {
     if (signal?.aborted) cancel();
     setState({ ...IDLE, status: "loading", total: sources.length });
     void preloadImages(sources, {
-      decode, timeoutMs, concurrency, deadlineAt, signal: controller.signal,
+      decode, timeoutMs, concurrency, reuseVerified, deadlineAt, signal: controller.signal,
       onProgress: (progress) => {
         if (generationRef.current !== generation || controller.signal.aborted) return;
         setState({ ...IDLE, ...progress, status: "loading", ready: false });
@@ -45,7 +46,7 @@ export function useAssetPreloader(bundle: ScreenAssetBundle, {
       setState({ ...IDLE, status: "error", failed: sources.length, total: sources.length });
     });
     return () => { generationRef.current += 1; signal?.removeEventListener("abort", cancel); controller.abort(); };
-  }, [bundle.id, sources, sourceKey, enabled, decode, timeoutMs, concurrency, retryKey, contextKey, signal, deadlineAt]);
+  }, [bundle.id, sources, sourceKey, enabled, decode, timeoutMs, concurrency, reuseVerified, retryKey, contextKey, signal, deadlineAt]);
   if (!enabled) return { ...IDLE, sourceKey };
   // Effects run after render. Never expose the previous destination's ready/summary
   // during the render which introduces a different bundle, context or attempt.

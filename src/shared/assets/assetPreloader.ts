@@ -5,6 +5,8 @@ export type PreloadImageOptions = {
   signal?: AbortSignal;
   /** Absolute performance.now() deadline shared by the preparation attempt. */
   deadlineAt?: number;
+  /** Reuse successful decoding from the route preparation during this visit. */
+  reuseVerified?: boolean;
 };
 export type PreloadImageResult = {
   src: string; status: AssetPreloadStatus; ok: boolean; decoded: boolean;
@@ -28,6 +30,7 @@ const DEFAULT_TIMEOUT_MS = 8000;
 const DEFAULT_ATTEMPT_MS = 15000;
 const DEFAULT_CONCURRENCY = 2;
 const imagePreloadCache = new Map<string, Promise<PreloadImageResult>>();
+const verifiedImages = new Map<string, PreloadImageResult>();
 function now() { return typeof performance === "undefined" ? Date.now() : performance.now(); }
 
 export function isLocalAssetSource(src: string) {
@@ -48,12 +51,16 @@ function result(src: string, startedAt: number, status: AssetPreloadStatus, erro
 }
 export function preloadImage(src: string, options: PreloadImageOptions = {}): Promise<PreloadImageResult> {
   const normalized = src.trim();
-  // Controlled attempts decode again and do not inherit another attempt's signal/deadline.
-  // Browser HTTP caching still avoids redundant transfers.
+  // A controlled attempt never inherits an in-flight request with another deadline.
   const controlled = options.signal !== undefined || options.deadlineAt !== undefined;
   const cacheKey = `${normalized}|decode:${options.decode !== false}`;
+  if (options.reuseVerified && !options.signal?.aborted && (options.deadlineAt === undefined || now() < options.deadlineAt)) {
+    const verified = verifiedImages.get(cacheKey);
+    if (verified) return Promise.resolve(verified);
+  }
   if (!controlled && imagePreloadCache.has(cacheKey)) return imagePreloadCache.get(cacheKey)!;
   const promise = loadImage(normalized, options);
+  if (options.reuseVerified) void promise.then((loaded) => { if (loaded.ok) verifiedImages.set(cacheKey, loaded); });
   if (!controlled) {
     imagePreloadCache.set(cacheKey, promise);
     void promise.then((loaded) => {
@@ -135,4 +142,4 @@ export async function preloadImages(srcs: readonly string[], options: PreloadIma
     : progress.timedOut > 0 ? "timeout" : progress.failed > 0 ? "error" : "ready";
   return { ...progress, status, skipped: 0, results };
 }
-export function clearAssetPreloadCache() { imagePreloadCache.clear(); }
+export function clearAssetPreloadCache() { imagePreloadCache.clear(); verifiedImages.clear(); }

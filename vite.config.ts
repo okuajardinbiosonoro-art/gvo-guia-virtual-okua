@@ -75,6 +75,7 @@ export default defineConfig(({ command, mode }) => {
             "assets/runtime/loading-initial-pre-portada.png",
             "assets/runtime/loading-initial/**/*.{png,json}",
             "assets/runtime/cover-intro/**/*.{png,json}",
+            "assets/gvo/audio/**/*.mp3",
           ],
           globIgnores: [
             "assets/gvo/current-used/**/*",
@@ -104,7 +105,8 @@ export default defineConfig(({ command, mode }) => {
               urlPattern: ({ url }) =>
                 url.origin === self.location.origin &&
                 url.pathname.startsWith("/assets/") &&
-                /\.(?:css|js|json|png|svg|webp|woff2)$/.test(url.pathname),
+                (/\.(?:css|js|json|png|svg|webp|woff2)$/.test(url.pathname) ||
+                  url.pathname === "/assets/gvo/stations/final-root/photo/tracking/facefinder.bin"),
               handler: "StaleWhileRevalidate",
               options: {
                 cacheName: "gvo-runtime-assets-v1",

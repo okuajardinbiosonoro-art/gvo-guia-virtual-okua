@@ -1,3 +1,4 @@
+import { playJourneySound, stopJourneySound } from "../../app/audio/journeySound";
 import "./World2RootScreen.css";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
@@ -224,17 +225,17 @@ export function World2RootScreen() {
   const expandedReadout = readout === "plant" ? content.readouts.plant : readout === "signal" ? content.readouts.signal : activeLayerId === "captura" ? { ...content.capture.find((step) => step.id === captureTimelineStepId)!, title: content.capture.find((step) => step.id === captureTimelineStepId)!.label, text: captureDemo ? content.capture.map((step) => step.readout).join(" ") : content.capture.find((step) => step.id === captureTimelineStepId)!.readout, origin: "legacy:World2CaptureTimeline:" + captureTimelineStepId } : null;
   const sceneReadout = activeLayerId === "captura" || readout === "signal" ? expandedReadout : null;
   const activeDialogue = failure || !flow.storageVerified ? ui.saveError : softMessage ?? (isReadyToContinue ? content.readouts.complete.text : sceneReadout ? "" : expandedReadout?.text ?? activeCopy.dialogue);
-  const activeHint = activeLayerId === "resultado_mediado" ? ui.silent : activeCopy.hint;
+  const activeHint = activeLayerId === "resultado_mediado" ? ui.musicHint : activeCopy.hint;
   const [visualViewportHeight, setVisualViewportHeight] = useState<number | null>(null);
   const world2RootStyle = visualViewportHeight ? { "--world2-visual-vh": `${visualViewportHeight}px` } as World2RootStyle : undefined;
   const bundle = useMemo<ScreenAssetBundle>(() => ({ id: "world2RootInitial", route: "/estacion/2", description: "OBS03 actual visible layer", assets: getWorld2CriticalAssetSources(activeLayerId).map((src, index) => ({ id: "world2-visible-" + index, src, kind: "image" as const })) }), [activeLayerId]);
-  const initialPreload = useAssetPreloader(bundle, { concurrency: 2, retryKey: retryRevision, contextKey: activeLayerId + ":" + locale });
+  const initialPreload = useAssetPreloader(bundle, { concurrency: 2, retryKey: retryRevision, reuseVerified: retryRevision === 0, contextKey: activeLayerId + ":" + locale });
   const resourcesReady = initialPreload.status === "ready";
   const nextLayerId = flow.confirmedStepIds.includes(stepByLayer[activeLayerId])
     ? layerByStep[flow.activeStepId ?? "musica"]
     : world2LayerDefinitions[Math.min(activeLayer.order, 5)].id;
   const nextBundle = useMemo<ScreenAssetBundle>(() => ({ id: "world2RootInitial", route: "/estacion/2", description: "OBS03 next layer before explicit advance", assets: getWorld2CriticalAssetSources(nextLayerId).map((src, index) => ({ id: "world2-next-" + index, src, kind: "image" as const })) }), [nextLayerId]);
-  const nextPreload = useAssetPreloader(nextBundle, { enabled: activity.active && resourcesReady && nextLayerId !== activeLayerId, concurrency: 2, retryKey: retryRevision, contextKey: "next:" + nextLayerId + ":" + locale });
+  const nextPreload = useAssetPreloader(nextBundle, { enabled: activity.active && resourcesReady && nextLayerId !== activeLayerId, concurrency: 2, retryKey: retryRevision, reuseVerified: retryRevision === 0, contextKey: "next:" + nextLayerId + ":" + locale });
   const advanceAssetsReady = resourcesReady && (nextLayerId === activeLayerId || nextPreload.status === "ready");
   const previouslyConfirmed = flow.readOnly || flow.confirmedStepIds.includes(stepByLayer[activeLayerId]);
   const visualReadyByLayer: Record<World2LayerId, boolean> = {
@@ -278,23 +279,31 @@ export function World2RootScreen() {
   function selectLayer(layer: World2LayerId) {
     if (attemptRef.current !== attemptId) return;
     if (!activity.active || saving || failure || !canUseUiStep(2, stepByLayer[layer])) { setSoftMessage(cleanMessages.locked); return; }
+    playJourneySound("interaction");
     setSelection(layer); setReadout(null); setSoftMessage(null); setResultRequested(false); setPresentationMode("standard");
     setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false);
   }
   function getLayerStatus(layer: World2LayerId): LayerStatus { return !canUseUiStep(2, stepByLayer[layer]) ? "locked" : layer === activeLayerId ? "active" : flow.confirmedStepIds.includes(stepByLayer[layer]) ? "completed" : "next"; }
   function getStatusLabel(status: LayerStatus) { return en ? { locked: "locked", active: "active", completed: "confirmed", next: "available" }[status] : { locked: "bloqueada", active: "activa", completed: "confirmada", next: "disponible" }[status]; }
-  function expandPlantContactReadout() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; setReadout("plant"); }
-  function expandSignalReveal() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; setReadout("signal"); }
-  function selectCaptureTimelineStep(step: CaptureTimelineStepId) { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady || lock.current) return; setCaptureTimelineStepId(step); setCaptureIntent(step); }
+  function expandPlantContactReadout() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; playJourneySound("interaction"); setReadout("plant"); }
+  function expandSignalReveal() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; playJourneySound("interaction"); setReadout("signal"); }
+  function selectCaptureTimelineStep(step: CaptureTimelineStepId) { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady || lock.current) return; playJourneySound("interaction"); setCaptureTimelineStepId(step); setCaptureIntent(step); }
   function completeMappingFirstRun() { if (attemptRef.current === attemptId) void record("mapping_first_run", "mapping_first_run"); }
   function completeSonicConvergence(mode: "standard" | "assisted") { if (attemptRef.current !== attemptId) return; setPresentationMode(mode); setSonicConvergenceComplete(true); }
   async function advance() {
     if (attemptRef.current !== attemptId || !presentable || !advanceAssetsReady || saving) return;
     if (flow.readOnly || flow.confirmedStepIds.includes(stepByLayer[activeLayerId])) { setSelection(null); return; }
-    await perform(activeLayerId === "resultado_mediado" ? () => closeEssentialRoom({ screen: 2, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" }) : () => confirmEssentialStep({ screen: 2, stepId: stepByLayer[activeLayerId], contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" }), () => { setSelection(null); setReadout(null); setSoftMessage(null); setPresentationMode("standard"); setResultRequested(false); setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false); });
+    await perform(activeLayerId === "resultado_mediado" ? () => closeEssentialRoom({ screen: 2, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" }) : () => confirmEssentialStep({ screen: 2, stepId: stepByLayer[activeLayerId], contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" }), () => {
+      if (activeLayerId === "resultado_mediado") playJourneySound("roomComplete");
+      setSelection(null); setReadout(null); setSoftMessage(null); setPresentationMode("standard"); setResultRequested(false); setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false);
+    });
   }
   function showResult() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; setPresentationMode("assisted"); if (activeLayerId === "captura") { setCaptureDemo(true); setCaptureTimelineStepId("system"); } else setResultRequested(true); }
   function retryAction() { if (retry.current) void retry.current(); else { invalidateJourneyEssential(); setRetryRevision((r) => r + 1); } }
+  useEffect(() => {
+    if (activeLayerId !== "acondicionamiento" || isReadyToContinue || !activity.active) stopJourneySound("conditioning");
+    return () => stopJourneySound("conditioning");
+  }, [activeLayerId, isReadyToContinue, activity.active]);
   useEffect(() => {
     pendingActions.current = []; lock.current = false; failedWrite.current = false; retry.current = null; requestKey.current = "";
     setSaving(false); setFailure(false); setSelection(null); setReadout(null); setSoftMessage(null);
@@ -860,6 +869,12 @@ export function World2RootScreen() {
                 <p className="world2-dialogue__hint">{activeHint}</p>
               ) : null}
               <div className="world2-dialogue__actions">
+                {!isReadyToContinue && activeLayerId === "resultado_mediado" && sonicConvergenceComplete ? (
+                  <button className="world2-reading-assist" type="button" disabled={!activity.active || !resourcesReady}
+                    onClick={() => playJourneySound("mediatedMusic")}>
+                    {en ? "Listen to mediated music" : "Escuchar música mediada"}
+                  </button>
+                ) : null}
                 {showConditioningCinema ? <button className="world2-reading-assist" type="button"
                   disabled={checkpointInputBlocked || !visible || !resourcesReady || filterDemo === "running"}
                   onClick={() => {
@@ -873,6 +888,7 @@ export function World2RootScreen() {
                       }
                     }
                     setFilterDemo("running");
+                    playJourneySound("conditioning");
                   }}>{en ? "View filtering" : "Ver filtrado"}</button> : null}
                 {failure || !flow.storageVerified || [initialPreload.status, nextPreload.status].some((status) => status === "error" || status === "timeout") ? <button className="world2-action world2-action--continue" type="button" onClick={retryAction}>{ui.retry}</button>
                 : !isReadyToContinue && !essentialVisualReady ? activeLayerId === "captura" ? <button className="world2-reading-assist" type="button" onClick={showResult} disabled={!activity.active || !resourcesReady || saving}>{ui.assist}</button> : null

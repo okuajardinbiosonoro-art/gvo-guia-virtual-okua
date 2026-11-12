@@ -1,6 +1,12 @@
 # Assets aprobados registrados — final-root
 
 Pantalla: `Pantalla Final — Mirador` (`/final`).
+
+El [registro de foto con Lía](photo/manifest.json) corresponde a GVO 1.1.0.
+Incluye las dos poses y el grabado. El
+[registro del detector local](photo/tracking/manifest.json) contiene sus
+hashes y licencia. El resto de esta página documenta el registro original.
+
 Consumidor futuro: `FinalRoot`.
 Estado: `HUMAN_APPROVED / REGISTERED / NOT_YET_COMPOSED`.
 
@@ -35,6 +41,11 @@ consume ninguna de ellas.
 | `FINAL-LIA-SHADOW-001` | lia | `final_lia_glow_shadow_v01.png` | 1024×512 / RGBA | 135,0,884,511 | 70402 | `BE1A7499B742B36652F3382B805A012D015C1D06581844C72EA247EC0367E375` |
 
 ## Rutas y precache
+
+La candidata 1.1 usa poses exclusivas de la experiencia fotográfica, registradas
+en `photo/manifest.json`. El detector local de la foto se registra en
+`photo/tracking/manifest.json`. Las capas de luz del Mirador se dibujan con CSS sobre
+los mismos assets de entorno.
 
 - Runtime: `public/assets/gvo/stations/final-root/<categoría>/<archivo>`.
 - Mirror: `public/assets/gvo/current-used/final-root/<categoría>/<archivo>`.

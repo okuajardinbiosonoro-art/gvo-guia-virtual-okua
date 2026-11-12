@@ -1,5 +1,13 @@
 # Asset inventory
 
+## Sonidos del recorrido · GVO 1.1
+
+El paquete «Sonidos para GVO.zip» entregó 14 MP3. Se sirven desde
+`/assets/gvo/audio/` y el registro conserva sus nombres originales, duraciones,
+SHA-256 y disparadores. Los manifiestos están bajo
+`current-used/{shared,world-2-root,world-3-root,world-4-root,world-5-root}/audio/`.
+Los MP3 del runtime y los del registro conservan los bytes del diseñador.
+
 ## Revisión en iPhone · Sala V
 
 Los fondos limpios de Sistema v03 registrados en
@@ -355,6 +363,15 @@ canónicos permanecen fuera de runtime, imports, `dist` y precache.
 ## LIA-M4 CONCEPT_A
 
 The Lía preview screen reuses four unchanged approved FinalRoot assets. The exact runtime/mirror registry is `public/assets/gvo/current-used/lia-preview/manifest.json`; generated candidates are excluded from runtime pending human selection.
+
+## Foto con Lía en el Mirador · GVO 1.1.0
+
+`FinalLiaPhoto` consume dos poses creadas para el recuerdo, Al hombro y Se asoma.
+El JPG incorpora el grabado botánico nuevo, el logotipo y el emblema de Portada.
+El registro de hashes, dimensiones, procedencia y copias runtime está en
+[`current-used/final-root/photo/manifest.json`](../../public/assets/gvo/current-used/final-root/photo/manifest.json).
+El detector local Pico y su modelo facial se registran con sus licencias y hashes en
+[`photo/tracking/manifest.json`](../../public/assets/gvo/current-used/final-root/photo/tracking/manifest.json).
 
 ## LIA-M4-FINAL-01 approved presence
 

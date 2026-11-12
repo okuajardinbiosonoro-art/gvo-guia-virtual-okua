@@ -1,0 +1,26 @@
+{
+  "status": "HUMAN_APPROVED",
+  "source": "Sonidos para GVO.zip",
+  "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/audio/world-3-root/page-turn.mp3",
+      "mirror": "public/assets/gvo/current-used/world-3-root/audio/page-turn.mp3",
+      "trigger": "Giro de página del cuaderno",
+      "file": "paso de pagina Sala 3.mp3",
+      "bytes": 40750,
+      "sha256": "5ba26ea963d07fd0cfaebf740aa82ef4e758e436566229ecad03c1e8f2f384a3",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.018750"
+      }
+    }
+  ]
+}

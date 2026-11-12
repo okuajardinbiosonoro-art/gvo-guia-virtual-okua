@@ -29,6 +29,8 @@ export default tseslint.config(
       ".npm-cache",
       ".tool-reports",
       ".security-reports",
+      // Vendored Pico source is verified byte-for-byte against its manifest.
+      "public/assets/gvo/{stations,current-used}/final-root/photo/tracking/pico.module.js",
       // Immutable handoff snapshots are evidence, not a second live source tree.
       "docs/narrative/**/outgoing/**",
       "docs/narrative/**/R4_PACKAGE/**",

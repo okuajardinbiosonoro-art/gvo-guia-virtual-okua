@@ -1,0 +1,45 @@
+{
+  "status": "HUMAN_APPROVED",
+  "source": "Sonidos para GVO.zip",
+  "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/audio/world-5-root/correct.mp3",
+      "mirror": "public/assets/gvo/current-used/world-5-root/audio/correct.mp3",
+      "trigger": "Respuesta correcta confirmada",
+      "file": "Correcto Sala 5.mp3",
+      "bytes": 159868,
+      "sha256": "4095d12f703a37078f90b27f83f33723f47d65b9602ff2f06ebafa9b00cea108",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "3.996700"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-5-root/incorrect.mp3",
+      "mirror": "public/assets/gvo/current-used/world-5-root/audio/incorrect.mp3",
+      "trigger": "Respuesta incorrecta confirmada",
+      "file": "Errado Sala 5.mp3",
+      "bytes": 80456,
+      "sha256": "af7e7db2581b71cf04638e9bb1af661629d319748a0441d93a50cbef310ef103",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "2.011400"
+      }
+    }
+  ]
+}

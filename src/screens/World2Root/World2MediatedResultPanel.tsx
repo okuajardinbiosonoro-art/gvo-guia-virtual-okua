@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { playJourneySound, stopJourneySound } from "../../app/audio/journeySound";
 
 export type SonicConvergenceStage =
   | "intensity"
@@ -44,9 +45,18 @@ export function World2MediatedResultPanel({
   const onCompleteRef = useRef(onComplete);
   const completionMode = useRef<"standard" | "assisted">("standard");
   const notified = useRef(complete);
+  const musicStarted = useRef(complete);
   const elapsed = useRef(0);
   const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
   const en = locale === "en";
+
+  useEffect(() => {
+    if (!active || stage !== "resolved" || musicStarted.current) return;
+    musicStarted.current = true;
+    playJourneySound("mediatedMusic");
+  }, [active, stage]);
+
+  useEffect(() => () => stopJourneySound("mediatedMusic"), [active]);
 
   useEffect(() => {
     const update = () => setVisible(document.visibilityState !== "hidden");
@@ -139,9 +149,11 @@ export function World2MediatedResultPanel({
           className="world2-sonic-convergence__core"
           type="button"
           aria-label={en ? "Show result" : "Ver resultado"}
-          disabled={!active}
+          disabled={!active || stage === "resolved"}
           aria-pressed={sequenceFinished}
           onClick={() => {
+            musicStarted.current = true;
+            playJourneySound("mediatedMusic");
             if (sequenceFinished) return;
             completionMode.current = "assisted";
             setStage("resolved");
@@ -151,7 +163,7 @@ export function World2MediatedResultPanel({
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
-          {!sequenceFinished ? <span className="world2-sonic-convergence__prompt">{en ? "Show result" : "Ver resultado"}</span> : null}
+          {!sequenceFinished && stage !== "resolved" ? <span className="world2-sonic-convergence__prompt">{en ? "Show result" : "Ver resultado"}</span> : null}
         </button>
         <svg
           className="world2-sonic-convergence__wave"

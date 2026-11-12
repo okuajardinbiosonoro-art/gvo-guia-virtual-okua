@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { playJourneySound, stopJourneySound } from "../../app/audio/journeySound";
 
 type World2MappingPanelProps = {
   cleanSignalAsset: string;
@@ -21,6 +22,7 @@ type MappingRelation = {
 
 const mappingStepDurationMs = 3200;
 const mappingAutoplayMs = mappingStepDurationMs * 3;
+const relationSounds = ["intensity", "rhythm", "pitch"] as const;
 
 const mappingRelations: MappingRelation[] = [
   {
@@ -102,6 +104,14 @@ export function World2MappingPanel({
     presentedRef.current = onPresented;
   }, [onFirstRunComplete, onPresented]);
 
+  const relationSound = active && (manualReview || (!firstRunComplete && !assisted))
+    ? relationSounds[activeStepIndex] : undefined;
+  useEffect(() => {
+    if (!relationSound) return;
+    playJourneySound(relationSound);
+    return () => stopJourneySound(relationSound);
+  }, [relationSound, animationRevision]);
+
   useEffect(() => {
     const update = () => setVisible(document.visibilityState !== "hidden");
     document.addEventListener("visibilitychange", update);
@@ -180,6 +190,7 @@ export function World2MappingPanel({
       if (!firstRunComplete) onFirstRunCompleteRef.current();
     }
   }
+
 
   return (
     <div

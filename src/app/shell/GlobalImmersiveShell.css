@@ -3,6 +3,8 @@
 }
 
 .gvo-immersive-shell__dock {
+  display: flex;
+  gap: 6px;
   position: fixed;
   z-index: 990;
   top: calc(env(safe-area-inset-top, 0px) + 12px);
@@ -12,6 +14,13 @@
       24px
   );
   pointer-events: none;
+}
+
+.gvo-immersive-shell__sound.gvo-immersive-mode-control {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  pointer-events: auto;
 }
 
 .gvo-immersive-shell__dock .gvo-immersive-shell__control {

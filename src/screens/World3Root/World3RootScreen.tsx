@@ -1,3 +1,4 @@
+import { playJourneySound } from "../../app/audio/journeySound";
 import "./World3RootScreen.css";
 import "./World3Practice.css";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -49,10 +50,10 @@ export function World3RootScreen() {
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false);
   const [assetRetry, setAssetRetry] = useState(0);
   const currentBundle = useMemo(() => notebookBundle(active), [active]);
-  const resources = useAssetPreloader(currentBundle, { enabled: true, concurrency: 2, contextKey: `world3:${active ?? "index"}:${locale}`, retryKey: assetRetry });
+  const resources = useAssetPreloader(currentBundle, { enabled: true, concurrency: 2, reuseVerified: assetRetry === 0, contextKey: `world3:${active ?? "index"}:${locale}`, retryKey: assetRetry });
   const [requestedPage, setRequestedPage] = useState<{ id: Station3RecordId; attemptId: string | null } | null>(null);
   const requestedBundle = useMemo(() => notebookBundle(requestedPage?.id ?? null), [requestedPage]);
-  const requestedResources = useAssetPreloader(requestedBundle, { enabled: resources.ready && requestedPage !== null, concurrency: 2, contextKey: `world3-requested:${requestedPage?.id ?? "none"}:${requestedPage?.attemptId ?? "inactive"}:${locale}`, retryKey: assetRetry });
+  const requestedResources = useAssetPreloader(requestedBundle, { enabled: resources.ready && requestedPage !== null, concurrency: 2, reuseVerified: assetRetry === 0, contextKey: `world3-requested:${requestedPage?.id ?? "none"}:${requestedPage?.attemptId ?? "inactive"}:${locale}`, retryKey: assetRetry });
   const [turn, setTurn] = useState<{ key: number; direction: "open" | "close"; width: number | null; height: number | null } | null>(null);
   const turnKey = useRef(0);
   const screenRef = useRef<HTMLElement>(null);
@@ -98,6 +99,7 @@ export function World3RootScreen() {
   }
   function animatePage(direction: "open" | "close") {
     if (attemptRef.current !== attemptId) return;
+    playJourneySound("pageTurn");
     const rect = turnWindow.current?.getBoundingClientRect();
     setTurn({ key: ++turnKey.current, direction, width: rect?.width && rect.width > 0 ? rect.width : null, height: rect?.height && rect.height > 0 ? rect.height : null });
   }
@@ -130,7 +132,10 @@ export function World3RootScreen() {
       return;
     }
     if (flow.readOnly || confirmedPage) { showIndex(); return; }
-    await perform(active === "senal" ? () => closeEssentialRoom({ screen: 3, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" }) : () => confirmEssentialStep({ screen: 3, stepId: step, contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" }), showIndex);
+    await perform(active === "senal" ? () => closeEssentialRoom({ screen: 3, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" }) : () => confirmEssentialStep({ screen: 3, stepId: step, contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" }), () => {
+      showIndex();
+      if (active === "senal") playJourneySound("roomComplete");
+    });
   }
   function retrySave() {
     if (retry.current) void retry.current();

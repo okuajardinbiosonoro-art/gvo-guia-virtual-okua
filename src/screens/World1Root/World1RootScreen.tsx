@@ -1,3 +1,4 @@
+import { playJourneySound } from "../../app/audio/journeySound";
 import "./World1RootScreen.css";
 
 import type { CSSProperties, RefObject } from "react";
@@ -282,10 +283,10 @@ export function World1RootScreen() {
   const narrativeTrackRef = useRef<HTMLDivElement>(null);
   const narrativeSwipeAnchorRef = useRef<HTMLSpanElement>(null);
   const motionRootRef = useWorld1MotionRoot(activeConcept, activity.active && visible);
-  const initialPreload = useAssetPreloader(screenAssetBundles.world1RootInitial, { timeoutMs: 9000, concurrency: 2, retryKey: assetRetry });
-  const relationPreload = useAssetPreloader(screenAssetBundles.world1RootRelation, { enabled: activeConcept === "intro" || activeConcept === "relation", concurrency: 2, retryKey: assetRetry });
-  const perceptionPreload = useAssetPreloader(screenAssetBundles.world1RootPerception, { enabled: activeConcept === "relation" || activeConcept === "perception", concurrency: 2, retryKey: assetRetry });
-  const mediationPreload = useAssetPreloader(screenAssetBundles.world1RootMediation, { enabled: activeConcept === "perception" || activeConcept === "mediation", concurrency: 2, retryKey: assetRetry });
+  const initialPreload = useAssetPreloader(screenAssetBundles.world1RootInitial, { timeoutMs: 9000, concurrency: 2, retryKey: assetRetry, reuseVerified: assetRetry === 0 });
+  const relationPreload = useAssetPreloader(screenAssetBundles.world1RootRelation, { enabled: activeConcept === "intro" || activeConcept === "relation", concurrency: 2, retryKey: assetRetry, reuseVerified: assetRetry === 0 });
+  const perceptionPreload = useAssetPreloader(screenAssetBundles.world1RootPerception, { enabled: activeConcept === "relation" || activeConcept === "perception", concurrency: 2, retryKey: assetRetry, reuseVerified: assetRetry === 0 });
+  const mediationPreload = useAssetPreloader(screenAssetBundles.world1RootMediation, { enabled: activeConcept === "perception" || activeConcept === "mediation", concurrency: 2, retryKey: assetRetry, reuseVerified: assetRetry === 0 });
   const readyPreload = useAssetPreloader(screenAssetBundles.world1RootReady, { enabled: activeConcept === "mediation" || activeConcept === "ready_to_continue", concurrency: 2, retryKey: assetRetry });
   const statePreload = { intro: initialPreload, relation: relationPreload, perception: perceptionPreload, mediation: mediationPreload, ready_to_continue: readyPreload }[activeConcept];
   const resourcesReady = initialPreload.status === "ready" && statePreload.status === "ready";
@@ -312,6 +313,7 @@ export function World1RootScreen() {
   }
   function activateConcept(concept: World1Concept) {
     if (attemptRef.current !== attemptId || !activity.active || saving || checkpointSaveFailed || !canUseUiStep(1, stepByConcept[concept])) return;
+    playJourneySound("interaction");
     setSelection(concept);
     setPanelClosed(false);
     setExpandedDetails(false);
@@ -328,7 +330,10 @@ export function World1RootScreen() {
     const action = activeConcept === "mediation"
       ? () => closeEssentialRoom({ screen: 1, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" })
       : () => confirmEssentialStep({ screen: 1, stepId: stepByConcept[activeConcept], contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" });
-    await perform(action, () => { setSelection(null); setExpandedDetails(false); setPanelClosed(false); });
+    await perform(action, () => {
+      playJourneySound(activeConcept === "mediation" ? "roomComplete" : "interaction");
+      setSelection(null); setExpandedDetails(false); setPanelClosed(false);
+    });
   }
   const retryPendingCheckpoint = () => { void retryActionRef.current?.(); };
   const retryCheckpointRead = () => { invalidateJourneyEssential(); presentedRequestRef.current = ""; setCheckpointSaveFailed(false); };

@@ -1,0 +1,83 @@
+{
+  "status": "HUMAN_APPROVED",
+  "source": "Sonidos para GVO.zip",
+  "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/audio/world-4-root/game-start.mp3",
+      "mirror": "public/assets/gvo/current-used/world-4-root/audio/game-start.mp3",
+      "trigger": "Inicio del tiempo de juego",
+      "file": "comienza juego Sala 4.mp3",
+      "bytes": 40750,
+      "sha256": "545dd6a1184dbbd64d5f0bd48108ee8689b64dee3d442224f115212cbfa6ec92",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.018750"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-4-root/game-swap.mp3",
+      "mirror": "public/assets/gvo/current-used/world-4-root/audio/game-swap.mp3",
+      "trigger": "Intercambio confirmado de dos piezas; el último usa el sonido de resolución",
+      "file": "cambio elemento juego Sala 4.mp3",
+      "bytes": 40750,
+      "sha256": "630b833dd0391bab2afbe2fc9fb13f56b8e0994b3bb03c6c770df054fb1f2755",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.018750"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-4-root/game-solved.mp3",
+      "mirror": "public/assets/gvo/current-used/world-4-root/audio/game-solved.mp3",
+      "trigger": "Orden correcto resuelto por el visitante",
+      "file": "Final de juego Sala 4.mp3",
+      "bytes": 159868,
+      "sha256": "411dfec0235add1dceb1e20cd3ca142e893aecacfc9dc18dfa4a8941d24b3c8e",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "3.996700"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-4-root/game-timeout.mp3",
+      "mirror": "public/assets/gvo/current-used/world-4-root/audio/game-timeout.mp3",
+      "trigger": "Agotamiento del tiempo",
+      "file": "Final de tiempo Sala 4.mp3",
+      "bytes": 70007,
+      "sha256": "ec85b13dce5b367d0e65846f2ba34828edf891a3b86038dfaa132d69e90a2b85",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.750175"
+      }
+    }
+  ]
+}

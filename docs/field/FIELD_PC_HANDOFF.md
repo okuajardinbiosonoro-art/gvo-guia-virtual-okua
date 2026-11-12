@@ -3,6 +3,10 @@
 Fecha: 2026-08-18
 Estado: `FIELD HANDOFF READY / DEPLOYMENT GATES PENDING`
 
+La versión de producto vigente se registra en el
+[acta de GVO 1.1.0](../releases/GVO_1.1.0.md). Esta guía conserva los
+requisitos de red, TLS y validación física de la instalación.
+
 ## Orden de lectura
 
 1. [`README.md`](../../README.md)
@@ -21,7 +25,8 @@ No es necesario reconstruir el contexto desde tickets históricos.
   `https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git`.
 - Rama operativa: `main`.
 - Tag de entrega: `field-handoff-2026-08-18`.
-- SHA canónico: el commit apuntado por ese tag y por `origin/main`.
+- El tag de entrega identifica el handoff original. El acta vigente indica
+  la versión de producto que corresponde preparar en `main`.
 - Política: commit/push directo a `main` sólo cuando un ticket lo autorice; no
   Pull Request ni ramas adicionales por defecto.
 

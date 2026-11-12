@@ -39,7 +39,11 @@ describe("Mirador ES/EN — conciliación OBS03 D16", () => {
     function visit(node: ts.Node) {
       if (ts.isPropertyAssignment(node) && ts.isIdentifier(node.name) && node.name.text.startsWith("FINAL_") && ts.isObjectLiteralExpression(node.initializer)) {
         const esProperty = node.initializer.properties.find((property) => ts.isPropertyAssignment(property) && property.name.getText(sourceFile) === "es");
-        if (esProperty) esBlockHashes.set(node.name.text, digest(registryRaw.slice(esProperty.getStart(sourceFile), esProperty.end)));
+        if (esProperty) {
+          // The historical OBS03 evidence was hashed on a CRLF checkout.
+          const block = registryRaw.slice(esProperty.getStart(sourceFile), esProperty.end);
+          esBlockHashes.set(node.name.text, digest(block.replace(/\r?\n/g, "\r\n")));
+        }
       }
       ts.forEachChild(node, visit);
     }

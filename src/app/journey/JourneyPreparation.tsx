@@ -15,6 +15,7 @@ import { receiptStartedAt, readEntryPreparationDeadline, finishEntryPreparation 
 import { validateJourneyReceipt } from "./journeyReceipt";
 import { capturePreparedImage, isPreparedImageCurrent, waitForPreparedImages } from "./preparedImages";
 import { EntryPreparationHost } from "./EntryPreparationHost";
+import { prepareJourneyAudio } from "../audio/journeySound";
 
 const configs = [introToStationOneTransition, worldOneToWorldTwoTransition, worldTwoToWorldThreeTransition, worldThreeToWorldFourTransition, worldFourToWorldFiveTransition, worldFiveToFinalTransition];
 type Attempt = { id: string; navigationKey: string; contextKey: string; deadlineAt: number; controller: AbortController; transactionId: string | null; mutationToken: JourneyMutationToken };
@@ -144,6 +145,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
       if (receipt?.to === pathname && !applicableReceipt) { fail("invalid_receipt"); return; }
       const moduleId = routeModuleForDestination(pathname.startsWith("/estacion/5/") ? "/estacion/5" : pathname);
       try {
+        const audioReady = prepareJourneyAudio(pathname, attempt.controller.signal, deadlineAt);
         // Imports include their local CSS. Fonts and images must settle successfully before measuring the real target tree.
         // Local fontsource registers language-specific subsets. Load only the
         // current copy's glyphs, but do not discard a failed required face.
@@ -163,9 +165,16 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
           ownLoaded = own.loaded; setShellReadyKey(transactionId + ":" + retry);
         }
         if (applicableReceipt && !ownSources.length) setShellReadyKey(transactionId + ":" + retry);
-        const images = await preloadImages(targetSources, { signal: attempt.controller.signal, deadlineAt, timeoutMs: 8000, concurrency: 2, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: (ownLoaded + p.loaded) / total }); } });
+        const imageOptions = { signal: attempt.controller.signal, deadlineAt, timeoutMs: 10000, concurrency: 3, reuseVerified: retry === 0 };
+        const images = await preloadImages(targetSources, { ...imageOptions, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: (ownLoaded + p.loaded) / total }); } });
         if (!isCurrent()) return;
-        if (images.status !== "ready") { fail(images.status); return; }
+        if (images.status !== "ready") {
+          const transient = images.results.filter((image) => image.error === "asset_preload_error");
+          if (!transient.length || transient.length !== images.failed || images.timedOut || performance.now() > deadlineAt - 2500) { fail(images.status); return; }
+          const recovered = await preloadImages(transient.map((image) => image.src), { ...imageOptions, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: (ownLoaded + images.loaded + p.loaded) / total }); } });
+          if (!isCurrent()) return;
+          if (recovered.status !== "ready") { fail(recovered.status); return; }
+        }
         // First mount only after critical resource proof. From this point through
         // activation the target has one type/key/position and remains the same tree.
         setMountedNavigationKey(location.key);
@@ -204,6 +213,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
             attempt.controller.signal.addEventListener("abort", () => resolve(), { once: true });
           });
         }
+        await audioReady;
         if (!isCurrent()) return;
         const mayStartWrite = () => isCurrent() && !isJourneyResetInProgress() && document.visibilityState !== "hidden" && isJourneySnapshotCurrent(attempt.mutationToken) && performance.now() < deadlineAt;
         const pending = transactionId ? liveReceipt(transactionId, pathname) : null;

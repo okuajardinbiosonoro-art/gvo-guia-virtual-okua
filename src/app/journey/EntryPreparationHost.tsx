@@ -15,6 +15,7 @@ import { resolveJourneyAccess } from "./journeyAccess";
 import { getEntryResourceManifest } from "./journeyResources";
 import { captureJourneyMutationToken, coherentProgressPrefixLength, getJourneyRuntimeContext, isJourneyMutationTokenCurrent, readEssentialSnapshot } from "./journeyEssential";
 import { capturePreparedImage, isPreparedImageCurrent, waitForPreparedImages, twoPreparedFrames, type PreparedImage } from "./preparedImages";
+import { prepareJourneyAudio } from "../audio/journeySound";
 
 type ResourceState = { status: "loading" | "ready" | "error" | "timeout"; progress: number };
 type EntryAttempt = { id: string; controller: AbortController; deadlineAt: number; token: ReturnType<typeof captureJourneyMutationToken> };
@@ -99,6 +100,7 @@ export function EntryPreparationHost() {
     void (async () => {
       try {
         const fonts = entryFonts().then(() => true, () => false);
+        const audio = prepareJourneyAudio("/portada", a.controller.signal, a.deadlineAt);
         const own = await preloadImages(inventory.own, { signal: a.controller.signal, deadlineAt: a.deadlineAt, timeoutMs: 15000, concurrency: 2,
           onProgress: (p) => { if (current(a)) setResource({ status: "loading", progress: p.loaded / inventory.all.length }); } });
         if (!current(a)) return;
@@ -111,6 +113,8 @@ export function EntryPreparationHost() {
           onProgress: (p) => { if (current(a)) setResource({ status: "loading", progress: (own.loaded + p.loaded) / inventory.all.length }); } });
         if (!current(a)) return;
         if (remainder.status !== "ready" || performance.now() >= a.deadlineAt) { fail(remainder.status === "error" ? "error" : "timeout"); return; }
+        await audio;
+        if (!current(a)) return;
         // Mount the one real Cover only after the bounded queue has released Loading's priority.
         // Its actual IMG/font/layout proof still belongs to this original deadline.
         decodedReady.current = true; setCoverMounted(true); setResource({ status: "ready", progress: 1 });

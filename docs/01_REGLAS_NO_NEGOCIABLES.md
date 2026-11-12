@@ -19,9 +19,7 @@ Las referencias previas en paquetes cerrados, informes y evidencias describen
 el alcance de aquellas versiones.
 
 El diseñador de sonido produce y entrega los archivos finales y su ubicación
-en la experiencia. José David estima 17 audios. El inventario definitivo
-deberá confirmar cantidad, archivos, sala y momento de reproducción. La
-recepción e integración corresponden a una entrega posterior con esa
-información. Los archivos deberán funcionar en la red local y quedar
-registrados en el inventario de recursos. La reproducción de esos archivos
-no requiere permiso de micrófono.
+en la experiencia. José David confirmó que los 14 MP3 recibidos constituyen la
+entrega completa. El inventario registra sus nombres, salas y disparadores.
+Los archivos se sirven en la red local. La reproducción no requiere permiso
+de micrófono.

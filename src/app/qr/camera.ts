@@ -85,16 +85,16 @@ export function cameraStatusFromError(
   return "camera-error";
 }
 
-export async function requestCameraStream(): Promise<CameraRequestResult> {
+export async function requestCameraStream(
+  constraints: MediaStreamConstraints = GVO_CAMERA_CONSTRAINTS,
+): Promise<CameraRequestResult> {
   const capability = inspectCameraCapability();
   if (capability.status !== "camera-supported") {
     return { ok: false, status: capability.status };
   }
 
   try {
-    const stream = await navigator.mediaDevices.getUserMedia(
-      GVO_CAMERA_CONSTRAINTS,
-    );
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
     return { ok: true, status: "camera-granted", stream };
   } catch (error) {
     return { ok: false, status: cameraStatusFromError(error) };

@@ -212,7 +212,7 @@ export function getWorld2Content(locale: World2Locale) {
     saveError: en ? "We could not verify your progress. Try again before continuing." : "No pudimos verificar el guardado. Reintenta antes de continuar.",
     qr: en ? "Scan the QR code in the next room to continue." : "Escanea el QR de la siguiente sala para continuar.",
     tap: en ? "Tap here" : "Toca aquí", wave: en ? "Measured wave" : "Onda medida",
-    silent: en ? "Music belongs to the physical installation. This browser remains silent." : "La música pertenece a la instalación física. Este navegador permanece sin sonido.",
+    musicHint: en ? "Hear how intensity, rhythm and pitch come together." : "Escucha cómo se unen la intensidad, el ritmo y la altura.",
     review: en ? "You can revisit any open layer without losing your progress." : "Puedes revisar cualquier capa ya abierta sin perder el recorrido.",
   } };
 }

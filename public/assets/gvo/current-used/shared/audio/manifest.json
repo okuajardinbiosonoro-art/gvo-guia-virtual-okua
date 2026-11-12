@@ -1,0 +1,46 @@
+{
+  "status": "HUMAN_APPROVED",
+  "source": "Sonidos para GVO.zip",
+  "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/audio/shared/interaction.mp3",
+      "mirror": "public/assets/gvo/current-used/shared/audio/interaction.mp3",
+      "trigger": "Portada y acciones principales en salas I y II sin pista propia; avance de explicación y repaso en Sala IV; avance, reintento y navegación de repaso de Sala V; accesos, foto y confirmación de reinicio en Mirador",
+      "playback_gain": 0.7,
+      "file": "Interacción básica GVO.mp3",
+      "bytes": 40750,
+      "sha256": "9e50b03b327ac03a60b699e3fc7630546210bdb77d56773bc4f6a8afa556f318",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.018750"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/shared/room-complete.mp3",
+      "mirror": "public/assets/gvo/current-used/shared/audio/room-complete.mp3",
+      "trigger": "Cierre confirmado de las salas I a V",
+      "file": "Sala completa GVO.mp3",
+      "bytes": 80456,
+      "sha256": "98709844a379e440fe03b50f75453dcfa3d7d421dac362159aa6521863874674",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "2.011400"
+      }
+    }
+  ]
+}

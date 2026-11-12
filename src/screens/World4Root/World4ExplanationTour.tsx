@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { playJourneySound } from "../../app/audio/journeySound";
 import {
   confirmWorld4ExplanationStep,
   getJourneyRuntimeContext,
@@ -147,6 +148,7 @@ export function World4ExplanationTour({
 
   async function advance(trigger: HTMLButtonElement) {
     if (!enabled || !presented || !isCurrent(attemptId)) return;
+    playJourneySound("interaction", { replace: true });
     if (readOnly) {
       if (index === 7) onReturn?.();
       else {

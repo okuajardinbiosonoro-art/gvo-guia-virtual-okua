@@ -1,0 +1,333 @@
+.final-lia-photo {
+  width: min(600px, calc(100% - 24px));
+  max-height: calc(100% - max(32px, env(safe-area-inset-top) + env(safe-area-inset-bottom) + 20px));
+  padding: clamp(12px, 4vw, 26px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #bb8b62;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at 0 0, #503447, transparent 70%), #261c2b;
+  color: #fff5de;
+  box-shadow: 0 18px 60px #140e15bf, inset 0 0 0 4px #fbd9a010;
+  font-family: var(--gvo-font-ui);
+}
+
+.final-lia-photo::backdrop {
+  background: rgb(20 13 22 / 72%);
+}
+
+.final-lia-photo__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.final-lia-photo h2 {
+  margin: 0;
+  font-family: var(--gvo-font-heading, Georgia, serif);
+  font-size: clamp(1.4rem, 5vw, 2.1rem);
+  line-height: 1.12;
+}
+
+.final-lia-photo p {
+  margin: 0.35rem 0 0;
+  color: #f1d8c2;
+}
+
+.final-lia-photo__studio {
+  display: grid;
+  grid-template-columns: minmax(104px, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(12px, 3vw, 24px);
+}
+
+.final-lia-photo__studio--live {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+.final-lia-photo__live {
+  min-width: 0;
+}
+
+.final-lia-photo button.final-lia-photo__live-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  aspect-ratio: 828 / 1010;
+  overflow: hidden;
+  border: 2px solid #c49b75;
+  border-radius: 10px;
+  background: #241b24;
+  box-shadow: 0 5px 18px #140e18b8;
+  touch-action: manipulation;
+}
+
+.final-lia-photo__live-frame video,
+.final-lia-photo__live-frame canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 43%;
+  pointer-events: none;
+}
+
+.final-lia-photo__live-frame video {
+  transform: scaleX(-1);
+}
+
+.final-lia-photo__live-frame canvas[hidden] {
+  display: none;
+}
+
+.final-lia-photo__live p {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.final-lia-photo__preview,
+.final-lia-photo__sample {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  border: 1px solid #cf9d77;
+  border-radius: 9px;
+  box-shadow: 0 4px 18px #17101c99;
+}
+
+.final-lia-photo button.final-lia-photo__sample {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  padding: 10px 8px 12px;
+  border: 5px solid #f0d9b8;
+  border-radius: 4px;
+  background: radial-gradient(ellipse at 50% 34%, #eeb06e, #82576a 55%, #372636 88%);
+  box-shadow: inset 0 0 0 1px #332135, 0 4px 18px #17101c99;
+}
+
+.final-lia-photo__empty-print {
+  box-sizing: border-box;
+  padding: 7% 7% 19%;
+  background: #efdbbd;
+  border-radius: 4px;
+}
+
+.final-lia-photo__empty-print::before {
+  display: block;
+  height: 100%;
+  border: 1px solid #67495b;
+  background: radial-gradient(ellipse at 50% 35%, #d9a576, #805568 65%, #4b3344);
+  content: "";
+}
+
+.final-lia-photo__sample .final-lia-photo__pose-art {
+  width: min(86%, 168px);
+  height: auto;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 5px 8px #38213780);
+}
+
+.final-lia-photo__sample span {
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  background: #2d1e2c;
+  font-size: 0.9em;
+}
+
+.final-lia-photo__placement {
+  min-width: 0;
+}
+
+.final-lia-photo button.final-lia-photo__placement-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.final-lia-photo__placement p {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .final-lia-photo__sample [data-play="true"] {
+    animation: final-lia-photo-lean 620ms cubic-bezier(0.3, 0.8, 0.4, 1) both;
+  }
+
+  .final-lia-photo__preview {
+    animation: final-lia-print-arrive 320ms ease-out both;
+  }
+}
+
+@keyframes final-lia-photo-lean {
+  0% { transform: translate(-9%, 7%) rotate(-9deg) scale(0.91); }
+  55% { transform: translate(2%, -4%) rotate(4deg) scale(1.06); }
+  100% { transform: none; }
+}
+
+@keyframes final-lia-print-arrive {
+  from { opacity: 0.9; transform: translateY(3px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+.final-lia-photo button,
+.final-lia-photo__buttons a {
+  display: inline-grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0.4em 0.75em;
+  border: 1px solid #bf9578;
+  border-radius: 7px;
+  background: #302332;
+  color: #fff5de;
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.final-lia-photo button:disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+
+.final-lia-photo button[aria-disabled="true"] {
+  cursor: default;
+}
+
+.final-lia-photo button.final-lia-photo__close {
+  flex: 0 0 44px;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+.final-lia-photo button.final-lia-photo__primary {
+  background: #efcc9f;
+  color: #2d1d29;
+}
+
+.final-lia-photo button.final-lia-photo__shutter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 50px;
+}
+
+.final-lia-photo__shutter span {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px #efcc9f;
+  background: currentColor;
+}
+
+.final-lia-photo__buttons,
+.final-lia-photo__poses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.final-lia-photo__poses {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-width: 0;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.final-lia-photo__poses legend {
+  margin-bottom: 0.45rem;
+  padding: 0;
+  font-weight: 600;
+}
+
+.final-lia-photo__poses label {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 44px;
+  padding: 0 3px 7px;
+  border: 1px solid #bd9481;
+  border-radius: 8px;
+  background: #2e2231;
+  text-align: center;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.final-lia-photo__poses label:has(:checked) {
+  border-color: #f8cf94;
+  background: #4a3546;
+  box-shadow: inset 0 0 0 1px #f8cf94;
+}
+
+.final-lia-photo__poses input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.final-lia-photo :focus-visible,
+.final-lia-photo__poses label:has(:focus-visible) {
+  outline: 2px solid #fff5d2;
+  outline-offset: 3px;
+}
+
+.final-lia-photo__pose-art {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.final-lia-photo__status:not(:empty) {
+  margin-top: 0.65rem;
+  color: #ffdbad;
+}
+
+.final-lia-photo__status + .final-lia-photo__buttons {
+  margin-top: 0.7rem;
+}
+
+.final-lia-photo__buttons a:only-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 460px) and (orientation: portrait) {
+  .final-lia-photo__studio {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .final-lia-photo__placement,
+  .final-lia-photo__sample {
+    width: min(54%, 168px);
+    justify-self: center;
+  }
+
+  .final-lia-photo__live {
+    width: min(100%, 37dvh);
+    justify-self: center;
+  }
+}

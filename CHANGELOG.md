@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 · 2026-11-12
+
+- Foto con Lía en el Mirador con cámara frontal, dos poses, opción sin Lía
+  y un JPEG con el marco de OKÚA para guardar o compartir.
+- Luz ambiental en el sol y reflejos en el río del Mirador.
+- Catorce sonidos locales, ajuste de volumen en la entrada y control de silencio.
+- Precarga por sala, incluidos los tres capítulos del cuaderno de Sala III.
+- Consulta el [acta de versión](docs/releases/GVO_1.1.0.md).
+
 ## 1.0.0 · 2026-11-12
 
 - Recorrido completo de OKÚA, desde la preportada animada hasta el Mirador.

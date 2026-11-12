@@ -2,3 +2,7 @@ docs/assets/final-root/production-sources/lia/final_lia_idle_contemplative_6f_me
 docs/assets/final-root/production-sources/lia/final_lia_greeting_4f_metrics.json text eol=lf
 docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/exchanges/OBS03_MIRADOR_EN_TRANSLATION.json text eol=lf
 src/content/editorial/editorialRegistry.ts text eol=lf
+public/assets/gvo/stations/final-root/photo/tracking/LICENSE.txt -text
+public/assets/gvo/stations/final-root/photo/tracking/pico.module.js -text -whitespace
+public/assets/gvo/current-used/final-root/photo/tracking/LICENSE.txt -text
+public/assets/gvo/current-used/final-root/photo/tracking/pico.module.js -text -whitespace

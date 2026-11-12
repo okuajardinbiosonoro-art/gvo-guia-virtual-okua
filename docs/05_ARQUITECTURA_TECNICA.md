@@ -1,9 +1,9 @@
 # Arquitectura técnica
 
-Actualizado: 2026-08-18
+Actualizado: 2026-11-12
 
 GVO usa Vite, React, TypeScript y React Router. Es una aplicación web
-local-first, mobile-first e insonora. Todos los recursos runtime requeridos se
+local-first y mobile-first. Todos los recursos runtime requeridos se
 sirven desde el mismo origen; no hay CDN, APIs, fuentes ni imágenes remotas.
 
 ## Contrato operativo
@@ -20,6 +20,7 @@ extensión o scanner externo al visitante.
 
 - `src/app`: router, rutas, shell, preferencias, revisión y QR.
 - `src/app/qr`: cámara, allowlist de payloads y gate scanner compartido.
+- `src/app/audio`: precarga y reproducción de las pistas locales del recorrido.
 - `src/domain/progress`: progreso global versionado y guards secuenciales.
 - `src/domain/checkpoints`: checkpoints durables de los Mundos.
 - `src/screens`: Carga, Entrada, Portada, Transiciones, Mundos I–V y Mirador.
@@ -35,11 +36,11 @@ extensión o scanner externo al visitante.
 | --- | --- |
 | `/` | Carga inicial; entrega la entrada normal a `/inicio` |
 | `/carga` | Carga aislada para revisión |
-| `/inicio` | Idioma, preflight de cámara y entrada inmersiva |
+| `/inicio` | Idioma, volumen, preflight de cámara y entrada inmersiva |
 | `/portada` | Archivo Vivo y Portales I–V |
 | `/estacion/1`…`/estacion/5` | Mundos I–V protegidos por progreso |
 | `/transition/*` | Transiciones pasivas y automáticas |
-| `/final` | Mirador, revisita y reset real |
+| `/final` | Mirador, foto con Lía, revisita y reinicio |
 | `/qr/start` | Entrada lógica al inicio; QR físico aún no generado |
 | `/qr/w2`…`/qr/w5` | Entradas QR tipadas y payloads del scanner interno |
 
@@ -98,6 +99,16 @@ El build excluye bibliotecas documentales y espejos `current-used` del artefacto
 de deployment sin cambiar las rutas runtime. El service worker mantiene shell,
 manifest, fallback de navegación y limpieza de caches obsoletos.
 
+La transición prepara los recursos visuales de la sala y sus pistas en
+paralelo. El audio usa Web Audio después de un gesto del visitante. Las
+preferencias de volumen y silencio se guardan por separado y sobreviven al
+reinicio del recorrido. El service worker precarga los 14 MP3 locales.
+
+El Mirador usa la cámara frontal en contexto seguro y compone el recuerdo en
+el dispositivo. El selector de archivos permite usar una imagen existente.
+La aplicación entrega un JPEG local y puede abrir el selector de compartir
+del sistema cuando el navegador admite compartir archivos.
+
 ## HTTPS de laboratorio y deuda de campo
 
 `npm run dev` detecta las IPv4 activas y genera un certificado servidor con SAN
@@ -115,3 +126,5 @@ Decisiones relacionadas:
 - [ADR-0005 — Route chunking](decisions/ADR-0005-route-chunking-y-preload-controlado.md)
 - [ADR-0006 — Entrada e idioma](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md)
 - [ADR-0007 — HTTPS local y scanner](decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md)
+- [ADR-0015 — Sonidos del recorrido](decisions/ADR-0015-sonidos-del-recorrido.md)
+- [ADR-0016 — Foto local con Lía](decisions/ADR-0016-foto-local-con-lia.md)
