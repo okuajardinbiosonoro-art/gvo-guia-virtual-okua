@@ -12,7 +12,7 @@ export type FinalEditorialSlotId = Extract<
   (typeof finalEditorialSlotIds)[number]
 >;
 
-type FinalEditorialSlot = {
+export type FinalEditorialSlot = {
   emitter: EditorialEmitter;
   locale: EditorialLocale;
   notes: string;
@@ -61,8 +61,8 @@ const finalEditorialSlotIds = [
   "FINAL_RESTART_RETRY_BTN_01",
 ] as const;
 
-function resolveFinalSlot(slotId: FinalEditorialSlotId): FinalEditorialSlot {
-  const resolvedSlot = resolveEditorialText(slotId);
+function resolveFinalSlot(slotId: FinalEditorialSlotId, locale: EditorialLocale): FinalEditorialSlot {
+  const resolvedSlot = resolveEditorialText(slotId, { locale });
 
   return {
     emitter: resolvedSlot.emitter,
@@ -76,9 +76,16 @@ function resolveFinalSlot(slotId: FinalEditorialSlotId): FinalEditorialSlot {
   };
 }
 
-export const finalEditorialSlots = Object.fromEntries(
-  finalEditorialSlotIds.map((slotId) => [slotId, resolveFinalSlot(slotId)]),
-) as Record<FinalEditorialSlotId, FinalEditorialSlot>;
+export type FinalEditorialSlots = Record<FinalEditorialSlotId, FinalEditorialSlot>;
+
+export function getFinalEditorialSlots(locale: EditorialLocale): FinalEditorialSlots {
+  return Object.fromEntries(
+    finalEditorialSlotIds.map((slotId) => [slotId, resolveFinalSlot(slotId, locale)]),
+  ) as FinalEditorialSlots;
+}
+
+// Compatibility for ES-only callers; public consumers resolve their locale at render.
+export const finalEditorialSlots = getFinalEditorialSlots("es");
 
 export const FINAL_REQUIRED_SLOT_COUNT = finalEditorialSlotIds.length;
 

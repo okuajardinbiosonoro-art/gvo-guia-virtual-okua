@@ -21,6 +21,8 @@
   --world1-stage-available-height: calc(100vh - var(--world1-stage-safe-block));
   --world1-stage-scale: 1;
   --world1-stage-offset-y: 0px;
+  --world1-node-hit-width: 102px;
+  --world1-node-safe-inline: 8px;
   --world1-root-origin-x: 50.8%;
   --world1-root-origin-y: 35.9%;
   --world1-plant-x: 50.5%;
@@ -133,12 +135,11 @@
 
 @media (width <= 374px) {
   .world1-root-stage-frame {
-    --world1-node-relation-x: 16%;
+    --world1-node-hit-width: 86px;
     --world1-node-relation-y: 48.5%;
     --world1-node-relation-scale: 0.86;
     --world1-node-perception-y: 46.5%;
     --world1-node-perception-scale: 0.86;
-    --world1-node-mediation-x: 84%;
     --world1-node-mediation-y: 48.5%;
     --world1-node-mediation-scale: 0.86;
     --world1-ready-node-relation-y: 40.5%;

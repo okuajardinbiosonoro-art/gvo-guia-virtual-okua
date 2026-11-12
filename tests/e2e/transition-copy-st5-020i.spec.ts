@@ -25,8 +25,8 @@ const transitions = [
     route: "/transition/intro-to-station-1",
     fromRoute: "/portada",
     toRoute: "/estacion/1",
-    title: "Abriendo Mundo I",
-    subtitle: "Preparando la raíz.",
+    title: "Abriendo Sala I · Raíz",
+    subtitle: "Preparando tu recorrido",
     titleSlotId: "TRANS_COVER_W1_TITLE_01",
     subtitleSlotId: "TRANS_COVER_W1_SUB_01",
     targetPreload: "world1RootInitial",
@@ -36,8 +36,8 @@ const transitions = [
     route: "/transition/world-1-to-world-2",
     fromRoute: "/estacion/1",
     toRoute: "/estacion/2",
-    title: "Abriendo Mundo II",
-    subtitle: "Preparando el pulso invisible.",
+    title: "Abriendo Sala II · Pulso invisible",
+    subtitle: "Preparando tu recorrido",
     titleSlotId: "TRANS_W1_W2_TITLE_01",
     subtitleSlotId: "TRANS_W1_W2_SUB_01",
     targetPreload: "none",
@@ -47,8 +47,8 @@ const transitions = [
     route: "/transition/world-2-to-world-3",
     fromRoute: "/estacion/2",
     toRoute: "/estacion/3",
-    title: "Abriendo Mundo III",
-    subtitle: "Preparando el cuaderno de pruebas.",
+    title: "Abriendo Sala III · Cuaderno de práctica",
+    subtitle: "Preparando tu recorrido",
     titleSlotId: "TRANS_W2_W3_TITLE_01",
     subtitleSlotId: "TRANS_W2_W3_SUB_01",
     targetPreload: "none",
@@ -58,8 +58,8 @@ const transitions = [
     route: "/transition/world-3-to-world-4",
     fromRoute: "/estacion/3",
     toRoute: "/estacion/4",
-    title: "Abriendo Mundo IV",
-    subtitle: "Preparando la mesa de sistema.",
+    title: "Abriendo Sala IV · Sistema biosonoro",
+    subtitle: "Preparando tu recorrido",
     titleSlotId: "TRANS_W3_W4_TITLE_01",
     subtitleSlotId: "TRANS_W3_W4_SUB_01",
     targetPreload: "none",
@@ -69,8 +69,8 @@ const transitions = [
     route: "/transition/world-4-to-world-5",
     fromRoute: "/estacion/4",
     toRoute: "/estacion/5",
-    title: "Abriendo Mundo V",
-    subtitle: "Preparando el mapa del presente.",
+    title: "Abriendo Sala V · OKÚA, arte sensorial",
+    subtitle: "Preparando tu recorrido",
     titleSlotId: "TRANS_W4_W5_TITLE_01",
     subtitleSlotId: "TRANS_W4_W5_SUB_01",
     targetPreload: "none",
@@ -353,7 +353,7 @@ test.describe("667x375 ST5-020I-C geometry", () => {
       path.join(evidenceDir, "667x375_st5-020i-b_geometry.json"),
       `${JSON.stringify(
         {
-          state: "ST5_020I_C_GEOMETRY_PASS",
+          state: "MEASURED_GEOMETRY_SEE_TEST_RESULT",
           before,
           after,
           drift,
@@ -370,7 +370,9 @@ test.describe("667x375 ST5-020I-C geometry", () => {
     );
 
     expect(before.viewport).toEqual({ width: 667, height: 375 });
-    expect(before.verticalOverflow).toBe(177);
+    // The current short-landscape composition also fits when height is auto.
+    // Requiring the historical 177px defect would reject that corrected layout.
+    expect(before.verticalOverflow ?? Infinity).toBeLessThanOrEqual(1);
     expect(after.verticalOverflow ?? Infinity).toBeLessThanOrEqual(1);
     expect(after.horizontalOverflow ?? Infinity).toBeLessThanOrEqual(1);
     expect(after.scroll).toEqual({ x: 0, y: 0 });
@@ -597,10 +599,11 @@ for (const viewport of viewports) {
           reducedMotionDurationMs: "1000",
           targetPreload: transition.targetPreload,
           portalState: "open",
-          editorialCopyStatus: "final",
+          editorialCopyStatus:
+            transition.id === "world-5-to-final" ? "final" : "review",
           titleSlotId: transition.titleSlotId,
           subtitleSlotId: transition.subtitleSlotId,
-          interactiveControlCount: 0,
+          interactiveControlCount: 1,
           containsForbiddenCopy: false,
           landscapeCompactMediaQueryActive: viewport.name === "667x375",
           viewport: {

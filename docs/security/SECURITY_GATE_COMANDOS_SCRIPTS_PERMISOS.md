@@ -202,8 +202,8 @@ No crear, no preparar y no sugerir Pull Request. Cuando un ticket autorice publi
 |---|---|---|
 | Camara | `BLOCKED` hasta politica/ticket | Requiere politica QR/camara, UX de consentimiento y pruebas. |
 | QR scanner | `BLOCKED` hasta politica/ticket | No activar scanner sin ticket funcional aprobado. |
-| Microfono | `BLOCKED` | Contradice regla sin audio salvo cambio normativo explicito. |
-| Audio | `BLOCKED` | GVO es sin audio; no agregar librerias ni reproduccion. |
+| Micrófono | `BLOCKED` | La reproducción de audio local no requiere capturar sonido. |
+| Audio de producción | `AUTHORIZED_FROM_DELIVERY` | Archivos locales entregados por el diseñador de sonido, con los puntos de reproducción de su entrega. |
 | Notificaciones | `BLOCKED` | Permiso innecesario para flujo actual. |
 | Geolocalizacion | `BLOCKED` | No requerida por GVO. |
 | Clipboard | `ALLOW_ONLY_IN_EXPLICIT_TICKET` | Solo para accion del usuario y con fallback. |

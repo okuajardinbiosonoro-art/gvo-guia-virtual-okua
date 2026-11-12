@@ -1,0 +1,541 @@
+{
+  "status": "SOURCE_RECONCILED_NOT_TESTED_NOT_PUBLISHED",
+  "savedAt": "2026-10-24T06:07:18.509Z",
+  "sourceBefore": {
+    "path": "sources-before.ts.txt",
+    "sha256": "6d9853a903f290df4187c616173ddd99a1009ab36b1ab47332f12eca3bb920e4",
+    "chunks": 25,
+    "version": "gvo-editorial-candidate-2026-10-23"
+  },
+  "sourceAfter": {
+    "path": "src/features/lia-preview/sources.ts",
+    "sha256": "ebbab1d13425e6d1f48e018de14dde3750d8937f9249e59c55ab69c832fca995",
+    "chunks": 21,
+    "version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "digests": {
+      "GVO-INTRO": "ecacd97fc63b3501a0777f5865ebf6c1a2db677c2ec1f9d697e2979b044f992d",
+      "GVO-PLANTA": "94a6a16b95400e0233fab1386eecc20df5d3db5da5b2d59b2df2a52383888b21",
+      "GVO-PROTOTIPO": "fef85920f7702689f7a55b0d5b8321c6b04413af99b76043d489bfe6ffe03ebf",
+      "GVO-SENAL": "073bbd375d5ead908a1426b5a490516e80188e6920b8081d13cfc747a84b19e6",
+      "GVO-APRENDIZAJE": "3559b42373ca8eee2143f613b14dc56f8801fdad2868771868bac2dae8714d4f",
+      "GVO-MIRADOR": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d"
+    }
+  },
+  "removedChunks": [
+    "GVO-INTRO-05",
+    "GVO-PROTOTIPO-03",
+    "GVO-SENAL-02",
+    "GVO-SENAL-03"
+  ],
+  "D17ReservedNotPublished": [
+    {
+      "id": "TXT_3_e961dae765e1",
+      "writerTextSha256": "2a55f7bcda0201a732eaabe1233b55bd6eaab0b98db81bd43c5b5e85fce74b36",
+      "disposition": "SOURCE_ONLY_NO_PARAPHRASE_OR_SUBSTITUTE"
+    },
+    {
+      "id": "TXT_3_724d801aff06",
+      "writerTextSha256": "7b48999d07805c6dc7f27e04c1c58699c742da9f733e4a510299e5ca3459af6c",
+      "disposition": "SOURCE_ONLY_NO_PARAPHRASE_OR_SUBSTITUTE"
+    },
+    {
+      "id": "TXT_3_6cb3bb820964",
+      "writerTextSha256": "2194c2a2e3ea3c63145834bf2b1ef0b064934cc7323744702361c1d20833703b",
+      "disposition": "SOURCE_ONLY_NO_PARAPHRASE_OR_SUBSTITUTE"
+    }
+  ],
+  "semantics": "4literalCovergroups;III3/2/1fragments;literalintroduction+truthfulclosure;physicaloptionalfunctionalchunkseparate;8MiradorESpreserved. No mandatoryessenceomission.",
+  "provenance": [
+    {
+      "chunk": "GVO-INTRO-01",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "931a62bf975611669b5b483d95990e64bc5a2a161e25caa074c960b664aa5b77",
+      "sourceIds": [
+        "TXT_portada_f3151772c877"
+      ],
+      "sources": [
+        {
+          "id": "TXT_portada_f3151772c877",
+          "writerTextSha256": "931a62bf975611669b5b483d95990e64bc5a2a161e25caa074c960b664aa5b77",
+          "sourcePointer": "/entries/7/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              31
+            ],
+            [
+              31,
+              78
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-INTRO-02",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "b53467359d9f26dff49402aab4625d295e499e4589a7c4bd522a265a6c5cb418",
+      "sourceIds": [
+        "TXT_portada_bedf033bdb26",
+        "TXT_portada_02f65084352d"
+      ],
+      "sources": [
+        {
+          "id": "TXT_portada_bedf033bdb26",
+          "writerTextSha256": "8f627f91a4cc86c4dfe2a25cc400810b95103ebea0f3bada37a226785ea4b64b",
+          "sourcePointer": "/entries/10/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              45
+            ]
+          ],
+          "explicitPatches": []
+        },
+        {
+          "id": "TXT_portada_02f65084352d",
+          "writerTextSha256": "122f95960eab918297a96f154fa422f8e3f9eee73d8396675a5eb09aa0ccc129",
+          "sourcePointer": "/entries/13/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              60
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-INTRO-03",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "160b6258f9a940343f31952c50ccd969899af096fb6265c261d9129ef57deb94",
+      "sourceIds": [
+        "TXT_portada_3d12461299b8"
+      ],
+      "sources": [
+        {
+          "id": "TXT_portada_3d12461299b8",
+          "writerTextSha256": "160b6258f9a940343f31952c50ccd969899af096fb6265c261d9129ef57deb94",
+          "sourcePointer": "/entries/14/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              42
+            ],
+            [
+              42,
+              98
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-INTRO-04",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "eb97ad9947698720d582609a05339fd819d3bc9c8b3c061efef831352e2edaaa",
+      "sourceIds": [
+        "TXT_portada_aec52aadd67c"
+      ],
+      "sources": [
+        {
+          "id": "TXT_portada_aec52aadd67c",
+          "writerTextSha256": "eb97ad9947698720d582609a05339fd819d3bc9c8b3c061efef831352e2edaaa",
+          "sourcePointer": "/entries/11/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              37
+            ],
+            [
+              37,
+              47
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-PLANTA-01",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "ed2355fc79e0dd8fbf5c5368d119e99920f84d7c512efdac18dd1ff9146fc7f7",
+      "sourceIds": [
+        "TXT_3_ea0217fac7f6"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_ea0217fac7f6",
+          "writerTextSha256": "c73973830df31a959804af768bbf11cd834e2cacf01ddf7e064b494dd43d4be5",
+          "sourcePointer": "/entries/69/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              101
+            ]
+          ],
+          "explicitPatches": [
+            {
+              "source_id": "TXT_3_ea0217fac7f6",
+              "start": 9,
+              "end": 14,
+              "before": "logar",
+              "after": "lugar",
+              "publication_disposition": "eligible_if_bound_to_public_consumer"
+            }
+          ]
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-PLANTA-02",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "9ab6bc4569d0029bfee045b454394f72594a319974a23d325a634c74d45868e7",
+      "sourceIds": [
+        "TXT_3_d1384cb3c055"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_d1384cb3c055",
+          "writerTextSha256": "9ab6bc4569d0029bfee045b454394f72594a319974a23d325a634c74d45868e7",
+          "sourcePointer": "/entries/70/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              121
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-PLANTA-03",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "a00bedc2fbc5b7882def41c674e1e6d1fbce96b0b545785345272f857335890c",
+      "sourceIds": [
+        "TXT_3_f4d4d818e31e"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_f4d4d818e31e",
+          "writerTextSha256": "a00bedc2fbc5b7882def41c674e1e6d1fbce96b0b545785345272f857335890c",
+          "sourcePointer": "/entries/62/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              112
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-PROTOTIPO-01",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "b4a060e4f235fcf6a5f1c57fbbd39274dccf00466d3ee2902ec0c0b4ba63f5f8",
+      "sourceIds": [
+        "TXT_3_1e4564d904af"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_1e4564d904af",
+          "writerTextSha256": "b4a060e4f235fcf6a5f1c57fbbd39274dccf00466d3ee2902ec0c0b4ba63f5f8",
+          "sourcePointer": "/entries/72/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              178
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-PROTOTIPO-02",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "c3715d73b7bb2341199d0b8d66aef113add753693a01d0b634e8179a5eb067f7",
+      "sourceIds": [
+        "TXT_3_034a41e11f4b"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_034a41e11f4b",
+          "writerTextSha256": "979d0d1b7cebc7f742240d2fd69855d69c797b346879ac1231dbcc64e6517449",
+          "sourcePointer": "/entries/63/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              198
+            ]
+          ],
+          "explicitPatches": [
+            {
+              "source_id": "TXT_3_034a41e11f4b",
+              "start": 49,
+              "end": 59,
+              "before": "un tarjeta",
+              "after": "una tarjeta",
+              "publication_disposition": "eligible_if_bound_to_public_consumer"
+            }
+          ]
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-SENAL-01",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "073bbd375d5ead908a1426b5a490516e80188e6920b8081d13cfc747a84b19e6",
+      "sourceIds": [
+        "TXT_3_30f92d565590"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_30f92d565590",
+          "writerTextSha256": "073bbd375d5ead908a1426b5a490516e80188e6920b8081d13cfc747a84b19e6",
+          "sourcePointer": "/entries/66/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              57
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-APRENDIZAJE-01",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "85d1e2029a4342f89c082815c7ebb31dc9e5e8b28312c1b2b209dbcef2d03bc0",
+      "sourceIds": [
+        "TXT_3_514ab0f6e29f"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_514ab0f6e29f",
+          "writerTextSha256": "85d1e2029a4342f89c082815c7ebb31dc9e5e8b28312c1b2b209dbcef2d03bc0",
+          "sourcePointer": "/entries/52/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              191
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-APRENDIZAJE-02",
+      "kind": "writer_literal_reconciled",
+      "consumerTextSha256": "3d25eb01e1d640cec44b35ea80483589f2f46d7bb75389670644e64b8ea1698d",
+      "sourceIds": [
+        "TXT_3_ff711cf372d1"
+      ],
+      "sources": [
+        {
+          "id": "TXT_3_ff711cf372d1",
+          "writerTextSha256": "9a0179259245b2e0c23b7e6f827aa5071124e102ee58ef4db03df46005e3c90b",
+          "sourcePointer": "/entries/118/literal/writer",
+          "rawSpans": [
+            [
+              24,
+              98
+            ]
+          ],
+          "explicitPatches": [
+            {
+              "source_id": "TXT_3_ff711cf372d1",
+              "start": 49,
+              "end": 56,
+              "before": "escanéa",
+              "after": "escanea",
+              "publication_disposition": "eligible_if_bound_to_public_consumer"
+            }
+          ]
+        }
+      ],
+      "note": "Literal conciliado conservado; recortes/erratas de fuente documentados."
+    },
+    {
+      "chunk": "GVO-APRENDIZAJE-03",
+      "kind": "functional_ui_not_writer_literal",
+      "consumerTextSha256": "72a12ce2b19ea91105a66d158ad331715c56427db73e021833e54cc385f44779",
+      "sourceIds": [],
+      "sources": [],
+      "note": "Copy funcional separado; no atribuir al escritor."
+    },
+    {
+      "chunk": "GVO-MIRADOR-01",
+      "kind": "preserved_mirador_current_es",
+      "consumerTextSha256": "aacc6102cbcec84b6d73c510481b77e7ada906219010ba68e0c028a6afbdc748",
+      "sourceIds": [
+        "TXT_final_b7861600c81c"
+      ],
+      "sources": [
+        {
+          "id": "TXT_final_b7861600c81c",
+          "writerTextSha256": "4d7ebe9e9445b022ee0ae16f1c080f6665c3b049ac061fbc9f3bf57c9ebb05dd",
+          "sourcePointer": "/entries/115/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              21
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "PreservaciónR1/nombres normalizados; no declarar todos los slots como citaswriter."
+    },
+    {
+      "chunk": "GVO-MIRADOR-02",
+      "kind": "functional_ui_not_writer_literal",
+      "consumerTextSha256": "c76c8d6e36bd9a021b89b50a355ed2feea1f4db54384d4dcc3006940b4dd61f1",
+      "sourceIds": [],
+      "sources": [],
+      "note": "Copy funcional separado; no atribuir al escritor."
+    },
+    {
+      "chunk": "GVO-MIRADOR-03",
+      "kind": "preserved_mirador_current_es",
+      "consumerTextSha256": "41a275e9e2c9ec181e4985a4e84e42a391206d6ab4b1b1939f69f1b20346dfa7",
+      "sourceIds": [
+        "TXT_final_032988b0578e"
+      ],
+      "sources": [
+        {
+          "id": "TXT_final_032988b0578e",
+          "writerTextSha256": "1b9ca0e2897ba25bea89b880477fdf022f78e033ac6fa349471d4d7f41bcf007",
+          "sourcePointer": "/entries/110/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              15
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "PreservaciónR1/nombres normalizados; no declarar todos los slots como citaswriter."
+    },
+    {
+      "chunk": "GVO-MIRADOR-04",
+      "kind": "preserved_mirador_current_es",
+      "consumerTextSha256": "a79e8270bdcb58c665e059bef4c0e02695c201e8c9f500e5f4a58d8fc7e428b0",
+      "sourceIds": [
+        "TXT_final_793fb4652679"
+      ],
+      "sources": [
+        {
+          "id": "TXT_final_793fb4652679",
+          "writerTextSha256": "517936dbade64a32c3e0da62d92f5679d62988c6f4e64dbd7ae728e4c1c21c50",
+          "sourcePointer": "/entries/108/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              20
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "PreservaciónR1/nombres normalizados; no declarar todos los slots como citaswriter."
+    },
+    {
+      "chunk": "GVO-MIRADOR-05",
+      "kind": "preserved_mirador_current_es",
+      "consumerTextSha256": "d45e89ca5830bed26f51eb78312d154625ca23b356aea4a537282a0d2f42640d",
+      "sourceIds": [
+        "TXT_final_0478c9a6cc0f"
+      ],
+      "sources": [
+        {
+          "id": "TXT_final_0478c9a6cc0f",
+          "writerTextSha256": "3a812b4bb720b537d9c212bbe7c65617e7d428f09216c07849b293beaae72b49",
+          "sourcePointer": "/entries/111/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              15
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "PreservaciónR1/nombres normalizados; no declarar todos los slots como citaswriter."
+    },
+    {
+      "chunk": "GVO-MIRADOR-06",
+      "kind": "preserved_mirador_current_es",
+      "consumerTextSha256": "02e78d0af6a14aded134af261b76982ebcff750c67f6bb5f8aa75209950892ef",
+      "sourceIds": [
+        "TXT_final_a1b8b71d6e18"
+      ],
+      "sources": [
+        {
+          "id": "TXT_final_a1b8b71d6e18",
+          "writerTextSha256": "7f66fa5b6afd70b6ea892d70a16b5c6c974c47fc1bf8d888ac5756c654c7d362",
+          "sourcePointer": "/entries/109/literal/writer",
+          "rawSpans": [
+            [
+              0,
+              19
+            ]
+          ],
+          "explicitPatches": []
+        }
+      ],
+      "note": "PreservaciónR1/nombres normalizados; no declarar todos los slots como citaswriter."
+    },
+    {
+      "chunk": "GVO-MIRADOR-07",
+      "kind": "functional_ui_not_writer_literal",
+      "consumerTextSha256": "ca8b62a656c5737d3f9cb9905b6083926505cf49c70555386d4e2c6a9ac27e3b",
+      "sourceIds": [],
+      "sources": [],
+      "note": "Copy funcional separado; no atribuir al escritor."
+    },
+    {
+      "chunk": "GVO-MIRADOR-08",
+      "kind": "functional_ui_not_writer_literal",
+      "consumerTextSha256": "00845c50c46bcf89f66f8a2fa09353346da25e2b36b65a214ff47feed2e2768e",
+      "sourceIds": [],
+      "sources": [],
+      "note": "Copy funcional separado; no atribuir al escritor."
+    }
+  ],
+  "configuration": {
+    "flagFile": "src/features/lia-preview/config.ts",
+    "sha256": "3ca9cb7328e7b4185a9a13cc681f7b553ed5b6e7cd25121cb0c3991ca34b1faa",
+    "unchanged": true,
+    "serviceOrChatEnabled": false,
+    "APIChanged": false,
+    "knowledgeBundlePublished": false
+  },
+  "tests": "PENDING_ROOT_FOCAL",
+  "sourceAuthorities": [
+    "R1editorial.source_register_120",
+    "OBS03.2fourrequiredCovergroups",
+    "D17sourceonly",
+    "src/content/world3EditorialSlots.ts",
+    "src/screens/World3Root/station3Content.ts"
+  ]
+}

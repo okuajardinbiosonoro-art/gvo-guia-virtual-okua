@@ -15,7 +15,7 @@
   --s4-text-dim: rgb(205 210 234 / 78%);
   --s4-cyan: #b8ddff;
   --s4-gold: #f2c784;
-  --s4-serif: "Georgia", "Times New Roman", serif;
+  --s4-serif: var(--gvo-font-heading);
   --st4-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
   --st4-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
   --st4-ease-settle: cubic-bezier(0.34, 1.25, 0.64, 1);
@@ -1481,5 +1481,133 @@ body:has(.s4-tap-hint) .s4-ambient__mote {
   }
   to {
     opacity: 0;
+  }
+}
+
+/* Reserve the shared fullscreen dock and let the long canonical title wrap. */
+.s4-title h1 {
+  max-width: calc(100vw - 112px);
+  text-wrap: balance;
+}
+
+/* Keep the explanation and QR together; the enlarged table owns the free space. */
+.s4-stage-viewport {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+.s4-card .s4-panel__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-top: 8px;
+}
+.s4-card .s4-status {
+  text-align: start;
+}
+.s4-card__text {
+  font-size: clamp(0.875rem, 1.6vmin, 1rem);
+}
+.s4-card__learning {
+  font-size: clamp(0.8rem, 1.5vmin, 0.9rem);
+}
+@media (orientation: portrait) {
+  .s4-screen {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .s4-experience {
+    grid-row: 2;
+    min-height: 0;
+    gap: 8px;
+  }
+  .s4-panel {
+    order: 2;
+  }
+  .s4-card {
+    min-height: 0;
+    padding: 4px 8px;
+  }
+  .s4-stage-viewport {
+    display: block;
+    order: 1;
+    flex: 1;
+    min-height: 230px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(184 221 255 / 40%) transparent;
+    touch-action: auto;
+  }
+  .s4-stage-viewport .s4-stage {
+    width: auto;
+    min-width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+  }
+  .s4-node-stack:nth-child(n) .s4-node-stack__hit {
+    transform: translate(-50%, -50%);
+  }
+  .s4-footer {
+    grid-row: 3;
+  }
+  .s4-trailing-space {
+    display: none;
+  }
+  .s4-stage-viewport:has([data-stage-layout="portrait"]) {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .s4-stage-viewport .s4-stage[data-stage-layout="portrait"] {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+  .s4-stage[data-stage-layout="portrait"] .s4-node-stack {
+    width: 24%;
+  }
+  .s4-stage[data-stage-layout="portrait"] .s4-node-stack__hit {
+    width: 56px;
+    height: 56px;
+  }
+  .s4-stage[data-stage-layout="portrait"] .s4-node-stack__number {
+    font-size: 0.8rem;
+  }
+  .s4-stage[data-stage-layout="portrait"] .s4-lia-guide {
+    width: 20%;
+  }
+}
+@media (orientation: landscape) and (max-width: 699px) and (max-height: 400px) {
+  .s4-screen {
+    grid-template-rows: auto auto auto;
+    overflow-y: auto;
+  }
+  .s4-experience {
+    display: flex;
+    grid-row: 2;
+    flex-direction: column;
+  }
+  .s4-stage-viewport {
+    order: 1;
+  }
+  .s4-stage-viewport .s4-stage {
+    width: 100%;
+  }
+  .s4-panel {
+    order: 2;
+  }
+  .s4-footer {
+    grid-row: 3;
+  }
+  .s4-trailing-space {
+    display: none;
   }
 }

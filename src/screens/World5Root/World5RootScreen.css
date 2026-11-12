@@ -23,7 +23,6 @@ body:has(.s5-screen),
 body:has(.s5-screen) #app {
   min-width: 0;
   height: 100%;
-  overflow: hidden;
 }
 
 .s5-screen *,
@@ -62,6 +61,7 @@ body:has(.s5-screen) #app {
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 620ms ease;
 }
 
 .s5-map-scene {
@@ -80,6 +80,15 @@ body:has(.s5-screen) #app {
 .s5-visitor-scene[aria-hidden="false"] {
   opacity: 1;
   pointer-events: auto;
+}
+.s5-map-scene[aria-hidden="false"] {
+  animation: s5-map-in 620ms ease both;
+}
+.s5-plants-scene[aria-hidden="false"],
+.s5-system-scene[aria-hidden="false"],
+.s5-space-scene[aria-hidden="false"],
+.s5-visitor-scene[aria-hidden="false"] {
+  animation: s5-sub-in 760ms ease both;
 }
 
 .s5-projected-stage {
@@ -409,11 +418,15 @@ body:has(.s5-screen) #app {
   width: 100%;
   min-width: 0;
   min-height: 146px;
-  padding: 11px 10px 10px 12px;
-  border: 1px solid var(--s5-card-border);
-  border-radius: 14px;
+  padding: 6px 4px;
+  border: 18px solid transparent;
+  border-inline-width: 24px;
+  border-image-source: url("/assets/gvo/stations/world-5/present-map/runtime/ui/world5_gallery_reading_frame_v02.webp");
+  border-image-slice: 96 128 fill;
+  border-image-width: 18px 24px;
+  border-image-repeat: stretch;
   color: var(--s5-ink);
-  background: var(--s5-card);
+  background: transparent;
 }
 .s5-screen[data-active-area="map"] .s5-story-card {
   height: 136px;
@@ -782,8 +795,6 @@ body:has(.s5-screen) #app {
   body:has(.s5-screen),
   body:has(.s5-screen) #app {
     height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
   }
   .s5-layout {
     display: flex;
@@ -816,7 +827,6 @@ body:has(.s5-screen) #app {
   body:has(.s5-screen),
   body:has(.s5-screen) #app {
     height: 100%;
-    overflow: hidden;
   }
   .s5-layout {
     display: grid;
@@ -851,7 +861,6 @@ body:has(.s5-screen) #app {
   body:has(.s5-screen:not([data-active-area="map"])),
   body:has(.s5-screen:not([data-active-area="map"])) #app {
     height: 100%;
-    overflow: hidden;
   }
   .s5-screen:not([data-active-area="map"]) .s5-layout {
     display: grid;
@@ -892,7 +901,6 @@ body:has(.s5-screen) #app {
   body:has(.s5-screen[data-active-area="map"]),
   body:has(.s5-screen[data-active-area="map"]) #app {
     height: 100%;
-    overflow: hidden;
   }
   .s5-screen[data-active-area="map"] .s5-layout {
     display: grid;
@@ -913,5 +921,327 @@ body:has(.s5-screen) #app {
     animation-duration: 80ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0ms !important;
+  }
+}
+
+/* Final integration: bounded answer targets; the remaining scenery is neutral. */
+.s5-answer-negative,
+.s5-positive-marker,
+.s5-leaf-control {
+  display: block;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 30%;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.s5-positive-marker {
+  position: absolute;
+  z-index: 6;
+  left: 19%;
+  top: 25%;
+  width: 61%;
+  height: 47%;
+}
+.s5-leaf-control {
+  left: 25%;
+  top: 14%;
+  width: 51%;
+  height: 70%;
+}
+.s5-space-focus .s5-positive-marker {
+  left: 23%;
+  top: 21%;
+  width: 54%;
+  height: 49%;
+}
+.s5-visitor-focus .s5-positive-marker {
+  left: 20%;
+  top: 22%;
+  width: 62%;
+  height: 58%;
+}
+.s5-answer-negative {
+  position: absolute;
+  z-index: 8;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+}
+.s5-answer-negative::after {
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgb(125 103 57 / 64%);
+  border-radius: 38% 49% 34% 46%;
+  background: rgb(204 182 119 / 5%);
+  content: "";
+  pointer-events: none;
+}
+.s5-answer-negative:not(:disabled):hover,
+.s5-positive-marker:not(:disabled):hover,
+.s5-leaf-control:not(:disabled):hover {
+  box-shadow: 0 0 15px rgb(187 153 78 / 38%);
+}
+.s5-answer-negative--plantas {
+  left: 80%;
+  top: 56%;
+}
+.s5-answer-negative--sistema {
+  left: 75%;
+  top: 29%;
+}
+.s5-answer-negative--espacio {
+  left: 78%;
+  top: 73%;
+}
+.s5-answer-negative--visitante {
+  left: 78%;
+  top: 72%;
+}
+.s5-answer-negative:disabled,
+.s5-positive-marker:disabled,
+.s5-leaf-control:disabled {
+  visibility: hidden;
+  cursor: default;
+}
+.s5-screen [data-quiz-answer][hidden] {
+  display: none;
+}
+.s5-screen button:focus-visible {
+  outline: 3px solid #936222;
+  outline-offset: 3px;
+}
+.s5-quiz-controls {
+  display: grid;
+  gap: 8px;
+}
+.s5-quiz-controls p {
+  margin: 0;
+}
+.s5-secondary-action--quiet {
+  color: var(--s5-ink);
+  background: transparent;
+  border-color: transparent;
+  border-radius: 4px;
+  padding-inline: 0;
+  text-align: start;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.s5-story-card--scene-lia {
+  grid-template-columns: minmax(0, 1fr) !important;
+  height: auto !important;
+  min-height: 0;
+}
+.s5-editorial {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.s5-score {
+  color: #4c5631;
+  font-size: 0.9rem !important;
+}
+.s5-scene-lia {
+  position: absolute;
+  z-index: 18;
+  left: 8%;
+  top: 22%;
+  width: 112px;
+  height: 130px;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition:
+    left 550ms ease,
+    top 550ms ease,
+    transform 220ms ease;
+}
+.s5-scene-lia img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+.s5-screen[data-active-area="plantas"] .s5-scene-lia {
+  left: 2%;
+  top: 7%;
+}
+.s5-screen[data-active-area="sistema"] .s5-scene-lia {
+  left: 3%;
+  top: 5%;
+}
+.s5-screen[data-active-area="espacio"] .s5-scene-lia {
+  left: 2%;
+  top: 8%;
+}
+.s5-screen[data-active-area="visitante"] .s5-scene-lia {
+  left: 3%;
+  top: 6%;
+}
+.s5-screen[data-quiz-feedback="wrong"] .s5-scene-lia {
+  left: 2%;
+  top: 4%;
+  transform: rotate(-3deg);
+}
+.s5-screen[data-quiz-feedback="correct"] .s5-scene-lia {
+  transform: translateY(-8px);
+}
+.s5-screen[data-world5-close-ready="true"] .s5-scene-lia {
+  left: 1%;
+  top: 22%;
+}
+@media (orientation: portrait) {
+  .s5-layout {
+    grid-template-rows: minmax(180px, 1fr) minmax(0, auto);
+  }
+  .s5-editorial {
+    max-height: 56dvh;
+  }
+}
+@media (orientation: landscape) {
+  .s5-answer-negative--plantas {
+    left: 82%;
+    top: 65%;
+  }
+  .s5-answer-negative--sistema {
+    left: 76%;
+    top: 28%;
+  }
+  .s5-answer-negative--espacio {
+    left: 78%;
+    top: 70%;
+  }
+  .s5-answer-negative--visitante {
+    left: 76%;
+    top: 70%;
+  }
+  .s5-scene-lia {
+    width: 96px;
+    height: 110px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s5-scene-lia {
+    transition: none;
+    transform: none !important;
+  }
+}
+/* A landscape stage keeps the full 16:9 scene, including the deliberate No zone. */
+@media (orientation: landscape) and (min-width: 600px) {
+  .s5-layout > .s5-stage {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    align-self: center;
+  }
+}
+
+.s5-alternative-plant {
+  display: none;
+  pointer-events: none;
+}
+/* Scene Lía keeps her full five-petal silhouette at every breakpoint. */
+.s5-scene-lia {
+  width: 112px;
+  height: 130px;
+}
+.s5-scene-lia.s5-lia--explain img {
+  top: -16px;
+  left: -9px;
+  width: 120px;
+  height: 160px;
+}
+.s5-scene-lia.s5-lia--attend img {
+  top: -44px;
+  left: -52px;
+  width: 220px;
+  height: 220px;
+}
+.s5-scene-lia.s5-lia--lead img {
+  top: -37px;
+  left: -45px;
+  width: 205px;
+  height: 205px;
+}
+.s5-screen[data-active-area="map"] .s5-scene-lia {
+  left: 1%;
+  top: 22%;
+  width: 84px;
+  height: 98px;
+}
+.s5-screen[data-active-area="map"] .s5-scene-lia.s5-lia--lead img {
+  top: -28px;
+  left: -34px;
+  width: 154px;
+  height: 154px;
+}
+.s5-screen[data-active-area="map"] .s5-scene-lia.s5-lia--attend img {
+  top: -33px;
+  left: -39px;
+  width: 165px;
+  height: 165px;
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .s5-alternative-plant {
+    display: block;
+    position: absolute;
+    z-index: 6;
+    left: 82%;
+    top: 65%;
+    width: clamp(100px, 20%, 160px);
+    height: auto;
+    transform: translate(-50%, -60%);
+  }
+}
+@media (orientation: portrait) and (max-height: 650px) {
+  .s5-scene-lia {
+    scale: 0.65;
+    transform-origin: top left;
+  }
+}
+@media (orientation: landscape) and (max-height: 480px) {
+  .s5-scene-lia {
+    scale: 0.65;
+    transform-origin: top left;
+  }
+}
+@media (orientation: portrait) and (max-width: 300px) {
+  .s5-scene-lia {
+    scale: 0.55;
+    transform-origin: top left;
+  }
+}
+@media (orientation: landscape) and (max-width: 699px) and (max-height: 400px) {
+  .s5-screen {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  body:has(.s5-screen),
+  body:has(.s5-screen) #app {
+    height: auto;
+  }
+  .s5-layout,
+  .s5-screen[data-active-area="map"] .s5-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+  .s5-stage,
+  .s5-screen[data-active-area="map"] .s5-stage {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+  .s5-editorial {
+    grid-row: 1;
+    max-height: none;
+    overflow: visible;
+  }
+  .s5-stage {
+    grid-row: 2;
   }
 }

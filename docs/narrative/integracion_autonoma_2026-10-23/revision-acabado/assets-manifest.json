@@ -1,0 +1,123 @@
+{
+  "status": "INTEGRATION_CANDIDATE",
+  "images_chat_url": "gvo-provenance:images-1",
+  "assets": [
+    {
+      "id": "W4_PORTRAIT_SYSTEM_TABLE_v02",
+      "room": "world-4-root",
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/environment/world4_table_environment_portrait_v02.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/environment/world4_table_environment_portrait_v02.webp",
+      "width": 768,
+      "height": 1024,
+      "alpha": false,
+      "pixel": false,
+      "consumer": "src/screens/World4Root/World4Stage.tsx",
+      "role": "Portrait art direction, eight existing DOM objects over an unobstructed table",
+      "source": "assets-source/editorial-2026-10-23/finishing/W4_PORTRAIT_SYSTEM_TABLE_v02.png",
+      "source_dimensions": [
+        1086,
+        1448
+      ],
+      "source_sha256": "cb3a76738b387b317175c9873fe3180e3a520414e0884515dfddcd12d16d8168",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "bytes": 48478,
+      "sha256": "5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343",
+      "transparent_pixels": 0,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    },
+    {
+      "id": "W5_GALLERY_READING_FRAME_v02",
+      "room": "world-5-root",
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/ui/world5_gallery_reading_frame_v02.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/ui/world5_gallery_reading_frame_v02.webp",
+      "width": 768,
+      "height": 512,
+      "alpha": true,
+      "pixel": false,
+      "consumer": "src/screens/World5Root/World5RootScreen.css",
+      "role": "Responsive nine-slice material frame; question, result and actions remain DOM",
+      "source": "assets-source/editorial-2026-10-23/finishing/W5_GALLERY_READING_FRAME_v02.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "source_sha256": "1f9f3a7e4d44eaab9e86131429d5bcb69fcf19815612ba8043068cbb3d0b9d36",
+      "dimensions": [
+        768,
+        512
+      ],
+      "bytes": 309198,
+      "sha256": "8ba0daf382166647fa92b4d1b8f3ab2d19b2a3b1a346df12863bfff05cd44460",
+      "transparent_pixels": 91356,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    },
+    {
+      "id": "W3_NOTEBOOK_FOLIO_v02",
+      "room": "world-3-root",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_folio_v02.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_folio_v02.webp",
+      "width": 768,
+      "height": 960,
+      "alpha": true,
+      "pixel": true,
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "role": "Responsive illustrated notebook folio; three existing motifs and text remain separate",
+      "source": "assets-source/editorial-2026-10-23/finishing/W3_NOTEBOOK_FOLIO_v02.png",
+      "source_dimensions": [
+        1122,
+        1402
+      ],
+      "source_sha256": "d352fb52ec34d6efaebc57e3cbdbb4a5995edad17677e162d960defa2765e06c",
+      "dimensions": [
+        768,
+        960
+      ],
+      "bytes": 581516,
+      "sha256": "ee0085b3cfcf81793d530b42070c2f942a18f9289213e04eff8354903704c3a4",
+      "transparent_pixels": 185732,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    },
+    {
+      "id": "GVO_TRANSITION_THRESHOLD_v02",
+      "room": "shared",
+      "runtime": "public/assets/gvo/shared/navigation/runtime/gvo_transition_threshold_v02.webp",
+      "mirror": "public/assets/gvo/current-used/shared/navigation/gvo_transition_threshold_v02.webp",
+      "width": 192,
+      "height": 192,
+      "alpha": true,
+      "pixel": true,
+      "consumer": "src/app/qr/InterstationQrGate.tsx",
+      "role": "Shared artistic scene exit; no QR payload baked into artwork",
+      "source": "assets-source/editorial-2026-10-23/finishing/GVO_TRANSITION_THRESHOLD_v02.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "source_sha256": "5b83a0ecd7251b7220eaf49cfb6183516baa736f534c9893709a35efef0f459f",
+      "dimensions": [
+        192,
+        192
+      ],
+      "bytes": 18370,
+      "sha256": "8cc588240f749a2aa3e7b30c6f084055be3dce80cd54397ee96b41f4db56c17a",
+      "transparent_pixels": 29785,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    }
+  ],
+  "pending": []
+}

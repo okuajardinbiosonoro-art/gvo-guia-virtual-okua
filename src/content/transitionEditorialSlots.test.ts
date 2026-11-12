@@ -13,10 +13,10 @@ const transitionInventory = [
     toRoute: "/estacion/1",
     titleSlotId: "TRANS_COVER_W1_TITLE_01",
     subtitleSlotId: "TRANS_COVER_W1_SUB_01",
-    title: "Abriendo Mundo I",
-    subtitle: "Preparando la raíz.",
-    titleShortText: "Abriendo Mundo I",
-    subtitleShortText: "Raíz",
+    title: "Abriendo Sala I · Raíz",
+    subtitle: "Preparando tu recorrido",
+    titleShortText: "Abriendo Sala I",
+    subtitleShortText: "Preparando tu recorrido",
     targetPreload: "world1RootInitial",
   },
   {
@@ -27,11 +27,11 @@ const transitionInventory = [
     toRoute: "/estacion/2",
     titleSlotId: "TRANS_W1_W2_TITLE_01",
     subtitleSlotId: "TRANS_W1_W2_SUB_01",
-    title: "Abriendo Mundo II",
-    subtitle: "Preparando el pulso invisible.",
-    titleShortText: "Abriendo Mundo II",
-    subtitleShortText: "Pulso invisible",
-    targetPreload: "none",
+    title: "Abriendo Sala II · Pulso invisible",
+    subtitle: "Preparando tu recorrido",
+    titleShortText: "Abriendo Sala II",
+    subtitleShortText: "Preparando tu recorrido",
+    targetPreload: "world2RootInitial",
   },
   {
     configKey: "worldTwoToWorldThree",
@@ -41,11 +41,11 @@ const transitionInventory = [
     toRoute: "/estacion/3",
     titleSlotId: "TRANS_W2_W3_TITLE_01",
     subtitleSlotId: "TRANS_W2_W3_SUB_01",
-    title: "Abriendo Mundo III",
-    subtitle: "Preparando el cuaderno de pruebas.",
-    titleShortText: "Abriendo Mundo III",
-    subtitleShortText: "Cuaderno de pruebas",
-    targetPreload: "none",
+    title: "Abriendo Sala III · Cuaderno de práctica",
+    subtitle: "Preparando tu recorrido",
+    titleShortText: "Abriendo Sala III",
+    subtitleShortText: "Preparando tu recorrido",
+    targetPreload: "world3RootInitial",
   },
   {
     configKey: "worldThreeToWorldFour",
@@ -55,11 +55,11 @@ const transitionInventory = [
     toRoute: "/estacion/4",
     titleSlotId: "TRANS_W3_W4_TITLE_01",
     subtitleSlotId: "TRANS_W3_W4_SUB_01",
-    title: "Abriendo Mundo IV",
-    subtitle: "Preparando la mesa de sistema.",
-    titleShortText: "Abriendo Mundo IV",
-    subtitleShortText: "Mesa de sistema",
-    targetPreload: "none",
+    title: "Abriendo Sala IV · Sistema biosonoro",
+    subtitle: "Preparando tu recorrido",
+    titleShortText: "Abriendo Sala IV",
+    subtitleShortText: "Preparando tu recorrido",
+    targetPreload: "world4RootInitial",
   },
   {
     configKey: "worldFourToWorldFive",
@@ -69,11 +69,11 @@ const transitionInventory = [
     toRoute: "/estacion/5",
     titleSlotId: "TRANS_W4_W5_TITLE_01",
     subtitleSlotId: "TRANS_W4_W5_SUB_01",
-    title: "Abriendo Mundo V",
-    subtitle: "Preparando el mapa del presente.",
-    titleShortText: "Abriendo Mundo V",
-    subtitleShortText: "Mapa del presente",
-    targetPreload: "none",
+    title: "Abriendo Sala V · OKÚA, arte sensorial",
+    subtitle: "Preparando tu recorrido",
+    titleShortText: "Abriendo Sala V",
+    subtitleShortText: "Preparando tu recorrido",
+    targetPreload: "world5MapCritical",
   },
   {
     configKey: "worldFiveToFinal",
@@ -87,7 +87,7 @@ const transitionInventory = [
     subtitle: "Preparando el cierre del recorrido.",
     titleShortText: "Abriendo el Mirador",
     subtitleShortText: "Cierre del recorrido",
-    targetPreload: "none",
+    targetPreload: "finalRootInitial",
   },
 ] as const;
 
@@ -128,7 +128,7 @@ describe("transitionEditorialSlots", () => {
         reducedMotionDurationMs: 1000,
         portalState: "open",
         portalSymbol: "root",
-        editorialCopyStatus: "final",
+        editorialCopyStatus: expected.configKey === "worldFiveToFinal" ? "final" : "review",
       });
 
       expect(titleSlot).toMatchObject({
@@ -136,16 +136,16 @@ describe("transitionEditorialSlots", () => {
         text: expected.title,
         shortText: expected.titleShortText,
         locale: "es",
-        source: "human_approved",
-        status: "FINAL",
+        source: expected.configKey === "worldFiveToFinal" ? "human_approved" : "editorial_excel",
+        status: expected.configKey === "worldFiveToFinal" ? "FINAL" : "REVIEW",
       });
       expect(subtitleSlot).toMatchObject({
         slotId: expected.subtitleSlotId,
         text: expected.subtitle,
         shortText: expected.subtitleShortText,
         locale: "es",
-        source: "human_approved",
-        status: "FINAL",
+        source: expected.configKey === "worldFiveToFinal" ? "human_approved" : "editorial_excel",
+        status: expected.configKey === "worldFiveToFinal" ? "FINAL" : "REVIEW",
       });
 
       for (const slotId of [
@@ -155,7 +155,7 @@ describe("transitionEditorialSlots", () => {
         expect(transitionEditorialSlots[slotId]).toMatchObject({
           id: slotId,
           replacement: null,
-          status: "final",
+          status: expected.configKey === "worldFiveToFinal" ? "final" : "review",
         });
       }
 

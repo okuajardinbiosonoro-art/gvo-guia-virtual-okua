@@ -8,9 +8,9 @@ test("carga inicial V13 conserva rutas, textos y ausencia de portada", async ({
   await page.goto("/carga");
 
   await expect(
-    page.getByRole("heading", { name: "Preparando el recorrido" }),
+    page.getByRole("heading", { name: "Bienvenido a OKÚA" }),
   ).toBeVisible();
-  await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
+  await expect(page.getByText("Preparando tu recorrido")).toBeVisible();
   await expect(page.getByRole("progressbar")).toBeVisible();
   await expect(page.getByRole("progressbar")).not.toContainText(/[\d%]/);
   await expect(page.locator("[data-sparkle-slot]")).toHaveCount(10);

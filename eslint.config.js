@@ -29,6 +29,11 @@ export default tseslint.config(
       ".npm-cache",
       ".tool-reports",
       ".security-reports",
+      // Immutable handoff snapshots are evidence, not a second live source tree.
+      "docs/narrative/**/outgoing/**",
+      "docs/narrative/**/R4_PACKAGE/**",
+      // Immutable baseline audit captures; their original bytes are evidence.
+      "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-04/audit-c/ii-browser-audit/*.mjs",
     ],
   },
   js.configs.recommended,

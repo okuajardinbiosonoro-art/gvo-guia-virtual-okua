@@ -1,0 +1,238 @@
+{
+  "authority": {
+    "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/exchanges/OBS03_MIRADOR_EN_TRANSLATION.json",
+    "sha256": "59701f3480d3ead7a7bcb9e0ff4439d12ccb92f032939bdfe4d20fe8afe5b1c5",
+    "status": "REVIEW",
+    "writerLiteral": false,
+    "humanApproval": false
+  },
+  "registryBeforeSha256": "e347c81380325024a905e22a4797111ead45fc65b8cd553152f905bcf015c21a",
+  "registryAfterSha256": "051f02a855d92c95a830cf1b46cee5cd090fb40dad60e3aa06985b7f6672f282",
+  "esBlocks": [
+    {
+      "id": "FINAL_TITLE_01",
+      "esBlockSha256": "7fcf262e002e3b285434350fa8fe281ca82e27ec9952021f4d97ea6bc2293706"
+    },
+    {
+      "id": "FINAL_SUBTITLE_01",
+      "esBlockSha256": "f30ab491c2f365824cf87f32c8af9dc9b83153edf40c7c82651c59701be1a7c6"
+    },
+    {
+      "id": "FINAL_LIA_MESSAGE_01",
+      "esBlockSha256": "2675a02afa70303f465a3b614f49506edb37e3ebcc322570fdbb32fa022d8b52"
+    },
+    {
+      "id": "FINAL_AMB_01",
+      "esBlockSha256": "549093f983cb7304a329c94de169674118bef9968952195933d77f1756017c62"
+    },
+    {
+      "id": "FINAL_ACCESS_I_LABEL_01",
+      "esBlockSha256": "ce103d0e7194a1c94e730ed243fcc865387f30fe33f73b07bc2ff3c8680aa52f"
+    },
+    {
+      "id": "FINAL_ACCESS_I_CONFIRM_01",
+      "esBlockSha256": "bf2bae1e444c0e1921aa55461fb40a3473fae332b85ca073185517bd5b05a12c"
+    },
+    {
+      "id": "FINAL_ACCESS_II_LABEL_01",
+      "esBlockSha256": "4481e2ebf2de7e387c4fd3c4a2071a204bbec1896f0c8e38d953c6da12439a06"
+    },
+    {
+      "id": "FINAL_ACCESS_II_CONFIRM_01",
+      "esBlockSha256": "5ce4f2d9397b0ef0550fc2049db81145506743fd7e0fb8259a442ef3a33c7e82"
+    },
+    {
+      "id": "FINAL_ACCESS_III_LABEL_01",
+      "esBlockSha256": "8b44593af0063413d590b1ad265bf52a7de569ab934eb9cf4307f2ff0a51f38b"
+    },
+    {
+      "id": "FINAL_ACCESS_III_CONFIRM_01",
+      "esBlockSha256": "9742626c90725d229a2742aee3f8ea345c0ea2c1fb5f830a90b8e99875c49892"
+    },
+    {
+      "id": "FINAL_ACCESS_IV_LABEL_01",
+      "esBlockSha256": "ef6093d6e5a7cd0e23dcddb5ca4c7f2a5fba8bf1f90ca892e538f2c40d1d1104"
+    },
+    {
+      "id": "FINAL_ACCESS_IV_CONFIRM_01",
+      "esBlockSha256": "b5133efbc33141f57e15b7efbaa7fbd03679285c9939b81393167a37feb760c7"
+    },
+    {
+      "id": "FINAL_ACCESS_V_LABEL_01",
+      "esBlockSha256": "db6c55a7f0bbd921abe2da3c0041385efc92982e626ed6bf61645dfab8a4f483"
+    },
+    {
+      "id": "FINAL_ACCESS_V_CONFIRM_01",
+      "esBlockSha256": "e07d50051f01f2b68b4002ea4a7ca793d886ac66da15e97f3c91dd5e69c8bbfc"
+    },
+    {
+      "id": "FINAL_HELP_01",
+      "esBlockSha256": "2d439f516dee269c5e40edfd5baa6b4ec176c0a42c92888f31f4491b8968ddc3"
+    },
+    {
+      "id": "FINAL_BACK_HOME_BTN_01",
+      "esBlockSha256": "d34a2a625045c9e0d85cef24c90cc226c09a82c9aaae3a363aea20a47fecb84e"
+    },
+    {
+      "id": "FINAL_BACK_HOME_HELP_01",
+      "esBlockSha256": "d26537a8d3d7d12affaf90d7d2a1b33880b54965e076542a78d603b08f06d325"
+    },
+    {
+      "id": "FINAL_RESTART_BTN_01",
+      "esBlockSha256": "dfcf52f1a0230aa258dc101034943b56d8ef8f2a5406b4ead8c3fb7ff2212aca"
+    },
+    {
+      "id": "FINAL_RESTART_CONFIRM_01",
+      "esBlockSha256": "f5b3fe5317da208cf8d2ee3983424a60e4beb8a772441d62f5ad72a3b7ce0e82"
+    },
+    {
+      "id": "FINAL_RESTART_CANCEL_BTN_01",
+      "esBlockSha256": "033450f22c01e52be32ffdfbe44c6cd5789e1d27b29b73633bdf2c2389268b4d"
+    },
+    {
+      "id": "FINAL_RESTART_CONFIRM_BTN_01",
+      "esBlockSha256": "8317fcef42d4634caccc038e84785b75f59be76b45d97a5b60be061f4e93ec8c"
+    },
+    {
+      "id": "FINAL_CREDITS_01",
+      "esBlockSha256": "210b641b73d34f469b1b85d6f7296f26a19359e837b24aae78f873e7d74a36bb"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_SCENE_01",
+      "esBlockSha256": "4d07e38a97578ab929b2251de43d6a80feaf81f3af63d488e53a2c27891319c8"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_I_01",
+      "esBlockSha256": "9e801581d80ebc84ddebfc6f2afb31047883e50468626b935b5cc754a2b17730"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_II_01",
+      "esBlockSha256": "0ef98edc19d7796df1b39c31054cd8653457ac6fba3f5d5992560b6161e5a65e"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_III_01",
+      "esBlockSha256": "a77110e2e3c012f176d292c0fd75f57ac4df36ab8597d994a45e2b064d9a130a"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_IV_01",
+      "esBlockSha256": "52bd74c8c30f90ac9e3c96630460351107f4f5f4a3ca0c9c726e849f41f41dd3"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_V_01",
+      "esBlockSha256": "3e4e593fb0228bdab4c1c757dd9b3fa8d63f9fc99fb0091a5081ebe9ef4e2ebb"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_BACK_HOME_01",
+      "esBlockSha256": "9d59c7ee73837b36ec9807eab72b0a310bf2dff667455f9292ff13e6fbe7e23a"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_RESTART_01",
+      "esBlockSha256": "31b653488730949e3e2d6b402e4d65eb9d69f2bd4ab3b0bf2f56aab607e77edc"
+    },
+    {
+      "id": "FINAL_RETURN_TO_MIRADOR_BTN_01",
+      "esBlockSha256": "d0b2fdfe2bd8bfac6e4c3dcafe08f8a75a994a6694ff6d5312250cb372ff919a"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+      "esBlockSha256": "152e27dbf089c59241bf3ec293733c77cf3e176f7acfc9627580cf6547592bd4"
+    },
+    {
+      "id": "FINAL_RESTART_BUSY_01",
+      "esBlockSha256": "7b96e7ce0269991e8fcef421319dd01eefe3e9c509ed4481ef8e67950375793b"
+    },
+    {
+      "id": "FINAL_RESTART_ERROR_01",
+      "esBlockSha256": "6936833129a264b3a7de6f575a714762a5fd3c7b2dece0328b3ed3f62b7d1f82"
+    },
+    {
+      "id": "FINAL_RESTART_RETRY_BTN_01",
+      "esBlockSha256": "add1c41016ac2b92729e24d43af6c23d1ae06b3317c1a7879f9297df8a6e37f9"
+    }
+  ],
+  "esBlocksUnmodified": 35,
+  "translationsAdded": 35,
+  "stylesOrAssetsChanged": false,
+  "testsStatus": "NOT_RUN_PENDING_ROOT_LANE",
+  "buildStatus": "NOT_RUN_DIST_UNTOUCHED",
+  "status": "IMPLEMENTED_SOURCE_STATIC_VERIFIED_FOCAL_QA_PENDING",
+  "savedAt": "2026-10-24T05:50:32.530Z",
+  "changedRuntimeFiles": [
+    "src/content/editorial/editorialRegistry.ts",
+    "src/content/finalEditorialSlots.ts",
+    "src/screens/FinalRoot/FinalRootScreen.tsx",
+    "src/app/review/FinalReviewModeLayout.tsx"
+  ],
+  "testsPrepared": [
+    "finalEditorialSlots.test.ts:3cases provenance/hash/dupekeys/resolver",
+    "FinalRootScreen.test.tsx:+3cases lateEN→ES preserveLia/accesses and2conditionalresetbranches",
+    "FinalReviewModeLayout.test.tsx:+5cases authorizedENdockreturn"
+  ],
+  "validation": {
+    "sourceParseDiagnostics": [
+      {
+        "path": "src/content/editorial/editorialRegistry.ts",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/content/finalEditorialSlots.ts",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/content/finalEditorialSlots.test.ts",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/screens/FinalRoot/FinalRootScreen.test.tsx",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/app/review/FinalReviewModeLayout.tsx",
+        "diagnostics": 0
+      },
+      {
+        "path": "src/app/review/FinalReviewModeLayout.test.tsx",
+        "diagnostics": 0
+      }
+    ],
+    "tests": "NOT_RUN",
+    "typecheck": "NOT_RUN",
+    "build": "NOT_RUN",
+    "browser": "NOT_RUN",
+    "activeDist": "UNTOUCHED"
+  },
+  "files": [
+    {
+      "path": "src/content/editorial/editorialRegistry.ts",
+      "sha256": "051f02a855d92c95a830cf1b46cee5cd090fb40dad60e3aa06985b7f6672f282"
+    },
+    {
+      "path": "src/content/finalEditorialSlots.ts",
+      "sha256": "5b896f3e631c9dcf3ab609470632580660f2c9f148a65ef8a766b507f0fd9ef1"
+    },
+    {
+      "path": "src/content/finalEditorialSlots.test.ts",
+      "sha256": "6e8a0ba06ddedb4c676f79dc38e6df32cf7c32c7a970554a85444b3c51dee8bf"
+    },
+    {
+      "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+      "sha256": "a00d7ee71f6d8ad224cd55e35d99b636ee14b0321b8dd65938746373cda1cc29"
+    },
+    {
+      "path": "src/screens/FinalRoot/FinalRootScreen.test.tsx",
+      "sha256": "220d12acab322db2c6291b8252b0fc3b7b1133d242fe88329686dab06dd3db4a"
+    },
+    {
+      "path": "src/app/review/FinalReviewModeLayout.tsx",
+      "sha256": "d3b43c3582a9c7c560c36dd46d177901c7ebde645102e9caf20de313ab70e041"
+    },
+    {
+      "path": "src/app/review/FinalReviewModeLayout.test.tsx",
+      "sha256": "1f8b12965f6d70a9b205fb32ebe66a6874396159ecc4bb91d5e293850e00b3b9"
+    }
+  ]
+}

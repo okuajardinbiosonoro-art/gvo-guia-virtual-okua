@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 1.0.0 · 2026-11-12
+
+- Recorrido completo de OKÚA, desde la preportada animada hasta el Mirador.
+- Cinco salas, cuatro QR, progreso verificable, revisita y reinicio.
+- Acabado final de Sala V con la composición aprobada en iPhone.
+- Consulta el [acta de versión](docs/releases/GVO_1.0.0.md).
+
+## Desarrollo anterior a 1.0.0
 
 ### Added
 

@@ -1,6 +1,12 @@
 import type { CSSProperties } from "react";
 
-import { WORLD4_ARTBOARD, WORLD4_NODE_ANCHORS } from "./world4Geometry";
+import {
+  WORLD4_ARTBOARD,
+  WORLD4_NODE_ANCHORS,
+  WORLD4_PORTRAIT_ARTBOARD,
+  WORLD4_PORTRAIT_NODE_ANCHORS,
+  type World4NodeAnchor,
+} from "./world4Geometry";
 
 export type World4RoutePulseProps = {
   chainComplete: boolean;
@@ -11,6 +17,7 @@ export type World4RoutePulseProps = {
   targetNodeIndex: number | null;
   transferActive: boolean;
   transferDurationMs?: number;
+  portrait?: boolean;
 };
 
 type World4RouteSegment = {
@@ -22,10 +29,7 @@ type World4RouteSegment = {
   toOrder: number;
 };
 
-function segmentPath(
-  from: (typeof WORLD4_NODE_ANCHORS)[number],
-  to: (typeof WORLD4_NODE_ANCHORS)[number],
-) {
+function segmentPath(from: World4NodeAnchor, to: World4NodeAnchor) {
   const deltaX = to.x - from.x;
   return [
     `M ${from.x} ${from.y}`,
@@ -55,6 +59,26 @@ export const WORLD4_ROUTE_CHAIN_PATH = WORLD4_ROUTE_SEGMENTS.map(
   .join(" ")
   .trim();
 
+export const WORLD4_PORTRAIT_ROUTE_SEGMENTS: readonly World4RouteSegment[] =
+  WORLD4_PORTRAIT_NODE_ANCHORS.slice(0, -1).map((from, index) => {
+    const to = WORLD4_PORTRAIT_NODE_ANCHORS[index + 1];
+    return {
+      d: segmentPath(from, to),
+      fromId: from.id,
+      fromOrder: from.order,
+      index,
+      toId: to.id,
+      toOrder: to.order,
+    };
+  });
+
+export const WORLD4_PORTRAIT_ROUTE_CHAIN_PATH =
+  WORLD4_PORTRAIT_ROUTE_SEGMENTS.map((segment, index) =>
+    index === 0 ? segment.d : segment.d.replace(/^M [^C]+/, ""),
+  )
+    .join(" ")
+    .trim();
+
 const overlayStyle: CSSProperties = {
   position: "absolute",
   inset: 0,
@@ -78,7 +102,16 @@ export function World4RoutePulse({
   targetNodeIndex,
   transferActive,
   transferDurationMs = 640,
+  portrait = false,
 }: World4RoutePulseProps) {
+  const anchors = portrait ? WORLD4_PORTRAIT_NODE_ANCHORS : WORLD4_NODE_ANCHORS;
+  const artboard = portrait ? WORLD4_PORTRAIT_ARTBOARD : WORLD4_ARTBOARD;
+  const segments = portrait
+    ? WORLD4_PORTRAIT_ROUTE_SEGMENTS
+    : WORLD4_ROUTE_SEGMENTS;
+  const chainPath = portrait
+    ? WORLD4_PORTRAIT_ROUTE_CHAIN_PATH
+    : WORLD4_ROUTE_CHAIN_PATH;
   const boundedCompletedNodeIndex = Math.max(
     0,
     Math.min(WORLD4_NODE_ANCHORS.length - 1, completedNodeIndex),
@@ -118,7 +151,7 @@ export function World4RoutePulse({
       pointerEvents="none"
       preserveAspectRatio="xMidYMid meet"
       style={overlayStyle}
-      viewBox={`0 0 ${WORLD4_ARTBOARD.width} ${WORLD4_ARTBOARD.height}`}
+      viewBox={`0 0 ${artboard.width} ${artboard.height}`}
     >
       <g
         className="s4-route-pulse__completed"
@@ -129,7 +162,7 @@ export function World4RoutePulse({
         strokeLinecap="round"
         strokeWidth="4"
       >
-        {WORLD4_ROUTE_SEGMENTS.map((segment) => {
+        {segments.map((segment) => {
           const completed = segment.index < completedSegmentCount;
           return (
             <path
@@ -146,7 +179,7 @@ export function World4RoutePulse({
               }
               data-world4-route-segment-to={segment.toId}
               key={`${segment.fromId}-${segment.toId}`}
-              opacity={completed ? 0.28 : 0}
+              opacity={completed ? 0.28 : portrait ? 0.12 : 0}
             />
           );
         })}
@@ -161,7 +194,7 @@ export function World4RoutePulse({
         >
           <path
             className="s4-route-pulse__active-segment"
-            d={WORLD4_ROUTE_SEGMENTS[activeSegmentIndex].d}
+            d={segments[activeSegmentIndex].d}
             data-world4-route-active-path={activeSegmentIndex + 1}
             opacity="0.76"
             stroke="#c8c7ff"
@@ -181,7 +214,7 @@ export function World4RoutePulse({
                 begin="0s"
                 dur={`${transferDuration}ms`}
                 fill="freeze"
-                path={WORLD4_ROUTE_SEGMENTS[activeSegmentIndex].d}
+                path={segments[activeSegmentIndex].d}
                 repeatCount="1"
               />
             </circle>
@@ -196,8 +229,8 @@ export function World4RoutePulse({
           pointerEvents="none"
         >
           <circle
-            cx={WORLD4_NODE_ANCHORS[0].x}
-            cy={WORLD4_NODE_ANCHORS[0].y}
+            cx={anchors[0].x}
+            cy={anchors[0].y}
             fill="none"
             opacity={reducedMotion ? 0.62 : 0.78}
             r="8"
@@ -231,8 +264,10 @@ export function World4RoutePulse({
       {chainSweepActive ? (
         <path
           className="s4-route-pulse__chain-sweep"
-          d={WORLD4_ROUTE_CHAIN_PATH}
-          data-world4-route-chain-sweep-path="left-to-right-once"
+          d={chainPath}
+          data-world4-route-chain-sweep-path={
+            portrait ? "portrait-two-column-once" : "left-to-right-once"
+          }
           fill="none"
           opacity={reducedMotion ? 0.36 : 0.68}
           pathLength="1"

@@ -1,0 +1,2967 @@
+{
+  "qualification": "Real UI journey, lab canvas camera, real ZXing decoder; not physical camera or paced reading validation",
+  "extensionQualification": "Review/reset assertions run only after the earned normal journey passes; finalSnapshot may intentionally be post-reset and is never substituted for endEarned",
+  "indexBefore": "8ab0928853b9b917f3187ad85ee51a9c87dbc9133faea73006cb2d58007fd427",
+  "indexAfter": "8ab0928853b9b917f3187ad85ee51a9c87dbc9133faea73006cb2d58007fd427",
+  "external": [],
+  "httpErrors": [],
+  "pageErrors": [],
+  "normalScans": [
+    {
+      "world": 1,
+      "before": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 21,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "planta",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "INTRO",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": null,
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "after": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 27,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta"
+              ],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "planta",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "INTRO",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1
+          ],
+          "updatedAt": "2026-10-24T08:46:02.906Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "transport": "canvas.captureStream→real ZXing production decoder",
+      "physicalCameraValidated": false
+    },
+    {
+      "world": 2,
+      "before": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 44,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "INTRO",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1
+          ],
+          "updatedAt": "2026-10-24T08:46:02.906Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "after": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 49,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "INTRO",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2
+          ],
+          "updatedAt": "2026-10-24T08:46:29.888Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "transport": "canvas.captureStream→real ZXing production decoder",
+      "physicalCameraValidated": false
+    },
+    {
+      "world": 3,
+      "before": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 55,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2
+          ],
+          "updatedAt": "2026-10-24T08:46:29.888Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "after": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 61,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa"
+              ],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "introduccion_mesa",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3
+          ],
+          "updatedAt": "2026-10-24T08:46:37.112Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": null,
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "transport": "canvas.captureStream→real ZXing production decoder",
+      "physicalCameraValidated": false
+    },
+    {
+      "world": 4,
+      "before": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 69,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "confirmedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "assistedPresentedStepIds": [
+                "orden_resuelto",
+                "cierre"
+              ],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": "assisted_review_completed",
+              "closed": true
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3
+          ],
+          "updatedAt": "2026-10-24T08:46:37.112Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "phase": "closed",
+          "permutation": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "selectedObjectId": null,
+          "remainingActiveMs": 90000,
+          "reviewIndex": 7,
+          "confirmedReviewSteps": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "outcome": "assisted_requested",
+          "closed": true
+        },
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "after": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 75,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "confirmedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "assistedPresentedStepIds": [
+                "orden_resuelto",
+                "cierre"
+              ],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": "assisted_review_completed",
+              "closed": true
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "plantas"
+              ],
+              "confirmedStepIds": [],
+              "assistedPresentedStepIds": [],
+              "activeStepId": "plantas",
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": false
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": false
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "updatedAt": "2026-10-24T08:46:43.113Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "phase": "closed",
+          "permutation": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "selectedObjectId": null,
+          "remainingActiveMs": 90000,
+          "reviewIndex": 7,
+          "confirmedReviewSteps": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "outcome": "assisted_requested",
+          "closed": true
+        },
+        "quiz": null,
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/4",
+              "payload": "/qr/w5",
+              "audio": false,
+              "startedAt": 51286.5,
+              "qrPaintedAt": 51929.19999998808,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "transport": "canvas.captureStream→real ZXing production decoder",
+      "physicalCameraValidated": false
+    }
+  ],
+  "endEarned": {
+    "essential": {
+      "schemaVersion": 1,
+      "contractRevision": "OBS03.2",
+      "revision": 90,
+      "cover": {
+        "contentRevision": "OBS03.2",
+        "presentedStepIds": [
+          "saludo",
+          "cinco_salas_y_proposito",
+          "orden_y_revisita",
+          "raiz"
+        ],
+        "confirmedStepIds": [
+          "saludo",
+          "cinco_salas_y_proposito",
+          "orden_y_revisita",
+          "raiz"
+        ],
+        "assistedPresentedStepIds": [],
+        "activeStepId": null,
+        "interactionEvidence": [],
+        "outcome": null,
+        "closed": true
+      },
+      "stations": {
+        "1": {
+          "contentRevision": "OBS03.2",
+          "presentedStepIds": [
+            "intro",
+            "relacion",
+            "percepcion",
+            "mediacion"
+          ],
+          "confirmedStepIds": [
+            "intro",
+            "relacion",
+            "percepcion",
+            "mediacion"
+          ],
+          "assistedPresentedStepIds": [],
+          "activeStepId": null,
+          "interactionEvidence": [],
+          "outcome": null,
+          "closed": true
+        },
+        "2": {
+          "contentRevision": "OBS03.2",
+          "presentedStepIds": [
+            "planta",
+            "senal",
+            "captura",
+            "acondicionamiento",
+            "mapeo",
+            "musica"
+          ],
+          "confirmedStepIds": [
+            "planta",
+            "senal",
+            "captura",
+            "acondicionamiento",
+            "mapeo",
+            "musica"
+          ],
+          "assistedPresentedStepIds": [],
+          "activeStepId": null,
+          "interactionEvidence": [
+            {
+              "kind": "required_interaction",
+              "id": "plant_contact_readout_seen",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            },
+            {
+              "kind": "required_interaction",
+              "id": "signal_measured_wave_seen",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            },
+            {
+              "kind": "capture_step",
+              "id": "contact",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            },
+            {
+              "kind": "capture_step",
+              "id": "signal",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            },
+            {
+              "kind": "capture_step",
+              "id": "system",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            },
+            {
+              "kind": "required_interaction",
+              "id": "capture_data_readout_seen",
+              "contentRevision": "OBS03.2",
+              "origin": "visitor_ui"
+            }
+          ],
+          "outcome": null,
+          "closed": true
+        },
+        "3": {
+          "contentRevision": "OBS03.2",
+          "presentedStepIds": [
+            "INTRO",
+            "PASO A PASO",
+            "BENEFICIOS"
+          ],
+          "confirmedStepIds": [
+            "INTRO",
+            "PASO A PASO",
+            "BENEFICIOS"
+          ],
+          "assistedPresentedStepIds": [],
+          "activeStepId": null,
+          "interactionEvidence": [],
+          "outcome": null,
+          "closed": true
+        },
+        "4": {
+          "contentRevision": "OBS03.2",
+          "presentedStepIds": [
+            "introduccion_mesa",
+            "presentacion_8",
+            "orden_resuelto",
+            "cierre"
+          ],
+          "confirmedStepIds": [
+            "introduccion_mesa",
+            "presentacion_8",
+            "orden_resuelto",
+            "cierre"
+          ],
+          "assistedPresentedStepIds": [
+            "orden_resuelto",
+            "cierre"
+          ],
+          "activeStepId": null,
+          "interactionEvidence": [],
+          "outcome": "assisted_review_completed",
+          "closed": true
+        },
+        "5": {
+          "contentRevision": "OBS03.2",
+          "presentedStepIds": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante",
+            "resultado"
+          ],
+          "confirmedStepIds": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante",
+            "resultado"
+          ],
+          "assistedPresentedStepIds": [],
+          "activeStepId": null,
+          "interactionEvidence": [],
+          "outcome": null,
+          "closed": true
+        }
+      },
+      "legacyRouteCredit": 0,
+      "migrationEvidence": {
+        "source": "captured_before_mount",
+        "globalStatus": "empty"
+      },
+      "pendingTransition": null,
+      "finalReached": true
+    },
+    "progress": {
+      "schemaVersion": 1,
+      "completedStations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "updatedAt": "2026-10-24T08:46:49.133Z"
+    },
+    "legacyPracticeRaw": null,
+    "ordering": {
+      "schemaVersion": 1,
+      "contractRevision": "OBS03.2",
+      "phase": "closed",
+      "permutation": [
+        "planta",
+        "bionosificador",
+        "esp32",
+        "midi",
+        "wifi_udp",
+        "router",
+        "sistema_central",
+        "sonido"
+      ],
+      "selectedObjectId": null,
+      "remainingActiveMs": 90000,
+      "reviewIndex": 7,
+      "confirmedReviewSteps": [
+        "planta",
+        "bionosificador",
+        "esp32",
+        "midi",
+        "wifi_udp",
+        "router",
+        "sistema_central",
+        "sonido"
+      ],
+      "outcome": "assisted_requested",
+      "closed": true
+    },
+    "quiz": {
+      "schemaVersion": 1,
+      "answeredQuestions": [
+        "plantas",
+        "sistema",
+        "espacio",
+        "visitante"
+      ],
+      "correctAnswers": [
+        "plantas",
+        "sistema",
+        "espacio",
+        "visitante"
+      ],
+      "skippedQuestions": []
+    },
+    "camera": {
+      "initialLocalKeys": [],
+      "records": [
+        {
+          "pathname": "/inicio",
+          "payload": null,
+          "audio": false,
+          "startedAt": 2393.199999988079,
+          "qrPaintedAt": null,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/1",
+          "payload": "/qr/w2",
+          "audio": false,
+          "startedAt": 11274.90000000596,
+          "qrPaintedAt": 11920.799999982119,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/2",
+          "payload": "/qr/w3",
+          "audio": false,
+          "startedAt": 37974.90000000596,
+          "qrPaintedAt": 38576.69999998808,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/3",
+          "payload": "/qr/w4",
+          "audio": false,
+          "startedAt": 45274.09999999404,
+          "qrPaintedAt": 45924.40000000596,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/4",
+          "payload": "/qr/w5",
+          "audio": false,
+          "startedAt": 51286.5,
+          "qrPaintedAt": 51929.19999998808,
+          "ended": true,
+          "stops": 1
+        }
+      ],
+      "errors": [],
+      "devHookDefined": false
+    }
+  },
+  "reviewEvidence": [
+    {
+      "phase": "review_I",
+      "state": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 90,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "confirmedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "assistedPresentedStepIds": [
+                "orden_resuelto",
+                "cierre"
+              ],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": "assisted_review_completed",
+              "closed": true
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "confirmedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": true
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "updatedAt": "2026-10-24T08:46:49.133Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "phase": "closed",
+          "permutation": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "selectedObjectId": null,
+          "remainingActiveMs": 90000,
+          "reviewIndex": 7,
+          "confirmedReviewSteps": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "outcome": "assisted_requested",
+          "closed": true
+        },
+        "quiz": {
+          "schemaVersion": 1,
+          "answeredQuestions": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "correctAnswers": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "skippedQuestions": []
+        },
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/4",
+              "payload": "/qr/w5",
+              "audio": false,
+              "startedAt": 51286.5,
+              "qrPaintedAt": 51929.19999998808,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "earnedFactsUnchanged": true
+    },
+    {
+      "phase": "review_QR_I_to_II",
+      "transport": "canvas.captureStream→real ZXing production decoder",
+      "reviewCameras": [
+        {
+          "pathname": "/estacion/1",
+          "payload": "/qr/w2",
+          "audio": false,
+          "startedAt": 62351.79999998212,
+          "qrPaintedAt": 63006.5,
+          "ended": true,
+          "stops": 1
+        }
+      ],
+      "state": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 95,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "confirmedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "assistedPresentedStepIds": [
+                "orden_resuelto",
+                "cierre"
+              ],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": "assisted_review_completed",
+              "closed": true
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "confirmedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": true
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "updatedAt": "2026-10-24T08:46:49.133Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "phase": "closed",
+          "permutation": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "selectedObjectId": null,
+          "remainingActiveMs": 90000,
+          "reviewIndex": 7,
+          "confirmedReviewSteps": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "outcome": "assisted_requested",
+          "closed": true
+        },
+        "quiz": {
+          "schemaVersion": 1,
+          "answeredQuestions": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "correctAnswers": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "skippedQuestions": []
+        },
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/4",
+              "payload": "/qr/w5",
+              "audio": false,
+              "startedAt": 51286.5,
+              "qrPaintedAt": 51929.19999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 62351.79999998212,
+              "qrPaintedAt": 63006.5,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "earnedFactsUnchanged": true,
+      "physicalCameraValidated": false
+    },
+    {
+      "phase": "review_return_to_Mirador",
+      "state": {
+        "essential": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "revision": 95,
+          "cover": {
+            "contentRevision": "OBS03.2",
+            "presentedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "confirmedStepIds": [
+              "saludo",
+              "cinco_salas_y_proposito",
+              "orden_y_revisita",
+              "raiz"
+            ],
+            "assistedPresentedStepIds": [],
+            "activeStepId": null,
+            "interactionEvidence": [],
+            "outcome": null,
+            "closed": true
+          },
+          "stations": {
+            "1": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "confirmedStepIds": [
+                "intro",
+                "relacion",
+                "percepcion",
+                "mediacion"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "2": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "confirmedStepIds": [
+                "planta",
+                "senal",
+                "captura",
+                "acondicionamiento",
+                "mapeo",
+                "musica"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [
+                {
+                  "kind": "required_interaction",
+                  "id": "plant_contact_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "signal_measured_wave_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "contact",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "signal",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "capture_step",
+                  "id": "system",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                },
+                {
+                  "kind": "required_interaction",
+                  "id": "capture_data_readout_seen",
+                  "contentRevision": "OBS03.2",
+                  "origin": "visitor_ui"
+                }
+              ],
+              "outcome": null,
+              "closed": true
+            },
+            "3": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "confirmedStepIds": [
+                "INTRO",
+                "PASO A PASO",
+                "BENEFICIOS"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            },
+            "4": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "confirmedStepIds": [
+                "introduccion_mesa",
+                "presentacion_8",
+                "orden_resuelto",
+                "cierre"
+              ],
+              "assistedPresentedStepIds": [
+                "orden_resuelto",
+                "cierre"
+              ],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": "assisted_review_completed",
+              "closed": true
+            },
+            "5": {
+              "contentRevision": "OBS03.2",
+              "presentedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "confirmedStepIds": [
+                "plantas",
+                "sistema",
+                "espacio",
+                "visitante",
+                "resultado"
+              ],
+              "assistedPresentedStepIds": [],
+              "activeStepId": null,
+              "interactionEvidence": [],
+              "outcome": null,
+              "closed": true
+            }
+          },
+          "legacyRouteCredit": 0,
+          "migrationEvidence": {
+            "source": "captured_before_mount",
+            "globalStatus": "empty"
+          },
+          "pendingTransition": null,
+          "finalReached": true
+        },
+        "progress": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "updatedAt": "2026-10-24T08:46:49.133Z"
+        },
+        "legacyPracticeRaw": null,
+        "ordering": {
+          "schemaVersion": 1,
+          "contractRevision": "OBS03.2",
+          "phase": "closed",
+          "permutation": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "selectedObjectId": null,
+          "remainingActiveMs": 90000,
+          "reviewIndex": 7,
+          "confirmedReviewSteps": [
+            "planta",
+            "bionosificador",
+            "esp32",
+            "midi",
+            "wifi_udp",
+            "router",
+            "sistema_central",
+            "sonido"
+          ],
+          "outcome": "assisted_requested",
+          "closed": true
+        },
+        "quiz": {
+          "schemaVersion": 1,
+          "answeredQuestions": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "correctAnswers": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ],
+          "skippedQuestions": []
+        },
+        "camera": {
+          "initialLocalKeys": [],
+          "records": [
+            {
+              "pathname": "/inicio",
+              "payload": null,
+              "audio": false,
+              "startedAt": 2393.199999988079,
+              "qrPaintedAt": null,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 11274.90000000596,
+              "qrPaintedAt": 11920.799999982119,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/2",
+              "payload": "/qr/w3",
+              "audio": false,
+              "startedAt": 37974.90000000596,
+              "qrPaintedAt": 38576.69999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/3",
+              "payload": "/qr/w4",
+              "audio": false,
+              "startedAt": 45274.09999999404,
+              "qrPaintedAt": 45924.40000000596,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/4",
+              "payload": "/qr/w5",
+              "audio": false,
+              "startedAt": 51286.5,
+              "qrPaintedAt": 51929.19999998808,
+              "ended": true,
+              "stops": 1
+            },
+            {
+              "pathname": "/estacion/1",
+              "payload": "/qr/w2",
+              "audio": false,
+              "startedAt": 62351.79999998212,
+              "qrPaintedAt": 63006.5,
+              "ended": true,
+              "stops": 1
+            }
+          ],
+          "errors": [],
+          "devHookDefined": false
+        }
+      },
+      "earnedFactsUnchanged": true
+    }
+  ],
+  "postReset": {
+    "essential": null,
+    "progress": null,
+    "legacyPracticeRaw": null,
+    "ordering": null,
+    "quiz": null,
+    "camera": {
+      "initialLocalKeys": [],
+      "records": [
+        {
+          "pathname": "/inicio",
+          "payload": null,
+          "audio": false,
+          "startedAt": 2393.199999988079,
+          "qrPaintedAt": null,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/1",
+          "payload": "/qr/w2",
+          "audio": false,
+          "startedAt": 11274.90000000596,
+          "qrPaintedAt": 11920.799999982119,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/2",
+          "payload": "/qr/w3",
+          "audio": false,
+          "startedAt": 37974.90000000596,
+          "qrPaintedAt": 38576.69999998808,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/3",
+          "payload": "/qr/w4",
+          "audio": false,
+          "startedAt": 45274.09999999404,
+          "qrPaintedAt": 45924.40000000596,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/4",
+          "payload": "/qr/w5",
+          "audio": false,
+          "startedAt": 51286.5,
+          "qrPaintedAt": 51929.19999998808,
+          "ended": true,
+          "stops": 1
+        },
+        {
+          "pathname": "/estacion/1",
+          "payload": "/qr/w2",
+          "audio": false,
+          "startedAt": 62351.79999998212,
+          "qrPaintedAt": 63006.5,
+          "ended": true,
+          "stops": 1
+        }
+      ],
+      "errors": [],
+      "devHookDefined": false
+    }
+  },
+  "music": {
+    "startedAt": 27762.5,
+    "samples": [
+      {
+        "ms": 0,
+        "stage": "intensity",
+        "complete": "false",
+        "motionActive": "false"
+      },
+      {
+        "ms": 32.099999994039536,
+        "stage": "intensity",
+        "complete": "false",
+        "motionActive": "true"
+      },
+      {
+        "ms": 2135.0999999940395,
+        "stage": "rhythm",
+        "complete": "false",
+        "motionActive": "true"
+      },
+      {
+        "ms": 4234.299999982119,
+        "stage": "pitch",
+        "complete": "false",
+        "motionActive": "true"
+      },
+      {
+        "ms": 6342,
+        "stage": "resolved",
+        "complete": "false",
+        "motionActive": "true"
+      },
+      {
+        "ms": 9094.199999988079,
+        "stage": "resolved",
+        "complete": "true",
+        "motionActive": "true"
+      }
+    ]
+  },
+  "finalSnapshot": {
+    "phase": "post_reset_complete",
+    "state": {
+      "essential": null,
+      "progress": null,
+      "legacyPracticeRaw": null,
+      "ordering": null,
+      "quiz": null,
+      "camera": {
+        "initialLocalKeys": [],
+        "records": [
+          {
+            "pathname": "/inicio",
+            "payload": null,
+            "audio": false,
+            "startedAt": 2393.199999988079,
+            "qrPaintedAt": null,
+            "ended": true,
+            "stops": 1
+          },
+          {
+            "pathname": "/estacion/1",
+            "payload": "/qr/w2",
+            "audio": false,
+            "startedAt": 11274.90000000596,
+            "qrPaintedAt": 11920.799999982119,
+            "ended": true,
+            "stops": 1
+          },
+          {
+            "pathname": "/estacion/2",
+            "payload": "/qr/w3",
+            "audio": false,
+            "startedAt": 37974.90000000596,
+            "qrPaintedAt": 38576.69999998808,
+            "ended": true,
+            "stops": 1
+          },
+          {
+            "pathname": "/estacion/3",
+            "payload": "/qr/w4",
+            "audio": false,
+            "startedAt": 45274.09999999404,
+            "qrPaintedAt": 45924.40000000596,
+            "ended": true,
+            "stops": 1
+          },
+          {
+            "pathname": "/estacion/4",
+            "payload": "/qr/w5",
+            "audio": false,
+            "startedAt": 51286.5,
+            "qrPaintedAt": 51929.19999998808,
+            "ended": true,
+            "stops": 1
+          },
+          {
+            "pathname": "/estacion/1",
+            "payload": "/qr/w2",
+            "audio": false,
+            "startedAt": 62351.79999998212,
+            "qrPaintedAt": 63006.5,
+            "ended": true,
+            "stops": 1
+          }
+        ],
+        "errors": [],
+        "devHookDefined": false
+      }
+    }
+  }
+}

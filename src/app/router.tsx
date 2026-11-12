@@ -1,7 +1,6 @@
 import {
   lazy,
   Suspense,
-  useCallback,
   useEffect,
   useState,
   type ReactNode,
@@ -10,21 +9,11 @@ import {
   createBrowserRouter,
   replace,
   type RouteObject,
-  useLocation,
   useNavigate,
 } from "react-router-dom";
 
-import {
-  canOpenStation,
-  canOpenTransition,
-  canOpenFinal,
-  mostAdvancedAvailableStation,
-  readProgress,
-} from "../domain/progress/progress.storage";
-import { CoverIntroScreen } from "../screens/Cover";
-import { InitialExperienceScreen } from "../screens/InitialExperience";
-import { LoadingInitialScreen } from "../screens/LoadingInitial";
-import { loadingInitialTimeline } from "../screens/LoadingInitial/loadingInitialTimeline";
+
+
 import { StationPlaceholder } from "../screens/Station/StationPlaceholder";
 import {
   introToStationOneTransition,
@@ -35,18 +24,13 @@ import {
   worldOneToWorldTwoTransition,
 } from "../screens/TransitionWorld/transitionWorld.config";
 import type { TransitionWorldConfig } from "../screens/TransitionWorld/transitionWorld.types";
-import { screenAssetBundles } from "../shared/assets/screenAssetBundles";
-import { useAssetPreloader } from "../shared/assets/useAssetPreloader";
+
 import {
   FinalReviewContextInvalidator,
   FinalReviewModeLayout,
 } from "./review/FinalReviewModeLayout";
-import { clearFinalReviewContext } from "./review/finalReviewContext";
-import { resolveQrNavigation } from "./qr/qrNavigation";
 import {
   journeyRouteModuleLoaders,
-  preloadJourneyRouteModule,
-  routeModuleForDestination,
   type JourneyRouteModuleId,
 } from "./routeModules";
 import {
@@ -73,6 +57,16 @@ import {
 } from "./routes";
 import { liaPreviewEnabled } from "../features/lia-preview/config";
 import { liaPreviewRoute } from "./routes";
+
+
+import { acceptQrRouteIntent, pendingJourneyNavigationState } from "./journey/journeyIntent";
+import { coherentProgressPrefixLength, readEssentialSnapshot } from "./journey/journeyEssential";
+import { essentialRecoveryRoute, resolveJourneyAccess } from "./journey/journeyAccess";
+import { validateJourneyReceipt } from "./journey/journeyReceipt";
+
+import { readLanguagePreference } from "./preferences/languagePreference";
+import { interstationQrContracts } from "./qr/interstationQr";
+
 import { GlobalImmersiveShell } from "./shell/GlobalImmersiveShell";
 
 const TransitionWorld = lazy(() =>
@@ -122,6 +116,7 @@ const World1RootLayoutCalibrator = lazy(() =>
 );
 
 function RouteModuleFallback({ moduleId }: { moduleId: string }) {
+  const locale = readLanguagePreference() ?? "es";
   return (
     <main
       className="mobile-shell"
@@ -130,7 +125,7 @@ function RouteModuleFallback({ moduleId }: { moduleId: string }) {
       aria-live="polite"
     >
       <section className="base-panel">
-        <p>Preparando el recorrido</p>
+        <p>{locale === "en" ? "Preparing your journey" : "Preparando el recorrido"}</p>
       </section>
     </main>
   );
@@ -166,162 +161,65 @@ function LazyStationRoute({
   );
 }
 
-function JourneyLoadingRoute() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [minimumDurationComplete, setMinimumDurationComplete] = useState(false);
-  const coverIntroPreload = useAssetPreloader(
-    screenAssetBundles.coverIntroCritical,
-    {
-      timeoutMs: 9000,
-    },
-  );
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const durationMs = prefersReducedMotion
-      ? loadingInitialTimeline.reducedMotionDurationMs
-      : loadingInitialTimeline.durationMs;
-    setMinimumDurationComplete(false);
-    const timeoutId = window.setTimeout(() => {
-      setMinimumDurationComplete(true);
-    }, durationMs);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [location.search]);
-
-  useEffect(() => {
-    if (!minimumDurationComplete || !coverIntroPreload.ready) {
-      return;
-    }
-
-    const searchParams = new URLSearchParams(location.search);
-    const shouldResetIntro = searchParams.get("resetIntro") === "1";
-    const destination = shouldResetIntro
-      ? "/portada?resetIntro=1"
-      : initialExperienceRoute;
-
-    navigate(destination, { replace: true });
-  }, [
-    coverIntroPreload.ready,
-    location.search,
-    minimumDurationComplete,
-    navigate,
-  ]);
-
-  return (
-    <LoadingInitialScreen
-      preloadStatus={coverIntroPreload.status}
-      preloadProgress={coverIntroPreload.progress}
-      preloadTarget="coverIntroCritical"
-    />
-  );
-}
-
 export function requireFinalAccess() {
-  const progress = readProgress();
-  if (canOpenFinal(progress)) {
-    return null;
-  }
-
-  clearFinalReviewContext();
-  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
+  const state = typeof window === "undefined" ? null : window.history.state?.usr;
+  if (resolveJourneyAccess("/final", state).authorized) return null;
+  return replace(essentialRecoveryRoute());
 }
-
-export function requireStationAccess(
-  stationId: keyof typeof stationEntryRoutes,
-) {
-  const progress = readProgress();
-  if (canOpenStation(stationId, progress)) {
-    return null;
-  }
-
-  clearFinalReviewContext();
-  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
+export function requireStationAccess(stationId: keyof typeof stationEntryRoutes) {
+  const state = typeof window === "undefined" ? null : window.history.state?.usr;
+  if (resolveJourneyAccess(stationEntryRoutes[stationId], state).authorized) return null;
+  return replace(essentialRecoveryRoute());
 }
-
-export function requireTransitionAccess(
-  completedOriginStation: keyof typeof stationEntryRoutes,
-) {
-  const progress = readProgress();
-  if (canOpenTransition(completedOriginStation, progress)) {
-    return null;
-  }
-
-  clearFinalReviewContext();
-  return replace(stationEntryRoutes[mostAdvancedAvailableStation(progress)]);
+export function requireTransitionAccess(completedOriginStation: keyof typeof stationEntryRoutes | "cover") {
+  const snapshot = readEssentialSnapshot(), pending = snapshot?.pendingTransition;
+  const target = completedOriginStation === "cover" ? "/estacion/1" : completedOriginStation === 5 ? "/final" : `/estacion/${completedOriginStation + 1}`;
+  if (snapshot && pending?.from === completedOriginStation && validateJourneyReceipt(pending, snapshot, coherentProgressPrefixLength(), target)) return null;
+  return replace(essentialRecoveryRoute());
 }
-
 export function requireQrAccess(qrId: string | null | undefined) {
-  const resolution = resolveQrNavigation(qrId);
-  clearFinalReviewContext();
-  return replace(resolution.destination);
+  if (qrId === "start") return replace("/");
+  const target = /^w([2-5])$/.exec(qrId ?? "");
+  if (target) {
+    const origin = (Number(target[1]) - 1) as 1 | 2 | 3 | 4;
+    const snapshot = readEssentialSnapshot(), receipt = snapshot?.pendingTransition;
+    const contract = interstationQrContracts[origin];
+    const to = stationEntryRoutes[(origin + 1) as 2 | 3 | 4 | 5];
+    if (snapshot && receipt?.from === origin && receipt.canonicalPayload === contract.payload && validateJourneyReceipt(receipt, snapshot, coherentProgressPrefixLength(), to)) return replace(contract.transitionRoute);
+    const state = typeof window === "undefined" ? null : window.history.state?.usr;
+    if (acceptQrRouteIntent(origin, state)) return replace(contract.transitionRoute);
+    return replace(essentialRecoveryRoute());
+  }
+  return replace(essentialRecoveryRoute());
 }
-
-function TransitionWorldRuntimeRoute({
-  config,
-}: {
-  config: TransitionWorldConfig;
-}) {
+function TransitionWorldRuntimeRoute({ config }: { config: TransitionWorldConfig }) {
   const navigate = useNavigate();
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const targetModuleId = routeModuleForDestination(config.toRoute);
-
+  const [error, setError] = useState(false);
   useEffect(() => {
-    if (targetModuleId) {
-      void preloadJourneyRouteModule(targetModuleId).catch(() => undefined);
-    }
-  }, [targetModuleId]);
-
-  const handleComplete = useCallback(() => {
-    if (!targetModuleId) {
-      navigate(config.toRoute, { replace: true });
-      return;
-    }
-
-    void preloadJourneyRouteModule(targetModuleId)
-      .then(() => {
-        navigate(config.toRoute, { replace: true });
-      })
-      .catch(() => {
-        window.location.replace(config.toRoute);
-      });
-  }, [config.toRoute, navigate, targetModuleId]);
-
-  return (
-    <RouteModuleBoundary moduleId="transition">
-      <TransitionWorld
-        config={config}
-        variant="runtime"
-        isReducedMotion={prefersReducedMotion}
-        onComplete={handleComplete}
-      />
-    </RouteModuleBoundary>
-  );
+    const snapshot = readEssentialSnapshot(), pending = snapshot?.pendingTransition;
+    if (!snapshot || !validateJourneyReceipt(pending, snapshot, coherentProgressPrefixLength(), config.toRoute)) { setError(true); return; }
+    navigate(config.toRoute, { replace: true, state: pendingJourneyNavigationState() });
+  }, [config.toRoute, navigate]);
+  if (!error) return null;
+  return <RouteModuleBoundary moduleId="transition"><TransitionWorld config={config} variant="runtime" preloadStatus={error ? "error" : "loading"} preloadProgress={0} onBack={() => navigate(config.fromRoute, { replace: true })} canRetry={false} /></RouteModuleBoundary>;
 }
 
 const journeyRoutes: RouteObject[] = [
   {
     path: "/",
-    element: <JourneyLoadingRoute />,
+    element: null,
   },
   {
     path: "/carga",
-    element: <LoadingInitialScreen />,
+    element: null,
   },
   {
     path: initialExperienceRoute,
-    element: <InitialExperienceScreen />,
+    element: null,
   },
   {
     path: "/portada",
-    element: <CoverIntroScreen />,
+    element: null,
   },
   {
     path: "/dev/transition-world",
@@ -341,6 +239,7 @@ const journeyRoutes: RouteObject[] = [
   },
   {
     path: coverToWorldOneTransitionRoute,
+    loader: () => requireTransitionAccess("cover"),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={introToStationOneTransition} />
@@ -385,7 +284,7 @@ const journeyRoutes: RouteObject[] = [
   },
   {
     path: worldFiveToFinalTransitionRoute,
-    loader: requireFinalAccess,
+    loader: () => requireTransitionAccess(5),
     element: (
       <FinalReviewContextInvalidator>
         <TransitionWorldRuntimeRoute config={worldFiveToFinalTransition} />
@@ -511,11 +410,9 @@ const journeyRoutes: RouteObject[] = [
     path: finalEntryRoute,
     loader: requireFinalAccess,
     element: (
-      <FinalReviewContextInvalidator>
         <RouteModuleBoundary moduleId="final">
           <FinalRootScreen />
         </RouteModuleBoundary>
-      </FinalReviewContextInvalidator>
     ),
   },
   {

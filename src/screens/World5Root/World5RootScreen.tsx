@@ -1,1213 +1,548 @@
-import "./World5RootScreen.css";
-
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import "./World5QuizExperience.css";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
 import {
-  worldFiveEntryRoute,
-  worldFivePlantsRoute,
-  worldFiveSpaceRoute,
-  worldFiveSystemRoute,
-  worldFiveToFinalTransitionRoute,
-  worldFiveVisitorRoute,
-} from "../../app/routes";
+  canUseUiStep, captureJourneyMutationToken, closeEssentialRoom,
+  confirmEssentialStep, getJourneyRuntimeContext, isJourneyMutationTokenCurrent,
+  markEssentialPresented, useEssentialFlow,
+} from "../../app/journey/journeyEssential";
+import { acceptJourneyIntent } from "../../app/journey/journeyIntent";
+import { readLanguagePreference } from "../../app/preferences/languagePreference";
+import { worldFiveEntryRoute, worldFiveToFinalTransitionRoute } from "../../app/routes";
+import { LiaJourneyMotion } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
+import { type Station5AreaId } from "./station5Content";
 import {
-  canOpenFinal,
-  markStationCompleted,
-  readProgress,
-} from "../../domain/progress/progress.storage";
-import {
-  PROGRESS_SAVE_ERROR_COPY,
-  PROGRESS_SAVE_RETRY_LABEL,
-} from "../../shared/progress/progressSaveError";
-import { ProjectedRasterStage } from "./ProjectedRasterStage";
-import {
-  station5Areas,
-  station5ContentApprovalStatus,
-  station5FixedCta,
-  station5PlantsCopy,
-  station5SpaceCopy,
-  station5SystemCopy,
-  station5VisitorCopy,
-  type Station5AreaId,
-} from "./station5Content";
-import {
-  completeWorld5Area,
-  readWorld5Progress,
-  type World5Progress,
-} from "./world5Progress";
-import { world5RuntimeAssets } from "./world5RuntimeAssets";
-import {
-  mapRecessMaskLandscape,
-  mapRecessMaskPortrait,
-  sectorSourceStyle,
-  serializeSourcePolygon,
-} from "./station5Geometry";
-import {
-  World5EditorialPanel,
-  type World5LiaRole,
-} from "./World5EditorialPanel";
+  WORLD5_QUIZ_AREA_ORDER, WORLD5_QUIZ_STORAGE_KEY, WORLD5_ROUNDS_STORAGE_KEY,
+  mutateWorld5Rounds, readWorld5Rounds, recoverWorld5Quiz,
+  type World5RoundCommand, type World5RoundsRead,
+} from "./world5Quiz";
+import { resolveWorld5QuizView, type World5QuizView } from "./world5QuizView";
+import { alreadyCreditedPoint, getWorld5AreaTitle, getWorld5Question, world5QuizCopy } from "./world5QuizContent";
+import { getWorld5GalleryEnvironment, world5NavigationAssets, world5OptionAssets } from "./world5RuntimeAssets";
 
-type TraversableArea = "plantas" | "sistema" | "espacio" | "visitante";
-type AreaVisualState = "locked" | "available" | "completed";
-type TransitionMode = "entering" | "returning";
-type ClosurePhase = "idle" | "persisting" | "error" | "complete";
+type NewRoundAction =
+  | { kind: "answer"; area: Station5AreaId; side: "agreement" | "disagreement" }
+  | { kind: "skip"; area: Station5AreaId }
+  | { kind: "finish_round" | "begin_retry" };
 
-export type Station5PresentationState =
-  | "map_overview"
-  | "map_blocked_feedback"
-  | "plants_intro"
-  | "plants_resolved"
-  | "system_intro"
-  | "system_resolved"
-  | "space_intro"
-  | "space_resolved"
-  | "visitor_intro"
-  | "visitor_resolved"
-  | "transitioning"
-  | "storage_error";
-
-export type Station5RuntimeState = Station5PresentationState;
-
-const ENTER_DURATION_MS = 760;
-const RETURN_DURATION_MS = 620;
-const REDUCED_DURATION_MS = 80;
-
-const sectorAssets: Record<Station5AreaId, string> = {
-  plantas: world5RuntimeAssets.mapSectorPlants,
-  sistema: world5RuntimeAssets.mapSectorSystem,
-  espacio: world5RuntimeAssets.mapSectorSpace,
-  visitante: world5RuntimeAssets.mapSectorVisitor,
-};
-
-const areaRoutes: Record<TraversableArea, string> = {
-  plantas: worldFivePlantsRoute,
-  sistema: worldFiveSystemRoute,
-  espacio: worldFiveSpaceRoute,
-  visitante: worldFiveVisitorRoute,
-};
-
-const introStates: Record<TraversableArea, Station5PresentationState> = {
-  plantas: "plants_intro",
-  sistema: "system_intro",
-  espacio: "space_intro",
-  visitante: "visitor_intro",
-};
-
-const resolvedStates: Record<TraversableArea, Station5PresentationState> = {
-  plantas: "plants_resolved",
-  sistema: "system_resolved",
-  espacio: "space_resolved",
-  visitante: "visitor_resolved",
-};
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(() =>
-    typeof window !== "undefined" && typeof window.matchMedia === "function"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false,
-  );
-
-  useEffect(() => {
-    if (typeof window.matchMedia !== "function") return;
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onChange = (event: MediaQueryListEvent) => setReduced(event.matches);
-    query.addEventListener("change", onChange);
-    return () => query.removeEventListener("change", onChange);
-  }, []);
-
-  return reduced;
-}
-
-function completed(progress: World5Progress, area: TraversableArea) {
-  return progress.completedAreas.includes(area);
-}
-
-function routeArea(pathname: string): TraversableArea | null {
-  if (pathname === worldFivePlantsRoute) return "plantas";
-  if (pathname === worldFiveSystemRoute) return "sistema";
-  if (pathname === worldFiveSpaceRoute) return "espacio";
-  if (pathname === worldFiveVisitorRoute) return "visitante";
-  return null;
-}
-
-function initialPresentation(
-  pathname: string,
-  progress: World5Progress,
-): Station5PresentationState {
-  const area = routeArea(pathname);
-  if (area === "plantas")
-    return completed(progress, area) ? "plants_resolved" : "plants_intro";
-  if (area === "sistema" && completed(progress, "plantas")) {
-    return completed(progress, area) ? "system_resolved" : "system_intro";
-  }
-  if (area === "espacio" && completed(progress, "sistema")) {
-    return completed(progress, area) ? "space_resolved" : "space_intro";
-  }
-  if (area === "visitante" && completed(progress, "espacio")) {
-    return completed(progress, area) ? "visitor_resolved" : "visitor_intro";
-  }
-  return "map_overview";
-}
-
-function stateArea(
-  state: Station5PresentationState,
-  transitionArea: TraversableArea | null,
-  errorArea: TraversableArea | null,
-): TraversableArea | null {
-  if (state.startsWith("plants_")) return "plantas";
-  if (state.startsWith("system_")) return "sistema";
-  if (state.startsWith("space_")) return "espacio";
-  if (state.startsWith("visitor_")) return "visitante";
-  if (state === "transitioning") return transitionArea;
-  if (state === "storage_error") return errorArea;
-  return null;
-}
+const celebrationPieces = [
+  [7, 27, 24], [12, 58, -29], [16, 11, 48], [22, 39, -37],
+  [28, 77, 31], [34, 16, 62], [64, 12, -44], [72, 73, 51],
+  [78, 28, -19], [84, 51, 26], [88, 9, -53], [93, 67, 38],
+] as const;
 
 export function World5RootScreen() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const reducedMotion = usePrefersReducedMotion();
-  const initialProgressRef = useRef(readWorld5Progress());
-  const [progress, setProgress] = useState(initialProgressRef.current);
-  const [presentation, setPresentation] = useState<Station5PresentationState>(
-    () => initialPresentation(location.pathname, initialProgressRef.current),
-  );
-  const [transitionArea, setTransitionArea] = useState<TraversableArea | null>(
-    null,
-  );
-  const [transitionMode, setTransitionMode] = useState<TransitionMode | null>(
-    null,
-  );
-  const [errorArea, setErrorArea] = useState<TraversableArea | null>(null);
-  const [blockedArea, setBlockedArea] = useState<Station5AreaId | null>(null);
-  const [announcement, setAnnouncement] = useState("");
-  const [closurePhase, setClosurePhase] = useState<ClosurePhase>("idle");
-  const [globalComplete, setGlobalComplete] = useState(() =>
-    canOpenFinal(readProgress()),
-  );
-  const epochRef = useRef(0);
-  const timerRef = useRef<number | null>(null);
-  const closureLockRef = useRef(false);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const plantsButtonRef = useRef<HTMLButtonElement>(null);
-  const systemButtonRef = useRef<HTMLButtonElement>(null);
-  const spaceButtonRef = useRef<HTMLButtonElement>(null);
-  const visitorButtonRef = useRef<HTMLButtonElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const pendingMapFocusRef = useRef<TraversableArea | null>(null);
-  const lastPathnameRef = useRef(location.pathname);
-
-  const plantsCompleted = completed(progress, "plantas");
-  const systemCompleted = completed(progress, "sistema");
-  const spaceCompleted = completed(progress, "espacio");
-  const visitorCompleted = completed(progress, "visitante");
-  const mapActive =
-    presentation === "map_overview" || presentation === "map_blocked_feedback";
-  const motionLock = presentation === "transitioning";
-  const closeReady =
-    location.pathname === worldFiveEntryRoute &&
-    presentation === "map_overview" &&
-    visitorCompleted &&
-    !motionLock;
-  const closeState =
-    closurePhase === "idle"
-      ? closeReady
-        ? "closure_ready"
-        : "closure_unavailable"
-      : `closure_${closurePhase}`;
-  const activeArea = stateArea(presentation, transitionArea, errorArea);
-  const renderMapAssets = mapActive || motionLock;
-  const renderPlantsAssets = activeArea === "plantas";
-  const renderSystemAssets = activeArea === "sistema";
-  const renderSpaceAssets = activeArea === "espacio";
-  const renderVisitorAssets = activeArea === "visitante";
-
-  const clearTimeline = useCallback(() => {
-    epochRef.current += 1;
-    if (timerRef.current !== null) {
-      window.clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => clearTimeline, [clearTimeline]);
-
-  useEffect(() => {
-    if (closurePhase === "error") {
-      closeButtonRef.current?.focus({ preventScroll: true });
-    }
-  }, [closurePhase]);
-
-  useEffect(() => {
-    const requestedArea = routeArea(location.pathname);
-    const blockedSystem = requestedArea === "sistema" && !plantsCompleted;
-    const blockedSpace = requestedArea === "espacio" && !systemCompleted;
-    const blockedVisitor = requestedArea === "visitante" && !spaceCompleted;
-    if (blockedSystem || blockedSpace || blockedVisitor) {
-      lastPathnameRef.current = worldFiveEntryRoute;
-      clearTimeline();
-      navigate(worldFiveEntryRoute, { replace: true });
-      setTransitionArea(null);
-      setTransitionMode(null);
-      setPresentation("map_overview");
-      setAnnouncement(
-        blockedSystem
-          ? "Completa Plantas para habilitar Sistema."
-          : blockedSpace
-            ? "Completa Sistema para habilitar Espacio."
-            : "Completa Espacio para habilitar Visitante.",
-      );
-      return;
-    }
-
-    if (lastPathnameRef.current === location.pathname) return;
-    lastPathnameRef.current = location.pathname;
-    if (location.pathname === worldFiveEntryRoute) {
-      clearTimeline();
-      setTransitionArea(null);
-      setTransitionMode(null);
-      setErrorArea(null);
-      setBlockedArea(null);
-      setPresentation("map_overview");
-      setAnnouncement("");
-    }
-  }, [
-    clearTimeline,
-    location.pathname,
-    navigate,
-    plantsCompleted,
-    systemCompleted,
-    spaceCompleted,
-  ]);
-
-  useEffect(() => {
-    if (!presentation.endsWith("_intro") && !presentation.endsWith("_resolved"))
-      return;
-    headingRef.current?.focus({ preventScroll: true });
-  }, [presentation]);
-
-  useEffect(() => {
-    if (presentation !== "map_overview" || !pendingMapFocusRef.current) return;
-    const area = pendingMapFocusRef.current;
-    pendingMapFocusRef.current = null;
-    const target = {
-      plantas: plantsButtonRef,
-      sistema: systemButtonRef,
-      espacio: spaceButtonRef,
-      visitante: visitorButtonRef,
-    }[area];
-    target.current?.focus({ preventScroll: true });
-  }, [presentation]);
-
-  useEffect(() => {
-    if (!plantsCompleted || systemCompleted || !mapActive) return;
-    const portrait = window.matchMedia("(orientation: portrait)").matches;
-    [
-      portrait
-        ? world5RuntimeAssets.systemEnvironmentPortrait
-        : world5RuntimeAssets.systemEnvironmentLandscape,
-      world5RuntimeAssets.systemFocus,
-    ].forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    });
-  }, [mapActive, plantsCompleted, systemCompleted]);
-
-  useEffect(() => {
-    if (!systemCompleted || spaceCompleted || !mapActive) return;
-    const portrait = window.matchMedia("(orientation: portrait)").matches;
-    [
-      portrait
-        ? world5RuntimeAssets.spaceEnvironmentPortrait
-        : world5RuntimeAssets.spaceEnvironmentLandscape,
-      world5RuntimeAssets.spaceFocus,
-    ].forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    });
-  }, [mapActive, spaceCompleted, systemCompleted]);
-
-  useEffect(() => {
-    if (!spaceCompleted || visitorCompleted || !mapActive) return;
-    const portrait = window.matchMedia("(orientation: portrait)").matches;
-    [
-      portrait
-        ? world5RuntimeAssets.visitorEnvironmentPortrait
-        : world5RuntimeAssets.visitorEnvironmentLandscape,
-      world5RuntimeAssets.visitorFocus,
-    ].forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    });
-  }, [mapActive, spaceCompleted, visitorCompleted]);
-
-  const areaState = useCallback(
-    (area: Station5AreaId): AreaVisualState => {
-      if (area === "plantas")
-        return plantsCompleted ? "completed" : "available";
-      if (area === "sistema") {
-        if (systemCompleted) return "completed";
-        return plantsCompleted ? "available" : "locked";
-      }
-      if (area === "espacio") {
-        if (spaceCompleted) return "completed";
-        return systemCompleted ? "available" : "locked";
-      }
-      if (visitorCompleted) return "completed";
-      return spaceCompleted ? "available" : "locked";
-    },
-    [plantsCompleted, spaceCompleted, systemCompleted, visitorCompleted],
-  );
-
-  const showBlockedFeedback = useCallback(
-    (area: Station5AreaId) => {
-      if (!mapActive || motionLock) return;
-      setBlockedArea(area);
-      setPresentation("map_blocked_feedback");
-      const message =
-        area === "sistema"
-          ? "Completa Plantas para habilitar Sistema."
-          : area === "espacio"
-            ? "Completa Sistema para habilitar Espacio."
-            : "Completa Espacio para habilitar Visitante.";
-      setAnnouncement(message);
-    },
-    [mapActive, motionLock, systemCompleted],
-  );
-
-  const enterArea = useCallback(
-    (area: TraversableArea) => {
-      if (!mapActive || motionLock) return;
-      if (area === "sistema" && !plantsCompleted) {
-        showBlockedFeedback(area);
-        return;
-      }
-      if (area === "espacio" && !systemCompleted) {
-        showBlockedFeedback(area);
-        return;
-      }
-      if (area === "visitante" && !spaceCompleted) {
-        showBlockedFeedback(area);
-        return;
-      }
-      clearTimeline();
-      setBlockedArea(null);
-      setErrorArea(null);
-      setTransitionArea(area);
-      setTransitionMode("entering");
-      setPresentation("transitioning");
-      setAnnouncement("");
-      navigate(areaRoutes[area]);
-      const epoch = ++epochRef.current;
-      timerRef.current = window.setTimeout(
-        () => {
-          if (epochRef.current !== epoch) return;
-          setPresentation(
-            completed(progress, area)
-              ? resolvedStates[area]
-              : introStates[area],
-          );
-          setTransitionMode(null);
-          timerRef.current = null;
-        },
-        reducedMotion ? REDUCED_DURATION_MS : ENTER_DURATION_MS,
-      );
-    },
-    [
-      clearTimeline,
-      mapActive,
-      motionLock,
-      navigate,
-      plantsCompleted,
-      progress,
-      reducedMotion,
-      showBlockedFeedback,
-      spaceCompleted,
-      systemCompleted,
-    ],
-  );
-
-  const returnToMapImmediately = useCallback(() => {
-    const focusArea = activeArea;
-    clearTimeline();
-    pendingMapFocusRef.current = focusArea;
-    navigate(worldFiveEntryRoute, { replace: true });
-    lastPathnameRef.current = worldFiveEntryRoute;
-    setTransitionArea(null);
-    setTransitionMode(null);
-    setErrorArea(null);
-    setPresentation("map_overview");
-    setAnnouncement("");
-  }, [activeArea, clearTimeline, navigate]);
-
-  const activateArea = useCallback(() => {
-    if (!activeArea || presentation !== introStates[activeArea]) return;
-    const result = completeWorld5Area(activeArea);
-    if (!result.ok) {
-      setErrorArea(activeArea);
-      setPresentation("storage_error");
-      setAnnouncement(
-        {
-          plantas: station5PlantsCopy.storageError,
-          sistema: station5SystemCopy.storageError,
-          espacio: station5SpaceCopy.storageError,
-          visitante: station5VisitorCopy.storageError,
-        }[activeArea],
-      );
-      return;
-    }
-    setProgress(result.progress);
-    setPresentation(resolvedStates[activeArea]);
-    setAnnouncement(
-      {
-        plantas: station5PlantsCopy.resolvedStatus,
-        sistema: station5SystemCopy.resolvedStatus,
-        espacio: station5SpaceCopy.resolvedStatus,
-        visitante: station5VisitorCopy.resolvedStatus,
-      }[activeArea],
-    );
-  }, [activeArea, presentation]);
-
-  const retryStorage = useCallback(() => {
-    if (!errorArea || presentation !== "storage_error") return;
-    setPresentation(introStates[errorArea]);
-    setAnnouncement("");
-  }, [errorArea, presentation]);
-
-  const closeStation = useCallback(() => {
-    if (!closeReady || closureLockRef.current) return;
-
-    closureLockRef.current = true;
-    setClosurePhase("persisting");
-    setAnnouncement("");
-
-    const result = markStationCompleted(5);
-    if (!result.ok || !canOpenFinal(result.progress)) {
-      closureLockRef.current = false;
-      setGlobalComplete(false);
-      setClosurePhase("error");
-      setAnnouncement(PROGRESS_SAVE_ERROR_COPY);
-      return;
-    }
-
-    setGlobalComplete(true);
-    setClosurePhase("complete");
-    navigate(worldFiveToFinalTransitionRoute);
-  }, [closeReady, navigate]);
-
-  const returnToMap = useCallback(() => {
-    if (!activeArea || !completed(progress, activeArea)) return;
-    const expected = resolvedStates[activeArea];
-    if (presentation !== expected) return;
-    clearTimeline();
-    pendingMapFocusRef.current = activeArea;
-    setTransitionArea(activeArea);
-    setTransitionMode("returning");
-    setPresentation("transitioning");
-    const epoch = ++epochRef.current;
-    timerRef.current = window.setTimeout(
-      () => {
-        if (epochRef.current !== epoch) return;
-        navigate(worldFiveEntryRoute, { replace: true });
-        lastPathnameRef.current = worldFiveEntryRoute;
-        setTransitionArea(null);
-        setTransitionMode(null);
-        setPresentation("map_overview");
-        setAnnouncement(
-          `${
-            {
-              plantas: "Plantas",
-              sistema: "Sistema",
-              espacio: "Espacio",
-              visitante: "Visitante",
-            }[activeArea]
-          } completada. Regresaste al mapa general.`,
-        );
-        timerRef.current = null;
-      },
-      reducedMotion ? REDUCED_DURATION_MS : RETURN_DURATION_MS,
-    );
-  }, [
-    activeArea,
-    clearTimeline,
-    navigate,
-    presentation,
-    progress,
-    reducedMotion,
-  ]);
-
-  const liaRole: World5LiaRole = motionLock
-    ? "lead"
-    : mapActive
-      ? "attend"
-      : "explain";
-  const liaAsset = {
-    explain: world5RuntimeAssets.liaExplainCalm,
-    attend: world5RuntimeAssets.liaAttendNeutral,
-    lead: world5RuntimeAssets.liaLeadForward,
-  }[liaRole];
-
-  const overviewCopy = useMemo(() => {
-    if (visitorCompleted) {
-      return {
-        lead: "Plantas, sistema, espacio y visitante ya forman el presente de OKÚA.",
-        support: "Puedes volver a mirar cualquiera de las cuatro áreas.",
-      };
-    }
-    if (spaceCompleted) {
-      return {
-        lead: "El recorrido ya tiene un lugar.",
-        support: "Toca Visitante para completar el mapa.",
-      };
-    }
-    if (systemCompleted) {
-      return {
-        lead: "Plantas y Sistema ya están conectadas.",
-        support: "Toca Espacio para continuar.",
-      };
-    }
-    if (plantsCompleted) {
-      return {
-        lead: "Descubre cómo la vida se convierte en señal.",
-        support: "Plantas ya fue reconocida. Continúa con Sistema.",
-      };
-    }
-    return {
-      lead: "Descubre cómo la vida se convierte en señal.",
-      support: "Toca Plantas para comenzar.",
-    };
-  }, [plantsCompleted, spaceCompleted, systemCompleted, visitorCompleted]);
-
-  const blockedGuidance =
-    blockedArea === "sistema"
-      ? "Completa Plantas para habilitar Sistema."
-      : blockedArea === "espacio"
-        ? "Completa Sistema para habilitar Espacio."
-        : "Completa Espacio para habilitar Visitante.";
-
-  const renderAreaAction = (area: Station5AreaId) => {
-    if (area === "plantas") return () => enterArea("plantas");
-    if (area === "sistema")
-      return plantsCompleted
-        ? () => enterArea("sistema")
-        : () => showBlockedFeedback("sistema");
-    if (area === "espacio")
-      return systemCompleted
-        ? () => enterArea("espacio")
-        : () => showBlockedFeedback("espacio");
-    return spaceCompleted
-      ? () => enterArea("visitante")
-      : () => showBlockedFeedback(area);
+  const navigate = useNavigate(), location = useLocation();
+  const activity = useJourneyActivity(), essential = useEssentialFlow(5);
+  const locale = readLanguagePreference() ?? "es", copy = world5QuizCopy[locale];
+  const [roundRead, setRoundRead] = useState(readWorld5Rounds);
+  const rounds = useRef(roundRead);
+  rounds.current = roundRead;
+  const resolveView = (read: World5RoundsRead, pathname = location.pathname) => resolveWorld5QuizView({
+    pathname, read, readOnly: essential.readOnly, pendingStepId: essential.firstPendingStepId,
+    canUseStep: (id) => canUseUiStep(5, id, getJourneyRuntimeContext()),
+  });
+  const [view, setView] = useState<World5QuizView>(() => resolveView(roundRead));
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [busy, setBusy] = useState(false), [presented, setPresented] = useState(false);
+  const [saveError, setSaveError] = useState(false), [assetError, setAssetError] = useState(false);
+  const [awardedArea, setAwardedArea] = useState<Station5AreaId | null>(null);
+  const [presentationRetry, setPresentationRetry] = useState(0);
+  const [visible, setVisible] = useState(() => !document.hidden);
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">(() => window.innerWidth >= window.innerHeight ? "landscape" : "portrait");
+  const heading = useRef<HTMLHeadingElement>(null), advanceButton = useRef<HTMLButtonElement>(null);
+  const feedback = useRef<HTMLDivElement>(null);
+  const answeredFocusOrigin = useRef<HTMLElement | null>(null);
+  const [feedbackOwnsFocus, setFeedbackOwnsFocus] = useState(false);
+  const unitId = useId(), titleId = unitId + "-title", questionId = unitId + "-question", instructionId = unitId + "-instruction";
+  const pendingCommand = useRef<World5RoundCommand | null>(null);
+  const retryKind = useRef<"present" | "advance" | "close" | "command">("present");
+  const lastActivatedAssetAttempt = useRef<string | null>(null);
+  const activeRef = useRef(activity.active);
+  activeRef.current = activity.active;
+  const lock = useRef(false);
+  const input = { screen: 5 as const, contentRevision: essential.contentRevision, attemptId: activity.attemptId };
+  const isCurrentAttempt = () => {
+    const context = getJourneyRuntimeContext();
+    return Boolean(input.attemptId && context.active && context.authorized && context.attemptId === input.attemptId && context.screen === 5 && context.mode === "normal");
   };
+  // A new deliberate gesture captures its own authority. A saved command keeps
+  // its identity across technical retries; an old callback keeps its old attempt.
+  function captureCommitGuard() {
+    const token = captureJourneyMutationToken(), attemptId = input.attemptId;
+    return () => {
+      const context = getJourneyRuntimeContext();
+      return Boolean(isJourneyMutationTokenCurrent(token) && attemptId && activeRef.current && !document.hidden && context.active && context.authorized && context.screen === 5 && context.mode === "normal" && context.attemptId === attemptId);
+    };
+  }
+  function updateRead(read: World5RoundsRead) { rounds.current = read; setRoundRead(read); }
+  const storageIssue = roundRead.status === "corrupt" || roundRead.status === "unavailable";
+  const available = activity.active && visible && !essential.readOnly && !busy && !storageIssue && !assetError;
+  const mutable = available && !saveError;
+  const area = view === "resultado" ? null : view;
+  const question = area ? getWorld5Question(area, locale) : null;
+  const quiz = essential.readOnly && roundRead.status === "legacy" ? roundRead.legacyQuiz : roundRead.quiz;
+  const correct = area !== null && quiz.correctAnswers.includes(area);
+  const incorrect = area !== null && quiz.answeredQuestions.includes(area) && !correct && !quiz.skippedQuestions.includes(area);
+  const skipped = area !== null && quiz.skippedQuestions.includes(area);
+  const resolved = correct || incorrect || skipped;
+  const answeredSide = area ? roundRead.round?.outcomes[area]?.choice : null;
+  const prizeEligible = !essential.readOnly && roundRead.eligible && (essential.confirmed.includes("visitante") || essential.closed);
+  const historicalWin = essential.readOnly && roundRead.eligible;
+  const background = getWorld5GalleryEnvironment(orientation);
+  const legacyOnly = roundRead.status === "legacy" && !roundRead.ledger;
+  const showLegacyHistory = legacyOnly && (roundRead.legacyQuiz.answeredQuestions.length > 0 || roundRead.legacyQuiz.skippedQuestions.length > 0);
 
+  useLayoutEffect(() => {
+    const origin = answeredFocusOrigin.current;
+    if (!resolved || !origin) return;
+    answeredFocusOrigin.current = null;
+    if (!activity.active || !visible || !isCurrentAttempt()) return;
+    const focusLost = !origin.isConnected || (origin instanceof HTMLButtonElement && origin.disabled);
+    if (focusLost && (document.activeElement === origin || document.activeElement === document.body)) feedback.current?.focus();
+  }, [resolved, activity.active, visible, activity.attemptId]);
+  useEffect(() => {
+    const update = () => setVisible(!document.hidden);
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+  useEffect(() => {
+    const token = activity.attemptId, runtime = getJourneyRuntimeContext();
+    if (!activity.active || !visible || document.hidden || !token || !runtime.active || !runtime.authorized || runtime.screen !== 5 || runtime.attemptId !== token || lastActivatedAssetAttempt.current === token) return;
+    lastActivatedAssetAttempt.current = token;
+    setAssetError(false);
+    // Re-preparation may restore a failed readback. Re-read without replacing
+    // the pending command: the visitor still retries its original action ID.
+    if (pendingCommand.current) updateRead(readWorld5Rounds());
+  }, [activity.active, activity.attemptId, visible]);
+  useEffect(() => {
+    const resize = () => setOrientation(window.innerWidth >= window.innerHeight ? "landscape" : "portrait");
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+  useEffect(() => {
+    const read = readWorld5Rounds();
+    updateRead(read); setView(resolveView(read));
+    setAwardedArea(null); setAssetError(false); setSaveError(false);
+    setFeedbackOwnsFocus(false); answeredFocusOrigin.current = null;
+    pendingCommand.current = null;
+    // Navigation restores verified round state; semantic writes alone must not
+    // replace the visible question before its explicit Next gesture.
+  }, [location.pathname, location.key, essential.readOnly]);
+  useEffect(() => {
+    const changed = (event: StorageEvent) => {
+      if (event.key !== null && event.key !== WORLD5_ROUNDS_STORAGE_KEY && event.key !== WORLD5_QUIZ_STORAGE_KEY) return;
+      const pending = pendingCommand.current !== null, read = readWorld5Rounds();
+      pendingCommand.current = null;
+      updateRead(read); setView(resolveView(read));
+      setSaveError(pending); retryKind.current = "present";
+      setAwardedArea(null);
+    };
+    window.addEventListener("storage", changed);
+    return () => window.removeEventListener("storage", changed);
+  }, [location.pathname, essential.readOnly, essential.firstPendingStepId]);
+  useEffect(() => {
+    setPresented(false);
+    if (!activity.active || !visible || essential.readOnly || storageIssue || assetError) return;
+    let cancelled = false;
+    void markEssentialPresented({ ...input, stepId: view, mode: "standard" }).then((result) => {
+      if (cancelled || !activeRef.current || document.hidden || !isCurrentAttempt()) return;
+      setPresented(result.ok);
+      if (pendingCommand.current) {
+        // Preparation cannot hide an unresolved write or replace its retry ID.
+        setSaveError(true);
+      } else {
+        setSaveError(!result.ok); retryKind.current = "present";
+        if (result.ok) heading.current?.focus();
+      }
+    });
+    return () => { cancelled = true; };
+  }, [activity.active, visible, activity.attemptId, essential.readOnly, essential.contentRevision, view, storageIssue, assetError, presentationRetry]);
+
+  function fail(kind: typeof retryKind.current) { retryKind.current = kind; setSaveError(true); }
+  function command(action: NewRoundAction): World5RoundCommand {
+    const read = rounds.current;
+    return { ...action, actionId: crypto.randomUUID(), expectedRaw: read.raw, roundId: read.round?.roundId ?? null };
+  }
+  function commit(action: World5RoundCommand, canCommit = captureCommitGuard()) {
+    if (!canCommit()) return null;
+    const result = mutateWorld5Rounds(action, { canCommit });
+    if (!canCommit()) return null;
+    updateRead(result.read);
+    if (!result.ok) {
+      if (result.reason === "conflict") {
+        pendingCommand.current = null; setView(resolveView(result.read)); fail("present");
+      } else { pendingCommand.current = action; fail("command"); }
+      return null;
+    }
+    pendingCommand.current = null; setSaveError(false);
+    return result;
+  }
+  function applyAnswer(action: World5RoundCommand) {
+    const result = commit(action);
+    if (!result) return false;
+    const focused = document.activeElement;
+    if (action.kind === "answer" && focused instanceof HTMLElement && (focused.matches("[data-answer]") || focused.closest(".s5-quiz-error"))) {
+      answeredFocusOrigin.current = focused;
+      setFeedbackOwnsFocus(true);
+    }
+    setAwardedArea(result.awarded && "area" in action ? action.area : null);
+    return true;
+  }
+  function answer(side: "agreement" | "disagreement") {
+    if (!mutable || !presented || !area || lock.current || pendingCommand.current || rounds.current.round?.outcomes[area]) return;
+    lock.current = true;
+    applyAnswer(command({ kind: "answer", area, side }));
+    lock.current = false;
+  }
+  async function advance(skip = false) {
+    if (!activity.active || document.hidden || essential.readOnly || !presented || !area || lock.current || storageIssue || assetError) return;
+    const canCommit = captureCommitGuard(); if (!canCommit()) return;
+    lock.current = true; setBusy(true);
+    try {
+      if (skip && !rounds.current.round?.outcomes[area]) {
+        const saved = pendingCommand.current?.kind === "skip" ? pendingCommand.current : command({ kind: "skip", area });
+        if (!commit(saved, canCommit)) { retryKind.current = "advance"; return; }
+      }
+      if (!rounds.current.round?.outcomes[area]) return;
+      if (area === "visitante") {
+        const read = rounds.current;
+        const saved = pendingCommand.current?.kind === "finish_round" ? pendingCommand.current : read.complete && read.round?.completionReceipt ? { kind: "finish_round" as const, actionId: read.round.completionReceipt, expectedRaw: read.raw, roundId: read.round.roundId } : command({ kind: "finish_round" });
+        if (!commit(saved, canCommit)) { retryKind.current = "advance"; return; }
+      }
+      if (!canCommit()) return;
+      const result = await confirmEssentialStep({ ...input, stepId: area, cause: "visitor_advance" });
+      if (!canCommit()) return;
+      if (result.ok) {
+        setSaveError(false);
+        const next = WORLD5_QUIZ_AREA_ORDER[WORLD5_QUIZ_AREA_ORDER.indexOf(area) + 1];
+        navigate(next ? "/estacion/5/" + next : worldFiveEntryRoute, { replace: true });
+      } else fail("advance");
+    } finally { lock.current = false; setBusy(false); }
+  }
+  function beginRetry(saved?: World5RoundCommand) {
+    if (!activity.active || document.hidden || essential.readOnly || lock.current || (!saved && !rounds.current.canRetry)) return;
+    const canCommit = captureCommitGuard(); if (!canCommit()) return;
+    lock.current = true;
+    const result = commit(saved ?? command({ kind: "begin_retry" }), canCommit);
+    if (result && canCommit()) {
+      setAwardedArea(null); setFeedbackOwnsFocus(false);
+      setView("plantas"); navigate("/estacion/5/plantas", { replace: true });
+    }
+    lock.current = false;
+  }
+  async function close(retryingSave = false) {
+    if (!(retryingSave ? available : mutable) || !presented || view !== "resultado" || !rounds.current.complete || lock.current) return;
+    const canCommit = captureCommitGuard(); if (!canCommit()) return;
+    lock.current = true; setBusy(true);
+    try {
+      const result = await closeEssentialRoom({ ...input, cause: "visitor_close" });
+      if (!canCommit()) return;
+      if (result.ok && acceptJourneyIntent({ from: 5, to: "/final", kind: "result_closure", attemptId: input.attemptId })) navigate(worldFiveToFinalTransitionRoute);
+      else fail("close");
+    } finally { lock.current = false; setBusy(false); }
+  }
+  async function retry() {
+    const canCommit = captureCommitGuard(); if (!canCommit() || essential.readOnly) return;
+    if (storageIssue) {
+      const read = readWorld5Rounds(); updateRead(read);
+      if (read.status !== "corrupt" && read.status !== "unavailable") {
+        setSaveError(pendingCommand.current !== null);
+        if (!pendingCommand.current) setView(resolveView(read));
+        setPresentationRetry((value) => value + 1);
+      }
+      return;
+    }
+    if (retryKind.current === "advance") await advance(pendingCommand.current?.kind === "skip");
+    else if (retryKind.current === "close") await close(true);
+    else if (pendingCommand.current) {
+      const saved = pendingCommand.current;
+      if (saved.kind === "begin_retry") beginRetry(saved);
+      else if (saved.kind === "finish_round" || saved.kind === "skip") await advance(saved.kind === "skip");
+      else applyAnswer(saved);
+    } else { setSaveError(false); setPresentationRetry((value) => value + 1); }
+  }
+  function resetLocal() {
+    const canCommit = captureCommitGuard(); if (!canCommit() || roundRead.status !== "corrupt") return;
+    if (!recoverWorld5Quiz({ canCommit })) { setSaveError(true); return; }
+    const read = readWorld5Rounds(); updateRead(read);
+    pendingCommand.current = null; setSaveError(false); setConfirmReset(false);
+    setAwardedArea(null); setView(resolveView(read)); setPresentationRetry((value) => value + 1);
+  }
+  function openQuestion(id: Station5AreaId) {
+    if (!activity.active || !visible || busy || pendingCommand.current || !canUseUiStep(5, id, getJourneyRuntimeContext())) return;
+    if (!essential.readOnly) {
+      if (id === view) heading.current?.focus();
+      return;
+    }
+    const path = "/estacion/5/" + id;
+    if (resolveView(rounds.current, path) !== id) return;
+    navigate(path, { replace: true });
+  }
+  const lia = (
+    <LiaJourneyMotion
+      className="s5-quiz-lia"
+      active={activity.active && visible}
+      action={
+        view === "resultado"
+          ? prizeEligible ? "respond" : "attention"
+          : correct ? "respond" : answeredSide ? "attention" : "present"
+      }
+      target={view}
+      replayKey={`${view}-${awardedArea}-${resolved}`}
+      direction={
+        answeredSide ? answeredSide === "agreement" ? "left" : "right"
+        : area && WORLD5_QUIZ_AREA_ORDER.indexOf(area) % 2
+          ? "left"
+          : "right"
+      }
+    />
+  );
   return (
     <main
-      className="s5-screen"
-      data-active-area={activeArea ?? "map"}
-      data-copy-approval={station5ContentApprovalStatus}
-      data-motion-lock={motionLock ? "true" : "false"}
-      data-station-complete={visitorCompleted ? "true" : "false"}
-      data-station5-reduced-motion={reducedMotion ? "true" : "false"}
-      data-station5-state={presentation}
-      data-transition-mode={transitionMode ?? "none"}
-      data-world5-close-ready={closeReady ? "true" : "false"}
-      data-world5-close-state={closeState}
-      data-world5-exit-target={worldFiveToFinalTransitionRoute}
-      data-world5-global-complete={globalComplete ? "true" : "false"}
-      aria-labelledby={mapActive ? "station5-map-title" : "station5-title"}
+      className="s5-quiz"
+      data-station5-area={view}
+      data-station5-state={
+        view === "resultado" ? "result" : resolved ? "resolved" : "question"
+      }
+      data-prize-eligible={view === "resultado" ? prizeEligible : undefined}
+      data-station5-readonly={essential.readOnly}
+      data-motion-active={activity.active && visible}
+      aria-labelledby="station5-title"
     >
-      <div className="s5-layout">
-        <section
-          className="s5-stage"
-          aria-label="Mapa del presente y subestaciones Plantas, Sistema, Espacio y Visitante"
-        >
-          <div
-            className="s5-map-scene"
-            data-station5-scene="map"
-            aria-hidden={!renderMapAssets}
-            inert={!renderMapAssets ? true : undefined}
-          >
-            <ProjectedRasterStage
-              className="s5-map-projection"
-              fit="contain"
-              landscapeHeight={1440}
-              landscapeSrc={
-                renderMapAssets
-                  ? world5RuntimeAssets.mapEnvironmentLandscape
-                  : undefined
-              }
-              landscapeWidth={2560}
-              name="map"
-              portraitHeight={2560}
-              portraitSrc={
-                renderMapAssets
-                  ? world5RuntimeAssets.mapEnvironmentPortrait
-                  : undefined
-              }
-              portraitWidth={1440}
-            >
-              <header className="s5-map-heading">
-                <p>ESTACIÓN V</p>
-                <h1 id="station5-map-title">MUNDO PRESENTE</h1>
-              </header>
-              <div
-                className="s5-map-artboard"
-                data-map-complete={visitorCompleted ? "true" : "false"}
-                data-map-recess="source-derived"
-                data-recess-polygon-portrait={serializeSourcePolygon(
-                  mapRecessMaskPortrait,
-                )}
-                data-recess-polygon-landscape={serializeSourcePolygon(
-                  mapRecessMaskLandscape,
-                )}
-              >
-                {station5Areas.map((area) => {
-                  const visualState = areaState(area.id);
-                  const protectedArea = visualState === "locked";
-                  return (
-                    <button
-                      key={area.id}
-                      ref={
-                        area.id === "plantas"
-                          ? plantsButtonRef
-                          : area.id === "sistema"
-                            ? systemButtonRef
-                            : area.id === "espacio"
-                              ? spaceButtonRef
-                              : visitorButtonRef
-                      }
-                      type="button"
-                      className={`s5-sector s5-sector--${area.id}`}
-                      style={sectorSourceStyle(area.id)}
-                      data-station5-area={area.id}
-                      data-area-state={visualState}
-                      data-protected={protectedArea ? "true" : "false"}
-                      aria-label={`${area.accessibleLabel}. ${visualState === "completed" ? "Completada" : visualState === "available" ? "Disponible" : "Protegida"}.`}
-                      disabled={motionLock}
-                      onClick={renderAreaAction(area.id)}
-                    >
-                      <img
-                        alt=""
-                        data-runtime-asset={
-                          renderMapAssets ? sectorAssets[area.id] : undefined
-                        }
-                        draggable="false"
-                        src={
-                          renderMapAssets ? sectorAssets[area.id] : undefined
-                        }
-                      />
-                      <span className="s5-sector__label">{area.title}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              <picture className="s5-map-rim" aria-hidden="true">
-                <source
-                  media="(orientation: landscape)"
-                  srcSet={
-                    renderMapAssets
-                      ? world5RuntimeAssets.mapRimLandscape
-                      : undefined
-                  }
-                />
-                <img
-                  alt=""
-                  data-runtime-asset={
-                    renderMapAssets
-                      ? world5RuntimeAssets.mapRimPortrait
-                      : undefined
-                  }
-                  draggable="false"
-                  src={
-                    renderMapAssets
-                      ? world5RuntimeAssets.mapRimPortrait
-                      : undefined
-                  }
-                />
-              </picture>
-            </ProjectedRasterStage>
-          </div>
-
-          <div
-            className="s5-plants-scene"
-            data-station5-scene="plantas"
-            aria-hidden={!renderPlantsAssets}
-            inert={!renderPlantsAssets ? true : undefined}
-          >
-            <ProjectedRasterStage
-              fit="cover"
-              landscapeHeight={1080}
-              landscapeSrc={
-                renderPlantsAssets
-                  ? world5RuntimeAssets.plantsEnvironmentLandscape
-                  : undefined
-              }
-              landscapeWidth={1920}
-              name="plants"
-              portraitHeight={1920}
-              portraitSrc={
-                renderPlantsAssets
-                  ? world5RuntimeAssets.plantsEnvironmentPortrait
-                  : undefined
-              }
-              portraitWidth={1440}
-            >
-              <div className="s5-plants-focus" data-anchor-id="A_PLANT_CONTACT">
-                <img
-                  alt=""
-                  data-runtime-asset={
-                    renderPlantsAssets
-                      ? world5RuntimeAssets.plantsFocus
-                      : undefined
-                  }
-                  draggable="false"
-                  src={
-                    renderPlantsAssets
-                      ? world5RuntimeAssets.plantsFocus
-                      : undefined
-                  }
-                />
-                <button
-                  className="s5-leaf-control"
-                  type="button"
-                  aria-label={station5PlantsCopy.leafAccessibleLabel}
-                  disabled={presentation !== "plants_intro"}
-                  onClick={activateArea}
-                />
-              </div>
-            </ProjectedRasterStage>
-            <button
-              className="s5-back"
-              type="button"
-              onClick={
-                presentation === "plants_resolved"
-                  ? returnToMap
-                  : returnToMapImmediately
-              }
-              disabled={
-                presentation === "storage_error" ||
-                transitionMode === "returning"
-              }
-            >
-              {presentation === "plants_resolved" ||
-              presentation === "storage_error"
-                ? station5PlantsCopy.returnLabel
-                : "← Mapa"}
-            </button>
-          </div>
-
-          <div
-            className="s5-system-scene"
-            data-station5-scene="sistema"
-            aria-hidden={!renderSystemAssets}
-            inert={!renderSystemAssets ? true : undefined}
-          >
-            <ProjectedRasterStage
-              fit="cover"
-              landscapeHeight={1080}
-              landscapeSrc={
-                renderSystemAssets
-                  ? world5RuntimeAssets.systemEnvironmentLandscape
-                  : undefined
-              }
-              landscapeWidth={1920}
-              name="system"
-              portraitHeight={1920}
-              portraitSrc={
-                renderSystemAssets
-                  ? world5RuntimeAssets.systemEnvironmentPortrait
-                  : undefined
-              }
-              portraitWidth={1440}
-            >
-              <button
-                className="s5-system-focus"
-                type="button"
-                data-anchor-id="A_SYSTEM_PLANE"
-                data-system-rotation="-2.5deg-portrait_-2deg-landscape"
-                aria-label={station5SystemCopy.actionAccessibleLabel}
-                disabled={presentation !== "system_intro"}
-                onClick={activateArea}
-              >
-                <img
-                  alt=""
-                  data-runtime-asset={
-                    renderSystemAssets
-                      ? world5RuntimeAssets.systemFocus
-                      : undefined
-                  }
-                  draggable="false"
-                  src={
-                    renderSystemAssets
-                      ? world5RuntimeAssets.systemFocus
-                      : undefined
-                  }
-                />
-              </button>
-            </ProjectedRasterStage>
-            <button
-              className="s5-back"
-              type="button"
-              onClick={
-                presentation === "system_resolved"
-                  ? returnToMap
-                  : returnToMapImmediately
-              }
-              disabled={
-                presentation === "storage_error" ||
-                transitionMode === "returning"
-              }
-            >
-              {presentation === "system_resolved" ||
-              presentation === "storage_error"
-                ? station5SystemCopy.returnLabel
-                : "← Mapa"}
-            </button>
-          </div>
-
-          <div
-            className="s5-space-scene"
-            data-station5-scene="espacio"
-            aria-hidden={!renderSpaceAssets}
-            inert={!renderSpaceAssets ? true : undefined}
-          >
-            <ProjectedRasterStage
-              fit="cover"
-              landscapeHeight={1080}
-              landscapeSrc={
-                renderSpaceAssets
-                  ? world5RuntimeAssets.spaceEnvironmentLandscape
-                  : undefined
-              }
-              landscapeWidth={1920}
-              name="space"
-              portraitHeight={1920}
-              portraitSrc={
-                renderSpaceAssets
-                  ? world5RuntimeAssets.spaceEnvironmentPortrait
-                  : undefined
-              }
-              portraitWidth={1440}
-            >
-              <button
-                className="s5-space-focus"
-                type="button"
-                data-anchor-id="A_SPACE_WALKWAY"
-                data-source-socket-landscape="0.14,0.24,0.36,0.58"
-                data-source-socket-portrait="0.24,0.43,0.42,0.32"
-                aria-label={station5SpaceCopy.actionAccessibleLabel}
-                disabled={presentation !== "space_intro"}
-                onClick={activateArea}
-              >
-                <img
-                  alt=""
-                  data-runtime-asset={
-                    renderSpaceAssets
-                      ? world5RuntimeAssets.spaceFocus
-                      : undefined
-                  }
-                  draggable="false"
-                  src={
-                    renderSpaceAssets
-                      ? world5RuntimeAssets.spaceFocus
-                      : undefined
-                  }
-                />
-              </button>
-            </ProjectedRasterStage>
-            <button
-              className="s5-back"
-              type="button"
-              onClick={
-                presentation === "space_resolved"
-                  ? returnToMap
-                  : returnToMapImmediately
-              }
-              disabled={
-                presentation === "storage_error" ||
-                transitionMode === "returning"
-              }
-            >
-              {presentation === "space_resolved" ||
-              presentation === "storage_error"
-                ? station5SpaceCopy.returnLabel
-                : "← Mapa"}
-            </button>
-          </div>
-
-          <div
-            className="s5-visitor-scene"
-            data-station5-scene="visitante"
-            aria-hidden={!renderVisitorAssets}
-            inert={!renderVisitorAssets ? true : undefined}
-          >
-            <ProjectedRasterStage
-              fit="cover"
-              landscapeHeight={1080}
-              landscapeSrc={
-                renderVisitorAssets
-                  ? world5RuntimeAssets.visitorEnvironmentLandscape
-                  : undefined
-              }
-              landscapeWidth={1920}
-              name="visitor"
-              portraitHeight={1920}
-              portraitSrc={
-                renderVisitorAssets
-                  ? world5RuntimeAssets.visitorEnvironmentPortrait
-                  : undefined
-              }
-              portraitWidth={1440}
-            >
-              <button
-                className="s5-visitor-focus"
-                type="button"
-                data-anchor-id="P_VISITOR_RING_CENTER"
-                data-source-anchor="768,1000"
-                data-source-anchor-correction-landscape="125,0"
-                data-source-socket-landscape="0.15,0.22,0.40,0.66"
-                data-source-socket-portrait="0.23,0.42,0.54,0.34"
-                aria-label={station5VisitorCopy.actionAccessibleLabel}
-                disabled={presentation !== "visitor_intro"}
-                onClick={activateArea}
-              >
-                <img
-                  alt=""
-                  data-runtime-asset={
-                    renderVisitorAssets
-                      ? world5RuntimeAssets.visitorFocus
-                      : undefined
-                  }
-                  draggable="false"
-                  src={
-                    renderVisitorAssets
-                      ? world5RuntimeAssets.visitorFocus
-                      : undefined
-                  }
-                />
-              </button>
-            </ProjectedRasterStage>
-            <button
-              className="s5-back"
-              type="button"
-              onClick={
-                presentation === "visitor_resolved"
-                  ? returnToMap
-                  : returnToMapImmediately
-              }
-              disabled={
-                presentation === "storage_error" ||
-                transitionMode === "returning"
-              }
-            >
-              {presentation === "visitor_resolved" ||
-              presentation === "storage_error"
-                ? station5VisitorCopy.returnLabel
-                : "← Mapa"}
-            </button>
-          </div>
-        </section>
-
-        {mapActive ? (
-          <World5EditorialPanel
-            action={
-              presentation === "map_blocked_feedback" ? (
-                <button
-                  className="s5-secondary-action"
-                  type="button"
-                  onClick={() => {
-                    setBlockedArea(null);
-                    setPresentation("map_overview");
-                    setAnnouncement("");
-                  }}
-                >
-                  Volver al mapa general
-                </button>
-              ) : closeReady ? (
-                <button
-                  ref={closeButtonRef}
-                  className="s5-close-action"
-                  type="button"
-                  aria-busy={closurePhase === "persisting" ? "true" : "false"}
-                  disabled={closurePhase === "persisting"}
-                  onClick={closeStation}
-                >
-                  {closurePhase === "error"
-                    ? PROGRESS_SAVE_RETRY_LABEL
-                    : station5FixedCta}
-                </button>
-              ) : undefined
-            }
-            context={
-              presentation === "map_blocked_feedback"
-                ? "RECORRIDO PROTEGIDO"
-                : undefined
-            }
-            title={
-              presentation === "map_blocked_feedback"
-                ? "Área protegida"
-                : undefined
-            }
-            titleAs="h2"
-            lead={
-              presentation === "map_blocked_feedback"
-                ? blockedGuidance
-                : overviewCopy.lead
-            }
-            support={
-              presentation === "map_blocked_feedback"
-                ? "Tu avance y tu ubicación no cambiaron."
-                : overviewCopy.support
-            }
-            status={
-              closurePhase === "error" ? PROGRESS_SAVE_ERROR_COPY : undefined
-            }
-            liaAsset={liaAsset}
-            liaRole={liaRole}
-          />
-        ) : activeArea === "visitante" ? (
-          <World5EditorialPanel
-            action={
-              presentation === "storage_error" ? (
-                <button
-                  className="s5-secondary-action"
-                  type="button"
-                  onClick={retryStorage}
-                >
-                  {station5VisitorCopy.retryLabel}
-                </button>
-              ) : undefined
-            }
-            context="VISITANTE · ÁREA 4 DE 4"
-            title={station5VisitorCopy.heading}
-            headingRef={headingRef}
-            lead={
-              presentation === "visitor_resolved"
-                ? station5VisitorCopy.resolvedDescription
-                : station5VisitorCopy.lead
-            }
-            support={
-              presentation === "visitor_resolved"
-                ? undefined
-                : station5VisitorCopy.instruction
-            }
-            status={
-              presentation === "visitor_resolved"
-                ? station5VisitorCopy.resolvedStatus
-                : presentation === "storage_error"
-                  ? station5VisitorCopy.storageError
-                  : undefined
-            }
-            liaAsset={liaAsset}
-            liaRole={liaRole}
-          />
-        ) : activeArea === "espacio" ? (
-          <World5EditorialPanel
-            action={
-              presentation === "storage_error" ? (
-                <button
-                  className="s5-secondary-action"
-                  type="button"
-                  onClick={retryStorage}
-                >
-                  {station5SpaceCopy.retryLabel}
-                </button>
-              ) : undefined
-            }
-            context="ESPACIO · ÁREA 3 DE 4"
-            title={station5SpaceCopy.heading}
-            headingRef={headingRef}
-            lead={
-              presentation === "space_resolved"
-                ? station5SpaceCopy.resolvedDescription
-                : station5SpaceCopy.lead
-            }
-            support={
-              presentation === "space_resolved"
-                ? undefined
-                : station5SpaceCopy.instruction
-            }
-            status={
-              presentation === "space_resolved"
-                ? station5SpaceCopy.resolvedStatus
-                : presentation === "storage_error"
-                  ? station5SpaceCopy.storageError
-                  : undefined
-            }
-            liaAsset={liaAsset}
-            liaRole={liaRole}
-          />
-        ) : activeArea === "sistema" ? (
-          <World5EditorialPanel
-            action={
-              presentation === "storage_error" ? (
-                <button
-                  className="s5-secondary-action"
-                  type="button"
-                  onClick={retryStorage}
-                >
-                  {station5SystemCopy.retryLabel}
-                </button>
-              ) : undefined
-            }
-            context="SISTEMA · ÁREA 2 DE 4"
-            title={station5SystemCopy.heading}
-            headingRef={headingRef}
-            lead={station5SystemCopy.lia}
-            support={
-              presentation === "system_resolved"
-                ? station5SystemCopy.resolvedDescription
-                : station5SystemCopy.instruction
-            }
-            status={
-              presentation === "system_resolved"
-                ? station5SystemCopy.resolvedStatus
-                : presentation === "storage_error"
-                  ? station5SystemCopy.storageError
-                  : undefined
-            }
-            liaAsset={liaAsset}
-            liaRole={liaRole}
-          />
-        ) : (
-          <World5EditorialPanel
-            action={
-              presentation === "storage_error" ? (
-                <button
-                  className="s5-secondary-action"
-                  type="button"
-                  onClick={retryStorage}
-                >
-                  {station5PlantsCopy.retryLabel}
-                </button>
-              ) : undefined
-            }
-            context="PLANTAS · ÁREA 1 DE 4"
-            title="Plantas"
-            headingRef={headingRef}
-            lead={station5PlantsCopy.description}
-            support={
-              presentation === "plants_resolved"
-                ? station5PlantsCopy.resolvedDescription
-                : station5PlantsCopy.instruction
-            }
-            status={
-              presentation === "plants_resolved"
-                ? station5PlantsCopy.resolvedStatus
-                : presentation === "storage_error"
-                  ? station5PlantsCopy.storageError
-                  : undefined
-            }
-            liaAsset={liaAsset}
-            liaRole={liaRole}
-          />
-        )}
+      <div className="s5-quiz-backdrop" aria-hidden="true">
+        <img
+          className="s5-quiz-gallery"
+          src={background}
+          alt=""
+          data-runtime-asset={background}
+          onError={() => setAssetError(true)}
+        />
       </div>
-
-      <p className="s5-sr-only" role="status" aria-live="polite">
-        {announcement}
-      </p>
+      <div className="s5-gallery-journey">
+        <div className="s5-gallery-marquee">
+        <header className="s5-quiz-header">
+          <h1 id="station5-title">{copy.room} · {copy.title}</h1>
+          {!essential.readOnly || roundRead.ledger ? <p className="s5-quiz-round">{copy.round(roundRead.roundNumber)}</p> : null}
+          {view === "plantas" ? (
+            <div className="s5-quiz-introduction">
+              <p>{copy.introduction} {copy.guidance}</p>
+              <p>{copy.prizeCondition}</p>
+            </div>
+          ) : null}
+          {showLegacyHistory ? <p className="s5-quiz-legacy">{copy.legacyHistory(roundRead.legacyQuiz.correctAnswers.length)}</p> : null}
+        </header>
+        <nav className="s5-quiz-nav" aria-label={copy.review}>
+          {WORLD5_QUIZ_AREA_ORDER.map((id, index) => (
+            <button
+              key={id}
+              type="button"
+              aria-current={view === id ? "step" : undefined}
+              disabled={
+                !activity.active ||
+                !visible ||
+                busy || !!pendingCommand.current ||
+                !canUseUiStep(5, id, getJourneyRuntimeContext()) ||
+                (!essential.readOnly && view !== id)
+              }
+              onClick={() => openQuestion(id)}
+            >
+              <img src={world5NavigationAssets[id]} alt="" draggable={false} data-runtime-asset={world5NavigationAssets[id]} onError={() => setAssetError(true)} />
+              <span className="s5-quiz-nav-caption"><span>{index + 1}</span><span className="s5-quiz-nav-title">{getWorld5AreaTitle(id, locale)}</span></span>
+            </button>
+          ))}
+        </nav>
+        </div>
+        <article
+          className="s5-question-unit"
+          aria-labelledby={titleId}
+          data-answer-accepted={!essential.readOnly ? answeredSide ?? undefined : undefined}
+          aria-busy={busy}
+        >
+          <header className="s5-question-prompt s5-quiz-reading">
+            <div>
+              <h2 id={titleId} ref={heading} tabIndex={-1}>
+                {question?.title ?? copy.result}
+              </h2>
+              {essential.readOnly ? <p>{copy.readonly}</p> : null}
+              {question ? (
+                <>
+                <p
+                  id={questionId}
+                  className="s5-quiz-question"
+                  data-source-id={question.sourceId}
+                >
+                  {question.question}
+                </p>
+                <p id={instructionId} hidden>{question.instruction}</p>
+                </>
+              ) : null}
+            </div>
+            {question ? lia : null}
+          </header>
+          <section
+            className={`s5-quiz-scene${view === "resultado" ? " s5-quiz-scene--result" : ""}`}
+            aria-label={area ? getWorld5AreaTitle(area, locale) : copy.result}
+          >
+            {area && question ? (
+              <div
+                className="s5-quiz-options"
+                role="group"
+                aria-labelledby={questionId}
+                aria-describedby={instructionId}
+              >
+                {(["agreement", "disagreement"] as const).map((side) => (
+                  <button
+                    type="button"
+                    key={side}
+                    className="s5-quiz-option"
+                    disabled={
+                      !mutable || !presented || resolved || !!pendingCommand.current
+                    }
+                    aria-label={question[side]}
+                    data-answer={side}
+                    data-answer-selected={answeredSide === side ? "true" : undefined}
+                    onClick={() => answer(side)}
+                  >
+                    <img
+                      src={world5OptionAssets[area][side]}
+                      alt=""
+                      draggable={false}
+                      data-runtime-asset={world5OptionAssets[area][side]}
+                      onError={() => setAssetError(true)}
+                    />
+                    <span>{question[side]}</span>
+                  </button>
+                ))}
+              </div>
+            ) : null}
+            {view === "resultado" && !essential.readOnly && prizeEligible ? (
+              <div className="s5-quiz-confetti" data-station5-celebration="" aria-hidden="true">
+                {celebrationPieces.map(([x, y, rotation]) => (
+                  <span key={x} style={{ left: `${x}%`, top: `${y}%`, rotate: `${rotation}deg` }} />
+                ))}
+              </div>
+            ) : null}
+            {view === "resultado" ? lia : null}
+          </section>
+          <div className="s5-question-response s5-quiz-reading">
+            {question ? (
+              <>
+                <div
+                  ref={feedback}
+                  tabIndex={-1}
+                  className="s5-quiz-feedback"
+                  role="status"
+                  aria-live={feedbackOwnsFocus ? "off" : "polite"}
+                  aria-atomic="true"
+                >
+                  {resolved ? (
+                    correct ? (
+                      <>
+                        <p>{question.feedback}</p>
+                        {awardedArea !== area ? <p className="s5-quiz-point-context">{copy.credited}</p> : null}
+                        <p>
+                          {awardedArea === area
+                            ? question.point
+                            : alreadyCreditedPoint(question.point, locale)}
+                        </p>
+                      </>
+                    ) : (
+                      <p>{incorrect ? copy.wrong : copy.skipped}</p>
+                    )
+                  ) : null}
+                </div>
+                {!essential.readOnly ? (
+                  <button
+                    ref={advanceButton}
+                    type="button"
+                    className="s5-quiz-advance"
+                    disabled={!mutable || !presented || !!pendingCommand.current}
+                    onClick={() => void advance(!resolved)}
+                  >
+                    {resolved ? copy.next : copy.pass}
+                  </button>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <p className="s5-quiz-result" role="status">
+                  {essential.readOnly && !roundRead.ledger
+                    ? legacyOnly ? copy.legacyOutcome(roundRead.legacyQuiz.correctAnswers.length) : copy.noRound
+                    : copy.outcome(roundRead.score)}
+                </p>
+                <p>{prizeEligible ? copy.prize : historicalWin ? copy.readonlyPrize : essential.readOnly && legacyOnly ? copy.legacyNoPrize : copy.noPrize}</p>
+                {roundRead.complete && !roundRead.eligible && roundRead.roundNumber === 4 ? <p>{copy.exhausted}</p> : null}
+                {!essential.readOnly ? (
+                  <div className="s5-quiz-result-actions">
+                  {roundRead.canRetry ? (
+                    <button
+                      type="button"
+                      className="s5-quiz-retry-round"
+                      disabled={!mutable || !presented || !!pendingCommand.current}
+                      onClick={() => beginRetry()}
+                    >
+                      {copy.retryRound}
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="s5-quiz-advance gvo-journey-exit"
+                    disabled={!mutable || !presented || !roundRead.complete}
+                    onClick={() => void close()}
+                  >
+                    {copy.close}
+                  </button>
+                  </div>
+                ) : null}
+              </>
+            )}
+            {assetError ? <p role="alert">{copy.assets}</p> : null}
+            {storageIssue || saveError ? (
+              <div className="s5-quiz-error" role="alert">
+                <p>{storageIssue ? copy.recovery : copy.error}</p>
+                <button
+                  type="button"
+                  disabled={!activity.active || busy || essential.readOnly}
+                  onClick={() => void retry()}
+                >
+                  {copy.retry}
+                </button>
+                {roundRead.status === "corrupt" && !essential.readOnly ? (
+                  <>
+                    {confirmReset ? (
+                      <>
+                        <button
+                          type="button"
+                          disabled={!activity.active}
+                          onClick={resetLocal}
+                        >
+                          {copy.confirmReset}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setConfirmReset(false)}
+                        >
+                          {copy.cancel}
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled={!activity.active}
+                        onClick={() => setConfirmReset(true)}
+                      >
+                        {copy.reset}
+                      </button>
+                    )}
+                  </>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+        </article>
+      </div>
     </main>
   );
 }

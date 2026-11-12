@@ -17,7 +17,7 @@ export default function TargetReview({
       simple: {
         state: "supported",
         answer:
-          "Las plantas no hacen música por sí solas. El recorrido presenta una mediación entre una señal viva, una captura técnica y una interpretación. ¿Quieres volver a ese fragmento?",
+          "Visitaremos cinco salas para descubrir cómo se unen plantas, arte y tecnología. Nuestro viaje empieza en la raíz. ¿Quieres volver a esa sala?",
         citations: [source, publicEvidence["GVO-INTRO-03"]].map((s) => ({
           label: s.label,
           excerpt: s.text,
@@ -26,11 +26,11 @@ export default function TargetReview({
       technical: {
         state: "supported",
         answer:
-          "Conviene distinguir tres partes: señal viva, captura técnica e interpretación. Esta distinción pertenece al texto del recorrido; no describe por sí sola un mecanismo biológico. No tengo una definición científica aprobada para ampliarla.",
+          "La introducción presenta plantas, arte y tecnología. El recorrido conserva las salas en orden y permite volver a ellas al final. Estos fragmentos no describen un mecanismo biológico; no tengo evidencia aquí para ampliarlo.",
         citations: [
           {
-            label: publicEvidence["GVO-INTRO-03"].label,
-            excerpt: publicEvidence["GVO-INTRO-03"].text,
+            label: publicEvidence["GVO-INTRO-04"].label,
+            excerpt: publicEvidence["GVO-INTRO-04"].text,
           },
         ],
       },

@@ -1,6 +1,12 @@
 import type { RefObject } from "react";
 
-import { WORLD4_NODE_ANCHORS, WORLD4_Z_ORDER } from "./world4Geometry";
+import {
+  WORLD4_ARTBOARD,
+  WORLD4_NODE_ANCHORS,
+  WORLD4_PORTRAIT_ARTBOARD,
+  WORLD4_PORTRAIT_NODE_ANCHORS,
+  WORLD4_Z_ORDER,
+} from "./world4Geometry";
 import { WORLD4_RUNTIME_LAYER_DECISIONS } from "./world4AssetManifest";
 import { World4NodeStack, type World4NodeVisualState } from "./World4NodeStack";
 import type { World4NodeFxPhase } from "./World4NodeFx";
@@ -27,8 +33,10 @@ type World4StageProps = {
   progress: number;
   reducedMotion: boolean;
   revisitActive: boolean;
+  reviewAvailable?: boolean;
   tapHintAnchorRef: RefObject<HTMLButtonElement | null>;
   visualPhase: World4VisualPhase;
+  portraitEnvironment?: string;
 };
 
 type StageLayerProps = {
@@ -66,9 +74,14 @@ export function World4Stage({
   progress,
   reducedMotion,
   revisitActive,
+  reviewAvailable = chainComplete,
   tapHintAnchorRef,
   visualPhase,
+  portraitEnvironment,
 }: World4StageProps) {
+  const portrait = Boolean(portraitEnvironment);
+  const artboard = portrait ? WORLD4_PORTRAIT_ARTBOARD : WORLD4_ARTBOARD;
+  const anchors = portrait ? WORLD4_PORTRAIT_NODE_ANCHORS : WORLD4_NODE_ANCHORS;
   const transferActive =
     motionNodeIndex !== null &&
     ["route_transfer", "node_arrival", "node_active", "node_settle"].includes(
@@ -110,70 +123,79 @@ export function World4Stage({
     <div
       aria-label="Mesa de sistema con la cadena técnica de ocho pasos"
       className="s4-stage"
-      data-artboard-height="1024"
-      data-artboard-width="1536"
+      data-artboard-height={artboard.height}
+      data-artboard-width={artboard.width}
       data-disabled-runtime-asset={world4RuntimeAssets.table.frontEdge}
       data-disabled-stage-layer="z5"
       data-front-edge-decision={WORLD4_RUNTIME_LAYER_DECISIONS.tableFrontEdge}
       data-rear-plane-decision={WORLD4_RUNTIME_LAYER_DECISIONS.rearDepthPlane}
-      data-stage-aspect-ratio="3/2"
+      data-stage-aspect-ratio={portrait ? "3/4" : "3/2"}
+      data-stage-layout={portrait ? "portrait" : "wide"}
       role="group"
     >
       <StageLayer
-        className="s4-stage__square-layer s4-stage__environment"
+        className={`${portrait ? "s4-stage__full-layer" : "s4-stage__square-layer"} s4-stage__environment`}
         layer={WORLD4_Z_ORDER.environment}
         name="environment"
-        src={world4RuntimeAssets.environment.base}
+        src={portraitEnvironment ?? world4RuntimeAssets.environment.base}
       />
-      <StageLayer
-        className="s4-stage__square-layer s4-stage__rear-plane"
-        layer={WORLD4_Z_ORDER.rearDepthPlane}
-        name="rear-depth-plane"
-        src={world4RuntimeAssets.environment.rearDepthPlane}
-      />
-      <StageLayer
-        className="s4-stage__square-layer s4-stage__haze"
-        layer={WORLD4_Z_ORDER.haze}
-        name="haze"
-        src={world4RuntimeAssets.environment.haze}
-      />
+      {!portrait ? (
+        <>
+          <StageLayer
+            className="s4-stage__square-layer s4-stage__rear-plane"
+            layer={WORLD4_Z_ORDER.rearDepthPlane}
+            name="rear-depth-plane"
+            src={world4RuntimeAssets.environment.rearDepthPlane}
+          />
+          <StageLayer
+            className="s4-stage__square-layer s4-stage__haze"
+            layer={WORLD4_Z_ORDER.haze}
+            name="haze"
+            src={world4RuntimeAssets.environment.haze}
+          />
+        </>
+      ) : null}
 
       <World4AmbientLayer
         density={ambientDensity}
         reducedMotion={reducedMotion}
       />
 
-      <div
-        aria-hidden="true"
-        className="s4-table-assembly"
-        data-table-registration="shared-full-artboard"
-      >
-        <StageLayer
-          className="s4-stage__full-layer s4-stage__table-shadow"
-          layer={WORLD4_Z_ORDER.tableContactShadow}
-          name="table-contact-shadow"
-          src={world4RuntimeAssets.table.contactShadow}
-        />
-        <StageLayer
-          className="s4-stage__full-layer s4-stage__table-lower"
-          layer={WORLD4_Z_ORDER.tableLowerBase}
-          name="table-lower-base"
-          src={world4RuntimeAssets.table.lowerBase}
-        />
-        <StageLayer
-          className="s4-stage__full-layer s4-stage__table-top"
-          layer={WORLD4_Z_ORDER.tableTop}
-          name="tabletop"
-          src={world4RuntimeAssets.table.top}
-        />
-      </div>
+      {!portrait ? (
+        <div
+          aria-hidden="true"
+          className="s4-table-assembly"
+          data-table-registration="shared-full-artboard"
+        >
+          <StageLayer
+            className="s4-stage__full-layer s4-stage__table-shadow"
+            layer={WORLD4_Z_ORDER.tableContactShadow}
+            name="table-contact-shadow"
+            src={world4RuntimeAssets.table.contactShadow}
+          />
+          <StageLayer
+            className="s4-stage__full-layer s4-stage__table-lower"
+            layer={WORLD4_Z_ORDER.tableLowerBase}
+            name="table-lower-base"
+            src={world4RuntimeAssets.table.lowerBase}
+          />
+          <StageLayer
+            className="s4-stage__full-layer s4-stage__table-top"
+            layer={WORLD4_Z_ORDER.tableTop}
+            name="tabletop"
+            src={world4RuntimeAssets.table.top}
+          />
+        </div>
+      ) : null}
 
-      <StageLayer
-        className="s4-stage__full-layer s4-stage__route"
-        layer={WORLD4_Z_ORDER.passiveRoute}
-        name="passive-route"
-        src={world4RuntimeAssets.route.passive}
-      />
+      {!portrait ? (
+        <StageLayer
+          className="s4-stage__full-layer s4-stage__route"
+          layer={WORLD4_Z_ORDER.passiveRoute}
+          name="passive-route"
+          src={world4RuntimeAssets.route.passive}
+        />
+      ) : null}
 
       <World4RoutePulse
         chainComplete={chainComplete}
@@ -183,6 +205,7 @@ export function World4Stage({
         runId={motionEpoch}
         targetNodeIndex={motionNodeIndex}
         transferActive={transferActive}
+        portrait={portrait}
       />
 
       <span
@@ -199,8 +222,8 @@ export function World4Stage({
       <div className="s4-node-chain" data-node-count={station4Nodes.length}>
         {station4Nodes.map((node: Station4NodeContent, index) => (
           <World4NodeStack
-            allowCompletedActivation={chainComplete}
-            anchor={WORLD4_NODE_ANCHORS[index]}
+            allowCompletedActivation={reviewAvailable}
+            anchor={anchors[index]}
             buttonRef={index === 0 ? tapHintAnchorRef : undefined}
             fxActive={fxActive && motionNodeIndex === index}
             fxPhase={fxPhase}
@@ -226,6 +249,7 @@ export function World4Stage({
         motionKey={motionEpoch}
         nodeId={station4Nodes[liaIndex].id}
         reducedMotion={reducedMotion}
+        portrait={portrait}
       />
     </div>
   );

@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 
 import type { World2LiaLayerProfile } from "./world2LiaLayerProfiles";
 import { world2RuntimeAssets } from "./world2RuntimeAssets";
+import { LiaJourneyMotion, type LiaJourneyAction } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
 
 type World2LiaActorStyle = CSSProperties & {
   "--world2-lia-halo-opacity": string;
@@ -13,9 +14,12 @@ type World2LiaActorStyle = CSSProperties & {
 
 type World2LiaActorProps = {
   profile: World2LiaLayerProfile;
+  active?: boolean;
+  action?: LiaJourneyAction;
+  replayKey?: string;
 };
 
-export function World2LiaActor({ profile }: World2LiaActorProps) {
+export function World2LiaActor({ profile, active = true, action = "attention", replayKey }: World2LiaActorProps) {
   const style: World2LiaActorStyle = {
     "--world2-lia-halo-opacity": String(profile.haloOpacity),
     "--world2-lia-profile-scale": String(profile.scale),
@@ -33,7 +37,6 @@ export function World2LiaActor({ profile }: World2LiaActorProps) {
       data-lia-attention-target={profile.attentionTarget}
       data-lia-motion-profile={profile.motionProfile}
       data-lia-placement={profile.placement}
-      key={`world2-lia-actor-${profile.layerId}`}
       style={style}
     >
       <img
@@ -44,15 +47,13 @@ export function World2LiaActor({ profile }: World2LiaActorProps) {
         data-runtime-asset={world2RuntimeAssets.liaHalo}
         loading="lazy"
       />
-      <img
+      <LiaJourneyMotion
         className="world2-scene-asset world2-scene-asset--lia"
-        src={profile.pose}
-        alt=""
-        aria-hidden="true"
-        data-runtime-asset={profile.pose}
-        data-lia-source="repo-existing-2-5d"
-        data-world2-lia-pose={profile.layerId}
-        fetchPriority="high"
+        active={active}
+        action={action}
+        target={profile.layerId}
+        direction={profile.placement === "plant-side" ? "left" : "right"}
+        replayKey={replayKey}
       />
       <span
         className="world2-lia-field__shimmer"

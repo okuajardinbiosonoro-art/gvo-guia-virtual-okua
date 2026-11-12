@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
 
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 
@@ -49,6 +50,7 @@ function stripStyle(frameCount: number, frame: number): FinalLiaStripStyle {
 }
 
 export function FinalLiaMotion() {
+  const { active } = useJourneyActivity();
   const initialStateRef = useRef<{
     documentHidden: boolean;
     reducedMotion: boolean;
@@ -123,6 +125,7 @@ export function FinalLiaMotion() {
   }, [documentHidden, reducedMotion]);
 
   useEffect(() => {
+    if (!active) return;
     if (motion.phase !== "greeting" && motion.phase !== "idle") return;
 
     const durations =
@@ -157,7 +160,7 @@ export function FinalLiaMotion() {
         timerRef.current = null;
       }
     };
-  }, [motion.frame, motion.phase]);
+  }, [motion.frame, motion.phase, active]);
 
   const greetingActive = motion.phase === "greeting";
   const idleFrame = greetingActive ? 1 : motion.frame;

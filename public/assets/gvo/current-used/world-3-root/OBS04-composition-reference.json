@@ -1,0 +1,85 @@
+{
+  "schema": "OBS04_WORLD3_COMPOSITION_REFERENCE_1",
+  "status": "COMPILED_12_PROFILE_PASS_ARTISTIC_HUMAN_REVIEW_PENDING",
+  "humanApproval": false,
+  "newRasterProduced": false,
+  "historicalAssetsPreserved": true,
+  "currentConsumer": "src/screens/World3Root/World3RootScreen.tsx + World3Practice.css",
+  "originalNotebook": "Uniform proportional registration and existing page-turn paper; no bitmap rewrite or independent Y stretch. Historical folio_v02 is not the active notebook.",
+  "folioModel": {
+    "essentialChapters": 3,
+    "localLeaves": [
+      4,
+      2,
+      1
+    ],
+    "literalWriterSourceIds": true,
+    "confirmation": "Only final leaf of each chapter and explicit final Close"
+  },
+  "motion": {
+    "liaDurationsMs": [
+      650,
+      1100,
+      850
+    ],
+    "start": "After actual page turn/resources, one actor",
+    "selection": "Finite motif response and visible selected state; reduced-motion static"
+  },
+  "evidence": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-04/sala-iii/INC04_BROWSER_CLOSURE_01.json",
+  "pairs": [
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/environment/world3_ambient_texture_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/environment/world3_ambient_texture_v01.webp",
+      "bytes": 58320,
+      "sha256": "98ba450cb7b8a753a288c438011238ecd94973ca652dcc39500f5e9cf3c9cbb2"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_open_base_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_open_base_v01.png",
+      "bytes": 1613931,
+      "sha256": "3abf81f4772302cb7a38b9c428c104951e35d087ff1f5989c55468ddec31d0f3"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_turn_page_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_turn_page_v01.png",
+      "bytes": 1020913,
+      "sha256": "93799b95189251ec6ee5db833c14561b0f444db14382cf3e0382ceb9b447408d"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_intro_token_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_intro_token_v01.webp",
+      "bytes": 101554,
+      "sha256": "b6b1a431d01c8c37be485de41681c8d6537ae54ca325903135afb8490fe66eda"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_practice_listening_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_practice_listening_v01.webp",
+      "bytes": 107406,
+      "sha256": "1c3c7f8c9094e757f23bc3fefa685930a62c8a224ab6e63faf37cc3d5970f3ed"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_benefits_care_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_benefits_care_v01.webp",
+      "bytes": 75392,
+      "sha256": "82b7ddb60ba448ca8e944cb2f0231b912fff50ecc23012baae45009fe8042e5d"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_intro_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_intro_6f_v03.webp",
+      "bytes": 167084,
+      "sha256": "01689c27d863e3578c975d55dcfb6414390caaf58a81863384aca2930cb16cb2"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_listening_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_listening_6f_v03.webp",
+      "bytes": 160804,
+      "sha256": "0cd35d7a257f7ce19114b7e35493cd86e13c0e0d23c404be447d517db6605882"
+    },
+    {
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_accompanying_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_accompanying_6f_v03.webp",
+      "bytes": 167682,
+      "sha256": "151787f8a30931874b67dd1a33df8598560903b8893504a63e0de0d828dbabf2"
+    }
+  ]
+}

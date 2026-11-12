@@ -1,264 +1,197 @@
-/* Public approved snapshot only; verified against the frozen bundle by cross-product QA. */
-export const publicEvidence: Record<
-  string,
-  {
-    source_id: string;
-    source_digest: string;
-    source_version: string;
-    section: string;
-    freshness: string;
-    text: string;
-    label: string;
-  }
-> = {
+/** OBS03.2 local editorial catalogue, REVIEW; service/chat remains default-off.
+ * Writer groups are exact reconciled ES; optional-practice UI is separately tagged
+ * in documentary provenance. Reserved D17 units and substitute exercises are absent.
+ * Digests: SHA-256 of each ordered source group text joined with LF.
+ * Changed version/digests reject older service citations; no bundle is published.
+ */
+export const publicEvidence: Record<string, { source_id: string; source_digest: string; source_version: string; section: string; freshness: string; text: string; label: string }> = {
   "GVO-INTRO-01": {
-    source_id: "GVO-INTRO",
-    source_digest:
-      "f73eb82839f43bb21555f691e4beb0bfcb678b37eb74b1afe6bff8a8becc930b",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro-01-presentation",
-    freshness: "DATED",
-    text: "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
-    label: "Lía y la introducción al Archivo Vivo",
+    "source_id": "GVO-INTRO",
+    "source_digest": "ecacd97fc63b3501a0777f5865ebf6c1a2db677c2ec1f9d697e2979b044f992d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "intro-01-presentation",
+    "freshness": "REVIEW",
+    "text": "Hola soy Lía, tu guía virtual. Te estaré acompañando en este mágico recorrido.",
+    "label": "Lía y la entrada al Jardín Biosonoro"
   },
   "GVO-INTRO-02": {
-    source_id: "GVO-INTRO",
-    source_digest:
-      "f73eb82839f43bb21555f691e4beb0bfcb678b37eb74b1afe6bff8a8becc930b",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro-02-clarification",
-    freshness: "DATED",
-    text: "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
-    label: "Lía y la introducción al Archivo Vivo",
+    "source_id": "GVO-INTRO",
+    "source_digest": "ecacd97fc63b3501a0777f5865ebf6c1a2db677c2ec1f9d697e2979b044f992d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "intro-02-clarification",
+    "freshness": "REVIEW",
+    "text": "Podrás visitar nuestras 5 salas interactivas, aprender, conectar con las plantas y la Sinfonía de la Vida.",
+    "label": "Lía y la entrada al Jardín Biosonoro"
   },
   "GVO-INTRO-03": {
-    source_id: "GVO-INTRO",
-    source_digest:
-      "f73eb82839f43bb21555f691e4beb0bfcb678b37eb74b1afe6bff8a8becc930b",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro-03-mediation",
-    freshness: "DATED",
-    text: "Lo que vas a recorrer es una mediación: una señal viva, una captura técnica y una interpretación.",
-    label: "Lía y la introducción al Archivo Vivo",
+    "source_id": "GVO-INTRO",
+    "source_digest": "ecacd97fc63b3501a0777f5865ebf6c1a2db677c2ec1f9d697e2979b044f992d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "intro-03-order",
+    "freshness": "REVIEW",
+    "text": "Primero seguiremos el orden de las salas. Al final podrás volver libremente a cualquiera de ellas.",
+    "label": "Lía y la entrada al Jardín Biosonoro"
   },
   "GVO-INTRO-04": {
-    source_id: "GVO-INTRO",
-    source_digest:
-      "f73eb82839f43bb21555f691e4beb0bfcb678b37eb74b1afe6bff8a8becc930b",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro-04-order",
-    freshness: "DATED",
-    text: "Primero seguiremos el orden de los mundos. Al final podrás volver libremente a cualquier estación.",
-    label: "Lía y la introducción al Archivo Vivo",
-  },
-  "GVO-INTRO-05": {
-    source_id: "GVO-INTRO",
-    source_digest:
-      "f73eb82839f43bb21555f691e4beb0bfcb678b37eb74b1afe6bff8a8becc930b",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro-05-root",
-    freshness: "DATED",
-    text: "Empecemos por la raíz: el origen y el propósito de OKÚA.",
-    label: "Lía y la introducción al Archivo Vivo",
+    "source_id": "GVO-INTRO",
+    "source_digest": "ecacd97fc63b3501a0777f5865ebf6c1a2db677c2ec1f9d697e2979b044f992d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "intro-05-root",
+    "freshness": "REVIEW",
+    "text": "Nuestro viaje empieza desde la Raíz. ¡Adelante!",
+    "label": "Lía y la entrada al Jardín Biosonoro"
   },
   "GVO-PLANTA-01": {
-    source_id: "GVO-PLANTA",
-    source_digest:
-      "5a7cf8674467745c8fa5631c7fd3c9b4b19c3230aca115db01de032b3831a29f",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "observe",
-    freshness: "DATED",
-    text: "La primera pista fue observar una planta viva.",
-    label: "Observar y cuidar",
+    "source_id": "GVO-PLANTA",
+    "source_digest": "94a6a16b95400e0233fab1386eecc20df5d3db5da5b2d59b2df2a52383888b21",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_ea0217fac7f6",
+    "freshness": "REVIEW",
+    "text": "Busca un lugar cómodo donde te puedas sentar o acostar, cerca a la planta con la que quieres conectar",
+    "label": "Recomendaciones previas"
   },
   "GVO-PLANTA-02": {
-    source_id: "GVO-PLANTA",
-    source_digest:
-      "5a7cf8674467745c8fa5631c7fd3c9b4b19c3230aca115db01de032b3831a29f",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "care",
-    freshness: "DATED",
-    text: "Antes de construir, había que mirar qué relación queríamos cuidar.",
-    label: "Observar y cuidar",
+    "source_id": "GVO-PLANTA",
+    "source_digest": "94a6a16b95400e0233fab1386eecc20df5d3db5da5b2d59b2df2a52383888b21",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_d1384cb3c055",
+    "freshness": "REVIEW",
+    "text": "Ya conoces la teoría detrás del funcionamiento biosonoro, deja este espacio para disfrutar del resultado, sin prejuicios.",
+    "label": "Recomendaciones previas"
   },
   "GVO-PLANTA-03": {
-    source_id: "GVO-PLANTA",
-    source_digest:
-      "5a7cf8674467745c8fa5631c7fd3c9b4b19c3230aca115db01de032b3831a29f",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "record",
-    freshness: "DATED",
-    text: "Registrar lo observado ayudó a decidir qué construir después.",
-    label: "Observar y cuidar",
+    "source_id": "GVO-PLANTA",
+    "source_digest": "94a6a16b95400e0233fab1386eecc20df5d3db5da5b2d59b2df2a52383888b21",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_f4d4d818e31e",
+    "freshness": "REVIEW",
+    "text": "Acepta la experiencia como un concierto único que te regalan las plantas. Ábrete con respeto a la experiencia...",
+    "label": "Recomendaciones previas"
   },
   "GVO-PROTOTIPO-01": {
-    source_id: "GVO-PROTOTIPO",
-    source_digest:
-      "22dd0f7903a47c53735a70cb007540d5e467ba4f9cf0805e713a73d5deafd50c",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "assembly",
-    freshness: "DATED",
-    text: "Después de observar, construimos un primer montaje.",
-    label: "Construir y aprender",
+    "source_id": "GVO-PROTOTIPO",
+    "source_digest": "fef85920f7702689f7a55b0d5b8321c6b04413af99b76043d489bfe6ffe03ebf",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_1e4564d904af",
+    "freshness": "REVIEW",
+    "text": "Escucha con atención los sonidos que producen las plantas, sus ritmos y texturas, tócalas, juguetea con sus hojas, siente el aroma, toma conciencia plena del presente y agradece.",
+    "label": "Escucha profunda"
   },
   "GVO-PROTOTIPO-02": {
-    source_id: "GVO-PROTOTIPO",
-    source_digest:
-      "22dd0f7903a47c53735a70cb007540d5e467ba4f9cf0805e713a73d5deafd50c",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "testing",
-    freshness: "DATED",
-    text: "Cada componente ayudó a probar cómo captar y cuidar la señal.",
-    label: "Construir y aprender",
-  },
-  "GVO-PROTOTIPO-03": {
-    source_id: "GVO-PROTOTIPO",
-    source_digest:
-      "22dd0f7903a47c53735a70cb007540d5e467ba4f9cf0805e713a73d5deafd50c",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "learning",
-    freshness: "DATED",
-    text: "Lo que no funcionaba también dejó una pista para la siguiente versión.",
-    label: "Construir y aprender",
+    "source_id": "GVO-PROTOTIPO",
+    "source_digest": "fef85920f7702689f7a55b0d5b8321c6b04413af99b76043d489bfe6ffe03ebf",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_034a41e11f4b",
+    "freshness": "REVIEW",
+    "text": "Después de cinco minutos de escucha, describe en una tarjeta lo que escuchaste y sentiste mientras realizabas este ejercicio. Toma una foto, compártela y etiquétanos en tu historia. @okuajardinsonoro",
+    "label": "Escucha profunda"
   },
   "GVO-SENAL-01": {
-    source_id: "GVO-SENAL",
-    source_digest:
-      "8df2630f9adcd842384e24f211b699136be32d113bc4cff0176277ca65ab98ae",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "capturing",
-    freshness: "DATED",
-    text: "Después del montaje, observamos la señal obtenida.",
-    label: "Observar la señal",
-  },
-  "GVO-SENAL-02": {
-    source_id: "GVO-SENAL",
-    source_digest:
-      "8df2630f9adcd842384e24f211b699136be32d113bc4cff0176277ca65ab98ae",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "inspecting",
-    freshness: "DATED",
-    text: "La variación mostró ruido, inestabilidad y límites.",
-    label: "Observar la señal",
-  },
-  "GVO-SENAL-03": {
-    source_id: "GVO-SENAL",
-    source_digest:
-      "8df2630f9adcd842384e24f211b699136be32d113bc4cff0176277ca65ab98ae",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "evidence",
-    freshness: "DATED",
-    text: "Cada cambio registrado indicó qué debía ajustarse después.",
-    label: "Observar la señal",
+    "source_id": "GVO-SENAL",
+    "source_digest": "073bbd375d5ead908a1426b5a490516e80188e6920b8081d13cfc747a84b19e6",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "TXT_3_30f92d565590",
+    "freshness": "REVIEW",
+    "text": "Entrenamiento de la atención plena y la escucha profunda.",
+    "label": "Cuerpo y mente"
   },
   "GVO-APRENDIZAJE-01": {
-    source_id: "GVO-APRENDIZAJE",
-    source_digest:
-      "4c88c3a853339c81d01effdccbb5bf9fd0159b176c21ef2ab3744e98d8a412e5",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "intro",
-    freshness: "DATED",
-    text: "Abramos el cuaderno de pruebas. Aquí veremos cómo OKÚA fue aprendiendo.",
-    label: "Prueba, error y ajuste",
+    "source_id": "GVO-APRENDIZAJE",
+    "source_digest": "3559b42373ca8eee2143f613b14dc56f8801fdad2868771868bac2dae8714d4f",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "introduction",
+    "freshness": "REVIEW",
+    "text": "Ha llegado el momento de conectar con la energía del Planeta Tierra. Escuchar conlleva un ritual, una disposición. Sigue estos pasos y ofréndale a tu cuerpo y mente cinco minutos de descanso.",
+    "label": "Cuaderno de práctica: invitación física opcional"
   },
   "GVO-APRENDIZAJE-02": {
-    source_id: "GVO-APRENDIZAJE",
-    source_digest:
-      "4c88c3a853339c81d01effdccbb5bf9fd0159b176c21ef2ab3744e98d8a412e5",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "adjusted",
-    freshness: "DATED",
-    text: "Cada prueba dejó una pista. Por eso el sistema se ajustó.",
-    label: "Prueba, error y ajuste",
+    "source_id": "GVO-APRENDIZAJE",
+    "source_digest": "3559b42373ca8eee2143f613b14dc56f8801fdad2868771868bac2dae8714d4f",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "truthful_closing",
+    "freshness": "REVIEW",
+    "text": "Ve a la siguiente caja y escanea el código QR para continuar tu recorrido.",
+    "label": "Cuaderno de práctica: invitación física opcional"
   },
   "GVO-APRENDIZAJE-03": {
-    source_id: "GVO-APRENDIZAJE",
-    source_digest:
-      "4c88c3a853339c81d01effdccbb5bf9fd0159b176c21ef2ab3744e98d8a412e5",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "adjustedAlt",
-    freshness: "DATED",
-    text: "No fue magia: fue prueba, error y ajuste.",
-    label: "Prueba, error y ajuste",
+    "source_id": "GVO-APRENDIZAJE",
+    "source_digest": "3559b42373ca8eee2143f613b14dc56f8801fdad2868771868bac2dae8714d4f",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "functional_physical_practice_optional",
+    "freshness": "REVIEW",
+    "text": "La práctica es opcional. Continúa cuando quieras.",
+    "label": "Cuaderno de práctica: invitación física opcional"
   },
   "GVO-MIRADOR-01": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_TITLE_01",
-    freshness: "DATED",
-    text: "Mirador final del jardín",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_TITLE_01",
+    "freshness": "REVIEW",
+    "text": "OKÚA Jardín Biosonoro",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-02": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_ACCESS_I_LABEL_01",
-    freshness: "DATED",
-    text: "I — Raíz",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_ACCESS_I_LABEL_01",
+    "freshness": "REVIEW",
+    "text": "I — Raíz",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-03": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_ACCESS_II_LABEL_01",
-    freshness: "DATED",
-    text: "II — Pulso invisible",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_ACCESS_II_LABEL_01",
+    "freshness": "REVIEW",
+    "text": "II — Pulso invisible",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-04": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_ACCESS_III_LABEL_01",
-    freshness: "DATED",
-    text: "III — Cuaderno de pruebas",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_ACCESS_III_LABEL_01",
+    "freshness": "REVIEW",
+    "text": "III — Cuaderno de práctica",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-05": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_ACCESS_IV_LABEL_01",
-    freshness: "DATED",
-    text: "IV — Mesa de sistema",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_ACCESS_IV_LABEL_01",
+    "freshness": "REVIEW",
+    "text": "IV — Sistema biosonoro",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-06": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_ACCESS_V_LABEL_01",
-    freshness: "DATED",
-    text: "V — Mapa del presente",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_ACCESS_V_LABEL_01",
+    "freshness": "REVIEW",
+    "text": "V — OKÚA, arte sensorial",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-07": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_LIA_MESSAGE_01",
-    freshness: "DATED",
-    text: "Llegaste al final del recorrido. Puedes volver a cualquier mundo cuando quieras.",
-    label: "Mundos y revisión del recorrido",
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_LIA_MESSAGE_01",
+    "freshness": "REVIEW",
+    "text": "Llegaste al Mirador. Puedes volver a cualquier sala, también a las actividades que omitiste.",
+    "label": "Salas y revisión del recorrido"
   },
   "GVO-MIRADOR-08": {
-    source_id: "GVO-MIRADOR",
-    source_digest:
-      "cce5776c0958f059bcc5f544fdbff501d94affdedb081e425deb567624548fa9",
-    source_version: "gvo-1251a4fd789193e51183a03e29cbb8971d50302d",
-    section: "FINAL_HELP_01",
-    freshness: "DATED",
-    text: "Elige un mundo para revisarlo libremente.",
-    label: "Mundos y revisión del recorrido",
-  },
+    "source_id": "GVO-MIRADOR",
+    "source_digest": "f49e7fac7b5ae035b3d641b61e9aee370cb8d84e15da40b575e4833b3ae3227d",
+    "source_version": "gvo-obs03.2-editorial-candidate-2026-10-24",
+    "section": "FINAL_HELP_01",
+    "freshness": "REVIEW",
+    "text": "Elige una sala para revisarla a tu ritmo.",
+    "label": "Salas y revisión del recorrido"
+  }
 };

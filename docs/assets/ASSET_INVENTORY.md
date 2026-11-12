@@ -1,5 +1,120 @@
 # Asset inventory
 
+## Revisión en iPhone · Sala V
+
+Los fondos limpios de Sistema v03 registrados en
+`current-used/world-5-root/system/OBS03-cleanplates-manifest.json` pasan a
+ser el ambiente común de la trivia. Se usan sus variantes de retrato y
+paisaje con los mismos bytes. El marco v02 y los fondos de cada tema se
+conservan en el historial de la galería. El
+[registro de Sala V](../../public/assets/gvo/current-used/world-5-root/README.md)
+identifica la composición y la precarga vigentes de la candidata.
+
+## OBS05 — reutilización de biblioteca, composición III/V
+
+La revisión actual reutiliza los assets registrados, sin nuevos bitmaps ni
+recompresión. III conserva cuaderno proporcional, giro, tres motivos y tres
+clips; V conserva mapa, marco, cuatro motivos, ocho alternativas, fondos limpios
+y el rig compartido de cinco pétalos. Los consumidores y límites actuales están
+en `current-used/world-3-root/README.md` y `current-used/world-5-root/README.md`.
+La conexión decorativa se resuelve en DOM/CSS/SVG; el texto sigue en DOM.
+
+La candidata OBS05 build02 corrige el reflujo con texto ampliado y la reserva
+del control fijo. La QA compilada verifica40 perfiles III y20 visuales V más
+regresiones de respuesta/premio y recorrido fresco; las aprobaciones y cifras de
+los apartados históricos siguientes no se transfieren a esta composición.
+No se autoriza publicación ni despliegue de campo.
+R3 fue recibido y conciliado, sin bloqueantes nuevos en la revisión estática,
+editorial y de PNG seleccionados. La aprobación artística humana permanece
+pendiente y no se añaden bitmaps en este cierre.
+
+## Addendum OBS03.2 + R3 — recursos actuales, revisión pendiente
+
+Estado: `AGENT_STATIC_ASSET_CHECK_PASS / SCENE_QA_PENDING / HUMAN_PENDING`.
+El [inventario verificable OBS03](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.json)
+registra rutas runtime/espejo, formato, dimensiones, bytes, SHA-256, consumidores
+y límites del corte. Cada grupo presente fue contrastado con su espejo y todos
+los pares coinciden. Los capítulos previos se conservan como historial.
+
+| Grupo actual | Registro | Comprobación y límite |
+| --- | --- | --- |
+| Rig Lía compartido | `current-used/shared/lia/articulated-v03/manifest.json` | 16 capas WebP 432×768; exactamente cinco capas de pétalos. Portada/I/II/IV/V. Derivados de los originales auténticos; escena y aceptación humana pendientes. |
+| Mano swipe v03 | `production/HAND-SWIPE-result.json` | WebP alfa 256×256, SHA-256 `8c3668ac88fa584a2dd07a0250cd2b52858b7cbe9233d45e14c9b37303679df9`. Un recurso para ambos ejes; tap anterior permanece. |
+| Cuaderno III | `current-used/world-3-root/OBS03-runtime-reference.json` | Original openBase restaurado: PNG 1536×1024, SHA-256 `3abf81f4772302cb7a38b9c428c104951e35d087ff1f5989c55468ddec31d0f3`. Ambiente/base/giro y tres motivos activos; folio v02 y cinco poses históricas fuera del consumidor actual. |
+| Lía pixel III, tres clips | `current-used/world-3-root/lia/clips/OBS03-clips-manifest.json` | Tres hojas reales 768×512, 18 celdas 256² en total, 495.570 bytes. INTRO/escucha/acompañamiento activos, índice neutral INTRO y base medida (128,212). Sin fallback silencioso. Piloto INTRO técnico revisado; QA de los tres clips actuales y aceptación humana pendientes. |
+| Objetos IV | `production/IV-PLANTA-result.json` y `production/IV-seven-result.json` | Ocho WebP 512×512 con espejos, fuentes originales y hashes. La inspección documental no sustituye su contacto y legibilidad en escena. |
+| Opciones V | `production/V-PLANTAS-*-result.json` y `production/V-six-result.json` | Ocho opciones v03 presentes. Las seis nuevas de Sistema/Espacio/Visitante suman 225.772 bytes WebP 512×512, con seis espejos y doce hashes de fuentes verificados; composición en escena pendiente. |
+| Fondos limpios Sistema V | `production/SYSTEM-cleanplates-result.json` y `current-used/world-5-root/system/OBS03-cleanplates-manifest.json` | Dos fondos v03 activos en el consumidor de Sistema; 2.014.716 bytes. Par runtime/espejo, máscaras y decodificación lossless verificados. QA de escena y aprobación humana pendientes. |
+
+`production/` en esta tabla corresponde a
+`assets-source/editorial-2026-10-23/observaciones-03/production/`;
+`current-used/` a `public/assets/gvo/current-used/`. Los seis registros nuevos
+`OBS03-runtime-reference.json` por pantalla remiten al índice común y conservan
+la separación entre asset histórico y composición candidata.
+
+### Sistema de escucha V — cleanplates v03 activos
+
+Estado: `INTEGRATION_CANDIDATE / SCENE_QA_PENDING / HUMAN_PENDING`.
+Las rutas de la tabla son relativas a ambas bases:
+`public/assets/gvo/stations/world-5/present-map/runtime/` y
+`public/assets/gvo/current-used/world-5-root/`. Cada fila registra un par
+byte-idéntico; los fondos v01 se conservan como historial.
+
+| Ruta relativa del par | Formato / dimensiones | Bytes | SHA-256 | Función / consumidor |
+| --- | --- | ---: | --- | --- |
+| `system/world5_sub_system_environment_portrait_v03.webp` | WebP opaco / 1440×1920 | 1.261.922 | `e1d6d82f246215e0870449e3affd399010ffd24e046608635845aa4a7c160d08` | Fondo de Sistema sin cajas/cable/puertos horneados; `world5RuntimeAssets.ts#getWorld5Environment("sistema", "portrait")` → `World5RootScreen` |
+| `system/world5_sub_system_environment_landscape_v03.webp` | WebP opaco / 1920×1080 | 752.794 | `7a2124d0db8bd573ee47960e055d40f6b41232ab2c6cc5c56fdf0d066453578b` | Mismo consumidor en orientación landscape |
+
+Los masters registrados son
+`production/pixel-two-system-cleanplates-originals/WORLD5_SYSTEM_CLEANPLATE_PORTRAIT_OBS03.png`
+y `WORLD5_SYSTEM_CLEANPLATE_LANDSCAPE_OBS03.png` en esa misma carpeta.
+Sus fuentes nativas `originals/*_NATIVE.png` se preservan como procedencia y
+no sustituyen esos masters reparados. El pipeline
+`tools/assets/derive_obs03_system_cleanplates.mjs` y su informe de producción
+registran cero píxeles RGBA cambiados fuera de las máscaras autorizadas, alpha
+opaco inalterado y WebP decodificado exactamente igual al master registrado.
+Las superficies antes ocluidas se reconstruyen como ilustración inferida.
+`getWorld5CriticalAssetSources` prepara una sola orientación de Sistema junto
+a sus recursos actuales; los otros ambientes mantienen v01. Los controles de
+archivo y su activación no equivalen a QA visual en escena ni aprobación humana.
+
+El rig declara 21.233.664 bytes RGBA teóricos para sus 16 capas: cálculo
+`ancho×alto×4`, sin medición de RAM/GPU ni promesa de rendimiento. Sus acciones
+articulan capas de pétalos y cabeza en 1150/1450/900 ms; reduced motion sustituye
+la animación por poses breves estáticas. La mano combina giro base de 30° con el
+giro del eje: el contraste aritmético del pivote contra el código difiere menos
+de 0,005 puntos porcentuales del lienzo; falta comprobar la alineación visible.
+
+Las listas efectivas corrigen dos omisiones/divergencias: Portada precarga su
+bitmap de activación mientras sigue montándolo, e I deja de depender de cinco
+poses antiguas que ya no muestra. Dos archivos de pruebas, cinco casos PASS,
+validan esas listas. El [informe OBS03](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.md)
+documenta las deudas de Lía pixel III, registro del giro, pruebas visuales
+responsive y producción restante. No se ejecutó navegador en esta auditoría.
+
+## Candidata editorial anterior — 2026-10-23, historial preservado
+
+Portada consume el logo auténtico completo de `E:/OKUA/05_ACTIVOS_MARCA_MEDIA/Logos/logo.png`
+sin transformar sus bytes (178×102, SHA-256
+`02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a`).
+Carga sustituye los emblemas anteriores de la maceta y la regadera por el recorte
+exacto del símbolo, en derivados de las hojas originales. Las 4 celdas de planta
+y las 12 de Lía con regadera conservan todos los píxeles RGBA fuera de las placas
+enumeradas; las cuatro celdas iniciales de Lía no cambian. Se conservan las grillas,
+los cinco pétalos y el registro de animación. Los tres pares runtime/mirror,
+dimensiones, hashes y coordenadas están en [el registro de entrada](../narrative/integracion_autonoma_2026-10-23/entry-brand-assets.json).
+La composición es candidata para revisión humana.
+
+Sala III reutiliza siete originales (ambiente, `turnPage` y cinco poses), añade
+tres motivos producidos en un único hilo de ChatGPT Images y consume el nuevo
+folio ilustrado. La base `openBase` es histórica. Los diez pares iniciales están
+registrados con dimensiones y hashes en [el manifiesto de producción](../narrative/integracion_autonoma_2026-10-23/assets-production.json);
+el folio adicional y los tres recursos de acabado de IV/V/navegación se registran
+en el addendum de acabado de este inventario.
+El triángulo incorpora el símbolo extraído del PNG de marca existente, sin
+redibujarlo, tras la corrección expresa del responsable. Las nuevas composiciones
+son candidatas para revisión humana; las aprobaciones siguientes son históricas.
+
 ## Runtime policy
 
 Los assets runtime son locales y se referencian mediante registros tipados. La
@@ -10,6 +125,13 @@ distintas:
 - Espejo canónico aprobado: `public/assets/gvo/current-used/world-3-root/`.
 - Registro ejecutable: `src/screens/World3Root/world3RuntimeAssets.ts`.
 - Propiedad semántica: `src/screens/World3Root/world3SemanticAssetManifest.ts`.
+
+La candidata editorial del 11-11-2026 incorpora siete ilustraciones WebP RGBA
+de 320 × 256 px en los folios de Introducción y Paso a paso. ChatGPT Imágenes
+generó el original común. El manifiesto
+`public/assets/gvo/current-used/world-3-root/editorial-2026-11-11.json`
+registra origen, recortes, dimensiones, huellas y espejos de cada recurso.
+El consumidor conserva la base original y la animación de pasar de página.
 
 Los archivos byte-idénticos entre runtime y `current-used` son pares deliberados
 de política, no duplicados accidentales. El Atlas visual sigue siendo referencia
@@ -125,9 +247,9 @@ se emite como elemento visual. La decisión queda expuesta en DOM como
 `front-edge-disabled-by-human-review`.
 
 El cierre 018E registra la aprobación humana de la composición, el layout y la
-coreografía. La experiencia permanece sin audio y ofrece reduced motion
-completo. La PWA instalada no fue certificada en la plataforma de QA; esa
-limitación no altera la aprobación visual y funcional de Estación IV.
+coreografía. Esa versión se entregó sin audio y con movimiento reducido
+completo. La certificación de la PWA instalada quedó pendiente. La política
+vigente para nuevas entregas está en las [reglas de GVO](../01_REGLAS_NO_NEGOCIABLES.md).
 
 | Grupo            | Cantidad | Rutas relativas                                                                                                                                                                                                                                                                                                          |
 | ---------------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -241,3 +363,63 @@ This entry supersedes the earlier candidate-only runtime status for exactly thre
 - `LIA-M4-GREETING-A`: source `assets-source/lia-m4/LIA-M4-GREETING-A.png` SHA256 `3C4A4C454758D3C5380ED9405C4AD534D97FCCA553281CCDBF2E56CAE939D4F3`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-greeting-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-greeting-a.webp`; WebP RGBA [1254, 1254], 385836 bytes, SHA256 `82DC04328F41E959DC9C731B7EEDEEFE745EC278F538EC379B119D79AB6D2193`; consumer LiaPreview, state greeting; HUMAN_APPROVED_SOURCE_DERIVATION.
 - `LIA-M4-LISTENING-A`: source `assets-source/lia-m4/LIA-M4-LISTENING-A.png` SHA256 `B08125CA85720D50EEEF8A4DDABB52645CE41D5C5C98F53CC3D266503F1DF714`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-listening-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-listening-a.webp`; WebP RGBA [1254, 1254], 288932 bytes, SHA256 `7150C930446C4AF85EA5B3E1D81EC45EECC61D1C081C5D65146136166CF6C93E`; consumer LiaPreview, state listening; HUMAN_APPROVED_SOURCE_DERIVATION.
 - `LIA-M4-EXPLAINING-A`: source `assets-source/lia-m4/LIA-M4-EXPLAINING-A.png` SHA256 `89297153A015937E82D2B020A159C4254100ABE10016BEE89C6AC81B41A11C6F`; runtime `public/assets/gvo/lia-preview/lia/lia-m4-explaining-a.webp` / mirror `public/assets/gvo/current-used/lia-preview/lia/lia-m4-explaining-a.webp`; WebP RGBA [1254, 1254], 473646 bytes, SHA256 `96C9AD6AFA43A66BE982434BE36FCD112B4F3DDB8BB1369C0678E744CC0C384E`; consumer LiaPreview, state explaining; HUMAN_APPROVED_SOURCE_DERIVATION.
+# Candidata editorial local — 2026-10-23
+
+La integración conserva los originales aprobados. Sala III reusa siete archivos
+byte-idénticos con sus mirrors; su nuevo consumidor deja de presentar el
+montaje/trazas de prototipos. Inventario inicial medido:
+[`assets-production.json`](../narrative/integracion_autonoma_2026-10-23/assets-production.json).
+Los tres originales fueron descargados por el navegador integrado, preservados
+fuera del runtime y derivados con transparencia. La candidata espera revisión humana.
+El detalle histórico de assets conservados continúa a continuación.
+
+
+## Addendum de acabado — 2026-10-23 (cuatro assets)
+
+Estado de los cuatro recursos y de su composición: **INTEGRATION_CANDIDATE / HUMAN_PENDING**.
+La aprobación humana histórica de otros assets no se extiende a estos archivos.
+
+Procedencia, originales preservados fuera de runtime, derivaciones, alpha, hashes
+y pares completos están en [el manifiesto de acabado](../narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json).
+Se produjeron en [el único hilo de ChatGPT Images](gvo-provenance:images).
+Runtime consume las rutas canónicas y current-used conserva sus mirrors byte-idénticos.
+
+| ID | Runtime | Espejo de revisión | Formato / dimensiones / bytes | SHA-256 de ambos | Consumidor |
+| --- | --- | --- | --- | --- | --- |
+| W4_PORTRAIT_SYSTEM_TABLE_v02 | `public/assets/gvo/stations/world-4/system-table/runtime/environment/world4_table_environment_portrait_v02.webp` | `public/assets/gvo/current-used/world-4-root/environment/world4_table_environment_portrait_v02.webp` | WebP RGB / 768×1024 / 48478 B | `5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343` | `src/screens/World4Root/World4Stage.tsx` |
+| W5_GALLERY_READING_FRAME_v02 | `public/assets/gvo/stations/world-5/present-map/runtime/ui/world5_gallery_reading_frame_v02.webp` | `public/assets/gvo/current-used/world-5-root/ui/world5_gallery_reading_frame_v02.webp` | WebP RGBA / 768×512 / 309198 B | `8ba0daf382166647fa92b4d1b8f3ab2d19b2a3b1a346df12863bfff05cd44460` | `src/screens/World5Root/World5RootScreen.css` |
+| W3_NOTEBOOK_FOLIO_v02 | `public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_folio_v02.webp` | `public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_folio_v02.webp` | WebP RGBA / 768×960 / 581516 B | `ee0085b3cfcf81793d530b42070c2f942a18f9289213e04eff8354903704c3a4` | `src/screens/World3Root/World3RootScreen.tsx` |
+| GVO_TRANSITION_THRESHOLD_v02 | `public/assets/gvo/shared/navigation/runtime/gvo_transition_threshold_v02.webp` | `public/assets/gvo/current-used/shared/navigation/gvo_transition_threshold_v02.webp` | WebP RGBA / 192×192 / 18370 B | `8cc588240f749a2aa3e7b30c6f084055be3dce80cd54397ee96b41f4db56c17a` | `src/app/qr/InterstationQrGate.tsx` |
+
+La mesa vertical distribuye los mismos ocho componentes DOM en dos columnas y
+cuatro filas; la composición horizontal anterior se conserva en landscape. El
+marco de V y el folio de III se consumen mediante nueve segmentos, manteniendo
+texto, decisiones y estados como DOM. El umbral compartido se presenta a 48×48
+CSS px con un símbolo QR de 18 px y etiqueta accesible en DOM: no lleva un payload
+ni texto horneado en la imagen. Los tres motivos de práctica de III siguen activos
+como capas independientes; los siete reusos son ambiente, turnPage y cinco poses,
+mientras openBase permanece como original histórico.
+
+Fichas por consumidor: public/assets/gvo/current-used/world-3-root/README.md,
+world-4-root/README.md, world-5-root/README.md y shared/navigation/README.md.
+La evidencia de navegador suplementaria de IV/V está en
+[el registro de revisión](../narrative/integracion_autonoma_2026-10-23/revision-acabado/evidence-4-5/runtime-qa.json);
+no sustituye el recorrido principal limpio ni certifica cámara física o aprobación humana.
+
+## Addendum de marca OBS03 v03 — corte posterior de ensamblaje
+
+Estado: `ART_TECHNICAL_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING`.
+Este addendum posterior actualiza sólo la marca de entrada; conserva como
+historial las descripciones v01 anteriores y no altera los registros de III.
+
+| Consumidor actual | Registro canónico | Comprobación técnica y límite |
+| --- | --- | --- |
+| Carga, cuatro macetas y doce regaderas | `public/assets/gvo/current-used/loading-initial/OBS03-brand-v03.json` | Atlases PNG3072×768 (370976B) y2560² (2050024B); alpha original íntegra, 0RGBA fuera de las máscaras finales, borde protegido y primeras4celdas de Lía idénticas. Contactos inspeccionados; animación/escena y aceptación humana pendientes. |
+| Portada, emblema material | `public/assets/gvo/current-used/cover-intro/OBS03-brand-v03.json` | PNG RGBA116×142,44961B; SHA-256 `476cf4dbef9cc320b5144f599982c692f22bac69dbb4d5eb32487486ad52b283`; máscara auténtica58×71 y material de ChatGPT Images. Sin placa ni texto baked; encuadre proporcional, marca/títulos DOM. Escena y aceptación humana pendientes. |
+
+Fuentes originales/piloto conservadas en `production/brand-pixel-pilot-originals/`
+bajo `assets-source/editorial-2026-10-23/observaciones-03/`; generador reproducible
+`tools/assets/derive_obs03_brand_assets.mjs`. Tres pares runtime/espejo coinciden.
+El [registro de este corte](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/entry-transitions/brand-v03/README.md)
+incluye hashes, superficies por fotograma, correcciones visuales de método y
+límites de evidencia. No se contó build, E2E ni aprobación humana en ese corte.

@@ -1,5 +1,118 @@
 # Assets runtime — world-5-root
 
+## Candidata de revisión en iPhone · 12 de noviembre
+
+La Sala V usa los fondos limpios de Sistema v03 como ambiente continuo de
+la galería. `getWorld5GalleryEnvironment` selecciona retrato o paisaje.
+`World5RootScreen.tsx` muestra una sola imagen de fondo, que permanece
+durante las preguntas, el feedback y el resultado. Los dos archivos y sus
+espejos conservan los hashes del [manifiesto](system/OBS03-cleanplates-manifest.json).
+La precarga de la trivia prepara ese fondo y las opciones de la pregunta
+actual. Los demás fondos y el marco v02 quedan registrados como antecedentes.
+
+## OBS05 — superficie compartida y resultado de Lía
+
+`INTEGRATION_CANDIDATE / SCENE_QA_PASS / R3_RECONCILED / HUMAN_PENDING`
+
+La composición de `World5RootScreen.tsx` y `World5QuizExperience.css` reutiliza
+los mismos bytes: ambiente de mapa en una única superficie que contiene
+navegación, pregunta, dos alternativas y respuesta. El marco de lectura v02
+rodea ese conjunto; no se repite como tarjeta de pregunta y tarjeta de feedback.
+La ruta curva es SVG decorativo local en DOM; el reflujo estrecho usa una curva
+CSS detrás de las cuatro paradas en una columna. No hay interacción ni bitmap nuevo.
+Los cuatro motivos de navegación, ocho opciones v03 y cleanplates de Sistema
+v03 conservan sus rutas y espejos registrados; no vuelve la caja/cable antigua.
+
+El resultado usa la misma superficie y un único rig compartido de Lía,
+registrado con 16 recursos y cinco pétalos, aumentado proporcionalmente en
+flujo. El fondo del mapa no se duplica en otra escena vacía. Se conserva una orientación actual por visita
+y las listas críticas existentes. No hubo generación ni derivación de assets.
+La medición del contenedor no certifica el área opaca: el cierre exige comparar
+la huella real en PNG de escena, cuerpo/pétalos y ausencia de colisiones.
+Las regiones de lectura, navegación y alternativas reservan el borde del control
+fijo también al desplazar o ampliar el texto. Las opciones y paradas se apilan
+cuando el ancho relativo a la tipografía lo exige, sin reducir la fuente.
+
+Los archivos históricos y sus estados anteriores permanecen como antecedentes;
+la aceptación artística de esta composición corresponde al responsable humano
+único. OBS05 build02 verifica20 perfiles visuales compilados, controles/no-premio
+y recorrido fresco. Los PNG nativos de entrega se separan de los pares de
+diagnóstico con animación pausada y guía oculta utilizados para medir huella.
+
+## OBS04 — recuperación material del mapa y la galería
+
+`INTEGRATION_CANDIDATE / SCENE_QA_PENDING / HUMAN_PENDING`
+
+`World5RootScreen.tsx` usa el ambiente vacío del mapa como base principal y
+tres sectores históricos (Plantas, Espacio, Visitante) como miniaturas de los
+botones de navegación. Sistema usa la opción de parlantes `agree_v03`; el
+sector antiguo de caja/cable permanece excluido. Las miniaturas son decorativas
+y no pertenecen al grupo de respuestas. Las dos alternativas v03, el fondo
+limpio de Sistema v03, los puntos0–4 y los guards actuales se conservan.
+
+El artículo mantiene el orden pregunta → dos respuestas → feedback/avance.
+`World5QuizExperience.css` aplica el marco de lectura a los bloques de texto,
+dejando el escenario fuera del marco. `getWorld5CriticalAssetSources` prepara
+sólo el mapa de la orientación actual, las cuatro miniaturas visibles, el
+ambiente/par actuales, el marco y el rig compartido, con URLs deduplicadas.
+No reactiva `world5MapCriticalAssetSources` ni la antigua lógica del mapa.
+
+Registro de pares y hashes:
+[`OBS04-gallery-reference.json`](OBS04-gallery-reference.json).
+No se han modificado o recomprimido imágenes; todos los pares ya registrados
+siguen byte-idénticos. Esta activación requiere QA de escena y revisión del
+responsable humano único; no es aprobación artística nueva.
+
+## OBS03 — fondos limpios de Sistema, candidata 2026-10-24
+
+`INTEGRATION_CANDIDATE / SCENE_QA_PENDING / HUMAN_PENDING`
+
+`getWorld5Environment("sistema", orientation)` consume los dos fondos v03 sin
+cajas, cable ni puertos horneados. La preparación crítica incluye únicamente la
+orientación actual junto al marco, Lía y las dos opciones actuales. El bundle
+tipado de Sistema conserva los mismos dos fondos v03. Plantas, Espacio,
+Visitante y resultado mantienen sus ambientes v01; los originales de Sistema
+v01 quedan preservados como antecedentes.
+
+| Par runtime / espejo bajo `system/` | Formato / dimensiones | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| `world5_sub_system_environment_portrait_v03.webp` | WebP opaco / 1440×1920 | 1.261.922 | `e1d6d82f246215e0870449e3affd399010ffd24e046608635845aa4a7c160d08` |
+| `world5_sub_system_environment_landscape_v03.webp` | WebP opaco / 1920×1080 | 752.794 | `7a2124d0db8bd573ee47960e055d40f6b41232ab2c6cc5c56fdf0d066453578b` |
+
+Registro: [`system/OBS03-cleanplates-manifest.json`](system/OBS03-cleanplates-manifest.json).
+Fuentes: `assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/`.
+El informe `production/SYSTEM-cleanplates-result.json` registra cero cambios
+RGBA fuera de las máscaras autorizadas, alpha opaco inalterado y decodificación
+lossless exacta. Estos controles de archivo no certifican la composición en
+escena ni la aprobación del responsable humano único. Los dos pares suman
+2.014.716 bytes; el consumidor prepara una sola orientación por visita.
+
+## Candidata de acabado — 2026-10-23
+
+`INTEGRATION_CANDIDATE / HUMAN_PENDING`
+
+Los 24 originales de la tabla histórica se conservan. La candidata añade un
+marco material de lectura consumido como nueve segmentos por
+`World5RootScreen.css`, identificado también en `World5EditorialPanel.tsx`.
+Las preguntas, puntos reales de 0 a 4, feedback y la única salida contextual
+permanecen en DOM. Las respuestas son los objetos y zonas del escenario con
+botones nativos, nombres accesibles y foco visible; el marco no contiene texto
+ni respuestas horneadas.
+
+| Nuevo par runtime / espejo | Formato / dimensiones | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| `ui/world5_gallery_reading_frame_v02.webp` | WebP RGBA / 768×512 | 309.198 | `8ba0daf382166647fa92b4d1b8f3ab2d19b2a3b1a346df12863bfff05cd44460` |
+
+Runtime: `public/assets/gvo/stations/world-5/present-map/runtime/`.
+Espejo: esta carpeta. Original:
+`assets-source/editorial-2026-10-23/finishing/W5_GALLERY_READING_FRAME_v02.png`.
+La transparencia se verifica sobre el alpha y en navegador; el RGB de un píxel
+con alpha cero no representa un fondo visible. El registro vigente es
+[`revision-acabado/assets-manifest.json`](../../../../../docs/narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json).
+La aprobación humana de esta composición y del asset nuevo queda pendiente.
+
+## Historial de los originales
+
 Estado de entrada: `ST5_020F_HUMAN_APPROVED`.
 Estado publicado: `ST5_020G_PUBLISHED_PENDING_HUMAN_REVIEW`.
 

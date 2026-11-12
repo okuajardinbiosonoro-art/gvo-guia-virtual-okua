@@ -25,7 +25,9 @@ Leer primero:
   ticket y aprobación aplicables.
 - No cargar CDN, recursos remotos, fuentes remotas, APIs externas ni servicios
   online en runtime.
-- No agregar audio, micrófono, video pesado, Three.js ni dependencias pesadas
+- Integrar audio local sólo a partir de la entrega del diseñador de sonido,
+  según la [regla de audio vigente](docs/01_REGLAS_NO_NEGOCIABLES.md).
+- No agregar micrófono, video pesado, Three.js ni dependencias pesadas
   sin autorización explícita.
 - Lía es el único avatar guía y conserva exactamente cinco pétalos.
 - Mantener el flujo secuencial y los guards de progreso.
@@ -83,3 +85,7 @@ El PC de campo atiende exclusivamente deployment, red, TLS/DNS y QA físico.
   deuda y estado final; no debe inventar el siguiente ticket.
 - Si un cambio altera arquitectura, flujo u operación, actualizar la
   documentación y el ADR correspondiente.
+
+## Continuidad de este PC de desarrollo
+
+En el PC de José David, consultar primero la ficha P10 con `python -B E:\OKUA\06_SOPORTE_INFRA\PC_RESTRUCTURACION_20261104\work\context_lookup.py P10` y el protocolo `E:\OKUA\00_CENTRO_OPERATIVO\Continuidad_entre_Chats.md`. Los recibos determinan el destino canónico de cada traslado; las rutas anteriores se conservan como compatibilidad. Esta referencia local complementa las fuentes del proyecto y conserva sus gates, pausas y límites de campo.

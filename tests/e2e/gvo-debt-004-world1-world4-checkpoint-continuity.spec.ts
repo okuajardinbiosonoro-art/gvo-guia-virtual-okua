@@ -106,7 +106,7 @@ test("GVO_DEBT_004 W1 conserva active/highest, retry, reload, nueva pestaña y r
   await expect(perception).toBeEnabled();
   await perception.click();
   await page.getByRole("button", { name: "Explorar MEDIACIÓN" }).click();
-  await page.getByRole("button", { name: "Cerrar raíz" }).click();
+  await page.getByRole("button", { name: "Cerrar" }).click();
   await expect(root).toHaveAttribute(
     "data-world1-root-state",
     "ready_to_continue",
@@ -137,7 +137,7 @@ test("GVO_DEBT_004 W1 conserva active/highest, retry, reload, nueva pestaña y r
   await expect(page).toHaveURL(/\/estacion\/1$/);
   await expect(root).toHaveAttribute(
     "data-world1-highest-reached",
-    "ready_to_continue",
+    "mediation",
   );
 
   const reopened = await context.newPage();

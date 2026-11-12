@@ -12,8 +12,10 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { finalEntryRoute, stationEntryRoutes } from "../routes";
-import { finalEditorialSlots } from "../../content/finalEditorialSlots";
+import { getFinalEditorialSlots } from "../../content/finalEditorialSlots";
+import { readLanguagePreference } from "../preferences/languagePreference";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
+import { resolveJourneyAccess } from "../journey/journeyAccess";
 import {
   canOpenFinal,
   mostAdvancedAvailableStation,
@@ -122,7 +124,7 @@ function resolveAuthorizedFinalReviewContext(
   storage: ProgressStorage | null,
   progressStorage: ProgressStorage | null,
 ): FinalReviewContext | null {
-  if (!canOpenFinal(readProgress(progressStorage))) {
+  if (!canOpenFinal(readProgress(progressStorage)) || resolveJourneyAccess(`/estacion/${world}`, state).mode === "normal") {
     clearFinalReviewContext(storage);
     return null;
   }
@@ -138,6 +140,7 @@ export function FinalReviewModeLayout({
 }: FinalReviewModeLayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
+  const finalEditorialSlots = getFinalEditorialSlots(readLanguagePreference() ?? "es");
   const dockRef = useRef<HTMLDivElement>(null);
   const [dockMetrics, setDockMetrics] = useState<ReviewDockMetrics>(() =>
     initialReviewDockMetrics(world),
@@ -281,6 +284,7 @@ export function FinalReviewModeLayout({
   }, [context, measureReviewDock, world]);
 
   function returnToFinal() {
+    const returningContext = context;
     clearFinalReviewContext(storage);
     setContext(null);
     const progress = readProgress(progressStorage);
@@ -288,7 +292,7 @@ export function FinalReviewModeLayout({
       canOpenFinal(progress)
         ? finalEntryRoute
         : stationEntryRoutes[mostAdvancedAvailableStation(progress)],
-      canOpenFinal(progress) ? undefined : { replace: true },
+      canOpenFinal(progress) ? { state: { finalReview: returningContext } } : { replace: true },
     );
   }
 
@@ -336,7 +340,7 @@ export function FinalReviewModeLayout({
                 finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text
               }
               className="final-review-return-control"
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.status}
               data-final-review-return="active"
               data-final-slot-id="FINAL_RETURN_TO_MIRADOR_BTN_01"
               data-final-accessible-slot-id="FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01"

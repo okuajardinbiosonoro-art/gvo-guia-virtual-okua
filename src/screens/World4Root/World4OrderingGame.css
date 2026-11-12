@@ -1,0 +1,361 @@
+.s4-ordering,
+.s4-ordering * {
+  box-sizing: border-box;
+}
+.s4-ordering {
+  min-height: 100svh;
+  padding: 1.25rem max(0.5rem, env(safe-area-inset-left)) 1.5rem;
+  color: #f2f0fc;
+  background: #080c1c;
+  font-family: var(--gvo-font-body);
+}
+.s4-ordering > header {
+  max-width: 1100px;
+  margin: 0 auto 1rem;
+  padding-inline: 48px;
+  text-align: center;
+}
+.s4-ordering h1 {
+  font: 700 var(--gvo-room-title-size)/var(--gvo-room-title-line) var(--gvo-font-heading);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.s4-ordering-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  width: min(100%, 1100px);
+  margin-inline: auto;
+  align-items: start;
+}
+.s4-ordering-play-column {
+  position: relative;
+  min-width: 0;
+}
+.s4-ordering-preparation {
+  margin-bottom: 1rem;
+}
+.s4-ordering-preparation.s4-ordering-preparation--sticky {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 60px 0.5rem 0.5rem;
+}
+.s4-ordering-play-guidance {
+  color: inherit;
+  margin: 0 0 0.75rem;
+}
+.s4-ordering-stage {
+  position: relative;
+  width: min(100%, 560px);
+  min-width: 0;
+  max-width: 100%;
+  min-height: max(560px, 28rem);
+  aspect-ratio: 3/4;
+  margin-inline: auto;
+  isolation: isolate;
+  border-radius: 1.25rem;
+}
+.s4-ordering-table {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.s4-ordering-grid {
+  position: absolute;
+  inset: 12% 4% 13%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  column-gap: clamp(12px, 6vw, 56px);
+  row-gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.s4-ordering-grid li {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+.s4-ordering-number {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: #161933;
+  border: 1px solid #c3b6db;
+  color: #f7e6a8;
+  font: 700 1rem/1 var(--gvo-font-ui);
+  pointer-events: none;
+}
+.s4-ordering-grid button {
+  scroll-margin-block-start: calc(
+    var(--s4-controls-height, 8rem) + env(safe-area-inset-top, 0px) + 1rem
+  );
+  scroll-margin-block-end: 1rem;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: 0.15rem;
+  width: 100%;
+  height: 100%;
+  min-height: 96px;
+  min-width: 48px;
+  padding: calc(1.85rem + 2px) 0.25rem 0.25rem;
+  border: 2px solid transparent;
+  border-radius: 0.8rem;
+  color: #fff8e9;
+  background: radial-gradient(ellipse at center, #8c70a628, #27234118 75%);
+  cursor: pointer;
+  font: 600 1rem/1.15 var(--gvo-font-ui);
+  text-align: center;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    translate 0.2s;
+}
+.s4-ordering-grid button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 4px #0009);
+  pointer-events: none;
+}
+.s4-ordering-grid button > span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.s4-ordering-grid button[aria-pressed="true"] {
+  border: 3px solid #ffe3a0;
+  background: #765d2f82;
+  box-shadow:
+    0 0 0 3px #161729,
+    0 0 20px #ffd974a6;
+  translate: 0 -3px;
+}
+.s4-ordering-grid button.is-presented {
+  border-color: #a6ebff;
+  background: #214f6380;
+  box-shadow: 0 0 18px #88d9e66b;
+}
+.s4-ordering[data-station4-ordering-solved="true"] .s4-ordering-grid button {
+  border-color: #ffe3a0;
+  background: radial-gradient(ellipse at center, #e0b15c52, #8064316b);
+  box-shadow: inset 0 0 12px #ffd67a49, 0 0 10px #ffd67a59;
+}
+.s4-ordering button:not(.gvo-journey-exit):focus-visible {
+  outline: 3px solid #dcbbff;
+  outline-offset: 4px;
+}
+.s4-ordering button:disabled {
+  cursor: default;
+}
+.s4-ordering-grid button:disabled {
+  opacity: 1;
+}
+.s4-ordering-panel,
+.s4-ordering-preparation {
+  position: relative;
+  padding: 1.1rem;
+  border: 1px solid #a796c4;
+  border-radius: 1rem;
+  background: linear-gradient(150deg, #25283e, #15192d);
+  font-size: 1rem;
+  line-height: 1.5;
+  min-width: 0;
+}
+.s4-ordering-panel p,
+.s4-ordering-preparation p {
+  color: inherit;
+  margin: 0 0 0.9rem;
+}
+.s4-ordering-how-to {
+  margin-block: 0.7rem 0.9rem;
+  padding: 0.8rem;
+  border-inline-start: 3px solid #d4c8eb;
+  background: #101529;
+  border-radius: 0.35rem;
+}
+.s4-ordering-how-to h2 {
+  margin: 0 0 0.5rem;
+  font: 700 1.15rem/1.3 var(--gvo-font-heading);
+}
+.s4-ordering-how-to ol {
+  margin: 0;
+  padding-inline-start: 1.35em;
+}
+.s4-ordering-how-to li + li { margin-block-start: 0.4rem; }
+
+.s4-ordering-swap-example {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.3rem, 2vw, 0.6rem);
+  margin-block: 0.55rem 0.8rem;
+  color: #f3dfb1;
+}
+
+.s4-ordering-swap-example [data-example-piece] {
+  flex: 0 1 2.1rem;
+  min-width: 0;
+  height: 1.45rem;
+  border: 2px solid #ded0b1;
+  border-radius: 0.25rem;
+}
+
+.s4-ordering-swap-example [data-example-piece="a"] {
+  background: #8a7150;
+  box-shadow: 0 0 0.4rem #f3d29388;
+}
+
+.s4-ordering-swap-example [data-example-piece="b"] {
+  background: repeating-linear-gradient(135deg, #5a7481 0 4px, #31424e 4px 8px);
+}
+
+.s4-ordering-swap-arrow { font-size: 1.35rem; line-height: 1; }
+.s4-ordering-panel button:not(.gvo-journey-exit),
+.s4-ordering-preparation button {
+  min-height: 48px;
+  min-width: 48px;
+  max-width: 100%;
+  padding: 0.55rem 0.8rem;
+  margin: 0 0.4rem 0.5rem 0;
+  font: 600 1rem/1.3 var(--gvo-font-ui);
+  border: 1px solid #d4c8eb;
+  border-radius: 0.5rem;
+  background: #e7d9b4;
+  color: #24202f;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.s4-ordering-panel button:disabled,
+.s4-ordering-preparation button:disabled {
+  opacity: 0.6;
+}
+.s4-ordering-panel .s4-ordering-text-action,
+.s4-ordering-preparation .s4-ordering-text-action {
+  color: #eee4ff;
+  background: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.s4-ordering-description {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #9580b4;
+}
+.s4-ordering-description h2 {
+  font: 700 1.3rem/1.25 var(--gvo-font-heading);
+  margin: 0 0 0.8rem;
+}
+.s4-ordering-description > p:first-child {
+  color: #e5ceff;
+}
+.s4-ordering-clock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex: 1 1 160px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.s4-ordering-preparation--sticky > button,
+.s4-ordering-clock button {
+  margin: 0;
+}
+.s4-ordering-preparation.s4-ordering-preparation--sticky {
+  padding: 0.5rem 60px 0.5rem 0.5rem;
+}
+.s4-ordering-panel.s4-ordering-panel--idle {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+.s4-ordering-clock > span {
+  font-variant-numeric: tabular-nums;
+  font: 700 1.4rem/1 var(--gvo-font-ui);
+}
+.s4-ordering-status:empty {
+  display: none;
+}
+.s4-ordering-stage .s4-lia-guide {
+  width: 19%;
+  pointer-events: none;
+}
+.s4-ordering-stage .s4-lia-guide__traveler,
+.s4-ordering-stage .s4-lia-guide__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.s4-ordering-stage .s4-lia-guide__traveler {
+  position: relative;
+  transform-origin: 50% 82%;
+}
+.s4-ordering-stage .s4-lia-guide__collar-glow {
+  display: none;
+}
+.s4-explanation-layout {
+  grid-template-areas: "explanation" "table";
+}
+.s4-explanation-panel {
+  grid-area: explanation;
+}
+.s4-explanation-stage {
+  grid-area: table;
+}
+.s4-explanation-progress {
+  font-variant-numeric: tabular-nums;
+}
+.s4-explanation-description h2 {
+  font: 700 1.3rem/1.25 var(--gvo-font-heading);
+  margin: 0 0 0.8rem;
+  scroll-margin-block-start: calc(env(safe-area-inset-top, 0px) + 64px);
+}
+.s4-explanation-description p {
+  overflow-wrap: anywhere;
+}
+@media (min-width: 760px) {
+  .s4-ordering-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+  }
+  .s4-explanation-layout {
+    grid-template-areas: "table explanation";
+  }
+}
+@media (max-width: 340px) {
+  .s4-ordering-stage {
+    min-height: max(540px, 28rem);
+  }
+  .s4-ordering-grid {
+    inset-inline: 3%;
+  }
+  .s4-ordering-panel {
+    padding: 0.9rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s4-ordering-grid button {
+    transition: none;
+  }
+}

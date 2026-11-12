@@ -102,9 +102,8 @@ test.describe("GVO_DEBT_014 global experience", () => {
       { name: "desktop", width: 1440, height: 900 },
     ]) {
       await page.setViewportSize(viewport);
-      await page.goto("/portada?resetIntro=1", {
-        waitUntil: "domcontentloaded",
-      });
+      await seedCompleteProgress(page);
+      await openCoverFromFinal(page);
       await expect(page.locator("[data-portal-id='portal-1']")).toBeVisible({
         timeout: 20_000,
       });
@@ -174,8 +173,8 @@ test.describe("GVO_DEBT_014 global experience", () => {
   }) => {
     await page.goto("/portada?resetIntro=1", { waitUntil: "domcontentloaded" });
     await waitForCover(page);
-    await expect(page.locator("[data-portal-state='locked']")).toHaveCount(4);
-    await expect(page.locator(".cover-intro__portal-lock")).toHaveCount(4);
+    await expect(page.locator("[data-portal-state='locked']")).toHaveCount(0);
+    await expect(page.locator(".cover-intro__portal-lock")).toHaveCount(0);
 
     await page.evaluate(
       ({ contextKey, key, progress }) => {
@@ -191,7 +190,7 @@ test.describe("GVO_DEBT_014 global experience", () => {
     await page.reload({ waitUntil: "domcontentloaded" });
     await waitForCover(page);
     await expect(page.locator("[data-cover-revisit='inactive']")).toBeVisible();
-    await expect(page.locator("[data-portal-state='locked']")).toHaveCount(4);
+    await expect(page.locator("[data-portal-state='locked']")).toHaveCount(0);
   });
 
   test("Mirador unlocks I–V and each portal opens its canonical World with coherent return", async ({
@@ -295,7 +294,7 @@ test.describe("GVO_DEBT_014 global experience", () => {
       "data-gvo-fullscreen-capability",
       "blocked-by-context",
     );
-    await expect(page.locator("[data-portal-id='portal-1']")).toBeVisible();
+    await expect(page.getByRole("button", {name:"Empieza aquí"})).toBeVisible();
 
     const rejectionPage = await page.context().newPage();
     await installFullscreenStub(rejectionPage);
@@ -313,7 +312,7 @@ test.describe("GVO_DEBT_014 global experience", () => {
       rejectionPage.locator("[data-gvo-immersive-state='error']"),
     ).toBeVisible();
     await expect(
-      rejectionPage.locator("[data-portal-id='portal-1']"),
+      rejectionPage.getByRole("button", {name:"Empieza aquí"}),
     ).toBeVisible();
     await rejectionPage.close();
   });

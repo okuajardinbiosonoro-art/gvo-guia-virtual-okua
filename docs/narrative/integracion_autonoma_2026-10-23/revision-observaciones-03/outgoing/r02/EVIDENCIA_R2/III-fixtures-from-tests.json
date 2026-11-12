@@ -1,0 +1,67 @@
+{
+  "scope": "Source/test evidence, NOT personal browser storage or new test execution",
+  "samples": [
+    {
+      "id": "III-research-original",
+      "key": "gvo.station3.v1",
+      "kind": "exact_object_in_repository_test",
+      "source": "tests/e2e/gvo-debt-006-world3-durable-records.spec.ts:20",
+      "value": {
+        "schemaVersion": 1,
+        "completedRecordIds": [
+          "planta",
+          "prototipo"
+        ],
+        "updatedAt": "2026-08-05T18:00:00.000Z"
+      },
+      "meaning": "Research records, not practice or OBS03 presentation."
+    },
+    {
+      "id": "III-opened-all-before-scan",
+      "key": "gvo.station3.practice.v2",
+      "kind": "observed_assertion_subset_not_complete_raw",
+      "source": "tests/e2e/gvo-debt-002-progress-integrity.spec.ts:248",
+      "value": {
+        "visitedPages": [
+          "planta",
+          "prototipo",
+          "senal"
+        ],
+        "reviewedPages": [],
+        "practiceStatus": "not_started",
+        "activityContinued": false
+      },
+      "meaning": "All pages opened, no durable per-page confirmation. Do not mint OBS03 closed."
+    },
+    {
+      "id": "III-after-valid-scan",
+      "key": "gvo.station3.practice.v2",
+      "kind": "observed_assertion_subset_not_complete_raw",
+      "source": "tests/e2e/gvo-debt-006-world3-durable-records.spec.ts:74",
+      "value": {
+        "reviewedPages": [],
+        "visitedPages": [
+          "planta",
+          "prototipo",
+          "senal"
+        ],
+        "skippedPages": [],
+        "practiceStatus": "not_started",
+        "activityContinued": true
+      },
+      "meaning": "Existing path allows this before transition. Proven visits are not OBS03 closure; acquired route credit is separate."
+    },
+    {
+      "id": "III-skip-and-refresh",
+      "key": "gvo.station3.practice.v2",
+      "kind": "observed_assertion_subset_not_complete_raw",
+      "source": "tests/e2e/gvo-debt-006-world3-durable-records.spec.ts:125",
+      "value": {
+        "reviewedPages": [],
+        "visitedPages": [],
+        "practiceStatus": "not_started"
+      },
+      "meaning": "Explicit optional old path; cannot infer essential confirmations."
+    }
+  ]
+}

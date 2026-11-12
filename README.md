@@ -14,7 +14,38 @@ Esta sección es un índice de navegación. La actualización documental no publ
 
 # GVO — Guía Virtual OKÚA
 
-GVO es una aplicación web local, mobile-first e insonora que acompaña el
+La base oficial del recorrido es **GVO 1.0.0**. Consulta el
+[acta de versión](docs/releases/GVO_1.0.0.md), el estado actual y las
+instrucciones de campo antes de preparar una instalación.
+
+El editor local v4 ofrece guardado en PC, recuperación de borradores y edición
+de textos y estilos. El paquete independiente se conserva en el archivo de
+desarrollo. [Ticket del editor](docs/tickets/GVO_EDITORIAL_20261029_V4.md).
+
+La revisión histórica OBS05, del 24 de octubre de 2026, atendió el feedback del
+responsable sobre título e índice de III y cohesión visual, premio y reintentos
+de V. La base humana revisada es OBS04 build06, aislada en
+`.tool-reports/obs04/build06/candidate`; su cierre bilateral quedó listo para
+revisión con límites declarados. OBS05 tiene metodología y contrato de rondas
+R1/R2 conciliados con el mismo ChatGPT contextual. La candidata ejecutable está
+en `.tool-reports/obs05/build02/candidate`:719 pruebas/69 archivos, TypeScript,
+lint, Vite/PWA y64 casos compilados PASS. R3 fue recibido y conciliado:
+`READY_WITH_DECLARED_LIMITS`,18 criterios y cero bloqueantes nuevos. Está lista
+para la revisión del responsable humano único; publicación y despliegue siguen
+pendientes en aquella revisión. El [estado actual](docs/status/CURRENT_STATE.md)
+registra las revisiones posteriores y la aceptación de 1.0.0.
+
+El recorrido del visitante se comprueba con la hoja externa de cuatro QR y
+los controles normales de la aplicación.
+
+La base conserva [ADR-0012](docs/decisions/ADR-0012-obs04-entry-and-explanatory-tour.md);
+el contrato funcional nuevo de V está documentado en
+[ADR-0013](docs/decisions/ADR-0013-obs05-whole-quiz-rounds.md): una ronda inicial y
+hasta tres reintentos completos, premio sólo4/4 en una misma ronda y conservación
+de los créditos del recorrido.
+La aprobación final corresponde al responsable humano único.
+
+GVO es una aplicación web local, mobile-first que acompaña el
 recorrido físico de OKÚA. Funciona en el navegador del visitante dentro de una
 red de sitio y mantiene todos los recursos runtime en el propio despliegue.
 
@@ -27,7 +58,9 @@ INSTALACIONES EN EL DISPOSITIVO = 0
 
 El visitante no instala app, PWA, CA, certificado, extensión ni scanner
 externo. El runtime no depende de Internet, CDN, APIs, fuentes o imágenes
-remotas. No reproduce audio ni solicita micrófono.
+remotas. Puede reproducir audio local entregado por el diseñador de sonido.
+La integración se hará con los archivos finales y el mapa de reproducción.
+Consulta las [reglas vigentes](docs/01_REGLAS_NO_NEGOCIABLES.md).
 
 ## Recorrido vigente
 
@@ -49,12 +82,13 @@ Carga
 
 El avance entre Mundos I–V ocurre exclusivamente al escanear el QR físico de
 la siguiente estación dentro de GVO. Un payload incorrecto no concede progreso
-ni navega. Mundo V → Mirador conserva su cierre automático contractual.
+ni navega. Mundo V → Mirador permite revisar el resultado y continuar mediante
+una acción explícita, sin cierre automático.
 
 ## Estado actual
 
 - Rama operativa única: `main`.
-- Fase actual: `FIELD DEPLOYMENT PREPARATION`.
+- Fase actual: `OBS05 — LISTA PARA REVISIÓN HUMANA CON LÍMITES DECLARADOS`.
 - GVO_DEBT_001→015: implementados, reconciliados y publicados.
 - Scanner QR interno y cámara: aprobados con deuda de despliegue físico.
 - Entorno de desarrollo: HTTPS local reproducible con CA de laboratorio.

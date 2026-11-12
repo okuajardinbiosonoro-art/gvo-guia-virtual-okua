@@ -1,6 +1,31 @@
 import { world3RuntimeAssets } from "./world3RuntimeAssets";
+import { world3LiaClipAssets } from "./world3LiaClips";
 
 export const world3SemanticAssetManifest = {
+  currentComposition: {
+    status: "OBS03.2-original-notebook-candidate-pending-visual-QA",
+    consumer: "World3RootScreen.tsx",
+    reused: ["environment", "notebook", "notebookTurnPage", "practiceMotifs"],
+    generated: Object.values(world3LiaClipAssets).map((clip) => clip.src),
+    historicalNotConsumed: [
+      "records",
+      "notebookFolioV02",
+      "plantNotebookMarksSheet",
+      "prototypeNotebookMarksSheet",
+      "signalNotebookMarksSheet",
+      "indexNotebookMarksSheet",
+      "historicalPixelLiaPoses",
+    ],
+    practiceMotifs: world3RuntimeAssets.practice,
+    editorialIllustrations: world3RuntimeAssets.illustrations,
+    pendingProduction: [],
+    pendingVisualReview: ["three-pixel-clips-in-current-scene-normal-and-reduced-motion"],
+    clipsManifest: "public/assets/gvo/current-used/world-3-root/lia/clips/OBS03-clips-manifest.json",
+    productionManifest:
+      "docs/narrative/integracion_autonoma_2026-10-23/assets-production.json",
+    finishingManifest:
+      "docs/narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json",
+  },
   environment: {
     asset: world3RuntimeAssets.environment.ambientTexture,
     visualMode: "asset-css" as const,
@@ -10,7 +35,18 @@ export const world3SemanticAssetManifest = {
     asset: world3RuntimeAssets.notebook.openBase,
     visualMode: "asset-dom" as const,
     responsibility:
-      "Shell visual; páginas, texto y controles permanecen en DOM.",
+      "Bitmap original proporcional, recortado por alfa medido sin nueve segmentos; papel, texto y controles permanecen en DOM.",
+  },
+  notebookOpenBase: {
+    asset: world3RuntimeAssets.notebook.openBase,
+    historical: false,
+    responsibility:
+      "Base original restaurada por OBS03; mismo archivo, sin transformación raster.",
+  },
+  notebookFolioV02: {
+    asset: world3RuntimeAssets.notebook.folio,
+    historical: true,
+    responsibility: "Variante rechazada conservada como historia; no consumida por la composición OBS03.",
   },
   notebookTurnPage: {
     asset: world3RuntimeAssets.notebook.turnPage,
@@ -27,10 +63,11 @@ export const world3SemanticAssetManifest = {
       "Hoja real compartida por ambas caras del giro; el margen alfa se compensa en el origen sin editar el PNG.",
   },
   lia: {
-    assets: world3RuntimeAssets.lia,
-    visualMode: "pose-actor" as const,
+    historicalAssetsNotConsumed: world3RuntimeAssets.lia,
+    assets: world3LiaClipAssets,
+    visualMode: "three-registered-six-frame-clips" as const,
     responsibility:
-      "Actor decorativo por poses; el mensaje accesible vive en DOM.",
+      "Índice neutral e INTRO usan la hoja intro; PASO escucha y BENEFICIOS acompaña. Tres hojas reales registradas, sin fallback silencioso, callbacks de cierre ni aprobación visual implícita. El mensaje accesible vive en DOM.",
   },
   records: {
     planta: world3RuntimeAssets.records.planta,
@@ -106,7 +143,6 @@ export const world3SemanticAssetManifest = {
     "stamp",
     "text",
     "controls",
-    "frame",
     "particles",
   ] as const,
 } as const;

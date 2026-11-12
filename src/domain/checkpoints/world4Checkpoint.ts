@@ -4,7 +4,11 @@ import { createVersionedCheckpointStore } from "./checkpointStore";
 export const WORLD4_CHECKPOINT_STORAGE_KEY = "gvo.station4.v1";
 export const WORLD4_CHECKPOINT_SCHEMA_VERSION = 1;
 
-export type World4ResumeMode = "reading" | "chain_pending" | "completion_retry";
+export type World4ResumeMode =
+  | "reading"
+  | "chain_pending"
+  | "completion_retry"
+  | "activity_skipped";
 
 export type World4SettledIndex = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -23,7 +27,8 @@ function isResumeMode(value: unknown): value is World4ResumeMode {
   return (
     value === "reading" ||
     value === "chain_pending" ||
-    value === "completion_retry"
+    value === "completion_retry" ||
+    value === "activity_skipped"
   );
 }
 
@@ -48,6 +53,8 @@ function isWorld4Checkpoint(value: unknown): value is World4CheckpointV1 {
   ) {
     return false;
   }
+
+  if (candidate.resumeMode === "activity_skipped") return true;
 
   return candidate.resumeMode === "reading"
     ? candidate.highestSettledIndex <= 6

@@ -1,0 +1,1076 @@
+{
+  "schema": 1,
+  "status": "AGENT_STATIC_AUDIT_PASS_WITH_OPEN_ART_AND_VISUAL_DEBTS_HUMAN_PENDING",
+  "audit": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.json",
+  "groups": {
+    "sharedRig": [
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_body_bulb_segmented_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_body_bulb_segmented_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_body_bulb_segmented_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 16116,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "23f65fe21392511a03855737eccb5a1f16a50dac264b1a945ddb7997db633f7b",
+        "mirrorExists": true,
+        "mirrorSha256": "23f65fe21392511a03855737eccb5a1f16a50dac264b1a945ddb7997db633f7b",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "a32fc8bfd4e6cbc33d200efc1fe7c4ee1ad217970bcc730ebd5932326af75685",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_collar_amber_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_collar_amber_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_collar_amber_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 1926,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "39ef0556e7e74a0a2fd40451129e52806395fd5fa71233f0b1dde1bbf8d54294",
+        "mirrorExists": true,
+        "mirrorSha256": "39ef0556e7e74a0a2fd40451129e52806395fd5fa71233f0b1dde1bbf8d54294",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "50bed4928638fcbd8ba59ec04e769d4c7127986083e74ff6f48680e0d43b3592",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_attentive_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_attentive_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2604,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "4d98c7b4da306db3d5814ab6d577bd95dae634781b625d6dac281821e41a8766",
+        "mirrorExists": true,
+        "mirrorSha256": "4d98c7b4da306db3d5814ab6d577bd95dae634781b625d6dac281821e41a8766",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "bafccef0ed05db8e3a8f846ce4ff38663ffc8b5e71f4df64d99d5f0f159c6960",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_blink_25_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_blink_25_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_25_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2488,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "ec126829a30f4813a7a16cda877d62e765179c64b7cf0c0c97c05289432447d5",
+        "mirrorExists": true,
+        "mirrorSha256": "ec126829a30f4813a7a16cda877d62e765179c64b7cf0c0c97c05289432447d5",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "3f277e17d5e2cebf98e9b2418c1f6adafc8257696b440fecab0d30ab765a116d",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_blink_50_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_blink_50_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_50_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2590,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "ee7063808ff109146a566a9e9c55a08ae3ca7204f8e948ce5d3297e1b175d88b",
+        "mirrorExists": true,
+        "mirrorSha256": "ee7063808ff109146a566a9e9c55a08ae3ca7204f8e948ce5d3297e1b175d88b",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "4000665f86badc98e063f2e0503708e5c331d44b4494b79edc8cd076fb4dd92d",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_closed_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_closed_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_closed_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2096,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "092a08339ddfeac98c4dfbd603c23f39d9b81aafa4f1ed9116f4f25a52b347de",
+        "mirrorExists": true,
+        "mirrorSha256": "092a08339ddfeac98c4dfbd603c23f39d9b81aafa4f1ed9116f4f25a52b347de",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "8571b835606c773764ee4d42a8840a8ae876d23eaf461d9b41f3812574909ee7",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_happy_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_happy_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_happy_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2352,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "252982df6d176490ae302a760b4fdf0b545a53fb351185eb4a7af10d533baf35",
+        "mirrorExists": true,
+        "mirrorSha256": "252982df6d176490ae302a760b4fdf0b545a53fb351185eb4a7af10d533baf35",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "3dde255910f0c68d7d16f84e573adaf10ecf7743674f83594cdd3547a3761083",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_neutral_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_neutral_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_neutral_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 2786,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "9767001b503aa171b13170eba8a1fda2e62dc1a227e61796cd518bdc98930935",
+        "mirrorExists": true,
+        "mirrorSha256": "9767001b503aa171b13170eba8a1fda2e62dc1a227e61796cd518bdc98930935",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "894d535eca8dac0e5bcb1a2d4e6ae5ff8f8253e6abb30105689358dd4331a9ca",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_glow_collar_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_glow_collar_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_glow_collar_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 5878,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "c1e9f30cf690f300a6834be7b76a14f1a1221b716205f6f6500c418038badc5f",
+        "mirrorExists": true,
+        "mirrorSha256": "c1e9f30cf690f300a6834be7b76a14f1a1221b716205f6f6500c418038badc5f",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "ed7c109044b82d9b1e4a122062a67966438e27867322f65957bd53a9f0e851d5",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_head_opal_clean_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_head_opal_clean_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_head_opal_clean_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 8746,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "c4b6c4311acb3bcd8668ab4e6dbf6b99e2bdf7b7c97eeeb1ff3958e93cf9771d",
+        "mirrorExists": true,
+        "mirrorSha256": "c4b6c4311acb3bcd8668ab4e6dbf6b99e2bdf7b7c97eeeb1ff3958e93cf9771d",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "d63712d641648228a0cbf26dfec31330f2234f6debf2fc8ffb48bd0962401b49",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_left_lower_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_left_lower_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_lower_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 6640,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "9d1fea490333b848e4a955d4ff6bfe0abc5dfb49b1d7cbd313bb632e7c3beaed",
+        "mirrorExists": true,
+        "mirrorSha256": "9d1fea490333b848e4a955d4ff6bfe0abc5dfb49b1d7cbd313bb632e7c3beaed",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_left_upper_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_left_upper_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_upper_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 7612,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "09e74e1a419a8d1e10c84378df3231921a1f26dbed01cb3ecb901a28596e110d",
+        "mirrorExists": true,
+        "mirrorSha256": "09e74e1a419a8d1e10c84378df3231921a1f26dbed01cb3ecb901a28596e110d",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_right_lower_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_right_lower_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_lower_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 6048,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "2262912dc32c1e188d2956c38a77943ebfd055fa58e6a047031f4592628e9b08",
+        "mirrorExists": true,
+        "mirrorSha256": "2262912dc32c1e188d2956c38a77943ebfd055fa58e6a047031f4592628e9b08",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_right_upper_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_right_upper_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_upper_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 6882,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "1ed4139b5eef86612941a5c7974e45e08e81a42cda02ab331424424ad58a7a00",
+        "mirrorExists": true,
+        "mirrorSha256": "1ed4139b5eef86612941a5c7974e45e08e81a42cda02ab331424424ad58a7a00",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_top_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_top_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_top_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 6884,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "2fd4efd64ddf137eec4e64b53b72c8b0c2d7f2716866a6ed4038ba261d657b0f",
+        "mirrorExists": true,
+        "mirrorSha256": "2fd4efd64ddf137eec4e64b53b72c8b0c2d7f2716866a6ed4038ba261d657b0f",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_shadow_soft_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_shadow_soft_v03.webp",
+        "role": "Authentic independent rig layer; shared Cover/I/II/IV/V",
+        "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
+        "format": "webp",
+        "dimensions": [
+          432,
+          768
+        ],
+        "bytes": 3254,
+        "rgbaDecodedBytesEstimate": 1327104,
+        "sha256": "99046769d7cebf36c14231a94d4b60eab65da106c78263279678c03dca7fd34d",
+        "mirrorExists": true,
+        "mirrorSha256": "99046769d7cebf36c14231a94d4b60eab65da106c78263279678c03dca7fd34d",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "8a1dbd2f6fb96d38a89963cebf861a6a41645eca96ad9efc0171e69ec402c896",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      }
+    ],
+    "sharedSwipe": [
+      {
+        "runtime": "public/assets/gvo/shared/gesture-hints/runtime/gvo_gesture_hand_swipe_v03.webp",
+        "mirror": "public/assets/gvo/current-used/shared/gesture-hints/gvo_gesture_hand_swipe_v03.webp",
+        "role": "Oblique swipe hand, vertical/horizontal shared consumers",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/HAND_SWIPE_OBS03_master.png",
+        "format": "webp",
+        "dimensions": [
+          256,
+          256
+        ],
+        "bytes": 10184,
+        "rgbaDecodedBytesEstimate": 262144,
+        "sha256": "8c3668ac88fa584a2dd07a0250cd2b52858b7cbe9233d45e14c9b37303679df9",
+        "mirrorExists": true,
+        "mirrorSha256": "8c3668ac88fa584a2dd07a0250cd2b52858b7cbe9233d45e14c9b37303679df9",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "aecd10b833507d5002e931715ff3a3c29f70df7c1fd76e16c5b53cbd8b46db78",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      }
+    ],
+    "world3": [
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/environment/world3_ambient_texture_v01.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/environment/world3_ambient_texture_v01.webp",
+        "role": "Retained actual scene resource",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          1536,
+          1536
+        ],
+        "bytes": 58320,
+        "rgbaDecodedBytesEstimate": 9437184,
+        "sha256": "98ba450cb7b8a753a288c438011238ecd94973ca652dcc39500f5e9cf3c9cbb2",
+        "mirrorExists": true,
+        "mirrorSha256": "98ba450cb7b8a753a288c438011238ecd94973ca652dcc39500f5e9cf3c9cbb2",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_open_base_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_open_base_v01.png",
+        "role": "Original notebook material restored without raster editing",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "bytes": 1613931,
+        "rgbaDecodedBytesEstimate": 6291456,
+        "sha256": "3abf81f4772302cb7a38b9c428c104951e35d087ff1f5989c55468ddec31d0f3",
+        "mirrorExists": true,
+        "mirrorSha256": "3abf81f4772302cb7a38b9c428c104951e35d087ff1f5989c55468ddec31d0f3",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_turn_page_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_turn_page_v01.png",
+        "role": "Original notebook material restored without raster editing",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 1020913,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "93799b95189251ec6ee5db833c14561b0f444db14382cf3e0382ceb9b447408d",
+        "mirrorExists": true,
+        "mirrorSha256": "93799b95189251ec6ee5db833c14561b0f444db14382cf3e0382ceb9b447408d",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_idle_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_idle_v01.png",
+        "role": "Historical pixel pose retained; new articulation still pending",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 464938,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "0fc7473633449418a3479457b4a4f237c6f5f64e87f631674dba94bf535ee37d",
+        "mirrorExists": true,
+        "mirrorSha256": "0fc7473633449418a3479457b4a4f237c6f5f64e87f631674dba94bf535ee37d",
+        "mirrorByteIdentical": true,
+        "status": "HISTORICAL_PIXEL_POSE_NOT_CONSUMED_BY_CURRENT_OBS03_ROOM",
+        "humanApproval": false,
+        "currentlyConsumed": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_pointing_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_pointing_v01.png",
+        "role": "Historical pixel pose retained; new articulation still pending",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 467463,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "51780faf17a5ab2566d0264698f61115be1d01745d73beb52d4f6d10397952ca",
+        "mirrorExists": true,
+        "mirrorSha256": "51780faf17a5ab2566d0264698f61115be1d01745d73beb52d4f6d10397952ca",
+        "mirrorByteIdentical": true,
+        "status": "HISTORICAL_PIXEL_POSE_NOT_CONSUMED_BY_CURRENT_OBS03_ROOM",
+        "humanApproval": false,
+        "currentlyConsumed": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_observing_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_observing_v01.png",
+        "role": "Historical pixel pose retained; new articulation still pending",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 432127,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "196e1bd67d7efb44675f2774e1edf2524c9e9c18dc2968ed6d9a9689eee9a5d2",
+        "mirrorExists": true,
+        "mirrorSha256": "196e1bd67d7efb44675f2774e1edf2524c9e9c18dc2968ed6d9a9689eee9a5d2",
+        "mirrorByteIdentical": true,
+        "status": "HISTORICAL_PIXEL_POSE_NOT_CONSUMED_BY_CURRENT_OBS03_ROOM",
+        "humanApproval": false,
+        "currentlyConsumed": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_confirming_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_confirming_v01.png",
+        "role": "Historical pixel pose retained; new articulation still pending",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 504601,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "a34d643e4ce517fcd6c09f1ab6c50f0930496fef1a8d9f7a55a6aea12afc0881",
+        "mirrorExists": true,
+        "mirrorSha256": "a34d643e4ce517fcd6c09f1ab6c50f0930496fef1a8d9f7a55a6aea12afc0881",
+        "mirrorByteIdentical": true,
+        "status": "HISTORICAL_PIXEL_POSE_NOT_CONSUMED_BY_CURRENT_OBS03_ROOM",
+        "humanApproval": false,
+        "currentlyConsumed": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_closure_v01.png",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_closure_v01.png",
+        "role": "Historical pixel pose retained; new articulation still pending",
+        "source": null,
+        "format": "png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 581832,
+        "rgbaDecodedBytesEstimate": 4194304,
+        "sha256": "c82ef8e9334fa5bf5359ffc4303a7d60514b29ae6785d37fadc0613812df2afb",
+        "mirrorExists": true,
+        "mirrorSha256": "c82ef8e9334fa5bf5359ffc4303a7d60514b29ae6785d37fadc0613812df2afb",
+        "mirrorByteIdentical": true,
+        "status": "HISTORICAL_PIXEL_POSE_NOT_CONSUMED_BY_CURRENT_OBS03_ROOM",
+        "humanApproval": false,
+        "currentlyConsumed": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_intro_token_v01.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_intro_token_v01.webp",
+        "role": "Retained actual scene resource",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 101554,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "b6b1a431d01c8c37be485de41681c8d6537ae54ca325903135afb8490fe66eda",
+        "mirrorExists": true,
+        "mirrorSha256": "b6b1a431d01c8c37be485de41681c8d6537ae54ca325903135afb8490fe66eda",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_practice_listening_v01.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_practice_listening_v01.webp",
+        "role": "Retained actual scene resource",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 107406,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "1c3c7f8c9094e757f23bc3fefa685930a62c8a224ab6e63faf37cc3d5970f3ed",
+        "mirrorExists": true,
+        "mirrorSha256": "1c3c7f8c9094e757f23bc3fefa685930a62c8a224ab6e63faf37cc3d5970f3ed",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_benefits_care_v01.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_benefits_care_v01.webp",
+        "role": "Retained actual scene resource",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 75392,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "82b7ddb60ba448ca8e944cb2f0231b912fff50ecc23012baae45009fe8042e5d",
+        "mirrorExists": true,
+        "mirrorSha256": "82b7ddb60ba448ca8e944cb2f0231b912fff50ecc23012baae45009fe8042e5d",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "id": "intro",
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_intro_6f_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_intro_6f_v03.webp",
+        "sha256": "01689c27d863e3578c975d55dcfb6414390caaf58a81863384aca2930cb16cb2",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/LIA_PIXEL_INTRO_OBS03.png",
+        "sourceSha256": "1df3931796bdc08fdc20ead4aa11ac7c37af5fbf1a4e76838773ce26cbaf4152",
+        "bytes": 167084,
+        "durationMs": 650,
+        "sourceNeutralRgbaExact": true,
+        "runtimeNeutralAlphaAndVisibleRgbExact": true,
+        "runtimeNeutralRawRgbaExact": false,
+        "hiddenRgbDifferencePixels": 18337,
+        "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+        "actualSceneReview": "PENDING",
+        "dimensions": [
+          768,
+          512
+        ],
+        "role": "Active registered six-frame pixel Lia clip",
+        "format": "webp",
+        "rgbaDecodedBytesEstimate": 1572864,
+        "mirrorByteIdentical": true,
+        "currentlyConsumed": true,
+        "status": "FILE_QA_PASS_CURRENT_SCENE_REVIEW_PENDING",
+        "humanApproval": false
+      },
+      {
+        "id": "listening",
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_listening_6f_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_listening_6f_v03.webp",
+        "sha256": "0cd35d7a257f7ce19114b7e35493cd86e13c0e0d23c404be447d517db6605882",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/LIA_PIXEL_LISTENING_OBS03.png",
+        "sourceSha256": "c30b43c29584b2705c98047b712d60a96c0390441fbe00c39e09e42de8487c57",
+        "bytes": 160804,
+        "durationMs": 1100,
+        "sourceNeutralRgbaExact": true,
+        "runtimeNeutralAlphaAndVisibleRgbExact": true,
+        "runtimeNeutralRawRgbaExact": false,
+        "hiddenRgbDifferencePixels": 15364,
+        "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+        "actualSceneReview": "PENDING",
+        "dimensions": [
+          768,
+          512
+        ],
+        "role": "Active registered six-frame pixel Lia clip",
+        "format": "webp",
+        "rgbaDecodedBytesEstimate": 1572864,
+        "mirrorByteIdentical": true,
+        "currentlyConsumed": true,
+        "status": "FILE_QA_PASS_CURRENT_SCENE_REVIEW_PENDING",
+        "humanApproval": false
+      },
+      {
+        "id": "accompanying",
+        "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_accompanying_6f_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_accompanying_6f_v03.webp",
+        "sha256": "151787f8a30931874b67dd1a33df8598560903b8893504a63e0de0d828dbabf2",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/LIA_PIXEL_ACCOMPANYING_OBS03.png",
+        "sourceSha256": "15f1fc8c3662661b916b90a1d7846acf5dea51d67654101e14321964ef1206a0",
+        "bytes": 167682,
+        "durationMs": 850,
+        "sourceNeutralRgbaExact": true,
+        "runtimeNeutralAlphaAndVisibleRgbExact": true,
+        "runtimeNeutralRawRgbaExact": false,
+        "hiddenRgbDifferencePixels": 16103,
+        "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+        "actualSceneReview": "PENDING",
+        "dimensions": [
+          768,
+          512
+        ],
+        "role": "Active registered six-frame pixel Lia clip",
+        "format": "webp",
+        "rgbaDecodedBytesEstimate": 1572864,
+        "mirrorByteIdentical": true,
+        "currentlyConsumed": true,
+        "status": "FILE_QA_PASS_CURRENT_SCENE_REVIEW_PENDING",
+        "humanApproval": false
+      }
+    ],
+    "world4": [
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/environment/world4_table_environment_portrait_v02.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/environment/world4_table_environment_portrait_v02.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          768,
+          1024
+        ],
+        "bytes": 48478,
+        "rgbaDecodedBytesEstimate": 3145728,
+        "sha256": "5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343",
+        "mirrorExists": true,
+        "mirrorSha256": "5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_plant_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_plant_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 65108,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "11cb9b85d790335cdfa3e6077ac1915eb75ca0335474bbade915e2bf9f19b4fb",
+        "mirrorExists": true,
+        "mirrorSha256": "11cb9b85d790335cdfa3e6077ac1915eb75ca0335474bbade915e2bf9f19b4fb",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_bionosifier_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_bionosifier_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 37374,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "2e9dbc87216369263c823b184fb277c44166e6c8547dd77852727bc1d9a20b17",
+        "mirrorExists": true,
+        "mirrorSha256": "2e9dbc87216369263c823b184fb277c44166e6c8547dd77852727bc1d9a20b17",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_esp32_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_esp32_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 51412,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "09886470e24aded2a52d5c17e5b634d68779a7d75f5267572bcafe85a68725ca",
+        "mirrorExists": true,
+        "mirrorSha256": "09886470e24aded2a52d5c17e5b634d68779a7d75f5267572bcafe85a68725ca",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_midi_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_midi_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 21780,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "66e728588463c5212e0364bc919d41fc3dacc88119533936b4c720835027e645",
+        "mirrorExists": true,
+        "mirrorSha256": "66e728588463c5212e0364bc919d41fc3dacc88119533936b4c720835027e645",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_wifi_udp_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_wifi_udp_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 24002,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "d6f807861f8841ae6a9ce5f3030ec34ddeed18dede370f310c34253b7b0074f3",
+        "mirrorExists": true,
+        "mirrorSha256": "d6f807861f8841ae6a9ce5f3030ec34ddeed18dede370f310c34253b7b0074f3",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_router_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_router_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 25292,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "808e1ca27454aa72f54e7f640e1bdd2c5a696239450e7b92d4520ce0b281397c",
+        "mirrorExists": true,
+        "mirrorSha256": "808e1ca27454aa72f54e7f640e1bdd2c5a696239450e7b92d4520ce0b281397c",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_central_system_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_central_system_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 43356,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "968a1722bc7ca252fe46dea891a712190e972e7ae2a3b80cfbc28452b7aef751",
+        "mirrorExists": true,
+        "mirrorSha256": "968a1722bc7ca252fe46dea891a712190e972e7ae2a3b80cfbc28452b7aef751",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_sound_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_sound_v03.webp",
+        "role": "Current ordering scene",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 48646,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "b1a228a38fc291a0b24765df9350d3d198b9d2ea813d43204e124a10fa5f544c",
+        "mirrorExists": true,
+        "mirrorSha256": "b1a228a38fc291a0b24765df9350d3d198b9d2ea813d43204e124a10fa5f544c",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      }
+    ],
+    "world5": [
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_plants_agree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_plants_agree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 56308,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "962ccfc76cbc6ef75cd0dda5388d59cf276045a05f05e66d287483adafe3105f",
+        "mirrorExists": true,
+        "mirrorSha256": "962ccfc76cbc6ef75cd0dda5388d59cf276045a05f05e66d287483adafe3105f",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_plants_disagree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_plants_disagree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": null,
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 62858,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "45ad826fdeb91b63bbf825108b01bb48c078e9ed1373f230dfe91648bc2c2b4a",
+        "mirrorExists": true,
+        "mirrorSha256": "45ad826fdeb91b63bbf825108b01bb48c078e9ed1373f230dfe91648bc2c2b4a",
+        "mirrorByteIdentical": true,
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_system_agree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_system_agree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SYSTEM_AGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 34946,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "da0d1545439dd6f8725c7526d6cf574f0482c9e02261c204006e16bbb1563aa1",
+        "mirrorExists": true,
+        "mirrorSha256": "da0d1545439dd6f8725c7526d6cf574f0482c9e02261c204006e16bbb1563aa1",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "a47fd4f3d0c917445f636fc89665ee00296fb5e1c308122157cfd65d618e231e",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SYSTEM_AGREE_OBS03.png",
+        "normalizedSourceSha256": "e99b9211c461b54083919e8b1105313bad728f1f3896a3ebd6293956a14001ee",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_system_disagree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_system_disagree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SYSTEM_DISAGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 35092,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "2e3660f349338bb0610c2e82502df5655d26bda0df0aa6fa4fa436a0c571999a",
+        "mirrorExists": true,
+        "mirrorSha256": "2e3660f349338bb0610c2e82502df5655d26bda0df0aa6fa4fa436a0c571999a",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "9b2f519207e70cf40baf656a490f0a2ca1d49240b438e6e6a46b015b3191777f",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SYSTEM_DISAGREE_OBS03.png",
+        "normalizedSourceSha256": "86df54b2dc6908a23236d258b4398590e4f1761011074526564789a8f6dbc7c4",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_space_agree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_space_agree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SPACE_AGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 51594,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "08bb3a43f62c4f9c69135878b580f5a719b48b507e3667680a737eadffc31e43",
+        "mirrorExists": true,
+        "mirrorSha256": "08bb3a43f62c4f9c69135878b580f5a719b48b507e3667680a737eadffc31e43",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "c20b2c224e014f200c230e940c729d9be762a0dbc0725145bb46958d133f324c",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SPACE_AGREE_OBS03.png",
+        "normalizedSourceSha256": "3a76d9da390225d6ccafd1ea7ebba927823ab3888be11734594ce620327086ba",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_space_disagree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_space_disagree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SPACE_DISAGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 64168,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "6a1156d3640be975301ebe65f263be20fc627673a21a7de3bb3ee812ba8553be",
+        "mirrorExists": true,
+        "mirrorSha256": "6a1156d3640be975301ebe65f263be20fc627673a21a7de3bb3ee812ba8553be",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "717c50487335f178711aa17dadd09cd2476df8888989f9ff52af52ac000bf32b",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SPACE_DISAGREE_OBS03.png",
+        "normalizedSourceSha256": "c9fa3fab59a01efd3a3155ae28e710cd7a7fef2478c7f8520563be5f9d07a53d",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_visitor_agree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_visitor_agree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_VISITOR_AGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 17468,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "76b011c53f3502830bac07b7038ff759eb5f9689ed621bef917e2d7c9a2b08c9",
+        "mirrorExists": true,
+        "mirrorSha256": "76b011c53f3502830bac07b7038ff759eb5f9689ed621bef917e2d7c9a2b08c9",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "de2ab43c4e57e5e3792a542c1f1fc2b4a8dfcebbb074495ccfa6499194ce9128",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_VISITOR_AGREE_OBS03.png",
+        "normalizedSourceSha256": "b3de16bf0be9a61183a73a636f300fe93d1ce478d7ccce39b77e86de40bee88e",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      },
+      {
+        "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_visitor_disagree_v03.webp",
+        "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_visitor_disagree_v03.webp",
+        "role": "Actual native quiz answer object",
+        "source": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_VISITOR_DISAGREE_OBS03_NATIVE.png",
+        "format": "webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 22504,
+        "rgbaDecodedBytesEstimate": 1048576,
+        "sha256": "acca9d5f68bbb353c7ce5c6bef3bfbeb500b7fd02967c0bf2dbea2f1ca3a68d9",
+        "mirrorExists": true,
+        "mirrorSha256": "acca9d5f68bbb353c7ce5c6bef3bfbeb500b7fd02967c0bf2dbea2f1ca3a68d9",
+        "mirrorByteIdentical": true,
+        "sourceSha256": "30d4ce8e6e4b9e18f807a84c8a9bf63d6ae8242c15707903c97ad60f409dd905",
+        "normalizedSource": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_VISITOR_DISAGREE_OBS03.png",
+        "normalizedSourceSha256": "d95f0c9314293539456439b9a8c3c670b6a2d2afda045ac0d64fecbf435dbb43",
+        "status": "AGENT_STATIC_ASSET_CHECK_PASS_SCENE_QA_PENDING_HUMAN_PENDING",
+        "humanApproval": false
+      }
+    ]
+  },
+  "sourceFingerprints": [
+    {
+      "path": "src/app/journey/journeyResources.ts",
+      "sha256": "7ef89cb232ec85b53d764494ad57e52f2d134c155b76d9b887b1860630a3ed13"
+    },
+    {
+      "path": "src/app/journey/JourneyPreparation.tsx",
+      "sha256": "932cdffe9b80f0dbac05ab008761e6f66113fa55c908c779925c16a187f5f845"
+    },
+    {
+      "path": "src/shared/assets/screenAssetBundles.ts",
+      "sha256": "e9952a5d2d33cadd1c020cd0b4e2b37d446724aeb87e3fae7a2123bde7b1d166"
+    },
+    {
+      "path": "src/shared/assets/useAssetPreloader.ts",
+      "sha256": "aee3e96ad788d5ab6694fd1b1e7b5ad247d14a6cec9f25803c9b0d0956592d01"
+    },
+    {
+      "path": "src/shared/assets/assetPreloader.ts",
+      "sha256": "193087ae073f5f130ec36839c7ca4fe763a768a81335d7b53d0742aaa46bcf42"
+    },
+    {
+      "path": "src/components/LiaJourneyMotion/LiaJourneyMotion.tsx",
+      "sha256": "c49a651266080db29aba6531c505638ce6336b220cb14373ba036458b4aa8be9"
+    },
+    {
+      "path": "src/components/LiaJourneyMotion/LiaJourneyMotion.css",
+      "sha256": "c248c5177ddffcc5640100f9593e7669d9373acea45ca9a30f8d422dbaa54506"
+    },
+    {
+      "path": "src/components/GestureHint/GestureHint.tsx",
+      "sha256": "2ebe5db5cef050d10454befbbcab429d7f88b6da6b78e3863dc86718657b9df6"
+    },
+    {
+      "path": "src/components/GestureHint/GestureHint.css",
+      "sha256": "400153f061ed2dc321832f7a57973560d06981c8556647f46a1a55d2c2cab813"
+    },
+    {
+      "path": "src/components/GestureHint/gestureHintAssets.ts",
+      "sha256": "69777922f15f8cc8bfee22bda3ac34ed9a2c22773c7ee2c87f643b4a399667a7"
+    },
+    {
+      "path": "src/screens/World3Root/World3PageTurnLayer.tsx",
+      "sha256": "63be095855c7c19ec6458f18737c9e32db782c23871dcd167333daa67e77e4b8"
+    },
+    {
+      "path": "src/screens/World3Root/World3Practice.css",
+      "sha256": "f996866879a26313ec10615e1b9b0c8c7c0db283b8ce91f5319ee02304517ee8"
+    },
+    {
+      "path": "src/screens/World3Root/World3LiaActor.tsx",
+      "sha256": "a44cfb9038122c4ced58a132df0bb59f34852aff879b7dc1718401b16b4e7209"
+    }
+  ],
+  "humanApproval": false,
+  "followUpAt": "2026-10-24T03:48:09.004Z",
+  "world3ClipStatus": "CONTEXT_METHOD_RECEIVED_CONSUMER_PREPARED_NOT_ACTIVATED_ART_PENDING",
+  "v6FollowUp": {
+    "verifiedAt": "2026-10-24T03:55:21.360415+00:00",
+    "report": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_V6_FOLLOWUP.json",
+    "checks": {
+      "nativeAndNormalizedSourceHashes": 12,
+      "runtimeMirrorPairs": 6,
+      "webpDimensions512": 6,
+      "runtimeBytes": 225772
+    },
+    "sceneQa": "PENDING",
+    "humanApproval": false
+  },
+  "introPilotFollowUp": {
+    "at": "2026-10-24T04:39:38.862308+00:00",
+    "report": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/WORLD3_INTRO_PILOT_ACTIVATION.json",
+    "activeTarget": "planta",
+    "otherTargets": "explicit historical interim",
+    "sceneQa": "PENDING",
+    "humanApproval": false
+  },
+  "threePixelClipsFollowUp": {
+    "at": "2026-10-24T05:19:25.638290+00:00",
+    "report": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/WORLD3_THREE_CLIPS_ACTIVATION.json",
+    "status": "THREE_REGISTERED_CLIPS_ACTIVE_CURRENT_SCENE_REVIEW_PENDING",
+    "humanApproval": false
+  }
+}

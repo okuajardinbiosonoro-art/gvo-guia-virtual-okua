@@ -1,0 +1,8 @@
+.entry-preparation-host{position:relative;min-height:100svh;}
+.entry-prepared-cover{position:fixed;inset:0;overflow:hidden;visibility:hidden;pointer-events:none;}
+.entry-prepared-cover[data-entry-visible="true"]{visibility:visible;overflow:auto;}
+.entry-prepared-cover[data-journey-active="true"]{pointer-events:auto;}
+.entry-prepared-cover[data-journey-active="false"] *{animation-play-state:paused!important;}
+.entry-loading-surface,.entry-initial-surface{position:relative;z-index:1;min-height:100svh;}
+.entry-local-recovery{position:fixed;z-index:20;inset:auto 1rem 1rem;padding:1rem;background:#fff5d9;color:#493c34;font-family:var(--gvo-font-body);}
+.entry-local-recovery button{min-height:48px;font:inherit;}

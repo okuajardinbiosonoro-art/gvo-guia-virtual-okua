@@ -3,33 +3,22 @@ import "./World1RootScreen.css";
 import type { CSSProperties, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { readLanguagePreference } from "../../app/preferences/languagePreference";
 
 import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldOneToWorldTwoTransitionRoute } from "../../app/routes";
 import { GestureHint } from "../../components/GestureHint/GestureHint";
+import { LiaJourneyMotion } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
 import {
   WORLD1_REQUIRED_SLOT_COUNT,
   type World1ConceptId,
-  world1ConceptCopy,
-  world1EditorialSlots,
+  getWorld1Editorial,
 } from "../../content/world1EditorialSlots";
-import {
-  readWorld1Checkpoint,
-  removeWorld1Checkpoint,
-  type World1CheckpointConcept,
-  world1ConceptIndex,
-  writeWorld1Checkpoint,
-} from "../../domain/checkpoints/world1Checkpoint";
-import {
-  markStationCompleted,
-  readProgress,
-} from "../../domain/progress/progress.storage";
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
+import { canUseUiStep, closeEssentialRoom, confirmEssentialStep, invalidateJourneyEssential, isEssentialExitReady, markEssentialPresented, useEssentialFlow, type EssentialWriteResult } from "../../app/journey/journeyEssential";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
-import {
-  PROGRESS_SAVE_ERROR_COPY,
-  PROGRESS_SAVE_RETRY_LABEL,
-} from "../../shared/progress/progressSaveError";
+
 import { World1RootStageFrame } from "./layout";
 import { world1RootAssets } from "./world1RootAssets";
 
@@ -65,10 +54,7 @@ type CheckpointRecoveryStatus =
   | "storage_unavailable"
   | null;
 
-type World1StableState = Readonly<{
-  activeConcept: World1Concept;
-  highestReachedConcept: World1Concept;
-}>;
+
 
 type World1Node = {
   id: "relation" | "perception" | "mediation";
@@ -136,13 +122,14 @@ function setStillMotionVariables(root: HTMLElement) {
 
 function useWorld1MotionRoot(
   activeConcept: World1Concept,
+  active: boolean,
 ): RefObject<HTMLElement | null> {
   const rootRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const root = rootRef.current;
 
-    if (!root || typeof window === "undefined") {
+    if (!root || !active || typeof window === "undefined") {
       return undefined;
     }
 
@@ -187,6 +174,9 @@ function useWorld1MotionRoot(
 
       const seconds = time / 1000 + motionOffset;
       const slowPulse = 0.5 + Math.sin(seconds * 1.18) * 0.5;
+      const guidePulse = activeConcept === "intro"
+        ? 0.5 + Math.sin(seconds * 2.15) * 0.5
+        : slowPulse;
       const quickPulse = 0.5 + Math.sin(seconds * 2.4 + 0.7) * 0.5;
       const attentionPulse = 0.5 + Math.sin(seconds * 1.64 + 0.35) * 0.5;
       const leafPulse = 0.5 + Math.sin(seconds * 1.36 + 1.2) * 0.5;
@@ -221,11 +211,11 @@ function useWorld1MotionRoot(
       );
       root.style.setProperty(
         "--world1-js-lia-scale",
-        (1 + slowPulse * 0.008).toFixed(4),
+        (1 + guidePulse * 0.008).toFixed(4),
       );
       root.style.setProperty(
         "--world1-js-lia-y",
-        `${(-1.4 - slowPulse * 1.2).toFixed(2)}px`,
+        `${(-1.4 - guidePulse * (activeConcept === "intro" ? 4.2 : 1.2)).toFixed(2)}px`,
       );
       root.style.setProperty(
         "--world1-js-node-drift-x",
@@ -247,225 +237,161 @@ function useWorld1MotionRoot(
     scheduleFrame(updateMotionVariables);
 
     return cancelPendingFrame;
-  }, [activeConcept]);
+  }, [activeConcept, active]);
 
   return rootRef;
 }
 
-function getNodeState(
-  nodeId: World1Node["id"],
-  activeConcept: World1Concept,
-  highestReachedConcept: World1Concept,
-): World1NodeState {
-  const nodeIndex = world1ConceptIndex(nodeId);
-  const highestIndex = world1ConceptIndex(highestReachedConcept);
-
-  if (nodeId === activeConcept) return "active";
-  if (nodeIndex <= highestIndex) return "completed";
-  if (nodeIndex === highestIndex + 1) return "available";
-  return "locked";
-}
-
-function globalWorld1Complete() {
-  return readProgress().progress?.completedStations.includes(1) ?? false;
-}
-
-function readInitialWorld1State(): World1StableState & {
-  recoveryStatus: CheckpointRecoveryStatus;
-} {
-  const completed = globalWorld1Complete();
-  const checkpoint = readWorld1Checkpoint();
-  const safeState: World1StableState = completed
-    ? {
-        activeConcept: "ready_to_continue",
-        highestReachedConcept: "ready_to_continue",
-      }
-    : { activeConcept: "intro", highestReachedConcept: "intro" };
-
-  if (checkpoint.status !== "ok") {
-    return {
-      ...safeState,
-      recoveryStatus: checkpoint.status === "empty" ? null : checkpoint.status,
-    };
-  }
-
-  return {
-    activeConcept: checkpoint.checkpoint.activeConcept,
-    highestReachedConcept: completed
-      ? "ready_to_continue"
-      : checkpoint.checkpoint.highestReachedConcept,
-    recoveryStatus: null,
-  };
-}
-
 export function World1RootScreen() {
+  const locale = readLanguagePreference() ?? "es";
+  const { conceptCopy: world1ConceptCopy, slots: world1EditorialSlots, details: world1OptionalDetails, ui } = getWorld1Editorial(locale);
   const navigate = useNavigate();
-  const [initialState] = useState(readInitialWorld1State);
-  const [activeConcept, setActiveConcept] = useState<World1Concept>(
-    initialState.activeConcept,
-  );
-  const [highestReachedConcept, setHighestReachedConcept] =
-    useState<World1Concept>(initialState.highestReachedConcept);
-  const [checkpointRecoveryStatus, setCheckpointRecoveryStatus] =
-    useState<CheckpointRecoveryStatus>(initialState.recoveryStatus);
-  const [checkpointResetConfirmation, setCheckpointResetConfirmation] =
-    useState(false);
-  const [pendingCheckpoint, setPendingCheckpoint] =
-    useState<World1StableState | null>(null);
+  const flow = useEssentialFlow(1);
+  const activity = useJourneyActivity();
+  // This render's token is captured by every action/timeout; the ref is only a
+  // cancellation fence, never a source of a newer token for an old callback.
+  const attemptId = activity.attemptId;
+  const attemptRef = useRef(attemptId);
+  attemptRef.current = attemptId;
+  const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
+  const activeRef = useRef(activity.active);
+  activeRef.current = activity.active;
+  const stepByConcept = { intro: "intro", relation: "relacion", perception: "percepcion", mediation: "mediacion", ready_to_continue: "mediacion" } as const;
+  const conceptByStep: Record<string, World1Concept> = { intro: "intro", relacion: "relation", percepcion: "perception", mediacion: "mediation" };
+  const [selection, setSelection] = useState<World1Concept | null>(null);
+  const activeConcept = selection ?? (flow.closed ? "ready_to_continue" : conceptByStep[flow.activeStepId ?? "intro"] ?? "intro");
+  const highestReachedConcept: World1Concept = flow.closed ? "ready_to_continue" : conceptByStep[flow.confirmedStepIds.at(-1) ?? "intro"] ?? "intro";
+  const visitedConcepts = flow.presentedStepIds.map((id) => conceptByStep[id]).filter(Boolean);
+  const activityContinued = flow.closed;
+  const [panelClosed, setPanelClosed] = useState(false);
+  const [presentedConcept, setPresentedConcept] = useState<World1Concept | null>(null);
+  const [expandedDetails, setExpandedDetails] = useState(false);
+  const checkpointRecoveryStatus: CheckpointRecoveryStatus = flow.storageVerified ? null : "storage_unavailable";
+  const checkpointResetConfirmation = false;
   const [checkpointSaveFailed, setCheckpointSaveFailed] = useState(false);
+  const completionPhase: CompletionPhase = checkpointSaveFailed ? "error" : "idle";
+  const [saving, setSaving] = useState(false);
+  const [assetRetry, setAssetRetry] = useState(0);
+  const savingRef = useRef(false);
+  const retryActionRef = useRef<null | (() => Promise<void>)>(null);
+  const presentedRequestRef = useRef("");
   const [narrativeNeedsScroll, setNarrativeNeedsScroll] = useState(false);
   const [isSmallMobileHeight, setIsSmallMobileHeight] = useState(false);
-  const [dismissedNarrativeHints, setDismissedNarrativeHints] = useState<
-    ReadonlySet<World1Concept>
-  >(() => new Set<World1Concept>());
+  const [dismissedNarrativeHints, setDismissedNarrativeHints] = useState<ReadonlySet<World1Concept>>(() => new Set());
   const narrativeViewportRef = useRef<HTMLDivElement>(null);
   const narrativeTrackRef = useRef<HTMLDivElement>(null);
   const narrativeSwipeAnchorRef = useRef<HTMLSpanElement>(null);
-  const completionLockRef = useRef(false);
-  const [completionPhase, setCompletionPhase] =
-    useState<CompletionPhase>("idle");
-  const motionRootRef = useWorld1MotionRoot(activeConcept);
-  const initialPreload = useAssetPreloader(
-    screenAssetBundles.world1RootInitial,
-    {
-      timeoutMs: 9000,
-    },
-  );
-  const relationPreload = useAssetPreloader(
-    screenAssetBundles.world1RootRelation,
-    {
-      enabled: activeConcept === "intro",
-      timeoutMs: 8000,
-    },
-  );
-  const perceptionPreload = useAssetPreloader(
-    screenAssetBundles.world1RootPerception,
-    {
-      enabled: activeConcept === "relation",
-      timeoutMs: 8000,
-    },
-  );
-  const mediationPreload = useAssetPreloader(
-    screenAssetBundles.world1RootMediation,
-    {
-      enabled: activeConcept === "perception",
-      timeoutMs: 8000,
-    },
-  );
-  const readyPreload = useAssetPreloader(screenAssetBundles.world1RootReady, {
-    enabled: activeConcept === "mediation",
-    timeoutMs: 8000,
-  });
+  const motionRootRef = useWorld1MotionRoot(activeConcept, activity.active && visible);
+  const initialPreload = useAssetPreloader(screenAssetBundles.world1RootInitial, { timeoutMs: 9000, concurrency: 2, retryKey: assetRetry });
+  const relationPreload = useAssetPreloader(screenAssetBundles.world1RootRelation, { enabled: activeConcept === "intro" || activeConcept === "relation", concurrency: 2, retryKey: assetRetry });
+  const perceptionPreload = useAssetPreloader(screenAssetBundles.world1RootPerception, { enabled: activeConcept === "relation" || activeConcept === "perception", concurrency: 2, retryKey: assetRetry });
+  const mediationPreload = useAssetPreloader(screenAssetBundles.world1RootMediation, { enabled: activeConcept === "perception" || activeConcept === "mediation", concurrency: 2, retryKey: assetRetry });
+  const readyPreload = useAssetPreloader(screenAssetBundles.world1RootReady, { enabled: activeConcept === "mediation" || activeConcept === "ready_to_continue", concurrency: 2, retryKey: assetRetry });
+  const statePreload = { intro: initialPreload, relation: relationPreload, perception: perceptionPreload, mediation: mediationPreload, ready_to_continue: readyPreload }[activeConcept];
+  const resourcesReady = initialPreload.status === "ready" && statePreload.status === "ready";
+  const nextPreload = { intro: relationPreload, relation: perceptionPreload, perception: mediationPreload, mediation: readyPreload, ready_to_continue: readyPreload }[activeConcept];
+  const advanceAssetsReady = resourcesReady && nextPreload.status === "ready";
+  const assetFailed = [initialPreload.status, statePreload.status, nextPreload.status].some((status) => status === "error" || status === "timeout");
+
+  async function perform(action: () => Promise<EssentialWriteResult>, next?: () => void) {
+    if (attemptRef.current !== attemptId || savingRef.current || !activeRef.current || flow.readOnly) return;
+    savingRef.current = true;
+    setSaving(true);
+    const result = await action();
+    if (attemptRef.current !== attemptId) return;
+    savingRef.current = false;
+    setSaving(false);
+    if (!result.ok) {
+      setCheckpointSaveFailed(true);
+      retryActionRef.current = () => perform(action, next);
+      return;
+    }
+    setCheckpointSaveFailed(false);
+    retryActionRef.current = null;
+    if (activeRef.current) next?.();
+  }
+  function activateConcept(concept: World1Concept) {
+    if (attemptRef.current !== attemptId || !activity.active || saving || checkpointSaveFailed || !canUseUiStep(1, stepByConcept[concept])) return;
+    setSelection(concept);
+    setPanelClosed(false);
+    setExpandedDetails(false);
+    if (concept === activeConcept && resourcesReady) setPresentedConcept(concept);
+  }
+  async function closeConcept() {
+    if (attemptRef.current !== attemptId || !activity.active || !advanceAssetsReady) return;
+    if (flow.readOnly || flow.confirmedStepIds.includes(stepByConcept[activeConcept])) {
+      setSelection(null);
+      setPanelClosed(false);
+      setExpandedDetails(false);
+      return;
+    }
+    const action = activeConcept === "mediation"
+      ? () => closeEssentialRoom({ screen: 1, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" })
+      : () => confirmEssentialStep({ screen: 1, stepId: stepByConcept[activeConcept], contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" });
+    await perform(action, () => { setSelection(null); setExpandedDetails(false); setPanelClosed(false); });
+  }
+  const retryPendingCheckpoint = () => { void retryActionRef.current?.(); };
+  const retryCheckpointRead = () => { invalidateJourneyEssential(); presentedRequestRef.current = ""; setCheckpointSaveFailed(false); };
 
   useEffect(() => {
-    if (completionPhase === "error") {
-      document
-        .querySelector<HTMLButtonElement>(
-          '[data-interstation-qr-action="retry-completion"]',
-        )
-        ?.focus({ preventScroll: true });
-    }
-  }, [completionPhase]);
+    savingRef.current = false; retryActionRef.current = null; presentedRequestRef.current = "";
+    setSaving(false); setCheckpointSaveFailed(false); setSelection(null);
+    setPanelClosed(false); setExpandedDetails(false); setPresentedConcept(null);
+  }, [attemptId]);
 
-  function applyStableState(next: World1StableState, focusAfter = false) {
-    setActiveConcept(next.activeConcept);
-    setHighestReachedConcept(next.highestReachedConcept);
-    setPendingCheckpoint(null);
-    setCheckpointSaveFailed(false);
-
-    if (focusAfter) {
-      window.requestAnimationFrame(() => {
-        if (next.activeConcept === "ready_to_continue") {
-          document
-            .querySelector<HTMLButtonElement>(
-              '[data-interstation-qr-action="open"]',
-            )
-            ?.focus({ preventScroll: true });
-          return;
-        }
-        motionRootRef.current
-          ?.querySelector<HTMLButtonElement>(
-            `[data-world1-root-node="${next.activeConcept}"]`,
-          )
-          ?.focus({ preventScroll: true });
+  useEffect(() => {
+    if (!activity.active || !visible || !resourcesReady || saving || checkpointSaveFailed || presentedConcept !== activeConcept || flow.readOnly || activeConcept === "ready_to_continue" || flow.presentedStepIds.includes(stepByConcept[activeConcept])) return;
+    const request = attemptId + ":" + activeConcept + ":" + flow.contentRevision;
+    if (presentedRequestRef.current === request) return;
+    let frame = 0;
+    const first = window.requestAnimationFrame(() => {
+      frame = window.requestAnimationFrame(() => {
+        if (attemptRef.current !== attemptId || !activeRef.current || document.visibilityState === "hidden") return;
+        presentedRequestRef.current = request;
+        void perform(() => markEssentialPresented({ screen: 1, stepId: stepByConcept[activeConcept], contentRevision: flow.contentRevision, attemptId, mode: "standard" }));
       });
-    }
-  }
-
-  function persistStableState(next: World1StableState, focusAfter = false) {
-    const result = writeWorld1Checkpoint({
-      activeConcept: next.activeConcept as World1CheckpointConcept,
-      highestReachedConcept:
-        next.highestReachedConcept as World1CheckpointConcept,
     });
-    if (!result.ok) {
-      setPendingCheckpoint(next);
-      if (result.reason === "corrupt" || result.reason === "unknown_version") {
-        setCheckpointRecoveryStatus(result.reason);
-        setCheckpointResetConfirmation(false);
-      } else {
-        setCheckpointSaveFailed(true);
-      }
-      return false;
-    }
+    return () => { window.cancelAnimationFrame(first); window.cancelAnimationFrame(frame); };
+  }, [attemptId, activity.active, visible, resourcesReady, saving, checkpointSaveFailed, presentedConcept, activeConcept, flow.contentRevision, flow.readOnly, flow.presentedStepIds]);
+  useEffect(() => {
+    const update = () => setVisible(document.visibilityState !== "hidden");
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
 
-    applyStableState(next, focusAfter);
-    return true;
-  }
+  const guideTarget = panelClosed
+    ? activeConcept === "relation"
+      ? "perception"
+      : "mediation"
+    : activeConcept === "intro"
+      ? "relation"
+      : activeConcept;
+  const guideX = {
+    relation: "16%",
+    perception: "50%",
+    mediation: "84%",
+    ready_to_continue: "77%",
+    intro: "16%",
+  }[guideTarget];
 
-  function activateConcept(nextConcept: World1Concept) {
-    if (checkpointRecoveryStatus || checkpointSaveFailed) return;
-    const nextHighest =
-      world1ConceptIndex(nextConcept) >
-      world1ConceptIndex(highestReachedConcept)
-        ? nextConcept
-        : highestReachedConcept;
+  useEffect(() => {
+    if (!activity.active || !visible || !resourcesReady) return;
     if (
-      nextConcept === activeConcept &&
-      nextHighest === highestReachedConcept
+      activeConcept === "intro" ||
+      activeConcept === "ready_to_continue" ||
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     ) {
+      setPresentedConcept(activeConcept);
       return;
     }
-    persistStableState({
-      activeConcept: nextConcept,
-      highestReachedConcept: nextHighest,
-    });
-  }
-
-  function retryPendingCheckpoint() {
-    if (pendingCheckpoint) {
-      persistStableState(pendingCheckpoint, true);
-    }
-  }
-
-  function retryCheckpointRead() {
-    const next = readInitialWorld1State();
-    setCheckpointRecoveryStatus(next.recoveryStatus);
-    if (!next.recoveryStatus) {
-      applyStableState(next, true);
-    }
-  }
-
-  function confirmCheckpointReset() {
-    const removed = removeWorld1Checkpoint();
-    if (!removed.ok) {
-      setCheckpointRecoveryStatus("storage_unavailable");
-      setCheckpointResetConfirmation(false);
-      return;
-    }
-    const safeConcept: World1Concept = globalWorld1Complete()
-      ? "ready_to_continue"
-      : "intro";
-    setCheckpointRecoveryStatus(null);
-    setCheckpointResetConfirmation(false);
-    applyStableState(
-      {
-        activeConcept: safeConcept,
-        highestReachedConcept: safeConcept,
-      },
-      true,
+    setPresentedConcept(null);
+    const arrival = window.setTimeout(
+      () => { if (attemptRef.current === attemptId) setPresentedConcept(activeConcept); },
+      480,
     );
-  }
+    return () => window.clearTimeout(arrival);
+  }, [attemptId, activeConcept, activity.active, visible, resourcesReady]);
+
   const copy = world1ConceptCopy[activeConcept];
   const isReadyToContinue = activeConcept === "ready_to_continue";
   const shouldRenderNarrativeHint =
@@ -482,20 +408,6 @@ export function World1RootScreen() {
             mediation: world1RootAssets.activeMediation,
           }[activeConcept],
         };
-  const liaAssetByConcept: Record<World1Concept, string> = {
-    intro: world1RootAssets.liaIdle,
-    relation: world1RootAssets.liaPointRelation,
-    perception: world1RootAssets.liaLookPerception,
-    mediation: world1RootAssets.liaGuideMediation,
-    ready_to_continue: world1RootAssets.liaReadyContinue,
-  };
-  const liaPoseByConcept: Record<World1Concept, string> = {
-    intro: "idle",
-    relation: "point_relation",
-    perception: "look_perception",
-    mediation: "guide_mediation",
-    ready_to_continue: "ready_continue",
-  };
 
   useEffect(() => {
     const viewport = narrativeViewportRef.current;
@@ -571,29 +483,22 @@ export function World1RootScreen() {
     });
   }
 
-  function persistCompletionAfterQr() {
-    if (!isReadyToContinue || completionLockRef.current) {
-      return false;
-    }
-
-    completionLockRef.current = true;
-    setCompletionPhase("persisting");
-    const result = markStationCompleted(1);
-    if (!result.ok) {
-      completionLockRef.current = false;
-      setCompletionPhase("error");
-      return false;
-    }
-
-    setCompletionPhase("complete");
-    return true;
-  }
-
   return (
     <main
       className="world1-root-screen"
       ref={motionRootRef}
-      style={backgroundLayerStyle}
+      style={
+        { ...backgroundLayerStyle, "--world1-guide-x": guideX } as CSSProperties
+      }
+      data-world1-guide-target={guideTarget}
+      data-journey-active={activity.active}
+      data-lia-action={saving ? "respond" : presentedConcept === activeConcept ? "present" : "attention"}
+      data-lia-target={activeConcept}
+      data-world1-lia-arrival={
+        presentedConcept === activeConcept ? "presenting" : "arriving"
+      }
+      data-world1-activity-continued={activityContinued}
+      data-world1-visited-concepts={visitedConcepts.join(",")}
       data-world1-root-version="004E-5A-static-ready"
       data-world1-mobile-stabilization="004F-1C"
       data-world1-root-state={activeConcept}
@@ -628,9 +533,18 @@ export function World1RootScreen() {
       data-world1-ready-preload-ready={readyPreload.ready ? "true" : "false"}
       aria-labelledby="world1-root-title"
     >
+      <h1
+        id="world1-root-title"
+        className="world1-room-heading"
+        data-world1-slot-id="W1_INTRO_EYEBROW_01"
+        data-editorial-status="REVIEW"
+        data-editorial-source="editorial_excel"
+      >
+        {locale === "en" ? "Room I · Root" : "Sala I · Raíz"}
+      </h1>
       {initialPreload.ready ? null : (
         <p className="world1-root-preload-status" role="status">
-          Preparando raíz...
+          {locale === "en" ? "Preparing Root..." : "Preparando raíz..."}
         </p>
       )}
       <World1RootStageFrame
@@ -714,36 +628,25 @@ export function World1RootScreen() {
             <span className="world1-root-lia-presence__glint" />
             <span className="world1-root-lia-presence__ground" />
           </span>
-          <img
+          <LiaJourneyMotion
             className="world1-root-lia"
-            src={liaAssetByConcept[activeConcept]}
-            alt="Lía, guía visual de OKÚA"
-            data-runtime-asset={liaAssetByConcept[activeConcept]}
-            data-world1-lia-pose={liaPoseByConcept[activeConcept]}
+            active={activity.active && visible && resourcesReady}
+            action={saving ? "respond" : presentedConcept === activeConcept ? "present" : "attention"}
+            target={activeConcept}
+            direction={activeConcept === "relation" ? "left" : "right"}
+            replayKey={`${activeConcept}:${expandedDetails}:${presentedConcept}`}
           />
-          <span
-            className="world1-root-lia-expression"
-            aria-hidden="true"
-            data-world1-motion-element="lia-expression"
-          >
-            <span className="world1-root-lia-expression__core" />
-            <span className="world1-root-lia-expression__look" />
-            <span className="world1-root-lia-expression__gesture" />
-          </span>
 
           <div
             className="world1-root-nodes"
-            aria-label="Nodos conceptuales de Mundo I"
+            aria-label={locale === "en" ? "Room I concept nodes" : "Nodos conceptuales de Mundo I"}
           >
             {conceptNodes.map((node) => {
-              const nodeState = getNodeState(
-                node.id,
-                activeConcept,
-                highestReachedConcept,
-              );
-              const isLocked = nodeState === "locked";
+              const allowed = canUseUiStep(1, stepByConcept[node.id]);
+              const nodeState: World1NodeState = !allowed ? "locked" : node.id === activeConcept ? "active" : flow.confirmedStepIds.includes(stepByConcept[node.id]) ? "completed" : "available";
+              const isLocked = !allowed;
               const isPressed = nodeState === "active";
-              const isClickable = !isLocked && !checkpointRecoveryStatus;
+              const isClickable = activity.active && !isLocked && !checkpointRecoveryStatus && !saving;
 
               return (
                 <button
@@ -752,7 +655,7 @@ export function World1RootScreen() {
                   type="button"
                   data-world1-root-node={node.id}
                   data-node-state={nodeState}
-                  aria-label={isLocked ? node.lockedName : node.accessibleName}
+                  aria-label={locale === "en" ? `${isLocked ? "Locked" : "Explore"} ${ui.nodes[conceptNodes.indexOf(node)]}` : isLocked ? node.lockedName : node.accessibleName}
                   aria-disabled={!isClickable ? "true" : undefined}
                   aria-pressed={isClickable ? isPressed : undefined}
                   disabled={!isClickable}
@@ -760,7 +663,23 @@ export function World1RootScreen() {
                     isClickable ? () => activateConcept(node.id) : undefined
                   }
                 >
-                  <span className="world1-root-node__label">{node.label}</span>
+                  <span
+                    className="world1-root-node__label"
+                    data-world1-title-revealed={
+                      presentedConcept === node.id ||
+                      (visitedConcepts.includes(node.id) &&
+                        activeConcept !== node.id)
+                        ? "true"
+                        : "false"
+                    }
+                    aria-hidden="true"
+                  >
+                    {presentedConcept === node.id ||
+                    (visitedConcepts.includes(node.id) &&
+                      activeConcept !== node.id)
+                      ? ui.nodes[conceptNodes.indexOf(node)]
+                      : ""}
+                  </span>
                   <span
                     className="world1-root-node__orb-shell"
                     aria-hidden="true"
@@ -822,9 +741,16 @@ export function World1RootScreen() {
             })}
           </div>
 
+        </div>
           <div
             className="world1-root-narrative"
             aria-live="polite"
+            data-world1-reading-visible={
+              presentedConcept === activeConcept ||
+              checkpointRecoveryStatus !== null ||
+              checkpointSaveFailed ||
+              completionPhase === "error"
+            }
             data-world1-narrative-state={activeConcept}
             data-world1-narrative-duration-ms={copy.durationMs}
           >
@@ -832,7 +758,7 @@ export function World1RootScreen() {
               ref={narrativeViewportRef}
               className="world1-root-narrative__viewport"
               tabIndex={0}
-              aria-label="Narrativa de Mundo I con desplazamiento vertical manual"
+              aria-label={locale === "en" ? "Room I narrative with manual vertical scrolling" : "Narrativa de Sala I con desplazamiento vertical manual"}
               data-world1-scroll-viewport="manual"
               onScroll={(event) => {
                 if (event.currentTarget.scrollTop > 6) {
@@ -847,18 +773,30 @@ export function World1RootScreen() {
               >
                 <p
                   className="world1-root-narrative__eyebrow"
-                  data-world1-slot-id={copy.eyebrow.slotId}
+                  data-world1-slot-id={
+                    activeConcept === "intro" ? undefined : copy.eyebrow.slotId
+                  }
                   data-editorial-status={copy.eyebrow.status}
                 >
-                  {copy.eyebrow.text}
+                  {panelClosed
+                    ? ui.advance
+                    : activeConcept === "intro"
+                      ? (locale === "en" ? "Before we begin" : "Antes de comenzar")
+                      : presentedConcept === activeConcept
+                        ? copy.eyebrow.text
+                        : ""}
                 </p>
-                <h1
-                  id="world1-root-title"
+                <h2
+                  id="world1-concept-title"
                   data-world1-slot-id={copy.title.slotId}
                   data-editorial-status={copy.title.status}
                 >
-                  {copy.title.text}
-                </h1>
+                  {panelClosed
+                    ? ui.advance
+                    : presentedConcept === activeConcept
+                      ? copy.title.text
+                      : ""}
+                </h2>
                 <p
                   className="world1-root-narrative__body"
                   data-world1-slot-id={
@@ -882,11 +820,22 @@ export function World1RootScreen() {
                   {checkpointRecoveryStatus
                     ? checkpointResetConfirmation
                       ? "¿Restablecer el avance guardado de este mundo?"
-                      : "No fue posible recuperar el avance de este mundo."
+                      : locale === "en" ? "It was not possible to recover your saved progress in this room." : "No fue posible recuperar el avance de este mundo."
                     : checkpointSaveFailed || completionPhase === "error"
-                      ? PROGRESS_SAVE_ERROR_COPY
-                      : copy.body.text}
+                      ? ui.saveError
+                      : panelClosed
+                        ? ui.advance
+                        : presentedConcept === activeConcept
+                          ? copy.body.text
+                          : ""}
                 </p>
+                {!panelClosed &&
+                presentedConcept === activeConcept &&
+                activeConcept in world1OptionalDetails ? (
+                  <p id={`world1-expanded-${activeConcept}`} className="world1-reading-expanded" hidden={!expandedDetails}>
+                    {world1OptionalDetails[activeConcept]}
+                  </p>
+                ) : null}
                 {checkpointResetConfirmation ? (
                   <p
                     className="world1-root-narrative__body"
@@ -906,13 +855,13 @@ export function World1RootScreen() {
                   aria-hidden="true"
                 />
                 <GestureHint
-                  active={!narrativeHintDismissed}
+                  active={activity.active && !narrativeHintDismissed}
                   anchorRef={narrativeSwipeAnchorRef}
                   className="world1-root-gesture-hint"
                   completed={narrativeHintDismissed}
                   delayMs={2800}
                   direction="up"
-                  targetLabel={`Lectura vertical: ${copy.title.text}`}
+                  targetLabel={`${locale === "en" ? "Vertical reading" : "Lectura vertical"}: ${copy.title.text}`}
                   variant="swipe-vertical"
                 />
               </>
@@ -925,77 +874,33 @@ export function World1RootScreen() {
               <span />
               <span />
             </span>
-            {checkpointRecoveryStatus === "storage_unavailable" ? (
-              <button
-                className="world1-root-narrative__action"
-                data-editorial-status="TEMP"
-                onClick={retryCheckpointRead}
-                type="button"
-              >
-                Reintentar
-              </button>
-            ) : checkpointRecoveryStatus && !checkpointResetConfirmation ? (
-              <button
-                className="world1-root-narrative__action"
-                data-editorial-status="TEMP"
-                onClick={() => setCheckpointResetConfirmation(true)}
-                type="button"
-              >
-                Restablecer avance de este mundo
-              </button>
-            ) : checkpointRecoveryStatus && checkpointResetConfirmation ? (
-              <>
-                <button
-                  className="world1-root-narrative__action"
-                  data-editorial-status="TEMP"
-                  onClick={() => setCheckpointResetConfirmation(false)}
-                  type="button"
-                >
-                  Cancelar
+            <div className="world1-reading-actions">
+              {!panelClosed && !isReadyToContinue && world1OptionalDetails[activeConcept] ? (
+                <button className="world1-reading-more-toggle" type="button" disabled={!activity.active} aria-expanded={expandedDetails} aria-controls={`world1-expanded-${activeConcept}`} onClick={() => setExpandedDetails((value) => !value)}>
+                  {expandedDetails ? ui.less : ui.more}
                 </button>
-                <button
-                  className="world1-root-narrative__action"
-                  data-editorial-status="TEMP"
-                  onClick={confirmCheckpointReset}
-                  type="button"
-                >
-                  Restablecer
-                </button>
-              </>
-            ) : checkpointSaveFailed ? (
+              ) : null}
+            {assetFailed ? <button className="world1-root-narrative__action" onClick={() => setAssetRetry((value) => value + 1)} type="button">{ui.retry}</button> : checkpointRecoveryStatus || checkpointSaveFailed ? (
+              <button className="world1-root-narrative__action" onClick={checkpointSaveFailed ? retryPendingCheckpoint : retryCheckpointRead} type="button">{ui.retry}</button>
+            ) : !isReadyToContinue &&
+              !panelClosed ? (
               <button
-                className="world1-root-narrative__action"
-                data-editorial-status="TEMP"
-                onClick={retryPendingCheckpoint}
+                className="world1-reading-close"
                 type="button"
-              >
-                {PROGRESS_SAVE_RETRY_LABEL}
-              </button>
-            ) : activeConcept === "mediation" ? (
-              <button
-                className="world1-root-narrative__action"
-                type="button"
+                aria-label={activeConcept === "mediation" ? ui.close : ui.advance}
                 data-world1-slot-id="W1_CLOSE_ROOT_BTN_01"
-                data-editorial-status={
-                  world1EditorialSlots.W1_CLOSE_ROOT_BTN_01.status
-                }
-                onClick={() => {
-                  activateConcept("ready_to_continue");
-                }}
+                onClick={() => { void closeConcept(); }}
+                disabled={!activity.active || saving || !advanceAssetsReady || (!flow.readOnly && !flow.presentedStepIds.includes(stepByConcept[activeConcept]))}
               >
-                {world1EditorialSlots.W1_CLOSE_ROOT_BTN_01.text}
+                <span>{activeConcept === "mediation" ? ui.close : ui.advance}</span>
               </button>
             ) : null}
+            </div>
           </div>
-
-          <InterstationQrGate
-            originWorld={1}
-            ready={isReadyToContinue}
-            persistCompletion={persistCompletionAfterQr}
-            onCompleted={() => navigate(worldOneToWorldTwoTransitionRoute)}
-          />
-        </div>
       </World1RootStageFrame>
+      {flow.exitReady && activity.active ? <div className="world1-scene-exit">
+        <InterstationQrGate originWorld={1} ready={flow.exitReady && resourcesReady && !saving && !checkpointSaveFailed} presentation="scene" persistCompletion={() => attemptRef.current === attemptId && isEssentialExitReady(1)} onCompleted={() => { if (attemptRef.current === attemptId && activeRef.current) navigate(worldOneToWorldTwoTransitionRoute); }} />
+      </div> : null}
     </main>
   );
 }

@@ -1,0 +1,1016 @@
+{
+  "schema_version": "1.0",
+  "document_kind": "BOUNDED_TECHNICAL_CONCILIATION_DELTA",
+  "contract_version": "OBS03.2",
+  "base_contract_version": "OBS03.1",
+  "round": "OBS03-R2-CHATGPT-CONCILIATION",
+  "date_local": "2026-10-23",
+  "timezone": "America/Bogota",
+  "created_utc": "2026-10-24T02:00:15Z",
+  "status": "TECHNICAL_CONCILIATION_RESOLVED_EXECUTION_ENABLED_WITHIN_EXISTING_AUTHORIZATION",
+  "r1_reconciliation_status_override": "Las decisiones D01–D20 quedan conciliadas por R1+OBS03.2. Los PENDING_CODEX_R2 de R1 son estados históricos sustituidos por este delta; implementación, QA y aprobación humana siguen pendientes.",
+  "implementation_status": "NOT_IMPLEMENTED_BY_THIS_DELTA",
+  "human_approval_claimed": false,
+  "publication_or_deployment_authorized": false,
+  "base_package": {
+    "name": "GVO_OBS03_METODOLOGIA_CHATGPT_v1.zip",
+    "sha256": "7605e2d8414f8f2212be3d6df81e847fa97636dd4a1505814312490579d1af15",
+    "rule": "R1 queda íntegro. Aplicar únicamente las sustituciones y precisiones de este delta; todo criterio compatible se hereda. No regenerar sus cinco archivos ni los 120 originales."
+  },
+  "incoming_evidence": {
+    "name": "GVO_OBS03_R2_CONCILIACION_CODEX_v1.zip",
+    "bytes": 2246882,
+    "sha256": "e8fa34a97f94737e30a46a6e0d6601744e756766f122d4365a85f308326a082e",
+    "manifest_files_verified": 30,
+    "zip_entries_including_manifest": 31,
+    "unreadable_required_files": [],
+    "scope": "Lectura y conciliación estática de R2. No ejecución de aplicación, tests, build, navegador ni producción de imágenes."
+  },
+  "precedence": [
+    "Observaciones humanas OBS03 y autorización vigente.",
+    "Este delta OBS03.2 para las cuestiones expresamente resueltas.",
+    "R1 OBS03.1 íntegro para todo lo demás.",
+    "Hechos R2 como evidencia; las propuestas quedan aceptadas únicamente con las precisiones de este delta."
+  ],
+  "coverage": {
+    "inherited_obs03_ids": [
+      "OBS03-CARGA-01",
+      "OBS03-MARCA-01",
+      "OBS03-CARGA-02",
+      "OBS03-PORTADA-01",
+      "OBS03-PORTADA-02",
+      "OBS03-TEXTOS-01",
+      "OBS03-SALA-I-01",
+      "OBS03-MANO-01",
+      "OBS03-SALA-II-01",
+      "OBS03-SALA-III-01",
+      "OBS03-SALA-III-02",
+      "OBS03-SALA-III-03",
+      "OBS03-SALA-IV-01",
+      "OBS03-SALA-IV-02",
+      "OBS03-SALA-V-01",
+      "OBS03-SALA-V-02",
+      "OBS03-SALA-V-03",
+      "OBS03-QR-01",
+      "OBS03-LIA-01",
+      "OBS03-MOVIL-01",
+      "OBS03-MIRADOR-01",
+      "OBS03-TRANS-01",
+      "OBS03-TRANS-02",
+      "OBS03-TRANS-03",
+      "OBS03-TRANS-04",
+      "OBS03-TRANS-05",
+      "OBS03-TRANS-06",
+      "OBS03-FLUJO-01"
+    ],
+    "count": 28,
+    "r2_observation_table_matches_r1": true,
+    "six_transitions_retained": [
+      "OBS03-TRANS-01",
+      "OBS03-TRANS-02",
+      "OBS03-TRANS-03",
+      "OBS03-TRANS-04",
+      "OBS03-TRANS-05",
+      "OBS03-TRANS-06"
+    ],
+    "decisions_precised_or_overridden": [
+      "D02",
+      "D03",
+      "D06",
+      "D07",
+      "D18"
+    ],
+    "decisions_inherited_without_change": [
+      "D01",
+      "D04",
+      "D05",
+      "D08",
+      "D09",
+      "D10",
+      "D11",
+      "D12",
+      "D13",
+      "D14",
+      "D15",
+      "D16",
+      "D17",
+      "D19",
+      "D20"
+    ],
+    "explicitly_retained": [
+      "90 segundos activos en IV, ayuda inmediata, autoorden y repaso honesto.",
+      "Producción individual de los ocho objetos IV y las ocho opciones V, mismo hilo Images y un operador.",
+      "Cuatro preguntas, dos alternativas por pregunta, correctAnswers sin duplicados y máximo cuatro puntos.",
+      "Tres excepciones localizadas D17 con fuentes íntegras, ES trazable y EN fiel.",
+      "Notebook original, marca material, mano nueva calibrada, nuevas acciones de Lía y Mirador preservado.",
+      "Presentación esencial obligatoria, seis transiciones sin omisión y QR condicionado al cierre o a revisita válida."
+    ]
+  },
+  "resolutions": [
+    {
+      "id": "R2-Q1",
+      "status": "RESOLVED_ACCEPTED_WITH_PRECISIONS",
+      "decision_ids": [
+        "D06"
+      ],
+      "decision": "Montar y validar el primer árbol del destino en su ruta real, bajo cortina y controlador persistentes del shell; activar y revelar ese mismo árbol sin remontaje.",
+      "why": "Las rutas de transición y destino son hermanas. Preparar un hijo de la transición y navegar después desmontaría el árbol validado.",
+      "overrides_r1": [
+        "loading_contract.first_render: ubicación del árbol protegido",
+        "pending_transition_contract.state_order: navegación bajo cortina antes del acuse del árbol real"
+      ],
+      "source_paths": [
+        "OBS03_CONCILIACION_CODEX.json#/unresolved_technical_facts/0",
+        "EVIDENCIA_R2/entry-transitions__R2_TECNICA.md"
+      ],
+      "requirements": [
+        "El pending válido concede preparation_only. No concede acceso interactivo, confirmación esencial ni progreso global por sí mismo.",
+        "El mismo shell mantiene cortina, intento y deadline al pasar de transición a destino. Sin segundo router, árbol de ensayo ni origen adicional montado.",
+        "Primero recursos efectivos: módulo, CSS, fuentes utilizadas e imágenes visibles cargadas y decodificadas. Después acuse de layout del árbol real.",
+        "Dos rAF sirven para una medición acotada posterior a recursos; no prueban decode, pintura física, ausencia universal de errores ni estabilidad futura.",
+        "active=false bloquea efectos de actividad, foco, timers de sala, cámara, motion de entrada y escrituras semánticas. inert/aria-hidden son complementos. La restauración en lectura y medición pueden ejecutarse.",
+        "Mantener dimensiones reales bajo cortina. No usar display:none para medir ni ocultar el contenido a preparar mediante canUseUiStep.",
+        "Después de commit/readback y revalidación de token, ruta, idioma, orientación, revisión y deadline, cambiar actividad y visibilidad sin alterar key/tipo/posición del destino. Los efectos de entrada arrancan con esa activación visible.",
+        "URL directa, refresh, atrás y wrappers del shell pasan por el mismo gate. Cambiar la URL antes del reveal no significa entregar la sala.",
+        "StrictMode debe tolerarse con acciones idempotentes. El criterio es ausencia de remontaje provocado por el cambio preparación→activación, no contar efectos de desarrollo como visitas."
+      ]
+    },
+    {
+      "id": "R2-Q2",
+      "status": "RESOLVED_ACCEPTED_WITH_PRECISIONS",
+      "decision_ids": [
+        "D03",
+        "D06"
+      ],
+      "decision": "La frontera del crédito es su escritura y lectura de verificación, o la comprobación de crédito válido ya adquirido. Después de esa frontera se conserva committed_pending_reveal aunque venza el intento o falle una operación posterior.",
+      "overrides_r1": [
+        "pending_transition_contract.failure: distinguir antes, durante y después de commit",
+        "pending_transition_contract.back: comportamiento postcommit",
+        "loading_contract.state_machine: recuperación postcommit"
+      ],
+      "source_paths": [
+        "OBS03_CONCILIACION_CODEX.json#/unresolved_technical_facts/1",
+        "EVIDENCIA_R2/entry-transitions__R2_TECNICA.md"
+      ],
+      "requirements": [
+        "Nunca revertir progreso mediante una copia antigua ni describir un commit verificado como bit inexistente.",
+        "La limpieza del recibo ocurre después de activación segura. No es condición previa a revelar.",
+        "La fase persistida no es la única prueba: si falla su escritura después del readback global, releer recibo autorizado y crédito actual para reconstruir el estado lógico postcommit.",
+        "Si se intentó escribir pero no pudo verificarse el resultado, tratarlo como commit_verification_pending. No afirmar ni inexistencia ni adquisición hasta reconciliar; mantener el destino inactivo.",
+        "Antes de cada escritura releer los hechos actuales y comprobar recibo/token vigente. Preservar crédito válido de forma monotónica, salvo un reset explícito; no prometer atomicidad entre claves o pestañas.",
+        "Reset, cambio de contexto o storage event incompatible invalidan el intento. Un callback viejo no recrea el progreso eliminado por reset.",
+        "La preparación o commit no concede puntos. La puntuación sigue exclusivamente en world5Quiz.",
+        "Bit V y finalReached son hechos distintos. finalReached sólo puede registrarse por activación visible y autorización OBS03 normal de Mirador, nunca por compatibilidad legada ni por montar /final cubierto."
+      ]
+    },
+    {
+      "id": "R2-Q3",
+      "status": "RESOLVED_ACCEPTED_WITH_PRECISIONS",
+      "decision_ids": [
+        "D02",
+        "D07"
+      ],
+      "decision": "Separar la presentación, confirmación, asistencia y acceso de UI de II en el registro OBS03. Mantener gvo.station2.v1 como fuente histórica de solo lectura durante OBS03, sin relajar sus validadores ni rellenar hechos manuales.",
+      "why": "v1 exige prefijos manuales y equivalencias entre captura, lectura y mapeo. Una acción manual real posterior a asistencia tampoco debe forzar esos prerrequisitos históricos.",
+      "overrides_r1": [
+        "completion_contract.2: persistencia y gates de la ruta asistida",
+        "migration_contract: uso de gvo.station2.v1 durante OBS03"
+      ],
+      "source_paths": [
+        "OBS03_CONCILIACION_CODEX.json#/unresolved_technical_facts/2",
+        "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.md",
+        "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json#/facts"
+      ],
+      "requirements": [
+        "La secuencia esencial es planta→senal→captura→acondicionamiento→mapeo→musica. No se deriva de highestUnlockedLayerOrder ni de los prerrequisitos manuales v1.",
+        "Ver resultado solicita asistencia; sólo registrar assisted/presented cuando el resultado esté realmente mostrado, activo y con recursos preparados.",
+        "El final de una demostración o animación no confirma el paso. Confirmar exige avance explícito del visitante; Música exige cierre manual.",
+        "Registrar nuevas acciones manuales reales en un bloque tipado pequeño de II dentro del registro OBS03. No crear una segunda autoridad ni sincronizar artificialmente el nuevo recorrido con v1.",
+        "Conservar la procedencia de hechos legados y de acciones nuevas. Ninguno se convierte automáticamente en confirmación vigente.",
+        "El reset explícito conserva su política de allowlist; solo lectura de v1 durante el recorrido no lo excluye del reset autorizado."
+      ]
+    },
+    {
+      "id": "R2-Q4",
+      "status": "RESOLVED_ACCEPTED_WITH_EXPLICIT_COMPATIBILITY_RULE",
+      "decision_ids": [
+        "D07"
+      ],
+      "decision": "Conservar crédito de acceso legado y hechos originales por separado de la esencia OBS03. Autorizar revisión histórica de solo lectura semántica únicamente con prefijo completo, contexto de Mirador válido y concordante, sin contradicción explícita.",
+      "overrides_r1": [
+        "migration_contract.table: precisar grandfathered mediante legacy_review_compatible",
+        "migration_contract.legacy_route_credit: clasificación y reanudación",
+        "completion_contract.qr_visibility: excepción validada de revisión histórica"
+      ],
+      "source_paths": [
+        "OBS03_CONCILIACION_CODEX.json#/unresolved_technical_facts/3",
+        "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json#/fixtures",
+        "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json#/existing_test_partial_shapes",
+        "EVIDENCIA_R2/III-fixtures-from-tests.json",
+        "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json#/fixtures",
+        "EVIDENCIA_R2/src/app/review/finalReviewContext.test.ts"
+      ],
+      "requirements": [
+        "Leer raw y contexto antes de montar consumidores que sintetizan completitud. No escribir confirmaciones a partir de visitas, skips, ready, globales o tiempos.",
+        "IV null tras un QR es compatible con eliminación legítima del checkpoint. No imputar omisión ni éxito del juego nuevo.",
+        "V skip_remaining y cuatro omisiones individuales no son distinguibles en el payload. Preservar omisiones y puntos, sin inventar cuatro presentaciones.",
+        "III visitedPages y registros de investigación no prueban avances explícitos, práctica ni cierre nuevo.",
+        "La revisión histórica autoriza consulta y retorno, con UI y animaciones activas; bloquea escrituras semánticas de presentación, cierre, práctica, juego y puntuación.",
+        "La clasificación explica una política de compatibilidad; no certifica retrospectivamente el recorrido ni crea finalReached o un equivalente durable."
+      ]
+    }
+  ],
+  "preparation_and_commit_contract": {
+    "owner": "Codex root",
+    "deadline": {
+      "total_ms": 15000,
+      "start": "Al aceptar la intención/QR válido e iniciar su persistencia/preparación. La solicitud de permiso de cámara queda fuera.",
+      "route_change_resets_deadline": false,
+      "context_change_resets_deadline": false,
+      "image_workers_aggregate": 2,
+      "per_image_max_ms_within_remaining_budget": 8000,
+      "automatic_retries": 0,
+      "explicit_additional_retries_per_entry": 2,
+      "cleanup_is_readiness_gate": false
+    },
+    "identity": {
+      "transaction_id": "Durable en el pending, estable entre reintentos del mismo avance.",
+      "attempt_id": "Nuevo por intento, con deadline monotónico en memoria. No reutilizar un ready persistido.",
+      "context_key": "Ruta/subruta + locale + orientación + revisión de contenido/assets + estado restaurado normalizado."
+    },
+    "receipt_minimum": [
+      "transactionId",
+      "from",
+      "to",
+      "kind",
+      "acceptedAuthorizationKind",
+      "essentialRevision",
+      "canonicalPayload sólo si kind=qr",
+      "phase"
+    ],
+    "receipt_kinds": [
+      "qr",
+      "portal",
+      "result_closure",
+      "legacy_resume",
+      "review_navigation"
+    ],
+    "phase_rows": [
+      {
+        "phase": "pending",
+        "meaning": "Intención verificada; aún sin nuevo crédito confirmado.",
+        "on_error": "Recuperación cubierta; reintento explícito conserva intención. Volver cancela intención antes de una escritura de commit.",
+        "reveal_allowed": false
+      },
+      {
+        "phase": "commit_verification_pending",
+        "meaning": "Se intentó escribir y no se pudo verificar; resultado desconocido.",
+        "on_error": "Releer hechos/recibo. No repetir ciegamente, no revertir ni borrar un posible crédito.",
+        "reveal_allowed": false
+      },
+      {
+        "phase": "committed_pending_reveal",
+        "meaning": "Crédito verificado o preexistente verificado, destino aún no entregado.",
+        "on_error": "Conservar crédito y recibo; recuperar/revalidar con intento explícito limitado sin otro QR.",
+        "reveal_allowed": "Sólo después de preparación vigente, autorización y deadline válido."
+      },
+      {
+        "phase": "revealed_pending_cleanup",
+        "meaning": "El mismo árbol ya está activo y visible; resta limpieza idempotente.",
+        "on_error": "No retirar acceso ni repetir activación/commit. Reconciliar el residuo al siguiente acceso.",
+        "reveal_allowed": true
+      }
+    ],
+    "global_commit_by_transition": {
+      "OBS03-TRANS-01": null,
+      "OBS03-TRANS-02": 1,
+      "OBS03-TRANS-03": 2,
+      "OBS03-TRANS-04": 3,
+      "OBS03-TRANS-05": 4,
+      "OBS03-TRANS-06": 5
+    },
+    "review_and_legacy_commit": "legacy_resume y review_navigation no conceden otro bit global ni registran un QR que no ocurrió. review_navigation puede registrar intención técnica para preparar, sin escribir hechos de sala.",
+    "recovery": [
+      "Si falla antes de intentar el commit, no hay nuevo crédito procedente de ese intento.",
+      "Si falla después de readback, conservar el crédito aunque la fase durable siga diciendo pending. Reconciliar desde el recibo autorizado y los hechos actuales.",
+      "Un reintento postcommit obtiene un nuevo attemptId y hasta 15 s para preparar el destino adquirido; conserva transactionId y no pide otro escaneo.",
+      "Al agotar reintentos, mostrar recuperación estable. La recarga o una entrada posterior explícita no transforma el caso en bucle automático ni elimina el crédito.",
+      "Volver postcommit cancela el intento visual, pero conserva recibo postcommit o información equivalente de reanudación. Volver precommit sólo cancela si el commit no quedó indeterminado.",
+      "En refresh no sobreviven pruebas de recursos/layout. Revalidar autorización y volver a preparar bajo cortina.",
+      "Un fallo de limpieza anterior al reveal se trata como postcommit recuperable; la implementación debe mover esa limpieza después de la activación."
+    ],
+    "final_reached": "Guardar como hecho nuevo únicamente después de la activación visible de Mirador por el flujo OBS03 normal. Si ese guardado falla, conservar el recibo de llegada y reintentar idempotentemente; no conceder revisión OBS03 durable a partir del bit V aislado. No deshacer la llegada visible ni marcarla falsamente verificada.",
+    "scope_limit": "Coordinación local pequeña. No motor genérico ni garantía de transacción distribuida entre pestañas. Las claves separadas se reconcilian explícitamente."
+  },
+  "shared_api_contract": {
+    "owner": "Codex root",
+    "modules": [
+      "src/app/journey/journeyEssential.ts",
+      "src/app/journey/JourneyActivation.tsx",
+      "src/app/journey/JourneyPreparation.tsx"
+    ],
+    "storage_key": "gvo.journey.essential.v1",
+    "module_reconciliation": "Aceptar la fachada propuesta journeyEssential.ts en lugar de exigir el archivo propuesto journeyEssentialProgress.ts de R1. Reutilizar helpers de dominio si conviene; una sola autoridad y una sola clave esencial, no dos stores.",
+    "common_mutation_result": "Promise<{ok:true; snapshot:VerifiedEssentialSnapshot; alreadyApplied:boolean} | {ok:false; reason:inactive|read_only_review|unauthorized|out_of_order|stale_revision|storage_unverified; snapshot:VerifiedEssentialSnapshot|null}>",
+    "persistence_rule": "Las mutaciones semánticas de las APIs de sala comprueban actividad, modo, autorización, revisión y orden; escriben y releen. Sólo ok permite avance. Idempotencia por revisión/paso/tipo de hecho; conservar último snapshot verificado ante error. Las mutaciones técnicas de root —pending, commit y reconciliación— pueden ejecutarse con el destino inactivo, bajo sus gates de recibo/token/autorización/recursos/layout/deadline cuando corresponda; no atribuyen presentación, práctica ni puntos.",
+    "api": [
+      {
+        "name": "useJourneyActivity",
+        "signature": "useJourneyActivity(): {active:boolean; attemptId:string|null}",
+        "semantics": "Actividad visual/efectos. active=false en preparación; active=true en revisión visible aunque sus escrituras semánticas estén restringidas."
+      },
+      {
+        "name": "useEssentialFlow",
+        "signature": "useEssentialFlow(screen:'cover'|1|2|3|4|5): VerifiedEssentialView",
+        "semantics": "Snapshot actual, presented/confirmed/closed, revisión, primer paso pendiente, modo de acceso validado y motivo de readiness. No sintetiza cierres desde raw legado.",
+        "view_access": [
+          "normal",
+          "obs03_review",
+          "legacy_review_compatible"
+        ]
+      },
+      {
+        "name": "markEssentialPresented",
+        "signature": "markEssentialPresented({screen,stepId,contentRevision,mode:standard|assisted}): Promise<EssentialWriteResult>",
+        "semantics": "Sólo cuando el contenido realmente se muestra activo y listo. No al montar bajo cortina ni al solicitar ayuda. No confirma el paso."
+      },
+      {
+        "name": "confirmEssentialStep",
+        "signature": "confirmEssentialStep({screen,stepId,contentRevision,cause:visitor_advance}): Promise<EssentialWriteResult>",
+        "semantics": "Exige presentación acreditada, prefijo y avance explícito. Actualiza activeStepId al siguiente paso esencial en la misma escritura verificada, sin marcar ese siguiente como presentado o confirmado; la UI sólo lo muestra con sus recursos listos. Fin de animación, timeout, scroll y apertura no son visitor_advance."
+      },
+      {
+        "name": "closeEssentialRoom",
+        "signature": "closeEssentialRoom({screen,contentRevision,cause:visitor_close}): Promise<EssentialWriteResult>",
+        "semantics": "Comprueba requisitos del cierre R1 y confirmación manual. La misma acción final puede confirmar el último paso presentado y cerrar, con todos los anteriores confirmados, en una escritura verificada; no exigir otro botón sólo por separar APIs. No marca global, no concede puntos ni abre la cámara."
+      },
+      {
+        "name": "isEssentialExitReady",
+        "signature": "isEssentialExitReady(screen,validatedJourneyContext): boolean",
+        "semantics": "Misma condición en UI, cámara, recibo y guards. Contexto lo resuelve root; readiness por revisión no autoriza un commit normal. Revalidar motivo y destino al ejecutar."
+      },
+      {
+        "name": "canUseUiStep",
+        "signature": "canUseUiStep(screen,stepId,validatedJourneyContext): boolean",
+        "semantics": "Permite acciones sobre pasos confirmados y el primer paso aún no confirmado cuyo prefijo esté confirmado, o consulta autorizada. No habilita saltos futuros, no oculta el árbol que se prepara ni concede progreso. Cada escritura aplica además sus propios permisos."
+      },
+      {
+        "name": "recordWorld2UiFact",
+        "signature": "recordWorld2UiFact(fact:World2UiFact): Promise<EssentialWriteResult>",
+        "semantics": "Guarda sólo hechos reales de la UI activa, con origen visitor_ui. No rellena prerrequisitos manuales v1 ni registra como manual una demostración asistida."
+      }
+    ],
+    "internal_root_contracts": [
+      {
+        "name": "getJourneyResourceManifest",
+        "signature": "getJourneyResourceManifest({route,locale,orientation,restoredState,contentRevision}): JourneyResourceManifest",
+        "rule": "Lista efectiva por consumidor y estado; root importa/prepara con límite agregado. No ready durable ni grupo none para una transición real."
+      },
+      {
+        "name": "reportPreparedLayout",
+        "signature": "reportPreparedLayout({attemptId,contextKey,criticalRoot,layoutResult}): void",
+        "rule": "Acuse del árbol real. Root valida identidad, recursos, error y deadline; esta llamada no concede ready por sí sola."
+      }
+    ],
+    "role_specific_contracts": {
+      "GestureHint": "Conservar props existentes variant, direction, active, completed, targetLabel y anchorRef. Root publica ruta/pivote medidos después de producir la mano; B no inventa coordenadas ni reutiliza las antiguas como definitivas.",
+      "lia": "Autorizar adaptación del rig compartido de cinco pétalos como primera vía. Si no cumple las acciones R1 al tamaño real, root produce los clips compactos previstos. No dar por integrada una animación por existir su rig.",
+      "locale": "Root integra catálogo/API por locale; cada sala resuelve contenido en render. B adapta slots I/II, C IV/V, root III y compartidos. No resolver ES una vez al importar. Congelar traducción por segmento conciliado antes de QA editorial, sin otra aprobación rutinaria."
+    }
+  },
+  "room2_delta": {
+    "legacy_key_policy": "gvo.station2.v1 se conserva intacta y se lee como evidencia histórica; no escribe el recorrido OBS03. Sus validadores quedan intactos para lectura/compatibilidad.",
+    "essential_order": [
+      "planta",
+      "senal",
+      "captura",
+      "acondicionamiento",
+      "mapeo",
+      "musica"
+    ],
+    "consumer_layer_mapping": {
+      "planta": "planta_viva",
+      "senal": "senal",
+      "captura": "captura",
+      "acondicionamiento": "acondicionamiento",
+      "mapeo": "mapeo",
+      "musica": "resultado_mediado"
+    },
+    "current_registry_fields": [
+      "contentRevision",
+      "presentedStepIds",
+      "confirmedStepIds",
+      "assistedPresentedStepIds",
+      "activeStepId",
+      "interactionEvidence",
+      "closed"
+    ],
+    "interaction_evidence": {
+      "location": "Bloque tipado stations[2].interactionEvidence del registro OBS03; no otro store v1 ni log ilimitado.",
+      "origin": "visitor_ui",
+      "fact_kinds": [
+        "required_interaction: id de RequiredInteractionId existente, sólo cuando se muestra realmente por la acción correspondiente.",
+        "capture_step: id contact|signal|system realmente visitado por UI, sin completar pasos anteriores por inferencia.",
+        "mapping_first_run: ejecución manual realmente completada."
+      ],
+      "storage_shape": "Conjuntos acotados/datos actuales por hecho, idempotentes. El detalle visual reanudable puede conservarse sin convertirlo en confirmación esencial.",
+      "legacy": "Los hechos v1 conservan origen legacy; no se mezclan con visitor_ui nuevo ni se elevan a cierre."
+    },
+    "assistance": "Solicitar Ver resultado → preparar y mostrar el resultado → registrar presented/assisted → esperar avance explícito. En Música esperar cierre manual del resultado visible.",
+    "failure": "Si no se verifica el registro, no cambiar de paso ni habilitar QR. Mantener contenido mostrado y ofrecer reintento idempotente.",
+    "resume_without_obs03_confirmations": "Comenzar confirmaciones de II en planta; en I en intro. Conservar detalle y hechos legados sin saltar la esencia pendiente."
+  },
+  "legacy_compatibility": {
+    "read_before_mount": true,
+    "credit": "Calcular únicamente el prefijo coherente mediante coherentProgressPrefixLength. Mantener raw completo sin usar bits dispersos para ampliar acceso. Prefijo n acredita acceso legado hasta la siguiente sala, y n=5 representa crédito antiguo completo, no finalReached.",
+    "ambiguous_example": {
+      "raw_completedStations": [
+        1,
+        4,
+        5
+      ],
+      "usable_prefix_length": 1,
+      "mirador_authorized_by_this_alone": false
+    },
+    "review_mode": "legacy_review_compatible",
+    "review_predicate_all_required": [
+      "Progreso legado válido con prefijo completo [1,2,3,4,5].",
+      "Contexto final-review o final-cover-revisit v1 válido, leído antes del montaje y conforme a parsers existentes.",
+      "Modo/ruta concordantes: world coincide en sala y subrutas válidas de V; final-cover-revisit corresponde a Portada. No autorizar mediante query string.",
+      "Navigation state presente tiene prioridad; si está mal formado o contradice la ruta, no rescatarlo con un contexto de sesión antiguo. La sesión válida es fallback cuando no hay navigation state pertinente.",
+      "Sin contradicción explícita verificable, como activityContinued con contenido esencial claramente omitido en I/II, o resumeMode=activity_skipped en IV. Datos ausentes, visitas incompletas sin continuación, IV null y cuatro skips V no prueban esa contradicción."
+    ],
+    "allowed": [
+      "Consultar contenido con UI y animaciones activas.",
+      "Volver a Mirador con el permiso de retorno capturado del contexto validado.",
+      "Mostrar QR I–IV como excepción de revisita, si se utiliza para navegar: no es obligatorio repetirlo ni concede otro bit. El retorno y las consultas adquiridas siguen disponibles."
+    ],
+    "forbidden_writes_in_legacy_review": [
+      "confirmedStepIds",
+      "closed",
+      "presentedStepIds como hechos OBS03",
+      "finalReached",
+      "práctica realizada",
+      "solved_by_visitor",
+      "nuevos puntos o cambios de respuestas/omisiones"
+    ],
+    "return_and_refresh": "Root conserva el permiso de retorno validado durante la navegación; no limpia el contexto antes de capturarlo. El estado de navegación de retorno puede transportar el contexto v1 para validarlo nuevamente al entrar en /final. En refresh se revalida el contexto disponible y el prefijo; no usar sólo una clasificación de migración persistida como autorización.",
+    "no_new_durable_final_marker": "No persistir legacyFinalReached ni un booleano equivalente. migrationEvidence puede documentar razones sin convertirse en credencial futura. Un acceso /final aislado o una cadena de sesión aislada no crea compatibilidad.",
+    "without_review_context": "Clasificar legado pendiente/desconocido y retomar la esencia sin evidencia. Después de confirmarla, el destino ya adquirido usa legacy_resume con gesto explícito, sin nuevo QR ni bit. Un destino nuevo mantiene QR y orden normales.",
+    "opaque_local_records": "Raw local corrupto o versión desconocida requiere recuperación localizada y conservación de bytes. No borrar crédito global válido ni interpretar esos bytes como hechos. Un progreso global o contexto de revisión inválido no autoriza compatibilidad.",
+    "projection_rule": "Subsets de aserciones son proyecciones de tests, no raw completo corrupto. No completar campos ni timestamps. Separar lo conocido por el escenario de prueba de lo deducible por el migrador en runtime.",
+    "classification_is_not_access": "legacy_pending/legacy_unknown clasifican evidencia de esencia. El permiso de revisión se calcula aparte con el predicado completo; una etiqueta por sí sola no concede ni deniega revisión.",
+    "historical_limit": "La procedencia histórica no es reconstruible inequívocamente desde estos datos. Esta es una regla acotada de compatibilidad, no una prueba retrospectiva ni autenticación externa."
+  },
+  "fixture_classifications": [
+    {
+      "id": "W1-LEGACY-PARTIAL",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/0",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W1-GLOBAL-ONLY",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/1",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W1-GLOBAL-PARTIAL-ROOM",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/2",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W1-UNKNOWN-VERSION",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/3",
+      "source_kind": "raw_string",
+      "classification": "recovery",
+      "consequence": "Conservar bytes exactos y aplicar recuperación localizada. No reinterpretar versiones desconocidas ni borrar progreso ajeno."
+    },
+    {
+      "id": "W1-CORRUPT",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/4",
+      "source_kind": "raw_string",
+      "classification": "recovery",
+      "consequence": "Conservar bytes exactos y aplicar recuperación localizada. No reinterpretar versiones desconocidas ni borrar progreso ajeno."
+    },
+    {
+      "id": "W1-NO-CHECKPOINT",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/5",
+      "source_kind": "missing_key",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W2-LEGACY-CAPTURE-PARTIAL",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/6",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W2-CONVERGENCE-PENDING",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/7",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W2-LEGACY-READY",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/8",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Ready v1 es apoyo histórico, no cierre manual de Música ni esencia OBS03. Preservar los hechos originales."
+    },
+    {
+      "id": "W2-PARTIAL-PLUS-GLOBAL",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/9",
+      "source_kind": "source_object",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar raw/hechos y crédito coherente independiente; sin confirmaciones nuevas. I retoma intro y II planta si no existe evidencia OBS03."
+    },
+    {
+      "id": "W2-UNKNOWN-VERSION",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/10",
+      "source_kind": "raw_string",
+      "classification": "recovery",
+      "consequence": "Conservar bytes exactos y aplicar recuperación localizada. No reinterpretar versiones desconocidas ni borrar progreso ajeno."
+    },
+    {
+      "id": "W2-CORRUPT",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/fixtures/11",
+      "source_kind": "raw_string",
+      "classification": "recovery",
+      "consequence": "Conservar bytes exactos y aplicar recuperación localizada. No reinterpretar versiones desconocidas ni borrar progreso ajeno."
+    },
+    {
+      "id": "W1-CONTINUED-EMPTY",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/existing_test_partial_shapes/0",
+      "source_kind": "existing_test_expected_persisted_subset",
+      "classification": "legacy_pending",
+      "consequence": "Continuación explícita con contenido pendiente en los campos afirmados. Conservar hechos/crédito; no fabricar cierre ni usarla como prueba de revisita completa.",
+      "explicit_review_contradiction_from_asserted_fields": true
+    },
+    {
+      "id": "W2-CONTINUED-PARTIAL",
+      "evidence_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "json_pointer": "/existing_test_partial_shapes/1",
+      "source_kind": "existing_test_expected_persisted_subset",
+      "classification": "legacy_pending",
+      "consequence": "Continuación explícita con contenido pendiente en los campos afirmados. Conservar hechos/crédito; no fabricar cierre ni usarla como prueba de revisita completa.",
+      "explicit_review_contradiction_from_asserted_fields": true
+    },
+    {
+      "id": "III-research-original",
+      "evidence_path": "EVIDENCIA_R2/III-fixtures-from-tests.json",
+      "json_pointer": "/samples/0",
+      "source_kind": "exact_object_in_repository_test",
+      "classification": "supporting_evidence_only",
+      "consequence": "Conservar investigación planta/prototipo; no convertir en páginas, práctica ni cierre."
+    },
+    {
+      "id": "III-opened-all-before-scan",
+      "evidence_path": "EVIDENCIA_R2/III-fixtures-from-tests.json",
+      "json_pointer": "/samples/1",
+      "source_kind": "observed_assertion_subset_not_complete_raw",
+      "classification": "legacy_unknown",
+      "consequence": "Tres aperturas no acreditan avances explícitos ni práctica. Conservar visitas."
+    },
+    {
+      "id": "III-after-valid-scan",
+      "evidence_path": "EVIDENCIA_R2/III-fixtures-from-tests.json",
+      "json_pointer": "/samples/2",
+      "source_kind": "observed_assertion_subset_not_complete_raw",
+      "classification": "legacy_pending",
+      "consequence": "Conservar visitas y activityContinued sin confirmaciones; crédito sólo desde global. Visitas completas con reviewed vacío no prueban por sí solas un atajo histórico contradictorio."
+    },
+    {
+      "id": "III-skip-and-refresh",
+      "evidence_path": "EVIDENCIA_R2/III-fixtures-from-tests.json",
+      "json_pointer": "/samples/3",
+      "source_kind": "observed_assertion_subset_not_complete_raw",
+      "classification": "legacy_pending",
+      "runtime_payload_classification": "legacy_unknown",
+      "consequence": "El escenario de test conoce la omisión. Su subset visited/reviewed vacíos y not_started aislado también es compatible con estado inicial: el migrador no puede concluir omisión ni corrupción desde ese subset."
+    },
+    {
+      "id": "IV_partial_raw",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/0",
+      "source_kind": "EXACT_SEED_FROM_UNIT_TEST",
+      "classification": "legacy_unknown",
+      "consequence": "Preservar prefijo [1,2,3,4] y detalle parcial. Acceso adquirido a V sin éxito del juego ni cierre IV nuevo."
+    },
+    {
+      "id": "IV_chain_pending_seed",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/1",
+      "source_kind": "EXACT_SEED_FROM_UNIT_TEST",
+      "classification": "legacy_pending",
+      "consequence": "Preservar prefijo [1,2,3] y chain_pending. highestSettledIndex=7 no prueba solución ni cierre del juego nuevo."
+    },
+    {
+      "id": "IV_after_legitimate_QR",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/2",
+      "source_kind": "ACTUAL_UNIT_ASSERTION_PROJECTION_NOT_USER_DATA",
+      "classification": "legacy_route_credit_preserved",
+      "consequence": "Checkpoint null compatible con limpieza legítima. Conservar crédito hacia V; no imputar omisión, acierto ni finalReached."
+    },
+    {
+      "id": "IV_explicit_omission",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/3",
+      "source_kind": "ACTUAL_UNIT_ASSERTION_PROJECTION_NOT_USER_DATA",
+      "classification": "legacy_pending",
+      "consequence": "activity_skipped es contradicción explícita. Preservar raw y crédito independiente; resolver esencia IV por ruta normal/asistida, sin éxito ficticio.",
+      "explicit_review_contradiction_from_asserted_fields": true
+    },
+    {
+      "id": "V_all_skipped",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/4",
+      "source_kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "classification": "legacy_unknown",
+      "consequence": "Conservar cuatro skips y cero puntos. No distinguir skip_remaining de cuatro omisiones ni acreditar cuatro presentaciones."
+    },
+    {
+      "id": "V_wrong_then_skipped",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/5",
+      "source_kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "classification": "legacy_pending",
+      "consequence": "Conservar plantas en answeredQuestions y skippedQuestions; cero puntos. No convertir respuesta real en nunca respondida."
+    },
+    {
+      "id": "V_one_earned_three_skipped",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/6",
+      "source_kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "classification": "legacy_pending",
+      "consequence": "Conservar exactamente el punto de espacio y las tres omisiones. Nueva presentación pendiente; repetir espacio no duplica puntos."
+    },
+    {
+      "id": "V_old_area_progress",
+      "evidence_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "json_pointer": "/fixtures/7",
+      "source_kind": "EXACT_LEGACY_UNIT_TEST_RAW",
+      "classification": "supporting_evidence_only",
+      "consequence": "Cuatro áreas exploradas no son respuestas, puntos ni cierre del quiz OBS03."
+    }
+  ],
+  "room5_persistence_precision": {
+    "score_authority": "world5Quiz / gvo.station5.quiz.v1.correctAnswers",
+    "no_second_earned_ids_store": true,
+    "mapping": {
+      "plantas": "TXT_5_492e47aeb6b8",
+      "sistema": "TXT_5_9b70a607a49a",
+      "espacio": "TXT_5_3b6bbc87ed80",
+      "visitante": "TXT_5_bfb7f09e357a"
+    },
+    "essential_evidence_location": "Registro OBS03: presentación, confirmación individual y cierre. Quiz existente: respuestas, skips y aciertos.",
+    "wrong_answer": "Una respuesta incorrecta es una respuesta real. El avance explícito puede confirmarla sin fabricar una omisión.",
+    "normal_first_correct_later": "Mantener R1: primer acierto posterior puede otorgar el punto faltante una vez. legacy_review_compatible es consulta semántica de solo lectura, no ese camino de respuesta nueva."
+  },
+  "ownership": {
+    "root": {
+      "paths": [
+        "src/app/router.tsx",
+        "src/app/qr/**",
+        "src/app/reset/**",
+        "src/domain/progress/**",
+        "src/shared/assets/**",
+        "src/components/GestureHint/**",
+        "src/styles/**",
+        "public/assets/**",
+        "shared locale/runtime manifests",
+        "src/screens/World3Root/**",
+        "src/app/journey/**",
+        "src/app/shell/**",
+        "src/app/review/**"
+      ],
+      "responsibility": "Único integrador de contratos, preparación, pending/commit, guards, contexto de revisión, migración, reset, recursos, catálogo de idioma y assets; implementa III."
+    },
+    "agent_a": {
+      "paths": [
+        "src/screens/LoadingInitial/**",
+        "src/screens/InitialExperience/**",
+        "src/screens/Cover/**",
+        "src/screens/TransitionWorld/**"
+      ],
+      "responsibility": "UI Carga/Inicio/Portada/transiciones; consume un único controlador root, sin otro deadline ni commit."
+    },
+    "agent_b": {
+      "paths": [
+        "src/screens/World1Root/**",
+        "src/screens/World2Root/**",
+        "src/content/world1EditorialSlots.ts",
+        "src/content/world2EditorialSlots.ts"
+      ],
+      "responsibility": "I/II y slots, mediante fachada root. No relaja validadores ni crea store alternativo."
+    },
+    "agent_c": {
+      "paths": [
+        "src/screens/World4Root/**",
+        "src/screens/World5Root/**",
+        "src/domain/checkpoints/world4OrderingCheckpoint.ts"
+      ],
+      "responsibility": "IV y después V; world4OrderingCheckpoint local del juego, quiz existente para puntos, cierre mediante fachada root."
+    },
+    "handoff_rule": "Root publica los tipos/fachada de este delta antes de acoplar avance, persistencia y guards. No requiere otra ronda de permiso. Cambios compartidos por agentes se entregan a root para integración o se delegan temporalmente de forma registrada."
+  },
+  "increment_start_decision": {
+    "further_chatgpt_or_human_permission_before_start": false,
+    "INC00": {
+      "state": "TECHNICAL_CONCILIATION_CLOSED",
+      "action": "Registrar hash del delta y verificar que la base preservada sigue siendo la reportada justo antes de escribir. Cerrar documentalmente INC00."
+    },
+    "INC01": {
+      "state": "START_NOW",
+      "owner": "root",
+      "gate": "Implementar fachada, lectura previa, preparación/activación y reconciliación. Verificar los subcasos de riesgo de este delta antes de declarar integración funcional lista."
+    },
+    "ART": {
+      "state": "START_NOW_IN_PARALLEL_WITH_INDEPENDENT_CODE",
+      "owner": "root / único operador Images",
+      "gate": "Referencias ya localizadas. Inspeccionar originales antes de producir; pilotos representativos y aceptación R1. Producción individual IV/V, sin generar chats nuevos."
+    },
+    "INC02": {
+      "state": "START_OWNED_UI_NOW_INTEGRATE_AFTER_INC01",
+      "owner": "A con root integrador",
+      "gate": "Puede corregir UI/copy/portal. Activación y carga se acoplan a fachada root; cierre del incremento espera manifiestos finales de salas, como R1."
+    },
+    "INC03": {
+      "state": "START_OWNED_UI_COPY_NOW_BIND_AFTER_ROOT_API",
+      "owner": "B",
+      "gate": "Adaptar bloques, Más, slots por locale y acciones. Integrar asistencia/avance/QR después de existir la fachada root utilizable; no mock productivo que declare ready o cierre."
+    },
+    "INC04": {
+      "state": "START_AFTER_ROOT_API_AVAILABLE",
+      "owner": "root",
+      "gate": "Restauración y ajuste del notebook original pueden prepararse antes; integración respeta orden/registro compartido y assets/motion R1."
+    },
+    "INC05": {
+      "state": "START_LOCAL_GAME_AND_UI_NOW_BIND_AFTER_ROOT_API",
+      "owner": "C",
+      "gate": "Mecánica/tiempo y UI locales pueden comenzar. Cierre funcional depende de API root; cierre visual exige objetos finales."
+    },
+    "INC06": {
+      "state": "AFTER_INC05_AS_IN_R1",
+      "owner": "C",
+      "gate": "Preparación de bindings/producción puede adelantar; ejecución integrada de V después del frente IV. Mantener correctAnswers y presentar cuatro preguntas."
+    },
+    "INC07": {
+      "state": "AFTER_INTEGRATED_INC02_TO_INC06",
+      "owner": "root ↔ ChatGPT",
+      "gate": "Regresión/recorrido completo R1, seis transiciones, ES/EN, tamaños y vídeo limpio. No adelantar aprobación humana ni sustituir candidata servida por una fase incompleta."
+    }
+  },
+  "qa_delta": {
+    "rule": "Añadir estos subcasos a los casos R1 indicados. No crear otra matriz ni repetir la auditoría editorial. Todos están previstos, ninguno fue ejecutado por ChatGPT.",
+    "subcases": [
+      {
+        "id": "OBS03.2-QA-01",
+        "extends": [
+          "QA-LOAD-02",
+          "QA-GUARD-01"
+        ],
+        "assert": "Pending monta sólo preparación: árbol real inerte, sin cámara/foco/visitas/escrituras/timers de actividad; recursos sin decode no pasan por dos rAF."
+      },
+      {
+        "id": "OBS03.2-QA-02",
+        "extends": [
+          "QA-T01-OK",
+          "QA-T06-OK"
+        ],
+        "assert": "Preparación→activación conserva identidad de árbol/DOM y estado local. StrictMode no duplica hechos. Aplicar contrato después a las seis transiciones R1."
+      },
+      {
+        "id": "OBS03.2-QA-03",
+        "extends": [
+          "QA-LOAD-03",
+          "QA-GUARD-01"
+        ],
+        "assert": "Token viejo o cambio de ruta/locale/orientación invalida acuse sin ampliar deadline. Timeout precommit sin crédito; intento de escritura sin readback queda indeterminado."
+      },
+      {
+        "id": "OBS03.2-QA-04",
+        "extends": [
+          "QA-LOAD-03",
+          "QA-GUARD-02"
+        ],
+        "assert": "Timeout inmediatamente después de readback conserva crédito y active=false; retry sin QR/puntos nuevos. Fallo de escritura de phase se reconcilia desde recibo y progreso actual."
+      },
+      {
+        "id": "OBS03.2-QA-05",
+        "extends": [
+          "QA-GUARD-02",
+          "QA-RESET-01"
+        ],
+        "assert": "Limpieza fallida postreveal no revierte. Volver postcommit conserva reanudación; reset invalida callback pendiente. Nunca rollback de una copia vieja."
+      },
+      {
+        "id": "OBS03.2-QA-06",
+        "extends": [
+          "QA-W2-01",
+          "QA-GUARD-01"
+        ],
+        "assert": "II totalmente asistida: seis presentaciones/avances y cierre de Música, bytes v1 intactos, cero hechos manuales inventados. Fin automático de demo no confirma."
+      },
+      {
+        "id": "OBS03.2-QA-07",
+        "extends": [
+          "QA-W2-01",
+          "QA-MIG-01"
+        ],
+        "assert": "II mixta: acción manual real tras asistencia persiste con origen nuevo y se restaura; fallo de confirmación impide avanzar y retry no duplica."
+      },
+      {
+        "id": "OBS03.2-QA-08",
+        "extends": [
+          "QA-MIG-01"
+        ],
+        "assert": "Los 26 fixtures conservan hechos y clasificación, sin completar subsets. III-skip-and-refresh no permite inferir omisión desde su proyección aislada."
+      },
+      {
+        "id": "OBS03.2-QA-09",
+        "extends": [
+          "QA-MIG-01",
+          "QA-GUARD-02",
+          "QA-MIRADOR-01"
+        ],
+        "assert": "Prefijo completo + contexto válido + IV null permite consulta y retorno, con UI activa y cero escrituras semánticas. Refresh revalida. Sin finalReached inventado."
+      },
+      {
+        "id": "OBS03.2-QA-10",
+        "extends": [
+          "QA-MIG-01",
+          "QA-GUARD-02"
+        ],
+        "assert": "Global completo aislado, contexto aislado/corrupto/de otro mundo y modo cover intercambiado no autorizan revisión. Contexto navigation inválido no rescata sesión vieja; contradicción explícita conserva crédito pero deniega excepción."
+      },
+      {
+        "id": "OBS03.2-QA-11",
+        "extends": [
+          "QA-GUARD-02",
+          "QA-CAMERA-01"
+        ],
+        "assert": "Tras esencia pendiente, destino legado adquirido se retoma sin QR ni bit nuevo; un destino nuevo exige su QR. En revisión el QR disponible no obliga a repetir caminata ni modifica progreso."
+      },
+      {
+        "id": "OBS03.2-QA-12",
+        "extends": [
+          "QA-W5-02",
+          "QA-MIG-01"
+        ],
+        "assert": "correctAnswers mantiene espacio=1 en fixture, respuesta errónea sigue respondida, primer acierto nuevo acredita una vez fuera de revisión histórica; presentación/confirmación viven en OBS03."
+      }
+    ],
+    "execution_status": "NOT_EXECUTED_PLANNED"
+  },
+  "reference_resolution_updates": {
+    "source": "OBS03_CONCILIACION_CODEX.json#/reference_resolution",
+    "count": 10,
+    "selector": "Aplicar a las diez repo paths exactas de esa lista, con sus adjuntos y hashes R2.",
+    "new_status": "LOCATED_ORIGINAL_INTEGRITY_VERIFIED_VISUAL_INSPECTION_BEFORE_PRODUCTION",
+    "scope": "Resuelve la ausencia en el paquete anterior. No acredita aprobación artística ni elimina la inspección del original antes de producción."
+  },
+  "tool_resolution_updates": [
+    {
+      "repo_path": "tools/vite/lia-preview-proxy.mjs",
+      "r2_attachment": "EVIDENCIA_R2/tools/vite/lia-preview-proxy.mjs",
+      "sha256": "89967843069d9a691a22bc00c8800a5f694d55664fff64db6f0c3071cae233a4",
+      "new_status": "LOCATED_SOURCE_ATTACHED_NOT_EXECUTED"
+    },
+    {
+      "repo_path": "tools/vite/exclude-nondeployable-public.mjs",
+      "r2_attachment": "EVIDENCIA_R2/tools/vite/exclude-nondeployable-public.mjs",
+      "sha256": "a382c65e26453303e1bae616f39df9b7eae1a26c92d74a7bb9b982e632c2f213",
+      "new_status": "LOCATED_SOURCE_ATTACHED_NOT_EXECUTED"
+    },
+    {
+      "repo_path": "tools/testing/run-evidence.mjs",
+      "r2_attachment": "EVIDENCIA_R2/tools/testing/run-evidence.mjs",
+      "sha256": "f8986811d970e765a3ee26541cfdd3269f1610033aa70d21f0d2a4435bb0c233",
+      "new_status": "LOCATED_SOURCE_ATTACHED_NOT_EXECUTED"
+    }
+  ],
+  "build_delta_D18": {
+    "accepted": true,
+    "reason": "Codex reporta que npm perdió --outDir en el Windows operativo. Usar CLI directo, sin fallback a build por defecto.",
+    "commands_sequential": [
+      "node node_modules/typescript/bin/tsc -b",
+      "node node_modules/vite/bin/vite.js build --outDir .tool-reports/obs03/candidate"
+    ],
+    "candidate_directory": ".tool-reports/obs03/candidate",
+    "active_dist": "Preservar dist y sus recursos. Confirmar la salida efectiva y que el índice servido mantiene su hash durante preparación.",
+    "resource_limit": "Un proceso pesado cada vez y un worker navegador. Conservar servicios 4180, 4181, 4183 y 4281; usar el harness/origen aislado existente después de confirmar su función, sin reinicios rutinarios.",
+    "qa": "La prueba de cámara necesita build minificado; Vite dev no sustituye esa evidencia. Heredar getKind y cierre de tracks."
+  },
+  "baseline_reported_by_codex": {
+    "head": "79a31106a6286367db83b4075926862eaed7b716",
+    "origin_main": "79a31106a6286367db83b4075926862eaed7b716",
+    "dist_index_sha256": "b70858642c3b429507cbb29b72b475f86342ac1d2b1b08c6ae4d275a6f050338",
+    "source_files_reported_unchanged": 335,
+    "application_implementation_changes_obs03": 0,
+    "images_generated_obs03": 0,
+    "scope": "Hechos de R2 recibido, no inspección remota nueva del checkout por ChatGPT."
+  },
+  "bilateral_next_step": {
+    "codex_action_now": "Registrar este delta, cerrar conciliación y comenzar los incrementos habilitados. No se necesita otra aprobación intermedia para ejecutar las decisiones acordadas.",
+    "root_handoff": "Publicar tipos/fachada y propietarios; agentes implementan en sus archivos. Integrar y verificar INC01 antes de declarar funcionales los gates de sala.",
+    "next_exchange": "R3: identidad del código/build probado, hechos implementados, resultados focales del contrato y muestras representativas de assets/animación en contexto. Informar mientras continúan frentes independientes; no esperar a la candidata completa para descubrir un fallo compartido.",
+    "chatgpt_role": "Revisar R3 contra R1+OBS03.2 y devolver correcciones acotadas si la evidencia revela una desviación.",
+    "report_format": [
+      "obs_id",
+      "decision_or_question_id",
+      "implemented_consumer",
+      "observed_result",
+      "evidence_path_and_hash",
+      "test_or_capture_environment",
+      "remaining_limit",
+      "proposed_correction_if_needed"
+    ],
+    "human_questions": [],
+    "not_authorized": [
+      "Aprobar en nombre de José David.",
+      "Commit/push/merge/PR/release o publicación no autorizados.",
+      "Despliegue de campo o cambios de red/TLS/router.",
+      "Sustituir la candidata servida por un incremento incompleto."
+    ]
+  },
+  "source_references": [
+    {
+      "r2_path": "00_LEER_R2.md",
+      "sha256": "627c054c6c2c9553d1544c3ad2db8dd63a3684091de498d45a0c0b714b7e3f31"
+    },
+    {
+      "r2_path": "OBS03_CONCILIACION_CODEX.json",
+      "sha256": "92be8152f223854056c1b833f5c2060d04639a2e2469669c920e8f9031829c2c"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/entry-transitions__R2_TECNICA.md",
+      "sha256": "50275b76095b640fcdbbdf9210f2bf2d96993950fe3197889a79c07edab01736"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.md",
+      "sha256": "c664d08fe29f921c6a7d87620e8e58f8b2f8c6f7d79cd9ef6dcd06c383885de5"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/rooms-1-2__R2_TECNICA.json",
+      "sha256": "b61301105f93954cf304e09a598ad77e1955c6bd0a89e7ae8118fbeb93733e2c"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.md",
+      "sha256": "b9870feb63728efb0064cd50510bc72b606a42acf81ad3be82f933ed4b1aed42"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/rooms-4-5__R2_TECNICA.json",
+      "sha256": "fccf528868ab79483b94d462cddf9acb2ad0f651776a4b963549e07d14b8e7d3"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/III-fixtures-from-tests.json",
+      "sha256": "e083b8caa2f413b558e700a3ce1c62b983ec36df66e4de8fea39324e83515a4d"
+    },
+    {
+      "r2_path": "EVIDENCIA_R2/src/app/review/finalReviewContext.test.ts",
+      "sha256": "93b580393ee7a0ea49635a9b10439ebb5cb43bd630aeda29f8c81f4b3f7a2bae"
+    }
+  ],
+  "validation": {
+    "kind": "DOCUMENTARY_CONSISTENCY_ONLY",
+    "r2_archive_and_manifest": "PASS",
+    "four_questions_resolved": true,
+    "fixture_classifications_count": 26,
+    "references_resolved_count": 10,
+    "tools_resolved_count": 3,
+    "application_tests_run_by_chatgpt": 0,
+    "r1_files_modified": false,
+    "source_application_files_modified": false,
+    "new_images_generated": false
+  },
+  "fixture_defaults": {
+    "new_essential_confirmations_granted": [],
+    "new_finalReached_practice_game_success_or_points_inferred": false,
+    "route_credit": "Sólo el progreso global válido adjunto u observado independientemente; no inferirlo del nombre del fixture.",
+    "explicit_review_contradiction_from_asserted_fields": false,
+    "runtime_payload_classification": "Igual a classification salvo override explícito en la fila."
+  }
+}

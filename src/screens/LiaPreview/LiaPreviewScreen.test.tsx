@@ -1,4 +1,5 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -53,15 +54,17 @@ describe("dedicated visitor conversation", () => {
       container.querySelector("[data-asset-id]")?.getAttribute("data-asset-id");
     fireEvent.pointerDown(screen.getByLabelText(copy.prompt));
     expect(pose()).toBe("LIA-M4-GREETING-A");
+    await waitFor(() => expect(decodes.filter(({ url }) => url.includes("listening"))).toHaveLength(2));
     submit();
     await screen.findByText("Respuesta preparada");
-    decodes
-      .filter((d) => d.url.includes("explaining"))
-      .forEach((d) => d.done());
+    await waitFor(() => expect(decodes.filter(({ url }) => url.includes("explaining"))).toHaveLength(2));
+    await act(async () => {
+      decodes.filter(({ url }) => url.includes("explaining")).forEach(({ done }) => done());
+    });
     await waitFor(() => expect(pose()).toBe("LIA-M4-EXPLAINING-A"));
-    decodes
-      .filter((d) => !d.url.includes("explaining"))
-      .forEach((d) => d.done());
+    await act(async () => {
+      decodes.filter(({ url }) => url.includes("listening")).forEach(({ done }) => done());
+    });
     await waitFor(() => expect(pose()).toBe("LIA-M4-EXPLAINING-A"));
   });
   it("keeps greeting on automatic focus and explaining after reply focus restoration", async () => {

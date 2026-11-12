@@ -1,155 +1,54 @@
-import { useEffect, useMemo, useState } from "react";
-
-import { type PreloadSummary, preloadImages } from "./assetPreloader";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { type PreloadImagesOptions, type PreloadSummary, preloadImages } from "./assetPreloader";
 import { type ScreenAssetBundle, getBundleSources } from "./screenAssetBundles";
 
-export type AssetPreloaderHookStatus =
-  | "idle"
-  | "loading"
-  | "ready"
-  | "error"
-  | "timeout";
-
+export type AssetPreloaderHookStatus = "idle" | "loading" | "ready" | "error" | "timeout" | "aborted";
 export type AssetPreloaderState = {
-  status: AssetPreloaderHookStatus;
-  progress: number;
-  ready: boolean;
-  failed: number;
-  timedOut: number;
-  total: number;
-  summary: PreloadSummary | null;
+  status: AssetPreloaderHookStatus; progress: number; ready: boolean;
+  failed: number; timedOut: number; total: number; summary: PreloadSummary | null;
+  sourceKey: string;
 };
+export type UseAssetPreloaderOptions = PreloadImagesOptions & { enabled?: boolean; retryKey?: number | string; contextKey?: string };
+const IDLE: AssetPreloaderState = { status: "idle", progress: 0, ready: false, failed: 0, timedOut: 0, total: 0, summary: null, sourceKey: "" };
 
-type UseAssetPreloaderOptions = {
-  enabled?: boolean;
-  decode?: boolean;
-  timeoutMs?: number;
-  concurrency?: number;
-  retryKey?: number | string;
-};
-
-const TEST_READY_STATE: AssetPreloaderState = {
-  status: "ready",
-  progress: 1,
-  ready: true,
-  failed: 0,
-  timedOut: 0,
-  total: 0,
-  summary: null,
-};
-
-const IDLE_STATE: AssetPreloaderState = {
-  status: "idle",
-  progress: 0,
-  ready: false,
-  failed: 0,
-  timedOut: 0,
-  total: 0,
-  summary: null,
-};
-
-function isTestEnvironment() {
-  return import.meta.env.MODE === "test";
-}
-
-export function useAssetPreloader(
-  bundle: ScreenAssetBundle,
-  {
-    enabled = true,
-    decode = true,
-    timeoutMs = 8000,
-    concurrency = 4,
-    retryKey = 0,
-  }: UseAssetPreloaderOptions = {},
-) {
+export function useAssetPreloader(bundle: ScreenAssetBundle, {
+  enabled = true, decode = true, timeoutMs = 8000, concurrency = 2,
+  retryKey = 0, contextKey = "", signal, deadlineAt, onProgress,
+}: UseAssetPreloaderOptions = {}) {
   const sources = useMemo(() => getBundleSources(bundle), [bundle]);
-  const sourceKey = sources.join("|");
-  const [state, setState] = useState<AssetPreloaderState>(() =>
-    isTestEnvironment() && enabled
-      ? { ...TEST_READY_STATE, total: sources.length }
-      : IDLE_STATE,
-  );
-
+  const sourceKey = JSON.stringify([bundle.id, sources, decode, timeoutMs, concurrency, retryKey, contextKey, deadlineAt]);
+  const [current, setCurrent] = useState<{ key: string; signal: AbortSignal | undefined; state: AssetPreloaderState }>({ key: "", signal: undefined, state: IDLE });
+  const generationRef = useRef(0);
+  const onProgressRef = useRef(onProgress);
+  onProgressRef.current = onProgress;
   useEffect(() => {
-    if (!enabled) {
-      setState(IDLE_STATE);
-      return undefined;
-    }
-
-    if (isTestEnvironment()) {
-      setState({ ...TEST_READY_STATE, total: sources.length });
-      return undefined;
-    }
-
-    let cancelled = false;
-
-    setState({
-      status: "loading",
-      progress: 0,
-      ready: false,
-      failed: 0,
-      timedOut: 0,
-      total: sources.length,
-      summary: null,
+    const generation = ++generationRef.current;
+    const setState = (state: AssetPreloaderState) => setCurrent({ key: sourceKey, signal, state: { ...state, sourceKey } });
+    if (!enabled) { setState(IDLE); return; }
+    const controller = new AbortController();
+    const cancel = () => controller.abort();
+    signal?.addEventListener("abort", cancel, { once: true });
+    if (signal?.aborted) cancel();
+    setState({ ...IDLE, status: "loading", total: sources.length });
+    void preloadImages(sources, {
+      decode, timeoutMs, concurrency, deadlineAt, signal: controller.signal,
+      onProgress: (progress) => {
+        if (generationRef.current !== generation || controller.signal.aborted) return;
+        setState({ ...IDLE, ...progress, status: "loading", ready: false });
+        onProgressRef.current?.(progress);
+      },
+    }).then((summary) => {
+      if (generationRef.current !== generation) return;
+      setState({ status: summary.status, progress: summary.progress, ready: summary.status === "ready", failed: summary.failed, timedOut: summary.timedOut, total: summary.total, summary, sourceKey });
+    }).catch(() => {
+      if (generationRef.current !== generation) return;
+      setState({ ...IDLE, status: "error", failed: sources.length, total: sources.length });
     });
-
-    preloadImages(sources, { decode, timeoutMs, concurrency })
-      .then((summary) => {
-        if (cancelled) {
-          return;
-        }
-
-        setState({
-          status: summary.status,
-          progress: summary.progress,
-          ready: true,
-          failed: summary.failed,
-          timedOut: summary.timedOut,
-          total: summary.total,
-          summary,
-        });
-
-        if (
-          import.meta.env.DEV &&
-          (summary.failed > 0 || summary.timedOut > 0)
-        ) {
-          console.warn("GVO asset preload fallback", {
-            bundle: bundle.id,
-            status: summary.status,
-            failed: summary.failed,
-            timedOut: summary.timedOut,
-          });
-        }
-      })
-      .catch(() => {
-        if (cancelled) {
-          return;
-        }
-
-        setState({
-          status: "error",
-          progress: 1,
-          ready: true,
-          failed: sources.length,
-          timedOut: 0,
-          total: sources.length,
-          summary: null,
-        });
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    bundle.id,
-    concurrency,
-    decode,
-    enabled,
-    retryKey,
-    sourceKey,
-    sources,
-    timeoutMs,
-  ]);
-
-  return state;
+    return () => { generationRef.current += 1; signal?.removeEventListener("abort", cancel); controller.abort(); };
+  }, [bundle.id, sources, sourceKey, enabled, decode, timeoutMs, concurrency, retryKey, contextKey, signal, deadlineAt]);
+  if (!enabled) return { ...IDLE, sourceKey };
+  // Effects run after render. Never expose the previous destination's ready/summary
+  // during the render which introduces a different bundle, context or attempt.
+  if (current.key !== sourceKey || current.signal !== signal) return { ...IDLE, sourceKey, status: "loading" as const, total: sources.length };
+  return current.state;
 }

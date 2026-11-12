@@ -1,0 +1,268 @@
+{
+  "schema": 1,
+  "thread": "gvo-provenance:images-1",
+  "zipSha256": "f69297f7bfc1fbfad9655218ec2c247a6f280483a0d3c8f9d9146ddc655e1e68",
+  "method": "Downloaded generated originals preserved. Uniform 512 derivative. No art synthesis or subject editing.",
+  "validation": {
+    "originalHashes": 7,
+    "fullStreamReads": 7,
+    "dimensions": 7,
+    "alphaBounds": 7,
+    "outerMargins": 7,
+    "mirrors": 7
+  },
+  "records": [
+    {
+      "id": "OBS03-ASSET-IV-BIONOSIFIER",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_BIONOSIFIER_OBS03.png",
+      "sourceSha256": "a399f4716bde33f76df288025e299ddce57c9c0f98a22648fc2fb83b13c94636",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        114,
+        243,
+        907,
+        765
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_bionosifier_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_bionosifier_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        63,
+        122,
+        451,
+        384
+      ],
+      "bytes": 37374,
+      "sha256": "2e9dbc87216369263c823b184fb277c44166e6c8547dd77852727bc1d9a20b17",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-ESP32",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_ESP32_OBS03.png",
+      "sourceSha256": "38fce99a09ccbe65ac0d4cd3c3e606b7a1a0e9b061432168d7dcb2657151f3ae",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        127,
+        179,
+        908,
+        833
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_esp32_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_esp32_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        63,
+        95,
+        453,
+        416
+      ],
+      "bytes": 51412,
+      "sha256": "09886470e24aded2a52d5c17e5b634d68779a7d75f5267572bcafe85a68725ca",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-MIDI",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_MIDI_OBS03.png",
+      "sourceSha256": "8c34829e70ca0509c2d42ca5c31c9544f27c4bd0eb62687431e2c4e7f1f62c78",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        123,
+        289,
+        906,
+        732
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_midi_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_midi_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        62,
+        150,
+        449,
+        363
+      ],
+      "bytes": 21780,
+      "sha256": "66e728588463c5212e0364bc919d41fc3dacc88119533936b4c720835027e645",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-WIFI_UDP",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_WIFI_UDP_OBS03.png",
+      "sourceSha256": "afb92f6911efc87517e67726022194bb6b11a74aa0bb3bc0d806468330e338f0",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        129,
+        327,
+        912,
+        700
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_wifi_udp_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_wifi_udp_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        63,
+        165,
+        449,
+        348
+      ],
+      "bytes": 24002,
+      "sha256": "d6f807861f8841ae6a9ce5f3030ec34ddeed18dede370f310c34253b7b0074f3",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-ROUTER",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_ROUTER_OBS03.png",
+      "sourceSha256": "18376457a2a46b0d051f1bdc05e7946f92d15f24495d8b53e5bab141f77a7e39",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        119,
+        249,
+        896,
+        785
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_router_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_router_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        63,
+        126,
+        449,
+        392
+      ],
+      "bytes": 25292,
+      "sha256": "808e1ca27454aa72f54e7f640e1bdd2c5a696239450e7b92d4520ce0b281397c",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-CENTRAL_SYSTEM",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_CENTRAL_SYSTEM_OBS03.png",
+      "sourceSha256": "09daa706e931697d51b3caebe9c00d16cac3911731a5ace3e47f65a0f2b08137",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        125,
+        151,
+        911,
+        860
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_central_system_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_central_system_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        63,
+        82,
+        449,
+        430
+      ],
+      "bytes": 43356,
+      "sha256": "968a1722bc7ca252fe46dea891a712190e972e7ae2a3b80cfbc28452b7aef751",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-IV-SOUND",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/IV-seven-originals/W4_SOUND_OBS03.png",
+      "sourceSha256": "544daf2ccf2ece2c1685953557da8a84a54eaf4528de8668ca72ee775ee6f388",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "sourceAlphaBounds": [
+        112,
+        175,
+        896,
+        849
+      ],
+      "sourceAlphaRange": [
+        0,
+        255
+      ],
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/objects/world4_node_sound_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/objects/world4_node_sound_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        64,
+        87,
+        448,
+        424
+      ],
+      "bytes": 48646,
+      "sha256": "b1a228a38fc291a0b24765df9350d3d198b9d2ea813d43204e124a10fa5f544c",
+      "decodedBytes": 1048576,
+      "status": "ORIGINAL_AND_DERIVATIVE_TECHNICAL_PASS_SCENE_QA_PENDING",
+      "humanApproval": false
+    }
+  ]
+}

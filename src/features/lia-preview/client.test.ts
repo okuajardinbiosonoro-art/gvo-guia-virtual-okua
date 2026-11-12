@@ -21,7 +21,7 @@ describe("visitor response validation", () => {
     expect(reply.citations).toHaveLength(2);
     expect(Object.keys(reply.citations[0])).toEqual(["label", "excerpt"]);
     expect(reply.citations[0].label).toBe(
-      "Lía y la introducción al Archivo Vivo",
+      "Lía y la entrada al Jardín Biosonoro",
     );
   });
   it.each([

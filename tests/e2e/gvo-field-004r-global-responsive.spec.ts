@@ -62,7 +62,7 @@ async function waitForRouteReady(page: Page, route: string) {
     "/estacion/2": "main[data-world2-state]",
     "/estacion/3": "main[data-station3-state]",
     "/estacion/4": "main[data-station4-state]",
-    "/estacion/5": "main[data-station5-state]",
+    "/estacion/5": "main.s5-screen",
   };
   const selector =
     route === "/inicio"
@@ -73,7 +73,7 @@ async function waitForRouteReady(page: Page, route: string) {
           ? "main[data-transition-world-id][data-critical-assets-ready='true']"
           : route === "/final"
             ? "[data-final-root]"
-            : stationSelectors[route] ?? "main";
+            : (stationSelectors[route] ?? "main");
 
   await page.locator(selector).first().waitFor({
     state: "visible",
@@ -96,6 +96,16 @@ async function openFreshCover(page: Page) {
   await page.goto("/portada?resetIntro=1", {
     waitUntil: "domcontentloaded",
   });
+  await waitForRouteReady(page, "/portada");
+}
+
+async function openRevisitCover(page: Page) {
+  await page.evaluate(
+    ({ key, progress }) => localStorage.setItem(key, JSON.stringify(progress)),
+    { key: progressKey, progress: completeProgress },
+  );
+  await page.goto("/final", { waitUntil: "domcontentloaded" });
+  await page.locator('[data-final-action="safe_navigation_portada"]').click();
   await waitForRouteReady(page, "/portada");
 }
 
@@ -126,9 +136,7 @@ async function readCoverGeometry(page: Page) {
         frame: rect(frame),
         interior: rect(interior),
         artAspectRatio: art ? getComputedStyle(art).aspectRatio : null,
-        artTransformOrigin: art
-          ? getComputedStyle(art).transformOrigin
-          : null,
+        artTransformOrigin: art ? getComputedStyle(art).transformOrigin : null,
         frameObjectFit: frame ? getComputedStyle(frame).objectFit : null,
         interiorObjectFit: interior
           ? getComputedStyle(interior).objectFit
@@ -178,6 +186,10 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
     for (const viewport of coverViewports) {
       await page.setViewportSize(viewport);
       await openFreshCover(page);
+      await page.locator(".cover-intro__cta").scrollIntoViewIfNeeded();
+      const initialGeometry = await readCoverGeometry(page);
+      expect(initialGeometry.portals).toHaveLength(0);
+      await openRevisitCover(page);
       const geometry = await readCoverGeometry(page);
       const viewportRect: Rect = {
         bottom: viewport.height,
@@ -188,11 +200,9 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
         width: viewport.width,
       };
 
-      expect(geometry.horizontalOverflow, viewport.name).toBeLessThanOrEqual(
-        1,
-      );
+      expect(geometry.horizontalOverflow, viewport.name).toBeLessThanOrEqual(1);
       expect(geometry.portals, viewport.name).toHaveLength(5);
-      expectInside(geometry.cta, viewportRect);
+      expectInside(initialGeometry.cta, viewportRect);
 
       for (const portal of geometry.portals) {
         expectInside(portal.portal, geometry.stage);
@@ -215,7 +225,7 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
     for (const viewport of representativeViewports) {
       await page.setViewportSize(viewport);
       await openFreshCover(page);
-      await page.getByRole("button", { name: "Comenzar recorrido" }).click();
+      await page.getByRole("button", { name: "Empieza aquí" }).click();
       await page.locator("[role='dialog']").waitFor({ state: "visible" });
       const geometry = await readCoverGeometry(page);
       const viewportRect: Rect = {
@@ -227,9 +237,7 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
         width: viewport.width,
       };
       expectInside(geometry.dialogue, viewportRect);
-      expect(geometry.horizontalOverflow, viewport.name).toBeLessThanOrEqual(
-        1,
-      );
+      expect(geometry.horizontalOverflow, viewport.name).toBeLessThanOrEqual(1);
     }
   });
 
@@ -237,6 +245,69 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
+    // Reduced-motion transitions can finish before the next automation IPC.
+    // Capture their ready geometry in the browser where that frame occurs.
+    await page.addInitScript(() => {
+      const expectedRoute = location.pathname;
+      if (!expectedRoute.startsWith("/transition/")) return;
+      const scope = window as typeof window & {
+        __gvoField004TransitionGeometry?: {
+          actualRoute: string;
+          horizontalOverflow: number;
+          horizontallyLostControls: number;
+          main: { width: number; height: number };
+        };
+      };
+      const recordReadyGeometry = () => {
+        if (
+          location.pathname !== expectedRoute ||
+          document.fonts.status !== "loaded"
+        )
+          return;
+        if (
+          !document.querySelector(
+            "main[data-transition-world-id][data-critical-assets-ready='true']",
+          )
+        )
+          return;
+        const root = document.documentElement;
+        const main = document.querySelector("main")!.getBoundingClientRect();
+        const horizontallyLostControls = Array.from(
+          document.querySelectorAll<HTMLElement>(
+            "button, a[href], input, select, textarea, [role='button']",
+          ),
+        ).filter((element) => {
+          const style = getComputedStyle(element);
+          const bounds = element.getBoundingClientRect();
+          return (
+            style.display !== "none" &&
+            style.visibility !== "hidden" &&
+            Number(style.opacity) > 0 &&
+            bounds.width > 0 &&
+            bounds.height > 0 &&
+            (bounds.right < -1 || bounds.left > innerWidth + 1)
+          );
+        }).length;
+        scope.__gvoField004TransitionGeometry = {
+          actualRoute: location.pathname,
+          horizontalOverflow: root.scrollWidth - root.clientWidth,
+          horizontallyLostControls,
+          main: { width: main.width, height: main.height },
+        };
+        observer.disconnect();
+      };
+      const observer = new MutationObserver(recordReadyGeometry);
+      observer.observe(document, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ["data-critical-assets-ready"],
+      });
+      void document.fonts.ready.then(recordReadyGeometry);
+      document.fonts.addEventListener("loadingdone", recordReadyGeometry, {
+        once: true,
+      });
+    });
     await page.addInitScript(
       ({ key, progress }) => {
         localStorage.setItem(key, JSON.stringify(progress));
@@ -248,43 +319,75 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
       await page.setViewportSize(viewport);
       for (const route of journeyRoutes) {
         await page.goto(route, { waitUntil: "domcontentloaded" });
-        if (!route.startsWith("/transition/")) await waitForRouteReady(page, route);
+        if (!route.startsWith("/transition/"))
+          await waitForRouteReady(page, route);
         // Observe readiness and geometry in one browser task, before a timed
         // transition can advance between separate automation round trips.
-        const geometry = await page.waitForFunction((expectedRoute) => {
-          if (location.pathname !== expectedRoute || document.fonts.status !== "loaded") return false;
-          if (expectedRoute.startsWith("/transition/") && !document.querySelector("main[data-transition-world-id][data-critical-assets-ready='true']")) return false;
-          const root = document.documentElement;
-          const main = document.querySelector("main")?.getBoundingClientRect();
-          const horizontallyLostControls = Array.from(
-            document.querySelectorAll<HTMLElement>(
-              "button, a[href], input, select, textarea, [role='button']",
-            ),
+        const geometry = await page
+          .waitForFunction(
+            (expectedRoute) => {
+              if (expectedRoute.startsWith("/transition/")) {
+                const recorded = (
+                  window as typeof window & {
+                    __gvoField004TransitionGeometry?: {
+                      actualRoute: string;
+                      horizontalOverflow: number;
+                      horizontallyLostControls: number;
+                      main: { width: number; height: number };
+                    };
+                  }
+                ).__gvoField004TransitionGeometry;
+                return recorded?.actualRoute === expectedRoute
+                  ? recorded
+                  : false;
+              }
+              if (
+                location.pathname !== expectedRoute ||
+                document.fonts.status !== "loaded"
+              )
+                return false;
+              const root = document.documentElement;
+              const main = document
+                .querySelector("main")
+                ?.getBoundingClientRect();
+              const horizontallyLostControls = Array.from(
+                document.querySelectorAll<HTMLElement>(
+                  "button, a[href], input, select, textarea, [role='button']",
+                ),
+              )
+                .filter((element) => {
+                  const style = getComputedStyle(element);
+                  const bounds = element.getBoundingClientRect();
+                  return (
+                    style.display !== "none" &&
+                    style.visibility !== "hidden" &&
+                    Number(style.opacity) > 0 &&
+                    bounds.width > 0 &&
+                    bounds.height > 0
+                  );
+                })
+                .filter((element) => {
+                  const bounds = element.getBoundingClientRect();
+                  return bounds.right < -1 || bounds.left > innerWidth + 1;
+                }).length;
+              return {
+                actualRoute: location.pathname,
+                horizontalOverflow: root.scrollWidth - root.clientWidth,
+                horizontallyLostControls,
+                main: main
+                  ? { width: main.width, height: main.height }
+                  : { width: 0, height: 0 },
+              };
+            },
+            route,
+            { timeout: 15_000 },
           )
-            .filter((element) => {
-              const style = getComputedStyle(element);
-              const bounds = element.getBoundingClientRect();
-              return (
-                style.display !== "none" &&
-                style.visibility !== "hidden" &&
-                Number(style.opacity) > 0 &&
-                bounds.width > 0 &&
-                bounds.height > 0
-              );
-            })
-            .filter((element) => {
-              const bounds = element.getBoundingClientRect();
-              return bounds.right < -1 || bounds.left > innerWidth + 1;
-            }).length;
-          return {
-            actualRoute: location.pathname,
-            horizontalOverflow: root.scrollWidth - root.clientWidth,
-            horizontallyLostControls,
-            main: main
-              ? { width: main.width, height: main.height }
-              : { width: 0, height: 0 },
-          };
-        }, route);
+          .catch((error: unknown) => {
+            throw new Error(
+              `${viewport.name} ${route}: ready geometry was not observed`,
+              { cause: error },
+            );
+          });
         const audit = await geometry.jsonValue();
         await geometry.dispose();
         if (!audit) throw new Error("Route geometry was not observed");
@@ -294,9 +397,10 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
           audit.horizontalOverflow,
           `${viewport.name} ${route}`,
         ).toBeLessThanOrEqual(1);
-        expect(audit.horizontallyLostControls, `${viewport.name} ${route}`).toBe(
-          0,
-        );
+        expect(
+          audit.horizontallyLostControls,
+          `${viewport.name} ${route}`,
+        ).toBe(0);
         expect(audit.main.width, `${viewport.name} ${route}`).toBeGreaterThan(
           0,
         );
@@ -325,7 +429,7 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.setViewportSize(cycle.portrait);
       await openFreshCover(page);
-      await page.getByRole("button", { name: "Comenzar recorrido" }).click();
+      await page.getByRole("button", { name: "Empieza aquí" }).click();
       await page.locator("[role='dialog']").waitFor({ state: "visible" });
       const before = await readCoverGeometry(page);
 
@@ -338,7 +442,7 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
       );
       const landscape = await readCoverGeometry(page);
       expect(landscape.horizontalOverflow).toBeLessThanOrEqual(1);
-      expect(landscape.portals).toHaveLength(5);
+      expect(landscape.portals).toHaveLength(0);
       expect(landscape.dialogue).not.toBeNull();
       for (const portal of landscape.portals) {
         expectInside(portal.interior, portal.art);
@@ -353,7 +457,7 @@ test.describe("GVO_FIELD_004R responsive gates", () => {
       );
       const recovered = await readCoverGeometry(page);
       expect(recovered.horizontalOverflow).toBeLessThanOrEqual(1);
-      expect(recovered.portals).toHaveLength(5);
+      expect(recovered.portals).toHaveLength(0);
       expectSameRect(recovered.stage, before.stage);
       expectSameRect(recovered.dialogue, before.dialogue);
       recovered.portals.forEach((portal, index) => {

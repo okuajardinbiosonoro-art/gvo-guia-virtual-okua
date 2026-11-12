@@ -1,0 +1,127 @@
+{
+  "schema": "OBS04_WORLD5_GALLERY_REFERENCE_1",
+  "status": "INTEGRATION_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING",
+  "recordedAtUtc": "2026-10-24T15:05:15.944288+00:00",
+  "consumer": "src/screens/World5Root/World5RootScreen.tsx + World5QuizExperience.css + world5RuntimeAssets.ts",
+  "pairs": [
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_map_environment_portrait_v01.webp",
+        "bytes": 87632,
+        "sha256": "4ea310071c8d7d6caebafbf2d245df20f8f36603d0bf61e62ebcad5fcd3546a0"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/world5_map_environment_portrait_v01.webp",
+        "bytes": 87632,
+        "sha256": "4ea310071c8d7d6caebafbf2d245df20f8f36603d0bf61e62ebcad5fcd3546a0"
+      },
+      "dimensions": [
+        1440,
+        2560
+      ],
+      "role": "Main empty map/gallery material, current orientation only"
+    },
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_map_environment_landscape_v01.webp",
+        "bytes": 56796,
+        "sha256": "7eb9261b1ed1ce01b6abae302fa020a99dbfe2b5ba0f30a493e665f6753d938c"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/world5_map_environment_landscape_v01.webp",
+        "bytes": 56796,
+        "sha256": "7eb9261b1ed1ce01b6abae302fa020a99dbfe2b5ba0f30a493e665f6753d938c"
+      },
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "role": "Main empty map/gallery material, current orientation only"
+    },
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_map_sector_plants_v01.webp",
+        "bytes": 303502,
+        "sha256": "6694571ef217b853c8a76e027f99988133315538e7a286721210bdd4d0e0a530"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/world5_map_sector_plants_v01.webp",
+        "bytes": 303502,
+        "sha256": "6694571ef217b853c8a76e027f99988133315538e7a286721210bdd4d0e0a530"
+      },
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "role": "Navigation thumbnail only; not an answer"
+    },
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_map_sector_space_v01.webp",
+        "bytes": 145786,
+        "sha256": "5774b6a8e6bf6e4e1a14f7f97d57b42fa5928a4dd24da165a5e9bec2809a6145"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/world5_map_sector_space_v01.webp",
+        "bytes": 145786,
+        "sha256": "5774b6a8e6bf6e4e1a14f7f97d57b42fa5928a4dd24da165a5e9bec2809a6145"
+      },
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "role": "Navigation thumbnail only; not an answer"
+    },
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_map_sector_visitor_v01.webp",
+        "bytes": 136976,
+        "sha256": "d596549e9c5550a70df7e0615790157705e14766ebca9590a4e5934f561d4533"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/world5_map_sector_visitor_v01.webp",
+        "bytes": 136976,
+        "sha256": "d596549e9c5550a70df7e0615790157705e14766ebca9590a4e5934f561d4533"
+      },
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "role": "Navigation thumbnail only; not an answer"
+    },
+    {
+      "runtime": {
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_system_agree_v03.webp",
+        "bytes": 34946,
+        "sha256": "da0d1545439dd6f8725c7526d6cf574f0482c9e02261c204006e16bbb1563aa1"
+      },
+      "mirror": {
+        "path": "public/assets/gvo/current-used/world-5-root/options/world5_option_system_agree_v03.webp",
+        "bytes": 34946,
+        "sha256": "da0d1545439dd6f8725c7526d6cf574f0482c9e02261c204006e16bbb1563aa1"
+      },
+      "dimensions": [
+        512,
+        512
+      ],
+      "role": "Navigation thumbnail only; not an answer"
+    }
+  ],
+  "allPairsByteEqual": true,
+  "bitmapBytesChanged": false,
+  "sourceAudit": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-04/audit-c/Q04-04_V_HISTORICAL_ASSETS.json",
+  "retained": [
+    "Current two v03 alternatives per question",
+    "System cleanplate v03, current orientation",
+    "Question before two answers before feedback/advance in DOM",
+    "Current0–4points and individual omission, persistence, manual final closure"
+  ],
+  "excluded": [
+    "Old System map sector box/cable",
+    "Old System single focus and baked v01 backgrounds",
+    "Legacy map controller/essential steps",
+    "Whole old map bundle preloading"
+  ],
+  "criticalPolicy": "Current orientation empty map + four visible decorative nav images + current question environment/pair + reading frame + articulated rig; Set deduplicates shared System agree image and result map.",
+  "humanApproval": false
+}

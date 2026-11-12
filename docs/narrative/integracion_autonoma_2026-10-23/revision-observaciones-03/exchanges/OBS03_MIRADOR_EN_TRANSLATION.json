@@ -1,0 +1,907 @@
+{
+  "schema": "GVO_OBS03_MIRADOR_EN_TRANSLATION_1",
+  "artifact": "OBS03_MIRADOR_EN_TRANSLATION.json",
+  "issuedOn": "2026-10-24",
+  "timeZone": "America/Bogota",
+  "status": "REVIEW",
+  "implementationStatus": "READY_FOR_CODEX_INTEGRATION_NOT_IMPLEMENTED_BY_CHATGPT",
+  "humanApproval": false,
+  "writerLiteral": false,
+  "decisionId": "D16",
+  "requirements": [
+    "OBS03-TEXTOS-01",
+    "OBS03-MOVIL-01",
+    "OBS03-MIRADOR-01"
+  ],
+  "scope": "Traducción fiel EN de los 35 slots vigentes del Mirador y del dock de revisita, con integración por locale y QA focal. Sin modificación del ES ni nueva funcionalidad.",
+  "counts": {
+    "translations": 35,
+    "baseSlots": 30,
+    "operationalSlots": 5,
+    "writerSourceRecordsReferencedSeparately": 9
+  },
+  "authorityClarification": "D16 es la decisión ES/EN de R1. D14 aparece sólo como etiqueta de coordinación en el brief; no sustituye D16 ni amplía el alcance.",
+  "inputs": [
+    {
+      "file": "23_final-en-source-and-brief.json",
+      "bytes": 58422,
+      "sha256": "848ca7efafc7c015d4f170dc8e2dc0a20eb3b2b0a4bc1d5342aabf0d8149ee05"
+    },
+    {
+      "file": "23_final-en-source-and-brief.txt",
+      "bytes": 16343,
+      "sha256": "4ad1b377badd94d1db1235d08661c62c811efc2f848ad1dccad1a84e9ab51804"
+    }
+  ],
+  "sourceVerification": {
+    "attachmentsReadInFull": true,
+    "uniqueSlotIds": 35,
+    "esTextHashesVerified": 35,
+    "writerTextHashesVerified": 9,
+    "shortTextHashes": "Calculados desde las cadenas shortText ES del JSON adjunto para comparar UTF-8 exacto; no representan una reescritura de ES.",
+    "fullSourceFilesAvailableWithMatchingDeclaredHash": [
+      {
+        "path": "src/content/editorial/editorialRegistry.ts",
+        "sha256": "e347c81380325024a905e22a4797111ead45fc65b8cd553152f905bcf015c21a",
+        "bytes": 49801
+      },
+      {
+        "path": "src/content/finalEditorialSlots.ts",
+        "sha256": "4a78ac40f5b0a9fd8a90dad8b6afadbd3c3f98f24dbce714b67be67d06cd7ed8",
+        "bytes": 2438
+      },
+      {
+        "path": "src/app/preferences/languagePreference.ts",
+        "sha256": "d3896af1ec94116c72ca1a8b58b3ce0a0d6f607b6b0574656622becf3a783fd0",
+        "bytes": 1367
+      },
+      {
+        "path": "src/app/review/FinalReviewModeLayout.tsx",
+        "sha256": "3f3ee5f24f903008aebaa91902350f3383b2a2ce640295e75dbb7344a405689f",
+        "bytes": 11439
+      },
+      {
+        "path": "src/screens/FinalRoot/FinalRootScreen.css",
+        "sha256": "d7ba48599bdfe83c15b625e37b0bda7acd6cf793b0b2b2d06005f9ef4537deaa",
+        "bytes": 14159
+      },
+      {
+        "path": "src/app/review/FinalReviewModeLayout.css",
+        "sha256": "8ef13ef1f73c103c34e26e71e9121ec40a63df7a1a57fff7669ec9078ca7924d",
+        "bytes": 4207
+      }
+    ],
+    "inspectionLimit": "El TSX completo actual de FinalRootScreen con hash a6e6d0b254108672e4c27818d801a538ded8b9f9636a43854237ae4683c0356f no está disponible aquí. Se leyeron sus sourceRefs del brief y un snapshot anterior, sin tratarlos como el código completo vigente. El resolver y sus tipos se inspeccionaron en el snapshot local, sin hash actual declarado para ellos. No se ejecutó navegador, build ni tests de la aplicación en esta conciliación."
+  },
+  "terminology": {
+    "properNamesUnchanged": [
+      "OKÚA Jardín Biosonoro",
+      "OKÚA",
+      "Lía",
+      "Momotto S.A.S."
+    ],
+    "Mirador": "Lookout",
+    "recorrido": "tour",
+    "revisarSala": "revisit a room",
+    "portada": "home screen",
+    "roomNames": {
+      "I": "Root",
+      "II": "Invisible pulse",
+      "III": "Practice notebook",
+      "IV": "Biosonic system",
+      "V": "OKÚA, sensory art"
+    },
+    "capitalization": "Sentence case en controles y títulos; Room ante numeral romano y Lookout como nombre de la pantalla. Conservar la capitalización propia OKÚA y Momotto S.A.S.",
+    "choiceRationale": "Lookout traduce Mirador; tour nombra el recorrido y revisit evita confundir revisión con una evaluación. Back to home distingue volver a Portada de Restart tour. No se traduce la marca Jardín Biosonoro ni se agrega un glosario visible."
+  },
+  "translations": {
+    "FINAL_TITLE_01": {
+      "ordinal": 1,
+      "sourceEsUtf8Sha256": "aacc6102cbcec84b6d73c510481b77e7ada906219010ba68e0c028a6afbdc748",
+      "sourceShortTextUtf8Sha256": "aacc6102cbcec84b6d73c510481b77e7ada906219010ba68e0c028a6afbdc748",
+      "role": "h1 visible del título; no traducir la marca OKÚA Jardín Biosonoro salvo criterio explícito",
+      "en": {
+        "slotId": "FINAL_TITLE_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "OKÚA Jardín Biosonoro",
+        "shortText": "OKÚA Jardín Biosonoro",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Marca propia íntegra en ambos idiomas. La igualdad ES/EN es deliberada y requiere una entrada EN explícita, sin fallback."
+    },
+    "FINAL_SUBTITLE_01": {
+      "ordinal": 2,
+      "sourceEsUtf8Sha256": "8d55c0b27ab90a4cf5e312921975a1390fbc7e9a960c3a8838a80212568beaa3",
+      "sourceShortTextUtf8Sha256": "8d55c0b27ab90a4cf5e312921975a1390fbc7e9a960c3a8838a80212568beaa3",
+      "role": "p visible bajo el título",
+      "en": {
+        "slotId": "FINAL_SUBTITLE_01",
+        "locale": "en",
+        "emitter": "ambiente",
+        "text": "Tour complete",
+        "shortText": "Tour complete",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_LIA_MESSAGE_01": {
+      "ordinal": 3,
+      "sourceEsUtf8Sha256": "ca8b62a656c5737d3f9cb9905b6083926505cf49c70555386d4e2c6a9ac27e3b",
+      "sourceShortTextUtf8Sha256": "c6489a3c88840b62aa8db24271043302b0f263ae4e712b38a3a6f3401d1cd50a",
+      "role": "p sr-only, copy accesible de bienvenida",
+      "en": {
+        "slotId": "FINAL_LIA_MESSAGE_01",
+        "locale": "en",
+        "emitter": "lia",
+        "text": "You have reached the Lookout. You can return to any room, as well as to activities you skipped.",
+        "shortText": "Revisit freely",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Traducir las actividades omitidas como actividades; no ampliar a salas o esencia obligatoria omitidas ni acreditar práctica o lectura."
+    },
+    "FINAL_AMB_01": {
+      "ordinal": 4,
+      "sourceEsUtf8Sha256": "67d3e0d861ef2b5b078f10ef7e669fdba2ad891d0601251cc49947f3eb5061e7",
+      "sourceShortTextUtf8Sha256": "9dc44f8a198c05e00f434b982d08d48057461977727324b75db528d067380c33",
+      "role": "p sr-only, ambiente",
+      "en": {
+        "slotId": "FINAL_AMB_01",
+        "locale": "en",
+        "emitter": "ambiente",
+        "text": "The garden remains open for another look.",
+        "shortText": "Open garden",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_I_LABEL_01": {
+      "ordinal": 5,
+      "sourceEsUtf8Sha256": "c76c8d6e36bd9a021b89b50a355ed2feea1f4db54384d4dcc3006940b4dd61f1",
+      "sourceShortTextUtf8Sha256": "c76c8d6e36bd9a021b89b50a355ed2feea1f4db54384d4dcc3006940b4dd61f1",
+      "role": "etiqueta visible del enlace de revisita a Sala I",
+      "en": {
+        "slotId": "FINAL_ACCESS_I_LABEL_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "I — Root",
+        "shortText": "I — Root",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_I_CONFIRM_01": {
+      "ordinal": 6,
+      "sourceEsUtf8Sha256": "38c9e4f1e4c54630797b3d5d51be5a0a0ea72c21ae556aecf540b9ec73af449f",
+      "sourceShortTextUtf8Sha256": "0667cc3720c273adda225dab70714fe1a0c524c47e2ece544d315c74b733d87a",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "en": {
+        "slotId": "FINAL_ACCESS_I_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Reopening Room I · Root…",
+        "shortText": "Reopen Room I",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Plantilla localizada que conserva su condición oculta/inactiva. No crear una confirmación o transición nueva."
+    },
+    "FINAL_ACCESS_II_LABEL_01": {
+      "ordinal": 7,
+      "sourceEsUtf8Sha256": "41a275e9e2c9ec181e4985a4e84e42a391206d6ab4b1b1939f69f1b20346dfa7",
+      "sourceShortTextUtf8Sha256": "41a275e9e2c9ec181e4985a4e84e42a391206d6ab4b1b1939f69f1b20346dfa7",
+      "role": "etiqueta visible del enlace de revisita a Sala II",
+      "en": {
+        "slotId": "FINAL_ACCESS_II_LABEL_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "II — Invisible pulse",
+        "shortText": "II — Invisible pulse",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_II_CONFIRM_01": {
+      "ordinal": 8,
+      "sourceEsUtf8Sha256": "c35f3efad55782626aa6a4edcab32d73b7caacf8ebe6d328b15a6f225cd8c230",
+      "sourceShortTextUtf8Sha256": "466ac03ecf07371127eb56aef4b49e68c4b6c3f4a86ecc814013772717dd4a52",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "en": {
+        "slotId": "FINAL_ACCESS_II_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Reopening Room II · Invisible pulse…",
+        "shortText": "Reopen Room II",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Plantilla localizada que conserva su condición oculta/inactiva. No crear una confirmación o transición nueva."
+    },
+    "FINAL_ACCESS_III_LABEL_01": {
+      "ordinal": 9,
+      "sourceEsUtf8Sha256": "a79e8270bdcb58c665e059bef4c0e02695c201e8c9f500e5f4a58d8fc7e428b0",
+      "sourceShortTextUtf8Sha256": "a79e8270bdcb58c665e059bef4c0e02695c201e8c9f500e5f4a58d8fc7e428b0",
+      "role": "etiqueta visible del enlace de revisita a Sala III",
+      "en": {
+        "slotId": "FINAL_ACCESS_III_LABEL_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "III — Practice notebook",
+        "shortText": "III — Practice notebook",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_III_CONFIRM_01": {
+      "ordinal": 10,
+      "sourceEsUtf8Sha256": "78c31d31201ada12ab3ebfdb01d27e20a00ff4a5e63ae0d374a7d74d511f1872",
+      "sourceShortTextUtf8Sha256": "df2b58d2649c140a39fa8ded5bfd06788c1beeffe47456d6672ebafb47652a74",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "en": {
+        "slotId": "FINAL_ACCESS_III_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Reopening Room III · Practice notebook…",
+        "shortText": "Reopen Room III",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Plantilla localizada que conserva su condición oculta/inactiva. No crear una confirmación o transición nueva."
+    },
+    "FINAL_ACCESS_IV_LABEL_01": {
+      "ordinal": 11,
+      "sourceEsUtf8Sha256": "d45e89ca5830bed26f51eb78312d154625ca23b356aea4a537282a0d2f42640d",
+      "sourceShortTextUtf8Sha256": "d45e89ca5830bed26f51eb78312d154625ca23b356aea4a537282a0d2f42640d",
+      "role": "etiqueta visible del enlace de revisita a Sala IV",
+      "en": {
+        "slotId": "FINAL_ACCESS_IV_LABEL_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "IV — Biosonic system",
+        "shortText": "IV — Biosonic system",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_IV_CONFIRM_01": {
+      "ordinal": 12,
+      "sourceEsUtf8Sha256": "543faccacb5961c344e3000348f57bc670efddfeb46d0151fa6a9dbcfccfef13",
+      "sourceShortTextUtf8Sha256": "103a0cf2f0e2733bfa5a1445ef0afdae063b9e89b9a919161b0f4cd0f5c086f7",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "en": {
+        "slotId": "FINAL_ACCESS_IV_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Reopening Room IV · Biosonic system…",
+        "shortText": "Reopen Room IV",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Plantilla localizada que conserva su condición oculta/inactiva. No crear una confirmación o transición nueva."
+    },
+    "FINAL_ACCESS_V_LABEL_01": {
+      "ordinal": 13,
+      "sourceEsUtf8Sha256": "02e78d0af6a14aded134af261b76982ebcff750c67f6bb5f8aa75209950892ef",
+      "sourceShortTextUtf8Sha256": "02e78d0af6a14aded134af261b76982ebcff750c67f6bb5f8aa75209950892ef",
+      "role": "etiqueta visible del enlace de revisita a Sala V",
+      "en": {
+        "slotId": "FINAL_ACCESS_V_LABEL_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "V — OKÚA, sensory art",
+        "shortText": "V — OKÚA, sensory art",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESS_V_CONFIRM_01": {
+      "ordinal": 14,
+      "sourceEsUtf8Sha256": "0a2ef21d68a9b93a4a274c0a77bb06705b9e5d79845b2c971a4a7eb511068e2d",
+      "sourceShortTextUtf8Sha256": "44b02798fbc8e656e2b35faf32c19623d5b35aac7469735b459e0ce78de72596",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "en": {
+        "slotId": "FINAL_ACCESS_V_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Reopening Room V · OKÚA, sensory art…",
+        "shortText": "Reopen Room V",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Plantilla localizada que conserva su condición oculta/inactiva. No crear una confirmación o transición nueva."
+    },
+    "FINAL_HELP_01": {
+      "ordinal": 15,
+      "sourceEsUtf8Sha256": "00845c50c46bcf89f66f8a2fa09353346da25e2b36b65a214ff47feed2e2768e",
+      "sourceShortTextUtf8Sha256": "c6489a3c88840b62aa8db24271043302b0f263ae4e712b38a3a6f3401d1cd50a",
+      "role": "p sr-only, ayuda de revisita",
+      "en": {
+        "slotId": "FINAL_HELP_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Choose a room to revisit at your own pace.",
+        "shortText": "Revisit freely",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_BACK_HOME_BTN_01": {
+      "ordinal": 16,
+      "sourceEsUtf8Sha256": "3906c387259fafc4003807694b0fcfa7ba670df028e7be356f33554cb17f3f00",
+      "sourceShortTextUtf8Sha256": "3906c387259fafc4003807694b0fcfa7ba670df028e7be356f33554cb17f3f00",
+      "role": "botón visible regresar a Portada",
+      "en": {
+        "slotId": "FINAL_BACK_HOME_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Back to home",
+        "shortText": "Back to home",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Retorno a Portada; no reinicio. Se diferencia de Restart tour."
+    },
+    "FINAL_BACK_HOME_HELP_01": {
+      "ordinal": 17,
+      "sourceEsUtf8Sha256": "961be93ac266b82d71c41268b679ff72c0c2ea2bf59902bdca84191468cc85c4",
+      "sourceShortTextUtf8Sha256": "8fcb07ce90681d632bc40e465b6c08baa1ae4919a7bcd496887c971b0c0f4511",
+      "role": "p sr-only; explica que volver no reinicia",
+      "en": {
+        "slotId": "FINAL_BACK_HOME_HELP_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Return to the home screen without clearing your tour progress.",
+        "shortText": "Keep tour progress",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_RESTART_BTN_01": {
+      "ordinal": 18,
+      "sourceEsUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "sourceShortTextUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "role": "botón visible abre confirmación de reinicio",
+      "en": {
+        "slotId": "FINAL_RESTART_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Restart tour",
+        "shortText": "Restart tour",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_RESTART_CONFIRM_01": {
+      "ordinal": 19,
+      "sourceEsUtf8Sha256": "d953d42fe0dacf3ddfb68c95196e907f64aade39c18efb01c4a399e7968835cd",
+      "sourceShortTextUtf8Sha256": "b7518d2ab28adf036c89f448bf06b60119b884f55a44a035b6d466f97fa62926",
+      "role": "confirmación visible y aria-label de sección",
+      "en": {
+        "slotId": "FINAL_RESTART_CONFIRM_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Do you want to restart the entire tour? You will start again from the beginning.",
+        "shortText": "Confirm restart",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_RESTART_CANCEL_BTN_01": {
+      "ordinal": 20,
+      "sourceEsUtf8Sha256": "bb9dbb406dcbd5248babc609bb3d021d384398f83dbdb8d53c9b0e32c2aad915",
+      "sourceShortTextUtf8Sha256": "bb9dbb406dcbd5248babc609bb3d021d384398f83dbdb8d53c9b0e32c2aad915",
+      "role": "botón visible cancelar, también disponible tras error",
+      "en": {
+        "slotId": "FINAL_RESTART_CANCEL_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Cancel",
+        "shortText": "Cancel",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_RESTART_CONFIRM_BTN_01": {
+      "ordinal": 21,
+      "sourceEsUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "sourceShortTextUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "role": "botón visible confirmar reinicio",
+      "en": {
+        "slotId": "FINAL_RESTART_CONFIRM_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Restart tour",
+        "shortText": "Restart tour",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_CREDITS_01": {
+      "ordinal": 22,
+      "sourceEsUtf8Sha256": "03c972fa75b12816d7a0545a9823fcb080133bd336848c63f00ffcfa1aad56a4",
+      "sourceShortTextUtf8Sha256": "49076adae25cec04dcc211802d3b69bdd71da56d02917677037c4481492cc3b7",
+      "role": "footer visible, único crédito público vigente",
+      "en": {
+        "slotId": "FINAL_CREDITS_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Developed by Momotto S.A.S.",
+        "shortText": "Credits",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Único crédito público vigente. Momotto S.A.S. conserva nombre y puntuación. No recuperar créditos ocultos."
+    },
+    "FINAL_ACCESSIBLE_SCENE_01": {
+      "ordinal": 23,
+      "sourceEsUtf8Sha256": "8c53e06261a987e4972a3752d8374142236536b83445f3382c782ea85954c991",
+      "sourceShortTextUtf8Sha256": "f903e8fbc28944c0a44c0edae6f11942e9febf7a7e3a918536aa6df3cd32d348",
+      "role": "aria-label de experiencia Mirador",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_SCENE_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "OKÚA Lookout with five revisit links, Lía, a return to the home screen and a tour restart.",
+        "shortText": "Accessible Lookout",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_ACCESS_I_01": {
+      "ordinal": 24,
+      "sourceEsUtf8Sha256": "5d1beb57ad8691488c854e6bfc80e5a6c8a3503af5d33d38ac6517911edcb77b",
+      "sourceShortTextUtf8Sha256": "bb1cc0765b46cdbe367db15551ae1ff82eb564d66b4e9931cb2262e9fb17f580",
+      "role": "aria-label del mismo enlace de revisita a Sala I",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_ACCESS_I_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Revisit Room I · Root",
+        "shortText": "Revisit Room I",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_ACCESS_II_01": {
+      "ordinal": 25,
+      "sourceEsUtf8Sha256": "a6ad46832f1fc1c8e7edd9c332b8da47a45886a20745b46013dcf0b7e814004b",
+      "sourceShortTextUtf8Sha256": "872afcef267fe134f423030c04ee455357a502a5c2aa5a4924ea5ece9a7c90c2",
+      "role": "aria-label del mismo enlace de revisita a Sala II",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_ACCESS_II_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Revisit Room II · Invisible pulse",
+        "shortText": "Revisit Room II",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_ACCESS_III_01": {
+      "ordinal": 26,
+      "sourceEsUtf8Sha256": "ff6c4bc35ff3f6c4c525e86583823e77556d6671ea77956162c86c0e8a9390f3",
+      "sourceShortTextUtf8Sha256": "1c1f0898d340c8a034a84c66da21ad91b390f89ca70b9178432da503fe75c2b6",
+      "role": "aria-label del mismo enlace de revisita a Sala III",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_ACCESS_III_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Revisit Room III · Practice notebook",
+        "shortText": "Revisit Room III",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_ACCESS_IV_01": {
+      "ordinal": 27,
+      "sourceEsUtf8Sha256": "0bfe08fa65fe7b3ee1628bd9a0a08287bbbe087bf1419a323c55f181c575fec4",
+      "sourceShortTextUtf8Sha256": "09cbf7bb0bd168bce3137824cd3867202f7b4fc466a051c9ae00475a522b36de",
+      "role": "aria-label del mismo enlace de revisita a Sala IV",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_ACCESS_IV_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Revisit Room IV · Biosonic system",
+        "shortText": "Revisit Room IV",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_ACCESS_V_01": {
+      "ordinal": 28,
+      "sourceEsUtf8Sha256": "330c3bb8f5e98ebbc1e332167f2feb1ee5900dc73ecac95ae8345f169c4740f1",
+      "sourceShortTextUtf8Sha256": "9cadd86b4174a886fea171c23302d0f9d5b472ad50a5071b484225eda3438451",
+      "role": "aria-label del mismo enlace de revisita a Sala V",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_ACCESS_V_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Revisit Room V · OKÚA, sensory art",
+        "shortText": "Revisit Room V",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_ACCESSIBLE_BACK_HOME_01": {
+      "ordinal": 29,
+      "sourceEsUtf8Sha256": "4fafe20d4e8d7bbb862b351404b6ffc81c67668c061f8e9c06e83459d0a95ef6",
+      "sourceShortTextUtf8Sha256": "b296c9422e6113105b7d7dce23d28cc746f37a49ee503d8f907356c688a2c360",
+      "role": "aria-label del botón Portada",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_BACK_HOME_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Back to home without clearing your completed tour",
+        "shortText": "Back without clearing",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Mantiene la etiqueta visible Back to home dentro del nombre accesible y conserva la garantía del retorno sin borrar."
+    },
+    "FINAL_ACCESSIBLE_RESTART_01": {
+      "ordinal": 30,
+      "sourceEsUtf8Sha256": "7899eca6b045f8af46eb6462aab52f000212d622c94b243c9b04748b65c6610c",
+      "sourceShortTextUtf8Sha256": "694454e5bdb621272af1c82234f73982f3018c3e5e7241ffc7d931e99fdc4996",
+      "role": "aria-label del botón reiniciar",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_RESTART_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Restart tour from the beginning after confirmation",
+        "shortText": "Restart with confirmation",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Mantiene la etiqueta visible Restart tour; from the beginning expresa el reinicio completo, condicionado a confirmación."
+    },
+    "FINAL_RETURN_TO_MIRADOR_BTN_01": {
+      "ordinal": 31,
+      "sourceEsUtf8Sha256": "5ef8795b898e14e986cea829b643538ee67231c2b1fe6fad28ed38db1cea8f33",
+      "sourceShortTextUtf8Sha256": "5ef8795b898e14e986cea829b643538ee67231c2b1fe6fad28ed38db1cea8f33",
+      "role": "botón visible del dock sólo en revisita autorizada I–V; no se monta en Mirador",
+      "en": {
+        "slotId": "FINAL_RETURN_TO_MIRADOR_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Back to the Lookout",
+        "shortText": "Back to the Lookout",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Sólo el dock ya existente en revisita autorizada; no montarlo en primera visita ni en Mirador."
+    },
+    "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01": {
+      "ordinal": 32,
+      "sourceEsUtf8Sha256": "03a5e57d4fef1c59c3c86a04fb7ddad6609df4c064ee55814eac0083edf440d5",
+      "sourceShortTextUtf8Sha256": "2bd04bd41071387348e5e4ee1c7dc633cc3cd681c4c2ae5f6f402a56a51f69c0",
+      "role": "aria-label del botón dock de revisita I–V",
+      "en": {
+        "slotId": "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Back to the Lookout from this room",
+        "shortText": "Accessible return",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "El nombre accesible incluye íntegramente la etiqueta visible Back to the Lookout."
+    },
+    "FINAL_RESTART_BUSY_01": {
+      "ordinal": 33,
+      "sourceEsUtf8Sha256": "e45ba4890005f4cf488e47c57da096cf29dfb200386fcb2e618ae3b02971e704",
+      "sourceShortTextUtf8Sha256": "bec7ef5bc9c63de64bdaa6e045f4a07dd1c26811b439e1c12ff851af84b26d18",
+      "role": "p aria-live durante reset; botones deshabilitados",
+      "en": {
+        "slotId": "FINAL_RESTART_BUSY_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "Restarting tour…",
+        "shortText": "Restarting",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    },
+    "FINAL_RESTART_ERROR_01": {
+      "ordinal": 34,
+      "sourceEsUtf8Sha256": "7689026f19b6f4558cf16ad4f3a635a16802ca0292dc52376d1bb38dca069693",
+      "sourceShortTextUtf8Sha256": "d8d0b97d6f7f9f70bd7aa06540287f48133b8ccc370f2ebba4016cc84196fcb4",
+      "role": "p role=status sólo si el reset falla con copySafe=true; no afirmar conservación fuera de esa condición",
+      "en": {
+        "slotId": "FINAL_RESTART_ERROR_01",
+        "locale": "en",
+        "emitter": "sistema",
+        "text": "We could not restart the tour. Your progress was preserved.",
+        "shortText": "Restart error",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      },
+      "note": "Consumir únicamente tras fallo con copySafe === true. La traducción no amplía la garantía de conservación ni crea texto para copySafe === false."
+    },
+    "FINAL_RESTART_RETRY_BTN_01": {
+      "ordinal": 35,
+      "sourceEsUtf8Sha256": "a9254c5f812829afde4d8579f6a2b763d3f285adf993cbf0247b00cabac5fb2e",
+      "sourceShortTextUtf8Sha256": "a9254c5f812829afde4d8579f6a2b763d3f285adf993cbf0247b00cabac5fb2e",
+      "role": "botón visible reintentar reset tras fallo",
+      "en": {
+        "slotId": "FINAL_RESTART_RETRY_BTN_01",
+        "locale": "en",
+        "emitter": "interfaz",
+        "text": "Retry",
+        "shortText": "Retry",
+        "status": "REVIEW",
+        "source": "temporary",
+        "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+      }
+    }
+  },
+  "writerSourceReferences": [
+    {
+      "id": "TXT_final_793fb4652679",
+      "action": "replace",
+      "sourcePointer": "/entries/108/literal/writer",
+      "writerTextSha256": "517936dbade64a32c3e0da62d92f5679d62988c6f4e64dbd7ae728e4c1c21c50",
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_III_LABEL_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/0"
+    },
+    {
+      "id": "TXT_final_a1b8b71d6e18",
+      "action": "replace",
+      "sourcePointer": "/entries/109/literal/writer",
+      "writerTextSha256": "7f66fa5b6afd70b6ea892d70a16b5c6c974c47fc1bf8d888ac5756c654c7d362",
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_V_LABEL_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/1"
+    },
+    {
+      "id": "TXT_final_032988b0578e",
+      "action": "replace",
+      "sourcePointer": "/entries/110/literal/writer",
+      "writerTextSha256": "1b9ca0e2897ba25bea89b880477fdf022f78e033ac6fa349471d4d7f41bcf007",
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_II_LABEL_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/2"
+    },
+    {
+      "id": "TXT_final_0478c9a6cc0f",
+      "action": "replace",
+      "sourcePointer": "/entries/111/literal/writer",
+      "writerTextSha256": "3a812b4bb720b537d9c212bbe7c65617e7d428f09216c07849b293beaae72b49",
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_IV_LABEL_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/3"
+    },
+    {
+      "id": "EL_9f805e38535c",
+      "action": "replace",
+      "sourcePointer": "/entries/112/literal/writer",
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "relatedCurrentSlots": [],
+      "completeRecordPointerInInput": "/writerSources/4"
+    },
+    {
+      "id": "TXT_final_9a9aab297fcb",
+      "action": "replace",
+      "sourcePointer": "/entries/113/literal/writer",
+      "writerTextSha256": "03c972fa75b12816d7a0545a9823fcb080133bd336848c63f00ffcfa1aad56a4",
+      "relatedCurrentSlots": [
+        "FINAL_CREDITS_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/5"
+    },
+    {
+      "id": "TXT_final_18f3092f2060",
+      "action": "hide",
+      "sourcePointer": "/entries/114/literal/writer",
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "relatedCurrentSlots": [],
+      "completeRecordPointerInInput": "/writerSources/6"
+    },
+    {
+      "id": "TXT_final_b7861600c81c",
+      "action": "replace",
+      "sourcePointer": "/entries/115/literal/writer",
+      "writerTextSha256": "4d7ebe9e9445b022ee0ae16f1c080f6665c3b049ac061fbc9f3bf57c9ebb05dd",
+      "relatedCurrentSlots": [
+        "FINAL_TITLE_01"
+      ],
+      "completeRecordPointerInInput": "/writerSources/7"
+    },
+    {
+      "id": "TXT_final_b65898a7de81",
+      "action": "keep",
+      "sourcePointer": "/entries/119/literal/writer",
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "relatedCurrentSlots": [],
+      "completeRecordPointerInInput": "/writerSources/8"
+    }
+  ],
+  "writerSourcePolicy": "Conservar íntegros los nueve objetos originales en el archivo fuente referenciado. Son antecedentes de trazabilidad, no 35 autorías ni nuevas instrucciones de cambio. No restaurar el crédito oculto, aplicar el desplazamiento CSS histórico, introducir PLANTA VIVA ni reemplazar los rótulos ES vigentes por textos históricos distintos.",
+  "integration": {
+    "owner": "Codex; Root coordina implementación y evidencia. ChatGPT entrega conciliación editorial REVIEW.",
+    "registry": {
+      "path": "src/content/editorial/editorialRegistry.ts",
+      "instruction": "Añadir, bajo cada uno de los mismos 35 IDs, el objeto translations[id].en. Mantener cada bloque es preexistente byte a byte, incluida su metadata; no regenerar ni reformatear globalmente el archivo ni sus EOL. No reutilizar finalEsEntry/integrationEsEntry para crear EN porque fijan idioma/procedencia o notas que no corresponden.",
+      "provenance": "source=temporary es el valor compatible con el enum inspeccionado que no atribuye aprobación humana, literal de Excel ni fallback. status sigue siendo REVIEW. notes explica el origen EN. No significa añadir TEMP al texto visitante ni crear una traducción provisional incompleta."
+    },
+    "localeHelper": {
+      "path": "src/content/finalEditorialSlots.ts",
+      "proposedApi": "getFinalEditorialSlots(locale: EditorialLocale): Record<FinalEditorialSlotId, FinalEditorialSlot>",
+      "resolverCall": "resolveEditorialText(slotId, { locale })",
+      "instruction": "Pasar el locale explícito al resolver para los 35 IDs. Mantener emitter, locale, notes, shortText, source, slotId, status y text del registro localizado. La firma del resolver se contrasta en el checkout al editar.",
+      "esCompatibility": "Se puede conservar export const finalEditorialSlots = getFinalEditorialSlots(\"es\") como compatibilidad ES. Los consumidores públicos Mirador/dock deben usar el helper con locale y no ese singleton para elegir idioma.",
+      "renderPattern": "const locale = readLanguagePreference() ?? \"es\"; const slots = getFinalEditorialSlots(locale);",
+      "reactivity": "Usar el flujo de preferencia/reactividad que ya tenga la aplicación. Resolver al render y al cambio de idioma por ese flujo, sin captura inicial irreversible al importar ni selector/infraestructura nueva. Una caché, si existe, debe distinguir locale."
+    },
+    "consumers": [
+      {
+        "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+        "coverage": "Título, subtítulo, escena aria-label, bienvenida/ambiente/ayudas sr-only, cinco rótulos y cinco aria-label, cinco plantillas ocultas, acciones home/reset visibles y accesibles, crédito, confirmación visible/aria, cancel/confirm/busy/error/retry.",
+        "changes": [
+          "Consumir el objeto slots localizado en todas las referencias. Derivar finalCredits dentro del render, no como constante de módulo en ES.",
+          "Pasar slots o entradas localizadas a FinalAccessLink u otro hijo que lea el objeto importado; resolver sólo en el padre no corrige un hijo capturado en ES. Verificar el componente exacto en el TSX actual.",
+          "Sustituir data-final-editorial-locale=\"es\" por el locale realmente consumido; mantener sincronía con html.lang mediante el mecanismo existente.",
+          "Derivar cada data-editorial-status del slot usado. Revisar valores FINAL hardcoded en home/reset/crédito/cancel/retry/confirm, sin modificar los estados registrados del ES.",
+          "Conservar visibilidad, roles, aria-live, foco, rutas, handlers y condiciones de cada estado. Las plantillas ocultas siguen ocultas, las imágenes decorativas conservan alt vacío y Lía su aria-hidden."
+        ]
+      },
+      {
+        "path": "src/app/review/FinalReviewModeLayout.tsx",
+        "coverage": [
+          "FINAL_RETURN_TO_MIRADOR_BTN_01",
+          "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01"
+        ],
+        "changes": [
+          "Resolver el mismo locale en render para texto y aria-label del dock.",
+          "El botón del snapshot con hash coincidente tiene data-editorial-status=\"FINAL\" fijo: derivarlo de slots.FINAL_RETURN_TO_MIRADOR_BTN_01.status.",
+          "Preservar contexto autorizado, condiciones de montaje, returnToFinal, observadores y medición del dock. El texto EN usa ese mecanismo de medición ya existente."
+        ]
+      }
+    ],
+    "semanticConstraints": [
+      "La bienvenida conserva la posibilidad de volver a actividades omitidas; no dice que se omitió esencia obligatoria ni que toda actividad opcional fue realizada.",
+      "Volver a Portada y reiniciar siguen siendo acciones distintas; la traducción no modifica qué se conserva o borra.",
+      "FINAL_RESTART_ERROR_01 sólo se consume con copySafe === true. No añadir una frase nueva para copySafe === false ni ampliar la condición.",
+      "Todos los shortText se traducen, pero su existencia no autoriza sustituir el text completo en un consumidor que hoy usa text."
+    ],
+    "outOfScope": [
+      "Reescritura o paráfrasis ES; modificación de los nueve objetos fuente del escritor.",
+      "Funciones de producto, rutas, progreso, QR, recibos, guards, autorización, política de reset o de preferencia de idioma.",
+      "Rediseño, CSS, tipografía, assets, animaciones greeting/idle o nuevas etapas y controles.",
+      "Habilitar Lía preview, M3/M4, servicios o cualquier función default-off.",
+      "Publicación o despliegue; la candidata/dist/enlace anterior se preservan."
+    ]
+  },
+  "qa": {
+    "executionStatus": "TO_BE_EXECUTED_BY_CODEX_ON_INTEGRATED_BUILD",
+    "cases": [
+      {
+        "id": "MIRADOR-EN-01",
+        "scope": "Integridad de datos y procedencia",
+        "assertions": [
+          "Exactamente los mismos 35 IDs: 30 base y 5 operacionales; cada entrada EN contiene text y shortText no vacíos, locale=en y status=REVIEW.",
+          "Comparar text ES por SHA-256 UTF-8 y shortText ES por igualdad exacta o los hashes adjuntos. Conservar también source/status/notes/emitter ES, espacios, signos, Unicode y saltos de línea de sus bloques originales.",
+          "Los nueve registros del escritor y sus archivos de procedencia no se modifican. Su número no se suma al de slots ni se usa como atribución global de los textos EN.",
+          "Los datos de este JSON son traducciones para revisión; ningún EN ni su metadata DOM se marca human_approved, APPROVED o FINAL."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-02",
+        "scope": "Resolver por locale sin fallback accidental",
+        "assertions": [
+          "Para cada ID, resolveEditorialText(id, { locale: \"en\" }) devuelve el text/shortText aquí conciliados, resolvedLocale=en y fallbackUsed=false.",
+          "Resolver ES devuelve los valores ES originales; el helper mantiene 35 claves en ambos idiomas.",
+          "FINAL_TITLE_01 conserva OKÚA Jardín Biosonoro mediante entrada EN explícita; no usar textEN != textES como detector de fallback."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-03",
+        "scope": "Idioma elegido después de importar módulos",
+        "assertions": [
+          "Importar con ES y seleccionar EN mediante el flujo existente antes de montar/re-renderizar Mirador y dock; todos los consumidores deben usar EN. Repetir EN→ES.",
+          "html.lang y data-final-editorial-locale reflejan el idioma consumido; verificar las cadenas, no sólo esos atributos.",
+          "El cambio de idioma no reinicia progreso, remonta deliberadamente Lía, abre paneles nuevos ni introduce un selector adicional."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-04",
+        "scope": "Consumidores visibles y accesibles de Mirador",
+        "assertions": [
+          "Comprobar título, subtítulo, cinco rótulos y sus cinco aria-label, bienvenida/ambiente/ayudas sr-only, descripción accesible de escena, acciones home/reset y crédito.",
+          "El crédito y cualquier componente FinalAccessLink consumen los slots localizados del render, sin conservar el singleton ES por closure o constante de módulo.",
+          "Las cinco plantillas de reapertura contienen EN pero mantienen su condición oculta/inactiva. No añadir paneles para hacerlas visibles.",
+          "Las etiquetas visibles home/restart/dock están incluidas en sus nombres accesibles EN y los atributos editoriales reflejan REVIEW."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-05",
+        "scope": "Estados del reset existente",
+        "assertions": [
+          "Confirmación visible y aria-label, Cancel, Restart tour, Restarting tour…, mensaje de error seguro y Retry se resuelven en EN.",
+          "Fallo con copySafe=true muestra exactamente FINAL_RESTART_ERROR_01; fallo con copySafe=false no expone la garantía de conservación en texto visible, aria o región viva.",
+          "Reutilizar regresiones de cancelación, busy, éxito, fallo seguro, fallo no seguro y retry: mismos handlers, condiciones, foco y efectos persistentes que antes del delta.",
+          "El comportamiento vigente sobre la preferencia de idioma después del reset se conserva; esta traducción no cambia la política de borrado o conservación."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-06",
+        "scope": "Dock y retorno autorizado I–V",
+        "assertions": [
+          "En revisita legítima de cada una de las cinco salas, el dock muestra Back to the Lookout y el aria-label correspondiente en EN.",
+          "Dock ausente donde ya corresponde: Mirador y primera visita normal. Se conserva la validación del contexto y el mismo returnToFinal.",
+          "Las mediciones y observadores existentes se aplican al texto EN; no sustituir el cálculo de dimensiones por un tamaño fijo.",
+          "Volver a Portada conserva su operación sin borrar; Restart tour sigue pasando por la confirmación existente."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-07",
+        "scope": "Composición y accesibilidad EN dentro de la matriz en curso",
+        "assertions": [
+          "Añadir Mirador y dock al recorrido EN ya preparado, incluyendo 280 px, portrait, landscape y texto al 200 %, sin crear otra matriz general.",
+          "Cinco accesos y acciones legibles, sin truncado, desbordamiento ni solapamiento; foco y texto accesible conservados. Usar los literales EN completos donde el consumidor actual usa text.",
+          "No sustituir text por shortText, introducir elipsis ni cambiar tipografía/CSS/arte como parte de esta conciliación. Un problema concreto se devuelve con captura y rectángulos.",
+          "Conservar assets, greeting/idle, reduced motion y control por actividad/visibilidad. Los archivos CSS y assets deben quedar sin cambios por este delta."
+        ]
+      },
+      {
+        "id": "MIRADOR-EN-08",
+        "scope": "Verificación focal y trazabilidad de entrega",
+        "assertions": [
+          "Ejecutar los tests editoriales y de consumidores afectados, tsc y build aislado; integrar el flujo EN en la verificación final que Root ya prepara.",
+          "Asociar resultados, capturas y fuente al mismo build/corrida. Rechazar reporter ausente o desfasado y mantener separados conjuntos solapados de tests.",
+          "El cierre técnico de estos casos no representa aprobación humana de la candidata ni autorización de publicación/despliegue."
+        ]
+      }
+    ],
+    "completionBoundary": "Resolver la brecha EN y documentar pruebas focales con el build; REVIEW editorial y revisión humana final siguen siendo estados distintos. No se exige otra aprobación humana intermedia."
+  },
+  "artifactValidation": {
+    "strictJson": true,
+    "translationIdSetEqualsSource": true,
+    "translationOrderEqualsSource": true,
+    "nonEmptyEnTextAndShortText": 35,
+    "enReviewEntries": 35,
+    "sourceInputsUnmodified": true,
+    "scopeOfPass": "Validación estructural y de integridad de este archivo; no ejecución de QA de aplicación."
+  }
+}

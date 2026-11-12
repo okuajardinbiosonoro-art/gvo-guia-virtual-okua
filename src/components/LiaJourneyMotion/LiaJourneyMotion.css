@@ -1,0 +1,35 @@
+/* Five separate petals retain the registered 941×1672 rig. Pivots sit at the
+   measured inner attachments, not at the transparent canvas centre. */
+.gvo-lia-journey{pointer-events:none;--lia-point-sign:1;}
+.gvo-lia-journey[data-lia-direction="left"]{--lia-point-sign:-1;}
+.gvo-lia-journey .lia-hybrid{width:100%;height:100%;}
+.gvo-lia-journey .lia-hybrid__layer--petal-left-upper{transform-origin:39.6% 47%;}
+.gvo-lia-journey .lia-hybrid__layer--petal-right-upper{transform-origin:60.2% 47%;}
+.gvo-lia-journey .lia-hybrid__layer--petal-left-lower{transform-origin:46% 52.5%;}
+.gvo-lia-journey .lia-hybrid__layer--petal-right-lower{transform-origin:53.5% 52.5%;}
+.gvo-lia-journey .lia-hybrid__layer--petal-top{transform-origin:50% 35%;}
+.gvo-lia-journey__face{position:absolute;inset:0;transform-origin:50% 48%;pointer-events:none;}
+.gvo-lia-journey[data-lia-action="attention"] .lia-hybrid__layer--petal-left-upper{animation:gvo-lia-attend-left 1150ms ease-out both;}
+.gvo-lia-journey[data-lia-action="attention"] .lia-hybrid__layer--petal-right-upper{animation:gvo-lia-attend-right 1150ms ease-out both;}
+.gvo-lia-journey[data-lia-action="attention"] .gvo-lia-journey__face{animation:gvo-lia-attend-head 1150ms ease-out both;}
+.gvo-lia-journey[data-lia-action="present"] .lia-hybrid__layer--petal-right-upper{animation:gvo-lia-present-petal 1450ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="present"] .lia-hybrid__layer--petal-top{animation:gvo-lia-present-crown 1450ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="present"] .gvo-lia-journey__face{animation:gvo-lia-present-head 1450ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="present"][data-lia-direction="left"] .lia-hybrid__layer--petal-right-upper{animation:none;}
+.gvo-lia-journey[data-lia-action="present"][data-lia-direction="left"] .lia-hybrid__layer--petal-left-upper{animation:gvo-lia-present-petal-left 1450ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="respond"] .lia-hybrid__layer--petal-left-lower{animation:gvo-lia-response-left 900ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="respond"] .lia-hybrid__layer--petal-right-lower{animation:gvo-lia-response-right 900ms ease-in-out both;}
+.gvo-lia-journey[data-lia-action="respond"] .gvo-lia-journey__face{animation:gvo-lia-response-nod 900ms ease-in-out both;}
+.gvo-lia-journey[data-lia-active="false"] *{animation:none!important;}
+@keyframes gvo-lia-attend-left{0%{rotate:0deg}40%{rotate:12deg}100%{rotate:4deg}}
+@keyframes gvo-lia-attend-right{0%{rotate:0deg}40%{rotate:-12deg}100%{rotate:-4deg}}
+@keyframes gvo-lia-attend-head{0%{rotate:0deg}55%{rotate:calc(6deg * var(--lia-point-sign))}100%{rotate:calc(3deg * var(--lia-point-sign))}}
+@keyframes gvo-lia-present-petal{0%,100%{rotate:0deg}35%,70%{rotate:-21deg}}
+@keyframes gvo-lia-present-petal-left{0%,100%{rotate:0deg}35%,70%{rotate:21deg}}
+@keyframes gvo-lia-present-crown{0%,100%{scale:1}45%,65%{scale:1.035 .96}}
+@keyframes gvo-lia-present-head{0%,100%{rotate:0deg}45%,70%{rotate:calc(8deg * var(--lia-point-sign))}}
+@keyframes gvo-lia-response-left{0%,100%{rotate:0deg}40%{rotate:-14deg}}
+@keyframes gvo-lia-response-right{0%,100%{rotate:0deg}40%{rotate:14deg}}
+@keyframes gvo-lia-response-nod{0%,100%{translate:0 0}40%{translate:0 1.8%;rotate:-3deg}70%{translate:0 -.5%}}
+@media(prefers-reduced-motion:reduce){.gvo-lia-journey *{animation:none!important;}.gvo-lia-journey[data-lia-action="present"] .lia-hybrid__layer--petal-right-upper{rotate:-12deg;}.gvo-lia-journey[data-lia-action="respond"] .lia-hybrid__layer--petal-left-lower{rotate:-6deg;}.gvo-lia-journey[data-lia-action="respond"] .lia-hybrid__layer--petal-right-lower{rotate:6deg;}}
+@media(prefers-reduced-motion:reduce){.gvo-lia-journey[data-lia-action="present"][data-lia-direction="left"] .lia-hybrid__layer--petal-right-upper{rotate:0deg;}.gvo-lia-journey[data-lia-action="present"][data-lia-direction="left"] .lia-hybrid__layer--petal-left-upper{rotate:12deg;}}

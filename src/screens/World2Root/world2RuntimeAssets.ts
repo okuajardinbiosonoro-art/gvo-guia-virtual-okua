@@ -69,3 +69,17 @@ export const world2InitialRuntimeAssetSources = [
   world2RuntimeAssets.layerNavTokenBase,
   world2RuntimeAssets.layerGlyphAtlas,
 ] as const;
+
+/** Root preparation imports this per-state list; no asset readiness is persisted. */
+export function getWorld2CriticalAssetSources(layer: "planta_viva" | "senal" | "captura" | "acondicionamiento" | "mapeo" | "resultado_mediado") {
+  const common = [world2RuntimeAssets.background, world2RuntimeAssets.plant, world2RuntimeAssets.plantStageAnchor, world2RuntimeAssets.dialogueCard, world2RuntimeAssets.layerNavTokenBase, world2RuntimeAssets.layerNavTokenActive, world2RuntimeAssets.layerGlyphAtlas, world2RuntimeAssets.layerNavConnectorInactive, world2RuntimeAssets.layerConnector, world2RuntimeAssets.liaHalo];
+  const state = {
+    planta_viva: [world2RuntimeAssets.plantAura, world2RuntimeAssets.plantBioelectricContactNode],
+    senal: [world2RuntimeAssets.signalProbeCableWaveformUnified, world2RuntimeAssets.signalWaveformCleanTechnical, world2RuntimeAssets.liaGestureSpark],
+    captura: [world2RuntimeAssets.captureAcquisitionChain, world2RuntimeAssets.liaGestureSpark],
+    acondicionamiento: [world2RuntimeAssets.conditioningNoisyToClean, world2RuntimeAssets.liaGestureSpark],
+    mapeo: [world2RuntimeAssets.signalWaveformCleanTechnical, world2RuntimeAssets.liaGestureSpark],
+    resultado_mediado: [world2RuntimeAssets.liaGestureSpark],
+  }[layer];
+  return [...new Set([...common, ...state])];
+}

@@ -1,160 +1,33 @@
 import { expect, test } from "@playwright/test";
-
-import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
+import { openQuiz, readQuiz, chooseYes } from "./support/world5QuizFixture";
 import { isLocalTestRequest } from "./support/local-network";
-
-test.beforeEach(async ({ page }) => {
-  await installWorldFiveAccessFixture(page);
-});
-
-const viewports = [
-  [360, 560],
-  [360, 640],
-  [375, 559],
-  [375, 667],
-  [390, 650],
-  [390, 844],
-  [430, 740],
-  [430, 932],
-  [768, 1024],
-  [1024, 768],
-  [844, 390],
-  [1440, 900],
-] as const;
-
-test("ST5-020A recorre y persiste solo Plantas sin red externa", async ({
+// The October integration replaces historical exploration with explicit answers.
+// Approved raster/hash and map-source geometry contracts remain covered by unit tests.
+test("Sala V: cuatro preguntas opcionales, sin acierto por explorar ni red externa", async ({
   page,
 }) => {
-  const consoleErrors: string[] = [];
-  const externalRequests: string[] = [];
-  page.on("console", (message) => {
-    if (message.type() === "error")
-      consoleErrors.push(`${message.location().url}: ${message.text()}`);
-  });
+  const external: string[] = [];
+  const errors: string[] = [];
   page.on("request", (request) => {
-    if (!isLocalTestRequest(request.url()))
-      externalRequests.push(request.url());
+    if (!isLocalTestRequest(request.url())) external.push(request.url());
   });
-
-  await page.goto("/estacion/5");
-  const sectors = page.locator("[data-station5-area]");
-  await expect(sectors).toHaveCount(4, { timeout: 15_000 });
-  await expect(page.locator('[data-station5-area="plantas"]')).toBeEnabled();
-  await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
-  await expect(page.locator('[data-station5-area="sistema"]')).toHaveAttribute(
-    "data-area-state",
-    "locked",
-  );
-  await expect(page.locator('[data-station5-area="espacio"]')).toBeEnabled();
-  await expect(page.locator('[data-station5-area="visitante"]')).toBeEnabled();
-  await expect(
-    page.locator(
-      '[data-runtime-asset$="world5_map_environment_portrait_v01.webp"]',
-    ),
-  ).toHaveCount(1);
-
+  page.on("pageerror", (error) => errors.push(String(error)));
+  await openQuiz(page);
+  await expect(page.locator("[data-station5-area]")).toHaveCount(4);
+  await expect(page.locator('[data-protected="true"]')).toHaveCount(0);
   await page.locator('[data-station5-area="plantas"]').click();
-  await expect(page).toHaveURL(/\/estacion\/5\/plantas$/);
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "plants_intro",
-  );
   await expect(
-    page.getByRole("button", { name: "Reconocer la vitalidad desde la hoja." }),
-  ).toHaveCount(1);
-
-  await page
-    .getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })
-    .click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "plants_resolved",
-  );
-  await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
-  await expect(
-    page.getByRole("button", { name: "Volver al mapa" }),
-  ).toBeEnabled();
-
-  const stored = await page.evaluate(() => ({
-    station5: window.localStorage.getItem("gvo.station5.v1"),
-    global: window.localStorage.getItem("gvo.progress.v1"),
-  }));
-  expect(JSON.parse(stored.station5 ?? "{}").completedAreas).toEqual([
-    "plantas",
-  ]);
-  expect(JSON.parse(stored.global ?? "{}").completedStations).toEqual([
-    1, 2, 3, 4,
-  ]);
-
-  await page.getByRole("button", { name: "Volver al mapa" }).click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "map_overview",
-  );
-  await expect(page.locator('[data-station5-area="plantas"]')).toBeFocused();
-  await expect(page.locator('[data-station5-area="sistema"]')).toBeEnabled();
-
-  await page.goto("/estacion/5/plantas", { waitUntil: "domcontentloaded" });
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "plants_resolved",
-  );
-  expect(consoleErrors).toEqual([]);
-  expect(externalRequests).toEqual([]);
-});
-
-test("ST5-020A refluye en viewports requeridos y conserva controles de 44 px", async ({
-  page,
-}) => {
-  await page.goto("/estacion/5");
-  for (const [width, height] of viewports) {
-    await page.setViewportSize({ width, height });
-    const metrics = await page.evaluate(() => ({
-      clientWidth: document.documentElement.clientWidth,
-      scrollWidth: document.documentElement.scrollWidth,
-      controls: [...document.querySelectorAll("button")].map((button) => {
-        const rect = button.getBoundingClientRect();
-        return Math.min(rect.width, rect.height);
-      }),
-    }));
-    expect(
-      metrics.scrollWidth,
-      `${width}x${height} no debe desbordar horizontalmente`,
-    ).toBeLessThanOrEqual(metrics.clientWidth);
-    expect(
-      Math.min(...metrics.controls),
-      `${width}x${height} debe conservar targets de 44 px`,
-    ).toBeGreaterThanOrEqual(44);
-  }
-
-  await page.setViewportSize({ width: 844, height: 390 });
-  await expect(
-    page.locator(
-      '[data-projected-stage="map"] .s5-media-background source[srcset$="world5_map_environment_landscape_v01.webp"]',
+    page.getByText(
+      "¿Las plantas son seres vivos capaces de relacionarse con su entorno y emitir señales?",
     ),
-  ).toHaveCount(1);
-});
-
-test("ST5-020A reduced motion conserva comprensión y persistencia", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/estacion/5");
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-reduced-motion",
-    "true",
+  ).toBeVisible();
+  expect((await readQuiz(page)).correctAnswers).toEqual([]);
+  await chooseYes(page);
+  expect((await readQuiz(page)).correctAnswers).toEqual(["plantas"]);
+  await expect(page.locator("[data-quiz-score]")).toHaveAttribute(
+    "data-quiz-score",
+    "1",
   );
-  await page.locator('[data-station5-area="plantas"]').click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "plants_intro",
-  );
-  await page
-    .getByRole("button", { name: "Reconocer la vitalidad desde la hoja." })
-    .click();
-  await expect(page.getByRole("status")).toContainText("Vitalidad reconocida");
-  await expect(
-    page.getByRole("button", { name: "Volver al mapa" }),
-  ).toBeEnabled();
+  expect(external).toEqual([]);
+  expect(errors).toEqual([]);
 });

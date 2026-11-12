@@ -17,7 +17,8 @@ Una pantalla puede quedar en `APROBADA_PARA_AVANZAR` cuando cumple todos estos c
 - Estabilidad técnica comprobada.
 - Respeto de las reglas no negociables del proyecto.
 - Sin dependencias externas no permitidas.
-- Sin audio ni video runtime, salvo ticket futuro que lo autorice explícitamente.
+- Audio local según la entrega del diseñador de sonido y las reglas vigentes.
+- Video runtime sujeto a autorización explícita del ticket.
 - Deuda visual conocida y documentada.
 - Pruebas ejecutadas o bloqueos reportados honestamente.
 

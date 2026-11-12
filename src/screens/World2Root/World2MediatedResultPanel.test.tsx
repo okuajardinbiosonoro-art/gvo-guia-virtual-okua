@@ -1,56 +1,27 @@
-import { act, cleanup, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-
 import { World2MediatedResultPanel } from "./World2MediatedResultPanel";
 
-describe("World2MediatedResultPanel 016V", () => {
-  afterEach(() => {
-    vi.useRealTimers();
-    cleanup();
+afterEach(() => { cleanup(); vi.useRealTimers(); });
+describe("Music · active presentation and assistance", () => {
+  it("does not play or acknowledge content when inactive", () => {
+    vi.useFakeTimers(); const complete = vi.fn();
+    const { container } = render(<World2MediatedResultPanel complete={false} active={false} onComplete={complete} />);
+    act(() => vi.advanceTimersByTime(15000)); expect(complete).not.toHaveBeenCalled();
+    expect(container.querySelector("[data-world2-option6-stage]")).toHaveAttribute("data-world2-option6-stage", "intensity");
   });
-
-  it("converge en una sola escena y completa el gate solo al finalizar", () => {
-    vi.useFakeTimers();
-    const onComplete = vi.fn();
-    const { container } = render(
-      <World2MediatedResultPanel complete={false} onComplete={onComplete} />,
-    );
-    const panel = screen.getByRole("group", {
-      name: "Convergencia sonora final de intensidad, ritmo y altura",
-    });
-
-    expect(panel).toHaveAttribute("data-world2-option6-stage", "intensity");
-    expect(panel).toHaveAttribute(
-      "data-world2-option6-simultaneous-primary-scenes",
-      "1",
-    );
-    expect(
-      container.querySelectorAll("[data-world2-option6-primary-scene]"),
-    ).toHaveLength(1);
-    expect(
-      container.querySelector(".world2-mediated-panel"),
-    ).not.toBeInTheDocument();
-    expect(onComplete).not.toHaveBeenCalled();
-
-    act(() => vi.advanceTimersByTime(2100));
-    expect(panel).toHaveAttribute("data-world2-option6-stage", "rhythm");
-    expect(screen.getByText("RITMO")).toBeInTheDocument();
-
-    act(() => vi.advanceTimersByTime(2100));
-    expect(panel).toHaveAttribute("data-world2-option6-stage", "pitch");
-    expect(screen.getByText("ALTURA")).toBeInTheDocument();
-
-    act(() => vi.advanceTimersByTime(2100));
-    expect(panel).toHaveAttribute("data-world2-option6-stage", "resolved");
-    expect(screen.getByText("RESULTADO SONORO")).toBeInTheDocument();
-    expect(
-      screen.getByText("Los parámetros se integran y dan forma al sonido."),
-    ).toBeInTheDocument();
-    expect(onComplete).not.toHaveBeenCalled();
-
-    act(() => vi.advanceTimersByTime(2699));
-    expect(onComplete).not.toHaveBeenCalled();
-    act(() => vi.advanceTimersByTime(1));
-    expect(onComplete).toHaveBeenCalledTimes(1);
+  it("shows the requested result before acknowledging assisted presentation", () => {
+    vi.useFakeTimers(); const complete = vi.fn();
+    render(<World2MediatedResultPanel complete={false} onComplete={complete} />);
+    fireEvent.click(screen.getByRole("button", { name: "Ver resultado" }));
+    expect(screen.getByText("Los parámetros se integran y dan forma al sonido.")).toBeVisible(); expect(complete).not.toHaveBeenCalled();
+    act(() => vi.advanceTimersByTime(50)); expect(complete).toHaveBeenCalledWith("assisted");
+  });
+  it("normal presentation acknowledges once and does not assert a room closure", () => {
+    vi.useFakeTimers(); const complete = vi.fn();
+    render(<World2MediatedResultPanel complete={false} onComplete={complete} />);
+    act(() => vi.advanceTimersByTime(9100)); act(() => vi.advanceTimersByTime(50));
+    expect(complete).toHaveBeenCalledTimes(1); expect(complete).toHaveBeenCalledWith("standard");
+    expect(screen.queryByRole("button", { name: /Cerrar Música/ })).toBeNull();
   });
 });

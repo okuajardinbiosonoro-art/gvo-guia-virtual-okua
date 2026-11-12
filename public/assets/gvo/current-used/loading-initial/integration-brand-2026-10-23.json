@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "status": "LOCAL_REVIEW_CANDIDATE",
+  "human_approved": false,
+  "source": {
+    "original": "E:/OKUA/05_ACTIVOS_MARCA_MEDIA/Logos/logo.png",
+    "archive": "assets-source/editorial-2026-10-23/logo-candidate-from-brand-archive.png",
+    "sha256": "02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a",
+    "dimensions": [
+      178,
+      102
+    ]
+  },
+  "inspection": "All 4 pot frames contain a prior four-point floral emblem. Lia frames 5–16 contain a prior floral can emblem; frames 1–4 have no can. These are concrete current consumers, not obsolete design notes.",
+  "assets": [
+    {
+      "runtime": "public/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v01.png",
+      "mirror": "public/assets/gvo/current-used/loading-initial/plant/plant_growth_4f_okua_v01.png",
+      "sha256": "37cbeabb16cded9e779b687106f885186c1ba2f2cc827b828de26ca9ec5b36ae",
+      "bytes": 520051,
+      "dimensions": [
+        3072,
+        768
+      ],
+      "status": "LOCAL_REVIEW_CANDIDATE",
+      "source": "public/assets/runtime/loading-initial/plant/plant_growth_4f.png",
+      "source_sha256": "51df5afdc349ea53eacf7f92baa96480621556b6e7a1239dc472da4caf3c64c0",
+      "symbol_source": "assets-source/editorial-2026-10-23/logo-candidate-from-brand-archive.png",
+      "symbol_crop": {
+        "left": 6,
+        "top": 4,
+        "width": 58,
+        "height": 71
+      },
+      "derivation": "Exact proportional nearest-neighbor crop on small opaque brand plaques replacing prior floral emblems. All RGBA pixels outside listed rectangles unchanged; original grid, metadata, animation registration and five petals preserved.",
+      "consumer": "src/screens/LoadingInitial/loadingInitialAssets.ts",
+      "frame_count": 4,
+      "altered_frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "rectangles": [
+        {
+          "frame": 1,
+          "left": 340,
+          "top": 418,
+          "width": 88,
+          "height": 108
+        },
+        {
+          "frame": 2,
+          "left": 1108,
+          "top": 418,
+          "width": 88,
+          "height": 108
+        },
+        {
+          "frame": 3,
+          "left": 1876,
+          "top": 418,
+          "width": 88,
+          "height": 108
+        },
+        {
+          "frame": 4,
+          "left": 2644,
+          "top": 418,
+          "width": 88,
+          "height": 108
+        }
+      ],
+      "changed_pixels": 38006,
+      "outside_rectangles_changed_pixels": 0
+    },
+    {
+      "runtime": "public/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v01.png",
+      "mirror": "public/assets/gvo/current-used/loading-initial/lia/lia_loading_16f_okua_v01.png",
+      "sha256": "6fc2ec038a426b6b2bdce0b1b1efdcef9819499bff9f2156f1308342f6c53c0d",
+      "bytes": 2536695,
+      "dimensions": [
+        2560,
+        2560
+      ],
+      "status": "LOCAL_REVIEW_CANDIDATE",
+      "source": "public/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+      "source_sha256": "971e57a5a8c09124a6f55e686c9ac147430fec03943b0c43c1bed1d823ab31ce",
+      "symbol_source": "assets-source/editorial-2026-10-23/logo-candidate-from-brand-archive.png",
+      "symbol_crop": {
+        "left": 6,
+        "top": 4,
+        "width": 58,
+        "height": 71
+      },
+      "derivation": "Exact proportional nearest-neighbor crop on small opaque brand plaques replacing prior floral emblems. All RGBA pixels outside listed rectangles unchanged; original grid, metadata, animation registration and five petals preserved.",
+      "consumer": "src/screens/LoadingInitial/loadingInitialAssets.ts",
+      "frame_count": 16,
+      "altered_frames": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "rectangles": [
+        {
+          "frame": 5,
+          "left": 219,
+          "top": 1093,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 6,
+          "left": 859,
+          "top": 1088,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 7,
+          "left": 1494,
+          "top": 1073,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 8,
+          "left": 2132,
+          "top": 1072,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 9,
+          "left": 205,
+          "top": 1723,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 10,
+          "left": 845,
+          "top": 1721,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 11,
+          "left": 1489,
+          "top": 1696,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 12,
+          "left": 2119,
+          "top": 1713,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 13,
+          "left": 197,
+          "top": 2362,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 14,
+          "left": 844,
+          "top": 2361,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 15,
+          "left": 1489,
+          "top": 2359,
+          "width": 50,
+          "height": 61
+        },
+        {
+          "frame": 16,
+          "left": 2129,
+          "top": 2354,
+          "width": 50,
+          "height": 61
+        }
+      ],
+      "changed_pixels": 36594,
+      "outside_rectangles_changed_pixels": 0
+    }
+  ]
+}

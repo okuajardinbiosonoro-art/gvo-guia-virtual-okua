@@ -1,0 +1,10 @@
+.s3-lia-clip { pointer-events: none; }
+.s3-lia-clip__frame { display: block; width: 100%; aspect-ratio: 1; background-image: var(--s3-lia-clip-source); background-size: 300% 200%; background-repeat: no-repeat; background-position: var(--s3-lia-clip-stable-position); image-rendering: pixelated; }
+.s3-lia-clip[data-lia-clip-mode="play"] .s3-lia-clip__frame { animation: s3-lia-six-registered-frames var(--s3-lia-clip-duration) steps(1, end) both; }
+.s3-lia-clip[data-lia-clip="listening"][data-lia-clip-mode="play"] .s3-lia-clip__frame { animation-name: s3-lia-six-listening-frames; }
+.s3-lia-clip[data-lia-action="respond"][data-lia-clip-mode="play"]::after { content: ""; position: absolute; inset: 12%; border: 2px solid rgb(234 217 176 / 70%); border-radius: 50%; pointer-events: none; animation: s3-lia-response-ring 700ms ease-out both; }
+@keyframes s3-lia-response-ring { from { opacity: 0.8; transform: scale(0.8); } to { opacity: 0; transform: scale(1.12); } }
+@keyframes s3-lia-six-registered-frames { 0% { background-position: 0% 0%; } 16.6667% { background-position: 50% 0%; } 33.3333% { background-position: 100% 0%; } 50% { background-position: 0% 100%; } 66.6667% { background-position: 50% 100%; } 83.3333%,100% { background-position: 100% 100%; } }
+@keyframes s3-lia-six-listening-frames { 0% { background-position: 0% 0%; } 12% { background-position: 50% 0%; } 26% { background-position: 100% 0%; } 40% { background-position: 0% 100%; } 70% { background-position: 50% 100%; } 86%,100% { background-position: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { .s3-lia-clip .s3-lia-clip__frame { animation: none !important; background-position: var(--s3-lia-clip-stable-position); } }
+@media (prefers-reduced-motion: reduce) { .s3-lia-clip::after { animation: none !important; } }

@@ -155,7 +155,7 @@ async function openWorld1Scanner(page: Page) {
   const previous = await cameraState(page);
   expect(previous).toBeDefined();
   await page
-    .getByRole("button", { name: "Escanea el QR para abrir Mundo 2" })
+    .getByRole("button", { name: "Escanea el QR para abrir Sala II" })
     .click();
   await expect
     .poll(async () => {

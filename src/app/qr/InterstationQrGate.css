@@ -13,7 +13,7 @@
   pointer-events: none;
 }
 
-.interstation-qr-gate button {
+.interstation-qr-gate button:not(.gvo-journey-exit) {
   min-width: 44px;
   min-height: 44px;
   border: 1px solid rgb(248 246 233 / 72%);
@@ -37,9 +37,44 @@
   box-shadow: 0 0.55rem 1.5rem rgb(0 0 0 / 42%);
 }
 
-.interstation-qr-gate button:focus-visible {
+.interstation-qr-gate button:not(.gvo-journey-exit):focus-visible {
   outline: 3px solid #f3d568;
   outline-offset: 3px;
+}
+
+/* The closed access belongs to its room; only the camera uses a full-screen layer. */
+.interstation-qr-gate--scene {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  display: inline-grid;
+  justify-items: start;
+  width: auto;
+  max-width: 100%;
+  color: inherit;
+  pointer-events: auto;
+}
+
+.interstation-qr-gate__threshold {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+}
+.interstation-qr-gate__threshold img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.interstation-qr-gate__threshold svg {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 15px;
+  top: 19px;
 }
 
 .interstation-qr-gate__scanner {
@@ -61,8 +96,7 @@
   width: 100%;
   height: 100dvh;
   max-height: 100dvh;
-  padding:
-    max(0.75rem, env(safe-area-inset-top))
+  padding: max(0.75rem, env(safe-area-inset-top))
     max(0.75rem, env(safe-area-inset-right))
     max(0.75rem, env(safe-area-inset-bottom))
     max(0.75rem, env(safe-area-inset-left));
@@ -76,6 +110,10 @@
 .interstation-qr-gate__scanner h2,
 .interstation-qr-gate__scanner p {
   margin: 0;
+}
+
+.interstation-qr-gate__scanner p {
+  color: inherit;
 }
 
 .interstation-qr-gate__preview {
@@ -108,20 +146,19 @@
 }
 
 @media (height <= 700px), (width <= 390px) {
-  .interstation-qr-gate {
+  .interstation-qr-gate:not(.interstation-qr-gate--scene):not(.interstation-qr-gate--open) {
     right: max(0.5rem, env(safe-area-inset-right));
     bottom: max(0.5rem, env(safe-area-inset-bottom));
     left: max(0.5rem, env(safe-area-inset-left));
   }
 
-  .interstation-qr-gate button {
+  .interstation-qr-gate:not(.interstation-qr-gate--scene) button {
     padding: 0.62rem 0.85rem;
   }
 
   .interstation-qr-gate--open {
     inset: 0;
-    padding:
-      max(0.5rem, env(safe-area-inset-top))
+    padding: max(0.5rem, env(safe-area-inset-top))
       max(0.5rem, env(safe-area-inset-right))
       max(0.5rem, env(safe-area-inset-bottom))
       max(0.5rem, env(safe-area-inset-left));

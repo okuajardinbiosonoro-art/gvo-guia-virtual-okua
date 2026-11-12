@@ -1,0 +1,1510 @@
+{
+  "schema_version": 1,
+  "round": "R2",
+  "status": "DOCUMENTARY_TECHNICAL_RECONCILIATION_PENDING_R3_NO_IMPLEMENTATION",
+  "created_at": "2026-10-24T01:48:58.339Z",
+  "scope": [
+    "D02",
+    "D07",
+    "D08",
+    "D16",
+    "D20",
+    "I/II completion, checkpoints, literal copy, hand/Lia, readiness"
+  ],
+  "source_authority": "R1 is a plan for reconciliation, not human approval or an instruction to implement before R3. Root coordinates the bilateral context.",
+  "branch": "main",
+  "head": "79a31106a6286367db83b4075926862eaed7b716",
+  "r1_sources": [
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_ASSETS_PROMPTS.json",
+      "sha256": "0ea9389d24650fcbf5f2c8d37ee5add07b01a02c6c04282e147e8eb430b9b847"
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_COMUNICACION_ESTADO.json",
+      "sha256": "99e20c837f1c47442e94b817c70be3c408651973e9212f858db459bb99253295"
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_METODOLOGIA_CHATGPT.md",
+      "sha256": "aeb9dcf192a8529438ab481dbd1eddf6a76f1ac9f32b16c30051148bbf46658e"
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_PLAN_CAMBIOS.json",
+      "sha256": "1eb92a0d64f1f9ece540326b29407860a4966d21af828e8c885db83e5e7a66c3"
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_QA_MATRIX.json",
+      "sha256": "607bf78ba81bc6c017cc7c08bf48814f95dc8cacef7c61a9e484821a1a0a534a"
+    }
+  ],
+  "checkpoint_hash_comparison": [
+    {
+      "path": "src/screens/World1Root/World1RootScreen.tsx",
+      "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+      "checkpoint_sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/screens/World1Root/World1RootScreen.css",
+      "sha256": "b17affa338d14cdae92de37f95f932b543504b3fde6cb951d5f3c4f42cff9d9e",
+      "checkpoint_sha256": "b17affa338d14cdae92de37f95f932b543504b3fde6cb951d5f3c4f42cff9d9e",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/content/world1EditorialSlots.ts",
+      "sha256": "5841efb457e5ba05b2d61afb962693afc6063dac282430ead4daa6ca5cba7dcf",
+      "checkpoint_sha256": "5841efb457e5ba05b2d61afb962693afc6063dac282430ead4daa6ca5cba7dcf",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/screens/World2Root/World2RootScreen.tsx",
+      "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+      "checkpoint_sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/screens/World2Root/World2RootScreen.css",
+      "sha256": "d543da78be7e98636ba8d5d51eb8ef76677d87790b1a724edd5bae942773534d",
+      "checkpoint_sha256": "d543da78be7e98636ba8d5d51eb8ef76677d87790b1a724edd5bae942773534d",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/screens/World2Root/World2MediatedResultPanel.tsx",
+      "sha256": "ad38a750e436625a4a3ecded8891dc496a3a10ae8077d0f46a786e3031759d69",
+      "checkpoint_sha256": "ad38a750e436625a4a3ecded8891dc496a3a10ae8077d0f46a786e3031759d69",
+      "matches_checkpoint": true
+    },
+    {
+      "path": "src/content/world2EditorialSlots.ts",
+      "sha256": "1a13157517f80c3abacd8271c1ff5d1ef0e75441a09787c290d9274b68d6018e",
+      "checkpoint_sha256": "1a13157517f80c3abacd8271c1ff5d1ef0e75441a09787c290d9274b68d6018e",
+      "matches_checkpoint": true
+    }
+  ],
+  "all_checkpoint_hashes_match": true,
+  "dist_index": {
+    "path": "dist/index.html",
+    "sha256": "b70858642c3b429507cbb29b72b475f86342ac1d2b1b08c6ae4d275a6f050338"
+  },
+  "dist_matches_prior_checkpoint": true,
+  "decisions_reviewed": [
+    {
+      "id": "D02",
+      "topic": "Esencia y opcionalidad",
+      "decision": "Presentación esencial ordenada y cierre manual por sala. Las ampliaciones, la práctica física, los aciertos y la manipulación manual son opcionales. La alternativa asistida presenta el contenido esencial antes del cierre.",
+      "basis": "delegated_resolution_of_explicit_human",
+      "obs": [
+        "OBS03-FLUJO-01",
+        "OBS03-QR-01"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    },
+    {
+      "id": "D07",
+      "topic": "Legado",
+      "decision": "No convertir activityContinued, activity_skipped, skip_remaining ni completedStations aislado en esencia OBS03. Preservar bytes, puntos y crédito de ruta; legacy_unknown reanuda la primera presentación esencial sin evidencia. La compatibilidad de Mirador requiere evidencia observada coherente, nunca solo un string de sesión.",
+      "rationale": "No existe un marcador antiguo durable de finalReached y Sala IV limpia legítimamente su checkpoint tras el QR; la procedencia no siempre puede reconstruirse.",
+      "obs": [
+        "OBS03-FLUJO-01",
+        "OBS03-QR-01",
+        "OBS03-MIRADOR-01"
+      ],
+      "basis": "delegated_technical_design",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    },
+    {
+      "id": "D08",
+      "topic": "Texto",
+      "decision": "La versión ES parte del literal del escritor según su acción y destino semántico, conservando palabras y orden. La división y los recortes exactos se trazan por posiciones. Las erratas, instrucciones espaciales y puntuación dinámica llevan parches explícitos. El copy funcional nuevo queda separado.",
+      "obs": [
+        "OBS03-TEXTOS-01"
+      ],
+      "basis": "delegated_technical_design",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    },
+    {
+      "id": "D16",
+      "topic": "ES/EN",
+      "decision": "EN usa traducciones fieles de los segmentos ES conciliados, con la misma estructura e IDs. El selector inglés no acredita la traducción de las salas que hoy están fijas en ES. Verificar ambos idiomas, sin atribuir las traducciones EN al escritor como literales.",
+      "obs": [
+        "OBS03-TEXTOS-01",
+        "OBS03-MOVIL-01"
+      ],
+      "basis": "delegated_technical_design",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    },
+    {
+      "id": "D20",
+      "topic": "Presupuestos visuales de proyecto",
+      "decision": "Texto principal con objetivo de 16 px o más y line-height de 1.45. Controles funcionales de al menos 48×48 CSS px donde el layout lo permita; opciones de V de al menos 96 px de alto. Contraste de lectura objetivo de 4.5:1 y estados o foco de 3:1, comprobados sobre el fondo real. Son criterios del plan, no una declaración de certificación.",
+      "obs": [
+        "OBS03-SALA-I-01",
+        "OBS03-MOVIL-01",
+        "OBS03-SALA-V-01",
+        "OBS03-SALA-IV-01"
+      ],
+      "basis": "delegated_technical_design",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    }
+  ],
+  "completion_contract": {
+    "I": {
+      "ordered_steps": [
+        "intro",
+        "relacion",
+        "percepcion",
+        "mediacion"
+      ],
+      "event": "Confirmar el avance o cierre de cada bloque básico en orden; el cierre final de Mediación produce essentialClosed1.",
+      "optional": [
+        "Más",
+        "ampliación",
+        "repetir interacción",
+        "esperar a terminar gestos decorativos"
+      ],
+      "not_sufficient": [
+        "activityContinued",
+        "abrir nodo",
+        "terminar idle",
+        "abrir QR"
+      ]
+    },
+    "II": {
+      "ordered_steps": [
+        "planta",
+        "senal",
+        "captura",
+        "acondicionamiento",
+        "mapeo",
+        "musica"
+      ],
+      "event": "Presentar contenidos y resultados esenciales de las 6 capas en orden y confirmar el cierre de Música. La representación completa debe haberse presentado antes de habilitar la salida.",
+      "assisted_path": "Ver resultado presenta los pasos de captura o mapeo, o la convergencia completa, con estado assisted. No registra una interacción manual inexistente.",
+      "optional": [
+        "repetir ajustes",
+        "manipulación de cada parámetro",
+        "esperar duración completa de una animación tras pedir ver su resultado"
+      ],
+      "not_sufficient": [
+        "visitedLayers sólo por abrir",
+        "QR callback",
+        "timer sin estado final presentado"
+      ]
+    },
+    "qr_visibility": "No montar controles QR en I–IV antes de verificar essentialClosed. Revalidar en gate, callback, loader y resolución de URL o payload; ocultar con CSS no basta. Excepción: contexto de Mirador validado por derecho final real o compatibilidad documentada.",
+    "legacy_route_continuation": "Un destino ya adquirido mediante legacyRouteCredit puede retomarse con una acción explícita después de confirmar la esencia vigente pendiente. Crear pendingTransition de tipo legacy_resume y aplicar el mismo límite de carga de 15 s, primer render protegido y entrega verificada. No inventar un nuevo QR ni escribir otro bit global ya adquirido. Los destinos nunca adquiridos conservan su QR normal."
+  },
+  "facts": [
+    {
+      "id": "R2-I-ESSENTIAL",
+      "decision": "D02",
+      "status": "AGREES_WITH_NEW_CONTRACT_REQUIRES_NEW_FACTS",
+      "evidence": [
+        {
+          "path": "src/screens/World1Root/World1RootScreen.tsx",
+          "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+          "line": 455,
+          "anchor": "function activateConcept"
+        },
+        {
+          "path": "src/screens/World1Root/World1RootScreen.tsx",
+          "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+          "line": 528,
+          "anchor": "function closeConcept"
+        }
+      ],
+      "fact": "activateConcept stores visits/highest at opening. Closing Relation/Perception only sets transient panelClosed, intro has no close button. Mediation close stores ready/activityContinued. There is no durable confirmation for each of four essential blocks."
+    },
+    {
+      "id": "R2-II-ASSISTED-SHAPE",
+      "decision": "D02",
+      "status": "R3_CONTRACT_RESOLUTION_NEEDED",
+      "evidence": [
+        {
+          "path": "src/domain/checkpoints/world2Checkpoint.ts",
+          "sha256": "b20b68544ea355528da3f9c00c984f654f546e42bae57d43f024af5a71e1be18",
+          "line": 204,
+          "anchor": "captureComplete !== interactionCaptureComplete"
+        },
+        {
+          "path": "src/screens/World2Root/World2RootScreen.tsx",
+          "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+          "line": 975,
+          "anchor": "function selectLayer"
+        }
+      ],
+      "fact": "The v1 validator couples six-layer navigation to completedRequiredInteractions, full capture prefix and mappingFirstRunComplete. An assisted traversal cannot honestly write six visited layers into this old shape with manual flags false.",
+      "proposal_pending": "Keep legacy manual checkpoint untouched; let OBS03 essential registry carry presented/confirmed/assisted progression and let the consumer render/navigate from that separate state. Root may instead authorize a new schema with explicit origins. Never fill old manual facts to satisfy validation."
+    },
+    {
+      "id": "R2-II-MUSIC",
+      "decision": "D02",
+      "status": "CONFIRMED_STATIC_DIVERGENCE",
+      "evidence": [
+        {
+          "path": "src/screens/World2Root/World2RootScreen.tsx",
+          "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+          "line": 1124,
+          "anchor": "function completeSonicConvergence"
+        },
+        {
+          "path": "src/screens/World2Root/World2RootScreen.tsx",
+          "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+          "line": 1134,
+          "anchor": "function continueActivity"
+        },
+        {
+          "path": "src/screens/World2Root/World2MediatedResultPanel.tsx",
+          "sha256": "ad38a750e436625a4a3ecded8891dc496a3a10ae8077d0f46a786e3031759d69",
+          "line": 68,
+          "anchor": "const completionTimer"
+        }
+      ],
+      "fact": "Resolved visual stage begins at6300ms, onComplete at9000ms; no visibility listener pauses/settles sequence. onComplete changes transient boolean. continueActivity checks exploration/mapping, not this boolean. R1 requires final presentation plus explicit manual closure, not timer or QR."
+    },
+    {
+      "id": "R2-QR-READINESS",
+      "decision": "D02/D07",
+      "status": "ROOT_SHARED_INTEGRATION_REQUIRED",
+      "evidence": [
+        {
+          "path": "src/screens/World1Root/World1RootScreen.tsx",
+          "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+          "line": 1186,
+          "anchor": "onBeforeOpen={continueActivity}"
+        },
+        {
+          "path": "src/screens/World2Root/World2RootScreen.tsx",
+          "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+          "line": 1758,
+          "anchor": "onBeforeOpen={continueActivity}"
+        }
+      ],
+      "fact": "Both QR controls currently mount on storage/assets readiness; onBeforeOpen marks continuation. They must be consumers of root current-revision essence/revisit authorization and create no artificial essential facts.",
+      "boundary": "Root owns QR/preparer/router/progress/reset and transition commit. Agent B owns only I/II render/events and text slots; shared APIs not yet implemented."
+    },
+    {
+      "id": "R2-LEGACY-SYNTHESIS",
+      "decision": "D07",
+      "status": "CONFIRMED_MUST_MIGRATE_BEFORE_MOUNT",
+      "evidence": [
+        {
+          "path": "src/screens/World1Root/World1RootScreen.tsx",
+          "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+          "line": 281,
+          "anchor": "function readInitialWorld1State"
+        },
+        {
+          "path": "src/screens/World2Root/World2RootScreen.tsx",
+          "sha256": "49ac84b2160c99dd2ab269945d4f01f56eb7da1077b8be506020a0ac778fad21",
+          "line": 466,
+          "anchor": "function readInitialWorld2State"
+        }
+      ],
+      "fact": "Global bits with missing older fields cause current consumers to synthesize complete/highest states. Migration must read original storage first; synthesized UI state is not grandfathering evidence."
+    },
+    {
+      "id": "R2-EN",
+      "decision": "D16",
+      "status": "CONFIRMED_INCOMPLETE",
+      "evidence": [
+        {
+          "path": "src/content/world1EditorialSlots.ts",
+          "sha256": "5841efb457e5ba05b2d61afb962693afc6063dac282430ead4daa6ca5cba7dcf",
+          "line": 122,
+          "anchor": "function resolveWorld1Slot"
+        },
+        {
+          "path": "src/content/world2EditorialSlots.ts",
+          "sha256": "1a13157517f80c3abacd8271c1ff5d1ef0e75441a09787c290d9274b68d6018e",
+          "line": 79,
+          "anchor": "function resolveWorld2Slot"
+        },
+        {
+          "path": "src/app/preferences/languagePreference.ts",
+          "sha256": "d3896af1ec94116c72ca1a8b58b3ce0a0d6f607b6b0574656622becf3a783fd0",
+          "line": 1,
+          "anchor": "export const GVO_LANGUAGE_STORAGE_KEY"
+        }
+      ],
+      "fact": "I/II slot objects are resolved at module load without locale, with fixed ES integration overrides, readouts and functional labels. Root must provide shared locale-aware registry/navigation API; agent adapts consumers at render time and flags any missing translation. document.lang alone is not evidence."
+    },
+    {
+      "id": "R2-I-MORE",
+      "decision": "D20",
+      "status": "STATIC_DEFECT_CONFIRMED_MEASUREMENT_PENDING",
+      "evidence": [
+        {
+          "path": "src/screens/World1Root/World1RootScreen.tsx",
+          "sha256": "fb88b7166874b56c853b0869a3fa3ea0289fd8d0328f853cb56d802d42ce2890",
+          "line": 1066,
+          "anchor": "<summary>Más</summary>"
+        },
+        {
+          "path": "src/screens/World1Root/World1RootScreen.css",
+          "sha256": "b17affa338d14cdae92de37f95f932b543504b3fde6cb951d5f3c4f42cff9d9e",
+          "line": 870,
+          "anchor": "mask-image: linear-gradient"
+        }
+      ],
+      "fact": "More is inside the scrollable masked copy track. Need visible control outside mask, semantic expanded relation and readable content; no measured contrast or viewport PASS is claimed in this read-only round."
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "W1-LEGACY-PARTIAL",
+      "key": "gvo.station1.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/domain/checkpoints/checkpointStores.test.ts",
+        "sha256": "db88fb750a7023f44a0c519c77d1b15671b20e919305fb573564bfa719774930",
+        "line": 224,
+        "anchor": "const world1Valid"
+      },
+      "raw": "{\"activeConcept\":\"relation\",\"highestReachedConcept\":\"perception\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T12:00:00.000Z\"}",
+      "raw_sha256": "a63d54421d1166eb9e570da52aba4f70340b721c339da08813c4b4f0ce102ddc",
+      "value": {
+        "activeConcept": "relation",
+        "highestReachedConcept": "perception",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T12:00:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "highest/active show earlier navigation. They do not contain per-block explicit confirmations. Preserve raw and resume earliest essential step without evidence."
+    },
+    {
+      "id": "W1-GLOBAL-ONLY",
+      "key": "gvo.progress.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/screens/World1Root/World1RootScreen.test.tsx",
+        "sha256": "7859076a0d80011c3e27904dee5835c95d4078b5c3d584ab93d348826c2df26e",
+        "line": 856,
+        "anchor": "it(\"completion global ausente de checkpoint reabre en ready\""
+      },
+      "raw": "{\"schemaVersion\":1,\"completedStations\":[1],\"updatedAt\":\"2026-08-05T12:00:00.000Z\"}",
+      "raw_sha256": "c8a84597c1cd4352a28ee78bc8bdf5c9caf95c803ffd70e85eb930c4e6e1b330",
+      "value": {
+        "schemaVersion": 1,
+        "completedStations": [
+          1
+        ],
+        "updatedAt": "2026-08-05T12:00:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "Current consumer synthesizes ready with no room checkpoint. Under R1 this is route credit, not essentialClosed1."
+    },
+    {
+      "id": "W1-GLOBAL-PARTIAL-ROOM",
+      "key": "gvo.station1.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/screens/World1Root/World1RootScreen.test.tsx",
+        "sha256": "7859076a0d80011c3e27904dee5835c95d4078b5c3d584ab93d348826c2df26e",
+        "line": 876,
+        "anchor": "it(\"completion global conserva active previo pero eleva highest para revisita\""
+      },
+      "raw": "{\"activeConcept\":\"relation\",\"highestReachedConcept\":\"relation\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T12:01:00.000Z\"}",
+      "raw_sha256": "8e71d25ffde33dd7a3479da7bd04acf1d39d2f9f347ae1ddaf9e4b78e6554bc0",
+      "value": {
+        "activeConcept": "relation",
+        "highestReachedConcept": "relation",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T12:01:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "Paired with W1-GLOBAL-ONLY in existing test. Current UI elevates highest to ready, which must never become migration evidence."
+    },
+    {
+      "id": "W1-UNKNOWN-VERSION",
+      "key": "gvo.station1.v1",
+      "kind": "raw_string",
+      "source": {
+        "path": "src/domain/checkpoints/checkpointStores.test.ts",
+        "sha256": "db88fb750a7023f44a0c519c77d1b15671b20e919305fb573564bfa719774930",
+        "line": 240,
+        "anchor": "unknownVersion: '{\"schemaVersion\":2,\"opaque\":true}'"
+      },
+      "raw": "{\"schemaVersion\":2,\"opaque\":true}",
+      "raw_sha256": "3161feb91b1943b2ca742c4ba7bf86a864778ac9a07eda8bbd4fe9a52557ce08",
+      "value": "{\"schemaVersion\":2,\"opaque\":true}",
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "unknown_version",
+      "r1_classification": "recovery",
+      "interpretation": "Preserve original bytes. Version2 is unknown to the current v1 reader."
+    },
+    {
+      "id": "W1-CORRUPT",
+      "key": "gvo.station1.v1",
+      "kind": "raw_string",
+      "source": {
+        "path": "src/domain/checkpoints/checkpointStores.test.ts",
+        "sha256": "db88fb750a7023f44a0c519c77d1b15671b20e919305fb573564bfa719774930",
+        "line": 116,
+        "anchor": "const raw = \"{checkpoint-corrupt::raw\""
+      },
+      "raw": "{checkpoint-corrupt::raw",
+      "raw_sha256": "4729ba142b93903d858a730043a92ee6cb19d3e62fa4268b60e5647dace5d368",
+      "value": "{checkpoint-corrupt::raw",
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "corrupt",
+      "r1_classification": "recovery",
+      "interpretation": "Preserve original bytes, localized recovery only."
+    },
+    {
+      "id": "W1-NO-CHECKPOINT",
+      "key": "gvo.station1.v1",
+      "kind": "missing_key",
+      "source": {
+        "path": "src/screens/World1Root/World1RootScreen.test.tsx",
+        "sha256": "7859076a0d80011c3e27904dee5835c95d4078b5c3d584ab93d348826c2df26e",
+        "line": 856,
+        "anchor": "it(\"completion global ausente de checkpoint reabre en ready\""
+      },
+      "raw": null,
+      "raw_sha256": null,
+      "value": null,
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "empty",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "When paired with global credit, absence does not prove completion or corruption. No fabricated checkpoint."
+    },
+    {
+      "id": "W2-LEGACY-CAPTURE-PARTIAL",
+      "key": "gvo.station2.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/domain/checkpoints/world2Checkpoint.test.ts",
+        "sha256": "15cdd7b7f5fd5b26d44db5ffca379ddc9db6371aa83269f11dcdd6dc7e0dcd64",
+        "line": 52,
+        "anchor": "const validCheckpoint"
+      },
+      "raw": "{\"activeLayerId\":\"captura\",\"visitedLayerIds\":[\"planta_viva\",\"senal\",\"captura\"],\"highestUnlockedLayerOrder\":4,\"completedRequiredInteractions\":[\"plant_contact_readout_seen\",\"signal_measured_wave_seen\"],\"capture\":{\"currentStepId\":\"signal\",\"visitedStepIds\":[\"contact\",\"signal\"]},\"mappingFirstRunComplete\":false,\"resultState\":\"not_started\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T15:00:00.000Z\"}",
+      "raw_sha256": "2bf878cd48b18dc2784b7f380ad431c23a7b6ed39687baddbb34f6dd22761183",
+      "value": {
+        "activeLayerId": "captura",
+        "visitedLayerIds": [
+          "planta_viva",
+          "senal",
+          "captura"
+        ],
+        "highestUnlockedLayerOrder": 4,
+        "completedRequiredInteractions": [
+          "plant_contact_readout_seen",
+          "signal_measured_wave_seen"
+        ],
+        "capture": {
+          "currentStepId": "signal",
+          "visitedStepIds": [
+            "contact",
+            "signal"
+          ]
+        },
+        "mappingFirstRunComplete": false,
+        "resultState": "not_started",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T15:00:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "Preserve real legacy microinteraction facts. They do not encode the new ordered manual confirmations or assisted outcome."
+    },
+    {
+      "id": "W2-CONVERGENCE-PENDING",
+      "key": "gvo.station2.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/domain/checkpoints/world2Checkpoint.test.ts",
+        "sha256": "15cdd7b7f5fd5b26d44db5ffca379ddc9db6371aa83269f11dcdd6dc7e0dcd64",
+        "line": 218,
+        "anchor": "const pending: World2CheckpointV1"
+      },
+      "raw": "{\"activeLayerId\":\"resultado_mediado\",\"visitedLayerIds\":[\"planta_viva\",\"senal\",\"captura\",\"acondicionamiento\",\"mapeo\",\"resultado_mediado\"],\"highestUnlockedLayerOrder\":6,\"completedRequiredInteractions\":[\"plant_contact_readout_seen\",\"signal_measured_wave_seen\",\"capture_data_readout_seen\"],\"capture\":{\"currentStepId\":\"system\",\"visitedStepIds\":[\"contact\",\"signal\",\"system\"]},\"mappingFirstRunComplete\":true,\"resultState\":\"convergence_pending\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T15:00:00.000Z\"}",
+      "raw_sha256": "6c08215f73299ba0568855536167435a357002fccc1268e64bfa8fb82a42cbdd",
+      "value": {
+        "activeLayerId": "resultado_mediado",
+        "visitedLayerIds": [
+          "planta_viva",
+          "senal",
+          "captura",
+          "acondicionamiento",
+          "mapeo",
+          "resultado_mediado"
+        ],
+        "highestUnlockedLayerOrder": 6,
+        "completedRequiredInteractions": [
+          "plant_contact_readout_seen",
+          "signal_measured_wave_seen",
+          "capture_data_readout_seen"
+        ],
+        "capture": {
+          "currentStepId": "system",
+          "visitedStepIds": [
+            "contact",
+            "signal",
+            "system"
+          ]
+        },
+        "mappingFirstRunComplete": true,
+        "resultState": "convergence_pending",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T15:00:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "All six visited layers are compatible with convergence still pending. No final presentation/closure evidence."
+    },
+    {
+      "id": "W2-LEGACY-READY",
+      "key": "gvo.station2.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/domain/checkpoints/world2Checkpoint.test.ts",
+        "sha256": "15cdd7b7f5fd5b26d44db5ffca379ddc9db6371aa83269f11dcdd6dc7e0dcd64",
+        "line": 231,
+        "anchor": "const ready: World2CheckpointV1"
+      },
+      "raw": "{\"activeLayerId\":\"resultado_mediado\",\"visitedLayerIds\":[\"planta_viva\",\"senal\",\"captura\",\"acondicionamiento\",\"mapeo\",\"resultado_mediado\"],\"highestUnlockedLayerOrder\":6,\"completedRequiredInteractions\":[\"plant_contact_readout_seen\",\"signal_measured_wave_seen\",\"capture_data_readout_seen\"],\"capture\":{\"currentStepId\":\"system\",\"visitedStepIds\":[\"contact\",\"signal\",\"system\"]},\"mappingFirstRunComplete\":true,\"resultState\":\"ready_to_continue\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T15:00:00.000Z\"}",
+      "raw_sha256": "a9ae53baa85ac94d2ed957332484db573144a1d190dbb687960471847d17231b",
+      "value": {
+        "activeLayerId": "resultado_mediado",
+        "visitedLayerIds": [
+          "planta_viva",
+          "senal",
+          "captura",
+          "acondicionamiento",
+          "mapeo",
+          "resultado_mediado"
+        ],
+        "highestUnlockedLayerOrder": 6,
+        "completedRequiredInteractions": [
+          "plant_contact_readout_seen",
+          "signal_measured_wave_seen",
+          "capture_data_readout_seen"
+        ],
+        "capture": {
+          "currentStepId": "system",
+          "visitedStepIds": [
+            "contact",
+            "signal",
+            "system"
+          ]
+        },
+        "mappingFirstRunComplete": true,
+        "resultState": "ready_to_continue",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T15:00:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "supporting_evidence_only -> legacy_unknown without external provenance",
+      "interpretation": "The coherent old ready is support only. Current continueActivity can promote it without checking sonicConvergenceComplete, and no OBS03 revision or manual Music closure exists."
+    },
+    {
+      "id": "W2-PARTIAL-PLUS-GLOBAL",
+      "key": "gvo.station2.v1",
+      "kind": "source_object",
+      "source": {
+        "path": "src/screens/World2Root/World2RootScreen.test.tsx",
+        "sha256": "8234f2eefed7456bb917eee27e2d127272595f2e34b9fd7bc9506027079c4d82",
+        "line": 2370,
+        "anchor": "it(\"DEBT_005 completion global prevalece y conserva active layer válida\""
+      },
+      "raw": "{\"activeLayerId\":\"senal\",\"visitedLayerIds\":[\"planta_viva\",\"senal\"],\"highestUnlockedLayerOrder\":3,\"completedRequiredInteractions\":[\"plant_contact_readout_seen\"],\"capture\":{\"currentStepId\":\"contact\",\"visitedStepIds\":[\"contact\"]},\"mappingFirstRunComplete\":false,\"resultState\":\"not_started\",\"schemaVersion\":1,\"updatedAt\":\"2026-08-05T18:01:00.000Z\"}",
+      "raw_sha256": "3586cd121242e6c469510643a2acc95042256b203320692e0f7c8265e0238337",
+      "value": {
+        "activeLayerId": "senal",
+        "visitedLayerIds": [
+          "planta_viva",
+          "senal"
+        ],
+        "highestUnlockedLayerOrder": 3,
+        "completedRequiredInteractions": [
+          "plant_contact_readout_seen"
+        ],
+        "capture": {
+          "currentStepId": "contact",
+          "visitedStepIds": [
+            "contact"
+          ]
+        },
+        "mappingFirstRunComplete": false,
+        "resultState": "not_started",
+        "schemaVersion": 1,
+        "updatedAt": "2026-08-05T18:01:00.000Z"
+      },
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "ok_by_static_source",
+      "r1_classification": "legacy_unknown",
+      "interpretation": "Existing test pairs it with global [1,2]. Current readInitialWorld2State synthesizes completedWorld2CheckpointState because activityContinued is absent. Migrate before mounting consumer."
+    },
+    {
+      "id": "W2-UNKNOWN-VERSION",
+      "key": "gvo.station2.v1",
+      "kind": "raw_string",
+      "source": {
+        "path": "src/domain/checkpoints/world2Checkpoint.test.ts",
+        "sha256": "15cdd7b7f5fd5b26d44db5ffca379ddc9db6371aa83269f11dcdd6dc7e0dcd64",
+        "line": 107,
+        "anchor": "'{\"schemaVersion\":77,\"opaque\":\"world-two\"}'"
+      },
+      "raw": "{\"schemaVersion\":77,\"opaque\":\"world-two\"}",
+      "raw_sha256": "3fb7ec14e9c0b3197d428907e1c98709867b9a58d4262ff50ed75ec978a2093b",
+      "value": "{\"schemaVersion\":77,\"opaque\":\"world-two\"}",
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "unknown_version",
+      "r1_classification": "recovery",
+      "interpretation": "Preserve exact bytes."
+    },
+    {
+      "id": "W2-CORRUPT",
+      "key": "gvo.station2.v1",
+      "kind": "raw_string",
+      "source": {
+        "path": "src/domain/checkpoints/world2Checkpoint.test.ts",
+        "sha256": "15cdd7b7f5fd5b26d44db5ffca379ddc9db6371aa83269f11dcdd6dc7e0dcd64",
+        "line": 106,
+        "anchor": "\"{world-two-corrupt::raw\""
+      },
+      "raw": "{world-two-corrupt::raw",
+      "raw_sha256": "3275ca9bc6ce82aa113370476bf20593b01be4f9a9b6a19d16c556c366b93c45",
+      "value": "{world-two-corrupt::raw",
+      "fixture_bytes_note": "Canonical serialized bytes from a source/test object, not recovered visitor storage. Values and types are preserved; no browser or tests were executed.",
+      "current_validator_result_inferred_only": "corrupt",
+      "r1_classification": "recovery",
+      "interpretation": "Preserve exact bytes."
+    }
+  ],
+  "existing_test_partial_shapes": [
+    {
+      "id": "W1-CONTINUED-EMPTY",
+      "key": "gvo.station1.v1",
+      "kind": "existing_test_expected_persisted_subset",
+      "source": {
+        "path": "src/screens/World1Root/World1RootScreen.test.tsx",
+        "sha256": "7859076a0d80011c3e27904dee5835c95d4078b5c3d584ab93d348826c2df26e",
+        "line": 1068,
+        "anchor": "it(\"omitir conserva visitas reales vacías al reabrir incluso tras el QR\""
+      },
+      "persisted_subset": {
+        "activeConcept": "intro",
+        "highestReachedConcept": "intro",
+        "visitedConcepts": [],
+        "activityContinued": true
+      },
+      "schema_from_writer": 1,
+      "timestamp": "Generated by store.write now(); not fixed in this test and deliberately not invented.",
+      "raw": null,
+      "r1_classification": "legacy_pending",
+      "interpretation": "Real persisted shape asserted by source test. No roots were visited. QR opening alone saves activityContinued. Preserve original bytes when observed in migration; no browser storage was read here."
+    },
+    {
+      "id": "W2-CONTINUED-PARTIAL",
+      "key": "gvo.station2.v1",
+      "kind": "existing_test_expected_persisted_subset",
+      "source": {
+        "path": "src/screens/World2Root/World2RootScreen.test.tsx",
+        "sha256": "8234f2eefed7456bb917eee27e2d127272595f2e34b9fd7bc9506027079c4d82",
+        "line": 2564,
+        "anchor": "it(\"continúa opcionalmente sin inventar lecturas y conserva el detalle tras QR y reload\""
+      },
+      "persisted_subset": {
+        "activityContinued": true,
+        "visitedLayerIds": [
+          "planta_viva"
+        ],
+        "completedRequiredInteractions": [],
+        "mappingFirstRunComplete": false,
+        "resultState": "not_started"
+      },
+      "other_state_from_freshWorld2CheckpointState": {
+        "activeLayerId": "planta_viva",
+        "highestUnlockedLayerOrder": 2,
+        "capture": {
+          "currentStepId": "contact",
+          "visitedStepIds": [
+            "contact"
+          ]
+        }
+      },
+      "schema_from_writer": 1,
+      "timestamp": "Generated by store.write now(); not fixed in this test and deliberately not invented.",
+      "raw": null,
+      "r1_classification": "legacy_pending",
+      "interpretation": "Current optional-continuation source test preserves partial data after QR and reload. These are not six essential confirmations."
+    }
+  ],
+  "classification_limits": {
+    "not_observed": [
+      "No physical/browser/user storage read",
+      "No current OBS03 valid fixture exists yet",
+      "No OBS03 corrupt fixture exists because new schema is not implemented",
+      "No source/test seed may be classified grandfathered merely by its fabricated global/session values"
+    ],
+    "grandfathering": "None of these fixtures independently establishes an actual active Mirador context. A seeded full prefix is a test fixture, not visitor provenance.",
+    "route_credit": "Preserve original coherent global prefix separately from essential confirmation. Do not claim QR receipt or build provenance.",
+    "timestamps": "No fixture timestamp is used as provenance evidence. Partial expected shapes intentionally omit runtime-generated timestamp and raw hash."
+  },
+  "editorial": {
+    "records": 37,
+    "actions": {
+      "hide": 1,
+      "keep": 10,
+      "replace": 26
+    },
+    "checks": [
+      {
+        "id": "EL_ab3981b344ae",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "EL_495eef2dd253",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_bda987858a09",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_bda987858a09::s01",
+            "start": 0,
+            "end": 110,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_bda987858a09::s02",
+            "start": 110,
+            "end": 230,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_8dca94bf5283",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_8dca94bf5283::s01",
+            "start": 0,
+            "end": 101,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_8dca94bf5283::s02",
+            "start": 101,
+            "end": 177,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_8dca94bf5283::s03",
+            "start": 177,
+            "end": 311,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_08d39e75680b",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_08d39e75680b::s01",
+            "start": 0,
+            "end": 141,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_08d39e75680b::s02",
+            "start": 141,
+            "end": 306,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_08d39e75680b::s03",
+            "start": 306,
+            "end": 350,
+            "exact": true
+          }
+        ],
+        "errata": [
+          {
+            "source_id": "TXT_1_08d39e75680b",
+            "start": 89,
+            "end": 97,
+            "before": "percebir",
+            "after": "percibir",
+            "publication_disposition": "eligible_if_bound_to_public_consumer",
+            "source_span_exact": true
+          }
+        ]
+      },
+      {
+        "id": "TXT_1_b3de95b919e3",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_b3de95b919e3::s01",
+            "start": 0,
+            "end": 65,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_fbe435b5a20d",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_fbe435b5a20d::s01",
+            "start": 0,
+            "end": 64,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_5afe5e801ebf",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_5afe5e801ebf::s01",
+            "start": 0,
+            "end": 106,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_5afe5e801ebf::s02",
+            "start": 106,
+            "end": 164,
+            "exact": true
+          }
+        ],
+        "errata": [
+          {
+            "source_id": "TXT_1_5afe5e801ebf",
+            "start": 106,
+            "end": 113,
+            "before": "Escanéa",
+            "after": "Escanea",
+            "publication_disposition": "eligible_if_bound_to_public_consumer",
+            "source_span_exact": true
+          }
+        ]
+      },
+      {
+        "id": "TXT_2_8263a577d1f3",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_8263a577d1f3::s01",
+            "start": 0,
+            "end": 7,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_236d9f952122",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_236d9f952122::s01",
+            "start": 0,
+            "end": 9,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "EL_64f9f19457b9",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_b018f753fe2c",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_7b2cea3bf230",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_7b2cea3bf230::s01",
+            "start": 0,
+            "end": 45,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_7b2cea3bf230::s02",
+            "start": 45,
+            "end": 86,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_48e0d1fa9385",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_a49aff973eec",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_a49aff973eec::s01",
+            "start": 0,
+            "end": 66,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_a49aff973eec::s02",
+            "start": 66,
+            "end": 268,
+            "exact": true
+          }
+        ],
+        "errata": [
+          {
+            "source_id": "TXT_2_a49aff973eec",
+            "start": 70,
+            "end": 80,
+            "before": "electródos",
+            "after": "electrodos",
+            "publication_disposition": "eligible_if_bound_to_public_consumer",
+            "source_span_exact": true
+          }
+        ]
+      },
+      {
+        "id": "EL_b8fefd103241",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_a491f0e2fef2",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_a491f0e2fef2::s01",
+            "start": 0,
+            "end": 25,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "EL_b351b0d9d3fb",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_9be17e585b70",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_9be17e585b70::s01",
+            "start": 0,
+            "end": 11,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_bf6b124a45bb",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_bf6b124a45bb::s01",
+            "start": 0,
+            "end": 56,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_bf6b124a45bb::s02",
+            "start": 56,
+            "end": 320,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_bf6b124a45bb::s03",
+            "start": 320,
+            "end": 424,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_cd264feb015e",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_cd264feb015e::s01",
+            "start": 0,
+            "end": 26,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_cd264feb015e::s02",
+            "start": 26,
+            "end": 129,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_05f8c5d40f25",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_05f8c5d40f25::s01",
+            "start": 0,
+            "end": 118,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_c902451f351c",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_c902451f351c::s01",
+            "start": 0,
+            "end": 32,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_c902451f351c::s02",
+            "start": 32,
+            "end": 105,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_ab8acbe9b03f",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_410038ab009e",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_410038ab009e::s01",
+            "start": 0,
+            "end": 48,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_410038ab009e::s02",
+            "start": 48,
+            "end": 113,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_5a930f3ad791",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_5a930f3ad791::s01",
+            "start": 0,
+            "end": 87,
+            "exact": true
+          }
+        ],
+        "errata": [
+          {
+            "source_id": "TXT_2_5a930f3ad791",
+            "start": 63,
+            "end": 73,
+            "before": "suceptible",
+            "after": "susceptible",
+            "publication_disposition": "eligible_if_bound_to_public_consumer",
+            "source_span_exact": true
+          }
+        ]
+      },
+      {
+        "id": "TXT_2_eb57f9ae7ee6",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_eb57f9ae7ee6::s01",
+            "start": 0,
+            "end": 34,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_a511f271b4fa",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_8baa6441ea68",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_8baa6441ea68::s01",
+            "start": 0,
+            "end": 55,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_8baa6441ea68::s02",
+            "start": 55,
+            "end": 193,
+            "exact": true
+          },
+          {
+            "id": "TXT_1_8baa6441ea68::s03",
+            "start": 193,
+            "end": 271,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_355423610a9d",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_355423610a9d::s01",
+            "start": 0,
+            "end": 55,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_667068310376",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_2_3ba969bcbd1f",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_2_3ba969bcbd1f::s01",
+            "start": 0,
+            "end": 36,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_3ba969bcbd1f::s02",
+            "start": 36,
+            "end": 72,
+            "exact": true
+          },
+          {
+            "id": "TXT_2_3ba969bcbd1f::s03",
+            "start": 72,
+            "end": 130,
+            "exact": true
+          }
+        ],
+        "errata": [
+          {
+            "source_id": "TXT_2_3ba969bcbd1f",
+            "start": 72,
+            "end": 79,
+            "before": "Escanéa",
+            "after": "Escanea",
+            "publication_disposition": "eligible_if_bound_to_public_consumer",
+            "source_span_exact": true
+          }
+        ]
+      },
+      {
+        "id": "TXT_2_0345c8892098",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_1bc82f9b063e",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_1bc82f9b063e::s01",
+            "start": 0,
+            "end": 47,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "EL_bcf16f585f54",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      },
+      {
+        "id": "TXT_1_f317c06a89cf",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [
+          {
+            "id": "TXT_1_f317c06a89cf::s01",
+            "start": 0,
+            "end": 12,
+            "exact": true
+          }
+        ],
+        "errata": []
+      },
+      {
+        "id": "EL_30af9418e731",
+        "writer_matches_original": true,
+        "writer_text_hash_matches": true,
+        "segments": [],
+        "errata": []
+      }
+    ],
+    "all_writer_records_match": true,
+    "all_segments_exact": true,
+    "all_errata_source_spans_exact": true,
+    "rule": "Bind literal by semantic consumer/action. keep does not publish latent replacement; hide visual row remains visual intent, no positional CSS copied. Apply exact spans then explicit patches; maintain full source availability. EN is separately attributed translation."
+  },
+  "assets": {
+    "current_files": [
+      {
+        "path": "assets-source/editorial-2026-10-23/observaciones-03/reference-swipe-hand.png",
+        "sha256": "0567ab00b29d24b844c5c2c195c5b4c3cb10b3ce9032daf84e0e763da515f495"
+      },
+      {
+        "path": "src/components/GestureHint/gestureHintAssets.ts",
+        "sha256": "daef58c8fca6ee5c8bffdd1f5999900f219344d3cb701f824a190fcddc4cfbe1"
+      },
+      {
+        "path": "src/screens/World1Root/world1RootAssets.ts",
+        "sha256": "32c74fc034726ffde005136c0d242e1d09999532c5bc84829dc4e50463a17d71"
+      },
+      {
+        "path": "src/screens/World2Root/world2RuntimeAssets.ts",
+        "sha256": "d5cc18b3c364d25c35d6cbe93f5477847d5ee4cc08e5e06ca339fc2b06c22fec"
+      },
+      {
+        "path": "src/screens/World2Root/World2LiaActor.tsx",
+        "sha256": "7c2047ad6271f29d7c028eb80842676d160c92e330beed4f6df30c18ffaa9e35"
+      },
+      {
+        "path": "src/screens/World2Root/world2LiaLayerProfiles.ts",
+        "sha256": "92390717fee3a42a592181195528ab0b85c26b3ff6b22b37139989b08484af6d"
+      },
+      {
+        "path": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_top_v1.png",
+        "sha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515"
+      },
+      {
+        "path": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_upper_v1.png",
+        "sha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9"
+      },
+      {
+        "path": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_upper_v1.png",
+        "sha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4"
+      },
+      {
+        "path": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_left_lower_v1.png",
+        "sha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7"
+      },
+      {
+        "path": "public/assets/gvo/shared/lia/current-used/portada-intro/lia_rig_petal_right_lower_v1.png",
+        "sha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5"
+      }
+    ],
+    "hand": {
+      "id": "OBS03-ASSET-MANO-DESLIZAR",
+      "status": "SPECIFIED_NOT_GENERATED",
+      "reference_verified_in_repo": true,
+      "runtime_path": "NOT_YET_PRODUCED_OR_REGISTERED_IN_OBS03",
+      "animation_contract": {
+        "method": "one pose translated along axis; trail DOM/SVG or alpha strip derived offline",
+        "frames_required": 1,
+        "timing_starting_point_ms": 1100,
+        "travel_starting_point_css_px": 32,
+        "repeat": "at most two introductory cycles; stop after relevant interaction",
+        "orientations": [
+          "horizontal",
+          "vertical",
+          "mirrored only where matching direction requires it"
+        ],
+        "no_forced_40_frame_atlas": true
+      },
+      "consumer_owner": "root owns GestureHint; agent B only consumes API"
+    },
+    "lia_roles": [
+      {
+        "id": "OBS03-ASSET-LIA-SOFT-TRAVEL",
+        "status": "SPECIFIED_NOT_GENERATED",
+        "role": "travel",
+        "consumer": [
+          "src/screens/World1Root/World1RootScreen.tsx",
+          "src/screens/World2Root/World2LiaActor.tsx",
+          "src/screens/World4Root/World4LiaGuide.tsx",
+          "src/screens/World5Root/World5RootScreen.tsx"
+        ],
+        "production_condition": "The action is required; a newly choreographed existing rig can satisfy it without generating a bitmap. Inspect actual source layers and the real room before choosing rig or clip. Generate only the missing role/style variant; do not blindly produce six sheets. Six frames and the stated dimensions are the compact production proposal, not a human-approved immutable requirement. Moving one unchanged full-body bitmap across the screen is insufficient: the role needs a visible coordinated orientation/petal/body response plus the room event and arrival behavior. A layered rig may implement this without new raster frames."
+      },
+      {
+        "id": "OBS03-ASSET-LIA-SOFT-PRESENT",
+        "status": "SPECIFIED_NOT_GENERATED",
+        "role": "present",
+        "consumer": [
+          "src/screens/World1Root/World1RootScreen.tsx",
+          "src/screens/World2Root/World2LiaActor.tsx",
+          "src/screens/World4Root/World4LiaGuide.tsx",
+          "src/screens/World5Root/World5RootScreen.tsx"
+        ],
+        "production_condition": "The action is required; a newly choreographed existing rig can satisfy it without generating a bitmap. Inspect actual source layers and the real room before choosing rig or clip. Generate only the missing role/style variant; do not blindly produce six sheets. Six frames and the stated dimensions are the compact production proposal, not a human-approved immutable requirement. Moving one unchanged full-body bitmap across the screen is insufficient: the role needs a visible coordinated orientation/petal/body response plus the room event and arrival behavior. A layered rig may implement this without new raster frames."
+      },
+      {
+        "id": "OBS03-ASSET-LIA-SOFT-RESPOND",
+        "status": "SPECIFIED_NOT_GENERATED",
+        "role": "respond",
+        "consumer": [
+          "src/screens/World1Root/World1RootScreen.tsx",
+          "src/screens/World2Root/World2LiaActor.tsx",
+          "src/screens/World4Root/World4LiaGuide.tsx",
+          "src/screens/World5Root/World5RootScreen.tsx"
+        ],
+        "production_condition": "The action is required; a newly choreographed existing rig can satisfy it without generating a bitmap. Inspect actual source layers and the real room before choosing rig or clip. Generate only the missing role/style variant; do not blindly produce six sheets. Six frames and the stated dimensions are the compact production proposal, not a human-approved immutable requirement. Moving one unchanged full-body bitmap across the screen is insufficient: the role needs a visible coordinated orientation/petal/body response plus the room event and arrival behavior. A layered rig may implement this without new raster frames."
+      }
+    ],
+    "current_consumers": "World1 img liaAssetByConcept plus expression FX; World2 World2LiaActor renders profile.pose full-body image. Neither currently instantiates shared petal rig.",
+    "existing_rig": "Five individually named petal bitmaps exist in shared portada-intro folder; suitability for new room choreography still needs root decision and later visual validation.",
+    "readiness": "world1RootInitial six registered images plus deferred concept/ready groups; world2RootInitial derives world2InitialRuntimeAssetSources. These current manifests are not certified final first-restored-state resource contracts. Root owns destination preparation/manifest; agent will supply the accepted state resource mapping after R3."
+  },
+  "questions_for_r3": [
+    {
+      "id": "R3-B-01",
+      "priority": "P0",
+      "question": "Confirm that assisted II advances in the new essential registry without filling legacy completedRequiredInteractions/capture/mapping fields. Is a root-owned new typed checkpoint/schema required, or should the existing manual checkpoint remain solely a historical fact source?",
+      "why": "The current v1 validator cannot represent assisted later-layer navigation honestly."
+    },
+    {
+      "id": "R3-B-02",
+      "priority": "P0",
+      "question": "Publish the exact root API for current-revision presented/confirmed/closed events, atomic failure/retry, validated Mirador exception and passive preparation lifecycle before I/II implementation.",
+      "why": "R1 defines semantic fields but not callable interfaces. A protected render must not write visits/confirmations, run arrival timers or announce live content."
+    },
+    {
+      "id": "R3-B-03",
+      "priority": "P0",
+      "question": "Clarify legacy_unknown with historical visited/opened evidence but no manual closure IDs: is the first unproven OBS03 confirmation always intro/Plant, preserving old facts as support only?",
+      "why": "Old visits and highest are not explicit confirmations; they cannot prove the four/six new ordered steps. No local fixture proves grandfathered Mirador."
+    },
+    {
+      "id": "R3-B-04",
+      "priority": "P1",
+      "question": "Confirm role-specific Lía implementation source: authorize/adapt the existing shared five-petal layered rig for I/II, or supply compact missing action clip. Confirm named hand runtime path and pivot once root produces/registers it.",
+      "why": "Current I and II render full-body pose bitmaps. The shared five-petal rig files exist but are not their active consumers. Translation/pose swap alone does not meet R1 new articulation."
+    },
+    {
+      "id": "R3-B-05",
+      "priority": "P1",
+      "question": "Confirm root locale-aware content/functional-copy interface, catalog ownership and when ES/EN translations plus exact-spans/errata IDs are frozen for I/II.",
+      "why": "37 source records are available and can be bound locally, but changing document language does not refresh current static slot exports."
+    }
+  ],
+  "execution": {
+    "runtime_source_edits": 0,
+    "asset_edits": 0,
+    "test_edits": 0,
+    "test_runs": 0,
+    "build_runs": 0,
+    "browser_runs": 0,
+    "service_changes": 0,
+    "progress_changes": 0,
+    "dist_changes": 0,
+    "writes": [
+      "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/rooms-1-2/R2_TECNICA.json",
+      "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/rooms-1-2/R2_TECNICA.md"
+    ]
+  },
+  "resume": "Wait for root to register R3 reconciled contract and shared interfaces, then implement only accepted I/II scope."
+}

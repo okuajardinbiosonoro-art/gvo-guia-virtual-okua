@@ -201,6 +201,7 @@ test("GVO_DEBT_005 recorrido parcial restaura readouts, Captura, visited y gates
 test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await openWorld2Fresh(page);
   await completeCaptureThroughMapping(page);
   const mapping = page.locator(
@@ -214,8 +215,8 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(mapping).toHaveAttribute("data-world2-mapping-step", "1");
   await expect(mapping).toHaveAttribute(
-    "data-world2-mapping-review-enabled",
-    "true",
+    "data-world2-mapping-first-run",
+    "complete",
     { timeout: 12_000 },
   );
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -237,11 +238,19 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
     "data-world2-option6-stage",
     "intensity",
   );
+  await expect(result).toHaveAttribute(
+    "data-world2-option6-stage",
+    "resolved",
+    { timeout: 12_000 },
+  );
   await expect(
     page.locator('[data-interstation-origin-world="2"]'),
-  ).toBeVisible({
-    timeout: 12_000,
-  });
+  ).toBeVisible();
+  await page.locator('[data-interstation-qr-action="open"]').click();
+  await page.getByRole("button", { name: "Cerrar cámara" }).click();
+  await expect(
+    page.locator('[data-interstation-origin-world="2"]'),
+  ).toBeVisible();
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(result).toHaveAttribute("data-world2-option6-stage", "resolved");
   await expect(result).toHaveAttribute("data-world2-option6-complete", "true");
@@ -260,6 +269,7 @@ test("GVO_DEBT_005 Mapeo y Resultado reinician pending y conservan complete", as
 test("GVO_DEBT_005 error y retry preservan UI y no repiten timers", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await openWorld2Fresh(page);
   await installWorld2WriteFailureSwitch(page);
   await failNextWorld2Write(page);
@@ -276,7 +286,7 @@ test("GVO_DEBT_005 error y retry preservan UI y no repiten timers", async ({
 
   await completeCaptureThroughMapping(page);
   await expect(
-    page.locator('[data-world2-mapping-review-enabled="true"]'),
+    page.locator('[data-world2-mapping-first-run="complete"]'),
   ).toBeVisible({ timeout: 12_000 });
   await page.locator('[data-world2-layer="resultado_mediado"]').click();
   await failNextWorld2Write(page);
@@ -290,6 +300,7 @@ test("GVO_DEBT_005 error y retry preservan UI y no repiten timers", async ({
       timeout: 7_000,
     },
   );
+  await page.locator('[data-interstation-qr-action="open"]').click();
   await expect(page.getByRole("button", { name: "Reintentar" })).toBeFocused({
     timeout: 4_000,
   });

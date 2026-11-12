@@ -5,16 +5,19 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { StrictMode } from "react";
+import { StrictMode, type ReactNode } from "react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { JourneyResetResult } from "../../app/reset/resetGvoJourney";
+import { JourneyActivationProvider } from "../../app/journey/JourneyActivation";
 import {
   FINAL_OPERATIONAL_SLOT_COUNT,
   FINAL_REQUIRED_SLOT_COUNT,
   finalEditorialSlots,
+  getFinalEditorialSlots,
 } from "../../content/finalEditorialSlots";
+import { applyDocumentLanguage, writeLanguagePreference } from "../../app/preferences/languagePreference";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 import finalRootCss from "./FinalRootScreen.css?raw";
 import { FinalRootScreen, type FinalRootScreenProps } from "./FinalRootScreen";
@@ -25,12 +28,20 @@ function LocationProbe() {
   return <span data-testid="current-location">{location.pathname}</span>;
 }
 
+// Consumer-unit fixture: the real provider publishes an explicitly active final
+// screen. Preparation/admission are tested separately; bare consumers are inert.
+const activeFinalContext = { active: true, attemptId: "final-consumer-unit", screen: "final", mode: "normal", authorized: true, reviewReturnAllowed: false } as const;
+function ActiveFinalFixture({ children }: { children: ReactNode }) {
+  return <JourneyActivationProvider context={activeFinalContext}>{children}</JourneyActivationProvider>;
+}
+
 function renderFinalRootScreen(props: FinalRootScreenProps = {}) {
   return render(
     <MemoryRouter initialEntries={["/final"]}>
       <FinalRootScreen {...props} />
       <LocationProbe />
     </MemoryRouter>,
+    { wrapper: ActiveFinalFixture },
   );
 }
 
@@ -91,8 +102,8 @@ describe("FinalRootScreen", () => {
     expect(
       Object.values(finalEditorialSlots).every(
         (slot) =>
-          slot.status === "FINAL" &&
-          slot.source === "human_approved" &&
+          ["FINAL", "REVIEW"].includes(slot.status) &&
+          ["human_approved", "editorial_excel"].includes(slot.source) &&
           slot.locale === "es" &&
           !slot.text.startsWith("TEMP"),
       ),
@@ -222,15 +233,15 @@ describe("FinalRootScreen", () => {
       ),
     ).toBeInTheDocument();
 
-    for (const access of ["I", "II", "III", "IV", "V"]) {
-      expect(screen.getByText(new RegExp(`^${access} —`))).toBeInTheDocument();
-    }
+    expect(Array.from(container.querySelectorAll(".final-root-access__label"), label => label.textContent)).toEqual([
+      "Raíz", "Pulso invisible", "Cuaderno de práctica", "Sistema biosonoro", "OKÚA, arte sensorial",
+    ]);
     const credits = container.querySelector(
       '[data-final-slot-id="FINAL_CREDITS_01"]',
     );
     expect(credits).toHaveTextContent("Desarrollado por Momotto S.A.S.");
-    expect(credits).toHaveTextContent("A cargo del Ing. José David P. Z.");
-    expect(credits?.querySelector("br")).toBeInTheDocument();
+    expect(credits).not.toHaveTextContent("A cargo del Ing. José David P. Z.");
+    expect(credits?.querySelector("br")).not.toBeInTheDocument();
   });
 
   it("navega a cada Mundo con un Link y una sola activación", () => {
@@ -240,31 +251,31 @@ describe("FinalRootScreen", () => {
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_I_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_I_CONFIRM_01.text,
-        label: finalEditorialSlots.FINAL_ACCESS_I_LABEL_01.text,
+        label: "Raíz",
         route: "/estacion/1",
       },
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_II_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_II_CONFIRM_01.text,
-        label: finalEditorialSlots.FINAL_ACCESS_II_LABEL_01.text,
+        label: "Pulso invisible",
         route: "/estacion/2",
       },
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_III_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_III_CONFIRM_01.text,
-        label: finalEditorialSlots.FINAL_ACCESS_III_LABEL_01.text,
+        label: "Cuaderno de práctica",
         route: "/estacion/3",
       },
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_IV_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_IV_CONFIRM_01.text,
-        label: finalEditorialSlots.FINAL_ACCESS_IV_LABEL_01.text,
+        label: "Sistema biosonoro",
         route: "/estacion/4",
       },
       {
         accessible: finalEditorialSlots.FINAL_ACCESSIBLE_ACCESS_V_01.text,
         confirm: finalEditorialSlots.FINAL_ACCESS_V_CONFIRM_01.text,
-        label: finalEditorialSlots.FINAL_ACCESS_V_LABEL_01.text,
+        label: "OKÚA, arte sensorial",
         route: "/estacion/5",
       },
     ];
@@ -612,6 +623,7 @@ describe("FinalRootScreen", () => {
           <LocationProbe />
         </MemoryRouter>
       </StrictMode>,
+      { wrapper: ActiveFinalFixture },
     );
 
     fireEvent.click(
@@ -708,5 +720,71 @@ describe("FinalRootScreen", () => {
     expect(finalRootCss).not.toMatch(
       /@keyframes|\banimation\s*:|\btransition\s*:/i,
     );
+  });
+
+  it("elige EN después de importar y vuelve a ES sin remontar Lía ni cambiar los accesos", () => {
+    writeLanguagePreference("en");
+    applyDocumentLanguage();
+    const en = getFinalEditorialSlots("en");
+    const { container, rerender } = renderFinalRootScreen();
+    const lia = container.querySelector("[data-lia-motion-phase]");
+    expect(document.documentElement.lang).toBe("en");
+    expect(container.querySelector("[data-final-editorial-locale]")).toHaveAttribute("data-final-editorial-locale", "en");
+    for (const id of ["FINAL_TITLE_01", "FINAL_SUBTITLE_01", "FINAL_LIA_MESSAGE_01", "FINAL_AMB_01", "FINAL_HELP_01", "FINAL_CREDITS_01", "FINAL_BACK_HOME_HELP_01"] as const) {
+      expect(container.querySelector(`[data-final-slot-id="${id}"]`)).toHaveTextContent(en[id].text);
+      expect(container.querySelector(`[data-final-slot-id="${id}"]`)).toHaveAttribute("data-editorial-status", "REVIEW");
+    }
+    expect(screen.getByLabelText(en.FINAL_ACCESSIBLE_SCENE_01.text)).toBeInTheDocument();
+    for (const [roman, label] of [["I", "Root"], ["II", "Invisible pulse"], ["III", "Practice notebook"], ["IV", "Biosonic system"], ["V", "OKÚA, sensory art"]] as const) {
+      const accessible = en[`FINAL_ACCESSIBLE_ACCESS_${roman}_01`];
+      expect(screen.getByRole("link", { name: accessible.text })).toHaveTextContent(label);
+      expect(container.querySelector(`[data-final-slot-id="FINAL_ACCESS_${roman}_CONFIRM_01"]`)).toHaveTextContent(en[`FINAL_ACCESS_${roman}_CONFIRM_01`].text);
+    }
+    expect(container.querySelector("[data-final-access-confirm-templates]")).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_BACK_HOME_01.text })).toHaveTextContent("Back to home");
+    expect(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_RESTART_01.text })).toHaveTextContent("Restart tour");
+    const routes = Array.from(container.querySelectorAll("a[data-final-access-id]"), (link) => link.getAttribute("href"));
+    writeLanguagePreference("es");
+    applyDocumentLanguage();
+    rerender(<MemoryRouter initialEntries={["/final"]}><FinalRootScreen /><LocationProbe /></MemoryRouter>);
+    expect(container.querySelector("[data-lia-motion-phase]")).toBe(lia);
+    expect(container.querySelector("[data-final-editorial-locale]")).toHaveAttribute("data-final-editorial-locale", "es");
+    expect(document.documentElement.lang).toBe("es");
+    expect(screen.getByText(finalEditorialSlots.FINAL_CREDITS_01.text)).toBeInTheDocument();
+    expect(Array.from(container.querySelectorAll("a[data-final-access-id]"), (link) => link.getAttribute("href"))).toEqual(routes);
+  });
+
+  it("mantiene suspendidos el greeting y el foco cuando el consumidor aún no está activado", () => {
+    const { container } = render(<MemoryRouter initialEntries={["/final"]}><FinalRootScreen /></MemoryRouter>);
+    const lia = container.querySelector("[data-lia-motion-phase]");
+    act(() => vi.advanceTimersByTime(640));
+    expect(lia).toHaveAttribute("data-lia-motion-phase", "greeting");
+    expect(lia).toHaveAttribute("data-lia-motion-frame", "1");
+    fireEvent.click(screen.getByRole("button", { name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text }));
+    expect(screen.getByRole("button", { name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text })).not.toHaveFocus();
+  });
+
+  it.each([true, false])("localiza busy/error/retry EN y conserva la condición copySafe=%s", async (copySafe) => {
+    vi.spyOn(console, "error").mockImplementation(() => undefined);
+    writeLanguagePreference("en");
+    const en = getFinalEditorialSlots("en");
+    let finish!: (result: JourneyResetResult) => void;
+    const resetJourney = vi.fn().mockImplementationOnce(() => new Promise<JourneyResetResult>((resolve) => { finish = resolve; })).mockResolvedValueOnce({ deleted: [], durationMs: 1, ok: true, snapshotCount: 0, verifiedInitialState: true });
+    const { container } = renderFinalRootScreen({ resetJourney });
+    fireEvent.click(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_RESTART_01.text }));
+    expect(screen.getByLabelText(en.FINAL_RESTART_CONFIRM_01.text)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: en.FINAL_RESTART_CONFIRM_BTN_01.text }));
+    expect(screen.getByText(en.FINAL_RESTART_BUSY_01.text)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeDisabled();
+    await act(async () => { finish({ copySafe, durationMs: 1, errorCode: "rollback_failed", failedStage: "rollback", ok: false, rollbackAttempted: true, rollbackVerified: copySafe, snapshotCount: 1, snapshotCreated: true }); await Promise.resolve(); });
+    expect(container.querySelector('[data-final-slot-id="FINAL_RESTART_ERROR_01"]') !== null).toBe(copySafe);
+    if (copySafe) expect(screen.getByRole("status")).toHaveTextContent(en.FINAL_RESTART_ERROR_01.text);
+    else expect(container).not.toHaveTextContent("Your progress was preserved");
+    const retry = screen.getByRole("button", { name: "Retry" });
+    expect(retry).toHaveAttribute("data-editorial-status", "REVIEW");
+    await act(async () => { fireEvent.click(retry); await Promise.resolve(); });
+    expect(resetJourney).toHaveBeenCalledTimes(2);
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/portada");
   });
 });

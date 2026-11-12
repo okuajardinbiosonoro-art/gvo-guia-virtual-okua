@@ -2,6 +2,8 @@ import "./FinalRootScreen.css";
 
 import type { CSSProperties, MouseEvent, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
+import { readLanguagePreference } from "../../app/preferences/languagePreference";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -23,9 +25,9 @@ import {
 } from "../../app/routes";
 import {
   FINAL_REQUIRED_SLOT_COUNT,
-  finalEditorialSlots,
+  getFinalEditorialSlots,
 } from "../../content/finalEditorialSlots";
-import type { FinalEditorialSlotId } from "../../content/finalEditorialSlots";
+import type { FinalEditorialSlotId, FinalEditorialSlots } from "../../content/finalEditorialSlots";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 import { liaPreviewCopy } from "../../content/liaPreviewCopy";
 import {
@@ -137,9 +139,6 @@ const finalReviewAccesses: ReadonlyArray<FinalReviewAccess> = [
   },
 ] as const;
 
-const [finalCreditsPrimary, finalCreditsAttribution] =
-  finalEditorialSlots.FINAL_CREDITS_01.text.split("\n");
-
 function NineSlicePanel({
   asset,
   children,
@@ -164,9 +163,13 @@ function NineSlicePanel({
   );
 }
 
-function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
+function FinalAccessLink({ access, slots: finalEditorialSlots }: { access: FinalReviewAccess; slots: FinalEditorialSlots }) {
   const labelSlot = finalEditorialSlots[access.labelSlot];
   const accessibleSlot = finalEditorialSlots[access.accessibleSlot];
+  const roomNumberPrefix = `${access.id.toUpperCase()} — `;
+  const visibleLabel = labelSlot.text.startsWith(roomNumberPrefix)
+    ? labelSlot.text.slice(roomNumberPrefix.length)
+    : labelSlot.text;
   const navigate = useNavigate();
 
   function openReview(event: MouseEvent<HTMLAnchorElement>) {
@@ -196,7 +199,7 @@ function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
       data-final-review-world={access.world}
       data-final-accessible-slot-id={accessibleSlot.slotId}
       data-final-slot-id={labelSlot.slotId}
-      data-editorial-status="FINAL"
+      data-editorial-status={labelSlot.status}
       to={access.route}
       onClick={openReview}
       style={
@@ -219,7 +222,7 @@ function FinalAccessLink({ access }: { access: FinalReviewAccess }) {
         className="final-root-access__label-panel"
         insets="64 112 64 112"
       >
-        <span className="final-root-access__label">{labelSlot.text}</span>
+        <span className="final-root-access__label">{visibleLabel}</span>
       </NineSlicePanel>
     </Link>
   );
@@ -241,6 +244,10 @@ export function FinalRootScreen({
   resetJourney = resetGvoJourney,
 }: FinalRootScreenProps = {}) {
   const navigate = useNavigate();
+  const { active } = useJourneyActivity();
+  const locale = readLanguagePreference() ?? "es";
+  const finalEditorialSlots = getFinalEditorialSlots(locale);
+  const finalCredits = finalEditorialSlots.FINAL_CREDITS_01.text;
   const [experienceState, setExperienceState] =
     useState<FinalExperienceState>("final_intro");
   const [restartState, setRestartState] = useState<FinalRestartState>("idle");
@@ -258,14 +265,15 @@ export function FinalRootScreen({
 
   useEffect(() => {
     mountedRef.current = true;
-    if (liaPreviewEnabled && takeLiaReturn())
+    if (active && liaPreviewEnabled && takeLiaReturn())
       document.getElementById(liaPreviewEntryId)?.focus();
     return () => {
       mountedRef.current = false;
     };
-  }, []);
+  }, [active]);
 
   useEffect(() => {
+    if (!active) return;
     if (restartState === "confirm") {
       cancelButtonRef.current?.focus();
     } else if (restartState === "error") {
@@ -274,7 +282,7 @@ export function FinalRootScreen({
       returnFocusAfterCloseRef.current = false;
       restartTriggerRef.current?.focus();
     }
-  }, [restartState]);
+  }, [restartState, active]);
 
   function openRestartConfirmation() {
     setResetFailure(undefined);
@@ -361,8 +369,8 @@ export function FinalRootScreen({
         data-daily-counter="not_implemented"
         data-final-complete-experience="editorial_final"
         data-final-composition="static_portrait_landscape_human_approved_021l"
-        data-final-editorial-locale="es"
-        data-final-editorial-source="human_approved"
+        data-final-editorial-locale={locale}
+        data-final-editorial-source="delegated_integration_for_review"
         data-final-operational-slots="consumed_021o"
         data-final-root="mirador_editorial_final"
         data-final-screen="editorial_final_complete_experience"
@@ -427,14 +435,14 @@ export function FinalRootScreen({
             insets="112 192 112 192"
           >
             <h1
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots.FINAL_TITLE_01.status}
               data-final-slot-id="FINAL_TITLE_01"
               id="final-root-title"
             >
               {finalEditorialSlots.FINAL_TITLE_01.text}
             </h1>
             <p
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots.FINAL_SUBTITLE_01.status}
               data-final-slot-id="FINAL_SUBTITLE_01"
             >
               {finalEditorialSlots.FINAL_SUBTITLE_01.text}
@@ -444,15 +452,15 @@ export function FinalRootScreen({
 
         <div className="final-root-sr-only" data-final-accessible-copy="base">
           <p
-            data-editorial-status="FINAL"
+            data-editorial-status={finalEditorialSlots.FINAL_LIA_MESSAGE_01.status}
             data-final-slot-id="FINAL_LIA_MESSAGE_01"
           >
             {finalEditorialSlots.FINAL_LIA_MESSAGE_01.text}
           </p>
-          <p data-editorial-status="FINAL" data-final-slot-id="FINAL_AMB_01">
+          <p data-editorial-status={finalEditorialSlots.FINAL_AMB_01.status} data-final-slot-id="FINAL_AMB_01">
             {finalEditorialSlots.FINAL_AMB_01.text}
           </p>
-          <p data-editorial-status="FINAL" data-final-slot-id="FINAL_HELP_01">
+          <p data-editorial-status={finalEditorialSlots.FINAL_HELP_01.status} data-final-slot-id="FINAL_HELP_01">
             {finalEditorialSlots.FINAL_HELP_01.text}
           </p>
         </div>
@@ -464,7 +472,7 @@ export function FinalRootScreen({
         >
           {finalReviewAccesses.map((access) => (
             <p
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots[access.confirmSlot].status}
               data-final-slot-id={access.confirmSlot}
               key={access.confirmSlot}
             >
@@ -479,7 +487,7 @@ export function FinalRootScreen({
           data-final-state-equivalent="final_review"
         >
           {finalReviewAccesses.map((access) => (
-            <FinalAccessLink access={access} key={access.id} />
+            <FinalAccessLink access={access} slots={finalEditorialSlots} key={access.id} />
           ))}
         </div>
 
@@ -532,7 +540,7 @@ export function FinalRootScreen({
                 finalEditorialSlots.FINAL_ACCESSIBLE_BACK_HOME_01.text
               }
               className="final-root-action"
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots.FINAL_BACK_HOME_BTN_01.status}
               data-final-accessible-slot-id="FINAL_ACCESSIBLE_BACK_HOME_01"
               data-final-action="safe_navigation_portada"
               data-final-slot-id="FINAL_BACK_HOME_BTN_01"
@@ -551,7 +559,7 @@ export function FinalRootScreen({
             <button
               aria-label={finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text}
               className="final-root-action final-root-action--restart"
-              data-editorial-status="FINAL"
+              data-editorial-status={finalEditorialSlots.FINAL_RESTART_BTN_01.status}
               data-final-accessible-slot-id="FINAL_ACCESSIBLE_RESTART_01"
               data-final-action="open_restart_confirmation"
               data-final-slot-id="FINAL_RESTART_BTN_01"
@@ -565,7 +573,7 @@ export function FinalRootScreen({
           </NineSlicePanel>
           <p
             className="final-root-sr-only"
-            data-editorial-status="FINAL"
+            data-editorial-status={finalEditorialSlots.FINAL_BACK_HOME_HELP_01.status}
             data-final-slot-id="FINAL_BACK_HOME_HELP_01"
           >
             {finalEditorialSlots.FINAL_BACK_HOME_HELP_01.text}
@@ -578,14 +586,12 @@ export function FinalRootScreen({
           insets="96 192 96 192"
         >
           <footer
-            data-editorial-status="FINAL"
+            data-editorial-status={finalEditorialSlots.FINAL_CREDITS_01.status}
             data-final-metric="credits"
             data-final-slot-id="FINAL_CREDITS_01"
             data-final-state-equivalent="final_credits"
           >
-            {finalCreditsPrimary}
-            <br />
-            {finalCreditsAttribution}
+            {finalCredits}
           </footer>
         </NineSlicePanel>
 
@@ -615,7 +621,7 @@ export function FinalRootScreen({
                 <div aria-live="polite" className="final-root-restart__status">
                   {restartState === "confirm" ? (
                     <p
-                      data-editorial-status="FINAL"
+                      data-editorial-status={finalEditorialSlots.FINAL_RESTART_CONFIRM_01.status}
                       data-final-slot-id="FINAL_RESTART_CONFIRM_01"
                     >
                       {finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}
@@ -623,7 +629,7 @@ export function FinalRootScreen({
                   ) : null}
                   {restartState === "busy" ? (
                     <p
-                      data-editorial-status="FINAL"
+                      data-editorial-status={finalEditorialSlots.FINAL_RESTART_BUSY_01.status}
                       data-final-slot-id="FINAL_RESTART_BUSY_01"
                     >
                       {finalEditorialSlots.FINAL_RESTART_BUSY_01.text}
@@ -631,7 +637,7 @@ export function FinalRootScreen({
                   ) : null}
                   {restartState === "error" && resetFailure?.copySafe ? (
                     <p
-                      data-editorial-status="FINAL"
+                      data-editorial-status={finalEditorialSlots.FINAL_RESTART_ERROR_01.status}
                       data-final-slot-id="FINAL_RESTART_ERROR_01"
                       role="status"
                     >
@@ -642,7 +648,7 @@ export function FinalRootScreen({
                 <div className="final-root-restart__actions">
                   <button
                     className="final-root-dialog-action"
-                    data-editorial-status="FINAL"
+                    data-editorial-status={finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.status}
                     data-final-action="cancel_restart"
                     data-final-slot-id="FINAL_RESTART_CANCEL_BTN_01"
                     disabled={restartState === "busy"}
@@ -655,7 +661,7 @@ export function FinalRootScreen({
                   {restartState === "error" ? (
                     <button
                       className="final-root-dialog-action final-root-dialog-action--confirm"
-                      data-editorial-status="FINAL"
+                      data-editorial-status={finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.status}
                       data-final-action="retry_restart_transaction"
                       data-final-slot-id="FINAL_RESTART_RETRY_BTN_01"
                       ref={retryButtonRef}
@@ -667,7 +673,7 @@ export function FinalRootScreen({
                   ) : (
                     <button
                       className="final-root-dialog-action final-root-dialog-action--confirm"
-                      data-editorial-status="FINAL"
+                      data-editorial-status={finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.status}
                       data-final-action="confirm_restart_transaction"
                       data-final-slot-id="FINAL_RESTART_CONFIRM_BTN_01"
                       disabled={restartState === "busy"}

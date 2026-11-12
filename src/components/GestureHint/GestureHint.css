@@ -5,11 +5,11 @@
   --gvo-gesture-press-x: 0;
   --gvo-gesture-press-y: 0.25rem;
   --gvo-gesture-swipe-start-x: 0;
-  --gvo-gesture-swipe-start-y: 0.38rem;
+  --gvo-gesture-swipe-start-y: 1.25rem;
   --gvo-gesture-swipe-end-x: 0;
-  --gvo-gesture-swipe-end-y: -0.62rem;
+  --gvo-gesture-swipe-end-y: -1.25rem;
   --gvo-gesture-trail-angle: 90deg;
-  --gvo-gesture-swipe-duration: 1680ms;
+  --gvo-gesture-swipe-duration: 1100ms;
 
   position: absolute;
   z-index: 52;
@@ -210,34 +210,26 @@
   transform: rotate(90deg);
 }
 
-.gvo-gesture-hint[data-gvo-gesture-hint="swipe-horizontal"][data-gvo-gesture-direction="left"]
-  .gvo-gesture-hint__direction {
-  transform: none;
-}
-
-.gvo-gesture-hint[data-gvo-gesture-hint="swipe-horizontal"][data-gvo-gesture-direction="right"]
-  .gvo-gesture-hint__direction {
-  transform: rotate(180deg);
-}
+.gvo-gesture-hint:not([data-gvo-gesture-hint="tap"]) .gvo-gesture-hint__hand { transform: none; }
 
 .gvo-gesture-hint[data-gvo-gesture-direction="down"] {
-  --gvo-gesture-swipe-start-y: -0.38rem;
-  --gvo-gesture-swipe-end-y: 0.62rem;
+  --gvo-gesture-swipe-start-y: -1.25rem;
+  --gvo-gesture-swipe-end-y: 1.25rem;
   --gvo-gesture-trail-angle: -90deg;
 }
 
 .gvo-gesture-hint[data-gvo-gesture-direction="left"] {
-  --gvo-gesture-swipe-start-x: 0.38rem;
+  --gvo-gesture-swipe-start-x: 1.25rem;
   --gvo-gesture-swipe-start-y: 0;
-  --gvo-gesture-swipe-end-x: -0.62rem;
+  --gvo-gesture-swipe-end-x: -1.25rem;
   --gvo-gesture-swipe-end-y: 0;
   --gvo-gesture-trail-angle: 0deg;
 }
 
 .gvo-gesture-hint[data-gvo-gesture-direction="right"] {
-  --gvo-gesture-swipe-start-x: -0.38rem;
+  --gvo-gesture-swipe-start-x: -1.25rem;
   --gvo-gesture-swipe-start-y: 0;
-  --gvo-gesture-swipe-end-x: 0.62rem;
+  --gvo-gesture-swipe-end-x: 1.25rem;
   --gvo-gesture-swipe-end-y: 0;
   --gvo-gesture-trail-angle: 180deg;
 }
@@ -269,7 +261,7 @@
     .gvo-gesture-hint__motion {
     animation: gvo-gesture-swipe-unidirectional-r3
       var(--gvo-gesture-swipe-duration)
-      cubic-bezier(0.32, 0.02, 0.22, 1) infinite;
+      linear infinite;
   }
 
   .gvo-gesture-hint[data-gvo-gesture-state="visible"]
@@ -401,7 +393,7 @@
     opacity: 0;
     translate: var(--gvo-gesture-swipe-start-x)
       var(--gvo-gesture-swipe-start-y);
-    scale: 0.96;
+    scale: 1;
   }
 
   17% {
@@ -421,7 +413,7 @@
   100% {
     opacity: 0;
     translate: var(--gvo-gesture-swipe-end-x) var(--gvo-gesture-swipe-end-y);
-    scale: 0.98;
+    scale: 1;
   }
 }
 

@@ -2,8 +2,11 @@ import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/
 import { coverIntroAssets } from "../../screens/Cover/coverIntroAssets";
 import { coverPortalInteriorAssets } from "../../screens/Cover/coverPortalInteriorAssets";
 import { loadingInitialAssets } from "../../screens/LoadingInitial/loadingInitialAssets";
+import { getWorld3CriticalAssetSources } from "../../screens/World3Root/world3RuntimeAssets";
 import { world1RootAssets } from "../../screens/World1Root/world1RootAssets";
 import { world2InitialRuntimeAssetSources } from "../../screens/World2Root/world2RuntimeAssets";
+import { liaJourneyMotionAssets } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
+import { gestureHintAssets } from "../../components/GestureHint/gestureHintAssets";
 import {
   world5LiaAssetSources,
   world5MapCriticalAssetSources,
@@ -14,6 +17,7 @@ import {
 } from "../../screens/World5Root/world5RuntimeAssets";
 
 export type ScreenAssetBundleId =
+  | "world3Notebook"
   | "loadingInitialCritical"
   | "coverIntroCritical"
   | "coverIntroActivation"
@@ -55,36 +59,10 @@ function image(
   return { id, src, kind: "image", estimatedKb, notes };
 }
 
-const coverRigInitialAssets = [
-  image("cover_lia_rig_shadow", coverIntroAssets.liaRigShadow),
-  image("cover_lia_rig_body", coverIntroAssets.liaRigBody),
-  image(
-    "cover_lia_rig_petal_left_lower",
-    coverIntroAssets.liaRigPetalLeftLower,
-  ),
-  image(
-    "cover_lia_rig_petal_right_lower",
-    coverIntroAssets.liaRigPetalRightLower,
-  ),
-  image(
-    "cover_lia_rig_petal_left_upper",
-    coverIntroAssets.liaRigPetalLeftUpper,
-  ),
-  image(
-    "cover_lia_rig_petal_right_upper",
-    coverIntroAssets.liaRigPetalRightUpper,
-  ),
-  image("cover_lia_rig_petal_top", coverIntroAssets.liaRigPetalTop),
-  image("cover_lia_rig_collar", coverIntroAssets.liaRigCollar),
-  image("cover_lia_rig_collar_glow", coverIntroAssets.liaRigCollarGlow),
-  image("cover_lia_rig_head_clean", coverIntroAssets.liaRigHeadClean),
-  image("cover_lia_rig_eyes_neutral", coverIntroAssets.liaRigEyesNeutral),
-  image("cover_lia_rig_eyes_blink_25", coverIntroAssets.liaRigEyesBlink25),
-  image("cover_lia_rig_eyes_blink_50", coverIntroAssets.liaRigEyesBlink50),
-  image("cover_lia_rig_eyes_closed", coverIntroAssets.liaRigEyesClosed),
-] as const;
+const currentRigAssets = liaJourneyMotionAssets.map((src, index) => image(`lia_articulated_v03_${index}`, src));
 
 export const screenAssetBundles = {
+  world3Notebook: { id: "world3Notebook", route: "/estacion/3", description: "Original notebook index", assets: getWorld3CriticalAssetSources(null).map((src, index) => image(`world3-index-${index}`, src)) },
   loadingInitialCritical: {
     id: "loadingInitialCritical",
     route: "/, /carga",
@@ -105,8 +83,9 @@ export const screenAssetBundles = {
     description:
       "Primer frame estable de Portada / Intro sin cargar todas las poses secundarias.",
     assets: [
+      image("cover_authentic_brand_logo", coverIntroAssets.brandLogo, 12),
       image("cover_background", coverIntroAssets.background, 2994),
-      ...coverRigInitialAssets,
+      ...currentRigAssets,
       image("cover_portal_1_frame", coverIntroAssets.portal1Frame),
       image("cover_portal_1_glow", coverIntroAssets.portal1Glow, 440),
       image("cover_locked_frame", coverIntroAssets.lockedFrame),
@@ -190,7 +169,8 @@ export const screenAssetBundles = {
       image("world1_plant", world1RootAssets.plant, 797),
       image("world1_roots_base", world1RootAssets.rootsBase),
       image("world1_node_kit", world1RootAssets.nodeKit),
-      image("world1_lia_idle", world1RootAssets.liaIdle, 720),
+      ...currentRigAssets,
+      image("world1_swipe_hand_v03", gestureHintAssets["swipe-vertical"]),
     ],
   },
   world1RootRelation: {
@@ -199,11 +179,6 @@ export const screenAssetBundles = {
     description: "Assets del estado RELACION.",
     assets: [
       image("world1_active_relation", world1RootAssets.activeRelation, 1270),
-      image(
-        "world1_lia_point_relation",
-        world1RootAssets.liaPointRelation,
-        641,
-      ),
     ],
   },
   world1RootPerception: {
@@ -216,11 +191,6 @@ export const screenAssetBundles = {
         world1RootAssets.activePerception,
         1288,
       ),
-      image(
-        "world1_lia_look_perception",
-        world1RootAssets.liaLookPerception,
-        681,
-      ),
     ],
   },
   world1RootMediation: {
@@ -229,24 +199,13 @@ export const screenAssetBundles = {
     description: "Assets del estado MEDIACION.",
     assets: [
       image("world1_active_mediation", world1RootAssets.activeMediation, 1414),
-      image(
-        "world1_lia_guide_mediation",
-        world1RootAssets.liaGuideMediation,
-        586,
-      ),
     ],
   },
   world1RootReady: {
     id: "world1RootReady",
     route: "/estacion/1#ready_to_continue",
-    description: "Assets del estado LISTO PARA CONTINUAR.",
-    assets: [
-      image(
-        "world1_lia_ready_continue",
-        world1RootAssets.liaReadyContinue,
-        820,
-      ),
-    ],
+    description: "El cierre reutiliza base y rig v03 ya preparados en world1RootInitial; no añade imágenes.",
+    assets: [],
   },
   world2RootInitial: {
     id: "world2RootInitial",

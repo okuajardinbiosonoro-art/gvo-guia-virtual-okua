@@ -1,0 +1,6 @@
+.gvo-prepared-tree[data-journey-active="false"]{visibility:hidden;pointer-events:none;}
+.gvo-prepared-tree[data-journey-active="false"] *{animation-play-state:paused!important;}
+.gvo-preparation-curtain{position:fixed;inset:0;z-index:900;background:#f7efd8;color:#493c34;display:grid;place-items:center;overflow:auto;}
+.gvo-preparation-card{padding:2rem;max-width:30rem;text-align:center;font-family:var(--gvo-font-body, sans-serif);}
+.gvo-preparation-card progress{max-width:100%;accent-color:#765a91;}
+.gvo-preparation-card button{min-height:48px;margin:.5rem;padding:.75rem 1.25rem;}

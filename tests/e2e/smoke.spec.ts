@@ -1,298 +1,56 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
+import { openEditorialCover, enterAfterEditorialIntro, expectNoHorizontalOverflow } from "./support/editorial-entry";
 
-import { loadingInitialTimeline } from "../../src/screens/LoadingInitial/loadingInitialTimeline";
-
-const loadingNavigationTimeoutMs = loadingInitialTimeline.maxDurationMs + 2_000;
-const coverActivationReadyTimeoutMs = 20_000;
-const transitionDestinationTimeoutMs = 15_000;
-
-const mobileViewports = [
-  { width: 360, height: 640 },
-  { width: 375, height: 667 },
-  { width: 390, height: 844 },
-  { width: 414, height: 896 },
-  { width: 430, height: 932 },
-];
-
-async function expectCoverToWorldOneHandoff(page: Page): Promise<Locator> {
-  const openingCover = page.locator(
-    'main[data-cover-phase="portal_1_opening_placeholder"]',
-  );
-
-  await expect(openingCover).toBeVisible({
-    timeout: coverActivationReadyTimeoutMs,
+for (const route of ["/", "/carga"]) {
+  test(`muestra bienvenida y preparación reales en ${route}`, async ({page}) => {
+    await page.goto(route);
+    await expect(page.getByRole("heading",{name:"Bienvenido a OKÚA"})).toBeVisible();
+    await expect(page.getByText("Preparando tu recorrido",{exact:true})).toBeVisible();
+    await expect(page.getByRole("progressbar")).toBeVisible();
+    await expect(page.locator("audio,video")).toHaveCount(0);
   });
-  await expect(page).toHaveURL(/\/portada$/);
-  await expect(openingCover).toHaveAttribute(
-    "data-activation-assets-ready",
-    "true",
-  );
-  await expect(
-    openingCover.getByText("Abriendo Mundo I: Raíz...", { exact: true }),
-  ).toBeVisible();
-
-  const transition = page.locator(
-    'main[data-transition-world-id="intro-to-station-1"]',
-  );
-  await expect(transition).toBeVisible({
-    timeout: transitionDestinationTimeoutMs,
-  });
-  await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/);
-  await expect(transition).toHaveAttribute(
-    "data-critical-assets-ready",
-    "true",
-  );
-  await Promise.all([
-    expect(
-      transition.getByRole("heading", { name: "Abriendo Mundo I" }),
-    ).toBeVisible(),
-    expect(transition.locator("#transition-world-subtitle")).toHaveText(
-      "Preparando la raíz.",
-    ),
-  ]);
-
-  return transition;
 }
 
-test("muestra la carga inicial en la primera ruta del recorrido", async ({
-  page,
-}) => {
+test("se puede omitir la presentación de carga preservando la preparación real", async ({page}) => {
   await page.goto("/");
-
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Preparando el recorrido",
-  );
-  await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
-  await expect(
-    page.getByRole("progressbar", {
-      name: "Preparando el recorrido",
-    }),
-  ).toBeVisible();
-  await expect(
-    page.getByTestId("loading-initial-animated-scene"),
-  ).toBeVisible();
-  await expect(page.getByText("Portada / Intro")).toHaveCount(0);
-  await expect(page.getByText("Estación I")).toHaveCount(0);
-  await expect(page.locator("button")).toHaveCount(0);
-  await expect(page.locator("audio")).toHaveCount(0);
-  await expect(page.locator("video")).toHaveCount(0);
+  await page.getByRole("button",{name:"Omitir presentación"}).click();
+  await expect(page).toHaveURL(/\/inicio$/, {timeout:20000});
+  await expect(page.getByRole("heading", {level:1})).toBeVisible();
 });
 
-test("muestra la carga inicial en /carga", async ({ page }) => {
-  await page.goto("/carga");
-
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Preparando el recorrido",
-  );
-  await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
+test("recorre Portada sin adjudicar progreso de aprendizaje por la presentación", async ({page}) => {
+  await openEditorialCover(page);
+  await enterAfterEditorialIntro(page);
+  await expect(page.locator("main[data-world1-root-state]")).toBeVisible();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem("gvo.progress.v1")||'{"completedStations":[]}').completedStations)).toEqual([]);
 });
 
-test("muestra la portada y ejecuta diálogos/gating base en /portada", async ({
-  page,
-}) => {
+test("resetIntro respeta datos ajenos y vuelve a la primera presentación", async ({page}) => {
   await page.goto("/portada");
-
-  await expect(
-    page.getByRole("heading", { name: "EL ARCHIVO VIVO DE OKÚA" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", {
-      name: "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía.",
-    }),
-  ).toBeVisible();
-  await expect(page.locator('[data-lia-avatar-mode="rig-idle"]')).toBeVisible();
-  await expect(
-    page.locator('[data-lia-rig-layer="eyes-neutral"]'),
-  ).toBeVisible();
-  await expect(page.locator('[data-portal-state="locked"]')).toHaveCount(4);
-  await expect(page.locator("audio")).toHaveCount(0);
-  await expect(page.locator("video")).toHaveCount(0);
-
-  await page.getByRole("button", { name: "Comenzar recorrido" }).click();
-  await expect(
-    page.getByText(
-      "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
-    ),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("dialog").getByText("Lía", { exact: true }),
-  ).toBeVisible();
-  await expect(page.locator('[data-lia-avatar-mode="rig-idle"]')).toBeVisible();
-  await expect(page.locator('[data-lia-expression="happy"]')).toBeVisible();
-  await expect(page.locator('[data-lia-rig-layer="eyes-happy"]')).toBeVisible();
-  await expect(page.getByText("Paso 1 de 5")).toBeVisible();
-  await expect(page.getByText("1/5")).toHaveCount(0);
-  await expect(page.getByRole("dialog")).toHaveCount(1);
-
-  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
-  await expect(
-    page.getByText(
-      "Antes de entrar, aclaremos algo: las plantas no hacen música por sí solas.",
-    ),
-  ).toBeVisible();
-  await expect(page.getByText("Paso 2 de 5")).toBeVisible();
-  await expect(page.locator('[data-lia-expression="attentive"]')).toBeVisible();
-  await expect(
-    page.locator('[data-lia-rig-layer="eyes-attentive"]'),
-  ).toBeVisible();
-  await expect(page.getByText("2/5")).toHaveCount(0);
-  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
-  await expect(
-    page.getByText(
-      "Lo que vas a recorrer es una mediación: una señal viva, una captura técnica y una interpretación.",
-    ),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
-  await expect(
-    page.getByText(
-      "Primero seguiremos el orden de los mundos. Al final podrás volver libremente a cualquier estación.",
-    ),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Siguiente diálogo de Lía" }).click();
-  await expect(
-    page.getByText("Empecemos por la raíz: el origen y el propósito de OKÚA."),
-  ).toBeVisible();
-  await expect(page.locator('[data-lia-avatar-mode="pose"]')).toBeVisible();
-  await expect(page.locator('[data-lia-pose="pointPortal1"]')).toBeVisible();
-  await page.getByRole("button", { name: "Finalizar introducción" }).click();
-
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", {
-      name: "Estación II, bloqueada hasta completar Mundo I.",
-    })
-    .click({ force: true });
-  await expect(
-    page.getByText(
-      "Primero debemos entrar por Raíz. Después llegaremos al pulso invisible.",
-    ),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  const transition = await expectCoverToWorldOneHandoff(page);
-  await expect(transition.locator("button")).toHaveCount(0);
-  await expect(transition.locator("a")).toHaveCount(0);
-
-  const overflow = await page.evaluate(
-    () => document.documentElement.scrollWidth > window.innerWidth,
-  );
-  expect(overflow).toBe(false);
-
-  await expect(page).toHaveURL(/\/estacion\/1$/, {
-    timeout: transitionDestinationTimeoutMs,
-  });
-  await expect(page.getByText("Antes de escuchar")).toBeVisible();
-  await expect(page.getByText("RELACIÓN")).toBeVisible();
-  await expect(page.getByText("PERCEPCIÓN")).toBeVisible();
-  await expect(page.getByText("MEDIACIÓN")).toBeVisible();
+  await page.evaluate(()=>{localStorage.setItem("gvo.coverIntro.introCompleted.v1","true");localStorage.setItem("unrelated-preference","kept");});
+  await openEditorialCover(page);
+  expect(await page.evaluate(()=>localStorage.getItem("gvo.coverIntro.introCompleted.v1"))).toBeNull();
+  expect(await page.evaluate(()=>localStorage.getItem("unrelated-preference"))).toBe("kept");
 });
 
-test("resetIntro en /portada fuerza primera pasada", async ({ page }) => {
-  await page.goto("/portada");
-  await page.evaluate(() => {
-    window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
-  });
-
-  await page.goto("/portada?resetIntro=1");
-
-  await expect(page).toHaveURL(/\/portada$/);
-  await expect(
-    page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toHaveCount(0);
-});
-
-test("resetIntro desde / reproduce carga y llega a portada fresca", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/portada");
-  await page.evaluate(() => {
-    window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
-  });
-
+test("resetIntro desde carga permite omitir y conserva la entrada fresca", async ({page}) => {
   await page.goto("/?resetIntro=1");
-
-  await expect(
-    page.getByRole("heading", { name: "Preparando el recorrido" }),
-  ).toBeVisible();
-  await expect(page).toHaveURL(/\/portada$/, {
-    // Margen acotado para preload y navegación sobre el máximo runtime canónico.
-    timeout: loadingNavigationTimeoutMs,
-  });
-  await expect(
-    page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toHaveCount(0);
+  await page.getByRole("button",{name:"Omitir presentación"}).click();
+  await expect(page.getByRole("button",{name:"Empieza aquí"})).toBeVisible({timeout:20000});
 });
 
-test("reduced motion conserva diálogos y gating en /portada", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/portada");
-
-  await page.getByRole("button", { name: "Comenzar recorrido" }).click();
-  await expect(
-    page.getByText(
-      "Hola, soy Lía. Voy a acompañarte por el Archivo Vivo de OKÚA.",
-    ),
-  ).toBeVisible();
-  await expect(page.getByText("Paso 1 de 5")).toBeVisible();
-
-  for (let index = 0; index < 4; index += 1) {
-    await page
-      .getByRole("button", { name: "Siguiente diálogo de Lía" })
-      .click();
-  }
-
-  await page.getByRole("button", { name: "Finalizar introducción" }).click();
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-  const transition = await expectCoverToWorldOneHandoff(page);
-  await expect(transition.locator("button")).toHaveCount(0);
-  await expect(transition.locator("a")).toHaveCount(0);
-  await expect(page.locator("audio")).toHaveCount(0);
-  await expect(page.locator("video")).toHaveCount(0);
+test("movimiento reducido conserva contenido y omisión", async ({page}) => {
+  await page.emulateMedia({reducedMotion:"reduce"});
+  await openEditorialCover(page);
+  await page.getByRole("button",{name:"Entrar sin presentación"}).click();
+  await expect(page).toHaveURL(/\/estacion\/1$/, {timeout:20000});
 });
 
-for (const viewport of mobileViewports) {
-  test(`sin overflow horizontal en /carga ${viewport.width}x${viewport.height}`, async ({
-    page,
-  }) => {
+for(const viewport of [{width:360,height:640},{width:375,height:667},{width:390,height:844},{width:414,height:896},{width:430,height:932}]) {
+  test(`carga sin desborde horizontal ${viewport.width}×${viewport.height}`, async ({page}) => {
     await page.setViewportSize(viewport);
     await page.goto("/carga");
-
-    await expect(
-      page.getByRole("heading", { name: "Preparando el recorrido" }),
-    ).toBeVisible();
-
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth > window.innerWidth,
-    );
-    expect(overflow).toBe(false);
+    await expect(page.getByRole("heading",{name:"Bienvenido a OKÚA"})).toBeVisible();
+    await expectNoHorizontalOverflow(page);
   });
 }
-
-test("reduced motion mantiene la pantalla de carga sin elementos fuera de alcance", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/carga");
-
-  await expect(page.getByText("Preparando el recorrido")).toBeVisible();
-  await expect(page.getByText("Cuidando el inicio...")).toBeVisible();
-  await expect(page.locator("button")).toHaveCount(0);
-  await expect(page.locator("audio")).toHaveCount(0);
-  await expect(page.locator("video")).toHaveCount(0);
-});

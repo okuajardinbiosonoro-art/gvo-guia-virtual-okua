@@ -1,6 +1,8 @@
 import { act, cleanup, render } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { JourneyActivationProvider } from "../../app/journey/JourneyActivation";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 import {
   FINAL_LIA_GREETING_TOTAL_MS,
@@ -77,6 +79,15 @@ function motionRoot(container: HTMLElement) {
   return container.querySelector<HTMLElement>("[data-lia-motion-phase]")!;
 }
 
+const activeFinalContext = { active: true, attemptId: "final-motion-unit", screen: "final", mode: "normal", authorized: true, reviewReturnAllowed: false } as const;
+function ActiveFinalFixture({ children }: { children: ReactNode }) {
+  return <JourneyActivationProvider context={activeFinalContext}>{children}</JourneyActivationProvider>;
+}
+
+function renderFinalLiaMotion() {
+  return render(<FinalLiaMotion />, { wrapper: ActiveFinalFixture });
+}
+
 describe("FinalLiaMotion", () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -100,7 +111,7 @@ describe("FinalLiaMotion", () => {
 
   it("reproduce greeting F1–F4 a 160 ms y entra a idle F1 a 640 ms", () => {
     installReducedMotion(false);
-    const { container } = render(<FinalLiaMotion />);
+    const { container } = renderFinalLiaMotion();
     const root = motionRoot(container);
 
     expect(root).toHaveAttribute("data-lia-motion-phase", "greeting");
@@ -127,7 +138,7 @@ describe("FinalLiaMotion", () => {
 
   it("respeta el ciclo idle 4200/180/160/160/180/320 y F6 vuelve a F1", () => {
     installReducedMotion(false);
-    const { container } = render(<FinalLiaMotion />);
+    const { container } = renderFinalLiaMotion();
     const root = motionRoot(container);
     completeGreeting();
 
@@ -151,7 +162,7 @@ describe("FinalLiaMotion", () => {
 
   it("omite greeting e idle cuando reduce está activo desde el montaje", () => {
     installReducedMotion(true);
-    const { container } = render(<FinalLiaMotion />);
+    const { container } = renderFinalLiaMotion();
     const root = motionRoot(container);
 
     expect(root).toHaveAttribute("data-lia-motion-phase", "reduced_static");
@@ -170,7 +181,7 @@ describe("FinalLiaMotion", () => {
 
   it("cancela timers al cambiar a reduce y vuelve a idle F1 sin repetir greeting", () => {
     const reducedMotion = installReducedMotion(false);
-    const { container } = render(<FinalLiaMotion />);
+    const { container } = renderFinalLiaMotion();
     const root = motionRoot(container);
     advance(160);
     expect(root).toHaveAttribute("data-lia-motion-frame", "2");
@@ -189,7 +200,7 @@ describe("FinalLiaMotion", () => {
 
   it("pausa hidden, vuelve a idle F1 sin catch-up y limpia timers/listeners", () => {
     const reducedMotion = installReducedMotion(false);
-    const rendered = render(<FinalLiaMotion />);
+    const rendered = renderFinalLiaMotion();
     const root = motionRoot(rendered.container);
     completeGreeting();
     advance(4200);
@@ -217,7 +228,7 @@ describe("FinalLiaMotion", () => {
 
   it("consume greeting, idle y glow canónicos sin canvas ni control interactivo", () => {
     installReducedMotion(false);
-    const { container } = render(<FinalLiaMotion />);
+    const { container } = renderFinalLiaMotion();
     const root = motionRoot(container);
     const runtimeAssets = Array.from(
       container.querySelectorAll<HTMLElement>("[data-runtime-asset]"),
@@ -240,5 +251,27 @@ describe("FinalLiaMotion", () => {
       "data-lia-glow-behavior",
       "static",
     );
+  });
+
+  it("espera activación real antes de temporizar y pausa el mismo árbol al desactivarlo", () => {
+    installReducedMotion(false);
+    const inactive = { ...activeFinalContext, active: false };
+    const view = render(<JourneyActivationProvider context={inactive}><FinalLiaMotion /></JourneyActivationProvider>);
+    const root = motionRoot(view.container);
+    expect(vi.getTimerCount()).toBe(0);
+    advance(5_000);
+    expect(root).toHaveAttribute("data-lia-motion-frame", "1");
+    expect(root).toHaveAttribute("data-lia-motion-phase", "greeting");
+    view.rerender(<JourneyActivationProvider context={activeFinalContext}><FinalLiaMotion /></JourneyActivationProvider>);
+    expect(motionRoot(view.container)).toBe(root);
+    expect(vi.getTimerCount()).toBe(1);
+    advance(159);
+    expect(root).toHaveAttribute("data-lia-motion-frame", "1");
+    advance(1);
+    expect(root).toHaveAttribute("data-lia-motion-frame", "2");
+    view.rerender(<JourneyActivationProvider context={inactive}><FinalLiaMotion /></JourneyActivationProvider>);
+    expect(vi.getTimerCount()).toBe(0);
+    advance(5_000);
+    expect(root).toHaveAttribute("data-lia-motion-frame", "2");
   });
 });

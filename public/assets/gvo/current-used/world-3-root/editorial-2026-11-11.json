@@ -1,0 +1,133 @@
+{
+  "source": "ChatGPT Imágenes",
+  "thread": "gvo-provenance:images-2",
+  "originalSha256": "3e95abf659f0368a8c0ee02ad1c27b58ad842ef65cbae5235ac7b9146321b956",
+  "derivatives": [
+    {
+      "id": "pausa",
+      "file": "world3_editorial_pausa_v01.webp",
+      "sourceRect": {
+        "left": 20,
+        "top": 155,
+        "width": 400,
+        "height": 218
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 62734,
+      "sha256": "9f362acfacca09558a24b37b31b1c8b762b40851ef1a8f8a701c9c7a2d8b78ec",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_pausa_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_pausa_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "descanso-mental",
+      "file": "world3_editorial_descanso-mental_v01.webp",
+      "sourceRect": {
+        "left": 527,
+        "top": 73,
+        "width": 287,
+        "height": 321
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 57118,
+      "sha256": "714e34bbe471534fb992e54595e9946741e7314dca0092b3cd233e7ef31b61e4",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_descanso-mental_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_descanso-mental_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "planta-musical",
+      "file": "world3_editorial_planta-musical_v01.webp",
+      "sourceRect": {
+        "left": 964,
+        "top": 61,
+        "width": 284,
+        "height": 332
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 55876,
+      "sha256": "61c11e461beb04fba1ad21e2e87abf768f20bb07df70fc6b251355cbc30abbcf",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_planta-musical_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_planta-musical_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "respirar",
+      "file": "world3_editorial_respirar_v01.webp",
+      "sourceRect": {
+        "left": 1365,
+        "top": 87,
+        "width": 372,
+        "height": 307
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 63466,
+      "sha256": "cc194490766a0e21e8bbb846bdde99837ba06c486986615df1ca84fded791d7e",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_respirar_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_respirar_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "escuchar",
+      "file": "world3_editorial_escuchar_v01.webp",
+      "sourceRect": {
+        "left": 18,
+        "top": 531,
+        "width": 393,
+        "height": 290
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 67608,
+      "sha256": "d4c7ba4cf123ef41cb24dcc2a1b78cdab87cd98a0c64d3f0190d6dce366f3025",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_escuchar_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_escuchar_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "escribir",
+      "file": "world3_editorial_escribir_v01.webp",
+      "sourceRect": {
+        "left": 492,
+        "top": 512,
+        "width": 347,
+        "height": 314
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 62366,
+      "sha256": "cca9d8a0a14d56719861df1341414559456eb8a8d3171d858ee24132fce47c9e",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_escribir_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_escribir_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    },
+    {
+      "id": "fotografia",
+      "file": "world3_editorial_fotografia_v01.webp",
+      "sourceRect": {
+        "left": 963,
+        "top": 513,
+        "width": 294,
+        "height": 283
+      },
+      "width": 320,
+      "height": 256,
+      "bytes": 60044,
+      "sha256": "7e2ed4188eabc540da688999f35dc46fb09a95cd8695fc4f732047c101957a21",
+      "runtimePath": "/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_editorial_fotografia_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_editorial_fotografia_v01.webp",
+      "consumer": "World3RootScreen / folios",
+      "reviewStatus": "TECHNICAL_CANDIDATE"
+    }
+  ]
+}

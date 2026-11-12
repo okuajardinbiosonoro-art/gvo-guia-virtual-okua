@@ -1,7 +1,7 @@
 import styles from "../TransitionWorld.module.css";
 
 type TransitionTextProps = {
-  editorialCopyStatus?: "final" | "temporary";
+  editorialCopyStatus?: "final" | "review" | "temporary";
   subtitleSlotId?: string;
   title: string;
   titleSlotId?: string;

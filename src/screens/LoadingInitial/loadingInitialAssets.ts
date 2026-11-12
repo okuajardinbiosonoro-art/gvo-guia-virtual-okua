@@ -5,13 +5,13 @@ const loadingRuntimeBase = "/assets/runtime/loading-initial";
 export const loadingInitialAssets = {
   lia: {
     assetId: "lia_loading_16f",
-    src: `${loadingRuntimeBase}/lia/lia_loading_16f.png`,
-    metadata: `${loadingRuntimeBase}/lia/lia_loading_16f.json`,
+    src: `${loadingRuntimeBase}/lia/lia_loading_16f_okua_v03.png`,
+    metadata: `${loadingRuntimeBase}/lia/lia_loading_16f_okua_v03.json`,
   },
   plant: {
     assetId: "plant_growth_4f",
-    src: `${loadingRuntimeBase}/plant/plant_growth_4f.png`,
-    metadata: `${loadingRuntimeBase}/plant/plant_growth_4f.json`,
+    src: `${loadingRuntimeBase}/plant/plant_growth_4f_okua_v03.png`,
+    metadata: `${loadingRuntimeBase}/plant/plant_growth_4f_okua_v03.json`,
   },
   water: {
     assetId: "water_flow_5f",

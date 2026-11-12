@@ -1,0 +1,1477 @@
+{
+  "schema": "GVO_OBS03_FINAL_EN_SOURCE_BRIEF_1",
+  "status": "SOURCE_INPUT_ONLY_EN_PENDING_NO_APP_IMPLEMENTATION",
+  "savedAt": "2026-10-24T05:32:32.361Z",
+  "scope": "Mirador y dock de retorno de revisita; localización ES/EN fiel, sin rediseño/regeneración ni cambios de ruta/reset",
+  "counts": {
+    "slots": 35,
+    "baseSlots": 30,
+    "operationalSlots": 5,
+    "writerSourceRecords": 9
+  },
+  "authority": {
+    "parentScopeLabel": "D14 según encargo de coordinación; resolver la brecha EN dentro del contrato existente, sin nuevo diseño",
+    "r1DecisionId": "D16",
+    "r1Decision": {
+      "id": "D16",
+      "topic": "ES/EN",
+      "decision": "EN usa traducciones fieles de los segmentos ES conciliados, con la misma estructura e IDs. El selector inglés no acredita la traducción de las salas que hoy están fijas en ES. Verificar ambos idiomas, sin atribuir las traducciones EN al escritor como literales.",
+      "obs": [
+        "OBS03-TEXTOS-01",
+        "OBS03-MOVIL-01"
+      ],
+      "basis": "delegated_technical_design",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "reconciliation_status": "PENDING_CODEX_R2"
+    },
+    "requirements": [
+      "OBS03-MOVIL-01",
+      "OBS03-MIRADOR-01"
+    ],
+    "quotedEnglishContract": "EN usa traducciones fieles de los segmentos ES conciliados, con la misma estructura e IDs. El selector inglés no acredita la traducción de las salas que hoy están fijas en ES. Verificar ambos idiomas, sin atribuir las traducciones EN al escritor como literales.",
+    "quotedMiradorConstraint": "Conservar Mirador sin rediseño ni regeneración. Prepararlo durante la transición 6 y preservar greeting, idle, revisita, reset y contenido valorado."
+  },
+  "facts": {
+    "currentSlotsResolveDefaultLocaleOnce": true,
+    "currentFinalDomLocale": "es",
+    "currentDockUsesSameDefaultEsObject": true,
+    "staticExtraction": "TypeScript AST; literales y factory input, sin ejecutar módulos/runtime, sin navegador/tests/build",
+    "functionalCopy": "Labels, ayudas, aria, confirmación, busy/error/retry y dock son copy funcional. Su traducción no se declara literal del escritor.",
+    "disabledLiaPreview": "FinalRoot conserva un enlace condicionado por liaPreviewEnabled y liaPreviewCopy; servicio/laboratorio default-off fuera de este encargo, no habilitar ni traducir para introducirlo.",
+    "noOtherPublicInlineCopyFound": "El consumo público activo de FinalRoot y el dock procede de estos 35 slots; imágenes decorativas alt vacío y FinalLiaMotion aria-hidden. Identificadores de error internos/data-* no son copy visitante."
+  },
+  "requestedReturn": {
+    "format": "JSON estricto con translations por los35 IDs, campo en y opcional nota, más metodología mínima/criterios; no reescribirES ni regenerararte",
+    "translationRules": [
+      "Traducir todos los textos visibles, sr-only, aria y estados de reset/dock con los mismos IDs; no añadir ni quitar controles.",
+      "Preservar OKÚA, Jardín Biosonoro como marca y Momotto S.A.S. como razón social salvo criterio explícito; conservar nombres de sala coherentes con EN actual Root / Invisible pulse / Practice notebook / Biosonic system / OKÚA, sensory art.",
+      "En mensaje inicial conservar semántica actual de volver a las actividades omitidas sin afirmar que se omitió la esencia obligatoria.",
+      "Confirmación/error de reset deben distinguir volver a Portada de reiniciar; el mensaje que dice no se perdió progreso sólo se muestra bajo copySafe=true.",
+      "Traducción EN es traducción conciliada, nunca literal original ES ni aprobación humana nueva."
+    ],
+    "minimalMethodologyQuestions": [
+      "¿Aprueba la correspondencia ID→EN completa y la capitalización de marca/nombres sin cambiar ES?",
+      "¿Mantener traducción literal fiel del mensaje actual sobre actividades omitidas, preservando su carácter opcional, y las garantías condicionales de reset?",
+      "¿Qué verificación focal basta para comprobar selección de locale en render de Mirador/dock, ausencia de fallbackES involuntario y preservación byte a byte de los35 ES, sin modificar layout, assets ni guards?"
+    ],
+    "prohibited": [
+      "Sin rediseño/CSS/arte nuevos; conservar composición, cinco accesos, greeting/idle y familia tipográfica.",
+      "Sin cambios de reset/progreso/QR/recibos/guards/revisita/autorización; no activar M3/M4 ni servicios.",
+      "No atribuir a las nueve entradas del escritor todo el copy funcional de35slots."
+    ]
+  },
+  "slots": [
+    {
+      "id": "FINAL_TITLE_01",
+      "ordinal": 1,
+      "es": "OKÚA Jardín Biosonoro",
+      "esUtf8Sha256": "aacc6102cbcec84b6d73c510481b77e7ada906219010ba68e0c028a6afbdc748",
+      "shortText": "OKÚA Jardín Biosonoro",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "h1 visible del título; no traducir la marca OKÚA Jardín Biosonoro salvo criterio explícito",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 432,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_TITLE_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 433,
+          "sourceLine": "data-final-slot-id=\"FINAL_TITLE_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 436,
+          "sourceLine": "{finalEditorialSlots.FINAL_TITLE_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_SUBTITLE_01",
+      "ordinal": 2,
+      "es": "Recorrido completo",
+      "esUtf8Sha256": "8d55c0b27ab90a4cf5e312921975a1390fbc7e9a960c3a8838a80212568beaa3",
+      "shortText": "Recorrido completo",
+      "emitter": "ambiente",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "p visible bajo el título",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 439,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_SUBTITLE_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 440,
+          "sourceLine": "data-final-slot-id=\"FINAL_SUBTITLE_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 442,
+          "sourceLine": "{finalEditorialSlots.FINAL_SUBTITLE_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_LIA_MESSAGE_01",
+      "ordinal": 3,
+      "es": "Llegaste al Mirador. Puedes volver a cualquier sala, también a las actividades que omitiste.",
+      "esUtf8Sha256": "ca8b62a656c5737d3f9cb9905b6083926505cf49c70555386d4e2c6a9ac27e3b",
+      "shortText": "Revisión libre",
+      "emitter": "lia",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "p sr-only, copy accesible de bienvenida",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 449,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_LIA_MESSAGE_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 450,
+          "sourceLine": "data-final-slot-id=\"FINAL_LIA_MESSAGE_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 452,
+          "sourceLine": "{finalEditorialSlots.FINAL_LIA_MESSAGE_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_AMB_01",
+      "ordinal": 4,
+      "es": "El jardín queda abierto para volver a mirarlo.",
+      "esUtf8Sha256": "67d3e0d861ef2b5b078f10ef7e669fdba2ad891d0601251cc49947f3eb5061e7",
+      "shortText": "Jardín abierto",
+      "emitter": "ambiente",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "p sr-only, ambiente",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 454,
+          "sourceLine": "<p data-editorial-status={finalEditorialSlots.FINAL_AMB_01.status} data-final-slot-id=\"FINAL_AMB_01\">"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 455,
+          "sourceLine": "{finalEditorialSlots.FINAL_AMB_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_I_LABEL_01",
+      "ordinal": 5,
+      "es": "I — Raíz",
+      "esUtf8Sha256": "c76c8d6e36bd9a021b89b50a355ed2feea1f4db54384d4dcc3006940b4dd61f1",
+      "shortText": "I — Raíz",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "etiqueta visible del enlace de revisita a Sala I",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 89,
+          "sourceLine": "labelSlot: \"FINAL_ACCESS_I_LABEL_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_I_CONFIRM_01",
+      "ordinal": 6,
+      "es": "Reabriendo Sala I · Raíz…",
+      "esUtf8Sha256": "38c9e4f1e4c54630797b3d5d51be5a0a0ea72c21ae556aecf540b9ec73af449f",
+      "shortText": "Reabrir Sala I",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 87,
+          "sourceLine": "confirmSlot: \"FINAL_ACCESS_I_CONFIRM_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_II_LABEL_01",
+      "ordinal": 7,
+      "es": "II — Pulso invisible",
+      "esUtf8Sha256": "41a275e9e2c9ec181e4985a4e84e42a391206d6ab4b1b1939f69f1b20346dfa7",
+      "shortText": "II — Pulso invisible",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "etiqueta visible del enlace de revisita a Sala II",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 100,
+          "sourceLine": "labelSlot: \"FINAL_ACCESS_II_LABEL_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_II_CONFIRM_01",
+      "ordinal": 8,
+      "es": "Reabriendo Sala II · Pulso invisible…",
+      "esUtf8Sha256": "c35f3efad55782626aa6a4edcab32d73b7caacf8ebe6d328b15a6f225cd8c230",
+      "shortText": "Reabrir Sala II",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 98,
+          "sourceLine": "confirmSlot: \"FINAL_ACCESS_II_CONFIRM_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_III_LABEL_01",
+      "ordinal": 9,
+      "es": "III — Cuaderno de práctica",
+      "esUtf8Sha256": "a79e8270bdcb58c665e059bef4c0e02695c201e8c9f500e5f4a58d8fc7e428b0",
+      "shortText": "III — Cuaderno de práctica",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "etiqueta visible del enlace de revisita a Sala III",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 111,
+          "sourceLine": "labelSlot: \"FINAL_ACCESS_III_LABEL_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_III_CONFIRM_01",
+      "ordinal": 10,
+      "es": "Reabriendo Sala III · Cuaderno de práctica…",
+      "esUtf8Sha256": "78c31d31201ada12ab3ebfdb01d27e20a00ff4a5e63ae0d374a7d74d511f1872",
+      "shortText": "Reabrir Sala III",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 109,
+          "sourceLine": "confirmSlot: \"FINAL_ACCESS_III_CONFIRM_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_IV_LABEL_01",
+      "ordinal": 11,
+      "es": "IV — Sistema biosonoro",
+      "esUtf8Sha256": "d45e89ca5830bed26f51eb78312d154625ca23b356aea4a537282a0d2f42640d",
+      "shortText": "IV — Sistema biosonoro",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "etiqueta visible del enlace de revisita a Sala IV",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 122,
+          "sourceLine": "labelSlot: \"FINAL_ACCESS_IV_LABEL_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_IV_CONFIRM_01",
+      "ordinal": 12,
+      "es": "Reabriendo Sala IV · Sistema biosonoro…",
+      "esUtf8Sha256": "543faccacb5961c344e3000348f57bc670efddfeb46d0151fa6a9dbcfccfef13",
+      "shortText": "Reabrir Sala IV",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 120,
+          "sourceLine": "confirmSlot: \"FINAL_ACCESS_IV_CONFIRM_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_V_LABEL_01",
+      "ordinal": 13,
+      "es": "V — OKÚA, arte sensorial",
+      "esUtf8Sha256": "02e78d0af6a14aded134af261b76982ebcff750c67f6bb5f8aa75209950892ef",
+      "shortText": "V — OKÚA, arte sensorial",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "etiqueta visible del enlace de revisita a Sala V",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 133,
+          "sourceLine": "labelSlot: \"FINAL_ACCESS_V_LABEL_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESS_V_CONFIRM_01",
+      "ordinal": 14,
+      "es": "Reabriendo Sala V · OKÚA, arte sensorial…",
+      "esUtf8Sha256": "0a2ef21d68a9b93a4a274c0a77bb06705b9e5d79845b2c971a4a7eb511068e2d",
+      "shortText": "Reabrir Sala V",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "plantilla registrada en DOM aria-hidden/sr-only para transición futura; actualmente no se presenta panel de confirmación",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 131,
+          "sourceLine": "confirmSlot: \"FINAL_ACCESS_V_CONFIRM_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_HELP_01",
+      "ordinal": 15,
+      "es": "Elige una sala para revisarla a tu ritmo.",
+      "esUtf8Sha256": "00845c50c46bcf89f66f8a2fa09353346da25e2b36b65a214ff47feed2e2768e",
+      "shortText": "Revisión libre",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "p sr-only, ayuda de revisita",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 457,
+          "sourceLine": "<p data-editorial-status={finalEditorialSlots.FINAL_HELP_01.status} data-final-slot-id=\"FINAL_HELP_01\">"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 458,
+          "sourceLine": "{finalEditorialSlots.FINAL_HELP_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_BACK_HOME_BTN_01",
+      "ordinal": 16,
+      "es": "Volver al inicio",
+      "esUtf8Sha256": "3906c387259fafc4003807694b0fcfa7ba670df028e7be356f33554cb17f3f00",
+      "shortText": "Volver al inicio",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "botón visible regresar a Portada",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 540,
+          "sourceLine": "data-final-slot-id=\"FINAL_BACK_HOME_BTN_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 545,
+          "sourceLine": "<span>{finalEditorialSlots.FINAL_BACK_HOME_BTN_01.text}</span>"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_BACK_HOME_HELP_01",
+      "ordinal": 17,
+      "es": "Regresa a la portada sin borrar tu recorrido.",
+      "esUtf8Sha256": "961be93ac266b82d71c41268b679ff72c0c2ea2bf59902bdca84191468cc85c4",
+      "shortText": "Conservar recorrido",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "p sr-only; explica que volver no reinicia",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 570,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_BACK_HOME_HELP_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 571,
+          "sourceLine": "data-final-slot-id=\"FINAL_BACK_HOME_HELP_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 573,
+          "sourceLine": "{finalEditorialSlots.FINAL_BACK_HOME_HELP_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_BTN_01",
+      "ordinal": 18,
+      "es": "Reiniciar recorrido",
+      "esUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "shortText": "Reiniciar recorrido",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "botón visible abre confirmación de reinicio",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 559,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_BTN_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 565,
+          "sourceLine": "<span>{finalEditorialSlots.FINAL_RESTART_BTN_01.text}</span>"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_CONFIRM_01",
+      "ordinal": 19,
+      "es": "¿Quieres reiniciar el recorrido completo? Volverás a comenzar desde el inicio.",
+      "esUtf8Sha256": "d953d42fe0dacf3ddfb68c95196e907f64aade39c18efb01c4a399e7968835cd",
+      "shortText": "Confirmar reinicio",
+      "emitter": "sistema",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "confirmación visible y aria-label de sección",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 598,
+          "sourceLine": "aria-label={finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 618,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_RESTART_CONFIRM_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 619,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_CONFIRM_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 621,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_CANCEL_BTN_01",
+      "ordinal": 20,
+      "es": "Cancelar",
+      "esUtf8Sha256": "bb9dbb406dcbd5248babc609bb3d021d384398f83dbdb8d53c9b0e32c2aad915",
+      "shortText": "Cancelar",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "botón visible cancelar, también disponible tras error",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 647,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_CANCEL_BTN_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 653,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_CONFIRM_BTN_01",
+      "ordinal": 21,
+      "es": "Reiniciar recorrido",
+      "esUtf8Sha256": "8928625ad3dd8c20dc293c3e84f9dc474cde1e3c4bf93a2832c42b73ab71e273",
+      "shortText": "Reiniciar recorrido",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "botón visible confirmar reinicio",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 672,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_CONFIRM_BTN_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 677,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_CREDITS_01",
+      "ordinal": 22,
+      "es": "Desarrollado por Momotto S.A.S.",
+      "esUtf8Sha256": "03c972fa75b12816d7a0545a9823fcb080133bd336848c63f00ffcfa1aad56a4",
+      "shortText": "Créditos",
+      "emitter": "interfaz",
+      "registryNotes": "Copy definitivo aprobado; sus dos líneas se separan con un salto DOM.",
+      "locale": "es",
+      "role": "footer visible, único crédito público vigente",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 141,
+          "sourceLine": "const finalCredits = finalEditorialSlots.FINAL_CREDITS_01.text;"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 585,
+          "sourceLine": "data-final-slot-id=\"FINAL_CREDITS_01\""
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_SCENE_01",
+      "ordinal": 23,
+      "es": "Mirador de OKÚA con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
+      "esUtf8Sha256": "8c53e06261a987e4972a3752d8374142236536b83445f3382c782ea85954c991",
+      "shortText": "Mirador accesible",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label de experiencia Mirador",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 361,
+          "sourceLine": "aria-label={finalEditorialSlots.FINAL_ACCESSIBLE_SCENE_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_I_01",
+      "ordinal": 24,
+      "es": "Revisar Sala I · Raíz",
+      "esUtf8Sha256": "5d1beb57ad8691488c854e6bfc80e5a6c8a3503af5d33d38ac6517911edcb77b",
+      "shortText": "Revisar Sala I",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del mismo enlace de revisita a Sala I",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 85,
+          "sourceLine": "accessibleSlot: \"FINAL_ACCESSIBLE_ACCESS_I_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_II_01",
+      "ordinal": 25,
+      "es": "Revisar Sala II · Pulso invisible",
+      "esUtf8Sha256": "a6ad46832f1fc1c8e7edd9c332b8da47a45886a20745b46013dcf0b7e814004b",
+      "shortText": "Revisar Sala II",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del mismo enlace de revisita a Sala II",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 96,
+          "sourceLine": "accessibleSlot: \"FINAL_ACCESSIBLE_ACCESS_II_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_III_01",
+      "ordinal": 26,
+      "es": "Revisar Sala III · Cuaderno de práctica",
+      "esUtf8Sha256": "ff6c4bc35ff3f6c4c525e86583823e77556d6671ea77956162c86c0e8a9390f3",
+      "shortText": "Revisar Sala III",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del mismo enlace de revisita a Sala III",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 107,
+          "sourceLine": "accessibleSlot: \"FINAL_ACCESSIBLE_ACCESS_III_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_IV_01",
+      "ordinal": 27,
+      "es": "Revisar Sala IV · Sistema biosonoro",
+      "esUtf8Sha256": "0bfe08fa65fe7b3ee1628bd9a0a08287bbbe087bf1419a323c55f181c575fec4",
+      "shortText": "Revisar Sala IV",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del mismo enlace de revisita a Sala IV",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 118,
+          "sourceLine": "accessibleSlot: \"FINAL_ACCESSIBLE_ACCESS_IV_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_ACCESS_V_01",
+      "ordinal": 28,
+      "es": "Revisar Sala V · OKÚA, arte sensorial",
+      "esUtf8Sha256": "330c3bb8f5e98ebbc1e332167f2feb1ee5900dc73ecac95ae8345f169c4740f1",
+      "shortText": "Revisar Sala V",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del mismo enlace de revisita a Sala V",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 129,
+          "sourceLine": "accessibleSlot: \"FINAL_ACCESSIBLE_ACCESS_V_01\","
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_BACK_HOME_01",
+      "ordinal": 29,
+      "es": "Volver a la portada sin borrar el recorrido completado",
+      "esUtf8Sha256": "4fafe20d4e8d7bbb862b351404b6ffc81c67668c061f8e9c06e83459d0a95ef6",
+      "shortText": "Volver sin borrar",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del botón Portada",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 534,
+          "sourceLine": "finalEditorialSlots.FINAL_ACCESSIBLE_BACK_HOME_01.text"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 538,
+          "sourceLine": "data-final-accessible-slot-id=\"FINAL_ACCESSIBLE_BACK_HOME_01\""
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_RESTART_01",
+      "ordinal": 30,
+      "es": "Reiniciar el recorrido completo después de confirmar",
+      "esUtf8Sha256": "7899eca6b045f8af46eb6462aab52f000212d622c94b243c9b04748b65c6610c",
+      "shortText": "Reinicio con confirmación",
+      "emitter": "interfaz",
+      "registryNotes": null,
+      "locale": "es",
+      "role": "aria-label del botón reiniciar",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 554,
+          "sourceLine": "aria-label={finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 557,
+          "sourceLine": "data-final-accessible-slot-id=\"FINAL_ACCESSIBLE_RESTART_01\""
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RETURN_TO_MIRADOR_BTN_01",
+      "ordinal": 31,
+      "es": "Volver al Mirador",
+      "esUtf8Sha256": "5ef8795b898e14e986cea829b643538ee67231c2b1fe6fad28ed38db1cea8f33",
+      "shortText": "Volver al Mirador",
+      "emitter": "interfaz",
+      "registryNotes": "Copy aprobado y registrado; consumo pendiente de ticket funcional de revisita.",
+      "locale": "es",
+      "role": "botón visible del dock sólo en revisita autorizada I–V; no se monta en Mirador",
+      "sourceRefs": [
+        {
+          "path": "src/app/review/FinalReviewModeLayout.tsx",
+          "line": 343,
+          "sourceLine": "data-final-slot-id=\"FINAL_RETURN_TO_MIRADOR_BTN_01\""
+        },
+        {
+          "path": "src/app/review/FinalReviewModeLayout.tsx",
+          "line": 348,
+          "sourceLine": "{finalEditorialSlots.FINAL_RETURN_TO_MIRADOR_BTN_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+      "ordinal": 32,
+      "es": "Volver al Mirador desde esta sala",
+      "esUtf8Sha256": "03a5e57d4fef1c59c3c86a04fb7ddad6609df4c064ee55814eac0083edf440d5",
+      "shortText": "Retorno accesible",
+      "emitter": "interfaz",
+      "registryNotes": "Copy aprobado y registrado; consumo pendiente de ticket funcional de revisita.",
+      "locale": "es",
+      "role": "aria-label del botón dock de revisita I–V",
+      "sourceRefs": [
+        {
+          "path": "src/app/review/FinalReviewModeLayout.tsx",
+          "line": 338,
+          "sourceLine": "finalEditorialSlots.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text"
+        },
+        {
+          "path": "src/app/review/FinalReviewModeLayout.tsx",
+          "line": 344,
+          "sourceLine": "data-final-accessible-slot-id=\"FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01\""
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_BUSY_01",
+      "ordinal": 33,
+      "es": "Reiniciando recorrido…",
+      "esUtf8Sha256": "e45ba4890005f4cf488e47c57da096cf29dfb200386fcb2e618ae3b02971e704",
+      "shortText": "Reiniciando",
+      "emitter": "sistema",
+      "registryNotes": "Copy aprobado y registrado; consumo pendiente de ticket funcional de reinicio.",
+      "locale": "es",
+      "role": "p aria-live durante reset; botones deshabilitados",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 626,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_RESTART_BUSY_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 627,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_BUSY_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 629,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_BUSY_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_ERROR_01",
+      "ordinal": 34,
+      "es": "No pudimos reiniciar el recorrido. Tu progreso se conservó.",
+      "esUtf8Sha256": "7689026f19b6f4558cf16ad4f3a635a16802ca0292dc52376d1bb38dca069693",
+      "shortText": "Error de reinicio",
+      "emitter": "sistema",
+      "registryNotes": "Copy aprobado y registrado; solo consumir tras verificar rollback que conserve el progreso.",
+      "locale": "es",
+      "role": "p role=status sólo si el reset falla con copySafe=true; no afirmar conservación fuera de esa condición",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 634,
+          "sourceLine": "data-editorial-status={finalEditorialSlots.FINAL_RESTART_ERROR_01.status}"
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 635,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_ERROR_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 638,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_ERROR_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    },
+    {
+      "id": "FINAL_RESTART_RETRY_BTN_01",
+      "ordinal": 35,
+      "es": "Reintentar",
+      "esUtf8Sha256": "a9254c5f812829afde4d8579f6a2b763d3f285adf993cbf0247b00cabac5fb2e",
+      "shortText": "Reintentar",
+      "emitter": "interfaz",
+      "registryNotes": "Copy aprobado y registrado; consumo pendiente de ticket funcional de reinicio.",
+      "locale": "es",
+      "role": "botón visible reintentar reset tras fallo",
+      "sourceRefs": [
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 660,
+          "sourceLine": "data-final-slot-id=\"FINAL_RESTART_RETRY_BTN_01\""
+        },
+        {
+          "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+          "line": 665,
+          "sourceLine": "{finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.text}"
+        }
+      ],
+      "english": null,
+      "translationStatus": "PENDING_CHATGPT_TRANSLATION_REVIEW"
+    }
+  ],
+  "writerSources": [
+    {
+      "id": "TXT_final_793fb4652679",
+      "action": "replace",
+      "sourcePointer": "/entries/108/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/108",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "III — Cuaderno de pruebas",
+        "writer": {
+          "text": "Cuaderno de práctica",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 2,
+          "updatedAt": "2026-10-20T22:10:14.298Z"
+        }
+      },
+      "writerTextSha256": "517936dbade64a32c3e0da62d92f5679d62988c6f4e64dbd7ae728e4c1c21c50",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1329,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1331,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1333,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_III_LABEL_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_a1b8b71d6e18",
+      "action": "replace",
+      "sourcePointer": "/entries/109/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/109",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "V — Mapa del presente",
+        "writer": {
+          "text": "Okúa obra sensorial",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 1,
+          "updatedAt": "2026-10-20T22:10:10.314Z"
+        }
+      },
+      "writerTextSha256": "7f66fa5b6afd70b6ea892d70a16b5c6c974c47fc1bf8d888ac5756c654c7d362",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1361,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1363,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1365,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_V_LABEL_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_032988b0578e",
+      "action": "replace",
+      "sourcePointer": "/entries/110/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/110",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "II — Pulso invisible",
+        "writer": {
+          "text": "Pulso invisible",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 2,
+          "updatedAt": "2026-10-20T22:11:11.426Z"
+        }
+      },
+      "writerTextSha256": "1b9ca0e2897ba25bea89b880477fdf022f78e033ac6fa349471d4d7f41bcf007",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1313,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1315,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1317,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_II_LABEL_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_0478c9a6cc0f",
+      "action": "replace",
+      "sourcePointer": "/entries/111/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/111",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "IV — Mesa de sistema",
+        "writer": {
+          "text": "Mesa de sistema",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 2,
+          "updatedAt": "2026-10-20T22:11:01.890Z"
+        }
+      },
+      "writerTextSha256": "3a812b4bb720b537d9c212bbe7c65617e7d428f09216c07849b293beaae72b49",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1345,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1347,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1349,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_ACCESS_IV_LABEL_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "EL_9f805e38535c",
+      "action": "replace",
+      "sourcePointer": "/entries/112/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/112",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": {
+          "tag": "div",
+          "text": "Volver al inicio",
+          "src": "",
+          "alt": "",
+          "role": "",
+          "className": "final-root-nine-slice final-root-action-panel final-root-action-panel--home",
+          "style": {
+            "color": "rgb(255, 247, 223)",
+            "backgroundColor": "rgba(28, 19, 24, 0.62)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "textAlign": "start",
+            "width": "179.306px",
+            "height": "61.7708px",
+            "padding": "0px",
+            "margin": "0px",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "translate": "none",
+            "rotate": "none",
+            "gap": "normal",
+            "objectFit": "fill"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "bounds": {
+            "x": 11.70138931274414,
+            "y": 683.9931030273438,
+            "width": 179.30555725097656,
+            "height": 61.770835876464844
+          }
+        },
+        "writer": {
+          "text": "",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "{\"translate\":\"100px 0px\"}",
+          "asset": "",
+          "revision": 3,
+          "updatedAt": "2026-10-20T22:12:15.393Z"
+        }
+      },
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/finalEditorialSlots.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_9a9aab297fcb",
+      "action": "replace",
+      "sourcePointer": "/entries/113/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/113",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "Desarrollado por Momotto S.A.S.",
+        "writer": {
+          "text": "Desarrollado por Momotto S.A.S.",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 2,
+          "updatedAt": "2026-10-20T22:13:34.419Z"
+        }
+      },
+      "writerTextSha256": "03c972fa75b12816d7a0545a9823fcb080133bd336848c63f00ffcfa1aad56a4",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/finalEditorialSlots.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_CREDITS_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_18f3092f2060",
+      "action": "hide",
+      "sourcePointer": "/entries/114/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/114",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "A cargo del Ing. José David P. Z.",
+        "writer": {
+          "text": "",
+          "short": "",
+          "note": "",
+          "action": "hide",
+          "css": "",
+          "asset": "",
+          "revision": 1,
+          "updatedAt": "2026-10-20T22:13:18.987Z"
+        }
+      },
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/finalEditorialSlots.ts",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+            "source_line_at_snapshot": null,
+            "evidence": "screen_consumer_candidate_not_exact_selector",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_b7861600c81c",
+      "action": "replace",
+      "sourcePointer": "/entries/115/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/115",
+        "included_in_changes": true
+      },
+      "literal": {
+        "before_editor": "Mirador final del jardín",
+        "writer": {
+          "text": "Okúa Jardín Biosonoro",
+          "short": "",
+          "note": "",
+          "action": "replace",
+          "css": "",
+          "asset": "",
+          "revision": 4,
+          "updatedAt": "2026-10-20T22:14:25.388Z"
+        }
+      },
+      "writerTextSha256": "4d7ebe9e9445b022ee0ae16f1c080f6665c3b049ac061fbc9f3bf57c9ebb05dd",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1265,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          },
+          {
+            "path": "src/content/editorial/editorialRegistry.ts",
+            "source_line_at_snapshot": 1269,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [
+        "FINAL_TITLE_01"
+      ],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    },
+    {
+      "id": "TXT_final_b65898a7de81",
+      "action": "keep",
+      "sourcePointer": "/entries/119/literal/writer",
+      "source": {
+        "archive": "GVO_CONTEXTO_CHATGPT_PLAN_ESCRITOR_2026-10-23_v1.zip",
+        "path": "01_REVISION_COMPLETA/MATRIZ_COMPLETA.json",
+        "json_pointer": "/entries/119",
+        "included_in_changes": false
+      },
+      "literal": {
+        "before_editor": "PLANTA VIVA",
+        "writer": {
+          "text": "",
+          "short": "",
+          "note": "",
+          "action": "keep",
+          "css": "",
+          "asset": "",
+          "revision": 1,
+          "updatedAt": "2026-10-20T22:26:41.046Z"
+        }
+      },
+      "writerTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "r1Execution": {
+        "disposition": "preserve_mirador_current_runtime",
+        "consumer_candidates": [
+          {
+            "path": "src/content/world2EditorialSlots.ts",
+            "source_line_at_snapshot": 103,
+            "evidence": "source_reference_in_matrix",
+            "verify_in_live_checkout": true
+          }
+        ],
+        "runtime_es_full_text_before_layout": null,
+        "registered_errata": [],
+        "note": "Mirador fue expresamente conservado. Esta fuente se mantiene para trazabilidad; no rehacer copy o diseño por rutina.",
+        "segmentation": "Aplicar spans exactos y registro de recortes; conservar el sentido íntegro. El copy funcional nuevo y EN se registran aparte.",
+        "status": "SPECIFIED_FOR_R2_CONCILIATION_NOT_IMPLEMENTED"
+      },
+      "relatedCurrentSlots": [],
+      "note": "Correspondencia editorial; la presentación vigente del Mirador se conserva conforme R1. Los 35 slots no se atribuyen en conjunto como nueve literales del escritor."
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/content/editorial/editorialRegistry.ts",
+      "sha256": "e347c81380325024a905e22a4797111ead45fc65b8cd553152f905bcf015c21a",
+      "bytes": 49801
+    },
+    {
+      "path": "src/content/finalEditorialSlots.ts",
+      "sha256": "4a78ac40f5b0a9fd8a90dad8b6afadbd3c3f98f24dbce714b67be67d06cd7ed8",
+      "bytes": 2438
+    },
+    {
+      "path": "src/screens/FinalRoot/FinalRootScreen.tsx",
+      "sha256": "a6e6d0b254108672e4c27818d801a538ded8b9f9636a43854237ae4683c0356f",
+      "bytes": 23504
+    },
+    {
+      "path": "src/app/review/FinalReviewModeLayout.tsx",
+      "sha256": "3f3ee5f24f903008aebaa91902350f3383b2a2ce640295e75dbb7344a405689f",
+      "bytes": 11439
+    },
+    {
+      "path": "src/screens/FinalRoot/FinalRootScreen.css",
+      "sha256": "d7ba48599bdfe83c15b625e37b0bda7acd6cf793b0b2b2d06005f9ef4537deaa",
+      "bytes": 14159
+    },
+    {
+      "path": "src/app/review/FinalReviewModeLayout.css",
+      "sha256": "8ef13ef1f73c103c34e26e71e9121ec40a63df7a1a57fff7669ec9078ca7924d",
+      "bytes": 4207
+    },
+    {
+      "path": "src/screens/FinalRoot/FinalLiaMotion.tsx",
+      "sha256": "41588fc888581712f379b288ae25f3d8dbac59083a00ff8b5a4f555e05204ec5",
+      "bytes": 7402
+    },
+    {
+      "path": "src/app/preferences/languagePreference.ts",
+      "sha256": "d3896af1ec94116c72ca1a8b58b3ce0a0d6f607b6b0574656622becf3a783fd0",
+      "bytes": 1367
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/plan_cambios_origen.json",
+      "sha256": "e68005127235af0b6c1b1abbee6f16fc377d5bf6687a45e68626c486684f796b",
+      "bytes": 572249
+    },
+    {
+      "path": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/incoming/r01/OBS03_PLAN_CAMBIOS.json",
+      "sha256": "1eb92a0d64f1f9ece540326b29407860a4966d21af828e8c885db83e5e7a66c3",
+      "bytes": 698678
+    }
+  ]
+}

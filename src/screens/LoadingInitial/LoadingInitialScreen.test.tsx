@@ -1,5 +1,5 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { LoadingInitialScreen } from "./LoadingInitialScreen";
 import { loadingInitialAssets } from "./loadingInitialAssets";
@@ -21,6 +21,34 @@ import {
 } from "./liaFrameRegistration";
 
 describe("LoadingInitialScreen", () => {
+  it("muestra progreso real recibido sin acción de omisión", () => {
+    const { rerender } = render(<LoadingInitialScreen preloadProgress={0.25} />);
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "25");
+    expect(screen.getByRole("progressbar")).toHaveAttribute("data-progress-preview", "real");
+    expect(screen.queryByRole("button")).toBeNull();
+    rerender(<LoadingInitialScreen preloadProgress={0.7} />);
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "70");
+  });
+
+  it("timeout ofrece sólo recuperación delegada y conserva el límite de reintentos", () => {
+    const retry = vi.fn(), back = vi.fn();
+    const { rerender } = render(<LoadingInitialScreen preloadStatus="timeout" onRetry={retry} onBack={back} />);
+    fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+    fireEvent.click(screen.getByRole("button", { name: "Volver" }));
+    expect(retry).toHaveBeenCalledTimes(1); expect(back).toHaveBeenCalledTimes(1);
+    rerender(<LoadingInitialScreen preloadStatus="error" onRetry={retry} onBack={back} canRetry={false} />);
+    expect(screen.queryByRole("button", { name: "Reintentar" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Volver" })).toBeEnabled();
+    expect(screen.queryByRole("button", { name: /omitir|continuar/i })).toBeNull();
+  });
+
+  it("resuelve al renderizar EN también para estado de error y recuperación", () => {
+    render(<LoadingInitialScreen locale="en" preloadStatus="error" onRetry={() => undefined} onBack={() => undefined} />);
+    expect(screen.getByRole("heading", { name: "Welcome to OKÚA" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Retry" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Back" })).toBeVisible();
+    expect(screen.queryByText("Preparando tu recorrido")).toBeNull();
+  });
   afterEach(() => {
     cleanup();
   });
@@ -80,7 +108,7 @@ describe("LoadingInitialScreen", () => {
     ).parentElement;
 
     expect(TOTAL_DURATION_MS).toBeGreaterThanOrEqual(12000);
-    expect(REDUCED_MOTION_DURATION_MS).toBe(12000);
+    expect(REDUCED_MOTION_DURATION_MS).toBe(1200);
     expect(loadingInitialTimeline.durationMs).toBe(12000);
     expect(stage).toHaveAttribute("data-loading-layout-version", "v13");
     expect(stage).toHaveAttribute("data-motion-timeline-version", "v13");
@@ -88,9 +116,9 @@ describe("LoadingInitialScreen", () => {
     expect(stage).toHaveAttribute("data-progress-duration-ms", "12000");
     expect(stage).toHaveAttribute(
       "data-preload-contract",
-      "first-paint-before-critical-preload",
+      "root-owned-preparation",
     );
-    expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "12000");
+    expect(stage).toHaveAttribute("data-reduced-motion-duration-ms", "1200");
   });
 
   it("expone contrato de primer paint antes de precarga critica", () => {
@@ -100,10 +128,9 @@ describe("LoadingInitialScreen", () => {
 
     expect(main).toHaveAttribute(
       "data-first-paint-contract",
-      "shell-before-preload",
+      "root-owned-preparation",
     );
-    expect(main).toHaveAttribute("data-first-paint-ready", "false");
-    expect(main).toHaveAttribute("data-loading-preload-status", "idle");
+    expect(main).toHaveAttribute("data-loading-preload-status", "loading");
     expect(main).toHaveAttribute("data-loading-preload-progress", "0");
   });
 
@@ -229,7 +256,7 @@ describe("LoadingInitialScreen", () => {
     }
     expect(loadingInitialMotionTimeline.version).toBe("v13");
     expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
-    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(12000);
+    expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1200);
     expect(
       loadingInitialMotionTimeline.phases.map((phase) => phase.id),
     ).toEqual([

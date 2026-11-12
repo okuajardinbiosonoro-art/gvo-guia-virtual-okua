@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { cleanup, render, screen, within } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import type { ReactNode } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 import { GVO_LANGUAGE_STORAGE_KEY } from "../preferences/languagePreference";
@@ -7,6 +8,12 @@ import {
   GlobalImmersiveShell,
   isImmersiveShellAuthorizedPath,
 } from "./GlobalImmersiveShell";
+
+// This suite isolates the shell's fullscreen policy. The actual entry resource
+// host and route preparation have dedicated unit and compiled-browser suites.
+vi.mock("../journey/JourneyPreparation", () => ({
+  JourneyPreparation: ({ children }: { children: ReactNode }) => children,
+}));
 
 function installFullscreenSupport() {
   Object.defineProperty(document, "fullscreenEnabled", {
@@ -135,10 +142,14 @@ describe("GlobalImmersiveShell", () => {
   });
 
   it("aplica la preferencia de idioma persistida al shell completo", () => {
+    installFullscreenSupport();
     localStorage.setItem(GVO_LANGUAGE_STORAGE_KEY, "en");
 
     renderAt("/estacion/1");
 
     expect(document.documentElement.lang).toBe("en");
+    const group = screen.getByRole("group", { name: "Display controls" });
+    expect(within(group).getByRole("button", { name: "Enter fullscreen" })).toHaveAttribute("data-gvo-immersive-control", "fullscreen");
+    expect(screen.queryByRole("group", { name: "Control de visualización" })).not.toBeInTheDocument();
   });
 });

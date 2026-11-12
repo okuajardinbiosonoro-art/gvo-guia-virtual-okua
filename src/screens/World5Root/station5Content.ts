@@ -14,31 +14,31 @@ export const station5Areas: readonly Station5AreaContent[] = [
     id: "plantas",
     order: 1,
     title: "Plantas",
-    accessibleLabel: "Plantas, área 1 de 4",
+    accessibleLabel: "Plantas, pregunta 1 de 4",
   },
   {
     id: "sistema",
     order: 2,
-    title: "Sistema",
-    accessibleLabel: "Sistema, área 2 de 4",
+    title: "Sistema de escucha",
+    accessibleLabel: "Sistema de escucha, pregunta 2 de 4",
   },
   {
     id: "espacio",
     order: 3,
     title: "Espacio",
-    accessibleLabel: "Espacio, área 3 de 4",
+    accessibleLabel: "Espacio, pregunta 3 de 4",
   },
   {
     id: "visitante",
     order: 4,
     title: "Visitante",
-    accessibleLabel: "Visitante, área 4 de 4",
+    accessibleLabel: "Visitante, pregunta 4 de 4",
   },
 ] as const;
 
 export const station5Header = {
-  eyebrow: "ESTACIÓN V · MUNDO V",
-  title: "Mapa del presente",
+  eyebrow: "Sala V",
+  title: "OKÚA, arte sensorial",
 } as const;
 
 export const station5PlantsCopy = {
@@ -99,4 +99,67 @@ export const station5DeprecatedCopy = {
   W5_SISTEMA_ACTION: "DEPRECATED_NO_RENDER",
 } as const;
 
-export const station5FixedCta = "Ir al cierre" as const;
+export const station5FixedCta = "Ir al Mirador" as const;
+
+// Writer source bound to the active question, feedback and point.
+const answerPrompt = "Elige una respuesta.";
+export const station5Questions: Record<
+  Station5AreaId,
+  {
+    sourceId: string;
+    title: string;
+    question: string;
+    instruction: string;
+    agreement: string;
+    disagreement: string;
+    feedback: string;
+    point: string;
+  }
+> = {
+  plantas: {
+    sourceId: "TXT_5_492e47aeb6b8",
+    // OBS05: first-letter correction of writer title TXT_5_ac326cd04f19.
+    title: "Plantas - trivia 1 de 4",
+    question:
+      "¿Son seres vivos capaces de relacionarse con su entorno y emitir señales?",
+    instruction: answerPrompt,
+    agreement: "Estoy de acuerdo",
+    disagreement: "No estoy de acuerdo",
+    feedback: "¡Correcto!",
+    point: "Vitalidad reconocida en la planta. Tienes 1 punto",
+  },
+  sistema: {
+    sourceId: "TXT_5_9b70a607a49a",
+    title: "Sistema de escucha · Pregunta 2 de 4",
+    question:
+      "¿El sistema transforma el pulso vivo de la planta en sonidos musicales en directo?",
+    instruction: answerPrompt,
+    agreement: "Estoy de acuerdo",
+    disagreement: "No estoy de acuerdo",
+    feedback: "¡Correcto!",
+    point: "Mediación reconocida. Tienes 1 punto.",
+  },
+  espacio: {
+    sourceId: "TXT_5_3b6bbc87ed80",
+    title: "Espacio · Pregunta 3 de 4",
+    question:
+      "¿OKÚA es una instalación interactiva que reúne arte, ciencia y tecnología para conectar al visitante con la naturaleza?",
+    instruction: answerPrompt,
+    agreement: "Estoy de acuerdo",
+    disagreement: "No estoy de acuerdo",
+    feedback:
+      "¡Correcto! OKÚA convierte la biosonificación en una experiencia artística interactiva.",
+    point: "Recorrido reconocido. Tienes 1 punto.",
+  },
+  visitante: {
+    sourceId: "TXT_5_bfb7f09e357a",
+    title: "Visitante · Pregunta 4 de 4",
+    question: "¿Tú también haces parte de la obra?",
+    instruction: answerPrompt,
+    agreement: "Estoy de acuerdo",
+    disagreement: "No estoy de acuerdo",
+    feedback:
+      "¡Correcto! La obra se completa cuando alguien la recorre, la escucha y la comprende.",
+    point: "Presencia reconocida. Tienes 1 punto.",
+  },
+};

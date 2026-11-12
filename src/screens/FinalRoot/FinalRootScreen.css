@@ -320,6 +320,13 @@
   fill: currentcolor;
 }
 
+@media (max-width: 319px) {
+  .final-root-action {
+    gap: 4px;
+    font-size: 14px;
+  }
+}
+
 .final-root-action:focus-visible,
 .final-root-dialog-action:focus-visible {
   outline: 3px solid #fff7c9;
@@ -333,7 +340,7 @@
   bottom: max(6px, 1.2%);
   display: grid;
   width: min(92%, 380px);
-  min-height: 58px;
+  min-height: 44px;
   align-items: center;
   padding: 2px 12px;
   border-width: 9px 15px;
@@ -625,8 +632,7 @@
   text-decoration: none;
   text-align: center;
   font:
-    600 clamp(0.95rem, 2vw, 1.1rem)/1.15 "Pixelify Sans Variable",
-    sans-serif;
+    600 clamp(0.95rem, 2vw, 1.1rem)/1.15 var(--gvo-font-ui);
   box-shadow: 0 2px 8px #20362f33;
 }
 .final-root-lia-entry:focus-visible {

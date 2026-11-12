@@ -28,12 +28,15 @@ const SIGNAL_BEFORE_REVEAL_CHECKPOINT = {
 } as const;
 
 const VIEWPORTS = [
+  { height: 640, name: "portrait-280x640", width: 280 },
   { height: 640, name: "portrait-360x640", width: 360 },
   { height: 844, name: "portrait-390x844", width: 390 },
   { height: 915, name: "portrait-412x915", width: 412 },
   { height: 390, name: "landscape-844x390", width: 844 },
   { height: 412, name: "landscape-915x412", width: 915 },
   { height: 1024, name: "tablet-768x1024", width: 768 },
+  { height: 280, name: "landscape-640x280", width: 640 },
+  { height: 1080, name: "desktop-1920x1080", width: 1920 },
 ] as const;
 
 const LAYERS = [
@@ -46,18 +49,16 @@ const LAYERS = [
 ] as const;
 
 const REQUIRED_TEXT = [
-  { minimum: 10, selector: ".world2-scene-title p" },
-  { minimum: 12, selector: ".world2-scene-title span" },
   { minimum: 18, selector: ".world2-scene-title h1" },
   {
     minimum: 12,
     selector:
-      ".world2-plant-contact-readout strong, .world2-signal-cinema__readout strong, .world2-capture-readout strong",
+      "[data-world2-required-interaction='plant_contact_readout_seen'] .world2-dialogue__title, [data-world2-signal-readout='expanded'] .world2-dialogue__title, .world2-capture-readout strong",
   },
   {
     minimum: 12,
     selector:
-      ".world2-plant-contact-readout p, .world2-signal-cinema__readout p, .world2-capture-readout p",
+      "[data-world2-required-interaction='plant_contact_readout_seen'] .world2-dialogue__copy, [data-world2-signal-readout='expanded'] .world2-dialogue__copy, .world2-capture-readout p",
   },
   { minimum: 10, selector: ".world2-layer-callout" },
   { minimum: 10, selector: ".world2-conditioning-cinema__label" },
@@ -75,8 +76,11 @@ const REQUIRED_TEXT = [
   { minimum: 10, selector: ".world2-capture-timeline__eyebrow" },
   { minimum: 12, selector: ".world2-capture-timeline__progress" },
   { minimum: 11, selector: ".world2-capture-timeline__step-label" },
-  { minimum: 12, selector: ".world2-capture-timeline__readout strong" },
-  { minimum: 12, selector: ".world2-capture-timeline__readout p" },
+  {
+    minimum: 12,
+    selector: ".world2-dialogue__title",
+  },
+  { minimum: 12, selector: "[data-world2-capture-readout]" },
   { minimum: 11, selector: ".world2-capture-timeline__control-label" },
   { minimum: 12, selector: ".world2-mapping-sequence__header" },
   { minimum: 11, selector: ".world2-mapping-sequence__header > strong" },
@@ -400,7 +404,7 @@ async function measureGeometry(page: Page, layer: string): Promise<Geometry> {
             ".world2-dialogue__copy",
             ".world2-dialogue__hint",
             ".world2-capture-timeline__header",
-            ".world2-capture-timeline__readout",
+            "[data-world2-capture-readout]",
             ".world2-capture-timeline__controls",
             ".world2-mapping-sequence__header",
             ".world2-mapping-sequence__relation",
@@ -611,7 +615,9 @@ test("refinamientos humanos: Planta despeja a Lía y Señal conserva el contacto
   await page.setViewportSize({ height: 844, width: 390 });
   await seedCompletedWorld2(page);
 
-  const plantReadout = page.locator(".world2-plant-contact-readout");
+  const plantReadout = page.locator(
+    "[data-world2-required-interaction='plant_contact_readout_seen']",
+  );
   const plantLia = page.locator(
     '[data-world2-scene-layer="planta_viva"] .world2-lia-field',
   );
@@ -624,9 +630,7 @@ test("refinamientos humanos: Planta despeja a Lía y Señal conserva el contacto
   expect(plantReadoutRect).not.toBeNull();
   expect(plantLiaRect).not.toBeNull();
   if (PHASE === "after") {
-    expect(plantReadoutRect!.x + plantReadoutRect!.width).toBeLessThanOrEqual(
-      plantLiaRect!.x + 1,
-    );
+    expect(overlapArea(plantReadoutRect!, plantLiaRect!)).toBe(0);
   }
 
   await seedSignalBeforeReveal(page);
@@ -662,7 +666,9 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   await page.setViewportSize({ height: 844, width: 390 });
   await openWorld2ReviewFromMirador(page);
 
-  const plantReadout = page.locator(".world2-plant-contact-readout");
+  const plantReadout = page.locator(
+    "[data-world2-required-interaction='plant_contact_readout_seen']",
+  );
   const plantLia = page.locator(
     '[data-world2-scene-layer="planta_viva"] .world2-lia-field',
   );
@@ -672,9 +678,7 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   ]);
   expect(plantReadoutRect).not.toBeNull();
   expect(plantLiaRect).not.toBeNull();
-  expect(plantReadoutRect!.x + plantReadoutRect!.width).toBeLessThanOrEqual(
-    plantLiaRect!.x + 1,
-  );
+  expect(overlapArea(plantReadoutRect!, plantLiaRect!)).toBe(0);
   await saveEvidence(
     "review-portrait-390x844-planta_viva",
     {
@@ -715,19 +719,17 @@ test("regreso desde Mirador conserva los refinamientos y separa los controles", 
   ).toBeVisible();
   const [captureControlsRect, captureReadoutTextRect] = await Promise.all([
     page.locator(".world2-capture-timeline__controls").boundingBox(),
-    page.locator(".world2-capture-timeline__readout p").boundingBox(),
+    page.locator("[data-world2-capture-readout]").boundingBox(),
   ]);
   expect(captureControlsRect).not.toBeNull();
   expect(captureReadoutTextRect).not.toBeNull();
-  expect(
-    captureReadoutTextRect!.y + captureReadoutTextRect!.height,
-  ).toBeLessThanOrEqual(captureControlsRect!.y);
+  expect(overlapArea(captureReadoutTextRect!, captureControlsRect!)).toBe(0);
   await saveEvidence(
     "review-portrait-390x844-captura",
     {
       controls: captureControlsRect,
       readout: await page
-        .locator(".world2-capture-timeline__readout")
+        .locator("[data-world2-capture-readout]")
         .boundingBox(),
       readoutText: captureReadoutTextRect,
     },

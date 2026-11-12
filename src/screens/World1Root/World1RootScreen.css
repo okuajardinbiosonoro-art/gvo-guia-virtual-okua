@@ -1,6 +1,6 @@
 .world1-root-screen {
   position: relative;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   min-height: 100svh;
   min-height: 100dvh;
@@ -530,11 +530,20 @@
   inset: 0;
   z-index: 8;
   pointer-events: none;
+  /* Project the viewport into the scene's coordinate system. The background
+     keeps its artistic enlargement; complete controls retain an 8px inset. */
+  --world1-node-viewport-scale: calc(
+    var(--world1-stage-frame-scale, 1) * var(--world1-stage-scale, 1)
+  );
+  --world1-node-viewport-half-span: calc(
+    (50vw - var(--world1-node-safe-inline)) /
+      var(--world1-node-viewport-scale)
+  );
 }
 
 .world1-root-node {
   position: absolute;
-  width: 102px;
+  width: var(--world1-node-hit-width);
   padding: 0;
   border: 0;
   appearance: none;
@@ -585,7 +594,13 @@
 
 .world1-root-node--relation {
   top: var(--world1-node-relation-y);
-  left: var(--world1-node-relation-x);
+  left: max(
+    var(--world1-node-relation-x),
+    calc(
+      50% - var(--world1-node-viewport-half-span) +
+        var(--world1-node-hit-width) * var(--world1-node-relation-scale) / 2
+    )
+  );
   transform: translate(-50%, -50%) scale(var(--world1-node-relation-scale));
 }
 
@@ -597,7 +612,13 @@
 
 .world1-root-node--mediation {
   top: var(--world1-node-mediation-y);
-  left: var(--world1-node-mediation-x);
+  left: min(
+    var(--world1-node-mediation-x),
+    calc(
+      50% + var(--world1-node-viewport-half-span) -
+        var(--world1-node-hit-width) * var(--world1-node-mediation-scale) / 2
+    )
+  );
   transform: translate(-50%, -50%) scale(var(--world1-node-mediation-scale));
 }
 
@@ -811,8 +832,13 @@
   top: 71%;
   left: 50%;
   display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   justify-items: center;
   width: min(82%, 34rem);
+  /* Centre71% leaves29% to the bottom of the clipped stage. Constrain the
+     whole panel to56%, so enlarged controls remain inside that stage and
+     only the manual reading viewport gives up height. */
+  max-height: 56%;
   min-width: 0;
   transform: translate(-50%, -50%);
   pointer-events: auto;
@@ -860,6 +886,8 @@
   position: relative;
   width: 100%;
   height: clamp(10.8rem, 24svh, 15.4rem);
+  min-height: 0;
+  max-height: 100%;
   padding: 0.78rem 0.92rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -917,7 +945,7 @@
 }
 
 .world1-root-narrative__eyebrow,
-.world1-root-narrative h1,
+.world1-root-narrative h2,
 .world1-root-narrative__body {
   margin: 0;
 }
@@ -932,7 +960,7 @@
   text-transform: uppercase;
 }
 
-.world1-root-narrative h1 {
+.world1-root-narrative h2 {
   justify-self: center;
   max-width: min(100%, 24rem);
   color: #fff7dd;
@@ -1050,10 +1078,6 @@
     --world1-stage-safe-block: 18px;
   }
 
-  .world1-root-node {
-    width: 86px;
-  }
-
   .world1-root-node__label {
     padding: 4px 5px 5px;
     font-size: 0.62rem;
@@ -1091,7 +1115,7 @@
     padding-inline: 0.72rem;
   }
 
-  .world1-root-narrative h1 {
+  .world1-root-narrative h2 {
     font-size: clamp(0.78rem, 3.35vw, 0.98rem);
   }
 
@@ -1330,5 +1354,321 @@
     opacity: 0;
     transform: translate(-50%, -50%)
       translate(var(--world1-particle-x), var(--world1-particle-y)) scale(1.1);
+  }
+}
+
+/* Editorial integration 2026-10-23: responsive anchors, deliberate arrival. */
+.world1-root-screen .world1-root-stage-coordinate-layer .world1-root-lia,
+.world1-root-screen .world1-root-stage-coordinate-layer .world1-root-lia-halo,
+.world1-root-screen
+  .world1-root-stage-coordinate-layer
+  .world1-root-lia-presence,
+.world1-root-screen
+  .world1-root-stage-coordinate-layer
+  .world1-root-lia-expression {
+  left: var(--world1-guide-x, 16%);
+  top: 26%;
+  width: 21%;
+  transition:
+    left 480ms ease-in-out,
+    top 480ms ease-in-out,
+    width 480ms ease;
+}
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-lia,
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-lia-halo,
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-lia-presence,
+.world1-root-screen[data-world1-root-state="ready_to_continue"]
+  .world1-root-lia-expression {
+  top: 14%;
+}
+.world1-root-screen[data-world1-root-state="intro"]
+  .world1-root-stage-coordinate-layer
+  .world1-root-lia {
+  width: 25%;
+}
+.world1-room-heading {
+  position: absolute;
+  z-index: 30;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 7rem);
+  transform: translateX(-50%);
+  margin: 0;
+  text-align: center;
+  color: #ffe9b8;
+  font-size: var(--gvo-room-title-size);
+  line-height: var(--gvo-room-title-line);
+  font-weight: 700;
+}
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="floating"]
+  .world1-room-heading {
+  top: calc(
+    var(--gvo-final-review-visual-offset-top, 0px) +
+      env(safe-area-inset-top, 0px) +
+      var(--gvo-final-review-dock-edge-gap, 12px) +
+      var(--gvo-final-review-dock-block-size, 44px) +
+      var(--gvo-final-review-content-gap, 10px)
+  );
+}
+.world1-root-node__label[data-world1-title-revealed="false"] {
+  visibility: hidden;
+}
+.world1-root-narrative[data-world1-reading-visible="false"] {
+  visibility: hidden;
+}
+.world1-reading-close {
+  position: relative;
+  justify-self: end;
+  margin-top: -0.35rem;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff1d2;
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.world1-reading-close:focus-visible,
+.world1-reading-more summary:focus-visible {
+  outline: 2px solid #f6d18b;
+  outline-offset: 2px;
+}
+.world1-scene-exit {
+  position: relative;
+  z-index: 9;
+  width: min(88%, 32rem);
+  min-width: 0;
+  color: #fff1d2;
+}
+.world1-scene-exit > .interstation-qr-gate--scene {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+.world1-root-screen:has(> .world1-scene-exit) {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: max(1rem, 2svh);
+  padding-block-end: max(16px, env(safe-area-inset-bottom));
+}
+.world1-root-screen:has(> .world1-scene-exit) .world1-root-stage-frame {
+  --world1-stage-frame-scale: 1;
+}
+.world1-reading-more {
+  font: inherit;
+  color: #fff1d2;
+  margin-top: 0.6rem;
+}
+.world1-reading-more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  list-style: none;
+  font-size: 0.9rem;
+}
+.world1-reading-more summary::-webkit-details-marker {
+  display: none;
+}
+.world1-reading-more summary::before {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  content: "";
+  transform: rotate(-45deg);
+}
+.world1-reading-more[open] summary::before {
+  transform: rotate(45deg);
+}
+.world1-reading-more p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* The action row stays outside the masked reading viewport. */
+.world1-reading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px 12px;
+  width: 100%;
+  padding-inline: 0.45rem;
+}
+.world1-root-narrative .world1-reading-more-toggle {
+  position: relative;
+  z-index: 4;
+  justify-self: start;
+  min-width: 48px;
+  min-height: 48px;
+  margin-right: auto;
+  padding: 0.5rem 0.25rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fff3db;
+  font: inherit;
+  font-size: max(1rem, var(--gvo-text-body-size, 1rem));
+  line-height: 1.45;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.world1-root-narrative .world1-reading-more-toggle:focus-visible {
+  outline: 3px solid #ffe0a5;
+  outline-offset: 3px;
+}
+.world1-root-narrative .world1-reading-expanded {
+  margin: 0.7rem 0;
+  padding: 0.15rem 0 0.15rem 0.75rem;
+  border-inline-start: 2px solid #eac888;
+  background: transparent;
+  color: #fff3db;
+  font: 400 max(1rem, var(--gvo-text-body-size, 1rem))/1.5 var(--gvo-font-body);
+  text-align: start;
+}
+.world1-root-narrative .world1-reading-expanded[hidden] { display: none; }
+.world1-root-narrative .world1-reading-close {
+  margin-top: 0;
+  width: auto;
+  min-width: 48px;
+  min-height: 48px;
+  height: auto;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.35rem;
+  border: 1px solid #d6bd91;
+  background: #241c30;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+@media (orientation: portrait) {
+  .world1-root-screen:is([data-world1-root-state="intro"], [data-world1-root-state="ready_to_continue"])
+    .world1-root-narrative {
+    top: 58%;
+    bottom: 5%;
+    max-height: none;
+    transform: translateX(-50%);
+  }
+  .world1-root-screen:is([data-world1-root-state="intro"], [data-world1-root-state="ready_to_continue"])
+    .world1-root-narrative__viewport {
+    height: 100%;
+    max-height: none;
+  }
+}
+
+/* A short landscape viewport scrolls the composition instead of shrinking the
+   whole portrait scene until its nodes cover the reading actions. The original
+   illustrated coordinate layer keeps its proportions beside the real reader. */
+@media (orientation: landscape) and (max-height: 550px) {
+  .world1-root-screen {
+    height: auto;
+    min-height: 100svh;
+    min-height: 100dvh;
+    overflow: visible;
+    contain: paint;
+    padding: max(4rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+  }
+  .world1-root-screen .world1-root-stage-frame {
+    --world1-stage-frame-scale: 1;
+    --world1-node-hit-width: clamp(48px, 12vw, 72px);
+    --world1-node-size: clamp(40px, 10vw, 62px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 1rem;
+    width: min(100%, 62rem);
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+    contain: none;
+    transform: none;
+  }
+  .world1-root-screen .world1-root-stage-coordinate-layer {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 941 / 1672;
+    transform: none;
+  }
+  .world1-root-screen .world1-root-narrative {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-height: none;
+    transform: none;
+    margin: 0;
+  }
+  .world1-root-screen .world1-root-narrative__viewport {
+    height: 14rem;
+    max-height: none;
+  }
+  .world1-root-screen .world1-root-narrative__body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .world1-root-screen .world1-scene-exit {
+    justify-self: end;
+  }
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="floating"] .world1-root-screen {
+    padding-top: calc(6.5rem + var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px));
+  }
+}
+.world1-root-screen[data-journey-active="false"] *,
+.world1-root-screen[data-journey-active="false"] *::before,
+.world1-root-screen[data-journey-active="false"] *::after {
+  animation-play-state: paused !important;
+}
+
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__viewport {
+  padding: 0.55rem clamp(0.55rem, 3vw, 1rem);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__track {
+  align-content: safe center;
+  min-block-size: 100%;
+  gap: clamp(0.45rem, 1.5vw, 0.8rem);
+  padding-block: 0.45rem;
+}
+
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__eyebrow {
+  font-size: max(0.85rem, 14px);
+}
+
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative h2 {
+  font-size: clamp(1.15rem, 4.7vw, 1.65rem);
+  line-height: 1.25;
+}
+
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__body {
+  font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world1-root-screen .world1-root-stage-coordinate-layer .world1-root-lia,
+  .world1-root-screen .world1-root-stage-coordinate-layer .world1-root-lia-halo,
+  .world1-root-screen
+    .world1-root-stage-coordinate-layer
+    .world1-root-lia-presence,
+  .world1-root-screen
+    .world1-root-stage-coordinate-layer
+    .world1-root-lia-expression {
+    transition: none;
   }
 }

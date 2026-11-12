@@ -1,0 +1,2399 @@
+{
+  "schema": 3,
+  "status": "ART_TECHNICAL_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING",
+  "humanApproved": false,
+  "authority": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/exchanges/15_context-art-method-received.txt",
+  "method": "One authentic mask; registered AI-clean local material, per-frame four-corner low-frequency body lighting; original RGB retained outside editable masks. All original alpha, water, avatar, growth and timings preserved.",
+  "pilotManifest": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/manifest.json",
+  "pilotManifestSha256": "10f2a5b62bc0088692a98475506c0682d6d5fe7804656058f1a37730e1bebd1c",
+  "geometry": {
+    "path": "assets-source/editorial-2026-10-23/observaciones-03/production/OKUA-emblem-ink-alpha-mask-v03.png",
+    "sha256": "635b8b91d097a80d7c0a3d03a77e92388f6d3e61de9da4a68489e120e051759c",
+    "dimensions": [
+      58,
+      71
+    ]
+  },
+  "assets": [
+    {
+      "runtime": "public/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png",
+      "mirror": "public/assets/gvo/current-used/loading-initial/plant/plant_growth_4f_okua_v03.png",
+      "format": "png",
+      "dimensions": [
+        3072,
+        768
+      ],
+      "sha256": "b1783ea36895c857329ce0d9932e03964b27bc643c089ab28cc53cc82f46e98f",
+      "bytes": 370976,
+      "status": "ART_TECHNICAL_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING",
+      "humanApproved": false,
+      "original": "public/assets/runtime/loading-initial/plant/plant_growth_4f.png",
+      "originalSha256": "51df5afdc349ea53eacf7f92baa96480621556b6e7a1239dc472da4caf3c64c0",
+      "materialSource": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/LOADING_POT_CLEAN_OBS03.png",
+      "materialSha256": "b9318a5bde50a43f1b0864672a58c160d286d61dbe8ba8028c53a235ac14948d",
+      "geometrySource": "assets-source/editorial-2026-10-23/observaciones-03/production/OKUA-emblem-ink-alpha-mask-v03.png",
+      "geometrySha256": "635b8b91d097a80d7c0a3d03a77e92388f6d3e61de9da4a68489e120e051759c",
+      "consumer": "src/screens/LoadingInitial/loadingInitialAssets.ts",
+      "frameCount": 4,
+      "grid": [
+        4,
+        1
+      ],
+      "treatment": "soft violet engraving under cream/lavender ceramic glaze; texture and local illumination retained",
+      "validation": {
+        "alphaIdenticalToOriginal": true,
+        "outsideMasksChangedRgbaPixels": 0,
+        "changedRgbPixels": 40938,
+        "pilotValidation": {
+          "alphaIdentical": true,
+          "outsideRoiChangedPixels": 0,
+          "changedRgbPixels": 9990
+        }
+      },
+      "registrations": [
+        {
+          "frame": 1,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 0,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -1.1512888888888964,
+              0.16835555555554846,
+              3.8664888888888873
+            ],
+            [
+              -2.3996444444444447,
+              -1.8129777777777842,
+              4.324266666666656
+            ],
+            [
+              1.5957333333333408,
+              2.4888888888888707,
+              3.946666666666649
+            ],
+            [
+              0.02684444444446399,
+              1.6844444444444535,
+              3.6666666666666665
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10294
+        },
+        {
+          "frame": 2,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 1,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -1.1512888888888964,
+              0.16835555555554846,
+              3.8664888888888873
+            ],
+            [
+              -2.3996444444444447,
+              -1.8129777777777842,
+              4.324266666666656
+            ],
+            [
+              1.5957333333333408,
+              2.4888888888888707,
+              3.946666666666649
+            ],
+            [
+              0.02684444444446399,
+              1.6844444444444535,
+              3.6666666666666665
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10294
+        },
+        {
+          "frame": 3,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 2,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 68.83841181902123,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -0.39164444444446644,
+              -0.4936888888889068,
+              1.3416888888888725
+            ],
+            [
+              -2.2479999999999842,
+              -1.7772444444444646,
+              1.6755555555555222
+            ],
+            [
+              1.2583111111111092,
+              0.6270222222222073,
+              2.551111111111093
+            ],
+            [
+              -0.1111111111111111,
+              1.1818666666666913,
+              1.9823999999999589
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10201
+        },
+        {
+          "frame": 4,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 3,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 93.8264081255771,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -2.8759111111111855,
+              -6.231644444444549,
+              -1.5909333333332318
+            ],
+            [
+              -4.03964444444451,
+              -7.9596444444444945,
+              -3.0849777777777345
+            ],
+            [
+              -0.4705777777777769,
+              -4.182399999999967,
+              -2.3999999999999773
+            ],
+            [
+              -1.083911111111165,
+              -3.5196444444444746,
+              -2.4618666666667273
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10149
+        }
+      ]
+    },
+    {
+      "runtime": "public/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+      "mirror": "public/assets/gvo/current-used/loading-initial/lia/lia_loading_16f_okua_v03.png",
+      "format": "png",
+      "dimensions": [
+        2560,
+        2560
+      ],
+      "sha256": "52134765666062bff91a42a7bc818ce23e805267d87939ab4a1052ac49f88625",
+      "bytes": 2050024,
+      "status": "ART_TECHNICAL_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING",
+      "humanApproved": false,
+      "original": "public/assets/runtime/loading-initial/lia/lia_loading_16f.png",
+      "originalSha256": "971e57a5a8c09124a6f55e686c9ac147430fec03943b0c43c1bed1d823ab31ce",
+      "materialSource": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/LOADING_CAN_CLEAN_OBS03.png",
+      "materialSha256": "a33e4b2e2bdd0281f3ad32ea64fb1e4ea9806c9c5295555f4a8216186f703db2",
+      "geometrySource": "assets-source/editorial-2026-10-23/observaciones-03/production/OKUA-emblem-ink-alpha-mask-v03.png",
+      "geometrySha256": "635b8b91d097a80d7c0a3d03a77e92388f6d3e61de9da4a68489e120e051759c",
+      "consumer": "src/screens/LoadingInitial/loadingInitialAssets.ts",
+      "frameCount": 16,
+      "grid": [
+        4,
+        4
+      ],
+      "treatment": "subtle painted/engraved violet mark following the can side; no independent metal, plate or glow",
+      "validation": {
+        "alphaIdenticalToOriginal": true,
+        "outsideMasksChangedRgbaPixels": 0,
+        "changedRgbPixels": 30460,
+        "firstFourLiaFramesIdentical": true,
+        "upperLeftCanRimOriginalRgbaPreserved": true,
+        "pilotValidation": {
+          "alphaIdentical": true,
+          "outsideRoiChangedPixels": 0,
+          "changedRgbPixels": 2792
+        }
+      },
+      "registrations": [
+        {
+          "frame": 5,
+          "editableMask": {
+            "shape": "body interior only: local x+y>18; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 4,
+            "left": 219,
+            "top": 453,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 18
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 244,
+            "cy": 483.5,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 219,
+                "y": 453
+              },
+              {
+                "x": 269,
+                "y": 453
+              },
+              {
+                "x": 269,
+                "y": 514
+              },
+              {
+                "x": 219,
+                "y": 514
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -9.533888888888846,
+              -12.52166666666661,
+              -7.496666666666645
+            ],
+            [
+              -2.52833333333332,
+              -1.6227777777777546,
+              -0.3844444444444485
+            ],
+            [
+              -0.7777777777777778,
+              -3.3483333333333323,
+              -2.141111111111109
+            ],
+            [
+              6.227777777777748,
+              7.550555555555523,
+              4.971111111111087
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -11,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2626
+        },
+        {
+          "frame": 6,
+          "editableMask": {
+            "shape": "body interior only: local x+y>20; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 5,
+            "left": 219,
+            "top": 448,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 20
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 246,
+            "cy": 479.5,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1.08,
+            "score": 294.6661333333399,
+            "surfacePoints": [
+              {
+                "x": 221,
+                "y": 446.56
+              },
+              {
+                "x": 271,
+                "y": 446.56
+              },
+              {
+                "x": 271,
+                "y": 512.44
+              },
+              {
+                "x": 221,
+                "y": 512.44
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              24.049888888888365,
+              24.059799999999463,
+              12.617266666666207
+            ],
+            [
+              11.675666666666807,
+              10.502111111111313,
+              1.722599999999981
+            ],
+            [
+              11.961222222222382,
+              10.315288888889073,
+              0.7212222222221953
+            ],
+            [
+              -0.4129999999991772,
+              -3.242399999999078,
+              -10.173444444444032
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -11,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2631
+        },
+        {
+          "frame": 7,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 6,
+            "left": 214,
+            "top": 433,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 240,
+            "cy": 466.5,
+            "angle": -16,
+            "scaleX": 1.08,
+            "scaleY": 0.92,
+            "score": 578.5700362866605,
+            "surfacePoints": [
+              {
+                "x": 204.96643970905342,
+                "y": 445.86665599576173
+              },
+              {
+                "x": 256.87457128972267,
+                "y": 433.18733762817976
+              },
+              {
+                "x": 275.0335602909466,
+                "y": 487.13334400423827
+              },
+              {
+                "x": 223.12542871027733,
+                "y": 499.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              8.50914184244358,
+              5.762818685805981,
+              4.404618772037923
+            ],
+            [
+              -4.881020648787544,
+              -4.994910044613921,
+              -2.453368999088225
+            ],
+            [
+              4.267859709075235,
+              1.697978094145185,
+              -0.9966415652586547
+            ],
+            [
+              -9.122302782155888,
+              -9.059750636274718,
+              -7.854629336384802
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2522
+        },
+        {
+          "frame": 8,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 7,
+            "left": 212,
+            "top": 432,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 239,
+            "cy": 465.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 1.08,
+            "score": 595.7680156260666,
+            "surfacePoints": [
+              {
+                "x": 206.56151824912354,
+                "y": 441.27824834285076
+              },
+              {
+                "x": 254.6246030460395,
+                "y": 426.3938311287328
+              },
+              {
+                "x": 271.43848175087646,
+                "y": 489.72175165714924
+              },
+              {
+                "x": 223.3753969539605,
+                "y": 504.6061688712672
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              9.57778325864598,
+              5.702784265634818,
+              6.063789929173468
+            ],
+            [
+              -2.4569836454358644,
+              -2.0256514613473495,
+              -4.424092087680776
+            ],
+            [
+              -1.5197929131418246,
+              -6.702052494576539,
+              -0.6978843324122642
+            ],
+            [
+              -13.55455981722367,
+              -14.430488221558708,
+              -11.185766349266508
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2529
+        },
+        {
+          "frame": 9,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 8,
+            "left": 205,
+            "top": 443,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            247,
+            255
+          ],
+          "registration": {
+            "cx": 232,
+            "cy": 473.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 364.9250350183725,
+            "surfacePoints": [
+              {
+                "x": 199.56151824912354,
+                "y": 452.86665599576173
+              },
+              {
+                "x": 247.6246030460395,
+                "y": 440.18733762817976
+              },
+              {
+                "x": 264.43848175087646,
+                "y": 494.13334400423827
+              },
+              {
+                "x": 216.3753969539605,
+                "y": 506.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              30.741448267114578,
+              22.767944291876447,
+              2.4862041477688432
+            ],
+            [
+              30.405469710042514,
+              26.545090880785857,
+              3.661890220792685
+            ],
+            [
+              10.876167692325026,
+              4.8729653833249,
+              -6.8362965465884775
+            ],
+            [
+              10.54018913525296,
+              8.650111972234312,
+              -5.660610473564636
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2506
+        },
+        {
+          "frame": 10,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 9,
+            "left": 205,
+            "top": 441,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            242,
+            255
+          ],
+          "registration": {
+            "cx": 231,
+            "cy": 470.5,
+            "angle": -12,
+            "scaleX": 0.92,
+            "scaleY": 1,
+            "score": 385.52523829878277,
+            "surfacePoints": [
+              {
+                "x": 202.66860313877615,
+                "y": 445.8642904480629
+              },
+              {
+                "x": 247.6633927725312,
+                "y": 435.4687059071749
+              },
+              {
+                "x": 259.3313968612239,
+                "y": 495.1357095519371
+              },
+              {
+                "x": 214.3366072274688,
+                "y": 505.5312940928251
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              7.884132047801735,
+              4.4759245294974335,
+              -8.279236140828248
+            ],
+            [
+              21.300619204307882,
+              16.947795229334307,
+              1.110386596556263
+            ],
+            [
+              11.563625651211801,
+              10.554532212821679,
+              -6.704835235997103
+            ],
+            [
+              24.98011280771795,
+              23.026402912658554,
+              2.6847875013874076
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2521
+        },
+        {
+          "frame": 11,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 10,
+            "left": 209,
+            "top": 416,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            246,
+            255
+          ],
+          "registration": {
+            "cx": 235,
+            "cy": 447.5,
+            "angle": -16,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 447.83338479459593,
+            "surfacePoints": [
+              {
+                "x": 205.15659678919366,
+                "y": 426.86665599576173
+              },
+              {
+                "x": 249.37463480235633,
+                "y": 414.18733762817976
+              },
+              {
+                "x": 264.84340321080634,
+                "y": 468.13334400423827
+              },
+              {
+                "x": 220.62536519764367,
+                "y": 480.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              48,
+              48,
+              24.00413224957545
+            ],
+            [
+              16.836640306042305,
+              13.638780993407131,
+              -1.108968727586011
+            ],
+            [
+              7.37354260283261,
+              1.484862343049498,
+              -7.059950719720013
+            ],
+            [
+              -27.70943433551878,
+              -35.98155780408266,
+              -32.17305169688147
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2529
+        },
+        {
+          "frame": 12,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 11,
+            "left": 199,
+            "top": 433,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 226,
+            "cy": 462.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 380.7181329483335,
+            "surfacePoints": [
+              {
+                "x": 193.56151824912354,
+                "y": 441.86665599576173
+              },
+              {
+                "x": 241.6246030460395,
+                "y": 429.18733762817976
+              },
+              {
+                "x": 258.43848175087646,
+                "y": 483.13334400423827
+              },
+              {
+                "x": 210.3753969539605,
+                "y": 495.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              48,
+              48,
+              25.756788974277743
+            ],
+            [
+              38.21727120404018,
+              34.98630368427453,
+              8.96255942108173
+            ],
+            [
+              13.382112956385445,
+              9.593765915275181,
+              -5.9298076644253745
+            ],
+            [
+              -10.53267347111381,
+              -16.962464043930296,
+              -22.724037217621387
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2531
+        },
+        {
+          "frame": 13,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 12,
+            "left": 197,
+            "top": 442,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 224,
+            "cy": 474.5,
+            "angle": -16,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 508.7607819977163,
+            "surfacePoints": [
+              {
+                "x": 194.15659678919366,
+                "y": 453.86665599576173
+              },
+              {
+                "x": 238.37463480235633,
+                "y": 441.18733762817976
+              },
+              {
+                "x": 253.84340321080634,
+                "y": 495.13334400423827
+              },
+              {
+                "x": 209.62536519764367,
+                "y": 507.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              14.468411057487538,
+              7.249795953864091,
+              -8.69240198720394
+            ],
+            [
+              25.070114093033514,
+              18.02717926875104,
+              -2.044516786767812
+            ],
+            [
+              5.367225047518932,
+              4.767533394910623,
+              -15.778345825739848
+            ],
+            [
+              15.968928083064908,
+              15.544916709797572,
+              -9.13046062530372
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2524
+        },
+        {
+          "frame": 14,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 13,
+            "left": 204,
+            "top": 441,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 231,
+            "cy": 472.5,
+            "angle": -12,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 469.5654156728073,
+            "surfacePoints": [
+              {
+                "x": 200.2050034117132,
+                "y": 449.83514721221786
+              },
+              {
+                "x": 249.11238344840348,
+                "y": 440.27120943460096
+              },
+              {
+                "x": 261.7949965882868,
+                "y": 495.16485278778214
+              },
+              {
+                "x": 212.88761655159652,
+                "y": 504.72879056539904
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              18.226940210506037,
+              7.473490451372717,
+              -4.7571416651371
+            ],
+            [
+              22.660329013532216,
+              15.06821224651073,
+              -1.032999367139458
+            ],
+            [
+              7.797021406957346,
+              8.133118100313384,
+              -13.705561189235418
+            ],
+            [
+              12.230410209983525,
+              15.727839895451398,
+              -9.981418891237777
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2511
+        },
+        {
+          "frame": 15,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 14,
+            "left": 209,
+            "top": 439,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 235,
+            "cy": 468.5,
+            "angle": -12,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 440.9603024050222,
+            "surfacePoints": [
+              {
+                "x": 206.66860313877615,
+                "y": 445.83514721221786
+              },
+              {
+                "x": 251.6633927725312,
+                "y": 436.27120943460096
+              },
+              {
+                "x": 263.3313968612239,
+                "y": 491.16485278778214
+              },
+              {
+                "x": 218.3366072274688,
+                "y": 500.72879056539904
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              0.4839044351946491,
+              -6.882022082035178,
+              -10.237811427924923
+            ],
+            [
+              12.920660705494258,
+              7.314016130245686,
+              -6.03319409552088
+            ],
+            [
+              4.070033887285711,
+              1.3528070502764504,
+              -14.854240528659952
+            ],
+            [
+              16.50679015758532,
+              15.548845262557315,
+              -10.649623196255911
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2509
+        },
+        {
+          "frame": 16,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 15,
+            "left": 209,
+            "top": 434,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 234,
+            "cy": 467.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 539.7256262655296,
+            "surfacePoints": [
+              {
+                "x": 201.56151824912354,
+                "y": 446.86665599576173
+              },
+              {
+                "x": 249.6246030460395,
+                "y": 434.18733762817976
+              },
+              {
+                "x": 266.43848175087646,
+                "y": 488.13334400423827
+              },
+              {
+                "x": 218.3753969539605,
+                "y": 500.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              16.81770905697699,
+              0.08415019194232798,
+              -10.981636869049282
+            ],
+            [
+              31.457590157327544,
+              20.685599554854026,
+              -0.9179980359726301
+            ],
+            [
+              11.881916334331745,
+              8.023376865229332,
+              -15.981478310243006
+            ],
+            [
+              26.521797434682302,
+              28.624826228141032,
+              -5.917839477166353
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2521
+        }
+      ]
+    }
+  ],
+  "proof": [
+    {
+      "sheet": "pot",
+      "validation": {
+        "alphaIdenticalToOriginal": true,
+        "outsideMasksChangedRgbaPixels": 0,
+        "changedRgbPixels": 40938,
+        "pilotValidation": {
+          "alphaIdentical": true,
+          "outsideRoiChangedPixels": 0,
+          "changedRgbPixels": 9990
+        }
+      },
+      "registrations": [
+        {
+          "frame": 1,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 0,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -1.1512888888888964,
+              0.16835555555554846,
+              3.8664888888888873
+            ],
+            [
+              -2.3996444444444447,
+              -1.8129777777777842,
+              4.324266666666656
+            ],
+            [
+              1.5957333333333408,
+              2.4888888888888707,
+              3.946666666666649
+            ],
+            [
+              0.02684444444446399,
+              1.6844444444444535,
+              3.6666666666666665
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10294
+        },
+        {
+          "frame": 2,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 1,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -1.1512888888888964,
+              0.16835555555554846,
+              3.8664888888888873
+            ],
+            [
+              -2.3996444444444447,
+              -1.8129777777777842,
+              4.324266666666656
+            ],
+            [
+              1.5957333333333408,
+              2.4888888888888707,
+              3.946666666666649
+            ],
+            [
+              0.02684444444446399,
+              1.6844444444444535,
+              3.6666666666666665
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10294
+        },
+        {
+          "frame": 3,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 2,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 68.83841181902123,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -0.39164444444446644,
+              -0.4936888888889068,
+              1.3416888888888725
+            ],
+            [
+              -2.2479999999999842,
+              -1.7772444444444646,
+              1.6755555555555222
+            ],
+            [
+              1.2583111111111092,
+              0.6270222222222073,
+              2.551111111111093
+            ],
+            [
+              -0.1111111111111111,
+              1.1818666666666913,
+              1.9823999999999589
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10201
+        },
+        {
+          "frame": 4,
+          "editableMask": {
+            "shape": "interior rectangle with donor feather7px",
+            "frame": 3,
+            "left": 332,
+            "top": 420,
+            "width": 104,
+            "height": 104
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 384,
+            "cy": 472,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 93.8264081255771,
+            "surfacePoints": [
+              {
+                "x": 332,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 420
+              },
+              {
+                "x": 436,
+                "y": 524
+              },
+              {
+                "x": 332,
+                "y": 524
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -2.8759111111111855,
+              -6.231644444444549,
+              -1.5909333333332318
+            ],
+            [
+              -4.03964444444451,
+              -7.9596444444444945,
+              -3.0849777777777345
+            ],
+            [
+              -0.4705777777777769,
+              -4.182399999999967,
+              -2.3999999999999773
+            ],
+            [
+              -1.083911111111165,
+              -3.5196444444444746,
+              -2.4618666666667273
+            ]
+          ],
+          "emblem": {
+            "width": 66,
+            "height": 81,
+            "angle": 0,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 10149
+        }
+      ]
+    },
+    {
+      "sheet": "can",
+      "validation": {
+        "alphaIdenticalToOriginal": true,
+        "outsideMasksChangedRgbaPixels": 0,
+        "changedRgbPixels": 30460,
+        "firstFourLiaFramesIdentical": true,
+        "upperLeftCanRimOriginalRgbaPreserved": true,
+        "pilotValidation": {
+          "alphaIdentical": true,
+          "outsideRoiChangedPixels": 0,
+          "changedRgbPixels": 2792
+        }
+      },
+      "registrations": [
+        {
+          "frame": 5,
+          "editableMask": {
+            "shape": "body interior only: local x+y>18; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 4,
+            "left": 219,
+            "top": 453,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 18
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 244,
+            "cy": 483.5,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "score": 0,
+            "surfacePoints": [
+              {
+                "x": 219,
+                "y": 453
+              },
+              {
+                "x": 269,
+                "y": 453
+              },
+              {
+                "x": 269,
+                "y": 514
+              },
+              {
+                "x": 219,
+                "y": 514
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              -9.533888888888846,
+              -12.52166666666661,
+              -7.496666666666645
+            ],
+            [
+              -2.52833333333332,
+              -1.6227777777777546,
+              -0.3844444444444485
+            ],
+            [
+              -0.7777777777777778,
+              -3.3483333333333323,
+              -2.141111111111109
+            ],
+            [
+              6.227777777777748,
+              7.550555555555523,
+              4.971111111111087
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -11,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2626
+        },
+        {
+          "frame": 6,
+          "editableMask": {
+            "shape": "body interior only: local x+y>20; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 5,
+            "left": 219,
+            "top": 448,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 20
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 246,
+            "cy": 479.5,
+            "angle": 0,
+            "scaleX": 1,
+            "scaleY": 1.08,
+            "score": 294.6661333333399,
+            "surfacePoints": [
+              {
+                "x": 221,
+                "y": 446.56
+              },
+              {
+                "x": 271,
+                "y": 446.56
+              },
+              {
+                "x": 271,
+                "y": 512.44
+              },
+              {
+                "x": 221,
+                "y": 512.44
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              24.049888888888365,
+              24.059799999999463,
+              12.617266666666207
+            ],
+            [
+              11.675666666666807,
+              10.502111111111313,
+              1.722599999999981
+            ],
+            [
+              11.961222222222382,
+              10.315288888889073,
+              0.7212222222221953
+            ],
+            [
+              -0.4129999999991772,
+              -3.242399999999078,
+              -10.173444444444032
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -11,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2631
+        },
+        {
+          "frame": 7,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 6,
+            "left": 214,
+            "top": 433,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 240,
+            "cy": 466.5,
+            "angle": -16,
+            "scaleX": 1.08,
+            "scaleY": 0.92,
+            "score": 578.5700362866605,
+            "surfacePoints": [
+              {
+                "x": 204.96643970905342,
+                "y": 445.86665599576173
+              },
+              {
+                "x": 256.87457128972267,
+                "y": 433.18733762817976
+              },
+              {
+                "x": 275.0335602909466,
+                "y": 487.13334400423827
+              },
+              {
+                "x": 223.12542871027733,
+                "y": 499.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              8.50914184244358,
+              5.762818685805981,
+              4.404618772037923
+            ],
+            [
+              -4.881020648787544,
+              -4.994910044613921,
+              -2.453368999088225
+            ],
+            [
+              4.267859709075235,
+              1.697978094145185,
+              -0.9966415652586547
+            ],
+            [
+              -9.122302782155888,
+              -9.059750636274718,
+              -7.854629336384802
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2522
+        },
+        {
+          "frame": 8,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 7,
+            "left": 212,
+            "top": 432,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 239,
+            "cy": 465.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 1.08,
+            "score": 595.7680156260666,
+            "surfacePoints": [
+              {
+                "x": 206.56151824912354,
+                "y": 441.27824834285076
+              },
+              {
+                "x": 254.6246030460395,
+                "y": 426.3938311287328
+              },
+              {
+                "x": 271.43848175087646,
+                "y": 489.72175165714924
+              },
+              {
+                "x": 223.3753969539605,
+                "y": 504.6061688712672
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              9.57778325864598,
+              5.702784265634818,
+              6.063789929173468
+            ],
+            [
+              -2.4569836454358644,
+              -2.0256514613473495,
+              -4.424092087680776
+            ],
+            [
+              -1.5197929131418246,
+              -6.702052494576539,
+              -0.6978843324122642
+            ],
+            [
+              -13.55455981722367,
+              -14.430488221558708,
+              -11.185766349266508
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2529
+        },
+        {
+          "frame": 9,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 8,
+            "left": 205,
+            "top": 443,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            247,
+            255
+          ],
+          "registration": {
+            "cx": 232,
+            "cy": 473.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 364.9250350183725,
+            "surfacePoints": [
+              {
+                "x": 199.56151824912354,
+                "y": 452.86665599576173
+              },
+              {
+                "x": 247.6246030460395,
+                "y": 440.18733762817976
+              },
+              {
+                "x": 264.43848175087646,
+                "y": 494.13334400423827
+              },
+              {
+                "x": 216.3753969539605,
+                "y": 506.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              30.741448267114578,
+              22.767944291876447,
+              2.4862041477688432
+            ],
+            [
+              30.405469710042514,
+              26.545090880785857,
+              3.661890220792685
+            ],
+            [
+              10.876167692325026,
+              4.8729653833249,
+              -6.8362965465884775
+            ],
+            [
+              10.54018913525296,
+              8.650111972234312,
+              -5.660610473564636
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2506
+        },
+        {
+          "frame": 10,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 9,
+            "left": 205,
+            "top": 441,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            242,
+            255
+          ],
+          "registration": {
+            "cx": 231,
+            "cy": 470.5,
+            "angle": -12,
+            "scaleX": 0.92,
+            "scaleY": 1,
+            "score": 385.52523829878277,
+            "surfacePoints": [
+              {
+                "x": 202.66860313877615,
+                "y": 445.8642904480629
+              },
+              {
+                "x": 247.6633927725312,
+                "y": 435.4687059071749
+              },
+              {
+                "x": 259.3313968612239,
+                "y": 495.1357095519371
+              },
+              {
+                "x": 214.3366072274688,
+                "y": 505.5312940928251
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              7.884132047801735,
+              4.4759245294974335,
+              -8.279236140828248
+            ],
+            [
+              21.300619204307882,
+              16.947795229334307,
+              1.110386596556263
+            ],
+            [
+              11.563625651211801,
+              10.554532212821679,
+              -6.704835235997103
+            ],
+            [
+              24.98011280771795,
+              23.026402912658554,
+              2.6847875013874076
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2521
+        },
+        {
+          "frame": 11,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 10,
+            "left": 209,
+            "top": 416,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            246,
+            255
+          ],
+          "registration": {
+            "cx": 235,
+            "cy": 447.5,
+            "angle": -16,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 447.83338479459593,
+            "surfacePoints": [
+              {
+                "x": 205.15659678919366,
+                "y": 426.86665599576173
+              },
+              {
+                "x": 249.37463480235633,
+                "y": 414.18733762817976
+              },
+              {
+                "x": 264.84340321080634,
+                "y": 468.13334400423827
+              },
+              {
+                "x": 220.62536519764367,
+                "y": 480.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              48,
+              48,
+              24.00413224957545
+            ],
+            [
+              16.836640306042305,
+              13.638780993407131,
+              -1.108968727586011
+            ],
+            [
+              7.37354260283261,
+              1.484862343049498,
+              -7.059950719720013
+            ],
+            [
+              -27.70943433551878,
+              -35.98155780408266,
+              -32.17305169688147
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2529
+        },
+        {
+          "frame": 12,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 11,
+            "left": 199,
+            "top": 433,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 226,
+            "cy": 462.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 380.7181329483335,
+            "surfacePoints": [
+              {
+                "x": 193.56151824912354,
+                "y": 441.86665599576173
+              },
+              {
+                "x": 241.6246030460395,
+                "y": 429.18733762817976
+              },
+              {
+                "x": 258.43848175087646,
+                "y": 483.13334400423827
+              },
+              {
+                "x": 210.3753969539605,
+                "y": 495.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              48,
+              48,
+              25.756788974277743
+            ],
+            [
+              38.21727120404018,
+              34.98630368427453,
+              8.96255942108173
+            ],
+            [
+              13.382112956385445,
+              9.593765915275181,
+              -5.9298076644253745
+            ],
+            [
+              -10.53267347111381,
+              -16.962464043930296,
+              -22.724037217621387
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2531
+        },
+        {
+          "frame": 13,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 12,
+            "left": 197,
+            "top": 442,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 224,
+            "cy": 474.5,
+            "angle": -16,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 508.7607819977163,
+            "surfacePoints": [
+              {
+                "x": 194.15659678919366,
+                "y": 453.86665599576173
+              },
+              {
+                "x": 238.37463480235633,
+                "y": 441.18733762817976
+              },
+              {
+                "x": 253.84340321080634,
+                "y": 495.13334400423827
+              },
+              {
+                "x": 209.62536519764367,
+                "y": 507.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              14.468411057487538,
+              7.249795953864091,
+              -8.69240198720394
+            ],
+            [
+              25.070114093033514,
+              18.02717926875104,
+              -2.044516786767812
+            ],
+            [
+              5.367225047518932,
+              4.767533394910623,
+              -15.778345825739848
+            ],
+            [
+              15.968928083064908,
+              15.544916709797572,
+              -9.13046062530372
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2524
+        },
+        {
+          "frame": 14,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 13,
+            "left": 204,
+            "top": 441,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 231,
+            "cy": 472.5,
+            "angle": -12,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 469.5654156728073,
+            "surfacePoints": [
+              {
+                "x": 200.2050034117132,
+                "y": 449.83514721221786
+              },
+              {
+                "x": 249.11238344840348,
+                "y": 440.27120943460096
+              },
+              {
+                "x": 261.7949965882868,
+                "y": 495.16485278778214
+              },
+              {
+                "x": 212.88761655159652,
+                "y": 504.72879056539904
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              18.226940210506037,
+              7.473490451372717,
+              -4.7571416651371
+            ],
+            [
+              22.660329013532216,
+              15.06821224651073,
+              -1.032999367139458
+            ],
+            [
+              7.797021406957346,
+              8.133118100313384,
+              -13.705561189235418
+            ],
+            [
+              12.230410209983525,
+              15.727839895451398,
+              -9.981418891237777
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2511
+        },
+        {
+          "frame": 15,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 14,
+            "left": 209,
+            "top": 439,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 235,
+            "cy": 468.5,
+            "angle": -12,
+            "scaleX": 0.92,
+            "scaleY": 0.92,
+            "score": 440.9603024050222,
+            "surfacePoints": [
+              {
+                "x": 206.66860313877615,
+                "y": 445.83514721221786
+              },
+              {
+                "x": 251.6633927725312,
+                "y": 436.27120943460096
+              },
+              {
+                "x": 263.3313968612239,
+                "y": 491.16485278778214
+              },
+              {
+                "x": 218.3366072274688,
+                "y": 500.72879056539904
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              0.4839044351946491,
+              -6.882022082035178,
+              -10.237811427924923
+            ],
+            [
+              12.920660705494258,
+              7.314016130245686,
+              -6.03319409552088
+            ],
+            [
+              4.070033887285711,
+              1.3528070502764504,
+              -14.854240528659952
+            ],
+            [
+              16.50679015758532,
+              15.548845262557315,
+              -10.649623196255911
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -23,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2509
+        },
+        {
+          "frame": 16,
+          "editableMask": {
+            "shape": "body interior only: local x+y>25; outer rectangle feather4px; rim exclusion feather3px",
+            "frame": 15,
+            "left": 209,
+            "top": 434,
+            "width": 50,
+            "height": 61,
+            "bodyPlaneMinimumSum": 25
+          },
+          "originalAlphaRange": [
+            255,
+            255
+          ],
+          "registration": {
+            "cx": 234,
+            "cy": 467.5,
+            "angle": -16,
+            "scaleX": 1,
+            "scaleY": 0.92,
+            "score": 539.7256262655296,
+            "surfacePoints": [
+              {
+                "x": 201.56151824912354,
+                "y": 446.86665599576173
+              },
+              {
+                "x": 249.6246030460395,
+                "y": 434.18733762817976
+              },
+              {
+                "x": 266.43848175087646,
+                "y": 488.13334400423827
+              },
+              {
+                "x": 218.3753969539605,
+                "y": 500.81266237182024
+              }
+            ]
+          },
+          "cornerLightingRgb": [
+            [
+              16.81770905697699,
+              0.08415019194232798,
+              -10.981636869049282
+            ],
+            [
+              31.457590157327544,
+              20.685599554854026,
+              -0.9179980359726301
+            ],
+            [
+              11.881916334331745,
+              8.023376865229332,
+              -15.981478310243006
+            ],
+            [
+              26.521797434682302,
+              28.624826228141032,
+              -5.917839477166353
+            ]
+          ],
+          "emblem": {
+            "width": 32,
+            "height": 39,
+            "angle": -27,
+            "kernel": "bilinear sampling of the one authentic mask"
+          },
+          "changedRgbPixels": 2521
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "path": "tools/assets/derive_obs03_brand_assets.mjs",
+    "sha256": "866a4c4e8803016f6b4dc262030c8ee353cc1ade93db1cce063a1d8717ccc580"
+  }
+}

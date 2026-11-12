@@ -23,7 +23,11 @@ function getDefaultStorage(): ProgressStorage | null {
     return null;
   }
 
-  return window.localStorage;
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
 }
 
 function isStationId(value: unknown): value is StationId {

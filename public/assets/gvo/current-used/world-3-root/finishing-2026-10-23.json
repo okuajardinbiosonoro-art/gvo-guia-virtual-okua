@@ -1,0 +1,34 @@
+{
+  "status": "CANDIDATE_FOR_HUMAN_REVIEW",
+  "assets": [
+    {
+      "id": "W3_NOTEBOOK_FOLIO_v02",
+      "room": "world-3-root",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_folio_v02.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_folio_v02.webp",
+      "width": 768,
+      "height": 960,
+      "alpha": true,
+      "pixel": true,
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "role": "Responsive illustrated notebook folio; three existing motifs and text remain separate",
+      "source": "assets-source/editorial-2026-10-23/finishing/W3_NOTEBOOK_FOLIO_v02.png",
+      "source_dimensions": [
+        1122,
+        1402
+      ],
+      "source_sha256": "d352fb52ec34d6efaebc57e3cbdbb4a5995edad17677e162d960defa2765e06c",
+      "dimensions": [
+        768,
+        960
+      ],
+      "bytes": 581516,
+      "sha256": "ee0085b3cfcf81793d530b42070c2f942a18f9289213e04eff8354903704c3a4",
+      "transparent_pixels": 185732,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    }
+  ]
+}

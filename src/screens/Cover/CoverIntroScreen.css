@@ -19,7 +19,7 @@
   --cover-background-image: none;
 
   position: relative;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100svh;
   overflow-x: hidden;
   color: var(--cover-cream);
@@ -36,8 +36,8 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgb(22 13 29 / 16%) 0%, rgb(22 13 29 / 0%) 30%),
-    linear-gradient(0deg, rgb(22 13 29 / 44%) 0%, rgb(22 13 29 / 0%) 40%);
+    linear-gradient(180deg, rgb(22 13 29 / 58%) 0%, rgb(22 13 29 / 58%) max(25%, calc(140px + 3.5rem)), rgb(22 13 29 / 0%) max(48%, calc(220px + 5rem))),
+    linear-gradient(0deg, rgb(22 13 29 / 64%) 0%, rgb(22 13 29 / 0%) 40%);
 }
 
 .cover-intro__stage {
@@ -73,6 +73,8 @@
 }
 
 .cover-intro__header {
+  position: relative;
+  isolation: isolate;
   display: grid;
   justify-items: center;
   gap: 1px;
@@ -80,24 +82,17 @@
   text-shadow: 0 2px 0 rgb(55 37 62 / 28%);
 }
 
-.cover-intro__brand,
-.cover-intro__subtitle {
-  margin: 0;
-  letter-spacing: var(--gvo-letter-spacing-pixel-normal);
-}
-
-.cover-intro__brand {
+.cover-intro__header > .cover-intro__brand-name,
+.cover-intro__header > .cover-intro__brand-subtitle {
   color: var(--cover-cream-soft);
-  font-size: var(--gvo-text-display-size);
-  font-weight: var(--gvo-font-weight-bold);
-  line-height: calc(var(--gvo-line-height-tight) - 0.14);
+  text-shadow: 0 2px 2px #201729, 0 0 8px rgb(32 23 41 / 82%);
 }
 
-.cover-intro__subtitle {
-  color: var(--cover-lavender);
-  font-size: clamp(var(--gvo-text-subtitle-size), 4vw, 1.16rem);
-  font-weight: var(--gvo-font-weight-regular);
-  line-height: var(--gvo-line-height-tight);
+.cover-intro__brand-logo {
+  display: block;
+  width: 84px;
+  max-width: 21.6vw;
+  height: auto;
 }
 
 .cover-intro__scene {
@@ -317,6 +312,11 @@
   pointer-events: none;
 }
 
+.cover-intro--portada_idle .cover-intro__portal-stage,
+.cover-intro--portal_1_ready:not(:has(.cover-portal-stage--opening)) .cover-intro__portal-stage {
+  translate: 0 calc(-1 * clamp(6px, 2.1svh, 18px));
+}
+
 .cover-intro__portal {
   --portal-x: 50%;
   --portal-bottom: 0px;
@@ -518,10 +518,7 @@
   z-index: 0;
   top: 50%;
   left: 50%;
-  width: min(
-    var(--portal-width),
-    calc(var(--portal-height) * 0.562799)
-  );
+  width: min(var(--portal-width), calc(var(--portal-height) * 0.562799));
   aspect-ratio: 941 / 1672;
   overflow: visible;
   pointer-events: none;
@@ -797,15 +794,9 @@
   min-height: 44px;
   padding: 10px 18px;
   border: 2px solid var(--cover-lavender);
-  border-radius: 0;
+  border-radius: 0.8rem;
   color: var(--cover-ink);
   background:
-    linear-gradient(
-      90deg,
-      transparent 0 8px,
-      var(--cover-amber) 8px calc(100% - 8px),
-      transparent calc(100% - 8px)
-    ),
     linear-gradient(180deg, #fff3c2, var(--cover-amber-strong));
   box-shadow:
     0 3px 0 rgb(94 62 103 / 78%),
@@ -1112,8 +1103,8 @@
     gap: 8px;
   }
 
-  .cover-intro__brand {
-    font-size: min(var(--gvo-text-display-size), 3.2rem);
+  .cover-intro__brand-logo {
+    width: 68px;
   }
 
   .cover-intro__lia-wrap {
@@ -1212,9 +1203,7 @@
     width: min(100%, calc(var(--cover-stage-width) * 0.9));
     height: max(
       clamp(228px, 34svh, calc(var(--cover-stage-width) * 0.68)),
-      calc(
-        var(--portal-primary-height) + var(--portal-primary-bottom) + 16px
-      )
+      calc(var(--portal-primary-height) + var(--portal-primary-bottom) + 16px)
     );
   }
 
@@ -1234,11 +1223,7 @@
   }
 
   .cover-intro__portal-roman {
-    font-size: clamp(
-      1.25rem,
-      calc(var(--cover-stage-width) * 0.04),
-      1.75rem
-    );
+    font-size: clamp(1.25rem, calc(var(--cover-stage-width) * 0.04), 1.75rem);
   }
 }
 
@@ -1270,5 +1255,177 @@
   .cover-intro__portal-activation-contact {
     opacity: 0.3 !important;
     transform: translateX(-50%) scale(0.95) !important;
+  }
+}
+
+/* OBS03: one required presentation, original Portal I, then a separate crossing gesture. */
+.cover-intro__footer .cover-intro__title {
+  margin: 0 0 4px;
+  font-size: var(--gvo-text-heading-size, clamp(1.2rem, 5vw, 1.65rem));
+  line-height: 1.15;
+  text-shadow: 0 2px 2px #201729, 0 0 8px rgb(32 23 41 / 82%);
+}
+
+.cover-intro__brand-name,
+.cover-intro__brand-subtitle { margin: 0; }
+.cover-intro__brand-name { font-size: 2rem; font-weight: 700; line-height: 1; letter-spacing: .08em; }
+.cover-intro__brand-subtitle { font-size: .9rem; letter-spacing: .1em; line-height: 1.4; }
+.cover-intro__portal-announcement {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  max-width: 30ch;
+  color: var(--cover-cream-soft);
+  line-height: 1.3;
+}
+
+.cover-intro__portal-announcement::before {
+  content: "";
+  position: absolute;
+  inset: -8px -12px;
+  z-index: -1;
+  background: rgb(13 17 24 / 96%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+.cover-intro[data-journey-active="false"] * { animation-play-state: paused !important; }
+.cover-intro[data-cover-revisit="inactive"].cover-intro--intro_dialogue_started .cover-intro__portal-stage,
+.cover-intro[data-cover-revisit="inactive"].cover-intro--intro_dialogue_active .cover-intro__portal-stage {
+  left: 26%;
+  bottom: 190px;
+  width: 48%;
+}
+.cover-intro__portal:disabled { cursor: default; }
+
+.cover-intro__skip {
+  min-height: 44px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  font: var(--gvo-font-weight-regular) var(--gvo-text-ui-size)/1.2
+    var(--gvo-font-ui);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.cover-intro__skip:focus-visible {
+  outline: 3px solid var(--cover-amber);
+  outline-offset: 3px;
+}
+
+.cover-intro__route-help {
+  margin: 0;
+  color: var(--cover-dialog-muted);
+  font-size: var(--gvo-text-ui-size);
+  line-height: 1.35;
+}
+
+.cover-intro__dialogue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px 8px;
+}
+
+.cover-intro__dialogue-actions .cover-intro__skip {
+  order: -1;
+  margin-right: auto;
+  padding-inline: 0;
+  color: var(--cover-dialog-muted);
+}
+
+.cover-intro[data-cover-revisit="inactive"] .cover-intro__scene {
+  min-height: 300px;
+}
+
+.cover-intro__lia-wrap {
+  transition:
+    top 420ms ease,
+    right 420ms ease,
+    translate 420ms ease;
+}
+
+.cover-intro--intro_dialogue_started .cover-intro__lia-wrap,
+.cover-intro--intro_dialogue_active .cover-intro__lia-wrap {
+  top: 2%;
+  right: 12%;
+}
+
+.cover-intro[data-cover-revisit="inactive"] .cover-intro__dialogue {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .cover-intro__scrim {
+    background:
+      linear-gradient(90deg, rgb(22 13 29 / 60%) 35%, transparent 65%),
+      linear-gradient(270deg, rgb(22 13 29 / 60%) 35%, transparent 65%);
+  }
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__stage {
+    width: min(100%, 760px);
+    height: 100svh;
+    grid-template-columns: minmax(160px, 0.8fr) minmax(0, 1.2fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__scene {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-height: 0;
+  }
+
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__footer {
+    position: relative;
+    z-index: 4;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__dialogue {
+    left: 34%;
+    width: 66%;
+  }
+  .cover-intro[data-cover-revisit="inactive"] .cover-intro__lia-wrap {
+    right: 64%;
+    width: min(160px, calc((100svh - 184px) * 0.5628));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-intro__lia-wrap {
+    transition: none;
+  }
+}
+
+@media (max-width: 319px) {
+  .cover-intro--portada_idle .cover-intro__lia-wrap {
+    right: 0;
+    width: 150px;
+  }
+}
+
+/* Keep the first portal and its numeral visible beside the guide when the
+   footer grows with enlarged text. Dialogue and revisit keep their own stage. */
+@media (max-width: 480px) and (orientation: portrait) {
+  .cover-intro[data-cover-revisit="inactive"]:is(.cover-intro--portada_idle, .cover-intro--portal_1_ready) .cover-intro__portal-stage {
+    left: 25%;
+    width: 48%;
+  }
+
+  .cover-intro[data-cover-revisit="inactive"]:is(.cover-intro--portada_idle, .cover-intro--portal_1_ready) .cover-intro__lia-wrap {
+    right: 0;
+    width: clamp(138px, 44vw, 204px);
   }
 }

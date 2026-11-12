@@ -9,8 +9,10 @@ const GLOBAL_PROGRESS_KEY = "gvo.progress.v1";
 const WORLD1_CHECKPOINT_KEY = "gvo.station1.v1";
 const WORLD2_CHECKPOINT_KEY = "gvo.station2.v1";
 const WORLD3_CHECKPOINT_KEY = "gvo.station3.v1";
+const WORLD3_PRACTICE_KEY = "gvo.station3.practice.v2";
 const WORLD4_CHECKPOINT_KEY = "gvo.station4.v1";
 const WORLD5_PROGRESS_KEY = "gvo.station5.v1";
+const WORLD5_QUIZ_KEY = "gvo.station5.quiz.v1";
 const COVER_PROGRESS_KEY = "gvo.coverIntro.introCompleted.v1";
 const REVIEW_CONTEXT_KEY = "gvo.final.reviewContext.v1";
 
@@ -33,8 +35,10 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       world1Key,
       world2Key,
       world3Key,
+      world3PracticeKey,
       world4Key,
       world5Key,
+      world5QuizKey,
       coverKey,
       reviewKey,
     }) => {
@@ -42,8 +46,10 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       localStorage.removeItem(world1Key);
       localStorage.removeItem(world2Key);
       localStorage.removeItem(world3Key);
+      localStorage.removeItem(world3PracticeKey);
       localStorage.removeItem(world4Key);
       localStorage.removeItem(world5Key);
+      localStorage.removeItem(world5QuizKey);
       localStorage.removeItem(coverKey);
       sessionStorage.removeItem(reviewKey);
 
@@ -77,8 +83,10 @@ async function seedJourney(page: Page, fixture: JourneyFixture = {}) {
       world1Key: WORLD1_CHECKPOINT_KEY,
       world2Key: WORLD2_CHECKPOINT_KEY,
       world3Key: WORLD3_CHECKPOINT_KEY,
+      world3PracticeKey: WORLD3_PRACTICE_KEY,
       world4Key: WORLD4_CHECKPOINT_KEY,
       world5Key: WORLD5_PROGRESS_KEY,
+      world5QuizKey: WORLD5_QUIZ_KEY,
       coverKey: COVER_PROGRESS_KEY,
       reviewKey: REVIEW_CONTEXT_KEY,
     },
@@ -125,7 +133,7 @@ async function expectTransitionThenDestination(
   await expect(page).toHaveURL(destination, { timeout: 20_000 });
 }
 
-async function completeWorld3Record(
+async function visitWorld3Page(
   page: Page,
   record: "planta" | "prototipo" | "senal",
 ) {
@@ -133,12 +141,11 @@ async function completeWorld3Record(
     .locator(`.s3-page--base [data-station3-record="${record}"]`)
     .first()
     .click();
-  const confirm = page.locator(`[data-station3-record-confirm="${record}"]`);
-  await expect(confirm).toBeVisible({ timeout: 35_000 });
-  await confirm.click();
+  await expect(page.locator(`[data-station3-page="${record}"]`)).toBeVisible();
+  await page.getByRole("button", { name: "← Índice", exact: true }).click();
   await expect(page.locator("[data-station3-state]")).toHaveAttribute(
     "data-station3-state",
-    /station3_(index|prototype_unlocked|signal_unlocked|adjusted_unlocked|ready_to_continue)/,
+    "station3_index",
     { timeout: 10_000 },
   );
 }
@@ -175,18 +182,17 @@ test("GVO_DEBT_002 bloquea entradas directas y transiciones hacia el destino seg
   await expect(page).toHaveURL(/\/estacion\/2$/);
 });
 
-test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", async ({
+test("GVO_DEBT_002 recorre W1–W3 y sólo completa cada sala con QR correcto", async ({
   page,
 }) => {
   test.setTimeout(180_000);
   await seedJourney(page);
   await page.goto("/estacion/1", { waitUntil: "domcontentloaded" });
 
-  await page.getByRole("button", { name: "Explorar RELACIÓN" }).click();
-  await page.getByRole("button", { name: "Explorar PERCEPCIÓN" }).click();
-  await page.getByRole("button", { name: "Explorar MEDIACIÓN" }).click();
-  expect(await readCompletedStations(page)).toBeNull();
-  await page.getByRole("button", { name: "Cerrar raíz" }).click();
+  for (const point of ["RELACIÓN", "PERCEPCIÓN", "MEDIACIÓN"]) {
+    await page.getByRole("button", { name: `Explorar ${point}` }).click();
+    await page.getByRole("button", { name: "Cerrar", exact: true }).click();
+  }
   expect(await readCompletedStations(page)).toBeNull();
   await scanInterstationQrForTest(page, 1);
   await expectTransitionThenDestination(
@@ -228,16 +234,38 @@ test("GVO_DEBT_002 completa W1, W2 y W3 sólo desde sus cierres UI reales", asyn
     "station3_index",
     { timeout: 5_000 },
   );
-  await completeWorld3Record(page, "planta");
+  await visitWorld3Page(page, "planta");
   expect(await readCompletedStations(page)).toEqual([1, 2]);
-  await completeWorld3Record(page, "prototipo");
+  await visitWorld3Page(page, "prototipo");
   expect(await readCompletedStations(page)).toEqual([1, 2]);
-  await completeWorld3Record(page, "senal");
+  await visitWorld3Page(page, "senal");
+  expect(
+    await page.evaluate(
+      (key) => JSON.parse(localStorage.getItem(key)!),
+      WORLD3_PRACTICE_KEY,
+    ),
+  ).toMatchObject({
+    visitedPages: ["planta", "prototipo", "senal"],
+    reviewedPages: [],
+    practiceStatus: "not_started",
+    activityContinued: false,
+  });
   await scanInterstationQrForTest(page, 3);
   await expect(page).toHaveURL(/\/transition\/world-3-to-world-4$/, {
     timeout: 5_000,
   });
   expect(await readCompletedStations(page)).toEqual([1, 2, 3]);
+  expect(
+    await page.evaluate(
+      (key) => JSON.parse(localStorage.getItem(key)!),
+      WORLD3_PRACTICE_KEY,
+    ),
+  ).toMatchObject({
+    reviewedPages: [],
+    skippedPages: [],
+    practiceStatus: "not_started",
+    activityContinued: true,
+  });
 });
 
 test("GVO_DEBT_002 conserva completion de W4 y W5 sin regresión", async ({
@@ -277,7 +305,8 @@ test("GVO_DEBT_002 conserva completion de W4 y W5 sin regresión", async ({
     world5Areas: ["plantas", "sistema", "espacio", "visitante"],
   });
   await page.goto("/estacion/5", { waitUntil: "domcontentloaded" });
-  await page.getByRole("button", { name: "Ir al cierre" }).click();
+  await page.getByRole("button", { name: "Continuar sin participar" }).click();
+  await page.getByRole("button", { name: "Ir al Mirador" }).click();
   await expectTransitionThenDestination(page, "world-5-to-final", /\/final$/);
   expect(await readCompletedStations(page)).toEqual([1, 2, 3, 4, 5]);
 });
@@ -327,7 +356,8 @@ test("GVO_DEBT_002 bloquea navegación, enfoca retry y verifica al reintentar", 
     };
   }, GLOBAL_PROGRESS_KEY);
 
-  await page.getByRole("button", { name: "Ir al cierre" }).click();
+  await page.getByRole("button", { name: "Continuar sin participar" }).click();
+  await page.getByRole("button", { name: "Ir al Mirador" }).click();
   await expect(page).toHaveURL(/\/estacion\/5$/);
   await expect(page.getByRole("status")).toContainText(
     "No fue posible guardar tu progreso. Intenta nuevamente.",
@@ -393,17 +423,28 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
   });
   await page.goto("/final", { waitUntil: "domcontentloaded" });
   await page.evaluate(
-    ({ world1Key, world2Key, world3Key, world4Key }) => {
+    ({
+      world1Key,
+      world2Key,
+      world3Key,
+      world3PracticeKey,
+      world4Key,
+      world5QuizKey,
+    }) => {
       localStorage.setItem(world1Key, "world-one-checkpoint");
       localStorage.setItem(world2Key, "world-two-checkpoint");
       localStorage.setItem(world3Key, "world-three-checkpoint");
+      localStorage.setItem(world3PracticeKey, "world-three-practice");
       localStorage.setItem(world4Key, "world-four-checkpoint");
+      localStorage.setItem(world5QuizKey, "world-five-quiz");
     },
     {
       world1Key: WORLD1_CHECKPOINT_KEY,
       world2Key: WORLD2_CHECKPOINT_KEY,
       world3Key: WORLD3_CHECKPOINT_KEY,
+      world3PracticeKey: WORLD3_PRACTICE_KEY,
       world4Key: WORLD4_CHECKPOINT_KEY,
+      world5QuizKey: WORLD5_QUIZ_KEY,
     },
   );
   await page.locator('[data-final-action="open_restart_confirmation"]').click();
@@ -420,12 +461,14 @@ test("GVO_DEBT_002 conserva la allowlist de reset y reinicia los guards", async 
         WORLD1_CHECKPOINT_KEY,
         WORLD2_CHECKPOINT_KEY,
         WORLD3_CHECKPOINT_KEY,
+        WORLD3_PRACTICE_KEY,
         WORLD4_CHECKPOINT_KEY,
         WORLD5_PROGRESS_KEY,
+        WORLD5_QUIZ_KEY,
         COVER_PROGRESS_KEY,
       ],
     ),
-  ).toEqual([null, null, null, null, null, null, null]);
+  ).toEqual([null, null, null, null, null, null, null, null, null]);
   expect(
     await page.evaluate(
       (key) => sessionStorage.getItem(key),

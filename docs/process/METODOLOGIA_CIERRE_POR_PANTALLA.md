@@ -37,7 +37,8 @@ Una pantalla se considera cerrada únicamente cuando cumple todos estos criterio
    - No usa Internet.
    - No usa CDN.
    - No carga recursos externos.
-   - No reproduce audio.
+   - Si usa audio, reproduce archivos locales del diseñador de sonido según
+     el mapa de reproducción de su entrega.
    - Funciona en mobile-first.
    - Pasa lint, test, build, audit:assets y e2e cuando aplique.
 

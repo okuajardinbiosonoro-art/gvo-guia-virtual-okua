@@ -129,6 +129,14 @@ for (const viewport of coverViewports) {
     await expect(
       page.locator("[data-cover-phase='portada_idle']"),
     ).toBeVisible();
+    await expect(page.locator("[data-portal-id]")).toHaveCount(0);
+    await expect(page.locator(".cover-intro__cta")).toBeVisible();
+    await page.locator(".cover-intro__cta").click();
+    await expect(page.getByRole("dialog", {name:"Diálogo de Lía"})).toBeVisible();
+    await expect(page.locator("[data-cover-portal-interior]")).toHaveCount(0);
+    await page.evaluate(() => localStorage.setItem("gvo.progress.v1", JSON.stringify({schemaVersion:1, completedStations:[1,2,3,4,5], updatedAt:"2026-10-23T12:00:00.000Z"})));
+    await page.goto("/final");
+    await page.locator('[data-final-action="safe_navigation_portada"]').click();
     await waitForCoverPortalInteriors(page);
 
     const sources = await page
@@ -191,14 +199,8 @@ for (const viewport of coverViewports) {
     expect(geometry.every((item) => item.centerInside)).toBe(true);
     expect(geometry.some((item) => item.overlapsCta)).toBe(false);
     await expect(page.getByTestId("cover-lia-stage")).toBeVisible();
-    await expect(page.locator(".cover-intro__cta")).toBeVisible();
     await expectNoHorizontalOverflow(page);
     await expectMinimumTargets(page);
-
-    await page.locator(".cover-intro__cta").click();
-    await expect(
-      page.getByRole("dialog", { name: "Diálogo de Lía" }),
-    ).toBeVisible();
     await expect(page.locator("[data-cover-portal-interior]")).toHaveCount(5);
   });
 }

@@ -66,6 +66,21 @@
   height: 100%;
 }
 
+/* OBS04 Q03: long II revisits use document flow while retaining the dock row.
+   Other worlds keep their existing reserved/floating layout. */
+@media (max-width: 899px), (max-height: 700px) {
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"][data-final-review-clearance-mode="reserved"] {
+    height: auto;
+    min-height: 100svh;
+    min-height: 100dvh;
+    overflow: visible;
+    grid-template-rows: var(--gvo-final-review-clearance-top) auto;
+  }
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"][data-final-review-clearance-mode="reserved"] > :not(.final-review-return-dock) {
+    height: auto;
+  }
+}
+
 .final-review-return-dock {
   position: fixed;
   z-index: 1000;

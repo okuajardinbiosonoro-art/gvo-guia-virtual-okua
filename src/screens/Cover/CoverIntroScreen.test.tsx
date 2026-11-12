@@ -1,841 +1,124 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-} from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-
-import { beginFinalCoverRevisit } from "../../app/review/finalReviewContext";
-import {
-  coverToWorldOneTransitionRoute,
-  stationEntryRoutes,
-} from "../../app/routes";
+import { MemoryRouter } from "react-router-dom";
+import { JourneyActivationProvider } from "../../app/journey/JourneyActivation";
+import { confirmEssentialStep, invalidateJourneyEssential, markEssentialPresented, readEssentialSnapshot, setJourneyRuntimeContext, type ValidatedJourneyContext } from "../../app/journey/journeyEssential";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
-import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
-import type { ScreenAssetBundle } from "../../shared/assets/screenAssetBundles";
-import { CoverIntroScreen } from "./CoverIntroScreen";
-import { coverIntroAssets } from "./coverIntroAssets";
-import { coverPortalInteriorAssets } from "./coverPortalInteriorAssets";
-import {
-  coverIntroDialogues,
-  coverIntroPortals,
-  coverIntroText,
-  coverIntroTransitionText,
-  lockedPortalMessages,
-} from "./coverIntroContent";
+import { CoverIntroScreen, type CoverIntroScreenProps } from "./CoverIntroScreen";
+import { coverIntroDialogues, coverIntroText } from "./coverIntroContent";
 import { COVER_INTRO_STORAGE_KEY } from "./coverIntroState";
 
-const {
-  locationStateMock,
-  navigateMock,
-  preloaderMockState,
-  useAssetPreloaderMock,
-} = vi.hoisted(() => ({
-  locationStateMock: { current: null as unknown },
-  navigateMock: vi.fn(),
-  preloaderMockState: {
-    activation: {
-      status: "ready",
-      progress: 1,
-      ready: true,
-      failed: 0,
-      timedOut: 0,
-      total: 1,
-      summary: null,
-    },
-  },
-  useAssetPreloaderMock: vi.fn(),
-}));
-
-vi.mock("react-router-dom", async () => {
-  const actual =
-    await vi.importActual<typeof import("react-router-dom")>(
-      "react-router-dom",
-    );
-
-  return {
-    ...actual,
-    useLocation: () => ({
-      hash: "",
-      key: "cover-test",
-      pathname: "/portada",
-      search: "",
-      state: locationStateMock.current,
-    }),
-    useNavigate: () => navigateMock,
-  };
-});
-
-vi.mock("../../shared/assets/useAssetPreloader", () => ({
-  useAssetPreloader: useAssetPreloaderMock,
-}));
-
-type ActivationPreloadStatus =
-  | "idle"
-  | "loading"
-  | "ready"
-  | "error"
-  | "timeout";
-
-function setActivationPreload(status: ActivationPreloadStatus) {
-  const isReady = status === "ready";
-  const hasFinished = isReady || status === "error" || status === "timeout";
-
-  preloaderMockState.activation = {
-    status,
-    progress: hasFinished ? 1 : 0,
-    ready: hasFinished,
-    failed: status === "error" ? 1 : 0,
-    timedOut: status === "timeout" ? 1 : 0,
-    total: 1,
-    summary: null,
-  };
+const context: ValidatedJourneyContext = { active: true, attemptId: "cover-test", screen: "cover", mode: "normal", authorized: true, reviewReturnAllowed: false };
+function mount(props: CoverIntroScreenProps = {}, value = context) {
+  return render(<MemoryRouter initialEntries={["/portada"]}><JourneyActivationProvider context={value}><CoverIntroScreen {...props} /></JourneyActivationProvider></MemoryRouter>);
 }
-
-function finishIntroDialogue() {
-  fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-
-  for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
-    fireEvent.click(
-      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-    );
+async function advanceAll() {
+  fireEvent.click(screen.getByRole("button", { name: "Empieza aquí" }));
+  for (let index = 0; index < 4; index++) {
+    await waitFor(() => expect(screen.getByTestId("cover-dialogue-panel")).toHaveAttribute("data-dialogue-id", coverIntroDialogues[index].id));
+    const button = screen.getByRole("button", { name: index === 3 ? "¡Adelante!" : "Siguiente diálogo de Lía" });
+    await waitFor(() => expect(button).toBeEnabled());
+    await act(async () => fireEvent.click(button));
   }
-
-  fireEvent.click(
-    screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
-  );
 }
+beforeEach(() => {
+  window.localStorage.clear(); window.sessionStorage.clear();
+  invalidateJourneyEssential(); setJourneyRuntimeContext({ ...context, active: false });
+});
+afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
-describe("CoverIntroScreen", () => {
-  beforeEach(() => {
-    window.localStorage.clear();
-    window.sessionStorage.clear();
-    window.history.replaceState({}, "", "/");
-    locationStateMock.current = null;
-    navigateMock.mockClear();
-    useAssetPreloaderMock.mockReset();
-    setActivationPreload("ready");
-    useAssetPreloaderMock.mockImplementation((bundle: ScreenAssetBundle) =>
-      bundle.id === "coverIntroActivation"
-        ? preloaderMockState.activation
-        : {
-            status: "ready",
-            progress: 1,
-            ready: true,
-            failed: 0,
-            timedOut: 0,
-            total: bundle.assets.length,
-            summary: null,
-          },
-    );
+describe("Portada OBS03.2", () => {
+  it("conserva Portal I visible bloqueado y un solo iniciador, sin omisión", () => {
+    const { container } = mount();
+    expect(screen.getByRole("button", { name: /Termina la presentación/ })).toBeDisabled();
+    expect(container.querySelectorAll("[data-portal-id]")).toHaveLength(1);
+    expect(screen.getByRole("button", { name: coverIntroText.cta })).toBeEnabled();
+    expect(screen.queryByRole("button", { name: /omitir|sin presentación/i })).toBeNull();
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(container.querySelectorAll('[data-lia-rig-layer^="petal-"]')).toHaveLength(5);
   });
 
-  afterEach(() => {
-    vi.clearAllTimers();
-    vi.useRealTimers();
-    vi.unstubAllGlobals();
-    cleanup();
-  });
-
-  it("inicia el preload dedicado de activación al montar Portada", () => {
-    render(<CoverIntroScreen />);
-
-    expect(useAssetPreloaderMock).toHaveBeenCalledWith(
-      screenAssetBundles.coverIntroActivation,
-      {
-        timeoutMs: 9000,
-        retryKey: 0,
-      },
-    );
-  });
-
-  it("renderiza textos DOM principales y botón de inicio", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(screen.getByText(coverIntroText.logo)).toBeInTheDocument();
-    expect(screen.getByText(coverIntroText.subtitle)).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: coverIntroText.archiveTitle }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: coverIntroText.cta }),
-    ).toBeInTheDocument();
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(
-      container.querySelector("[data-cover-intro-version='002J-FIX']"),
-    ).toBeInTheDocument();
-  });
-
-  it("renderiza Lía en rig-idle por capas en portada_idle", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(
-      screen.getByRole("img", { name: "Lía, guía visual de OKÚA" }),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-expression='neutral']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-rig-layer='head-clean']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigHeadClean);
-    expect(
-      container.querySelector("[data-lia-rig-layer='eyes-neutral']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigEyesNeutral);
-    expect(
-      screen.getAllByRole("img", { name: "Lía, guía visual de OKÚA" }),
-    ).toHaveLength(1);
-  });
-
-  it("renderiza cinco portales con Portal I disponible y II-V bloqueados", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(container.querySelectorAll("[data-portal-id]")).toHaveLength(5);
-    expect(
-      screen.getByRole("button", {
-        name: "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía.",
-      }),
-    ).toHaveAttribute("data-portal-state", "available");
-
-    for (const portal of coverIntroPortals.slice(1)) {
-      expect(
-        screen.getByRole("button", { name: portal.ariaLabel }),
-      ).toHaveAttribute("aria-disabled", "true");
-      expect(
-        screen.getByRole("button", { name: portal.ariaLabel }),
-      ).toHaveAttribute("data-portal-state", "locked");
-    }
-  });
-
-  it("no desbloquea II–V con progreso completo sin contexto de Mirador", () => {
-    window.localStorage.setItem(
-      GVO_PROGRESS_STORAGE_KEY,
-      JSON.stringify({
-        schemaVersion: 1,
-        completedStations: [1, 2, 3, 4, 5],
-        updatedAt: "2026-08-16T12:00:00.000Z",
-      }),
-    );
-
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(
-      container.querySelectorAll('[data-portal-state="locked"]'),
-    ).toHaveLength(4);
-    expect(
-      container.querySelector("[data-cover-revisit='inactive']"),
-    ).toBeInTheDocument();
-  });
-
-  it("desbloquea I–V sólo en revisita válida y navega a cada entrada canónica", () => {
-    window.localStorage.setItem(
-      GVO_PROGRESS_STORAGE_KEY,
-      JSON.stringify({
-        schemaVersion: 1,
-        completedStations: [1, 2, 3, 4, 5],
-        updatedAt: "2026-08-16T12:00:00.000Z",
-      }),
-    );
-    locationStateMock.current = beginFinalCoverRevisit(
-      window.sessionStorage,
-      () => 1_787_000_000_000,
-    );
-
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(
-      container.querySelector("[data-cover-revisit='active']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelectorAll('[data-portal-state="available"]'),
-    ).toHaveLength(5);
-    expect(
-      container.querySelectorAll(".cover-intro__portal-lock"),
-    ).toHaveLength(0);
-
-    for (const portal of coverIntroPortals) {
-      fireEvent.click(
-        screen.getByRole("button", { name: portal.reviewAriaLabel }),
-      );
-      expect(navigateMock).toHaveBeenLastCalledWith(
-        stationEntryRoutes[portal.world],
-        expect.objectContaining({
-          state: expect.objectContaining({
-            finalReview: expect.objectContaining({ world: portal.world }),
-          }),
-        }),
-      );
-    }
-  });
-
-  it("mantiene el gating si existe contexto de Mirador pero falta progreso", () => {
-    locationStateMock.current = beginFinalCoverRevisit(
-      window.sessionStorage,
-      () => 1_787_000_000_000,
-    );
-
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(
-      container.querySelector("[data-cover-revisit='inactive']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelectorAll('[data-portal-state="locked"]'),
-    ).toHaveLength(4);
-    expect(
-      window.sessionStorage.getItem("gvo.final.reviewContext.v1"),
-    ).toBeNull();
-  });
-
-  it("declara el clip exclusivo de Portal I sin alterar el selector base", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    expect(
-      container.querySelectorAll('[data-portal-clip="primary-safe"]'),
-    ).toHaveLength(1);
-    expect(
-      container.querySelectorAll('[data-portal-clip="base"]'),
-    ).toHaveLength(4);
-    expect(
-      container.querySelector('[data-portal-id="portal-1"] [data-portal-clip]'),
-    ).toHaveAttribute("data-portal-clip", "primary-safe");
-  });
-
-  it("completa los cinco interiores dedicados sin reutilizar Mirador", () => {
-    const { container } = render(<CoverIntroScreen />);
-    const interiors = container.querySelectorAll(
-      ".cover-intro__portal-interior[data-cover-portal-interior]",
-    );
-
-    expect(interiors).toHaveLength(5);
-    expect(
-      Array.from(interiors).map((asset) =>
-        asset.getAttribute("data-runtime-asset"),
-      ),
-    ).toEqual(coverPortalInteriorAssets.map((asset) => asset.src));
-    expect(
-      new Set(
-        Array.from(interiors).map((asset) =>
-          asset.getAttribute("data-cover-portal-interior"),
-        ),
-      ).size,
-    ).toBe(5);
-    expect(
-      container.querySelector("[data-entry-cover-station-asset]"),
-    ).not.toBeInTheDocument();
-  });
-
-  it("usa assets locales staged de cover-intro", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    for (const asset of Object.values(coverIntroAssets)) {
-      expect(asset).toMatch(/^\/assets\/runtime\/cover-intro\//);
-      expect(asset).not.toMatch(/^https?:\/\//);
-    }
-
-    expect(
-      container.querySelector(
-        `[data-runtime-asset="${coverIntroAssets.liaRigHeadClean}"]`,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(
-        `[data-runtime-asset="${coverIntroAssets.liaRigEyesNeutral}"]`,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(
-        `[data-runtime-asset="${coverIntroAssets.portal1Frame}"]`,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelectorAll(
-        `[data-runtime-asset="${coverIntroAssets.lock}"]`,
-      ),
-    ).toHaveLength(4);
-  });
-
-  it("inicia diálogos desde Comenzar recorrido y muestra un diálogo a la vez", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-
-    expect(screen.getByRole("dialog")).toHaveTextContent(
-      coverIntroDialogues[0].text,
-    );
-    expect(screen.getByText("Lía")).toBeInTheDocument();
-    expect(screen.getByText("Paso 1 de 5")).toBeInTheDocument();
-    expect(screen.queryByText("1/5")).not.toBeInTheDocument();
-    expect(screen.getByRole("dialog")).not.toHaveTextContent(
-      coverIntroDialogues[1].text,
-    );
-    expect(
-      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-state='rig-happy']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-expression='happy']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-rig-layer='eyes-happy']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaRigEyesHappy);
-    expect(
-      container.querySelector("[data-lia-avatar-mode='pose']"),
-    ).not.toBeInTheDocument();
-  });
-
-  it("usa rig atento en diálogos intermedios y pose completa desde diálogo 5", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-    fireEvent.click(
-      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-    );
-
-    expect(screen.getByText("Paso 2 de 5")).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-avatar-mode='rig-idle']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-expression='attentive']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-rig-layer='eyes-attentive']"),
-    ).toHaveAttribute(
-      "data-runtime-asset",
-      coverIntroAssets.liaRigEyesAttentive,
-    );
-
-    for (let index = 0; index < 3; index += 1) {
-      fireEvent.click(
-        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-      );
-    }
-
-    expect(screen.getByText("Paso 5 de 5")).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-avatar-mode='pose']"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-pose='pointPortal1']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaPointPortal1);
-    expect(
-      container.querySelector("[data-lia-rig-layer='eyes-attentive']"),
-    ).not.toBeInTheDocument();
-  });
-
-  it("resetIntro=1 limpia la persistencia y muestra primera pasada", () => {
+  it("un flag antiguo de presentación no habilita Portal I ni se reinterpreta como OBS03", () => {
     window.localStorage.setItem(COVER_INTRO_STORAGE_KEY, "true");
-    window.history.replaceState({}, "", "/portada?resetIntro=1");
-
-    render(<CoverIntroScreen />);
-
-    expect(window.localStorage.getItem(COVER_INTRO_STORAGE_KEY)).toBeNull();
-    expect(
-      screen.getByRole("button", { name: coverIntroText.cta }),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: coverIntroText.enterWorldOne }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("inicia diálogos desde Portal I antes de dejarlo abrir", () => {
-    render(<CoverIntroScreen />);
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía.",
-      }),
-    );
-
-    expect(screen.getByRole("dialog")).toHaveTextContent(
-      coverIntroDialogues[0].text,
-    );
-    expect(
-      screen.queryByText(coverIntroText.openingWorldOne),
-    ).not.toBeInTheDocument();
-  });
-
-  it("avanza los cinco diálogos y deja Portal I listo", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-
-    for (const dialogue of coverIntroDialogues.slice(0, -1)) {
-      expect(screen.getByRole("dialog")).toHaveTextContent(dialogue.text);
-      fireEvent.click(
-        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-      );
-    }
-
-    expect(screen.getByRole("dialog")).toHaveTextContent(
-      coverIntroDialogues[coverIntroDialogues.length - 1].text,
-    );
-    expect(screen.getByText("Paso 5 de 5")).toBeInTheDocument();
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
-    );
-
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", {
-        name: "Estación I, Mundo Raíz, lista para abrir.",
-      }),
-    ).toHaveAttribute("data-portal-state", "ready");
-    expect(
-      container.querySelector("[data-lia-pose='pointPortal1']"),
-    ).toHaveAttribute("data-runtime-asset", coverIntroAssets.liaPointPortal1);
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_ready",
-    );
+    mount();
+    expect(screen.getByRole("button", { name: /Termina la presentación/ })).toBeDisabled();
+    expect(readEssentialSnapshot()?.cover.closed).toBe(false);
     expect(window.localStorage.getItem(COVER_INTRO_STORAGE_KEY)).toBe("true");
   });
 
-  it("muestra placeholder controlado al abrir Portal I listo sin navegar", () => {
-    const { container } = render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-    for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
-      fireEvent.click(
-        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-      );
-    }
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
-    );
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-    );
-
-    expect(
-      screen.getByText(coverIntroTransitionText.opening),
-    ).toBeInTheDocument();
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_opening_placeholder",
-    );
-    expect(
-      screen.getByTestId("cover-portal-activation-rig"),
-    ).toBeInTheDocument();
-    expect(screen.getByTestId("cover-portal-activation-rig")).toHaveAttribute(
-      "data-activation-stage",
-      "portal-i",
-    );
-    expect(screen.getByTestId("cover-activation-lia")).toHaveAttribute(
-      "data-runtime-asset",
-      coverIntroAssets.liaActivatePortal1,
-    );
-    expect(screen.getByTestId("cover-activation-portal-front")).toHaveAttribute(
-      "data-runtime-asset",
-      coverIntroAssets.portal1Frame,
-    );
-    expect(
-      screen.getByTestId("cover-activation-contact-light"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-lia-pose='activatePortal1']"),
-    ).toHaveAttribute(
-      "data-runtime-asset",
-      coverIntroAssets.liaActivatePortal1,
-    );
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-activation-assets-status",
-      "ready",
-    );
+  it("cuatro avances literales habilitan el portal; sólo el gesto posterior solicita cruce una vez", async () => {
+    const enter = vi.fn();
+    mount({ onPortalEnter: enter });
+    await advanceAll();
+    expect(enter).not.toHaveBeenCalled();
+    const portal = screen.getByRole("button", { name: "Sala I · Raíz, lista para abrir." });
+    expect(portal).toBeEnabled();
+    expect(portal).toHaveFocus();
+    expect(readEssentialSnapshot()?.cover.confirmedStepIds).toEqual(coverIntroDialogues.map((step) => step.stepId));
+    expect(readEssentialSnapshot()?.cover.closed).toBe(true);
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+    await act(async () => { fireEvent.click(portal); fireEvent.click(portal); });
+    expect(enter).toHaveBeenCalledTimes(1);
   });
 
-  it("mantiene una sola intención pendiente mientras carga y la consume al quedar ready", () => {
-    setActivationPreload("loading");
-    const { container, rerender } = render(<CoverIntroScreen />);
-    finishIntroDialogue();
-
-    const enterButton = screen.getByRole("button", {
-      name: coverIntroText.enterWorldOne,
-    });
-    fireEvent.click(enterButton);
-    fireEvent.click(enterButton);
-
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_ready",
-    );
-    expect(
-      screen.queryByText(coverIntroTransitionText.opening),
-    ).not.toBeInTheDocument();
-    expect(navigateMock).not.toHaveBeenCalled();
-
-    setActivationPreload("ready");
-    rerender(<CoverIntroScreen />);
-    rerender(<CoverIntroScreen />);
-
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_opening_placeholder",
-    );
-    expect(screen.getByTestId("cover-activation-lia")).toHaveAttribute(
-      "data-runtime-asset",
-      coverIntroAssets.liaActivatePortal1,
-    );
-  });
-
-  it("reintenta una vez si una intención pendiente termina en timeout", () => {
-    setActivationPreload("loading");
-    const { container, rerender } = render(<CoverIntroScreen />);
-    finishIntroDialogue();
-
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-    );
-    setActivationPreload("timeout");
-    rerender(<CoverIntroScreen />);
-
-    const activationCalls = useAssetPreloaderMock.mock.calls.filter(
-      ([bundle]) => bundle.id === "coverIntroActivation",
-    );
-    expect(activationCalls.at(-1)?.[1]).toMatchObject({ retryKey: 1 });
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_ready",
-    );
-
-    setActivationPreload("loading");
-    rerender(<CoverIntroScreen />);
-    setActivationPreload("ready");
-    rerender(<CoverIntroScreen />);
-
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_opening_placeholder",
-    );
-  });
-
-  it.each(["error", "timeout"] as const)(
-    "permanece listo y solicita retry controlado después de %s",
-    (status) => {
-      setActivationPreload(status);
-      const { container } = render(<CoverIntroScreen />);
-      finishIntroDialogue();
-
-      fireEvent.click(
-        screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-      );
-
-      expect(container.firstElementChild).toHaveAttribute(
-        "data-cover-phase",
-        "portal_1_ready",
-      );
-      expect(
-        screen.queryByText(coverIntroTransitionText.opening),
-      ).not.toBeInTheDocument();
-      expect(navigateMock).not.toHaveBeenCalled();
-
-      const activationCalls = useAssetPreloaderMock.mock.calls.filter(
-        ([bundle]) => bundle.id === "coverIntroActivation",
-      );
-      expect(activationCalls.at(-1)?.[1]).toMatchObject({ retryKey: 1 });
-    },
-  );
-
-  it("inicia los 920 ms sólo cuando el retry llega a ready y navega una vez", () => {
-    vi.useFakeTimers();
-    setActivationPreload("error");
-    const { container, rerender } = render(<CoverIntroScreen />);
-    finishIntroDialogue();
-    const enterButton = screen.getByRole("button", {
-      name: coverIntroText.enterWorldOne,
-    });
-
-    fireEvent.click(enterButton);
-    act(() => {
-      vi.advanceTimersByTime(920);
-    });
-    expect(navigateMock).not.toHaveBeenCalled();
-
-    setActivationPreload("loading");
-    rerender(<CoverIntroScreen />);
-    fireEvent.click(enterButton);
-    fireEvent.click(enterButton);
-    setActivationPreload("ready");
-    rerender(<CoverIntroScreen />);
-
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_opening_placeholder",
-    );
-    act(() => {
-      vi.advanceTimersByTime(919);
-    });
-    expect(navigateMock).not.toHaveBeenCalled();
-
-    act(() => {
-      vi.advanceTimersByTime(1);
-    });
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
-  });
-
-  it("conserva el handoff de 920 ms bajo reduced motion", () => {
-    vi.useFakeTimers();
-    vi.stubGlobal(
-      "matchMedia",
-      vi.fn().mockReturnValue({
-        matches: true,
-        media: "(prefers-reduced-motion: reduce)",
-        onchange: null,
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      }),
-    );
-    render(<CoverIntroScreen />);
-    finishIntroDialogue();
-
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-    );
-    act(() => {
-      vi.advanceTimersByTime(919);
-    });
-    expect(navigateMock).not.toHaveBeenCalled();
-
-    act(() => {
-      vi.advanceTimersByTime(1);
-    });
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-  });
-
-  it("navega a la transición runtime una sola vez despues de la activación", () => {
-    vi.useFakeTimers();
-    const { container } = render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-    for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
-      fireEvent.click(
-        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-      );
-    }
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
-    );
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.enterWorldOne }),
-    );
-
-    act(() => {
-      vi.advanceTimersByTime(920);
-    });
-
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
-    expect(container.firstElementChild).toHaveAttribute(
-      "data-cover-phase",
-      "portal_1_opening_placeholder",
-    );
-    expect(
-      screen.queryByText(coverIntroTransitionText.preparing),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
-    expect(
-      screen.queryByText("Ruta base creada para navegación secuencial"),
-    ).not.toBeInTheDocument();
-    expect(
-      container.querySelectorAll('[data-portal-state="locked"]'),
-    ).toHaveLength(4);
-  });
-
-  it("bloquea doble navegación al abrir Mundo I", () => {
-    vi.useFakeTimers();
-    render(<CoverIntroScreen />);
-
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-    for (let index = 0; index < coverIntroDialogues.length - 1; index += 1) {
-      fireEvent.click(
-        screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-      );
-    }
-    fireEvent.click(
-      screen.getByRole("button", { name: coverIntroText.dialogueFinish }),
-    );
-
-    const enterButton = screen.getByRole("button", {
-      name: coverIntroText.enterWorldOne,
-    });
-
-    fireEvent.click(enterButton);
-    fireEvent.click(enterButton);
-
-    act(() => {
-      vi.advanceTimersByTime(920);
-    });
-
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-    expect(navigateMock).toHaveBeenCalledWith(coverToWorldOneTransitionRoute);
-  });
-
-  it.each(Object.entries(lockedPortalMessages))(
-    "muestra feedback breve para %s sin navegar",
-    (portalId, message) => {
-      const { container } = render(<CoverIntroScreen />);
-      const portal = coverIntroPortals.find((item) => item.id === portalId);
-
-      expect(portal).toBeDefined();
-      fireEvent.click(screen.getByRole("button", { name: portal?.ariaLabel }));
-
-      expect(screen.getByText(message)).toBeInTheDocument();
-      expect(
-        container.querySelector(`[data-portal-id="${portalId}"]`),
-      ).toHaveClass("cover-intro__portal--blocked-feedback");
-      expect(container.querySelector("a")).not.toBeInTheDocument();
-    },
-  );
-
-  it("mantiene labels accesibles en controles principales", () => {
-    render(<CoverIntroScreen />);
-
-    expect(
-      screen.getByRole("button", { name: coverIntroText.cta }),
-    ).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: coverIntroText.cta }));
-    expect(
-      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("Paso 1 de 5")).toBeInTheDocument();
-    expect(screen.queryByText("1/5")).not.toBeInTheDocument();
-    fireEvent.click(
-      screen.getByRole("button", { name: "Siguiente diálogo de Lía" }),
-    );
-    expect(screen.getByText("Paso 2 de 5")).toBeInTheDocument();
-    expect(screen.queryByText("2/5")).not.toBeInTheDocument();
-  });
-
-  it("renderiza números romanos como contenido DOM", () => {
-    render(<CoverIntroScreen />);
-
-    for (const portal of coverIntroPortals) {
-      expect(screen.getByText(portal.roman)).toBeInTheDocument();
+  it("renderiza literalmente el escritor y traza cada grupo por sus IDs", async () => {
+    mount();
+    fireEvent.click(screen.getByRole("button", { name: "Empieza aquí" }));
+    for (let index = 0; index < 4; index++) {
+      expect(screen.getByText(coverIntroDialogues[index].text)).toBeVisible();
+      expect(screen.getByTestId("cover-dialogue-panel")).toHaveAttribute("data-source-ids", coverIntroDialogues[index].sourceIds.join(" "));
+      if (index < 3) await act(async () => fireEvent.click(screen.getByRole("button", { name: "Siguiente diálogo de Lía" })));
     }
   });
 
-  it("no renderiza audio, video ni navegación fuera del alcance 002D", () => {
-    const { container } = render(<CoverIntroScreen />);
+  it("un fallo de guardado conserva el paso y el portal bloqueado; reintentar no inventa cierre", async () => {
+    const { container } = mount();
+    const fail = vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new DOMException("Blocked", "QuotaExceededError"); });
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Empieza aquí" })));
+    expect(screen.getByRole("alert")).toHaveTextContent("No fue posible guardar");
+    expect(container.querySelector('[data-portal-id="portal-1"]')).toBeDisabled();
+    expect(readEssentialSnapshot()?.cover.closed).toBe(false);
+    fail.mockRestore();
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Reintentar guardado" })));
+    expect(screen.getByTestId("cover-dialogue-panel")).toHaveAttribute("data-dialogue-id", coverIntroDialogues[1].id);
+    expect(readEssentialSnapshot()?.cover.confirmedStepIds).toEqual(["saludo"]);
+  });
 
-    expect(container.querySelector("audio")).not.toBeInTheDocument();
-    expect(container.querySelector("video")).not.toBeInTheDocument();
-    expect(container.querySelector("a")).not.toBeInTheDocument();
+  it("restaura el siguiente segmento confirmado sin repetir ni usar flags legados", async () => {
+    setJourneyRuntimeContext(context);
+    await markEssentialPresented({ screen: "cover", stepId: "saludo", contentRevision: "OBS03.2", attemptId: context.attemptId, mode: "standard" });
+    await confirmEssentialStep({ screen: "cover", stepId: "saludo", contentRevision: "OBS03.2", attemptId: context.attemptId, cause: "visitor_advance" });
+    mount();
+    expect(screen.getByText(coverIntroDialogues[1].text)).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Empieza aquí" })).toBeNull();
+  });
+
+  it("preparación inactiva no escribe presentación ni recibe interacción", () => {
+    mount({}, { ...context, active: false });
+    expect(screen.getByRole("button", { name: "Empieza aquí" })).toBeDisabled();
+    expect(readEssentialSnapshot()?.cover.presentedStepIds).toEqual([]);
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBeNull();
+  });
+
+  it("EN se resuelve al renderizar, incluidos diálogo, portal y ayudas", async () => {
+    mount({ locale: "en" });
+    expect(screen.getByRole("heading", { name: "Interactive Exhibition" })).toBeVisible();
+    expect(screen.getByRole("button", { name: /Complete the introduction/ })).toBeDisabled();
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Start here" })));
+    expect(screen.getByText(coverIntroDialogues[0].en)).toBeVisible();
+    expect(screen.getByRole("button", { name: "Lía’s next dialogue" })).toBeEnabled();
+    expect(screen.queryByText(coverIntroDialogues[0].text)).toBeNull();
+  });
+
+  it("revisita validada mantiene cinco accesos y no modifica esencia ni puntos", async () => {
+    const revisit = vi.fn();
+    mount({ onRevisitRoom: revisit }, { ...context, mode: "legacy_review_compatible", reviewReturnAllowed: true });
+    const before = JSON.stringify(readEssentialSnapshot());
+    for (const [index, room] of ["Raíz", "Pulso invisible", "Cuaderno de práctica", "Sistema biosonoro", "OKÚA, arte sensorial"].entries()) {
+      const roman = ["I", "II", "III", "IV", "V"][index];
+      fireEvent.click(screen.getByRole("button", { name: `Revisar Sala ${roman} · ${room}` }));
+    }
+    expect(revisit.mock.calls.map((call) => call[0])).toEqual([1, 2, 3, 4, 5]);
+    expect(JSON.stringify(readEssentialSnapshot())).toBe(before);
   });
 });

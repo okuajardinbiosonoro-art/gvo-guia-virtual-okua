@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "status": "SOURCE_MASK_GEOMETRY_AND_RUNTIME_LOSSLESS_QA_PASS_SCENE_PENDING",
+  "thread": "gvo-provenance:images-1",
+  "humanApproval": false,
+  "consumerActivated": true,
+  "consumer": "src/screens/World5Root/world5RuntimeAssets.ts#getWorld5Environment(sistema, orientation); current-orientation critical helper and typed system bundle use v03. Other environments retain v01.",
+  "candidateStatus": "INTEGRATION_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING",
+  "sourceNativesPreserved": true,
+  "exportedFrameChecks": 12,
+  "results": [
+    {
+      "orientation": "portrait",
+      "source": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_portrait_v01.webp",
+      "sourceSha256": "f9c5978400f3deb37e027cdbc9aeb0d6754e6fa04441be641f83561496326bcb",
+      "generated": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/WORLD5_SYSTEM_CLEANPLATE_PORTRAIT_OBS03.png",
+      "generatedSha256": "4f008e60786cdad8d6199ded2460baa675e2193fd066e0e32a7d5b4765baba6d",
+      "mask": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/repair_masks/portrait_repair_mask.png",
+      "dimensions": [
+        1440,
+        1920
+      ],
+      "changedPixels": 229414,
+      "changedBounds": [
+        45,
+        736,
+        1440,
+        1189
+      ],
+      "outsideMaskChangedRgbaPixels": 0,
+      "alphaChangedPixels": 0,
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_portrait_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/system/world5_sub_system_environment_portrait_v03.webp",
+      "sha256": "e1d6d82f246215e0870449e3affd399010ffd24e046608635845aa4a7c160d08",
+      "bytes": 1261922,
+      "runtimeDecodedRgbaExact": true
+    },
+    {
+      "orientation": "landscape",
+      "source": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_landscape_v01.webp",
+      "sourceSha256": "9af9fef48649cbfcd650513eb5f7662fedc584079800616f7e6c4ab652c231d3",
+      "generated": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/WORLD5_SYSTEM_CLEANPLATE_LANDSCAPE_OBS03.png",
+      "generatedSha256": "843897b4d9c65ac18259a70cbc85849fbd053c6a9a2f47cd27c47a7fbbf1431d",
+      "mask": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/repair_masks/landscape_repair_mask.png",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "changedPixels": 60535,
+      "changedBounds": [
+        1013,
+        483,
+        1513,
+        682
+      ],
+      "outsideMaskChangedRgbaPixels": 0,
+      "alphaChangedPixels": 0,
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_landscape_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/system/world5_sub_system_environment_landscape_v03.webp",
+      "sha256": "7a2124d0db8bd573ee47960e055d40f6b41232ab2c6cc5c56fdf0d066453578b",
+      "bytes": 752794,
+      "runtimeDecodedRgbaExact": true
+    }
+  ],
+  "limitations": [
+    "Native generated geometry differed in parts; only registered local repair masks contribute to final source PNG.",
+    "Reconstructed formerly occluded stone is inferred artwork; exact outside-mask pixels are protected.",
+    "File checks do not establish scene legibility or intuitive choice grouping."
+  ]
+}

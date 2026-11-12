@@ -3,6 +3,11 @@ import { useEffect, useRef, useState } from "react";
 type World2MappingPanelProps = {
   cleanSignalAsset: string;
   firstRunComplete: boolean;
+  interactionBlocked?: boolean;
+  active?: boolean;
+  locale?: "es" | "en";
+  showResultRequested?: boolean;
+  onPresented?: (mode: "standard" | "assisted") => void;
   onFirstRunComplete: () => void;
 };
 
@@ -65,6 +70,11 @@ function MappingOutputIcon({ mode }: { mode: MappingRelation["output"] }) {
 export function World2MappingPanel({
   cleanSignalAsset,
   firstRunComplete,
+  interactionBlocked = false,
+  active = true,
+  locale = "es",
+  showResultRequested = false,
+  onPresented,
   onFirstRunComplete,
 }: World2MappingPanelProps) {
   const [activeStepIndex, setActiveStepIndex] = useState(
@@ -73,65 +83,115 @@ export function World2MappingPanel({
   const [autoplayFinished, setAutoplayFinished] = useState(firstRunComplete);
   const [animationRevision, setAnimationRevision] = useState(0);
   const onFirstRunCompleteRef = useRef(onFirstRunComplete);
-  const reviewEnabled = firstRunComplete;
+  const reviewEnabled = true;
+  const manualSelectionRef = useRef(false);
+  const manualSteps = useRef(new Set<number>());
+  const [manualReview, setManualReview] = useState(false);
+  const [assisted, setAssisted] = useState(false);
+  const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
+  const presentedRef = useRef(onPresented);
+  const notified = useRef(false);
+  const elapsed = useRef(0);
+  const en = locale === "en";
+  const translate = (es: string, english: string) => en ? english : es;
   const activeRelation =
     mappingRelations[activeStepIndex] ?? mappingRelations[0];
 
   useEffect(() => {
     onFirstRunCompleteRef.current = onFirstRunComplete;
-  }, [onFirstRunComplete]);
+    presentedRef.current = onPresented;
+  }, [onFirstRunComplete, onPresented]);
 
   useEffect(() => {
+    const update = () => setVisible(document.visibilityState !== "hidden");
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+
+  useEffect(() => {
+    if (active && showResultRequested) {
+      setAssisted(true);
+      setActiveStepIndex(2);
+      setAutoplayFinished(true);
+    }
+  }, [active, showResultRequested]);
+
+  useEffect(() => {
+    if (!active || !visible) return;
     if (firstRunComplete) {
+      if (!manualSelectionRef.current)
+        setActiveStepIndex(mappingRelations.length - 1);
+      setAutoplayFinished(true);
+      return;
+    }
+
+    if (
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches &&
+      !autoplayFinished
+    ) {
       setActiveStepIndex(mappingRelations.length - 1);
       setAutoplayFinished(true);
       return;
     }
 
-    if (autoplayFinished) {
+    if (autoplayFinished || manualReview) {
       return;
     }
 
+    const started = window.performance.now();
     const timers = mappingRelations
       .slice(1)
-      .map((_, index) =>
-        window.setTimeout(
-          () => setActiveStepIndex(index + 1),
-          (index + 1) * mappingStepDurationMs,
-        ),
-      );
+      .map((_, index) => ({ index: index + 1, at: (index + 1) * mappingStepDurationMs }))
+      .filter(({ at }) => at > elapsed.current)
+      .map(({ index, at }) => window.setTimeout(() => setActiveStepIndex(index), at - elapsed.current));
 
     const completionTimer = window.setTimeout(() => {
       setAutoplayFinished(true);
-      onFirstRunCompleteRef.current();
-    }, mappingAutoplayMs);
+    }, Math.max(0, mappingAutoplayMs - elapsed.current));
 
     return () => {
       timers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(completionTimer);
+      elapsed.current = Math.min(mappingAutoplayMs, elapsed.current + window.performance.now() - started);
     };
-  }, [autoplayFinished, firstRunComplete]);
+  }, [active, visible, autoplayFinished, firstRunComplete, manualReview]);
+
+  useEffect(() => {
+    if (!active || !visible || !autoplayFinished || notified.current) return;
+    let second = 0;
+    const first = window.requestAnimationFrame(() => {
+      second = window.requestAnimationFrame(() => {
+        notified.current = true;
+        presentedRef.current?.(assisted ? "assisted" : "standard");
+      });
+    });
+    return () => { window.cancelAnimationFrame(first); window.cancelAnimationFrame(second); };
+  }, [active, visible, autoplayFinished, assisted]);
 
   function reviewStep(index: number) {
-    if (!reviewEnabled) {
-      return;
-    }
-
+    if (interactionBlocked || !active) return;
+    manualSelectionRef.current = true;
+    setManualReview(true);
+    manualSteps.current.add(index);
     setActiveStepIndex(index);
     setAnimationRevision((currentRevision) => currentRevision + 1);
+    if (manualSteps.current.size === mappingRelations.length) {
+      setAutoplayFinished(true);
+      if (!firstRunComplete) onFirstRunCompleteRef.current();
+    }
   }
 
   return (
     <div
       className="world2-mapping-panel"
       role="group"
-      aria-label="Mapeo secuencial: un rasgo de la señal se interpreta como un parámetro sonoro"
+      aria-label={translate("Mapeo secuencial: un rasgo de la señal se interpreta como un parámetro sonoro", "Sequential mapping: a signal feature is interpreted as a sound parameter")}
       data-mapping-pedagogy="016U-R5"
       data-mapping-autoplay={`${mappingAutoplayMs}ms`}
       data-mapping-step-duration={`${mappingStepDurationMs}ms`}
       data-world2-mapping-component="sequential-react-dom"
-      data-world2-mapping-controls={reviewEnabled ? "review" : "locked"}
-      data-world2-mapping-first-run={reviewEnabled ? "complete" : "active"}
+      data-world2-mapping-controls={interactionBlocked ? "blocked" : "review"}
+      data-world2-mapping-first-run={firstRunComplete ? "complete" : "active"}
       data-world2-mapping-lia-role="guide"
       data-world2-mapping-mode="sequential-pedagogic-r2"
       data-world2-mapping-layout="full-width-horizontal"
@@ -145,21 +205,23 @@ export function World2MappingPanel({
       data-world2-mapping-step-count={mappingRelations.length}
       data-world2-mapping-simultaneous-relations="1"
       data-world2-layer-visual="mapeo"
+      data-motion-active={active && visible}
+      data-mapping-result-presented={autoplayFinished}
+      data-lia-action={autoplayFinished ? "respond" : "present"}
     >
       <header className="world2-mapping-sequence__header">
-        <span>MAPEO</span>
         <div
           className="world2-mapping-sequence__progress"
-          aria-label={`Relación ${activeStepIndex + 1} de ${mappingRelations.length}`}
+          aria-label={en ? `Relationship ${activeStepIndex + 1} of ${mappingRelations.length}` : `Relación ${activeStepIndex + 1} de ${mappingRelations.length}`}
         >
           {mappingRelations.map((relation, index) => (
             <button
               type="button"
-              aria-label={`Revisar relación ${index + 1} de 3: ${relation.featureLabel} a ${relation.output}`}
+              aria-label={en ? `Review relationship ${index + 1} of 3: ${["amplitude to intensity", "variation to rhythm", "range to pitch"][index]}` : `Revisar relación ${index + 1} de 3: ${relation.featureLabel} a ${relation.output}`}
               aria-pressed={index === activeStepIndex}
               data-active={index === activeStepIndex}
               data-mapping-progress-step={index + 1}
-              disabled={!reviewEnabled}
+              disabled={interactionBlocked || !active}
               key={relation.id}
               onClick={() => reviewStep(index)}
             />
@@ -170,7 +232,7 @@ export function World2MappingPanel({
 
       <div
         className="world2-mapping-sequence__relation"
-        aria-label={`${activeRelation.featureLabel} se interpreta mediante mapeo como ${activeRelation.output}`}
+        aria-label={en ? ["Amplitude is mapped to intensity", "Variation is mapped to rhythm", "Range is mapped to pitch"][activeStepIndex] : `${activeRelation.featureLabel} se interpreta mediante mapeo como ${activeRelation.output}`}
         data-mapping-active-relation={activeRelation.id}
         data-mapping-animation-revision={animationRevision}
         key={`${activeRelation.id}-${animationRevision}`}
@@ -179,7 +241,7 @@ export function World2MappingPanel({
           className="world2-mapping-sequence__source"
           data-mapping-zone="feature"
         >
-          <span className="world2-mapping-sequence__eyebrow">RASGO</span>
+          <span className="world2-mapping-sequence__eyebrow">{translate("RASGO", "FEATURE")}</span>
           <div className="world2-mapping-sequence__wave">
             <img
               src={cleanSignalAsset}
@@ -199,7 +261,7 @@ export function World2MappingPanel({
               <span />
             </span>
           </div>
-          <strong>{activeRelation.featureLabel}</strong>
+          <strong>{en ? ["AMPLITUDE", "VARIATION", "RANGE"][activeStepIndex] : activeRelation.featureLabel}</strong>
         </section>
 
         <span
@@ -210,17 +272,21 @@ export function World2MappingPanel({
           <span />
         </span>
 
-        <section
+        <button
           className="world2-mapping-sequence__core"
           data-mapping-zone="interpretation"
+          type="button"
+          disabled={!active || interactionBlocked}
+          aria-label={translate("Ver resultado", "Show result")}
+          onClick={() => { setAssisted(true); setActiveStepIndex(2); setAutoplayFinished(true); }}
         >
           <span
             className="world2-mapping-sequence__core-ring"
             aria-hidden="true"
           />
-          <small>INTERPRETAR</small>
-          <strong>MAPEO</strong>
-        </section>
+          <small>{translate("VER RESULTADO", "SHOW RESULT")}</small>
+          <strong>{translate("MAPEO", "MAPPING")}</strong>
+        </button>
 
         <span
           className="world2-mapping-sequence__flow world2-mapping-sequence__flow--output"
@@ -235,9 +301,9 @@ export function World2MappingPanel({
           data-mapping-output={activeRelation.output}
           data-mapping-zone="parameter"
         >
-          <span className="world2-mapping-sequence__eyebrow">PARÁMETRO</span>
+          <span className="world2-mapping-sequence__eyebrow">{translate("PARÁMETRO", "PARAMETER")}</span>
           <MappingOutputIcon mode={activeRelation.output} />
-          <strong>{activeRelation.output.toUpperCase()}</strong>
+          <strong>{en ? ["INTENSITY", "RHYTHM", "PITCH"][activeStepIndex] : activeRelation.output.toUpperCase()}</strong>
         </section>
       </div>
 
@@ -247,8 +313,12 @@ export function World2MappingPanel({
         data-world2-mapping-support-copy-revision={animationRevision}
         key={`support-copy-${activeRelation.id}-${animationRevision}`}
       >
-        {activeRelation.microcopy}
+        <strong>{en ? ["Amplitude → Intensity", "Variation → Rhythm", "Range → Pitch"][activeStepIndex] : `${activeRelation.featureLabel[0]}${activeRelation.featureLabel.slice(1).toLowerCase()} → ${activeRelation.output[0].toUpperCase()}${activeRelation.output.slice(1)}`}</strong>
+        <span>{en ? ["More strength, more intensity.", "Change organises rhythm.", "Range guides pitch."][activeStepIndex] : activeRelation.microcopy}</span>
       </p>
+      {autoplayFinished && (assisted || !manualReview) ? <p className="world2-mapping-result" data-mapping-result="all-correspondences">
+        {translate("Amplitud → Intensidad · Variación → Ritmo · Rango → Altura", "Amplitude → Intensity · Variation → Rhythm · Range → Pitch")}
+      </p> : null}
     </div>
   );
 }

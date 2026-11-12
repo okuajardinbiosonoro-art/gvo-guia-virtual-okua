@@ -53,7 +53,11 @@ function defaultStorage(): ProgressStorage | null {
     return null;
   }
 
-  return window.localStorage;
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
 }
 
 function readFailureReason<T>(

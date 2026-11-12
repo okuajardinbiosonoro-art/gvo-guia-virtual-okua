@@ -1,146 +1,110 @@
-import { expect, test, type Page } from "@playwright/test";
-
-import { installWorldFiveAccessFixture } from "./support/journeyFixtures";
-
-test.beforeEach(async ({ page }) => {
-  await installWorldFiveAccessFixture(page);
-});
-
-async function seed(page: Page, areas: string[]) {
-  await page.goto("/estacion/5", { waitUntil: "domcontentloaded" });
-  await page.evaluate((completedAreas) => {
-    localStorage.clear();
-    localStorage.setItem(
-      "gvo.station5.v1",
-      JSON.stringify({
-        schemaVersion: 1,
-        completedAreas,
-        updatedAt: "2026-07-30T12:00:00.000Z",
-      }),
-    );
-  }, areas);
-}
-
-test("ST5-020F completa Espacio y reconoce el acceso posterior a Visitante", async ({
+import { expect, test } from "@playwright/test";
+import {
+  openQuiz,
+  readQuiz,
+  chooseYes,
+  quizKey,
+} from "./support/world5QuizFixture";
+test("Sala V: conserva la entrada animada de escena sin bloquear una respuesta válida", async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await seed(page, ["plantas", "sistema"]);
-  await page.goto("/estacion/5/espacio", { waitUntil: "domcontentloaded" });
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "space_intro",
-  );
-  const walkway = page.getByRole("button", {
-    name: "Activar el recorrido de Espacio.",
-  });
-  await expect(walkway).toBeVisible();
-  await walkway.click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "space_resolved",
-  );
-  expect(
-    await page.evaluate(
-      () =>
-        JSON.parse(localStorage.getItem("gvo.station5.v1") ?? "{}")
-          .completedAreas,
-    ),
-  ).toEqual(["plantas", "sistema", "espacio"]);
-  await page.getByRole("button", { name: "Volver al mapa" }).click();
-  await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-    "data-station5-state",
-    "map_overview",
-  );
-  await expect(
-    page.locator('[data-station5-area="visitante"]'),
-  ).toHaveAttribute("data-area-state", "available");
-  await expect(page.locator('[data-station5-area="visitante"]')).toBeEnabled();
-  await expect(page.getByRole("button", { name: "Ir al cierre" })).toHaveCount(
-    0,
-  );
-  await expect(page).toHaveURL(/\/estacion\/5$/);
-});
-
-test("ST5-020F mantiene escena, rail y copy visibles a 667x320", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 667, height: 320 });
-  for (const [route, areas, expected] of [
-    ["/estacion/5/plantas", [], "plants_intro"],
-    ["/estacion/5/sistema", ["plantas"], "system_intro"],
-    ["/estacion/5/espacio", ["plantas", "sistema"], "space_intro"],
-  ] as const) {
-    await seed(page, [...areas]);
-    await page.goto(route, { waitUntil: "domcontentloaded" });
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-      "data-station5-state",
-      expected,
-    );
-    const metric = await page.evaluate(() => {
-      const stage = document
-        .querySelector(".s5-stage")!
-        .getBoundingClientRect();
-      const card = document
-        .querySelector(".s5-story-card")!
-        .getBoundingClientRect();
-      const body = [
-        ...document.querySelectorAll(".s5-lead,.s5-support,.s5-status-copy"),
-      ].filter((node) => (node as HTMLElement).checkVisibility());
-      return {
-        stageWidth: stage.width,
-        cardWidth: card.width,
-        client: [
-          document.documentElement.clientWidth,
-          document.documentElement.clientHeight,
-        ],
-        scroll: [
-          document.documentElement.scrollWidth,
-          document.documentElement.scrollHeight,
-        ],
-        minFont: Math.min(
-          ...body.map((node) =>
-            Number.parseFloat(getComputedStyle(node).fontSize),
-          ),
-        ),
-      };
-    });
-    expect(
-      metric.stageWidth / (metric.stageWidth + metric.cardWidth),
-    ).toBeGreaterThanOrEqual(0.58);
-    expect(metric.cardWidth).toBeGreaterThanOrEqual(260);
-    expect(metric.client).toEqual(metric.scroll);
-    expect(metric.minFont).toBeGreaterThanOrEqual(14);
-  }
-});
-
-test("ST5-020F conserva Espacio en reflow dinámico y reduced motion", async ({
-  page,
-}) => {
-  await seed(page, ["plantas", "sistema"]);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/estacion/5/espacio", { waitUntil: "domcontentloaded" });
-  for (const viewport of [
-    { width: 375, height: 667 },
-    { width: 667, height: 375 },
-    { width: 375, height: 667 },
-  ]) {
-    await page.setViewportSize(viewport);
-    await expect(page.locator("[data-station5-state]")).toHaveAttribute(
-      "data-station5-state",
-      "space_intro",
-    );
-    await expect(page.getByText("Toca el recorrido de madera.")).toBeVisible();
-    const dimensions = await page.evaluate(() => ({
-      client: [
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight,
-      ],
-      scroll: [
-        document.documentElement.scrollWidth,
-        document.documentElement.scrollHeight,
-      ],
+  await openQuiz(page);
+  await page.locator('[data-station5-area="plantas"]').click();
+  const timing = await page
+    .locator('[data-station5-scene="plantas"]')
+    .evaluate((element) => ({
+      name: getComputedStyle(element).animationName,
+      duration: getComputedStyle(element).animationDuration,
     }));
-    expect(dimensions.client).toEqual(dimensions.scroll);
-  }
+  expect(timing).toEqual({ name: "s5-sub-in", duration: "0.76s" });
+  await expect(page.locator("main")).toHaveAttribute(
+    "data-motion-lock",
+    "false",
+  );
+  await chooseYes(page);
+  expect((await readQuiz(page)).correctAnswers).toEqual(["plantas"]);
+});
+test("Sala V: fallo de almacenamiento permite reintentar sin falso punto", async ({
+  page,
+}) => {
+  await openQuiz(page, "espacio");
+  await page.evaluate((key) => {
+    const original = Storage.prototype.setItem;
+    (
+      window as unknown as { restoreQuizStorage: () => void }
+    ).restoreQuizStorage = () => {
+      Storage.prototype.setItem = original;
+    };
+    Storage.prototype.setItem = function (k, v) {
+      if (k === key) throw new Error("Synthetic quiz write failure");
+      original.call(this, k, v);
+    };
+  }, quizKey);
+  await chooseYes(page);
+  expect((await readQuiz(page)).correctAnswers).toEqual([]);
+  await expect(page.getByRole("status")).toContainText(
+    "No fue posible guardar tu progreso.",
+  );
+  await page.evaluate(() =>
+    (
+      window as unknown as { restoreQuizStorage: () => void }
+    ).restoreQuizStorage(),
+  );
+  await chooseYes(page);
+  expect((await readQuiz(page)).correctAnswers).toEqual(["espacio"]);
+});
+test("Sala V: movimiento reducido mantiene respuestas y Lía contextual única", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await openQuiz(page, "visitante");
+  await expect(page.locator("[data-station5-lia]")).toHaveCount(1);
+  await expect(page.locator("[data-lia-purpose]")).toHaveAttribute(
+    "data-lia-purpose",
+    "present-question",
+  );
+  await chooseYes(page);
+  await expect(page.locator("[data-lia-purpose]")).toHaveAttribute(
+    "data-lia-purpose",
+    "recognize-answer",
+  );
+  expect((await readQuiz(page)).correctAnswers).toEqual(["visitante"]);
+});
+
+test("Sala V: recuperación local de respuestas inválidas conserva progreso global", async ({
+  page,
+}) => {
+  await openQuiz(page);
+  const global = await page.evaluate(() =>
+    localStorage.getItem("gvo.progress.v1"),
+  );
+  await page.evaluate(
+    (key) => localStorage.setItem(key, '{"schemaVersion":99}'),
+    quizKey,
+  );
+  await page.reload();
+  await page
+    .getByRole("button", { name: "Restablecer solo la trivia", exact: true })
+    .click();
+  expect(await page.evaluate((key) => localStorage.getItem(key), quizKey)).toBe(
+    '{"schemaVersion":99}',
+  );
+  await page
+    .getByRole("button", {
+      name: "Borrar respuestas de la trivia",
+      exact: true,
+    })
+    .click();
+  expect(
+    await page.evaluate((key) => localStorage.getItem(key), quizKey),
+  ).toBeNull();
+  expect(
+    await page.evaluate(() => localStorage.getItem("gvo.progress.v1")),
+  ).toBe(global);
+  await page
+    .getByRole("button", { name: "Continuar sin participar", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Ir al Mirador", exact: true }),
+  ).toBeVisible();
 });

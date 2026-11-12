@@ -38,6 +38,7 @@ export type World2ResultState =
   | "ready_to_continue";
 
 export type World2CheckpointState = Readonly<{
+  activityContinued?: boolean;
   activeLayerId: World2LayerId;
   visitedLayerIds: readonly World2LayerId[];
   highestUnlockedLayerOrder: 1 | 2 | 3 | 4 | 5 | 6;
@@ -120,7 +121,16 @@ function isWorld2Checkpoint(value: unknown): value is World2CheckpointV1 {
   }
 
   const record = value as Record<string, unknown>;
-  if (!hasExactKeys(record, checkpointKeys)) {
+  if (
+    !hasExactKeys(record, [
+      ...checkpointKeys,
+      ...(Object.hasOwn(record, "activityContinued")
+        ? ["activityContinued"]
+        : []),
+    ]) ||
+    (record.activityContinued !== undefined &&
+      typeof record.activityContinued !== "boolean")
+  ) {
     return false;
   }
 
@@ -157,10 +167,7 @@ function isWorld2Checkpoint(value: unknown): value is World2CheckpointV1 {
   ) {
     return false;
   }
-  const captureRecord = candidate.capture as unknown as Record<
-    string,
-    unknown
-  >;
+  const captureRecord = candidate.capture as unknown as Record<string, unknown>;
   if (
     !hasExactKeys(captureRecord, captureKeys) ||
     !isExactPrefix(
@@ -200,8 +207,7 @@ function isWorld2Checkpoint(value: unknown): value is World2CheckpointV1 {
   }
 
   if (
-    (visited.has("senal") &&
-      !interactions.has("plant_contact_readout_seen")) ||
+    (visited.has("senal") && !interactions.has("plant_contact_readout_seen")) ||
     (visited.has("captura") &&
       !interactions.has("signal_measured_wave_seen")) ||
     (visited.has("acondicionamiento") && !interactionCaptureComplete)
@@ -222,10 +228,7 @@ function isWorld2Checkpoint(value: unknown): value is World2CheckpointV1 {
     return !visited.has("resultado_mediado");
   }
 
-  if (
-    !visited.has("resultado_mediado") ||
-    !candidate.mappingFirstRunComplete
-  ) {
+  if (!visited.has("resultado_mediado") || !candidate.mappingFirstRunComplete) {
     return false;
   }
 
@@ -244,11 +247,9 @@ function sameArray<T>(left: readonly T[], right: readonly T[]) {
   );
 }
 
-function sameStableState(
-  left: World2CheckpointV1,
-  right: World2CheckpointV1,
-) {
+function sameStableState(left: World2CheckpointV1, right: World2CheckpointV1) {
   return (
+    left.activityContinued === right.activityContinued &&
     left.activeLayerId === right.activeLayerId &&
     sameArray(left.visitedLayerIds, right.visitedLayerIds) &&
     left.highestUnlockedLayerOrder === right.highestUnlockedLayerOrder &&

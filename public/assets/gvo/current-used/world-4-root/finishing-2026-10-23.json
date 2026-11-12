@@ -1,0 +1,34 @@
+{
+  "status": "CANDIDATE_FOR_HUMAN_REVIEW",
+  "assets": [
+    {
+      "id": "W4_PORTRAIT_SYSTEM_TABLE_v02",
+      "room": "world-4-root",
+      "runtime": "public/assets/gvo/stations/world-4/system-table/runtime/environment/world4_table_environment_portrait_v02.webp",
+      "mirror": "public/assets/gvo/current-used/world-4-root/environment/world4_table_environment_portrait_v02.webp",
+      "width": 768,
+      "height": 1024,
+      "alpha": false,
+      "pixel": false,
+      "consumer": "src/screens/World4Root/World4Stage.tsx",
+      "role": "Portrait art direction, eight existing DOM objects over an unobstructed table",
+      "source": "assets-source/editorial-2026-10-23/finishing/W4_PORTRAIT_SYSTEM_TABLE_v02.png",
+      "source_dimensions": [
+        1086,
+        1448
+      ],
+      "source_sha256": "cb3a76738b387b317175c9873fe3180e3a520414e0884515dfddcd12d16d8168",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "bytes": 48478,
+      "sha256": "5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343",
+      "transparent_pixels": 0,
+      "derivation": "Proportional resize only; nearest for pixel family, lanczos3 for gallery/table; original preserved",
+      "file_qa": "PASS",
+      "browser_qa": "SEE_FINISHING_EVIDENCE",
+      "human_approval": "PENDING"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ export function MobileShell({
       <section className="base-panel" aria-labelledby="gvo-title">
         <p className="eyebrow">{eyebrow}</p>
         <h1 id="gvo-title">{title}</h1>
-        <p className="status-pill">Sin audio · Sin Internet · Mobile-first</p>
+        <p className="status-pill">Sin Internet · Mobile-first</p>
         {children}
       </section>
     </motion.main>

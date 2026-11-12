@@ -1,4 +1,5 @@
 export const coverIntroAssets = {
+  brandLogo: "/assets/runtime/cover-intro/brand/okua-emblem-material-v03.png",
   background:
     "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
   liaIdle: "/assets/runtime/cover-intro/lia/poses/lia_pose_idle_v1.png",

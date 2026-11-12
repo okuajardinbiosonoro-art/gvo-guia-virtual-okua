@@ -3,10 +3,13 @@ import { useEffect, useLayoutEffect, useRef, type CSSProperties } from "react";
 import {
   WORLD4_ARTBOARD,
   WORLD4_NODE_ANCHORS,
+  WORLD4_PORTRAIT_ARTBOARD,
+  WORLD4_PORTRAIT_NODE_ANCHORS,
   WORLD4_Z_ORDER,
 } from "./world4Geometry";
 import type { Station4NodeId } from "./station4Content";
 import { world4SharedLiaAssets } from "./world4RuntimeAssets";
+import { LiaJourneyMotion } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
 
 export type World4LiaGuideMode = "entry" | "guide" | "closure";
 
@@ -19,6 +22,7 @@ export type World4LiaMotionTrace = {
 };
 
 export type World4LiaGuideProps = {
+  articulated?: boolean;
   active?: boolean;
   className?: string;
   durationMs?: number;
@@ -29,6 +33,7 @@ export type World4LiaGuideProps = {
   onTravelComplete?: (trace: World4LiaMotionTrace) => void;
   onTravelStart?: (trace: World4LiaMotionTrace) => void;
   reducedMotion: boolean;
+  portrait?: boolean;
 };
 
 type LiaOffset = {
@@ -84,6 +89,26 @@ export const WORLD4_LIA_GUIDE_POSITIONS = Object.fromEntries(
 ) as Readonly<Record<Station4NodeId, World4LiaGuidePosition>>;
 
 const STANDARD_TRAVEL_DURATION_MS = 720;
+export const WORLD4_PORTRAIT_LIA_POSITIONS = Object.fromEntries(
+  WORLD4_PORTRAIT_NODE_ANCHORS.map((anchor) => {
+    const x =
+      (WORLD4_PORTRAIT_ARTBOARD.width * (anchor.xPercent < 50 ? 48 : 52)) / 100;
+    const y = anchor.y - 40;
+    return [
+      anchor.id,
+      {
+        nodeId: anchor.id,
+        dx: x - anchor.x,
+        dy: -40,
+        x,
+        y,
+        xPercent: (x / WORLD4_PORTRAIT_ARTBOARD.width) * 100,
+        yPercent: (y / WORLD4_PORTRAIT_ARTBOARD.height) * 100,
+        mirror: anchor.xPercent > 50,
+      },
+    ];
+  }),
+) as Readonly<Record<Station4NodeId, World4LiaGuidePosition>>;
 const REDUCED_CROSSFADE_DURATION_MS = 150;
 const STANDARD_TRAVEL_LIFT_ARTBOARD_PX = 20;
 
@@ -94,6 +119,7 @@ function assetForMode(mode: World4LiaGuideMode) {
 }
 
 export function World4LiaGuide({
+  articulated = false,
   active = true,
   className,
   durationMs = STANDARD_TRAVEL_DURATION_MS,
@@ -104,6 +130,7 @@ export function World4LiaGuide({
   onTravelComplete,
   onTravelStart,
   reducedMotion,
+  portrait = false,
 }: World4LiaGuideProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const travelerRef = useRef<HTMLDivElement>(null);
@@ -119,7 +146,10 @@ export function World4LiaGuide({
   onTravelCompleteRef.current = onTravelComplete;
   onTravelStartRef.current = onTravelStart;
 
-  const position = WORLD4_LIA_GUIDE_POSITIONS[nodeId];
+  const position = (
+    portrait ? WORLD4_PORTRAIT_LIA_POSITIONS : WORLD4_LIA_GUIDE_POSITIONS
+  )[nodeId];
+  const artboard = portrait ? WORLD4_PORTRAIT_ARTBOARD : WORLD4_ARTBOARD;
   const asset = assetForMode(mode);
   const effectiveDurationMs = reducedMotion
     ? REDUCED_CROSSFADE_DURATION_MS
@@ -151,8 +181,8 @@ export function World4LiaGuide({
       toNodeId: nodeId,
     };
     const stageRect = rootRef.current?.parentElement?.getBoundingClientRect();
-    const scaleX = stageRect ? stageRect.width / WORLD4_ARTBOARD.width : 1;
-    const scaleY = stageRect ? stageRect.height / WORLD4_ARTBOARD.height : 1;
+    const scaleX = stageRect ? stageRect.width / artboard.width : 1;
+    const scaleY = stageRect ? stageRect.height / artboard.height : 1;
     const origin = previousPosition ?? {
       ...position,
       y: position.y + 12,
@@ -235,6 +265,7 @@ export function World4LiaGuide({
     };
   }, [
     active,
+    artboard,
     asset,
     effectiveDurationMs,
     mode,
@@ -312,14 +343,24 @@ export function World4LiaGuide({
       style={style}
     >
       <div className="s4-lia-guide__traveler" ref={travelerRef}>
-        <img
-          alt=""
-          className="s4-lia-guide__image"
-          data-runtime-asset={asset}
-          draggable={false}
-          src={asset}
-          style={{ transform: position.mirror ? "scaleX(-1)" : "none" }}
-        />
+        {articulated ? (
+          <LiaJourneyMotion
+            action={mode === "closure" ? "respond" : "present"}
+            active={active}
+            target={nodeId}
+            replayKey={motionKey}
+            direction={position.mirror ? "left" : "right"}
+          />
+        ) : (
+          <img
+            alt=""
+            className="s4-lia-guide__image"
+            data-runtime-asset={asset}
+            draggable={false}
+            src={asset}
+            style={{ transform: position.mirror ? "scaleX(-1)" : "none" }}
+          />
+        )}
         <span aria-hidden="true" className="s4-lia-guide__collar-glow" />
       </div>
     </div>

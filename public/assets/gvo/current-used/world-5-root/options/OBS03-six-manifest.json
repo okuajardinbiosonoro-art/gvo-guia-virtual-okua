@@ -1,0 +1,465 @@
+{
+  "schema": 1,
+  "thread": "gvo-provenance:images-1",
+  "zipSha256": "08d20bae90262ff8fdfc208dc9e674ead61dca57a880defe2e2cd45bc64b35dc",
+  "validation": {
+    "sourceHashes": 12,
+    "fullStreamReads": 12,
+    "masterDimensionsAndBounds": 6,
+    "nativeDimensionsAndBounds": 6,
+    "masterClearMargins": 6,
+    "runtimeMirrors": 6
+  },
+  "records": [
+    {
+      "id": "OBS03-ASSET-V-SISTEMA-LEFT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SYSTEM_AGREE_OBS03_NATIVE.png",
+      "nativeSha256": "a47fd4f3d0c917445f636fc89665ee00296fb5e1c308122157cfd65d618e231e",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SYSTEM_AGREE_OBS03.png",
+      "masterSha256": "e99b9211c461b54083919e8b1105313bad728f1f3896a3ebd6293956a14001ee",
+      "masterAlphaBounds": [
+        121,
+        175,
+        887,
+        856
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_SYSTEM_AGREE_OBS03_NATIVE.png",
+        "source_sha256": "a47fd4f3d0c917445f636fc89665ee00296fb5e1c308122157cfd65d618e231e",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          816,
+          816
+        ],
+        "resized_canvas_px": [
+          816,
+          816
+        ],
+        "scale_factor": 0.6507177033492823,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          104,
+          104
+        ],
+        "transparent_padding_px_ltrb": [
+          104,
+          104,
+          104,
+          104
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_system_agree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_system_agree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        76,
+        137,
+        444,
+        401
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 34946,
+      "decodedBytes": 1048576,
+      "sha256": "da0d1545439dd6f8725c7526d6cf574f0482c9e02261c204006e16bbb1563aa1",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-V-SISTEMA-RIGHT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SYSTEM_DISAGREE_OBS03_NATIVE.png",
+      "nativeSha256": "9b2f519207e70cf40baf656a490f0a2ca1d49240b438e6e6a46b015b3191777f",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SYSTEM_DISAGREE_OBS03.png",
+      "masterSha256": "86df54b2dc6908a23236d258b4398590e4f1761011074526564789a8f6dbc7c4",
+      "masterAlphaBounds": [
+        104,
+        167,
+        889,
+        904
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_SYSTEM_DISAGREE_OBS03_NATIVE.png",
+        "source_sha256": "9b2f519207e70cf40baf656a490f0a2ca1d49240b438e6e6a46b015b3191777f",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          816,
+          816
+        ],
+        "resized_canvas_px": [
+          816,
+          816
+        ],
+        "scale_factor": 0.6507177033492823,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          104,
+          104
+        ],
+        "transparent_padding_px_ltrb": [
+          104,
+          104,
+          104,
+          104
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_system_disagree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_system_disagree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        52,
+        89,
+        392,
+        440
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 35092,
+      "decodedBytes": 1048576,
+      "sha256": "2e3660f349338bb0610c2e82502df5655d26bda0df0aa6fa4fa436a0c571999a",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-V-ESPACIO-LEFT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SPACE_AGREE_OBS03_NATIVE.png",
+      "nativeSha256": "c20b2c224e014f200c230e940c729d9be762a0dbc0725145bb46958d133f324c",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SPACE_AGREE_OBS03.png",
+      "masterSha256": "3a76d9da390225d6ccafd1ea7ebba927823ab3888be11734594ce620327086ba",
+      "masterAlphaBounds": [
+        157,
+        117,
+        871,
+        920
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_SPACE_AGREE_OBS03_NATIVE.png",
+        "source_sha256": "c20b2c224e014f200c230e940c729d9be762a0dbc0725145bb46958d133f324c",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          816,
+          816
+        ],
+        "resized_canvas_px": [
+          816,
+          816
+        ],
+        "scale_factor": 0.6507177033492823,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          104,
+          104
+        ],
+        "transparent_padding_px_ltrb": [
+          104,
+          104,
+          104,
+          104
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_space_agree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_space_agree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        94,
+        119,
+        436,
+        396
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 51594,
+      "decodedBytes": 1048576,
+      "sha256": "08bb3a43f62c4f9c69135878b580f5a719b48b507e3667680a737eadffc31e43",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-V-ESPACIO-RIGHT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_SPACE_DISAGREE_OBS03_NATIVE.png",
+      "nativeSha256": "717c50487335f178711aa17dadd09cd2476df8888989f9ff52af52ac000bf32b",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_SPACE_DISAGREE_OBS03.png",
+      "masterSha256": "c9fa3fab59a01efd3a3155ae28e710cd7a7fef2478c7f8520563be5f9d07a53d",
+      "masterAlphaBounds": [
+        104,
+        116,
+        896,
+        920
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_SPACE_DISAGREE_OBS03_NATIVE.png",
+        "source_sha256": "717c50487335f178711aa17dadd09cd2476df8888989f9ff52af52ac000bf32b",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          816,
+          816
+        ],
+        "resized_canvas_px": [
+          816,
+          816
+        ],
+        "scale_factor": 0.6507177033492823,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          104,
+          104
+        ],
+        "transparent_padding_px_ltrb": [
+          104,
+          104,
+          104,
+          104
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_space_disagree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_space_disagree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        61,
+        61,
+        449,
+        441
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 64168,
+      "decodedBytes": 1048576,
+      "sha256": "6a1156d3640be975301ebe65f263be20fc627673a21a7de3bb3ee812ba8553be",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-V-VISITANTE-LEFT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_VISITOR_AGREE_OBS03_NATIVE.png",
+      "nativeSha256": "de2ab43c4e57e5e3792a542c1f1fc2b4a8dfcebbb074495ccfa6499194ce9128",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_VISITOR_AGREE_OBS03.png",
+      "masterSha256": "b3de16bf0be9a61183a73a636f300fe93d1ce478d7ccce39b77e86de40bee88e",
+      "masterAlphaBounds": [
+        162,
+        209,
+        819,
+        862
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_VISITOR_AGREE_OBS03_NATIVE.png",
+        "source_sha256": "de2ab43c4e57e5e3792a542c1f1fc2b4a8dfcebbb074495ccfa6499194ce9128",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          700,
+          700
+        ],
+        "resized_canvas_px": [
+          700,
+          700
+        ],
+        "scale_factor": 0.5582137161084529,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          162,
+          162
+        ],
+        "transparent_padding_px_ltrb": [
+          162,
+          162,
+          162,
+          162
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_visitor_agree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_visitor_agree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        94,
+        105,
+        386,
+        382
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 17468,
+      "decodedBytes": 1048576,
+      "sha256": "76b011c53f3502830bac07b7038ff759eb5f9689ed621bef917e2d7c9a2b08c9",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    },
+    {
+      "id": "OBS03-ASSET-V-VISITANTE-RIGHT",
+      "native": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/originals/V_VISITOR_DISAGREE_OBS03_NATIVE.png",
+      "nativeSha256": "30d4ce8e6e4b9e18f807a84c8a9bf63d6ae8242c15707903c97ad60f409dd905",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "master": "assets-source/editorial-2026-10-23/observaciones-03/production/V-six-originals/V_VISITOR_DISAGREE_OBS03.png",
+      "masterSha256": "d95f0c9314293539456439b9a8c3c670b6a2d2afda045ac0d64fecbf435dbb43",
+      "masterAlphaBounds": [
+        120,
+        173,
+        874,
+        920
+      ],
+      "derivation": {
+        "method": "proportional resize of the entire native canvas, then centered transparent padding",
+        "source": "originals/V_VISITOR_DISAGREE_OBS03_NATIVE.png",
+        "source_sha256": "30d4ce8e6e4b9e18f807a84c8a9bf63d6ae8242c15707903c97ad60f409dd905",
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "fit_size_px": [
+          816,
+          816
+        ],
+        "resized_canvas_px": [
+          816,
+          816
+        ],
+        "scale_factor": 0.6507177033492823,
+        "destination_canvas_px": [
+          1024,
+          1024
+        ],
+        "offset_xy_px": [
+          104,
+          104
+        ],
+        "transparent_padding_px_ltrb": [
+          104,
+          104,
+          104,
+          104
+        ],
+        "resampling": "Lanczos",
+        "crop": false,
+        "redraw": false,
+        "element_repositioning": false,
+        "composition": "preserved within the proportionally resized full canvas"
+      },
+      "runtime": "public/assets/gvo/stations/world-5/present-map/runtime/options/world5_option_visitor_disagree_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-5-root/options/world5_option_visitor_disagree_v03.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        80,
+        133,
+        437,
+        431
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 22504,
+      "decodedBytes": 1048576,
+      "sha256": "acca9d5f68bbb353c7ce5c6bef3bfbeb500b7fd02967c0bf2dbea2f1ca3a68d9",
+      "status": "SOURCE_TECHNICAL_PASS_RUNTIME_SCENE_QA_PENDING",
+      "humanApproval": false
+    }
+  ]
+}

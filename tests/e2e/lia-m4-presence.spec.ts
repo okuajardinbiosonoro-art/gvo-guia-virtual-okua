@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { liaPreviewCopy as copy } from "../../src/content/liaPreviewCopy";
 
 test.beforeEach(async ({ page }) => {
+  test.skip(process.env.VITE_LIA_PREVIEW_ENABLED !== "true", "Opt-in Lía laboratory: explicit enabled flag and matching knowledge service required; default-off candidate keeps this scope inactive.");
   await page.addInitScript(() =>
     localStorage.setItem(
       "gvo.progress.v1",

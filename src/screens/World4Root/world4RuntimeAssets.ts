@@ -3,6 +3,7 @@ const world4RuntimeBase = "/assets/gvo/stations/world-4/system-table/runtime";
 export const world4RuntimeAssets = {
   environment: {
     base: `${world4RuntimeBase}/environment/world4_environment_base_v01.webp`,
+    portraitTable: `${world4RuntimeBase}/environment/world4_table_environment_portrait_v02.webp`,
     rearDepthPlane: `${world4RuntimeBase}/environment/world4_rear_depth_plane_v01.png`,
     haze: `${world4RuntimeBase}/environment/world4_haze_overlay_v01.png`,
   },
@@ -36,6 +37,11 @@ export const world4RuntimeAssets = {
 } as const;
 
 const liaBase = "/assets/gvo/shared/lia/current-used/portada-intro";
+
+// New editorial candidate; the historical twenty approved hashes remain separate.
+export const world4EditorialRuntimeAssetPaths = [
+  world4RuntimeAssets.environment.portraitTable,
+] as const;
 
 export const world4SharedLiaAssets = {
   guide: `${liaBase}/lia_pose_explain_calm_v1.png`,

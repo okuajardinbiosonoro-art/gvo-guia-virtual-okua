@@ -8,6 +8,9 @@ import { describe, expect, it } from "vitest";
 
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import {
+  getWorld5CriticalAssetSources,
+  getWorld5Environment,
+  getWorld5GalleryEnvironment,
   world5LiaAssetSources,
   world5SpaceAssetSources,
   world5SystemAssetSources,
@@ -19,7 +22,7 @@ const runtimeRoot = path.resolve(
 );
 const mirrorRoot = path.resolve("public/assets/gvo/current-used/world-5-root");
 
-const approvedAssets = [
+const registeredAssets = [
   [
     "system/world5_sub_system_environment_portrait_v01.webp",
     "webp",
@@ -83,10 +86,28 @@ const approvedAssets = [
     135910,
     "bfd5c5e3eb4de9b9a908c6daa7730ea9005af912abb58ce735c81ddcaa451316",
   ],
+  [
+    "system/world5_sub_system_environment_portrait_v03.webp",
+    "webp",
+    1440,
+    1920,
+    false,
+    1261922,
+    "e1d6d82f246215e0870449e3affd399010ffd24e046608635845aa4a7c160d08",
+  ],
+  [
+    "system/world5_sub_system_environment_landscape_v03.webp",
+    "webp",
+    1920,
+    1080,
+    false,
+    752794,
+    "7a2124d0db8bd573ee47960e055d40f6b41232ab2c6cc5c56fdf0d066453578b",
+  ],
 ] as const;
 
 describe("assets runtime ST5-020B", () => {
-  it.each(approvedAssets)(
+  it.each(registeredAssets)(
     "valida nombre, formato, canvas, alpha, bytes, hash y espejo de %s",
     async (relativeFile, format, width, height, alpha, bytes, sha256) => {
       const runtimeFile = path.join(runtimeRoot, relativeFile);
@@ -109,6 +130,32 @@ describe("assets runtime ST5-020B", () => {
         sha256,
       );
       expect(mirrorBuffer.equals(runtimeBuffer)).toBe(true);
+    },
+  );
+
+  it.each(["portrait", "landscape"] as const)(
+    "prepares a single gallery backdrop for each stage in %s",
+    (orientation) => {
+      const expected = `/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_${orientation}_v03.webp`;
+      expect(getWorld5Environment("sistema", orientation)).toBe(expected);
+      expect(getWorld5GalleryEnvironment(orientation)).toBe(expected);
+      for (const stage of ["plantas", "sistema", "espacio", "visitante", "resultado"] as const) {
+        expect(
+          getWorld5CriticalAssetSources(stage, orientation).filter((src) =>
+            src.includes("_environment_"),
+          ),
+        ).toEqual([expected]);
+      }
+      for (const [area, stem] of [
+        ["plantas", "sub_plants"],
+        ["espacio", "sub_space"],
+        ["visitante", "sub_visitor"],
+        ["resultado", "map"],
+      ] as const) {
+        expect(getWorld5Environment(area, orientation)).toBe(
+          `/assets/gvo/stations/world-5/present-map/runtime/world5_${stem}_environment_${orientation}_v01.webp`,
+        );
+      }
     },
   );
 

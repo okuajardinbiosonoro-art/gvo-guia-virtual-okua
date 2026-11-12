@@ -6,6 +6,21 @@ export const WORLD4_ARTBOARD = {
   aspectRatio: 3 / 2,
 } as const;
 
+export const WORLD4_PORTRAIT_ARTBOARD = {
+  width: 1536,
+  height: 2048,
+  aspectRatio: 3 / 4,
+} as const;
+
+export type World4NodeAnchor = {
+  id: Station4NodeId;
+  order: number;
+  x: number;
+  y: number;
+  xPercent: number;
+  yPercent: number;
+};
+
 const sourceAnchors = [
   { id: "planta", x: 170, y: 500 },
   { id: "bionosificador", x: 340, y: 470 },
@@ -33,6 +48,20 @@ export const WORLD4_NODE_ANCHORS = sourceAnchors.map((anchor, index) => ({
     yPercent: number;
   }
 >;
+
+export const WORLD4_PORTRAIT_NODE_ANCHORS: readonly World4NodeAnchor[] =
+  sourceAnchors.map((anchor, index) => {
+    const xPercent = index % 2 === 0 ? 26 : 74;
+    const yPercent = 24 + Math.floor(index / 2) * 18;
+    return {
+      id: anchor.id,
+      order: index + 1,
+      x: (WORLD4_PORTRAIT_ARTBOARD.width * xPercent) / 100,
+      y: (WORLD4_PORTRAIT_ARTBOARD.height * yPercent) / 100,
+      xPercent,
+      yPercent,
+    };
+  });
 
 export const WORLD4_NODE_STACK = {
   haloFullCanvasWidth: 152,

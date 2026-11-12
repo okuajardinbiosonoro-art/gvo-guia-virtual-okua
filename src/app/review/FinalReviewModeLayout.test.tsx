@@ -8,7 +8,8 @@ import {
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { finalEditorialSlots } from "../../content/finalEditorialSlots";
+import { finalEditorialSlots, getFinalEditorialSlots } from "../../content/finalEditorialSlots";
+import { applyDocumentLanguage, writeLanguagePreference } from "../preferences/languagePreference";
 import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage";
 import {
   FinalReviewContextInvalidator,
@@ -458,5 +459,21 @@ describe("FinalReviewModeLayout", () => {
     expect(control).toHaveClass("final-review-return-control");
     fireEvent.click(control);
     expect(screen.getByTestId("location")).toHaveTextContent("/final");
+  });
+
+  it.each([1, 2, 3, 4, 5] as const)("resuelve EN del dock de Sala %s después del import y conserva retorno/crédito", (world) => {
+    const state = beginFinalReview(world);
+    const before = window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY);
+    writeLanguagePreference("en");
+    applyDocumentLanguage();
+    const en = getFinalEditorialSlots("en");
+    const { container } = renderWorld(`/estacion/${world}`, world, state);
+    const control = screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01.text });
+    expect(control).toHaveTextContent("Back to the Lookout");
+    expect(control).toHaveAttribute("data-editorial-status", "REVIEW");
+    expect(container.querySelector("[data-final-review-dock='active']")).toBeInTheDocument();
+    fireEvent.click(control);
+    expect(screen.getByTestId("location")).toHaveTextContent("/final");
+    expect(window.localStorage.getItem(GVO_PROGRESS_STORAGE_KEY)).toBe(before);
   });
 });

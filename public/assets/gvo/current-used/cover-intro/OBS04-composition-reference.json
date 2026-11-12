@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "revision": "OBS04",
+  "humanApproved": false,
+  "newRasterBytes": false,
+  "composition": "Keep authentic emblem and current writer copy. Unboxed header; title in footer; scene-wide tonal scrim, original local portal announcement support retained. Current-scene contrast/geometry remains to be measured.",
+  "consumers": [
+    "src/screens/Cover/CoverIntroScreen.tsx",
+    "src/screens/Cover/CoverIntroScreen.css"
+  ],
+  "assets": [
+    {
+      "runtime": "public/assets/runtime/cover-intro/brand/okua-emblem-material-v03.png",
+      "mirror": "public/assets/gvo/current-used/cover-intro/brand/okua-emblem-material-v03.png",
+      "sha256": "476cf4dbef9cc320b5144f599982c692f22bac69dbb4d5eb32487486ad52b283",
+      "bytes": 44961,
+      "dimensions": [
+        116,
+        142
+      ],
+      "format": "PNG",
+      "mirrorByteIdentical": true,
+      "role": "Material-specific OKUA emblem kept after human correct replacement feedback",
+      "status": "EXISTING_BYTES_RECOMPOSED_SCENE_QA_PENDING_HUMAN_PENDING"
+    },
+    {
+      "runtime": "public/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "mirror": "public/assets/gvo/current-used/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "sha256": "d1ab1ad83c48883cf725e6fcb9aa34778af8660ce15277b6a58f3231098e13c8",
+      "bytes": 3065328,
+      "dimensions": [
+        941,
+        1672
+      ],
+      "format": "PNG",
+      "mirrorByteIdentical": true,
+      "role": "Original architectural garden backdrop",
+      "status": "EXISTING_BYTES_RECOMPOSED_SCENE_QA_PENDING_HUMAN_PENDING"
+    }
+  ]
+}

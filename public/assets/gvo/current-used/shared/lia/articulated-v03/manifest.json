@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "method": "Uniform registered resize of authentic independent rig layers; originals preserved; five petals unchanged",
+  "consumers": [
+    "cover",
+    "world1",
+    "world2",
+    "world4",
+    "world5"
+  ],
+  "records": [
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_body_bulb_segmented_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_body_bulb_segmented_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_body_bulb_segmented_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 16116,
+      "decodedBytes": 1327104,
+      "sha256": "23f65fe21392511a03855737eccb5a1f16a50dac264b1a945ddb7997db633f7b",
+      "sourceSha256": "a32fc8bfd4e6cbc33d200efc1fe7c4ee1ad217970bcc730ebd5932326af75685",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_collar_amber_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_collar_amber_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_collar_amber_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 1926,
+      "decodedBytes": 1327104,
+      "sha256": "39ef0556e7e74a0a2fd40451129e52806395fd5fa71233f0b1dde1bbf8d54294",
+      "sourceSha256": "50bed4928638fcbd8ba59ec04e769d4c7127986083e74ff6f48680e0d43b3592",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_attentive_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_attentive_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2604,
+      "decodedBytes": 1327104,
+      "sha256": "4d98c7b4da306db3d5814ab6d577bd95dae634781b625d6dac281821e41a8766",
+      "sourceSha256": "bafccef0ed05db8e3a8f846ce4ff38663ffc8b5e71f4df64d99d5f0f159c6960",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_25_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_blink_25_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_blink_25_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2488,
+      "decodedBytes": 1327104,
+      "sha256": "ec126829a30f4813a7a16cda877d62e765179c64b7cf0c0c97c05289432447d5",
+      "sourceSha256": "3f277e17d5e2cebf98e9b2418c1f6adafc8257696b440fecab0d30ab765a116d",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_blink_50_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_blink_50_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_blink_50_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2590,
+      "decodedBytes": 1327104,
+      "sha256": "ee7063808ff109146a566a9e9c55a08ae3ca7204f8e948ce5d3297e1b175d88b",
+      "sourceSha256": "4000665f86badc98e063f2e0503708e5c331d44b4494b79edc8cd076fb4dd92d",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_closed_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_closed_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_closed_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2096,
+      "decodedBytes": 1327104,
+      "sha256": "092a08339ddfeac98c4dfbd603c23f39d9b81aafa4f1ed9116f4f25a52b347de",
+      "sourceSha256": "8571b835606c773764ee4d42a8840a8ae876d23eaf461d9b41f3812574909ee7",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_happy_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_happy_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_happy_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2352,
+      "decodedBytes": 1327104,
+      "sha256": "252982df6d176490ae302a760b4fdf0b545a53fb351185eb4a7af10d533baf35",
+      "sourceSha256": "3dde255910f0c68d7d16f84e573adaf10ecf7743674f83594cdd3547a3761083",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_neutral_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_eyes_crescent_neutral_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_eyes_crescent_neutral_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 2786,
+      "decodedBytes": 1327104,
+      "sha256": "9767001b503aa171b13170eba8a1fda2e62dc1a227e61796cd518bdc98930935",
+      "sourceSha256": "894d535eca8dac0e5bcb1a2d4e6ae5ff8f8253e6abb30105689358dd4331a9ca",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_glow_collar_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_glow_collar_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_glow_collar_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 5878,
+      "decodedBytes": 1327104,
+      "sha256": "c1e9f30cf690f300a6834be7b76a14f1a1221b716205f6f6500c418038badc5f",
+      "sourceSha256": "ed7c109044b82d9b1e4a122062a67966438e27867322f65957bd53a9f0e851d5",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_head_opal_clean_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_head_opal_clean_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_head_opal_clean_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 8746,
+      "decodedBytes": 1327104,
+      "sha256": "c4b6c4311acb3bcd8668ab4e6dbf6b99e2bdf7b7c97eeeb1ff3958e93cf9771d",
+      "sourceSha256": "d63712d641648228a0cbf26dfec31330f2234f6debf2fc8ffb48bd0962401b49",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_lower_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_left_lower_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_left_lower_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 6640,
+      "decodedBytes": 1327104,
+      "sha256": "9d1fea490333b848e4a955d4ff6bfe0abc5dfb49b1d7cbd313bb632e7c3beaed",
+      "sourceSha256": "1b5636a5092757326eceb3fde3e0567354c62542a42648372613d61e2c63dfa7",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_left_upper_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_left_upper_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_left_upper_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 7612,
+      "decodedBytes": 1327104,
+      "sha256": "09e74e1a419a8d1e10c84378df3231921a1f26dbed01cb3ecb901a28596e110d",
+      "sourceSha256": "8858768fe51f5efcf71c8010187a04ebeb04620f45d91eae87e84b23f12becb9",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_lower_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_right_lower_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_right_lower_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 6048,
+      "decodedBytes": 1327104,
+      "sha256": "2262912dc32c1e188d2956c38a77943ebfd055fa58e6a047031f4592628e9b08",
+      "sourceSha256": "c7ec877d82b3f86da5b7a9306847361e3a6cc7b5b7b702b63b15c36ff373cee5",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_right_upper_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_right_upper_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_right_upper_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 6882,
+      "decodedBytes": 1327104,
+      "sha256": "1ed4139b5eef86612941a5c7974e45e08e81a42cda02ab331424424ad58a7a00",
+      "sourceSha256": "57f90f78951ff06a220e4d9e55f2fc823358477620cf05a9f4ce8f57d252b1c4",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_petal_top_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_petal_top_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_petal_top_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 6884,
+      "decodedBytes": 1327104,
+      "sha256": "2fd4efd64ddf137eec4e64b53b72c8b0c2d7f2716866a6ed4038ba261d657b0f",
+      "sourceSha256": "cf4c1b31291bc76f6b6ec5e6c87827d80ec7eaf5b1632dedf6fb15bab9d00515",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    },
+    {
+      "source": "public/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
+      "runtime": "public/assets/gvo/shared/lia/runtime/articulated-v03/lia_rig_shadow_soft_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/lia/articulated-v03/lia_rig_shadow_soft_v03.webp",
+      "dimensions": [
+        432,
+        768
+      ],
+      "bytes": 3254,
+      "decodedBytes": 1327104,
+      "sha256": "99046769d7cebf36c14231a94d4b60eab65da106c78263279678c03dca7fd34d",
+      "sourceSha256": "8a1dbd2f6fb96d38a89963cebf861a6a41645eca96ad9efc0171e69ec402c896",
+      "status": "OBS03_CANDIDATE_VISUAL_QA_PENDING"
+    }
+  ],
+  "decodedAllBytes": 21233664
+}

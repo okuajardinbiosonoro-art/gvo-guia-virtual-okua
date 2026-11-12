@@ -62,7 +62,7 @@ describe("World2CaptureTimeline", () => {
     expect(screen.getByText("1 / 3")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Aquí comienza la lectura. El electrodo entra en contacto con la planta sin producir música todavía: solo permite percibir una variación bioeléctrica muy pequeña.",
+        "Aquí comienza la lectura. El electrodo entra en contacto con la planta y permite percibir una variación bioeléctrica muy pequeña.",
       ),
     ).toBeInTheDocument();
     expect(

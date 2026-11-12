@@ -8,7 +8,10 @@ export type SonicConvergenceStage =
 
 type World2MediatedResultPanelProps = {
   complete: boolean;
-  onComplete: () => void;
+  active?: boolean;
+  locale?: "es" | "en";
+  showResultRequested?: boolean;
+  onComplete: (mode: "standard" | "assisted") => void;
 };
 
 const stageSequence: Array<{
@@ -29,6 +32,9 @@ const stageLabels: Record<SonicConvergenceStage, string> = {
 
 export function World2MediatedResultPanel({
   complete,
+  active = true,
+  locale = "es",
+  showResultRequested = false,
   onComplete,
 }: World2MediatedResultPanelProps) {
   const [stage, setStage] = useState<SonicConvergenceStage>(
@@ -36,13 +42,42 @@ export function World2MediatedResultPanel({
   );
   const [sequenceFinished, setSequenceFinished] = useState(complete);
   const onCompleteRef = useRef(onComplete);
+  const completionMode = useRef<"standard" | "assisted">("standard");
+  const notified = useRef(complete);
+  const elapsed = useRef(0);
+  const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
+  const en = locale === "en";
+
+  useEffect(() => {
+    const update = () => setVisible(document.visibilityState !== "hidden");
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
 
   useEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
   useEffect(() => {
+    if (active && showResultRequested) {
+      completionMode.current = "assisted";
+      setStage("resolved");
+      setSequenceFinished(true);
+    }
+  }, [active, showResultRequested]);
+
+  useEffect(() => {
+    if (!active || !visible) return;
     if (complete) {
+      setStage("resolved");
+      setSequenceFinished(true);
+      return;
+    }
+
+    if (
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches &&
+      !sequenceFinished
+    ) {
       setStage("resolved");
       setSequenceFinished(true);
       return;
@@ -52,31 +87,47 @@ export function World2MediatedResultPanel({
       return;
     }
 
-    const stageTimers = stageSequence.map(({ delay, stage: nextStage }) =>
-      window.setTimeout(() => setStage(nextStage), delay),
+    const started = window.performance.now();
+    const stageTimers = stageSequence.filter(({ delay }) => delay > elapsed.current).map(({ delay, stage: nextStage }) =>
+      window.setTimeout(() => setStage(nextStage), delay - elapsed.current),
     );
     const completionTimer = window.setTimeout(() => {
       setSequenceFinished(true);
-      onCompleteRef.current();
-    }, 9000);
+    }, Math.max(0, 9000 - elapsed.current));
 
     return () => {
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(completionTimer);
+      elapsed.current = Math.min(9000, elapsed.current + window.performance.now() - started);
     };
-  }, [complete, sequenceFinished]);
+  }, [active, visible, complete, sequenceFinished]);
+
+  useEffect(() => {
+    if (!active || !visible || !sequenceFinished || stage !== "resolved" || notified.current) return;
+    let second = 0;
+    const first = window.requestAnimationFrame(() => {
+      second = window.requestAnimationFrame(() => {
+        notified.current = true;
+        onCompleteRef.current(completionMode.current);
+      });
+    });
+    return () => { window.cancelAnimationFrame(first); window.cancelAnimationFrame(second); };
+  }, [active, visible, sequenceFinished, stage]);
 
   return (
     <div
       className="world2-sonic-convergence"
       role="group"
-      aria-label="Convergencia sonora final de intensidad, ritmo y altura"
+      aria-label={en ? "Final convergence of intensity, rhythm and pitch" : "Convergencia sonora final de intensidad, ritmo y altura"}
       data-world2-layer-visual="resultado_mediado"
       data-world2-option6-mode="final-sonic-convergence"
       data-world2-option6-stage={stage}
       data-world2-option6-simultaneous-primary-scenes="1"
       data-world2-option6-complete={complete}
       data-world2-option6-lia-role="activator-guide"
+      data-lia-action={stage === "resolved" ? "respond" : "present"}
+      data-lia-target={stage}
+      data-motion-active={active && visible}
     >
       <div
         className="world2-sonic-convergence__scene"
@@ -84,11 +135,24 @@ export function World2MediatedResultPanel({
       >
         <span className="world2-sonic-convergence__orbit" aria-hidden="true" />
         <span className="world2-sonic-convergence__energy" aria-hidden="true" />
-        <div className="world2-sonic-convergence__core" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
+        <button
+          className="world2-sonic-convergence__core"
+          type="button"
+          aria-label={en ? "Show result" : "Ver resultado"}
+          disabled={!active}
+          aria-pressed={sequenceFinished}
+          onClick={() => {
+            if (sequenceFinished) return;
+            completionMode.current = "assisted";
+            setStage("resolved");
+            setSequenceFinished(true);
+          }}
+        >
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          {!sequenceFinished ? <span className="world2-sonic-convergence__prompt">{en ? "Show result" : "Ver resultado"}</span> : null}
+        </button>
         <svg
           className="world2-sonic-convergence__wave"
           viewBox="0 0 320 110"
@@ -112,12 +176,12 @@ export function World2MediatedResultPanel({
           <span />
         </div>
         <p className="world2-sonic-convergence__label" key={stage}>
-          {stageLabels[stage]}
+          {en ? { intensity: "INTENSITY", rhythm: "RHYTHM", pitch: "PITCH", resolved: "SONIC RESULT" }[stage] : stageLabels[stage]}
         </p>
       </div>
       {stage === "resolved" ? (
         <p className="world2-sonic-convergence__copy">
-          Los parámetros se integran y dan forma al sonido.
+          {en ? "The parameters come together and give shape to the sound." : "Los parámetros se integran y dan forma al sonido."}
         </p>
       ) : null}
     </div>

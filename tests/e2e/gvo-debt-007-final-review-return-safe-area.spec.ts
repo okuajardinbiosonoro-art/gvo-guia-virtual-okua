@@ -293,12 +293,12 @@ async function assertRouteCriticalControls(page: Page, route: string) {
       page.locator('[data-station5-scene][aria-hidden="false"]'),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "Volver al mapa" }),
+      page.getByRole("button", { name: /Volver a las preguntas|Omitir esta pregunta/ }),
     ).toBeVisible();
   }
 }
 
-test.describe.configure({ mode: "serial" });
+// Each viewport/test seeds its own isolated journey; independent failures must not suppress the remaining accessibility matrix.
 test.setTimeout(180_000);
 
 for (const viewport of VIEWPORTS) {

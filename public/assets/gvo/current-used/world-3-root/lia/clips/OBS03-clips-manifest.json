@@ -1,0 +1,471 @@
+{
+  "schema": "gvo.obs03.pixel-clips.v03",
+  "status": "FILE_GEOMETRY_QA_PASS_SCENE_AND_VISUAL_REVIEW_PENDING",
+  "humanApproval": false,
+  "thread": "gvo-provenance:images-1",
+  "authenticSource": {
+    "path": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_idle_v01.png",
+    "sha256": "0fc7473633449418a3479457b4a4f237c6f5f64e87f631674dba94bf535ee37d"
+  },
+  "grid": [
+    3,
+    2
+  ],
+  "master": [
+    1536,
+    1024
+  ],
+  "runtime": [
+    768,
+    512
+  ],
+  "logicalBase": {
+    "master": [
+      256,
+      424
+    ],
+    "runtime": [
+      128,
+      212
+    ]
+  },
+  "method": "Exact center-sampled nearest RGBA (2x+1,2y+1), same uniform transform for whole registered sheet; lossless WebP; no bounding-box recentering.",
+  "limitations": [
+    "WebP lossless can change hidden RGB at alpha0 by cell location; all alpha and every visible neutral pixel are required equal.",
+    "File checks do not count petals, assess action quality, prove runtime playback or grant visitor progress."
+  ],
+  "records": [
+    {
+      "id": "intro",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/LIA_PIXEL_INTRO_OBS03.png",
+      "sourceSha256": "1df3931796bdc08fdc20ead4aa11ac7c37af5fbf1a4e76838773ce26cbaf4152",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_intro_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_intro_6f_v03.webp",
+      "sha256": "01689c27d863e3578c975d55dcfb6414390caaf58a81863384aca2930cb16cb2",
+      "bytes": 167084,
+      "durationMs": 650,
+      "frames": [
+        {
+          "frame": 1,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceRgbaSha256": "099d03c5bb1ab3f3f5cf83fec6e2998970d7d8caab7e6ffa25d84bcaca66c33e",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            78,
+            49,
+            429,
+            426
+          ],
+          "clearMargins": [
+            78,
+            49,
+            83,
+            86
+          ],
+          "measuredBase": [
+            256.5,
+            424
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceRgbaSha256": "7ebf6f6b9a6fad0e21db87fc904a964c32937a99fd5060c6dcc5edb01fa24315",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            44,
+            47,
+            409,
+            426
+          ],
+          "clearMargins": [
+            44,
+            47,
+            103,
+            86
+          ],
+          "measuredBase": [
+            256,
+            424
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceRgbaSha256": "33ac26f365178f89a6a575d05857785741d6a44ba20a0462365464454a7005c8",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            44,
+            46,
+            412,
+            425
+          ],
+          "clearMargins": [
+            44,
+            46,
+            100,
+            87
+          ],
+          "measuredBase": [
+            256.5,
+            424
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceRgbaSha256": "0b9f994bb7179a1f28e485faeee0619bbbe17126fb953752b651b0ec7e1c0972",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            75,
+            47,
+            434,
+            426
+          ],
+          "clearMargins": [
+            75,
+            47,
+            78,
+            86
+          ],
+          "measuredBase": [
+            255.5,
+            424
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        }
+      ],
+      "sourceNeutralRgbaExact": true,
+      "runtimeNeutralAlphaAndVisibleRgbExact": true,
+      "runtimeNeutralRawRgbaExact": false,
+      "hiddenRgbDifferencePixels": 18337,
+      "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+      "actualSceneReview": "PENDING"
+    },
+    {
+      "id": "listening",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/LIA_PIXEL_LISTENING_OBS03.png",
+      "sourceSha256": "c30b43c29584b2705c98047b712d60a96c0390441fbe00c39e09e42de8487c57",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_listening_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_listening_6f_v03.webp",
+      "sha256": "0cd35d7a257f7ce19114b7e35493cd86e13c0e0d23c404be447d517db6605882",
+      "bytes": 160804,
+      "durationMs": 1100,
+      "frames": [
+        {
+          "frame": 1,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceRgbaSha256": "10c88b8a78018d023168416063a4d43c23f4e0d3f183f3b5755bb8e8e6281ff9",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            76,
+            41,
+            423,
+            425
+          ],
+          "clearMargins": [
+            76,
+            41,
+            89,
+            87
+          ],
+          "measuredBase": [
+            255.5,
+            424
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceRgbaSha256": "ba9e6b425d7f047f5edb79053db2de30bf8c4235dc89c1dd35a6e41f48448fdd",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            56,
+            72,
+            394,
+            425
+          ],
+          "clearMargins": [
+            56,
+            72,
+            118,
+            87
+          ],
+          "measuredBase": [
+            256,
+            424
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceRgbaSha256": "1c010225783d7256c4753d56f9d32d3871d1564969ed196702f8fb0a820a36f5",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            63,
+            56,
+            402,
+            426
+          ],
+          "clearMargins": [
+            63,
+            56,
+            110,
+            86
+          ],
+          "measuredBase": [
+            255.5,
+            424
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceRgbaSha256": "5c254acf425c94130caecdee2059f3b1e33904ec8a9d567693277c55af1b7c15",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            59,
+            48,
+            426,
+            426
+          ],
+          "clearMargins": [
+            59,
+            48,
+            86,
+            86
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        }
+      ],
+      "sourceNeutralRgbaExact": true,
+      "runtimeNeutralAlphaAndVisibleRgbExact": true,
+      "runtimeNeutralRawRgbaExact": false,
+      "hiddenRgbDifferencePixels": 15364,
+      "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+      "actualSceneReview": "PENDING"
+    },
+    {
+      "id": "accompanying",
+      "source": "assets-source/editorial-2026-10-23/observaciones-03/production/pixel-two-system-cleanplates-originals/LIA_PIXEL_ACCOMPANYING_OBS03.png",
+      "sourceSha256": "15f1fc8c3662661b916b90a1d7846acf5dea51d67654101e14321964ef1206a0",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_accompanying_6f_v03.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_accompanying_6f_v03.webp",
+      "sha256": "151787f8a30931874b67dd1a33df8598560903b8893504a63e0de0d828dbabf2",
+      "bytes": 167682,
+      "durationMs": 850,
+      "frames": [
+        {
+          "frame": 1,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceRgbaSha256": "0764bfe02ec1af28764e0f8f6c21ac6dfe9dae2537c0b90bdf9ab46e5df1ec51",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            91,
+            50,
+            434,
+            425
+          ],
+          "clearMargins": [
+            91,
+            50,
+            78,
+            87
+          ],
+          "measuredBase": [
+            256.5,
+            424
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceRgbaSha256": "1101c001f5a00a1b0f31ca1d2c424fcf4b71a47e1c878ec62f09813abb5dc6cf",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            74,
+            51,
+            422,
+            424
+          ],
+          "clearMargins": [
+            74,
+            51,
+            90,
+            88
+          ],
+          "measuredBase": [
+            256,
+            424
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceRgbaSha256": "8ea789be3519c55374357a553b4620379fb450c94d51072f90e7c8250a9f1625",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            73,
+            44,
+            434,
+            427
+          ],
+          "clearMargins": [
+            73,
+            44,
+            78,
+            85
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceRgbaSha256": "aca745180879994bc98b4c3417a25a5bc1688da582b32ce82434ebb21bbdf5e4",
+          "authenticNeutral": false,
+          "alphaBounds": [
+            92,
+            54,
+            431,
+            425
+          ],
+          "clearMargins": [
+            92,
+            54,
+            81,
+            87
+          ],
+          "measuredBase": [
+            256.5,
+            424
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceRgbaSha256": "a31f0ae896e216811523a1afbb05e190e57fde52c3288b1334649a54f15c872a",
+          "authenticNeutral": true,
+          "alphaBounds": [
+            82,
+            47,
+            428,
+            424
+          ],
+          "clearMargins": [
+            82,
+            47,
+            84,
+            88
+          ],
+          "measuredBase": [
+            255,
+            424
+          ]
+        }
+      ],
+      "sourceNeutralRgbaExact": true,
+      "runtimeNeutralAlphaAndVisibleRgbExact": true,
+      "runtimeNeutralRawRgbaExact": false,
+      "hiddenRgbDifferencePixels": 16103,
+      "visualFivePetalReview": "PENDING_INDEPENDENT_REVIEW",
+      "actualSceneReview": "PENDING"
+    }
+  ]
+}

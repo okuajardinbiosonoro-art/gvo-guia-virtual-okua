@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "revision": "OBS04",
+  "humanApproved": false,
+  "newRasterBytes": false,
+  "consumers": [
+    "src/components/GestureHint/GestureHint.tsx",
+    "src/components/GestureHint/GestureHint.css"
+  ],
+  "motion": {
+    "orientation": "Source oblique silhouette retained; no extra internal30deg straightening. Wrapper rotates per direction.",
+    "distanceAt16pxRoot": 40,
+    "durationMs": 1100,
+    "finiteCycles": 2,
+    "timing": "linear, unidirectional translation, no press scaling",
+    "fingertipPct": {
+      "up": [
+        30.762,
+        14.844
+      ],
+      "down": [
+        69.238,
+        85.156
+      ],
+      "left": [
+        14.844,
+        69.238
+      ],
+      "right": [
+        85.156,
+        30.762
+      ]
+    },
+    "trail": "same transformed fingertip pivot",
+    "tap": "unchanged",
+    "reduced": "static"
+  },
+  "assets": [
+    {
+      "runtime": "public/assets/gvo/shared/gesture-hints/runtime/gvo_gesture_hand_swipe_v03.webp",
+      "mirror": "public/assets/gvo/current-used/shared/gesture-hints/gvo_gesture_hand_swipe_v03.webp",
+      "sha256": "8c3668ac88fa584a2dd07a0250cd2b52858b7cbe9233d45e14c9b37303679df9",
+      "bytes": 10184,
+      "dimensions": [
+        256,
+        256
+      ],
+      "format": "WEBP",
+      "mirrorByteIdentical": true,
+      "role": "Shared vertical/horizontal oblique swipe hand supplied-reference silhouette",
+      "status": "EXISTING_BYTES_RECOMPOSED_SCENE_QA_PENDING_HUMAN_PENDING"
+    }
+  ]
+}

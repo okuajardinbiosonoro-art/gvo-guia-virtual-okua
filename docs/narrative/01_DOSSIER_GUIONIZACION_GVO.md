@@ -21,7 +21,7 @@ No define estilo literario final. No debe usarse para limitar la voz creativa de
 
 ## Contexto de experiencia
 
-GVO es una guía visual local para acompañar el recorrido OKÚA desde navegador móvil. La experiencia debe leerse en pantalla, funcionar sin instalación y sostenerse sin audio. Por eso los textos deben poder cumplir su función de forma visual, breve y comprensible para público general: niños, adolescentes, adultos y adultos mayores.
+GVO es una guía visual local para acompañar el recorrido OKÚA desde navegador móvil. La experiencia debe leerse en pantalla y funcionar sin instalación. Los textos deben ser breves y comprensibles para niños, adolescentes, adultos y adultos mayores. El audio del diseñador de sonido acompaña los momentos que indique su entrega. [Regla de audio vigente](../01_REGLAS_NO_NEGOCIABLES.md).
 
 ## Emisores textuales posibles
 

@@ -1,11 +1,58 @@
 # Assets utilizados — Mundo III / Estación III
 
-## Estado
+## Consumidor OBS05 — ajuste local de título e índice
+
+Estado: `IMPLEMENTATION_CANDIDATE / COMPILED_QA_PASS / R3_RECONCILED / HUMAN_PENDING`.
+El contrato R1 OBS05 conserva los nueve pares activos registrados en
+`OBS04-composition-reference.json`: ambiente, cuaderno original proporcional,
+giro, tres motivos y tres clips. No se produce, modifica, comprime ni sustituye
+ningún bitmap; tampoco cambian sus URLs, precarga o registro geométrico.
+
+`World3Practice.css` centra el título con reservas laterales simétricas en CSS px
+y permite una fila inferior de ancho completo cuando el texto ampliado o el
+ancho disponible lo necesitan. Los números del índice conservan sus columnas,
+padding y separadores, con fondo transparente y sin contorno decorativo propio;
+los estados y el foco permanecen en la fila y su botón.
+Cuando la hoja queda estrecha respecto al tamaño de letra, el texto del capítulo
+ocupa una segunda fila a todo el ancho, debajo del número y motivo. Este reflujo
+evita fragmentar «INTRO» en columnas de dos letras con texto ampliado; mantiene
+la composición de tres columnas cuando hay espacio. No modifica el cuaderno.
+
+El h2 aislado «conectar» deja de mostrarse en el índice, sin conservar un hueco
+artificial. Su literal `TXT_3_74471ccd389d`, traducción EN y procedencia permanecen
+íntegros en `world3EditorialSlots.ts` y `station3Content.ts`. Esta nueva disposición
+procede de OBS05, no de una modificación retroactiva del texto del escritor.
+Las siete hojas, tres pasos esenciales, confirmaciones manuales, Lía, movimiento,
+QR y revisita conservan sus consumidores. La evidencia OBS04 siguiente mantiene
+su identidad histórica. OBS05 build02 verifica40 perfiles compilados ES/EN,
+movimiento natural/reducido y texto normal/ampliado, además del recorrido fresco.
+Son perfiles finitos y no aceptación humana o certificación universal.
+
+## Candidata de práctica vigente — 2026-10-23
+
+`INTEGRATION_CANDIDATE / HUMAN_PENDING`
+
+El cuaderno activo reutiliza siete originales: ambiente, hoja de paso de página
+(`turnPage`) y cinco poses de Lía. Añade tres motivos de práctica y el nuevo folio
+`notebook/world3_notebook_folio_v02.webp`. La base
+`notebook/world3_notebook_open_base_v01.png` (`openBase`) es histórica y no es
+la base activa de esta candidata.
+
+El detalle inicial de los siete reusos y tres motivos está en
+`integration-2026-10-23.json`; el cuarto recurso nuevo, el folio, está en
+[`revision-acabado/assets-manifest.json`](../../../../../docs/narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json).
+Los registros incluyen dimensiones, SHA-256 y pares byte-idénticos. El
+triángulo contiene el símbolo extraído del PNG de marca existente, sin redibujarlo.
+Los nuevos motivos, el folio y la composición esperan revisión humana. Los
+assets de montaje/trazas siguientes se preservan como historia y no se consumen
+en el nuevo cuaderno de práctica.
+
+## Estado histórico de los quince originales
 
 `APROBADO / RUNTIME / ESPEJO BYTE-IDÉNTICO`
 
-Esta carpeta es el espejo canónico de revisión de los assets consumidos por
-`src/screens/World3Root/`. Los imports de la aplicación permanecen en:
+Esta carpeta conserva el espejo de los quince originales históricos y los
+cuatro recursos nuevos de la candidata. Los imports de la aplicación permanecen en:
 
 ```text
 public/assets/gvo/stations/world-3/notebook-pixel/runtime/
@@ -15,7 +62,7 @@ Cada ruta relativa de la tabla existe tanto bajo esa base runtime como bajo
 `public/assets/gvo/current-used/world-3-root/`. Los hashes SHA-256 iguales
 confirman 15 pares byte-idénticos; no son duplicados accidentales.
 
-## Inventario aprobado — 15 pares
+## Inventario histórico aprobado — 15 pares
 
 | Ruta relativa en runtime y espejo | Formato / dimensiones | SHA-256 | Función / consumidor runtime | Estado |
 | --- | --- | --- | --- | --- |
@@ -35,14 +82,15 @@ confirman 15 pares byte-idénticos; no son duplicados accidentales.
 | `records/world3_record_signal_device_v01.png` | PNG / 1024×768 | `753E27F49AFD5187A8EF4A0FCB9FB5576B3E49AF049FB9FF8EA7045B41469EDA` | Dispositivo de Señal en índice y traza; `SignalTraceDisplay.tsx` / `World3RootScreen.tsx` | Aprobado |
 | `signal/world3_signal_notebook_marks_sheet_v01.png` | PNG / 1024×512 | `B8E77D292BB787C684C5CEDC5DD75822F36D9DB24561C54EAA8574F52B10326C` | Hoja de marcas del registro Señal; `SignalNotebookAnnotations.tsx` | Aprobado |
 
-## Contrato de uso
+## Contrato histórico y conservación
 
 - `world3RuntimeAssets.ts` define las URLs consumidas.
 - `world3SemanticAssetManifest.ts` documenta responsabilidad visual y límites
   semánticos.
 - Las hojas de marcas son sprites de 4×2 celdas de 256×256.
-- Texto, narrativa, controles, estados y accesibilidad permanecen en DOM; onda,
-  checks, sello, marco y partículas son procedurales.
+- Texto, narrativa, controles, estados y accesibilidad permanecen en DOM. La
+  candidata actual usa un folio raster ilustrado; las hojas de marcas y trazas
+  de la composición original se conservan como historia.
 - El Atlas visual es referencia documental. Ningún archivo de esta carpeta es un
   mockup promovido implícitamente.
 - No mover, optimizar, convertir ni modificar estas copias de forma aislada. Un
@@ -51,3 +99,31 @@ confirman 15 pares byte-idénticos; no son duplicados accidentales.
 El inventario transversal se mantiene en
 `docs/assets/ASSET_INVENTORY.md` y la regla aplicable en
 `docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md`.
+## Folio activo de acabado — 2026-10-23
+
+| Nuevo par runtime / espejo | Formato / dimensiones | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| `notebook/world3_notebook_folio_v02.webp` | WebP RGBA / 768×960 | 581.516 | `ee0085b3cfcf81793d530b42070c2f942a18f9289213e04eff8354903704c3a4` |
+
+Original preservado:
+`assets-source/editorial-2026-10-23/finishing/W3_NOTEBOOK_FOLIO_v02.png`.
+Consumidor: `World3RootScreen.tsx` con nueve segmentos responsive. Los motivos
+INTRO/PASO A PASO/BENEFICIOS permanecen como capas independientes del folio.
+Las aprobaciones anteriores corresponden a los originales históricos y no se
+extienden al nuevo folio ni a la composición actual.
+
+## Composición vigente OBS04 — 2026-10-24
+
+La candidata OBS04 conserva el bitmap original proporcional y su hoja de giro.
+Distribuye los literales en siete hojas locales dentro de tres capítulos, con
+navegación exterior, estados de selección y respuestas finitas. El folio v02
+del apartado anterior es histórico y no se consume en esta escena. Los nueve
+pares activos reutilizados y sus hashes están en `OBS04-composition-reference.json`;
+los clips proceden del único hilo Images registrado. La QA compilada de doce
+perfiles no constituye aprobación artística humana ni certificación física.
+# Ilustraciones editoriales del 11-11-2026
+
+El archivo [editorial-2026-11-11.json](editorial-2026-11-11.json) registra los
+siete WebP de los folios de Introducción y Paso a paso, con su ruta de runtime,
+espejo local, dimensiones, huella y procedencia. La base abierta y el recurso
+de pasar página conservan su registro histórico y su consumidor actual.

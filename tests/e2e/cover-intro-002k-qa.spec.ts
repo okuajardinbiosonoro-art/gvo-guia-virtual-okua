@@ -1,103 +1,24 @@
-import { mkdirSync } from "node:fs";
-import path from "node:path";
-
 import { expect, test } from "@playwright/test";
-import type { Page } from "@playwright/test";
+import { openEditorialCover, readEditorialIntro } from "./support/editorial-entry";
 
-import { evidenceDirectory } from "./support/evidence";
+test("preload real conserva la intención de entrada y evita avance anticipado", async ({page}) => {
+  let release:()=>void=()=>{};
+  const released=new Promise<void>(resolve=>{release=resolve;});
+  await page.route("**/lia_pose_activate_portal_1_v1.png",async route=>{await released;await route.continue();});
+  await openEditorialCover(page);
+  await page.getByRole("button",{name:"Entrar sin presentación"}).click();
+  await expect(page).toHaveURL(/\/portada$/);
+  await expect(page.locator("main[data-cover-phase]")).toHaveAttribute("data-cover-phase","portal_1_ready");
+  release();
+  await expect(page).toHaveURL(/\/estacion\/1$/, {timeout:20000});
+});
 
-const qaOutputDir = evidenceDirectory("cover-intro-002k");
-
-async function completeIntro(page: Page) {
-  await page.goto("/portada?resetIntro=1");
-  await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
-  await page.getByRole("button", { name: "Comenzar recorrido" }).click();
-
-  for (let index = 0; index < 4; index += 1) {
-    await page
-      .getByRole("button", { name: "Siguiente diálogo de Lía" })
-      .click();
-  }
-
-  await page.getByRole("button", { name: "Finalizar introducción" }).click();
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toBeVisible();
-}
-
-async function capture(page: Page, name: string) {
-  await page.screenshot({
-    fullPage: true,
-    path: path.join(qaOutputDir, name),
-  });
-}
-
-test.describe("QA visual Portada / Intro 002K", () => {
-  test.describe.configure({ timeout: 60_000 });
-
-  test.beforeAll(() => {
-    mkdirSync(qaOutputDir, { recursive: true });
-  });
-
-  test("genera capturas de coreografía Portal I y transition placeholder", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await completeIntro(page);
-
-    await expect(
-      page.locator('[data-cover-phase="portal_1_ready"]'),
-    ).toBeVisible();
-    await expect(page.locator('[data-lia-pose="pointPortal1"]')).toBeVisible();
-    await capture(page, "cover-intro-002k-01-portal-ready-390x844.png");
-
-    await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-    await expect(
-      page.locator('[data-cover-phase="portal_1_opening_placeholder"]'),
-    ).toBeVisible();
-    await expect(page.getByText("Abriendo Mundo I: Raíz...")).toBeVisible();
-    await expect(
-      page.getByTestId("cover-portal-activation-rig"),
-    ).toHaveAttribute("data-activation-stage", "portal-i");
-    await expect(page.getByTestId("cover-activation-lia")).toBeVisible();
-    await expect(
-      page.getByTestId("cover-activation-portal-front"),
-    ).toBeVisible();
-    await expect(
-      page.getByTestId("cover-activation-contact-light"),
-    ).toBeVisible();
-    await page.waitForTimeout(160);
-    await capture(page, "cover-intro-002k-02-activation-opening-390x844.png");
-
-    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
-      timeout: 5000,
-    });
-    await expect(page.getByText("Preparando la raíz.")).toBeVisible();
-    await expect(page.locator("button")).toHaveCount(0);
-    await expect(page.locator("a")).toHaveCount(0);
-    await capture(
-      page,
-      "cover-intro-002k-03-transition-placeholder-390x844.png",
-    );
-  });
-
-  test("genera captura reduced motion de opening sin romper gating", async ({
-    page,
-  }) => {
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.setViewportSize({ width: 390, height: 844 });
-    await completeIntro(page);
-
-    await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-    await expect(
-      page.locator('[data-cover-phase="portal_1_opening_placeholder"]'),
-    ).toBeVisible();
-    await expect(page.getByTestId("cover-portal-activation-rig")).toBeVisible();
-    await expect(page.locator("audio")).toHaveCount(0);
-    await expect(page.locator("video")).toHaveCount(0);
-    await capture(
-      page,
-      "cover-intro-002k-04-reduced-motion-opening-390x844.png",
-    );
-  });
+test("la doble pulsación de entrada produce una sola transición", async ({page}) => {
+  await openEditorialCover(page);
+  await readEditorialIntro(page);
+  let transitions=0;
+  page.on("framenavigated",frame=>{if(frame===page.mainFrame()&&frame.url().endsWith("/transition/intro-to-station-1"))transitions+=1;});
+  await page.getByRole("button",{name:"¡Adelante!",exact:true}).dblclick();
+  await expect(page).toHaveURL(/\/estacion\/1$/, {timeout:20000});
+  expect(transitions).toBe(1);
 });

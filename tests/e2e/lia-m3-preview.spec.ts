@@ -15,6 +15,7 @@ async function ask(page: Page, message: string) {
   await expect(page.locator("[data-lia-state]").last()).toBeVisible({ timeout: 15_000 });
 }
 test.beforeEach(async ({ page }) => {
+  test.skip(process.env.VITE_LIA_PREVIEW_ENABLED !== "true", "Opt-in Lía laboratory: explicit enabled flag and matching knowledge service required; default-off candidate keeps this scope inactive.");
   await page.addInitScript(() => {
     // Synthetic completion fixture in this isolated test context only.
     localStorage.setItem("gvo.progress.v1", JSON.stringify({ completedStations: [1,2,3,4,5], schemaVersion: 1, updatedAt: "2026-09-11T00:00:00.000Z" }));

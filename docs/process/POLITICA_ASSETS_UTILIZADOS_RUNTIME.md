@@ -82,7 +82,7 @@ public/assets/gvo/current-used/global/
 
 Mantener nombres estables y carpetas internas descriptivas (`environment`,
 `index`, `lia`, `notebook`, `plant`, `prototype`, `records`, `signal`,
-`background`, `progress`, `nodes`, `roots`, `overlays`, `manifests`, etc.).
+  `background`, `progress`, `nodes`, `roots`, `overlays`, `manifests`, etc.).
 
 La existencia de un directorio no demuestra aprobación funcional. En particular,
 `world-4-root/` contiene desde 018C los espejos integrados de la composición
@@ -116,6 +116,11 @@ docs/assets/ASSET_INVENTORY.md
 ```
 
 ## Reglas de seguridad
+
+El registro también cubre el [audio local de producción](../01_REGLAS_NO_NEGOCIABLES.md).
+Para cada archivo entregado por el diseñador de sonido, registrar la ruta,
+formato, duración, SHA-256, sala, momento de reproducción y consumidor. Las
+dimensiones corresponden a los recursos visuales.
 
 - No mover ni borrar originales sin ticket explícito.
 - No reexportar, comprimir, optimizar ni convertir formatos sin ticket explícito.

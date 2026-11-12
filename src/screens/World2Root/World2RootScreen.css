@@ -3382,7 +3382,7 @@
 
 .world2-dialogue__title::after {
   position: absolute;
-  inset: -0.08rem -45%;
+  inset: -0.08rem 0;
   background: linear-gradient(
     90deg,
     transparent 34%,
@@ -3393,7 +3393,10 @@
   );
   content: "";
   opacity: 0;
-  transform: translateX(-48%);
+  background-size: 190% 100%;
+  background-repeat: no-repeat;
+  background-position: 164% 50%;
+  transform: none;
   pointer-events: none;
 }
 
@@ -4363,7 +4366,7 @@
 @keyframes world2-dialogue-electric-sweep {
   0% {
     opacity: 0;
-    transform: translateX(-54%);
+    background-position: 164% 50%;
   }
 
   38% {
@@ -4372,7 +4375,7 @@
 
   100% {
     opacity: 0;
-    transform: translateX(54%);
+    background-position: -64% 50%;
   }
 }
 
@@ -6664,7 +6667,8 @@
   }
 
   .final-review-mode-layout[data-final-review-active="true"]
-    .world2-mapping-sequence__header > strong {
+    .world2-mapping-sequence__header
+    > strong {
     grid-column: 2;
     grid-row: 1;
     justify-self: start;
@@ -6689,5 +6693,436 @@
   .final-review-mode-layout[data-final-review-active="true"]
     .world2-mapping-sequence__flow {
     height: 1rem;
+  }
+}
+
+/* Continuous guide travel across responsive scene anchors; no actor remount. */
+.world2-lia-field[data-lia-placement] {
+  transition:
+    left 520ms ease-in-out,
+    top 520ms ease-in-out,
+    right 520ms ease-in-out,
+    bottom 520ms ease-in-out,
+    width 520ms ease,
+    transform 520ms ease-in-out;
+}
+.world2-layer-callout {
+  font-size: clamp(0.85rem, 3vw, 1.05rem);
+}
+.world2-root-screen .world2-scene-title h1 {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  font-family: var(--gvo-font-ui);
+  font-size: var(--gvo-room-title-size);
+  line-height: var(--gvo-room-title-line);
+}
+.world2-scene-exit {
+  position: relative;
+  grid-area: auto;
+  min-width: 0;
+  width: 100%;
+  margin-top: 0.5rem;
+  color: var(--world2-text-primary);
+}
+.world2-scene-exit .interstation-qr-gate--scene {
+  max-width: 100%;
+}
+.world2-sonic-convergence__core {
+  z-index: 6;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.world2-sonic-convergence__core:focus-visible {
+  outline: 3px solid #fff0b8;
+  outline-offset: 6px;
+}
+.world2-dialogue__content,
+.world2-dialogue[data-world2-closure-layout="centered-balanced"]
+  .world2-dialogue__content {
+  position: relative;
+  inset: auto;
+  min-height: inherit;
+  padding: clamp(1.1rem, 3vw, 1.35rem) clamp(1.35rem, 6vw, 2.35rem)
+    clamp(1rem, 2.8vw, 1.25rem);
+}
+.world2-dialogue__safe {
+  height: auto;
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  gap: 0.5rem;
+}
+.world2-dialogue__copy-block {
+  align-self: start;
+  gap: 0.4rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .world2-lia-field[data-lia-placement] {
+    transition: none;
+  }
+}
+
+.world2-root-screen
+  [data-world2-scene-layer="senal"]
+  .world2-lia-field[data-lia-placement] {
+  right: -1%;
+  bottom: 28%;
+}
+.world2-root-screen
+  [data-world2-scene-layer="captura"]
+  .world2-lia-field[data-lia-placement] {
+  right: -1%;
+}
+.world2-root-screen
+  [data-world2-scene-layer="acondicionamiento"]
+  .world2-lia-field[data-lia-placement] {
+  right: 3%;
+  bottom: 27%;
+}
+.world2-root-screen
+  [data-world2-scene-layer="mapeo"]
+  .world2-lia-field[data-lia-placement] {
+  right: 1%;
+}
+.world2-root-screen
+  [data-world2-scene-layer="resultado_mediado"]
+  .world2-lia-field[data-lia-placement] {
+  right: 4%;
+  bottom: 20%;
+}
+.world2-root-screen [data-motion-active="false"] *,
+.world2-root-screen [data-motion-active="false"] *::before,
+.world2-root-screen [data-motion-active="false"] *::after,
+.world2-root-screen[data-journey-active="false"] * {
+  animation-play-state: paused !important;
+}
+.world2-mapping-sequence__core[type="button"] {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  pointer-events: auto;
+}
+.world2-mapping-result {
+  color: #fff2d2;
+  font: 400 1rem/1.5 var(--gvo-font-body);
+  text-align: center;
+  padding: 0.45rem;
+}
+.world2-reading-advance,
+.world2-reading-assist {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #d7b2e6;
+  border-radius: 0.45rem;
+  background: #2a2039;
+  color: #fff3db;
+  font: 500 1rem/1.45 var(--gvo-font-ui);
+  cursor: pointer;
+}
+.world2-reading-advance:focus-visible,
+.world2-reading-assist:focus-visible {
+  outline: 3px solid #ffda8a;
+  outline-offset: 3px;
+}
+.world2-reading-advance:disabled,
+.world2-reading-assist:disabled { opacity: 0.6; cursor: wait; }
+.world2-sonic-convergence__core .world2-sonic-convergence__prompt {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 50%;
+  width: max-content;
+  max-width: 12rem;
+  transform: translateX(-50%);
+  color: #fff3db;
+  background: #261d35;
+  padding: 0.2rem 0.4rem;
+  font: 400 1rem/1.45 var(--gvo-font-ui);
+  animation: none;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+/* OBS04 Q03: every consulted II layer keeps its scene and grows the document. */
+@media (max-width: 899px), (max-height: 700px) {
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    .world2-root-screen {
+    height: auto;
+    overflow: visible;
+  }
+
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    .world2-stage {
+    grid-template-rows: auto auto auto auto;
+    height: auto;
+    min-height: calc(
+      min(100dvh, var(--world2-visual-vh, 100svh)) -
+        var(--gvo-final-review-clearance-top, 0px)
+    );
+    overflow: visible;
+  }
+
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    .world2-scene-zone {
+    min-height: 36rem;
+  }
+
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    [data-world2-scene-layer="captura"] {
+    min-height: 40rem;
+  }
+
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    [data-world2-scene-layer="resultado_mediado"] {
+    min-height: 28rem;
+  }
+
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
+    .world2-scene-field {
+    height: auto;
+    min-height: inherit;
+  }
+
+  /* The mapping/result is real content; only its artwork stays absolute. */
+  .world2-root-screen [data-world2-scene-layer="mapeo"] .world2-scene-field {
+    height: auto;
+  }
+
+  .world2-root-screen [data-world2-scene-layer="mapeo"] .world2-semantic-focus {
+    position: relative;
+    inset: auto;
+    display: grid;
+    min-height: inherit;
+    padding: 1.25rem 0.75rem;
+    box-sizing: border-box;
+  }
+
+  .world2-root-screen [data-world2-scene-layer="mapeo"]
+    .world2-mapping-panel[data-world2-mapping-mode="sequential-pedagogic-r2"] {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 0;
+  }
+}
+
+/* Consulted layers need the same fixed-control clearance as the closed review. */
+@media (max-width: 899px) and (orientation: portrait) {
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"][data-final-review-clearance-mode="floating"][data-final-review-placement="below-end"]
+    .world2-scene-title {
+    padding-block-start: max(0px, calc(
+      var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px) +
+        var(--gvo-final-review-dock-edge-gap, 12px) +
+        2 * var(--gvo-final-review-dock-block-size, 44px) +
+        2 * var(--gvo-final-review-content-gap, 10px) + 8px - 0.5rem
+    ));
+  }
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"][data-final-review-clearance-mode="reserved"]
+    .world2-scene-title {
+    padding-block-start: 0;
+  }
+}
+
+/* Reserve the fullscreen row before the portrait title, including first entry. */
+@media (max-width: 899px) and (orientation: portrait) {
+  .world2-root-screen .world2-scene-title {
+    padding-block-start: max(0px, calc(
+      var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px) +
+        12px + 44px + 8px - 0.5rem
+    ));
+  }
+}
+
+/* OBS04: keep the guide above the result in the measured vertical Mapping layout. */
+@media (max-width: 420px) {
+  .world2-root-screen [data-world2-scene-layer="mapeo"]
+    .world2-lia-field[data-lia-placement] {
+    bottom: 45%;
+  }
+}
+
+/* OBS04: short-landscape Mapping reserve with motion buffer (92.16px at field576px). */
+@media (min-width: 421px) and (max-width: 899px) and (max-height: 420px) and (orientation: landscape) {
+  .world2-root-screen [data-world2-scene-layer="mapeo"]
+    .world2-lia-field[data-lia-placement] {
+    bottom: 16%;
+  }
+}
+
+/* OBS04: tablet portrait review titles clear the existing top-end dock row. */
+@media (max-width: 899px) and (orientation: portrait) {
+  .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"][data-final-review-clearance-mode="floating"][data-final-review-placement="top-end"]
+    .world2-scene-title {
+    padding-block-start: max(0px, calc(
+      var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px) +
+        var(--gvo-final-review-dock-edge-gap, 12px) +
+        var(--gvo-final-review-dock-block-size, 44px) + 8px - 0.5rem
+    ));
+  }
+}
+.world2-scene-zone:has(> .world2-scene-readout) {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.world2-scene-zone:has(> .world2-scene-readout) .world2-scene-field {
+  height: auto;
+  min-height: clamp(16rem, 47svh, 30rem);
+}
+
+.world2-scene-readout {
+  position: relative;
+  z-index: 3;
+  align-self: end;
+  width: min(100% - 1rem, 40rem);
+  padding: .6rem .8rem;
+  margin: .5rem auto;
+  color: #fffdf6;
+  background: rgb(7 8 21 / 94%);
+  border: 1px solid rgb(167 237 240 / 32%);
+  border-radius: .75rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.world2-scene-readout p {
+  margin: 0;
+  color: #fffdf6;
+  font: 400 1rem/1.45 var(--gvo-font-body);
+}
+
+.world2-capture-traits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .4rem 1rem;
+  padding: 0;
+  margin: .55rem 0 0;
+  color: #bff7fa;
+  list-style: none;
+}
+
+.world2-capture-traits li::before {
+  content: "◇";
+  margin-inline-end: .25em;
+}
+
+.world2-root-screen .world2-signal-cinema__label,
+.world2-root-screen .world2-layer-callout {
+  font-size: 1rem;
+}
+
+.world2-mapping-sequence__source .world2-mapping-sequence__eyebrow {
+  font-size: calc(clamp(.625rem, 1.45vw, .72rem) + 2px);
+}
+
+.world2-mapping-sequence__microcopy > :is(strong, span) {
+  display: block;
+  margin-block: .12em;
+}
+
+.world2-root-screen .world2-lia-field:is([data-lia-layer-id="acondicionamiento"], [data-lia-layer-id="resultado_mediado"]) {
+  opacity: 1;
+}
+
+.world2-root-screen .world2-lia-field:is([data-lia-layer-id="acondicionamiento"], [data-lia-layer-id="resultado_mediado"]) .world2-scene-asset--lia {
+  opacity: 1;
+  animation: none;
+}
+
+.world2-root-screen [data-world2-filter-demo] .world2-conditioning-cinema__asset--scan {
+  animation: none;
+}
+
+.world2-root-screen [data-world2-filter-demo] .world2-conditioning-cinema__label--filter {
+  padding: 0.26em 0.55em;
+  border: 1px solid transparent;
+  border-radius: 0.35em;
+}
+
+.world2-root-screen [data-world2-filter-demo="complete"] .world2-conditioning-cinema__label--filter {
+  opacity: 1;
+  color: #fff5d5;
+  background: #322317;
+  border-color: #f7cf83;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .world2-root-screen [data-world2-filter-demo="running"] .world2-conditioning-cinema__asset--scan {
+    animation: world2-filter-sweep var(--world2-filter-duration) ease-in-out both;
+  }
+
+  .world2-root-screen [data-world2-filter-demo="running"] .world2-conditioning-cinema__label--filter {
+    animation: world2-filter-emphasis var(--world2-filter-duration) ease-in-out both;
+  }
+
+  .world2-root-screen .gvo-lia-journey[data-lia-active="true"] :is(.lia-hybrid__layer, .gvo-lia-journey__face) {
+    animation-duration: 850ms;
+  }
+}
+
+@keyframes world2-filter-sweep {
+  0% { mask-position: -32% 0; opacity: 0; }
+  18% { opacity: .86; }
+  38%, 64% { mask-position: 50% 0; opacity: 1; }
+  84% { opacity: .82; }
+  100% { mask-position: 148% 0; opacity: 0; }
+}
+
+@keyframes world2-filter-emphasis {
+  0%, 20% { opacity: .82; }
+  38%, 68% {
+    opacity: 1;
+    color: #fff5d5;
+    background: #322317;
+    border-color: #f7cf83;
+    box-shadow: 0 0 1.15rem rgb(247 207 131 / 72%);
+  }
+  100% { opacity: 1; color: #fff5d5; background: #322317; border-color: #f7cf83; }
+}
+
+.world2-dialogue__safe {
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.world2-dialogue__actions {
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.world2-dialogue__actions > button {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.world2-layer-callout .world2-micro-label__text,
+.world2-signal-cinema__label .world2-micro-label__text {
+  overflow: visible;
+  white-space: normal;
+  text-align: center;
+}
+
+@media (max-width: 899px), (max-height: 700px) {
+  .world2-root-screen [data-world2-scene-layer="captura"]:has(> .world2-scene-readout) {
+    min-height: 0;
+  }
+
+  .world2-root-screen [data-world2-scene-layer="captura"]:has(> .world2-scene-readout) .world2-scene-field {
+    min-height: 0;
+  }
+
+  .world2-root-screen [data-world2-scene-layer="captura"] .world2-semantic-focus {
+    position: relative;
+    inset: auto;
+    padding: clamp(.5rem, 3vw, 1rem);
+  }
+
+  .world2-root-screen [data-world2-scene-layer="captura"] .world2-lia-field[data-lia-placement] {
+    top: 4.2rem;
+    bottom: auto;
+    height: clamp(90px, 24vw, 140px);
   }
 }

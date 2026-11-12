@@ -54,3 +54,16 @@ export const world1RootRenderedAssetKeys = [
   "liaGuideMediation",
   "liaReadyContinue",
 ] as const;
+
+/** Visible assets of the actual initial/restored consumer; root adds fonts/rig. */
+export function getWorld1CriticalAssetSources(concept: "intro" | "relation" | "perception" | "mediation" | "ready_to_continue") {
+  const common = [world1RootAssets.background, world1RootAssets.ambientLight, world1RootAssets.plant, world1RootAssets.rootsBase, world1RootAssets.nodeKit];
+  const state = {
+    intro: [],
+    relation: [world1RootAssets.activeRelation],
+    perception: [world1RootAssets.activePerception],
+    mediation: [world1RootAssets.activeMediation],
+    ready_to_continue: [],
+  }[concept];
+  return [...common, ...state];
+}

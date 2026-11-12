@@ -17,6 +17,8 @@ export type World1CheckpointConcept = (typeof WORLD1_CONCEPT_ORDER)[number];
 export type World1CheckpointV1 = Readonly<{
   activeConcept: World1CheckpointConcept;
   highestReachedConcept: World1CheckpointConcept;
+  visitedConcepts?: readonly World1CheckpointConcept[];
+  activityContinued?: boolean;
   schemaVersion: 1;
   updatedAt: string;
 }>;
@@ -46,8 +48,17 @@ function isWorld1Checkpoint(value: unknown): value is World1CheckpointV1 {
     candidate.schemaVersion === WORLD1_CHECKPOINT_SCHEMA_VERSION &&
     isConcept(candidate.activeConcept) &&
     isConcept(candidate.highestReachedConcept) &&
-    world1ConceptIndex(candidate.activeConcept) <=
-      world1ConceptIndex(candidate.highestReachedConcept) &&
+    (world1ConceptIndex(candidate.activeConcept) <=
+      world1ConceptIndex(candidate.highestReachedConcept) ||
+      (candidate.activeConcept === "ready_to_continue" &&
+        candidate.activityContinued === true)) &&
+    (candidate.activityContinued === undefined ||
+      typeof candidate.activityContinued === "boolean") &&
+    (candidate.visitedConcepts === undefined ||
+      (Array.isArray(candidate.visitedConcepts) &&
+        candidate.visitedConcepts.every(isConcept) &&
+        new Set(candidate.visitedConcepts).size ===
+          candidate.visitedConcepts.length)) &&
     isIsoTimestamp(candidate.updatedAt)
   );
 }
@@ -57,6 +68,9 @@ function matches(left: World1CheckpointV1, right: World1CheckpointV1) {
     left.schemaVersion === right.schemaVersion &&
     left.activeConcept === right.activeConcept &&
     left.highestReachedConcept === right.highestReachedConcept &&
+    left.activityContinued === right.activityContinued &&
+    JSON.stringify(left.visitedConcepts) ===
+      JSON.stringify(right.visitedConcepts) &&
     left.updatedAt === right.updatedAt
   );
 }
@@ -64,7 +78,10 @@ function matches(left: World1CheckpointV1, right: World1CheckpointV1) {
 function sameStableState(left: World1CheckpointV1, right: World1CheckpointV1) {
   return (
     left.activeConcept === right.activeConcept &&
-    left.highestReachedConcept === right.highestReachedConcept
+    left.highestReachedConcept === right.highestReachedConcept &&
+    left.activityContinued === right.activityContinued &&
+    JSON.stringify(left.visitedConcepts) ===
+      JSON.stringify(right.visitedConcepts)
   );
 }
 
@@ -83,6 +100,8 @@ export function writeWorld1Checkpoint(
   checkpoint: Readonly<{
     activeConcept: World1CheckpointConcept;
     highestReachedConcept: World1CheckpointConcept;
+    visitedConcepts?: readonly World1CheckpointConcept[];
+    activityContinued?: boolean;
   }>,
   storage?: ProgressStorage | null,
   now: () => string = () => new Date().toISOString(),

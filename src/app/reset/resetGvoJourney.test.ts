@@ -7,6 +7,17 @@ import {
 import { GVO_LANGUAGE_STORAGE_KEY } from "../preferences/languagePreference";
 import { beginFinalReview } from "../review/finalReviewContext";
 import {
+  confirmEssentialStep,
+  captureJourneyMutationToken,
+  getJourneyRuntimeContext,
+  invalidateJourneyEssential,
+  isJourneyResetInProgress,
+  markEssentialPresented,
+  persistJourneyReceipt,
+  readEssentialSnapshot,
+  setJourneyRuntimeContext,
+} from "../journey/journeyEssential";
+import {
   GVO_JOURNEY_PRESERVE_POLICY,
   GVO_JOURNEY_RESET_ALLOWLIST,
 } from "./journeyResetPolicy";
@@ -70,6 +81,9 @@ function seededBackends(
 ) {
   const localStorage = new FakeStorage(
     {
+      "gvo.journey.essential.v1": "essential-snapshot-raw",
+      "gvo.station4.ordering.v1": "ordering-snapshot-raw",
+      "gvo.station4.explanation.v1": "explanation-snapshot-raw",
       "gvo.progress.v1":
         '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
       "gvo.station1.v1":
@@ -78,9 +92,13 @@ function seededBackends(
         '{"schemaVersion":1,"activeLayerId":"senal","visitedLayerIds":["planta_viva","senal"],"highestUnlockedLayerOrder":3,"completedRequiredInteractions":["plant_contact_readout_seen"],"capture":{"currentStepId":"contact","visitedStepIds":["contact"]},"mappingFirstRunComplete":false,"resultState":"not_started","updatedAt":"2026-08-05T12:01:30.000Z"}',
       "gvo.station3.v1":
         '{"schemaVersion":1,"completedRecordIds":["planta","prototipo"],"updatedAt":"2026-08-05T12:01:45.000Z"}',
+      "gvo.station3.practice.v2": "practice-snapshot-raw",
       "gvo.station4.v1":
         '{"schemaVersion":1,"highestSettledIndex":3,"resumeMode":"reading","updatedAt":"2026-08-05T12:02:00.000Z"}',
       "gvo.station5.v1": '{"completedAreas":["plantas"]}',
+      "gvo.station5.quiz.v1": "quiz-snapshot-raw",
+      "gvo.station5.quiz.v2": "round-ledger-snapshot-raw",
+      "gvo.station5.quiz.recovery.v1": "quiz-backup-snapshot-raw",
       "gvo.coverIntro.introCompleted.v1": "true",
       [GVO_LANGUAGE_STORAGE_KEY]: "en",
       "gvo:accessibility:contrast": "high",
@@ -109,10 +127,21 @@ describe("resetGvoJourney", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
+    invalidateJourneyEssential();
+    setJourneyRuntimeContext({ active: false, attemptId: null, screen: null, mode: "normal", authorized: false, reviewReturnAllowed: false });
   });
 
-  it("usa una allowlist tipada de ocho claves auditadas y preserve explícito", () => {
+  it("delimita el reset al recorrido, práctica y trivia; preserva preferencias", () => {
     expect(GVO_JOURNEY_RESET_ALLOWLIST).toEqual([
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.journey.essential.v1",
+      }),
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.station4.ordering.v1",
+      }),
+      expect.objectContaining({ backend: "localStorage", key: "gvo.station4.explanation.v1", purpose: "world-four-state" }),
       expect.objectContaining({
         backend: "localStorage",
         key: "gvo.progress.v1",
@@ -134,6 +163,11 @@ describe("resetGvoJourney", () => {
       }),
       expect.objectContaining({
         backend: "localStorage",
+        key: "gvo.station3.practice.v2",
+        purpose: "world-three-state",
+      }),
+      expect.objectContaining({
+        backend: "localStorage",
         key: "gvo.station4.v1",
         purpose: "world-four-state",
       }),
@@ -141,6 +175,12 @@ describe("resetGvoJourney", () => {
         backend: "localStorage",
         key: "gvo.station5.v1",
       }),
+      expect.objectContaining({
+        backend: "localStorage",
+        key: "gvo.station5.quiz.v1",
+      }),
+      expect.objectContaining({ backend: "localStorage", key: "gvo.station5.quiz.v2", purpose: "world-five-state" }),
+      expect.objectContaining({ backend: "localStorage", key: "gvo.station5.quiz.recovery.v1", purpose: "world-five-state" }),
       expect.objectContaining({
         backend: "localStorage",
         key: "gvo.coverIntro.introCompleted.v1",
@@ -160,7 +200,7 @@ describe("resetGvoJourney", () => {
       storage,
     );
 
-    expect(snapshot).toHaveLength(8);
+    expect(snapshot).toHaveLength(15);
     expect(snapshot.every((entry) => entry.existed)).toBe(true);
     expect(snapshot.find((entry) => entry.key === "gvo.progress.v1")?.raw).toBe(
       '{"schemaVersion":1,"completedStations":[1,2,3,4,5],"updatedAt":"2026-08-05T12:00:00.000Z"}',
@@ -169,7 +209,7 @@ describe("resetGvoJourney", () => {
     const result = await resetGvoJourney({ storage });
     expect(result).toMatchObject({
       ok: true,
-      snapshotCount: 8,
+      snapshotCount: 15,
       verifiedInitialState: true,
     });
     for (const entry of GVO_JOURNEY_RESET_ALLOWLIST) {
@@ -358,7 +398,7 @@ describe("resetGvoJourney", () => {
       failedStage: "delete",
       ok: false,
       rollbackVerified: true,
-      snapshotCount: 8,
+      snapshotCount: 15,
     });
     expect(localStorage.values).toEqual(beforeLocal);
     expect(sessionStorage.values).toEqual(beforeSession);
@@ -376,7 +416,7 @@ describe("resetGvoJourney", () => {
       const { localStorage, storage } = seededBackends({
         local: {
           removeItem: (_key, count) => {
-            if (count === 5) throw new Error("delete failure after W2");
+            if (count === 6) throw new Error("delete failure after W2");
           },
         },
       });
@@ -385,7 +425,7 @@ describe("resetGvoJourney", () => {
       expect(await resetGvoJourney({ storage })).toMatchObject({
         ok: false,
         rollbackVerified: true,
-        snapshotCount: 8,
+        snapshotCount: 15,
       });
       expect(localStorage.getItem("gvo.station2.v1")).toBe(world2Raw);
     }
@@ -399,7 +439,7 @@ describe("resetGvoJourney", () => {
       const { localStorage, storage } = seededBackends({
         local: {
           removeItem: (_key, count) => {
-            if (count === 6) throw new Error("delete failure after W3");
+            if (count === 7) throw new Error("delete failure after W3");
           },
         },
       });
@@ -408,13 +448,13 @@ describe("resetGvoJourney", () => {
       expect(await resetGvoJourney({ storage })).toMatchObject({
         ok: false,
         rollbackVerified: true,
-        snapshotCount: 8,
+        snapshotCount: 15,
       });
       expect(localStorage.getItem("gvo.station3.v1")).toBe(world3Raw);
     }
   });
 
-  it("retry toma un snapshot nuevo de las ocho claves", async () => {
+  it("retry toma un snapshot nuevo del recorrido, práctica y trivia", async () => {
     let fail = true;
     const { localStorage, storage } = seededBackends({
       local: {
@@ -429,8 +469,90 @@ describe("resetGvoJourney", () => {
     fail = false;
     expect(await resetGvoJourney({ storage })).toMatchObject({
       ok: true,
-      snapshotCount: 8,
+      snapshotCount: 15,
     });
     expect(localStorage.getItem("gvo.station1.v1")).toBeNull();
+  });
+
+  it("suspende los escritores antes del snapshot y rechaza callbacks viejos tras reactivar la misma sala", async () => {
+    const oldContext = { active: true, attemptId: "before-reset", screen: 1, mode: "normal", authorized: true, reviewReturnAllowed: false } as const;
+    setJourneyRuntimeContext(oldContext);
+    const capturedPresentation = { screen: 1, stepId: "intro", contentRevision: "OBS03.2", attemptId: oldContext.attemptId, mode: "standard" } as const;
+    const capturedConfirmation = { screen: 1, stepId: "intro", contentRevision: "OBS03.2", attemptId: oldContext.attemptId, cause: "visitor_advance" } as const;
+    expect((await markEssentialPresented(capturedPresentation)).ok).toBe(true);
+    const resetMutationToken = captureJourneyMutationToken();
+    let release!: () => void;
+    const reset = resetGvoJourney({ yieldBeforeMutation: () => new Promise<void>((resolve) => { release = resolve; }) });
+    expect(isJourneyResetInProgress()).toBe(true);
+    expect(getJourneyRuntimeContext()).toMatchObject({ active: false, authorized: false, attemptId: null });
+    expect((await markEssentialPresented(capturedPresentation)).ok).toBe(false);
+    expect((await confirmEssentialStep(capturedConfirmation)).ok).toBe(false);
+    expect(persistJourneyReceipt(null, resetMutationToken).ok).toBe(false);
+    release();
+    expect(await reset).toMatchObject({ ok: true });
+    expect(isJourneyResetInProgress()).toBe(false);
+    expect(persistJourneyReceipt(null, resetMutationToken)).toMatchObject({ ok: false, reason: "stale_revision" });
+    expect((await markEssentialPresented(capturedPresentation)).ok).toBe(false);
+    expect(readEssentialSnapshot()?.stations[1].presentedStepIds).toEqual([]);
+
+    setJourneyRuntimeContext({ ...oldContext, attemptId: "after-reset" });
+    expect(await markEssentialPresented(capturedPresentation)).toMatchObject({ ok: false, reason: "stale_revision" });
+    expect(await confirmEssentialStep(capturedConfirmation)).toMatchObject({ ok: false, reason: "stale_revision" });
+    expect(readEssentialSnapshot()?.stations[1].presentedStepIds).toEqual([]);
+    expect(readProgress().progress?.completedStations).toEqual([]);
+    expect((await markEssentialPresented({ ...capturedPresentation, attemptId: "after-reset" })).ok).toBe(true);
+    expect(readEssentialSnapshot()?.stations[1].presentedStepIds).toEqual(["intro"]);
+  });
+
+  it("detecta crédito cambiado durante yield sin borrarlo ni afirmar copySafe", async () => {
+    const { localStorage, sessionStorage, storage } = seededBackends();
+    const initial = '{"schemaVersion":1,"completedStations":[],"updatedAt":null}';
+    const credited = '{"schemaVersion":1,"completedStations":[1],"updatedAt":"external-credit"}';
+    localStorage.values.set("gvo.progress.v1", initial);
+    const beforeSession = new Map(sessionStorage.values);
+    const result = await resetGvoJourney({ storage, yieldBeforeMutation: async () => {
+      expect(isJourneyResetInProgress()).toBe(true);
+      localStorage.values.set("gvo.progress.v1", credited);
+    } });
+    expect(result).toMatchObject({ ok: false, errorCode: "reset_conflict", failedStage: "snapshot", copySafe: false, rollbackAttempted: false, rollbackVerified: false });
+    expect(localStorage.getItem("gvo.progress.v1")).toBe(credited);
+    expect(localStorage.mutations).toEqual([]);
+    expect(sessionStorage.values).toEqual(beforeSession);
+    expect(isJourneyResetInProgress()).toBe(false);
+  });
+
+  it("rollback restaura sólo sus ausencias verificadas y conserva crédito externo posterior a su delete", async () => {
+    const credited = '{"schemaVersion":1,"completedStations":[1],"updatedAt":"external-credit"}';
+    const seeded = seededBackends({ local: { removeItem: (key) => {
+      if (key === "gvo.station1.v1") {
+        // A deterministic local interleaving, not an atomic cross-tab transaction.
+        backing.values.set("gvo.progress.v1", credited);
+        throw new Error("delete failure after external credit");
+      }
+    } } });
+    const backing = seeded.localStorage;
+    backing.values.set("gvo.progress.v1", '{"schemaVersion":1,"completedStations":[],"updatedAt":null}');
+    const beforeLocal = new Map(backing.values);
+    const beforeSession = new Map(seeded.sessionStorage.values);
+    expect(await resetGvoJourney({ storage: seeded.storage })).toMatchObject({ ok: false, failedStage: "rollback", copySafe: false, rollbackAttempted: true, rollbackVerified: false });
+    expect(backing.getItem("gvo.progress.v1")).toBe(credited);
+    for (const [key, raw] of beforeLocal) {
+      if (key !== "gvo.progress.v1") expect(backing.getItem(key)).toBe(raw);
+    }
+    expect(backing.mutations).not.toContain("set:gvo.progress.v1");
+    expect(seeded.sessionStorage.values).toEqual(beforeSession);
+    expect(isJourneyResetInProgress()).toBe(false);
+  });
+
+  it("libera la barrera también si falla el snapshot y mantiene inactivo el intento anterior", async () => {
+    setJourneyRuntimeContext({ active: true, attemptId: "snapshot-failed", screen: 1, mode: "normal", authorized: true, reviewReturnAllowed: false });
+    const { storage } = seededBackends({ local: { getItem: () => {
+      expect(isJourneyResetInProgress()).toBe(true);
+      expect(getJourneyRuntimeContext()).toMatchObject({ active: false, authorized: false, attemptId: null });
+      throw new Error("snapshot failure");
+    } } });
+    expect(await resetGvoJourney({ storage })).toMatchObject({ ok: false, failedStage: "snapshot", copySafe: false });
+    expect(isJourneyResetInProgress()).toBe(false);
+    expect(getJourneyRuntimeContext()).toMatchObject({ active: false, authorized: false, attemptId: null });
   });
 });

@@ -1,4 +1,5 @@
 import type { ProgressStorage } from "../../domain/progress/progress.types";
+import { beginJourneyReset, finishJourneyReset } from "../journey/journeyEssential";
 import {
   GVO_JOURNEY_RESET_ALLOWLIST,
   type JourneyResetBackend,
@@ -109,12 +110,25 @@ export function verifyInitialJourneyState(
 export function restoreJourneyResetSnapshot(
   snapshot: readonly JourneyResetSnapshotEntry[],
   storage: JourneyResetStorageBackends,
+  expectedCurrent?: ReadonlyMap<string, string | null>,
 ): boolean {
   let restoreSucceeded = true;
 
   for (const entry of snapshot) {
     try {
       const backend = backendFor(entry, storage);
+      if (expectedCurrent) {
+        const identity = `${entry.backend}:${entry.key}`;
+        // During reset, only restore a value whose verified deletion belongs to
+        // this attempt. A different current raw belongs to another writer.
+        if (!expectedCurrent.has(identity)) continue;
+        const current = backend.getItem(entry.key);
+        if (current === entry.raw) continue;
+        if (current !== expectedCurrent.get(identity)) {
+          restoreSucceeded = false;
+          continue;
+        }
+      }
       if (entry.existed && entry.raw !== null) {
         backend.setItem(entry.key, entry.raw);
       } else {
@@ -148,11 +162,12 @@ function failureResult(
   snapshot: readonly JourneyResetSnapshotEntry[] | null,
   rollbackAttempted: boolean,
   rollbackVerified: boolean,
+  conflictDetected = false,
 ): JourneyResetResult {
   const snapshotCreated = snapshot !== null;
 
   return {
-    copySafe: snapshotCreated && rollbackAttempted && rollbackVerified,
+    copySafe: snapshotCreated && rollbackAttempted && rollbackVerified && !conflictDetected,
     durationMs: Math.max(0, now() - startedAt),
     errorCode,
     failedStage,
@@ -167,58 +182,88 @@ function failureResult(
 export async function resetGvoJourney(
   dependencies: ResetGvoJourneyDependencies = {},
 ): Promise<JourneyResetResult> {
-  const allowlist = dependencies.allowlist ?? GVO_JOURNEY_RESET_ALLOWLIST;
-  const now = dependencies.now ?? Date.now;
-  const storage = dependencies.storage ?? defaultStorageBackends();
-  const yieldBeforeMutation =
-    dependencies.yieldBeforeMutation ?? (() => Promise.resolve());
-  const startedAt = now();
-  let snapshot: readonly JourneyResetSnapshotEntry[];
-  let failedStage: JourneyResetFailureStage = "snapshot";
-
+  // Close current writers and invalidate their captured attempts before any
+  // storage getter, snapshot or asynchronous yield can run.
+  const resetToken = beginJourneyReset();
   try {
-    snapshot = createJourneyResetSnapshot(allowlist, storage);
-  } catch {
-    return failureResult(
-      startedAt,
-      now,
-      "snapshot",
-      "snapshot_failed",
-      null,
-      false,
-      false,
-    );
-  }
+    const allowlist = dependencies.allowlist ?? GVO_JOURNEY_RESET_ALLOWLIST;
+    const now = dependencies.now ?? Date.now;
+    const yieldBeforeMutation =
+      dependencies.yieldBeforeMutation ?? (() => Promise.resolve());
+    const startedAt = now();
+    let storage: JourneyResetStorageBackends;
+    let snapshot: readonly JourneyResetSnapshotEntry[];
+    let failedStage: JourneyResetFailureStage = "snapshot";
+    const deletedByThisReset = new Map<string, string | null>();
+    let conflictDetected = false;
 
-  try {
-    await yieldBeforeMutation();
-    failedStage = "delete";
-    for (const entry of allowlist) {
-      backendFor(entry, storage).removeItem(entry.key);
+    try {
+      storage = dependencies.storage ?? defaultStorageBackends();
+      snapshot = createJourneyResetSnapshot(allowlist, storage);
+    } catch {
+      return failureResult(startedAt, now, "snapshot", "snapshot_failed", null, false, false);
     }
 
-    failedStage = "verify";
-    if (!verifyInitialJourneyState(allowlist, storage)) {
-      throw new Error("initial_state_not_verified");
-    }
+    try {
+      await yieldBeforeMutation();
+      // A stable copy before the yield is insufficient: external storage may
+      // have changed while our own writers were suspended.
+      for (const entry of snapshot) {
+        if (backendFor(entry, storage).getItem(entry.key) !== entry.raw) {
+          conflictDetected = true;
+          throw new Error("snapshot_changed");
+        }
+      }
+      failedStage = "delete";
+      for (const entry of snapshot) {
+        const backend = backendFor(entry, storage);
+        if (backend.getItem(entry.key) !== entry.raw) {
+          conflictDetected = true;
+          throw new Error("snapshot_changed");
+        }
+        if (!entry.existed) continue;
+        try {
+          backend.removeItem(entry.key);
+          const afterDelete = backend.getItem(entry.key);
+          if (afterDelete === null) deletedByThisReset.set(`${entry.backend}:${entry.key}`, null);
+          else if (afterDelete !== entry.raw) {
+            conflictDetected = true;
+            throw new Error("delete_conflict");
+          }
+        } catch (error) {
+          // A storage wrapper may perform the deletion and then throw. Only
+          // an observed absence authorizes this attempt to restore that raw.
+          try {
+            if (backend.getItem(entry.key) === null) {
+              deletedByThisReset.set(`${entry.backend}:${entry.key}`, null);
+            }
+          } catch { /* No proof of deletion: do not claim ownership. */ }
+          throw error;
+        }
+      }
 
-    return {
-      deleted: allowlist.map((entry) => `${entry.backend}:${entry.key}`),
-      durationMs: Math.max(0, now() - startedAt),
-      ok: true,
-      snapshotCount: snapshot.length,
-      verifiedInitialState: true,
-    };
-  } catch {
-    const rollbackVerified = restoreJourneyResetSnapshot(snapshot, storage);
-    return failureResult(
-      startedAt,
-      now,
-      rollbackVerified ? failedStage : "rollback",
-      rollbackVerified ? `${failedStage}_failed` : "rollback_failed",
-      snapshot,
-      true,
-      rollbackVerified,
-    );
+      failedStage = "verify";
+      if (!verifyInitialJourneyState(allowlist, storage)) throw new Error("initial_state_not_verified");
+      return {
+        deleted: allowlist.map((entry) => `${entry.backend}:${entry.key}`),
+        durationMs: Math.max(0, now() - startedAt),
+        ok: true,
+        snapshotCount: snapshot.length,
+        verifiedInitialState: true,
+      };
+    } catch {
+      const rollbackAttempted = deletedByThisReset.size > 0;
+      const rollbackVerified = restoreJourneyResetSnapshot(snapshot, storage, deletedByThisReset);
+      return failureResult(
+        startedAt, now,
+        rollbackVerified || !rollbackAttempted ? failedStage : "rollback",
+        conflictDetected ? "reset_conflict" : rollbackVerified ? `${failedStage}_failed` : "rollback_failed",
+        snapshot, rollbackAttempted, rollbackVerified, conflictDetected,
+      );
+    }
+  } finally {
+    // Both success and every failure leave stale callbacks suspended. The
+    // controller may authorize a fresh attempt after this reconciliation.
+    finishJourneyReset(resetToken);
   }
 }

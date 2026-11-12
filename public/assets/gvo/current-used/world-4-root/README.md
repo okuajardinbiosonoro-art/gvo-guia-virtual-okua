@@ -1,11 +1,34 @@
-# Assets utilizados — Mundo IV / Estación IV
+# Assets utilizados — Sala IV
 
-## Estado
+## Candidata de acabado — 2026-10-23
+
+`INTEGRATION_CANDIDATE / HUMAN_PENDING`
+
+La candidata usa una mesa vertical real para distribuir los ocho componentes
+DOM en dos columnas y cuatro filas. `World4Stage.tsx` conserva la composición
+horizontal anterior en landscape. Los objetos, pedestales, halos y las dos poses
+compartidas de Lía mantienen sus bytes; la ruta y los desplazamientos se adaptan
+a cada artboard. Texto, estados, respuestas de teclado y acceso al QR siguen en DOM.
+
+| Nuevo par runtime / espejo | Formato / dimensiones | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| `environment/world4_table_environment_portrait_v02.webp` | WebP RGB / 768×1024 | 48.478 | `5e863f4f084becf6a528b1e0af77318442ba5fe8941493b19affd01f51adf343` |
+
+Runtime: `public/assets/gvo/stations/world-4/system-table/runtime/`.
+Espejo: esta carpeta. Original:
+`assets-source/editorial-2026-10-23/finishing/W4_PORTRAIT_SYSTEM_TABLE_v02.png`.
+Procedencia, hashes de original y derivado, transparencia y consumidor están en
+[`revision-acabado/assets-manifest.json`](../../../../../docs/narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json).
+El umbral compartido se registra en [`shared/navigation`](../shared/navigation/README.md).
+Las comprobaciones de integración no constituyen aprobación humana ni publicación.
+
+## Estado histórico de los originales
 
 `CERRADA 018E / HUMAN_APPROVED / RUNTIME / ESPEJO BYTE-IDÉNTICO / PWA INSTALADA NO CERTIFICADA`
 
-Esta carpeta es el espejo canónico de los 20 assets aprobados que consume la
-composición estática de `src/screens/World4Root/`. Los imports runtime viven en:
+Esta carpeta conserva los 20 pares aprobados anteriores y añade el par candidato
+descrito arriba. La tabla siguiente documenta los originales históricos. Los
+imports runtime viven en:
 
 ```text
 public/assets/gvo/stations/world-4/system-table/runtime/

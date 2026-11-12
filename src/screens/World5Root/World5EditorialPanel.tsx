@@ -1,4 +1,5 @@
 import type { ReactNode, RefObject } from "react";
+import { world5RuntimeAssets } from "./world5RuntimeAssets";
 
 export type World5LiaRole = "explain" | "attend" | "lead";
 
@@ -9,6 +10,7 @@ type World5EditorialPanelProps = {
   lead: string;
   liaAsset: string;
   liaRole: World5LiaRole;
+  liaPlacement?: "panel" | "stage";
   status?: string;
   support?: string;
   title?: string;
@@ -22,6 +24,7 @@ export function World5EditorialPanel({
   lead,
   liaAsset,
   liaRole,
+  liaPlacement = "panel",
   status,
   support,
   title,
@@ -29,11 +32,11 @@ export function World5EditorialPanel({
 }: World5EditorialPanelProps) {
   const Title = titleAs;
   return (
-    <aside
-      className="s5-editorial"
-      aria-label="Orientación de Lía para Estación V"
-    >
-      <article className="s5-story-card" aria-atomic="true" aria-live="polite">
+    <aside className="s5-editorial" aria-label="Orientación de Lía para Sala V">
+      <article
+        className={`s5-story-card${liaPlacement === "stage" ? " s5-story-card--scene-lia" : ""}`}
+        data-runtime-asset={world5RuntimeAssets.readingFrame}
+      >
         <div className="s5-editorial-copy">
           {context ? <p className="s5-kicker">{context}</p> : null}
           {title ? (
@@ -47,23 +50,34 @@ export function World5EditorialPanel({
           ) : null}
           <p className="s5-lead">{lead}</p>
           {support ? <p className="s5-support">{support}</p> : null}
-          {status ? <p className="s5-status-copy">{status}</p> : null}
+          {status ? (
+            <p
+              className="s5-status-copy"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {status}
+            </p>
+          ) : null}
           {action ? <div className="s5-editorial-action">{action}</div> : null}
         </div>
 
-        <figure
-          className={`s5-lia s5-lia--${liaRole}`}
-          data-station5-lia={liaRole}
-          aria-hidden="true"
-          style={{ pointerEvents: "none" }}
-        >
-          <img
-            src={liaAsset}
-            alt=""
-            draggable="false"
-            data-runtime-asset={liaAsset}
-          />
-        </figure>
+        {liaPlacement === "panel" ? (
+          <figure
+            className={`s5-lia s5-lia--${liaRole}`}
+            data-station5-lia={liaRole}
+            aria-hidden="true"
+            style={{ pointerEvents: "none" }}
+          >
+            <img
+              src={liaAsset}
+              alt=""
+              draggable="false"
+              data-runtime-asset={liaAsset}
+            />
+          </figure>
+        ) : null}
       </article>
     </aside>
   );

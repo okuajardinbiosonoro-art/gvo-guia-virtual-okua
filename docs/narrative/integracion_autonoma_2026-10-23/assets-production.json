@@ -1,0 +1,250 @@
+{
+  "version": 2,
+  "status": "LOCAL_REVIEW_CANDIDATE",
+  "reused": [
+    {
+      "id": "W3_REUSE_environment_1",
+      "room": 3,
+      "function": "environment",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/environment/world3_ambient_texture_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/environment/world3_ambient_texture_v01.webp",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "format": "webp",
+      "alpha": false,
+      "sha256": "98ba450cb7b8a753a288c438011238ecd94973ca652dcc39500f5e9cf3c9cbb2",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_notebook_2",
+      "room": 3,
+      "function": "notebook",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/notebook/world3_notebook_turn_page_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/notebook/world3_notebook_turn_page_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "93799b95189251ec6ee5db833c14561b0f444db14382cf3e0382ceb9b447408d",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_lia_3",
+      "room": 3,
+      "function": "lia",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_idle_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_idle_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "0fc7473633449418a3479457b4a4f237c6f5f64e87f631674dba94bf535ee37d",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_lia_4",
+      "room": 3,
+      "function": "lia",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_pointing_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_pointing_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "51780faf17a5ab2566d0264698f61115be1d01745d73beb52d4f6d10397952ca",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_lia_5",
+      "room": 3,
+      "function": "lia",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_observing_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_observing_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "196e1bd67d7efb44675f2774e1edf2524c9e9c18dc2968ed6d9a9689eee9a5d2",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_lia_6",
+      "room": 3,
+      "function": "lia",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_confirming_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_confirming_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "a34d643e4ce517fcd6c09f1ab6c50f0930496fef1a8d9f7a55a6aea12afc0881",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    },
+    {
+      "id": "W3_REUSE_lia_7",
+      "room": 3,
+      "function": "lia",
+      "consumer": "src/screens/World3Root/World3RootScreen.tsx",
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/lia_world3_closure_v01.png",
+      "mirror": "public/assets/gvo/current-used/world-3-root/lia/lia_world3_closure_v01.png",
+      "source": "pre-existing approved master, unchanged bytes",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "format": "png",
+      "alpha": true,
+      "sha256": "c82ef8e9334fa5bf5359ffc4303a7d60514b29ae6785d37fadc0613812df2afb",
+      "qa": "byte-identical reuse; composition candidate under agent review"
+    }
+  ],
+  "generated": [
+    {
+      "id": "W3_INTRO_TRIANGLE",
+      "room": 3,
+      "function": "W3_INTRO_TRIANGLE",
+      "source": "assets-source/editorial-2026-10-23/W3_INTRO_TRIANGLE_v01.png",
+      "source_sha256": "df6eed654a0a110405b1c3ebf0c288eedbeb93f381f17b5af684534f664b83b5",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "source_alpha": true,
+      "transparent_pixels": 923574,
+      "alpha_bounds": {
+        "left": 83,
+        "top": 201,
+        "right": 1170,
+        "bottom": 1083
+      },
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_intro_token_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_intro_token_v01.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "webp-lossless-RGBA",
+      "bytes": 101554,
+      "sha256": "b6b1a431d01c8c37be485de41681c8d6537ae54ca325903135afb8490fe66eda",
+      "version": 1,
+      "derivation": "Alpha-bounds crop, nearest resize, centered512RGBA canvas; original preserved. Exact symbol extracted from the existing OKUA brand PNG in E:/OKUA/05_ACTIVOS_MARCA_MEDIA/Logos/logo.png (crop6,4,58,71), proportions preserved, nearest scaling and multiply compositing. No redrawing. Supersedes the rejected sketch reconstruction per direct owner correction.",
+      "qa": "PASS file/hash/mirror/alpha and browser composition; see assets-final-qa.json; human acceptance pending",
+      "approval": "candidate_for_human_review",
+      "images_chat_url": "gvo-provenance:images-1"
+    },
+    {
+      "id": "W3_PRACTICE_LISTENING",
+      "room": 3,
+      "function": "W3_PRACTICE_LISTENING",
+      "source": "assets-source/editorial-2026-10-23/W3_PRACTICE_LISTENING_v01.png",
+      "source_sha256": "e14374409bed14187130ad8c33332c2a15894cd6b50c5c43e235279fd7330251",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "source_alpha": true,
+      "transparent_pixels": 1043950,
+      "alpha_bounds": {
+        "left": 220,
+        "top": 119,
+        "right": 1034,
+        "bottom": 1151
+      },
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_practice_listening_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_practice_listening_v01.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "webp-lossless-RGBA",
+      "bytes": 107406,
+      "sha256": "1c3c7f8c9094e757f23bc3fefa685930a62c8a224ab6e63faf37cc3d5970f3ed",
+      "version": 1,
+      "derivation": "Alpha-bounds crop, nearest resize, centered512RGBA canvas; original preserved.",
+      "qa": "PASS file/hash/mirror/alpha and browser composition; see assets-final-qa.json; human acceptance pending",
+      "approval": "candidate_for_human_review",
+      "images_chat_url": "gvo-provenance:images-1"
+    },
+    {
+      "id": "W3_BENEFITS_CARE",
+      "room": 3,
+      "function": "W3_BENEFITS_CARE",
+      "source": "assets-source/editorial-2026-10-23/W3_BENEFITS_CARE_v01.png",
+      "source_sha256": "b5576b67679c4be93c36fd96a4af27be4fdc88ddcef44dc571ee96dc0caa6be3",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "source_alpha": true,
+      "transparent_pixels": 1115922,
+      "alpha_bounds": {
+        "left": 72,
+        "top": 245,
+        "right": 1186,
+        "bottom": 1077
+      },
+      "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/practice/world3_benefits_care_v01.webp",
+      "mirror": "public/assets/gvo/current-used/world-3-root/practice/world3_benefits_care_v01.webp",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "webp-lossless-RGBA",
+      "bytes": 75392,
+      "sha256": "82b7ddb60ba448ca8e944cb2f0231b912fff50ecc23012baae45009fe8042e5d",
+      "version": 1,
+      "derivation": "Alpha-bounds crop, nearest resize, centered512RGBA canvas; original preserved.",
+      "qa": "PASS file/hash/mirror/alpha and browser composition; see assets-final-qa.json; human acceptance pending",
+      "approval": "candidate_for_human_review",
+      "images_chat_url": "gvo-provenance:images-1"
+    }
+  ],
+  "pending": [],
+  "images_chat_url": "gvo-provenance:images-1",
+  "brand_source": {
+    "path": "assets-source/editorial-2026-10-23/logo-candidate-from-brand-archive.png",
+    "original": "E:/OKUA/05_ACTIVOS_MARCA_MEDIA/Logos/logo.png",
+    "sha256": "02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a",
+    "symbol_crop": {
+      "left": 6,
+      "top": 4,
+      "width": 58,
+      "height": 71
+    },
+    "status": "exact_symbol_extracted_from_existing_brand_PNG; proportions_and_trace_preserved; no_redrawing",
+    "owner_correction": "User explicitly rejected the triangle interior and requested the OKUA symbol; supersedes the rejected sketch reconstruction."
+  },
+  "retired_from_world3_screen": [
+    "old plant/prototype/signal record illustrations",
+    "electronic build route and signal traces",
+    "old notebook hardware annotations",
+    "old open notebook base (superseded by the generated portrait folio)"
+  ],
+  "retired_files_preserved": true,
+  "images_generation_attempted": true,
+  "images_generation_completed": true
+}

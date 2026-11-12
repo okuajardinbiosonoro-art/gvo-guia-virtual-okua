@@ -374,12 +374,13 @@
 
 @media (max-width: 899px), (max-height: 700px) {
   .world2-capture-timeline {
-    inset: 1rem;
-    grid-template-rows: auto minmax(12rem, 1fr) auto auto;
+    position: relative;
+    inset: auto;
+    grid-template-rows: auto auto auto auto;
   }
 
   .world2-capture-timeline__swipe-zone {
-    min-height: 12rem;
+    min-height: clamp(11rem, 38svh, 24rem);
   }
 
   .world2-capture-timeline__readout {
@@ -387,6 +388,17 @@
   }
 
   .world2-capture-timeline__controls {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.65rem), 1fr));
     gap: 0.4rem;
+  }
+
+  .world2-capture-timeline__step-control {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .world2-capture-timeline__control-label {
+    overflow-wrap: normal;
+    text-align: center;
   }
 }

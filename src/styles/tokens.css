@@ -1,28 +1,32 @@
 :root {
   color-scheme: light;
-  --gvo-font-display: "Pixelify Sans Variable", "Pixelify Sans", system-ui,
-    sans-serif;
+  --gvo-font-display:
+    "Pixelify Sans Variable", "Pixelify Sans", system-ui, sans-serif;
   --gvo-font-heading: var(--gvo-font-display);
   --gvo-font-ui: var(--gvo-font-display);
   --gvo-font-microcopy: var(--gvo-font-display);
-  --gvo-font-system-readable: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  --gvo-font-body: var(--gvo-font-system-readable);
-  --gvo-font-dialog: var(--gvo-font-system-readable);
+  --gvo-font-system-readable: var(--gvo-font-display);
+  --gvo-font-body: var(--gvo-font-display);
+  --gvo-font-dialog: var(--gvo-font-display);
 
   --gvo-text-display-size: clamp(2.2rem, 14vw, 4.1rem);
   --gvo-text-title-size: clamp(1.25rem, 6vw, 2rem);
   --gvo-text-heading-size: clamp(1.08rem, 4.4vw, 1.34rem);
   --gvo-text-subtitle-size: clamp(0.88rem, 3.8vw, 1.02rem);
   --gvo-text-body-size: 1rem;
-  --gvo-text-dialog-size: clamp(0.86rem, 3.25vw, 1rem);
+  --gvo-text-dialog-size: clamp(1rem, 3.8vw, 1.12rem);
   --gvo-text-ui-size: clamp(0.78rem, 3.2vw, 0.95rem);
   --gvo-text-microcopy-size: clamp(0.88rem, 3.8vw, 1.02rem);
+  --gvo-room-title-size: clamp(1.25rem, calc(1rem + 1.35vw), 2rem);
+  --gvo-room-title-line: 1.16;
+  --gvo-exit-background: #261e30;
+  --gvo-exit-text: #fff3d3;
+  --gvo-exit-border: #c6ae79;
 
   --gvo-line-height-tight: 1;
-  --gvo-line-height-heading: 1.08;
+  --gvo-line-height-heading: 1.16;
   --gvo-line-height-body: 1.5;
-  --gvo-line-height-dialog: 1.32;
+  --gvo-line-height-dialog: 1.45;
   --gvo-line-height-ui: 1.12;
 
   --gvo-font-weight-regular: 400;

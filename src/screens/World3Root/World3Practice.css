@@ -1,0 +1,272 @@
+/* OBS04: original proportional notebook, three chapters and seven literal leaves. */
+.s3-practice-screen {
+  --s3-title-origin-top: 1.4rem;
+  min-width: 0;
+  min-height: 100svh;
+  overflow: visible;
+  padding: var(--s3-title-origin-top) max(0.5rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-bottom));
+  gap: 0.6rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: start;
+  justify-items: center;
+}
+.s3-practice-screen .s3-title {
+  --s3-title-edge: max(56px, calc(max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)) + 56px));
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: 0;
+  grid-template-columns: var(--s3-title-edge) minmax(0, 1fr) var(--s3-title-edge);
+  gap: 0;
+  container: s3-title / inline-size;
+}
+.s3-practice-screen .s3-title h1 {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  width: fit-content;
+  max-width: min(28ch, 100%);
+  margin: 0;
+  overflow-wrap: anywhere;
+  font: 700 var(--gvo-room-title-size)/var(--gvo-room-title-line) var(--gvo-font-heading);
+}
+/* The fixed utility control keeps its upper row when enlarged text or a narrow
+   center track needs a full-width heading. No viewport/font mutation is used. */
+@container s3-title (width < calc(112px + 16em)) {
+  .s3-practice-screen .s3-title h1 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-block-start: max(0px, calc(env(safe-area-inset-top, 0px) + 64px - var(--s3-title-origin-top)));
+  }
+}
+.s3-practice-layout { position: relative; isolation: isolate; align-self: center; width: min(100%, 700px); padding-top: 3rem; }
+.s3-practice-notebook {
+  position: relative;
+  width: min(100%, 650px);
+  aspect-ratio: 892 / 989;
+  margin: 0 auto;
+  color: #362a26;
+  border: 0;
+  padding: 0;
+  isolation: isolate;
+}
+.s3-practice-base-clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.s3-practice-base {
+  position: absolute;
+  /* 1536×1024 image divided by alpha width892, without independent Y scaling. */
+  width: 172.19730942%; max-width: none; height: auto;
+  left: -35.53811659%; top: -1.31445905%;
+  image-rendering: pixelated;
+}
+.s3-practice-paper { position: absolute; z-index: 2; display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: visible; overflow-wrap: break-word; }
+.s3-practice-scroll { flex: 1 1 auto; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #715276 #e8d7b5; padding: 0.2rem 0.35rem 0.35rem 0.15rem; }
+.s3-practice-scroll:focus-visible { outline: 2px solid #644272; outline-offset: 2px; }
+.s3-practice-paper h2 { margin: 0.15rem 0 0.2rem; font: 700 1.375rem/1.15 var(--gvo-font-heading); color: #362a26; }
+.s3-practice-paper h3 { margin: 0.15rem 0 0; font-size: 1rem; font-weight: 500; line-height: 1.35; color: #493529; }
+.s3-practice-paper p { color: #362a26; font-size: max(1.125rem, 18px); line-height: 1.5; }
+.s3-practice-benefits {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0.85rem 0 0;
+  color: #362a26;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.s3-practice-benefits > div {
+  padding-block-start: 0.6rem;
+  border-block-start: 1px solid #a68a64;
+}
+.s3-practice-benefits dt { font-weight: 700; }
+.s3-practice-benefits dd { margin: 0.2rem 0 0; }
+.s3-practice-intro { margin: 0.4rem 0; }
+.s3-practice-number { display: inline-block; white-space: nowrap; word-break: normal; overflow-wrap: normal; color: #573b31 !important; font-size: 1rem !important; line-height: 1.5; margin: 0; }
+.s3-practice-index { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+.s3-practice-index button { display: grid; grid-template-columns: max-content clamp(56px, 18vw, 84px) minmax(0, 1fr); align-items: center; gap: 0.35rem; width: 100%; min-height: 84px; padding: 0.1rem 0; text-align: left; background: transparent; color: #362a26; border: 0; border-radius: 0.15rem; }
+.s3-practice-index li:last-child button { border-bottom: 0; }
+.s3-practice-index strong { display: block; font-size: max(1.125rem, 18px); line-height: 1.25; }
+.s3-practice-index span span { display: block; margin-top: 0.12rem; font-size: 1rem; line-height: 1.3; }
+.s3-practice-page-heading { display: grid; grid-template-columns: minmax(0, 1fr) clamp(88px, 22vw, 112px); align-items: center; gap: 0.35rem; margin-bottom: 0.45rem; }
+.s3-practice-instructions { margin-top: 0.45rem; }
+.s3-practice-instructions p { margin: 0; }
+.s3-practice-paper .s3-practice-invitation { font-size: max(1rem, 16px); margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid #b4a080; }
+.s3-practice-paper-actions { position: relative; width: min(100%, 650px); min-width: 0; margin: 0.25rem auto 0; padding: 0; color: #ead9b0; }
+.s3-practice-scroll-cue { display: block; font-size: 1rem; line-height: 1.4; text-align: center; color: #ead9b0; }
+.s3-practice-scroll-anchor { position: absolute; right: 14%; top: -1rem; width: 1px; height: 1px; pointer-events: none; }
+.s3-practice-page-nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.2rem 0.5rem; margin: 0; }
+.s3-practice-page-nav button { min-width: 48px; min-height: 48px; max-width: 100%; padding: 0.45rem 0.25rem; font-size: max(1rem, 16px); line-height: 1.35; text-align: center; border: 0; border-bottom: 2px solid #bda2cf; border-radius: 0; background: transparent; color: #f2e3c1; overflow-wrap: anywhere; }
+.s3-practice-page-nav .s3-practice-index-tab { position: static; text-align: left; border: 0; }
+.s3-practice-screen button { font-family: var(--gvo-font-ui); cursor: pointer; }
+.s3-practice-screen button:focus-visible { outline: 3px solid #b69acb; outline-offset: 2px; }
+.s3-practice-screen button:disabled { cursor: default; }
+.s3-practice-turn-window { position: absolute; z-index: 5; pointer-events: none; }
+.s3-practice-turn-window .s3-page-turn-stage { inset: 0; }
+.s3-practice-guide { position: absolute; z-index: 3; pointer-events: none; top: -0.15rem; left: 4%; width: clamp(96px, 25vw, 132px); aspect-ratio: 1; transition: left 550ms ease, rotate 280ms ease; }
+.s3-practice-guide .s3-lia { position: relative !important; inset: auto !important; width: 100% !important; height: 100% !important; transform: none !important; margin: 0; }
+.s3-practice-guide .s3-lia__sprite { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.s3-practice-layout[data-lia-destination="planta"] .s3-practice-guide,
+.s3-practice-layout[data-lia-destination="senal"] .s3-practice-guide { left: calc(94% - clamp(96px, 25vw, 132px)); rotate: -4deg; }
+.s3-practice-layout[data-lia-destination="prototipo"] .s3-practice-guide { left: 4%; rotate: 3deg; }
+.s3-practice-guide .s3-lia[data-lia-action="respond"] .s3-lia__sprite { animation: s3-practice-lia-response 520ms ease-out both; }
+.s3-practice-motif { display: block; width: 100%; height: auto; object-fit: contain; image-rendering: pixelated; pointer-events: none; transition: transform 240ms ease; }
+.s3-practice-motif--index { max-height: 92px; }
+.s3-practice-motif-button { position: relative; display: grid; place-items: center; width: 100%; min-width: 48px; min-height: 48px; padding: 0.15rem; border: 2px solid transparent; border-radius: 0.35rem; background: transparent; }
+.s3-practice-motif-button[data-motif-selected="true"] { border-color: #75518e; background: rgb(105 72 127 / 12%); }
+.s3-practice-motif-response { position: absolute; inset: 5%; border: 2px solid transparent; pointer-events: none; opacity: 0; }
+.s3-practice-motif-button[data-motif-selected="true"][data-motif-kind="planta"] .s3-practice-motif { animation: s3-practice-intro-selection 700ms ease-out both; }
+.s3-practice-motif-button[data-motif-selected="true"][data-motif-kind="prototipo"] .s3-practice-motif-response { border-color: #79558a; border-radius: 50%; animation: s3-practice-listening-ring 1300ms ease-out 2; }
+.s3-practice-motif-button[data-motif-selected="true"][data-motif-kind="senal"] .s3-practice-motif { animation: s3-practice-care-selection 700ms ease-out both; }
+.s3-practice-footer { position: relative; z-index: 2; width: min(100%, 650px); color: #ead9b0; }
+.s3-practice-room-exit { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 0.5rem 0.9rem; padding: 0.5rem 0.4rem; }
+.s3-practice-room-exit p { color: #ead9b0; font-size: 1rem; line-height: 1.5; max-width: 38ch; margin: 0; }
+.s3-practice-footer [role="alert"] { padding: 0.8rem; border: 1px solid #ab91bb; background: #21192f; }
+.s3-practice-footer [role="alert"] p { color: #f1e1fa; font-size: 1rem; line-height: 1.5; }
+.s3-practice-footer [role="alert"] button { min-width: 48px; min-height: 48px; color: inherit; background: transparent; border: 0; border-bottom: 1px solid currentColor; }
+@keyframes s3-practice-intro-selection { 35% { transform: translateY(-5px) rotate(-4deg); } to { transform: none; } }
+@keyframes s3-practice-care-selection { 30% { transform: scale(1.06); } 65% { transform: scale(0.98); } to { transform: none; } }
+@keyframes s3-practice-listening-ring { from { opacity: 0.9; transform: scale(0.65); } to { opacity: 0; transform: scale(1.18); } }
+@keyframes s3-practice-lia-response { 35% { transform: rotate(-4deg); } 70% { transform: rotate(2deg); } to { transform: none; } }
+.s3-practice-screen[data-journey-active="false"] *,
+.s3-practice-screen[data-document-visible="false"] * { animation-play-state: paused !important; }
+@media (max-width: 360px) { .s3-practice-page-heading { gap: 0.25rem; } .s3-practice-index button { gap: 0.25rem; } .s3-practice-guide { width: 96px; } }
+@media (orientation: landscape) and (max-height: 550px) { .s3-practice-screen { --s3-title-origin-top: 0.65rem; } .s3-practice-layout { width: min(100%, 570px); padding-top: 2.6rem; } .s3-practice-guide { width: 100px; } }
+@media (prefers-reduced-motion: reduce) { .s3-practice-guide, .s3-practice-motif { transition: none; } .s3-practice-motif-button *, .s3-practice-guide .s3-lia__sprite { animation: none !important; transform: none !important; } }
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="floating"] .s3-practice-screen { --s3-title-origin-top: calc(var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px) + var(--gvo-final-review-dock-edge-gap, 12px) + var(--gvo-final-review-dock-block-size, 44px) + var(--gvo-final-review-content-gap, 10px)); }
+.final-review-mode-layout[data-final-review-active="true"][data-final-review-clearance-mode="floating"][data-final-review-placement="below-end"] .s3-practice-screen { --s3-title-origin-top: calc(var(--gvo-final-review-visual-offset-top, 0px) + env(safe-area-inset-top, 0px) + var(--gvo-final-review-dock-edge-gap, 12px) + 2 * var(--gvo-final-review-dock-block-size, 44px) + 2 * var(--gvo-final-review-content-gap, 10px)); }
+
+/* Page-edge UI never consumes the fixed original-paper reading window. */
+.s3-practice-folio-position { margin: 0; color: #ead9b0 !important; font-size: 1rem; line-height: 1.5; text-align: center; }
+.s3-practice-invitation { margin: 0.45rem 0 0; color: #ead9b0 !important; font-size: 1rem; line-height: 1.5; text-align: center; }
+.s3-practice-page-nav button:disabled { opacity: 0.65; }
+.s3-practice-paper button:focus-visible { outline-color: #563477; }
+.s3-practice-index li { position: relative; min-width: 0; }
+.s3-practice-index li + li::before { content: ""; position: absolute; top: -0.35rem; left: 3.2rem; right: 0; border-top: 1px solid #9f8665; pointer-events: none; }
+.s3-practice-index .s3-practice-number { justify-self: start; min-width: 2.2ch; padding: 0.1em 0.15em; font-size: 1.125rem !important; text-align: center; background: transparent; box-shadow: none; outline: none; }
+.s3-practice-index-copy { display: block; min-width: 0; }
+.s3-practice-scroll { container: s3-paper / inline-size; }
+/* At enlarged text sizes, keep the chapter's words on the full paper width
+   rather than squeezing them into the third track beside number and motif. */
+@container s3-paper (width < 11rem) {
+  .s3-practice-index button { grid-template-columns: max-content minmax(0, 1fr); }
+  .s3-practice-index .s3-practice-number { grid-column: 1; grid-row: 1; }
+  .s3-practice-index .s3-practice-motif--index { grid-column: 2; grid-row: 1; justify-self: start; }
+  .s3-practice-index-copy { grid-column: 1 / -1; grid-row: 2; }
+}
+.s3-practice-index .s3-practice-index-state { margin-top: 0.25rem; color: #593b63; }
+.s3-practice-index button[data-record-state="current"] { background: linear-gradient(90deg, rgb(105 72 127 / 13%), transparent 85%); }
+.s3-practice-index button[data-record-confirmed="true"] .s3-practice-index-state { color: #304c2c; font-weight: 700; }
+.s3-practice-index button[data-record-state="locked"] { opacity: 1; color: #665344; }
+.s3-practice-index button[data-record-state="locked"] img { filter: saturate(0.65); }
+.s3-practice-index button[data-record-state="locked"] .s3-practice-index-state { color: #665344; }
+/* Finite motif effects start only once the authentic turn has settled. */
+.s3-practice-scroll article[data-motif-presenting="true"] [data-motif-kind="planta"] .s3-practice-motif-response { border-color: #8a5d32; border-radius: 50%; animation: s3-practice-energy-ring 1100ms ease-out both; }
+.s3-practice-scroll article[data-motif-presenting="true"] [data-motif-kind="prototipo"] .s3-practice-motif-response { border-color: #79558a; border-radius: 50%; animation: s3-practice-listening-ring 1300ms ease-out 2; }
+.s3-practice-scroll article[data-motif-presenting="true"] [data-motif-kind="senal"] .s3-practice-motif { animation: s3-practice-care-selection 700ms ease-out both; }
+@keyframes s3-practice-energy-ring { from { opacity: 0.75; transform: scale(0.75); } to { opacity: 0; transform: scale(1.12); } }
+@media (prefers-reduced-motion: reduce) { .s3-practice-scroll article .s3-practice-motif-button * { animation: none !important; transform: none !important; } }
+
+.s3-practice-layout {
+  --s3-guide-size: clamp(108px, 28vw, 150px);
+  padding-top: clamp(3rem, 14vw, 4.3rem);
+}
+
+.s3-practice-guide {
+  width: var(--s3-guide-size);
+}
+
+.s3-practice-layout:is([data-lia-destination="planta"], [data-lia-destination="senal"]) .s3-practice-guide {
+  left: calc(94% - var(--s3-guide-size));
+}
+
+.s3-practice-layout[data-lia-destination="index"]:has(.s3-practice-guide-dialogue) {
+  padding-top: calc(var(--s3-guide-size) - 1.25rem);
+}
+
+.s3-practice-layout[data-lia-destination="index"] .s3-practice-guide {
+  left: calc(50% - var(--s3-guide-size) / 2);
+  filter: drop-shadow(0 0 12px rgb(237 206 147 / 65%));
+}
+
+.s3-practice-guide-dialogue {
+  position: relative;
+  width: min(100%, 36rem);
+  padding: .85rem 1rem;
+  margin: 0 auto .6rem;
+  border: 1px solid rgb(223 193 144 / 50%);
+  border-radius: .65rem;
+  background: rgb(32 24 43 / 94%);
+  color: #fff1cf;
+  text-align: center;
+}
+
+.s3-practice-guide-dialogue strong {
+  display: block;
+  color: #f2d695;
+}
+
+.s3-practice-guide-dialogue p {
+  margin: .3rem 0 0;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1.48;
+}
+
+.s3-practice-page-nav {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+}
+
+.s3-practice-folio-directions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .25rem .8rem;
+}
+
+.s3-practice-page-nav .s3-practice-index-tab {
+  text-align: center;
+}
+
+.s3-practice-steps {
+  padding-inline-start: 1.5em;
+  margin: 0;
+  font-size: max(1.125rem, 18px);
+  line-height: 1.5;
+}
+
+.s3-practice-steps > li + li {
+  margin-block-start: .7rem;
+}
+
+.s3-practice-illustration {
+  display: block;
+  width: min(100%, 12rem);
+  height: auto;
+  margin: .35rem auto .65rem;
+  image-rendering: pixelated;
+}
+
+@container s3-paper (width < 12rem) {
+  .s3-practice-page-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s3-practice-motif-button {
+    justify-self: center;
+    width: min(100%, 7rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .s3-practice-layout[data-lia-destination="index"] .s3-lia-clip[data-lia-active="true"] .s3-lia-clip__frame {
+    animation: s3-index-guide-drift 1900ms ease-in-out 2;
+  }
+
+  .s3-practice-guide .s3-lia-clip[data-lia-clip-mode="play"] .s3-lia-clip__frame {
+    animation-duration: calc(var(--s3-lia-clip-duration) * .85);
+  }
+}
+
+@keyframes s3-index-guide-drift {
+  50% { translate: 0 -5px; }
+}

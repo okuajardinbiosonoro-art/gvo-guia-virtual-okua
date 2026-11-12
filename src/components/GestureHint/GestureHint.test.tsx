@@ -97,11 +97,23 @@ describe("GestureHint", () => {
     target.remove();
   });
 
+  it("stops the new swipe after two introductory cycles without intercepting touch", () => {
+    const { container } = render(<GestureHint active variant="swipe-vertical" targetLabel="Desliza" />);
+    const hint = container.querySelector("[data-gvo-gesture-hint]");
+    act(() => vi.advanceTimersByTime(2800));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
+    expect(hint).toHaveAttribute("aria-hidden", "true");
+    act(() => vi.advanceTimersByTime(2200));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
+    act(() => vi.advanceTimersByTime(10000));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
+  });
+
   it.each([
-    ["swipe-vertical", "up", "44.7%", "6.8%"],
-    ["swipe-vertical", "down", "55.3%", "93.2%"],
-    ["swipe-horizontal", "left", "11.1%", "40.5%"],
-    ["swipe-horizontal", "right", "88.9%", "59.5%"],
+    ["swipe-vertical", "up", "30.762%", "14.844%"],
+    ["swipe-vertical", "down", "69.238%", "85.156%"],
+    ["swipe-horizontal", "left", "14.844%", "69.238%"],
+    ["swipe-horizontal", "right", "85.156%", "30.762%"],
   ] as const)(
     "resuelve %s %s con el registry compartido",
     (variant, direction, expectedX, expectedY) => {
@@ -157,13 +169,13 @@ describe("GestureHint", () => {
       );
       expect(hint).toHaveAttribute(
         "data-gvo-gesture-cycle-duration",
-        "1680ms",
+        "1100ms",
       );
       expect(hint).toHaveAttribute(
         "data-gvo-gesture-calibration-profile",
         variant === "swipe-horizontal"
-          ? "horizontal-index-alpha-v1"
-          : "vertical-index-alpha-v1",
+          ? "horizontal-oblique-alpha-v03"
+          : "vertical-oblique-alpha-v03",
       );
       expect(
         hint?.querySelector(

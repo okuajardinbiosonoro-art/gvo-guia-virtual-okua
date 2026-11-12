@@ -26,7 +26,7 @@ export function TransitionLiaSprite() {
       data-lia-placement="left-of-portal"
       data-lia-sprite-mode="cropped-background"
       role="img"
-      aria-label="Lía en versión pixelart aprobada para transición."
+      aria-label="Lía"
       data-asset-id={idleAsset.id}
     >
       <span

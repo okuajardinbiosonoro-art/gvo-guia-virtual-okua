@@ -1,5 +1,34 @@
 # Portada — interiores visuales dedicados de Portal I–V
 
+## Registro vigente de marca OBS03 — material v03
+
+Estado: `ART_TECHNICAL_CANDIDATE_SCENE_QA_PENDING_HUMAN_PENDING`.
+La cabecera consume `brand/okua-emblem-material-v03.png`: PNG RGBA real
+116×142, 44.961 bytes, SHA-256
+`476cf4dbef9cc320b5144f599982c692f22bac69dbb4d5eb32487486ad52b283`.
+El espejo coincide byte a byte. El material generado y sus originales están
+conservados fuera de `public`; su alpha se registra sobre la máscara auténtica
+única 58×71, con sus huecos, sin redibujar el símbolo ni introducir rectángulo,
+marco o texto horneado. El recorte registrado 580×710 se reduce a 116×142.
+
+[`OBS03-brand-v03.json`](OBS03-brand-v03.json) contiene procedencia,
+dimensiones, hashes y método. `CoverIntroScreen.tsx` usa el emblema decorativo
+con `alt=""`/`aria-hidden="true"`, tamaño proporcional CSS de 84 px
+(68 px en altura corta). OKÚA, JARDÍN BIOSONORO y Exposición Interactiva
+permanecen como texto DOM. El cambio no modifica diálogo, portal ni progreso.
+La aceptación humana y el contexto visual en escena siguen pendientes.
+
+## Historial: integración editorial de marca — 2026-10-23, v01
+
+La cabecera consume `brand/okua-jardin-biosonoro-logo-v01.png` (PNG 178×102,
+14.656 bytes), copia byte-idéntica del archivo auténtico
+`E:/OKUA/05_ACTIVOS_MARCA_MEDIA/Logos/logo.png`. SHA-256:
+`02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a`.
+Runtime: `public/assets/runtime/cover-intro/brand/okua-jardin-biosonoro-logo-v01.png`.
+Consumidor: `CoverIntroScreen.tsx`, con `alt="OKÚA Jardín Biosonoro"`;
+`Exposición Interactiva` permanece como título DOM. Sin recorte, redibujado,
+recoloración ni generación. Candidata local pendiente de revisión humana.
+
 Estado del consumidor: `GVO_DEBT_013 / INTEGRATED_FOR_REVIEW / PENDING_HUMAN_REVIEW`.
 
 Los cinco interiores de Portada proceden del paquete humano aprobado

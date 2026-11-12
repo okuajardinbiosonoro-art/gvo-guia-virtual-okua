@@ -83,7 +83,11 @@ export default defineConfig(({ command, mode }) => {
           ],
           maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
           navigateFallback: "/index.html",
-          navigateFallbackDenylist: [/^\/lia-api(?:-[a-z0-9]+)?(?:\/|$)/],
+          navigateFallbackDenylist: [
+            /^\/lia-api(?:-[a-z0-9]+)?(?:\/|$)/,
+            // Served only by the loopback review tool, outside the visitor SPA.
+            /^\/__review(?:\?|$)/,
+          ],
           cleanupOutdatedCaches: true,
           runtimeCaching: [
             {

@@ -4,43 +4,22 @@ import { useRef, type PointerEvent as ReactPointerEvent } from "react";
 
 import { GestureHint } from "../../components/GestureHint/GestureHint";
 import type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Checkpoint";
+import { getWorld2Content } from "../../content/world2EditorialSlots";
 
 export type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Checkpoint";
 
-type CaptureTimelineStep = {
-  id: CaptureTimelineStepId;
-  label: string;
-  readout: string;
-};
-
-export const captureTimelineSteps: readonly CaptureTimelineStep[] = [
-  {
-    id: "contact",
-    label: "Contacto",
-    readout:
-      "Aquí comienza la lectura. El electrodo entra en contacto con la planta sin producir música todavía: solo permite percibir una variación bioeléctrica muy pequeña.",
-  },
-  {
-    id: "signal",
-    label: "Señal tomada",
-    readout:
-      "La variación viaja por el sensor como una señal medible. En este punto aún conserva su forma original y todavía no ha sido limpiada ni transformada.",
-  },
-  {
-    id: "system",
-    label: "Datos al sistema",
-    readout:
-      "El sistema recibe y registra la señal. Ahora puede conservarla como datos para ordenarla, analizarla y prepararla en la siguiente etapa.",
-  },
-] as const;
+export const captureTimelineSteps = getWorld2Content("es").capture;
 
 type World2CaptureTimelineProps = {
   asset: string;
   completed: boolean;
   currentStepId: CaptureTimelineStepId;
   hasInteracted: boolean;
+  readoutPlacement?: "scene" | "dialogue";
   onSelectStep: (stepId: CaptureTimelineStepId) => void;
   visitedStepIds: ReadonlySet<CaptureTimelineStepId>;
+  active?: boolean;
+  locale?: "es" | "en";
 };
 
 type PointerStart = {
@@ -56,9 +35,14 @@ export function World2CaptureTimeline({
   completed,
   currentStepId,
   hasInteracted,
+  readoutPlacement = "scene",
   onSelectStep,
   visitedStepIds,
+  active = true,
+  locale = "es",
 }: World2CaptureTimelineProps) {
+  const captureTimelineSteps = getWorld2Content(locale).capture;
+  const en = locale === "en";
   const swipeZoneRef = useRef<HTMLDivElement>(null);
   const pointerStartRef = useRef<PointerStart | null>(null);
   const currentStepIndex = captureTimelineSteps.findIndex(
@@ -67,6 +51,7 @@ export function World2CaptureTimeline({
   const currentStep = captureTimelineSteps[currentStepIndex];
 
   function selectStepAtIndex(index: number) {
+    if (!active) return;
     const boundedIndex = Math.max(
       0,
       Math.min(captureTimelineSteps.length - 1, index),
@@ -75,7 +60,7 @@ export function World2CaptureTimeline({
   }
 
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (!event.isPrimary || event.button !== 0) {
+    if (!active || !event.isPrimary || event.button !== 0) {
       return;
     }
 
@@ -121,10 +106,9 @@ export function World2CaptureTimeline({
         .filter((step) => visitedStepIds.has(step.id))
         .map((step) => step.id)
         .join(",")}
-      aria-label="Captura en tres pasos: contacto, señal tomada y datos al sistema"
+      aria-label={en ? "Capture in three steps: contact, captured signal and data to the system" : "Captura en tres pasos: contacto, señal tomada y datos al sistema"}
     >
       <div className="world2-capture-timeline__header">
-        <span className="world2-capture-timeline__eyebrow">CAPTURA</span>
         <strong
           className="world2-capture-timeline__progress"
           data-world2-capture-progress={`${currentStepIndex + 1}/3`}
@@ -152,8 +136,8 @@ export function World2CaptureTimeline({
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         role="group"
-        tabIndex={0}
-        aria-label={`Zona de deslizamiento. Paso ${currentStepIndex + 1} de 3: ${currentStep.label}. Desliza a la izquierda para avanzar y a la derecha para volver.`}
+        tabIndex={active ? 0 : -1}
+        aria-label={en ? `Swipe area. Step ${currentStepIndex + 1} of 3: ${currentStep.label}. Swipe left to move forward and right to go back.` : `Zona de deslizamiento. Paso ${currentStepIndex + 1} de 3: ${currentStep.label}. Desliza a la izquierda para avanzar y a la derecha para volver.`}
       >
         <img
           className="world2-capture-timeline__asset"
@@ -175,32 +159,34 @@ export function World2CaptureTimeline({
       </div>
 
       <GestureHint
-        active={!hasInteracted && currentStepIndex === 0 && !completed}
+        active={active && !hasInteracted && currentStepIndex === 0 && !completed}
         anchorRef={swipeZoneRef}
         className="world2-gesture-hint world2-gesture-hint--capture-swipe"
         completed={completed || hasInteracted}
         delayMs={2800}
         direction="left"
-        targetLabel="Secuencia de Captura"
+        targetLabel={en ? "Capture sequence" : "Secuencia de Captura"}
         variant="swipe-horizontal"
       />
 
-      <div
-        className="world2-capture-timeline__readout"
-        data-world2-capture-readout={currentStep.id}
-        data-world2-capture-readout-style="local-lia-note"
-        data-world2-capture-readout-typography="gvo-app-ui"
-        role="note"
-        aria-live="polite"
-      >
-        <strong>{currentStep.label}</strong>
-        <p>{currentStep.readout}</p>
-      </div>
+      {readoutPlacement === "scene" ? (
+        <div
+          className="world2-capture-timeline__readout"
+          data-world2-capture-readout={currentStep.id}
+          data-world2-capture-readout-style="local-lia-note"
+          data-world2-capture-readout-typography="gvo-app-ui"
+          role="note"
+          aria-live="polite"
+        >
+          <strong>{currentStep.label}</strong>
+          <p>{currentStep.readout}</p>
+        </div>
+      ) : null}
 
       <div
         className="world2-capture-timeline__controls"
         role="group"
-        aria-label="Elegir paso de Captura"
+        aria-label={en ? "Choose a Capture step" : "Elegir paso de Captura"}
       >
         {captureTimelineSteps.map((step, index) => (
           <button
@@ -216,7 +202,8 @@ export function World2CaptureTimeline({
             data-world2-capture-control-visited={
               visitedStepIds.has(step.id) ? "true" : "false"
             }
-            aria-label={`Mostrar paso ${index + 1}: ${step.label}`}
+            aria-label={en ? `Show step ${index + 1}: ${step.label}` : `Mostrar paso ${index + 1}: ${step.label}`}
+            disabled={!active}
             aria-pressed={step.id === currentStep.id}
             onClick={() => onSelectStep(step.id)}
             key={step.id}

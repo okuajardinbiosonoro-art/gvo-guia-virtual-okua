@@ -21,7 +21,7 @@ export type TransitionEditorialSlotId =
 type TransitionSlot = {
   id: TransitionEditorialSlotId;
   replacement: "editorial_matrix_pending" | null;
-  status: "final" | "temporary";
+  status: "final" | "review" | "temporary";
   text: string;
 };
 
@@ -30,11 +30,12 @@ function resolveTransitionSlot(
 ): TransitionSlot {
   const resolvedSlot = resolveEditorialText(slotId);
   const isFinal = resolvedSlot.status === "FINAL";
+  const isReview = resolvedSlot.status === "REVIEW";
 
   return {
     id: resolvedSlot.slotId,
-    replacement: isFinal ? null : "editorial_matrix_pending",
-    status: isFinal ? "final" : "temporary",
+    replacement: isFinal || isReview ? null : "editorial_matrix_pending",
+    status: isFinal ? "final" : isReview ? "review" : "temporary",
     text: resolvedSlot.text,
   };
 }

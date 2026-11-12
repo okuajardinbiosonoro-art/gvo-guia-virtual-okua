@@ -8,21 +8,24 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { JourneyActivationProvider } from "../../app/journey/JourneyActivation";
 
 import { GVO_LANGUAGE_STORAGE_KEY } from "../../app/preferences/languagePreference";
 import {
   entryCoverBackdropAsset,
   entryCoverStationAssets,
 } from "../../shared/assets/entryCoverAssets";
-import { InitialExperienceScreen } from "./InitialExperienceScreen";
+import { InitialExperienceScreen, type InitialExperienceScreenProps } from "./InitialExperienceScreen";
 
-function renderScreen() {
+function renderScreen(props: InitialExperienceScreenProps = {}, active = true) {
   return render(
     <MemoryRouter initialEntries={["/inicio"]}>
+      <JourneyActivationProvider context={{ active, attemptId: "entry-test", screen: null, mode: "normal", authorized: true, reviewReturnAllowed: false }}>
       <Routes>
-        <Route path="/inicio" element={<InitialExperienceScreen />} />
+        <Route path="/inicio" element={<InitialExperienceScreen {...props} />} />
         <Route path="/portada" element={<main>Portada alcanzada</main>} />
       </Routes>
+      </JourneyActivationProvider>
     </MemoryRouter>,
   );
 }
@@ -118,6 +121,28 @@ afterEach(() => {
 });
 
 describe("InitialExperienceScreen", () => {
+  it("un árbol cubierto no enfoca, escribe idioma ni solicita cámara", () => {
+    const { getUserMedia } = installCameraStub();
+    renderScreen({}, false);
+    expect(screen.getByRole("button", { name: "Español" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Iniciar / Start" })).toBeDisabled();
+    expect(screen.getByRole("heading", { level: 1 })).not.toHaveFocus();
+    expect(getUserMedia).not.toHaveBeenCalled();
+    expect(localStorage.getItem(GVO_LANGUAGE_STORAGE_KEY)).toBeNull();
+  });
+
+  it("al conceder cámara entrega la intención a root sin navegar por su cuenta", async () => {
+    const enter = vi.fn();
+    const { getUserMedia, stop } = installCameraStub();
+    renderScreen({ onEnterCover: enter });
+    fireEvent.click(screen.getByRole("button", { name: "Español" }));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Iniciar recorrido" })));
+    expect(getUserMedia).toHaveBeenCalledTimes(1);
+    expect(stop).toHaveBeenCalledTimes(1);
+    expect(enter).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText("Portada alcanzada")).toBeNull();
+    expect(screen.getByRole("main")).toHaveAttribute("data-camera-status", "camera-granted");
+  });
   it("integra el fondo aprobado y las cinco estaciones como decoración local", () => {
     const { container } = renderScreen();
 
@@ -239,10 +264,9 @@ describe("InitialExperienceScreen", () => {
       screen.getByRole("button", { name: "Activar pantalla completa" }),
     ).toBeDisabled();
     expect(
-      screen.getByText(
-        "Este contexto bloquea la pantalla completa. Abre GVO directamente en el navegador.",
-      ),
-    ).toBeInTheDocument();
+      document.querySelector("[data-initial-fullscreen-status='blocked']"),
+    ).toBeNull();
+    expect(screen.getByRole("button", { name: "Iniciar recorrido" })).toBeEnabled();
     expect(document.querySelector("[data-initial-experience]")).toHaveAttribute(
       "data-initial-fullscreen-state",
       "blocked",

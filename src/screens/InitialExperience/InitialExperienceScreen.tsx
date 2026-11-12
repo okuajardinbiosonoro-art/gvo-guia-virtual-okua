@@ -16,6 +16,7 @@ import {
   type CameraStatus,
 } from "../../app/qr/camera";
 import { coverIntroRoute } from "../../app/routes";
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
 import {
   entryCoverBackdropAsset,
   entryCoverStationAssets,
@@ -41,7 +42,7 @@ const copy = {
   es: {
     title: "Elige cómo entrar",
     description:
-      "Selecciona tu idioma preferido y continúa en el navegador. La pantalla completa es opcional.",
+      "Selecciona un idioma para tu recorrido. La pantalla completa es opcional.",
     languageLegend: "Idioma preferido",
     languageSaved: "Preferencia de idioma guardada en este dispositivo.",
     languageMemoryOnly:
@@ -51,15 +52,13 @@ const copy = {
     fullscreenPending: "Activando pantalla completa…",
     browserOptimized:
       "La vista de navegador ya está optimizada para este dispositivo.",
-    fullscreenBlocked:
-      "Este contexto bloquea la pantalla completa. Abre GVO directamente en el navegador.",
     fullscreenError:
       "No fue posible activar pantalla completa. Puedes continuar normalmente.",
     fullscreenHelp:
       "Esta opción requiere tu gesto y nunca bloquea el recorrido.",
     start: "Iniciar recorrido",
     cameraHelp:
-      "Al iniciar solicitaremos la cámara trasera para leer los QR entre estaciones. Nunca se solicita micrófono.",
+      "Al iniciar se solicita el acceso a la cámara del móvil para leer los QR entre las estaciones.",
     cameraRetry: "Reintentar cámara",
     cameraPending: "Esperando permiso de cámara…",
     cameraDenied:
@@ -72,13 +71,12 @@ const copy = {
     cameraUnsupported:
       "Este navegador no ofrece acceso compatible a la cámara.",
     cameraError: "No fue posible iniciar la cámara. Reintenta.",
-    editorialNote:
-      "El contenido editorial conserva su versión aprobada; este selector no lo reescribe.",
+    preparationError: "No fue posible preparar Portada. Intenta de nuevo.",
   },
   en: {
     title: "Choose how to enter",
     description:
-      "Select your preferred language and continue in the browser. Fullscreen is optional.",
+      "Choose a language for your journey. Fullscreen is optional.",
     languageLegend: "Preferred language",
     languageSaved: "Language preference saved on this device.",
     languageMemoryOnly:
@@ -87,15 +85,13 @@ const copy = {
     fullscreenActive: "Fullscreen active",
     fullscreenPending: "Entering fullscreen…",
     browserOptimized: "The browser view is already optimized for this device.",
-    fullscreenBlocked:
-      "This context blocks fullscreen. Open GVO directly in the browser.",
     fullscreenError:
       "Fullscreen could not be enabled. You can continue normally.",
     fullscreenHelp:
       "This option requires your gesture and never blocks the journey.",
     start: "Start journey",
     cameraHelp:
-      "Starting requests the rear camera to read QR codes between stations. Microphone access is never requested.",
+      "When you start, the guide asks to use your phone’s camera to scan QR codes between rooms.",
     cameraRetry: "Retry camera",
     cameraPending: "Waiting for camera permission…",
     cameraDenied:
@@ -108,8 +104,7 @@ const copy = {
     cameraUnsupported:
       "This browser does not provide compatible camera access.",
     cameraError: "The camera could not be started. Please retry.",
-    editorialNote:
-      "Approved editorial content remains unchanged; this selector does not rewrite it.",
+    preparationError: "The cover could not be prepared. Try again.",
   },
 } as const;
 
@@ -136,11 +131,23 @@ function initialFullscreenState(): FullscreenEntryState {
       : "fallback";
 }
 
-export function InitialExperienceScreen() {
+export type InitialExperienceScreenProps = {
+  onEnterCover?: () => void | Promise<void>;
+  onLocaleChange?: (locale: GvoLanguage) => void;
+  preparationStatus?: "loading" | "ready" | "error";
+  onRetryPreparation?: () => void;
+  canRetryPreparation?: boolean;
+};
+
+export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparationStatus = "ready", onRetryPreparation, canRetryPreparation = true }: InitialExperienceScreenProps = {}) {
   const navigate = useNavigate();
+  const { active } = useJourneyActivity();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const mountedRef = useRef(true);
   const cameraRequestRef = useRef(0);
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  const enteringRef = useRef(false);
   const storedLanguage = readLanguagePreference();
   const [language, setLanguage] = useState<GvoLanguage | null>(storedLanguage);
   const [persistenceState, setPersistenceState] = useState<PersistenceState>(
@@ -152,6 +159,7 @@ export function InitialExperienceScreen() {
   const [cameraStatus, setCameraStatus] = useState<CameraStatus>(
     () => inspectCameraCapability().status,
   );
+  const [preparationError, setPreparationError] = useState(false);
   const fullscreenCapability =
     fullscreenState === "blocked"
       ? "blocked-by-context"
@@ -161,17 +169,21 @@ export function InitialExperienceScreen() {
   const localizedCopy = language ? copy[language] : null;
 
   useEffect(() => {
-    applyDocumentLanguage(language);
-  }, [language]);
+    if (active) applyDocumentLanguage(language);
+  }, [active, language]);
 
   useEffect(() => {
     mountedRef.current = true;
-    headingRef.current?.focus();
     return () => {
       mountedRef.current = false;
       cameraRequestRef.current += 1;
     };
   }, []);
+
+  useEffect(() => {
+    if (active) headingRef.current?.focus({ preventScroll: true });
+    else cameraRequestRef.current += 1;
+  }, [active]);
 
   useEffect(() => {
     const syncFullscreenState = () => {
@@ -188,8 +200,10 @@ export function InitialExperienceScreen() {
   }, []);
 
   const selectLanguage = (nextLanguage: GvoLanguage) => {
+    if (!active) return;
     setLanguage(nextLanguage);
     applyDocumentLanguage(nextLanguage);
+    onLocaleChange?.(nextLanguage);
     setPersistenceState(
       writeLanguagePreference(nextLanguage) ? "saved" : "memory-only",
     );
@@ -197,6 +211,7 @@ export function InitialExperienceScreen() {
 
   const requestFullscreen = async () => {
     if (
+      !active ||
       fullscreenState === "pending" ||
       fullscreenState === "active" ||
       fullscreenState === "blocked" ||
@@ -221,18 +236,19 @@ export function InitialExperienceScreen() {
   };
 
   const startJourneyWithCamera = async () => {
-    if (!language || cameraStatus === "camera-permission-pending") {
+    if (!active || !language || enteringRef.current || cameraStatus === "camera-permission-pending") {
       return;
     }
 
     const requestId = cameraRequestRef.current + 1;
+    setPreparationError(false);
     cameraRequestRef.current = requestId;
     setCameraStatus("camera-permission-pending");
     const result = await requestCameraStream();
     if (result.ok) {
       stopCameraStream(result.stream);
     }
-    if (!mountedRef.current || cameraRequestRef.current !== requestId) {
+    if (!mountedRef.current || !activeRef.current || cameraRequestRef.current !== requestId) {
       return;
     }
     if (!result.ok) {
@@ -241,7 +257,15 @@ export function InitialExperienceScreen() {
     }
 
     setCameraStatus("camera-granted");
-    navigate(coverIntroRoute);
+    enteringRef.current = true;
+    if (onEnterCover) {
+      try { await onEnterCover(); }
+      catch { setPreparationError(true); }
+      finally { enteringRef.current = false; }
+    } else {
+      navigate(coverIntroRoute);
+      enteringRef.current = false;
+    }
   };
 
   const cameraStatusMessage = localizedCopy
@@ -274,9 +298,7 @@ export function InitialExperienceScreen() {
   const fullscreenStatus = localizedCopy
     ? fullscreenState === "fallback"
       ? localizedCopy.browserOptimized
-      : fullscreenState === "blocked"
-        ? localizedCopy.fullscreenBlocked
-        : fullscreenState === "error"
+      : fullscreenState === "error"
           ? localizedCopy.fullscreenError
           : fullscreenState === "active"
             ? localizedCopy.fullscreenActive
@@ -295,6 +317,7 @@ export function InitialExperienceScreen() {
       data-initial-experience="debt-012"
       data-initial-experience-visual="debt-013"
       data-initial-language={language ?? "unselected"}
+      data-journey-active={active ? "true" : "false"}
       data-initial-language-persistence={persistenceState}
       data-initial-fullscreen-state={fullscreenState}
       data-camera-status={cameraStatus}
@@ -333,7 +356,7 @@ export function InitialExperienceScreen() {
         </div>
 
         <section className="initial-experience__panel">
-          <p className="initial-experience__eyebrow">GVO · GUÍA VIRTUAL OKÚA</p>
+          <p className="initial-experience__eyebrow">{language === "en" ? "GVO · OKÚA VIRTUAL GUIDE" : "GVO · GUÍA VIRTUAL OKÚA"}</p>
           <h1 id="initial-experience-title" ref={headingRef} tabIndex={-1}>
             {localizedCopy?.title ?? neutralCopy.title}
           </h1>
@@ -341,7 +364,7 @@ export function InitialExperienceScreen() {
             {localizedCopy?.description ?? neutralCopy.description}
           </p>
 
-          <fieldset className="initial-experience__languages">
+          <fieldset className="initial-experience__languages" disabled={!active}>
             <legend>
               {localizedCopy?.languageLegend ?? neutralCopy.languageLegend}
             </legend>
@@ -396,6 +419,7 @@ export function InitialExperienceScreen() {
                 data-gvo-fullscreen-capability={fullscreenCapability}
                 disabled={
                   fullscreenState === "blocked" ||
+                  !active ||
                   fullscreenState === "pending" ||
                   fullscreenState === "active"
                 }
@@ -404,7 +428,7 @@ export function InitialExperienceScreen() {
                 {fullscreenLabel}
               </button>
             ) : null}
-            <p
+            {fullscreenState !== "blocked" ? <p
               className="initial-experience__fullscreen-status"
               data-initial-fullscreen-status={fullscreenState}
               data-initial-immersive-fallback={
@@ -413,14 +437,8 @@ export function InitialExperienceScreen() {
               aria-live="polite"
             >
               {fullscreenStatus}
-            </p>
+            </p> : null}
           </section>
-
-          {localizedCopy ? (
-            <p className="initial-experience__editorial-note">
-              {localizedCopy.editorialNote}
-            </p>
-          ) : null}
 
           {localizedCopy ? (
             <p
@@ -432,11 +450,13 @@ export function InitialExperienceScreen() {
             </p>
           ) : null}
 
+          {localizedCopy && (preparationError || preparationStatus === "error") ? <div role="alert"><p>{localizedCopy.preparationError}</p>{onRetryPreparation && canRetryPreparation ? <button type="button" className="initial-experience__preparation-retry" onClick={() => { setPreparationError(false); onRetryPreparation(); }}>{language === "en" ? "Retry preparation" : "Reintentar preparación"}</button> : null}</div> : null}
+
           <button
             type="button"
             className="initial-experience__start"
             data-initial-experience-action="start"
-            disabled={!language || cameraStatus === "camera-permission-pending"}
+            disabled={!active || !language || preparationStatus !== "ready" || cameraStatus === "camera-permission-pending"}
             onClick={() => void startJourneyWithCamera()}
           >
             {localizedCopy

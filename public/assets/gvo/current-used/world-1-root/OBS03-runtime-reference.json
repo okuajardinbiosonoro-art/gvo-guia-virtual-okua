@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "screen": "I",
+  "status": "AGENT_STATIC_REGISTRY_CHECKED_SCENE_QA_PENDING_HUMAN_PENDING",
+  "commonRegistry": "public/assets/gvo/current-used/shared/OBS03-assets-motion-index.json",
+  "groups": [
+    "sharedRig",
+    "sharedSwipe"
+  ],
+  "audit": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.json",
+  "historicalRecordsPreserved": true,
+  "humanApproval": false
+}

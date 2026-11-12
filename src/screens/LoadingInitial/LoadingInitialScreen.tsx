@@ -1,13 +1,12 @@
 import "./LoadingInitialScreen.css";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/transition-root-assets";
 import { GvoProgressBar, GvoProgressFrame } from "../../components/progress";
-import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
-import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
+import { readLanguagePreference, type GvoLanguage } from "../../app/preferences/languagePreference";
 import { loadingInitialAssets } from "./loadingInitialAssets";
-import { loadingInitialCopy } from "./loadingInitialCopy";
+import { loadingInitialCopyByLocale } from "./loadingInitialCopy";
 import {
   loadingInitialSparkleSlots,
   loadingInitialWaterStreams,
@@ -36,202 +35,204 @@ const sceneAssetStyle = {
   ...liaFrameRegistrationCssVariables,
 } as CSSProperties;
 
-type LoadingInitialScreenProps = {
+export type LoadingInitialScreenProps = {
   preloadProgress?: number;
   preloadStatus?: string;
   preloadTarget?: string;
+  locale?: GvoLanguage;
+  onRetry?: () => void;
+  onBack?: () => void;
+  canRetry?: boolean;
+  presentationReady?: boolean;
+  presentationPaused?: boolean;
+  presentationComplete?: boolean;
 };
 
 export function LoadingInitialScreen({
-  preloadProgress,
-  preloadStatus = "idle",
+  preloadProgress = 0,
+  preloadStatus = "loading",
   preloadTarget = "loadingInitialCritical",
+  locale = readLanguagePreference() ?? "es",
+  onRetry,
+  onBack,
+  canRetry = true,
+  presentationReady = true, presentationPaused = false, presentationComplete = false,
 }: LoadingInitialScreenProps = {}) {
-  const [firstPaintReady, setFirstPaintReady] = useState(false);
-  const loadingInitialPreload = useAssetPreloader(
-    screenAssetBundles.loadingInitialCritical,
-    {
-      enabled: firstPaintReady,
-      timeoutMs: 5000,
-    },
-  );
-
-  useEffect(() => {
-    const requestFrame =
-      typeof window !== "undefined" &&
-      typeof window.requestAnimationFrame === "function"
-        ? window.requestAnimationFrame
-        : undefined;
-    const cancelFrame =
-      typeof window !== "undefined" &&
-      typeof window.cancelAnimationFrame === "function"
-        ? window.cancelAnimationFrame
-        : undefined;
-
-    if (!requestFrame) {
-      setFirstPaintReady(true);
-      return undefined;
-    }
-
-    const frameId = requestFrame(() => {
-      setFirstPaintReady(true);
-    });
-
-    return () => {
-      cancelFrame?.(frameId);
-    };
-  }, []);
+  const loadingInitialCopy = loadingInitialCopyByLocale[locale];
+  const progress = Math.max(0, Math.min(1, preloadProgress));
+  const failed = /error|timeout|aborted/.test(preloadStatus);
+  const progressStyle = {
+    "--loading-real-fill": `${91.2 * progress}%`,
+    "--loading-real-spark": `${3.6 + 91.2 * progress}%`,
+  } as CSSProperties;
 
   return (
-    <main
-      className="loading-initial"
-      aria-labelledby="loading-initial-title"
-      aria-describedby="loading-initial-description"
-      data-preload-target={preloadTarget}
-      data-preload-status={preloadStatus}
-      data-preload-progress={
-        typeof preloadProgress === "number"
-          ? Math.round(preloadProgress * 100).toString()
-          : undefined
-      }
-      data-first-paint-contract="shell-before-preload"
-      data-first-paint-ready={firstPaintReady ? "true" : "false"}
-      data-loading-preload-status={loadingInitialPreload.status}
-      data-loading-preload-progress={Math.round(
-        loadingInitialPreload.progress * 100,
-      ).toString()}
-    >
-      <section
-        className="loading-initial__stage"
-        data-loading-layout-version="v13"
-        data-motion-timeline-version={loadingInitialMotionTimeline.version}
-        data-duration-ms={loadingInitialTimeline.durationMs}
-        data-progress-duration-ms={loadingInitialTimeline.durationMs}
-        data-preload-contract="first-paint-before-critical-preload"
-        data-reduced-motion-duration-ms={
-          loadingInitialTimeline.reducedMotionDurationMs
+    <>
+      <main
+        className="loading-initial"
+        aria-labelledby="loading-initial-title"
+        aria-describedby="loading-initial-description"
+        data-presentation-ready={presentationReady}
+        data-presentation-paused={presentationPaused}
+        data-presentation-complete={presentationComplete}
+        data-preload-target={preloadTarget}
+        data-preload-status={preloadStatus}
+        data-preparation-failed={failed ? "true" : "false"}
+        lang={locale}
+        data-preload-progress={
+          typeof preloadProgress === "number"
+            ? Math.round(preloadProgress * 100).toString()
+            : undefined
         }
+        data-first-paint-contract="root-owned-preparation"
+        data-loading-preload-status={preloadStatus}
+        data-loading-preload-progress={Math.round(progress * 100).toString()}
       >
-        <div
-          className="loading-initial__scene"
-          aria-hidden="true"
-          data-testid="loading-initial-animated-scene"
-          style={sceneAssetStyle}
+        <section
+          className="loading-initial__stage"
+          data-loading-layout-version="v13"
+          data-motion-timeline-version={loadingInitialMotionTimeline.version}
+          data-duration-ms={loadingInitialTimeline.durationMs}
+          data-progress-duration-ms={loadingInitialTimeline.durationMs}
+          data-preload-contract="root-owned-preparation"
+          data-reduced-motion-duration-ms={
+            loadingInitialTimeline.reducedMotionDurationMs
+          }
         >
-          <img
-            className="loading-initial__halo"
-            src={loadingInitialAssets.ground.src}
-            alt=""
-            draggable="false"
-          />
-          <span
-            className="loading-initial__plant"
-            data-testid="loading-initial-plant"
-            data-runtime-asset={loadingInitialAssets.plant.src}
+          <div
+            className="loading-initial__scene"
+            aria-hidden="true"
+            data-testid="loading-initial-animated-scene"
+            style={sceneAssetStyle}
           >
-            {[1, 2, 3, 4].map((frame) => (
-              <span
-                key={frame}
-                className={`loading-initial__plant-frame loading-initial__plant-frame--${frame}`}
-              />
-            ))}
-          </span>
-          <span
-            className="loading-initial__lia-track"
-            data-testid="loading-initial-lia-track"
-            data-entry-state="lateral-offscreen-to-plant"
-          >
-            <span className="loading-initial__lia-bob">
-              <span className="loading-initial__lia-pose">
+            <img
+              className="loading-initial__halo"
+              src={loadingInitialAssets.ground.src}
+              alt=""
+              draggable="false"
+            />
+            <span
+              className="loading-initial__plant"
+              data-testid="loading-initial-plant"
+              data-runtime-asset={loadingInitialAssets.plant.src}
+            >
+              {[1, 2, 3, 4].map((frame) => (
                 <span
-                  className="loading-initial__lia-registration"
-                  data-lia-frame-registration={LIA_FRAME_REGISTRATION_VERSION}
-                  data-lia-frame-registration-anchor={
-                    LIA_FRAME_REGISTRATION_ANCHOR
-                  }
-                  data-lia-frame-count={LIA_FRAME_REGISTRATION.length}
-                >
+                  key={frame}
+                  className={`loading-initial__plant-frame loading-initial__plant-frame--${frame}`}
+                />
+              ))}
+            </span>
+            <span
+              className="loading-initial__lia-track"
+              data-testid="loading-initial-lia-track"
+              data-entry-state="lateral-offscreen-to-plant"
+            >
+              <span className="loading-initial__lia-bob">
+                <span className="loading-initial__lia-pose">
                   <span
-                    className="loading-initial__lia"
-                    data-runtime-asset={loadingInitialAssets.lia.src}
-                  />
-                  <span
-                    className="loading-initial__water-field"
-                    data-testid="loading-initial-water-field"
-                    data-water-anchor="lia-nozzle"
-                    data-water-target="plant"
+                    className="loading-initial__lia-registration"
+                    data-lia-frame-registration={LIA_FRAME_REGISTRATION_VERSION}
+                    data-lia-frame-registration-anchor={
+                      LIA_FRAME_REGISTRATION_ANCHOR
+                    }
+                    data-lia-frame-count={LIA_FRAME_REGISTRATION.length}
                   >
-                    {loadingInitialWaterStreams.map((stream) => (
-                      <span
-                        key={stream.id}
-                        className={`loading-initial__water-stream ${stream.className}`}
-                        data-water-stream={stream.id}
-                        data-runtime-asset={loadingInitialAssets.water.src}
-                        style={
-                          {
-                            "--water-stream-delay": `${stream.delayMs}ms`,
-                            "--water-offset-x": stream.offsetX,
-                            "--water-offset-y": stream.offsetY,
-                            "--water-rotate": `${stream.rotateDeg}deg`,
-                            "--water-scale": stream.scale,
-                            "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
-                          } as CSSProperties
-                        }
-                      />
-                    ))}
+                    <span
+                      className="loading-initial__lia"
+                      data-runtime-asset={loadingInitialAssets.lia.src}
+                    />
+                    <span
+                      className="loading-initial__water-field"
+                      data-testid="loading-initial-water-field"
+                      data-water-anchor="lia-nozzle"
+                      data-water-target="plant"
+                    >
+                      {loadingInitialWaterStreams.map((stream) => (
+                        <span
+                          key={stream.id}
+                          className={`loading-initial__water-stream ${stream.className}`}
+                          data-water-stream={stream.id}
+                          data-runtime-asset={loadingInitialAssets.water.src}
+                          style={
+                            {
+                              "--water-stream-delay": `${stream.delayMs}ms`,
+                              "--water-offset-x": stream.offsetX,
+                              "--water-offset-y": stream.offsetY,
+                              "--water-rotate": `${stream.rotateDeg}deg`,
+                              "--water-scale": stream.scale,
+                              "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
+                            } as CSSProperties
+                          }
+                        />
+                      ))}
+                    </span>
                   </span>
                 </span>
               </span>
             </span>
-          </span>
-          {loadingInitialSparkleSlots.map((slot) => {
-            const sparkle = loadingInitialAssets.sparkles[slot.assetIndex];
+            {loadingInitialSparkleSlots.map((slot) => {
+              const sparkle = loadingInitialAssets.sparkles[slot.assetIndex];
 
-            return (
-              <img
-                key={slot.id}
-                className={`loading-initial__sparkle ${slot.className}`}
-                src={sparkle.src}
-                alt=""
-                draggable="false"
-                data-sparkle-slot={slot.id}
-                data-runtime-asset={sparkle.src}
-                style={
-                  {
-                    "--sparkle-x": slot.x,
-                    "--sparkle-y": slot.y,
-                    "--sparkle-delay": `${slot.delayMs}ms`,
-                    "--sparkle-duration": `${slot.durationMs}ms`,
-                  } as CSSProperties
-                }
+              return (
+                <img
+                  key={slot.id}
+                  className={`loading-initial__sparkle ${slot.className}`}
+                  src={sparkle.src}
+                  alt=""
+                  draggable="false"
+                  data-sparkle-slot={slot.id}
+                  data-runtime-asset={sparkle.src}
+                  style={
+                    {
+                      "--sparkle-x": slot.x,
+                      "--sparkle-y": slot.y,
+                      "--sparkle-delay": `${slot.delayMs}ms`,
+                      "--sparkle-duration": `${slot.durationMs}ms`,
+                    } as CSSProperties
+                  }
+                />
+              );
+            })}
+          </div>
+
+          <div className="loading-initial__copy">
+            <h1 id="loading-initial-title">{loadingInitialCopy.title}</h1>
+            <p id="loading-initial-description" role={failed ? "status" : undefined}>
+              {failed ? loadingInitialCopy.error : loadingInitialCopy.subtitle}
+            </p>
+          </div>
+
+          <div className="loading-initial__progress-area">
+            <GvoProgressBar
+              variant="loading-initial"
+              className="loading-initial__progress"
+              dataMotionLayer="progress"
+              dataProgressMotion="fill-and-spark"
+              dataProgressPreview="real"
+              dataProgressSparkAlignment="channel-centered"
+              ariaLabelledBy="loading-initial-title"
+              ariaValueText={loadingInitialCopy.title}
+              ariaValueNow={Math.round(progress * 100)}
+              style={progressStyle}
+            >
+              <GvoProgressFrame
+                fillAsset={loadingProgressAssets.fill}
+                sparkAsset={loadingProgressAssets.spark}
+                testIdPrefix="loading-initial-progress"
+                trackAsset={loadingProgressAssets.track}
               />
-            );
-          })}
-        </div>
-
-        <div className="loading-initial__copy">
-          <h1 id="loading-initial-title">{loadingInitialCopy.title}</h1>
-          <p id="loading-initial-description">{loadingInitialCopy.subtitle}</p>
-        </div>
-
-        <GvoProgressBar
-          variant="loading-initial"
-          className="loading-initial__progress"
-          dataMotionLayer="progress"
-          dataProgressMotion="fill-and-spark"
-          dataProgressPreview="motion"
-          dataProgressSparkAlignment="channel-centered"
-          ariaLabelledBy="loading-initial-title"
-          ariaValueText={loadingInitialCopy.title}
-        >
-          <GvoProgressFrame
-            fillAsset={loadingProgressAssets.fill}
-            sparkAsset={loadingProgressAssets.spark}
-            testIdPrefix="loading-initial-progress"
-            trackAsset={loadingProgressAssets.track}
-          />
-        </GvoProgressBar>
-      </section>
-    </main>
+            </GvoProgressBar>
+            {failed ? (
+              <div className="loading-initial__recovery" role="group" aria-label={loadingInitialCopy.error}>
+                {onRetry && canRetry ? <button type="button" onClick={onRetry}>{loadingInitialCopy.retry}</button> : null}
+                {onBack ? <button type="button" onClick={onBack}>{loadingInitialCopy.back}</button> : null}
+                {!canRetry ? <p role="status">{loadingInitialCopy.exhausted}</p> : null}
+              </div>
+            ) : null}
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "id": "OBS03-LIA-III-INTRO",
+  "status": "INTRO_PILOT_FILE_QA_PASS_ACTUAL_SCENE_PENDING",
+  "thread": "gvo-provenance:images-1",
+  "source": "assets-source/editorial-2026-10-23/observaciones-03/production/brand-pixel-pilot-originals/LIA_PIXEL_INTRO_OBS03.png",
+  "sourceSha256": "1df3931796bdc08fdc20ead4aa11ac7c37af5fbf1a4e76838773ce26cbaf4152",
+  "runtime": "public/assets/gvo/stations/world-3/notebook-pixel/runtime/lia/clips/lia_world3_intro_6f_v03.webp",
+  "mirror": "public/assets/gvo/current-used/world-3-root/lia/clips/lia_world3_intro_6f_v03.webp",
+  "sha256": "01689c27d863e3578c975d55dcfb6414390caaf58a81863384aca2930cb16cb2",
+  "bytes": 167084,
+  "dimensions": [
+    768,
+    512
+  ],
+  "grid": [
+    3,
+    2
+  ],
+  "cell": [
+    256,
+    256
+  ],
+  "logicalBase": [
+    128,
+    212
+  ],
+  "measurement": [
+    {
+      "frame": 1,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": true,
+      "measuredBase": [
+        255,
+        424
+      ]
+    },
+    {
+      "frame": 2,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": false,
+      "measuredBase": [
+        256.5,
+        424
+      ]
+    },
+    {
+      "frame": 3,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": false,
+      "measuredBase": [
+        256,
+        424
+      ]
+    },
+    {
+      "frame": 4,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": false,
+      "measuredBase": [
+        256.5,
+        424
+      ]
+    },
+    {
+      "frame": 5,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": false,
+      "measuredBase": [
+        255.5,
+        424
+      ]
+    },
+    {
+      "frame": 6,
+      "exportEqualsSheet": true,
+      "exactAuthenticNeutral": true,
+      "measuredBase": [
+        255,
+        424
+      ]
+    }
+  ],
+  "petalCountVisual": 5,
+  "sourceNeutralFramesDecodedIdentical": true,
+  "runtimeNeutralAlphaAndVisibleRgbIdentical": true,
+  "runtimeNeutralRawRgbaIdentical": false,
+  "runtimeHiddenRgbDifferences": 18337,
+  "durationMs": 650,
+  "method": "Uniform exact center-sampled nearest neighbor RGBA; lossless WebP. No per-frame recentering or art synthesis. Authentic neutral independently byte-equal to source pixels (2x+1,2y+1); initial Sharp comparison failure explained by premultiplied partial-alpha RGB.",
+  "independentInspection": "assets-source/editorial-2026-10-23/observaciones-03/production/LIA-INTRO-neutral-independent-inspection.json",
+  "humanApproval": false,
+  "limitations": [
+    "Lossless WebP codec modifies RGB under alpha0 differently by sheet location; all alpha and every nontransparent RGBA are identical between neutral cells. Hidden RGB difference count is explicit.",
+    "Intermediate frames retain small generated interior-line and luminosity variation, to evaluate in motion at application size.",
+    "Runtime consumer remains disabled until complete production/registration; this is file QA, not actual scene acceptance."
+  ]
+}

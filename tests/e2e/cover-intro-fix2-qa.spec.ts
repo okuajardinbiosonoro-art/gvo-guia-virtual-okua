@@ -1,170 +1,23 @@
-import { mkdirSync } from "node:fs";
-import path from "node:path";
-
 import { expect, test } from "@playwright/test";
-import type { Page } from "@playwright/test";
+import { openEditorialCover, enterAfterEditorialIntro, expectNoHorizontalOverflow } from "./support/editorial-entry";
 
-import { evidenceDirectory } from "./support/evidence";
+test("movimiento reducido conserva presentación y salida manual", async ({page}) => {
+  await page.emulateMedia({reducedMotion:"reduce"});
+  await openEditorialCover(page);
+  await enterAfterEditorialIntro(page);
+  await expect(page.locator("main[data-world1-root-state]")).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+});
 
-const fix2QaOutputDir = evidenceDirectory("cover-intro-002i-fix2");
-
-async function prepareFreshCover(page: Page) {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/portada");
-  await page.evaluate(() => {
-    window.localStorage.removeItem("gvo.coverIntro.introCompleted.v1");
-  });
-  await page.goto("/portada?resetIntro=1");
-  await expect(page).toHaveURL(/\/portada(?:\?resetIntro=1)?$/);
-  await expect(
-    page.getByRole("button", { name: "Comenzar recorrido" }),
-  ).toBeVisible({ timeout: 10_000 });
-  await expect(
-    page.getByRole("button", { name: "Entrar a Mundo I" }),
-  ).toHaveCount(0);
-}
-
-async function capture(page: Page, name: string) {
-  await page.screenshot({
-    animations: "disabled",
-    fullPage: true,
-    path: path.join(fix2QaOutputDir, name),
-  });
-}
-
-async function completeDialoguesFromStepTwo(page: Page) {
-  for (let index = 0; index < 3; index += 1) {
-    await page
-      .getByRole("button", { name: "Siguiente diálogo de Lía" })
-      .click();
-  }
-
-  await page.getByRole("button", { name: "Finalizar introducción" }).click();
-}
-
-test.describe("QA visual Portada / Intro 002I-FIX2", () => {
-  test.describe.configure({ timeout: 90_000 });
-
-  test.beforeAll(() => {
-    mkdirSync(fix2QaOutputDir, { recursive: true });
-  });
-
-  test("genera capturas 002I-FIX2 de diálogo y activación Portal I", async ({
-    page,
-  }) => {
-    await prepareFreshCover(page);
-
-    await page.getByRole("button", { name: "Comenzar recorrido" }).click();
-    await expect(page.getByText("Paso 1 de 5")).toBeVisible();
-    await expect(page.getByText("1/5")).toHaveCount(0);
-    await capture(page, "cover-intro-fix2-01-dialogue-01-390x844.png");
-
-    const dialogueBox = await page
-      .getByTestId("cover-dialogue-panel")
-      .boundingBox();
-    const liaBox = await page.locator(".cover-intro__lia").boundingBox();
-
-    expect(dialogueBox).not.toBeNull();
-    expect(liaBox).not.toBeNull();
-    expect(dialogueBox!.y).toBeGreaterThan(liaBox!.y + 130);
-
-    await page
-      .getByRole("button", { name: "Siguiente diálogo de Lía" })
-      .click();
-    await expect(page.getByText("Paso 2 de 5")).toBeVisible();
-    await expect(page.getByText("2/5")).toHaveCount(0);
-    await capture(
-      page,
-      "cover-intro-fix2-02-dialogue-clarification-390x844.png",
-    );
-
-    await completeDialoguesFromStepTwo(page);
-    await expect(
-      page.getByRole("button", { name: "Entrar a Mundo I" }),
-    ).toBeVisible();
-    await capture(page, "cover-intro-fix2-03-portal-ready-390x844.png");
-
-    await page.getByRole("button", { name: "Entrar a Mundo I" }).click();
-    const openingCover = page.locator(
-      'main[data-cover-phase="portal_1_opening_placeholder"]',
-    );
-    await expect(page).toHaveURL(/\/portada$/);
-    await expect(
-      openingCover.getByText("Abriendo Mundo I: Raíz..."),
-    ).toBeVisible();
-    await expect(
-      openingCover.getByTestId("cover-portal-activation-rig"),
-    ).toBeVisible();
-    await expect(
-      openingCover.getByTestId("cover-activation-lia"),
-    ).toBeVisible();
-
-    const { activationBox, portalBox } = await openingCover.evaluate((root) => {
-      const readRect = (selector: string) => {
-        const rect = root.querySelector(selector)?.getBoundingClientRect();
-        return rect
-          ? {
-              x: rect.x,
-              y: rect.y,
-              width: rect.width,
-              height: rect.height,
-            }
-          : null;
-      };
-
-      return {
-        activationBox: readRect('[data-testid="cover-portal-activation-rig"]'),
-        portalBox: readRect('[data-portal-id="portal-1"]'),
-      };
-    });
-
-    expect(activationBox).not.toBeNull();
-    expect(portalBox).not.toBeNull();
-    expect(
-      Math.abs(
-        activationBox!.x +
-          activationBox!.width / 2 -
-          (portalBox!.x + portalBox!.width / 2),
-      ),
-    ).toBeLessThan(32);
-    expect(activationBox!.y).toBeLessThan(portalBox!.y + 8);
-
-    await capture(page, "cover-intro-fix2-04-opening-activation-390x844.png");
-
-    await expect(page).toHaveURL(/\/transition\/intro-to-station-1$/, {
-      timeout: 5000,
-    });
-    const transition = page.locator(
-      'main[data-transition-world-id="intro-to-station-1"]',
-    );
-    await expect(transition.getByText("Abriendo Mundo I")).toBeVisible();
-    await expect(transition.getByText("Preparando la raíz.")).toBeVisible();
-    await expect(transition.locator("button")).toHaveCount(0);
-    await expect(transition.locator("a")).toHaveCount(0);
-    await capture(
-      page,
-      "cover-intro-fix2-05-transition-placeholder-390x844.png",
-    );
-  });
-
-  test("genera captura del flujo root reset hacia portada fresca", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/portada");
-    await page.evaluate(() => {
-      window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
-    });
-
-    await page.goto("/?resetIntro=1");
-    await expect(page).toHaveURL(/\/portada$/, { timeout: 15_000 });
-    await expect(
-      page.getByRole("button", { name: "Comenzar recorrido" }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: "Entrar a Mundo I" }),
-    ).toHaveCount(0);
-    await capture(page, "cover-intro-fix2-06-root-reset-flow-390x844.png");
-  });
+test("los controles de presentación funcionan con teclado", async ({page}) => {
+  await openEditorialCover(page);
+  await page.getByRole("button", {name:"Empieza aquí"}).focus();
+  await page.keyboard.press("Enter");
+  const next=page.getByRole("button", {name:"Siguiente diálogo de Lía"});
+  await next.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByText("Paso 2 de 3")).toBeVisible();
+  await page.getByRole("button", {name:"Omitir presentación y entrar"}).focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/estacion\/1$/, {timeout:20000});
 });

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "screen": "III",
+  "status": "THREE_REGISTERED_CLIPS_ACTIVE_CURRENT_SCENE_REVIEW_PENDING",
+  "commonRegistry": "public/assets/gvo/current-used/shared/OBS03-assets-motion-index.json",
+  "groups": [
+    "world3",
+    "sharedSwipe"
+  ],
+  "audit": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.json",
+  "historicalRecordsPreserved": true,
+  "humanApproval": false,
+  "currentClipsManifest": "public/assets/gvo/current-used/world-3-root/lia/clips/OBS03-clips-manifest.json",
+  "activationEvidence": "docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/WORLD3_THREE_CLIPS_ACTIVATION.json",
+  "historicalPixelPosesConsumed": false,
+  "activeIndexNeutralClip": "intro"
+}

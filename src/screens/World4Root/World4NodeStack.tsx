@@ -4,7 +4,7 @@ import {
   WORLD4_HALO_SPRITE,
   world4NodeAssetManifest,
 } from "./world4AssetManifest";
-import { WORLD4_NODE_ANCHORS, WORLD4_NODE_STACK } from "./world4Geometry";
+import { WORLD4_NODE_STACK, type World4NodeAnchor } from "./world4Geometry";
 import type { Station4NodeContent } from "./station4Content";
 import { world4RuntimeAssets } from "./world4RuntimeAssets";
 import { World4NodeFx, type World4NodeFxPhase } from "./World4NodeFx";
@@ -14,8 +14,6 @@ export type World4NodeVisualState =
   | "available"
   | "active"
   | "completed";
-
-type World4NodeAnchor = (typeof WORLD4_NODE_ANCHORS)[number];
 
 type World4NodeStackProps = {
   allowCompletedActivation: boolean;

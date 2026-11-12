@@ -96,43 +96,17 @@ const fingertipCalibration: Record<
   },
 };
 
-const horizontalSwipeCalibration = {
-  left: {
-    "--gvo-gesture-fingertip-x": "11.1%",
-    "--gvo-gesture-fingertip-y": "40.5%",
-    "--gvo-gesture-trail-origin-x": "11.1%",
-    "--gvo-gesture-trail-origin-y": "40.5%",
-    "--gvo-gesture-anchor-translate-x": "-11.1%",
-    "--gvo-gesture-anchor-translate-y": "-40.5%",
-  },
-  right: {
-    "--gvo-gesture-fingertip-x": "88.9%",
-    "--gvo-gesture-fingertip-y": "59.5%",
-    "--gvo-gesture-trail-origin-x": "88.9%",
-    "--gvo-gesture-trail-origin-y": "59.5%",
-    "--gvo-gesture-anchor-translate-x": "-88.9%",
-    "--gvo-gesture-anchor-translate-y": "-59.5%",
-  },
-} satisfies Record<"left" | "right", GestureHintStyle>;
-
-const verticalSwipeCalibration = {
-  up: {
-    "--gvo-gesture-fingertip-x": "44.7%",
-    "--gvo-gesture-fingertip-y": "6.8%",
-    "--gvo-gesture-trail-origin-x": "44.7%",
-    "--gvo-gesture-trail-origin-y": "6.8%",
-    "--gvo-gesture-anchor-translate-x": "-44.7%",
-    "--gvo-gesture-anchor-translate-y": "-6.8%",
-  },
-  down: {
-    "--gvo-gesture-fingertip-x": "55.3%",
-    "--gvo-gesture-fingertip-y": "93.2%",
-    "--gvo-gesture-trail-origin-x": "55.3%",
-    "--gvo-gesture-trail-origin-y": "93.2%",
-    "--gvo-gesture-anchor-translate-x": "-55.3%",
-    "--gvo-gesture-anchor-translate-y": "-93.2%",
-  },
-} satisfies Record<"up" | "down", GestureHintStyle>;
+// Preserve the source hand's oblique silhouette. Only the direction wrapper
+// rotates; fingertip (315,152)/1024 and trail share the same transformed pivot.
+function swipeCalibration(x: number, y: number): GestureHintStyle {
+  return {
+    "--gvo-gesture-fingertip-x": x + "%", "--gvo-gesture-fingertip-y": y + "%",
+    "--gvo-gesture-trail-origin-x": x + "%", "--gvo-gesture-trail-origin-y": y + "%",
+    "--gvo-gesture-anchor-translate-x": -x + "%", "--gvo-gesture-anchor-translate-y": -y + "%",
+  };
+}
+const horizontalSwipeCalibration = { left: swipeCalibration(14.844, 69.238), right: swipeCalibration(85.156, 30.762) };
+const verticalSwipeCalibration = { up: swipeCalibration(30.762, 14.844), down: swipeCalibration(69.238, 85.156) };
 
 function resolveFingertipCalibration(
   variant: GestureHintVariant,
@@ -152,8 +126,8 @@ function resolveFingertipCalibration(
 }
 
 function resolveCalibrationProfile(variant: GestureHintVariant) {
-  if (variant === "swipe-horizontal") return "horizontal-index-alpha-v1";
-  if (variant === "swipe-vertical") return "vertical-index-alpha-v1";
+  if (variant === "swipe-horizontal") return "horizontal-oblique-alpha-v03";
+  if (variant === "swipe-vertical") return "vertical-oblique-alpha-v03";
   return "tap-generic-v1";
 }
 
@@ -180,7 +154,8 @@ export function GestureHint({
     }
 
     const timer = window.setTimeout(() => setVisible(true), delayMs);
-    return () => window.clearTimeout(timer);
+    const finishTimer = variant === "tap" ? null : window.setTimeout(() => setVisible(false), delayMs + 2200);
+    return () => { window.clearTimeout(timer); if (finishTimer !== null) window.clearTimeout(finishTimer); };
   }, [active, completed, delayMs, direction, variant]);
 
   const state = completed ? "completed" : visible ? "visible" : "waiting";
@@ -307,7 +282,7 @@ export function GestureHint({
         variant === "tap" ? "not-applicable" : "194-percent"
       }
       data-gvo-gesture-cycle-duration={
-        variant === "tap" ? "2600ms" : "1680ms"
+        variant === "tap" ? "2600ms" : "1100ms"
       }
       data-gvo-gesture-target-label={targetLabel}
       aria-hidden="true"

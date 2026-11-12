@@ -55,96 +55,106 @@ function finalEsEntry<SlotId extends string>({
   };
 }
 
+// Candidate from the delegated 2026-10-23 integration, pending final human review.
+function integrationEsEntry<SlotId extends string>(input: FinalEntryInput<SlotId>): EditorialTextEntry<SlotId> {
+  return {
+    ...finalEsEntry(input),
+    source: "editorial_excel",
+    status: "REVIEW",
+    notes: "Integración delegada 2026-10-23; candidata para revisión humana final. Literal conservado en el paquete de procedencia.",
+  };
+}
+
 export const editorialRegistry = {
   TRANS_COVER_W1_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes: "Copy definitivo de transición Portada→W1 aprobado en ST5-020I.",
-      shortText: "Abriendo Mundo I",
+      shortText: "Abriendo Sala I",
       slotId: "TRANS_COVER_W1_TITLE_01",
-      text: "Abriendo Mundo I",
+      text: "Abriendo Sala I · Raíz",
     }),
   },
   TRANS_COVER_W1_SUB_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "ambiente",
       notes: "Copy definitivo de transición Portada→W1 aprobado en ST5-020I.",
-      shortText: "Raíz",
+      shortText: "Preparando tu recorrido",
       slotId: "TRANS_COVER_W1_SUB_01",
-      text: "Preparando la raíz.",
+      text: "Preparando tu recorrido",
     }),
   },
   TRANS_W1_W2_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes: "Copy definitivo de transición W1→W2 aprobado en ST5-020I.",
-      shortText: "Abriendo Mundo II",
+      shortText: "Abriendo Sala II",
       slotId: "TRANS_W1_W2_TITLE_01",
-      text: "Abriendo Mundo II",
+      text: "Abriendo Sala II · Pulso invisible",
     }),
   },
   TRANS_W1_W2_SUB_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "ambiente",
       notes: "Copy definitivo de transición W1→W2 aprobado en ST5-020I.",
-      shortText: "Pulso invisible",
+      shortText: "Preparando tu recorrido",
       slotId: "TRANS_W1_W2_SUB_01",
-      text: "Preparando el pulso invisible.",
+      text: "Preparando tu recorrido",
     }),
   },
   TRANS_W2_W3_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes:
         "Copy definitivo de transición W2→W3 aprobado por revisión humana.",
-      shortText: "Abriendo Mundo III",
+      shortText: "Abriendo Sala III",
       slotId: "TRANS_W2_W3_TITLE_01",
-      text: "Abriendo Mundo III",
+      text: "Abriendo Sala III · Cuaderno de práctica",
     }),
   },
   TRANS_W2_W3_SUB_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "ambiente",
       notes: "Copy definitivo de transición W2→W3 reconciliado en ST5-020I.",
-      shortText: "Cuaderno de pruebas",
+      shortText: "Preparando tu recorrido",
       slotId: "TRANS_W2_W3_SUB_01",
-      text: "Preparando el cuaderno de pruebas.",
+      text: "Preparando tu recorrido",
     }),
   },
   TRANS_W3_W4_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes: "Copy definitivo de transición W3→W4 aprobado en ST5-020I.",
-      shortText: "Abriendo Mundo IV",
+      shortText: "Abriendo Sala IV",
       slotId: "TRANS_W3_W4_TITLE_01",
-      text: "Abriendo Mundo IV",
+      text: "Abriendo Sala IV · Sistema biosonoro",
     }),
   },
   TRANS_W3_W4_SUB_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "ambiente",
       notes: "Copy definitivo de transición W3→W4 aprobado en ST5-020I.",
-      shortText: "Mesa de sistema",
+      shortText: "Preparando tu recorrido",
       slotId: "TRANS_W3_W4_SUB_01",
-      text: "Preparando la mesa de sistema.",
+      text: "Preparando tu recorrido",
     }),
   },
   TRANS_W4_W5_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes: "Copy definitivo de transición W4→W5 aprobado en ST5-020I.",
-      shortText: "Abriendo Mundo V",
+      shortText: "Abriendo Sala V",
       slotId: "TRANS_W4_W5_TITLE_01",
-      text: "Abriendo Mundo V",
+      text: "Abriendo Sala V · OKÚA, arte sensorial",
     }),
   },
   TRANS_W4_W5_SUB_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "ambiente",
       notes: "Copy definitivo de transición W4→W5 aprobado en ST5-020I.",
-      shortText: "Mapa del presente",
+      shortText: "Preparando tu recorrido",
       slotId: "TRANS_W4_W5_SUB_01",
-      text: "Preparando el mapa del presente.",
+      text: "Preparando tu recorrido",
     }),
   },
   TRANS_W5_FINAL_TITLE_01: {
@@ -1262,12 +1272,22 @@ export const editorialRegistry = {
     }),
   },
   FINAL_TITLE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Mirador final",
+      shortText: "OKÚA Jardín Biosonoro",
       slotId: "FINAL_TITLE_01",
-      text: "Mirador final del jardín",
+      text: "OKÚA Jardín Biosonoro",
     }),
+    en: {
+      "slotId": "FINAL_TITLE_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "OKÚA Jardín Biosonoro",
+      "shortText": "OKÚA Jardín Biosonoro",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_SUBTITLE_01: {
     es: finalEsEntry({
@@ -1276,14 +1296,34 @@ export const editorialRegistry = {
       slotId: "FINAL_SUBTITLE_01",
       text: "Recorrido completo",
     }),
+    en: {
+      "slotId": "FINAL_SUBTITLE_01",
+      "locale": "en",
+      "emitter": "ambiente",
+      "text": "Tour complete",
+      "shortText": "Tour complete",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_LIA_MESSAGE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "lia",
-      shortText: "Cierre y revisión libre",
+      shortText: "Revisión libre",
       slotId: "FINAL_LIA_MESSAGE_01",
-      text: "Llegaste al final del recorrido. Puedes volver a cualquier mundo cuando quieras.",
+      text: "Llegaste al Mirador. Puedes volver a cualquier sala, también a las actividades que omitiste.",
     }),
+    en: {
+      "slotId": "FINAL_LIA_MESSAGE_01",
+      "locale": "en",
+      "emitter": "lia",
+      "text": "You have reached the Lookout. You can return to any room, as well as to activities you skipped.",
+      "shortText": "Revisit freely",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_AMB_01: {
     es: finalEsEntry({
@@ -1292,94 +1332,214 @@ export const editorialRegistry = {
       slotId: "FINAL_AMB_01",
       text: "El jardín queda abierto para volver a mirarlo.",
     }),
+    en: {
+      "slotId": "FINAL_AMB_01",
+      "locale": "en",
+      "emitter": "ambiente",
+      "text": "The garden remains open for another look.",
+      "shortText": "Open garden",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_I_LABEL_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       shortText: "I — Raíz",
       slotId: "FINAL_ACCESS_I_LABEL_01",
       text: "I — Raíz",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_I_LABEL_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "I — Root",
+      "shortText": "I — Root",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_I_CONFIRM_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "sistema",
-      shortText: "Reabrir Mundo I",
+      shortText: "Reabrir Sala I",
       slotId: "FINAL_ACCESS_I_CONFIRM_01",
-      text: "Reabriendo Mundo I: Raíz…",
+      text: "Reabriendo Sala I · Raíz…",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_I_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Reopening Room I · Root…",
+      "shortText": "Reopen Room I",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_II_LABEL_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       shortText: "II — Pulso invisible",
       slotId: "FINAL_ACCESS_II_LABEL_01",
       text: "II — Pulso invisible",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_II_LABEL_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "II — Invisible pulse",
+      "shortText": "II — Invisible pulse",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_II_CONFIRM_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "sistema",
-      shortText: "Reabrir Mundo II",
+      shortText: "Reabrir Sala II",
       slotId: "FINAL_ACCESS_II_CONFIRM_01",
-      text: "Reabriendo Mundo II: Pulso invisible…",
+      text: "Reabriendo Sala II · Pulso invisible…",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_II_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Reopening Room II · Invisible pulse…",
+      "shortText": "Reopen Room II",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_III_LABEL_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "III — Cuaderno de pruebas",
+      shortText: "III — Cuaderno de práctica",
       slotId: "FINAL_ACCESS_III_LABEL_01",
-      text: "III — Cuaderno de pruebas",
+      text: "III — Cuaderno de práctica",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_III_LABEL_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "III — Practice notebook",
+      "shortText": "III — Practice notebook",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_III_CONFIRM_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "sistema",
-      shortText: "Reabrir Mundo III",
+      shortText: "Reabrir Sala III",
       slotId: "FINAL_ACCESS_III_CONFIRM_01",
-      text: "Reabriendo Mundo III: Cuaderno de pruebas…",
+      text: "Reabriendo Sala III · Cuaderno de práctica…",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_III_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Reopening Room III · Practice notebook…",
+      "shortText": "Reopen Room III",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_IV_LABEL_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "IV — Mesa de sistema",
+      shortText: "IV — Sistema biosonoro",
       slotId: "FINAL_ACCESS_IV_LABEL_01",
-      text: "IV — Mesa de sistema",
+      text: "IV — Sistema biosonoro",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_IV_LABEL_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "IV — Biosonic system",
+      "shortText": "IV — Biosonic system",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_IV_CONFIRM_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "sistema",
-      shortText: "Reabrir Mundo IV",
+      shortText: "Reabrir Sala IV",
       slotId: "FINAL_ACCESS_IV_CONFIRM_01",
-      text: "Reabriendo Mundo IV: Mesa de sistema…",
+      text: "Reabriendo Sala IV · Sistema biosonoro…",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_IV_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Reopening Room IV · Biosonic system…",
+      "shortText": "Reopen Room IV",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_V_LABEL_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "V — Mapa del presente",
+      shortText: "V — OKÚA, arte sensorial",
       slotId: "FINAL_ACCESS_V_LABEL_01",
-      text: "V — Mapa del presente",
+      text: "V — OKÚA, arte sensorial",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_V_LABEL_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "V — OKÚA, sensory art",
+      "shortText": "V — OKÚA, sensory art",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESS_V_CONFIRM_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "sistema",
-      shortText: "Reabrir Mundo V",
+      shortText: "Reabrir Sala V",
       slotId: "FINAL_ACCESS_V_CONFIRM_01",
-      text: "Reabriendo Mundo V: Mapa del presente…",
+      text: "Reabriendo Sala V · OKÚA, arte sensorial…",
     }),
+    en: {
+      "slotId": "FINAL_ACCESS_V_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Reopening Room V · OKÚA, sensory art…",
+      "shortText": "Reopen Room V",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_HELP_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       shortText: "Revisión libre",
       slotId: "FINAL_HELP_01",
-      text: "Elige un mundo para revisarlo libremente.",
+      text: "Elige una sala para revisarla a tu ritmo.",
     }),
+    en: {
+      "slotId": "FINAL_HELP_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Choose a room to revisit at your own pace.",
+      "shortText": "Revisit freely",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_BACK_HOME_BTN_01: {
     es: finalEsEntry({
@@ -1388,6 +1548,16 @@ export const editorialRegistry = {
       slotId: "FINAL_BACK_HOME_BTN_01",
       text: "Volver al inicio",
     }),
+    en: {
+      "slotId": "FINAL_BACK_HOME_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Back to home",
+      "shortText": "Back to home",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_BACK_HOME_HELP_01: {
     es: finalEsEntry({
@@ -1396,6 +1566,16 @@ export const editorialRegistry = {
       slotId: "FINAL_BACK_HOME_HELP_01",
       text: "Regresa a la portada sin borrar tu recorrido.",
     }),
+    en: {
+      "slotId": "FINAL_BACK_HOME_HELP_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Return to the home screen without clearing your tour progress.",
+      "shortText": "Keep tour progress",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_BTN_01: {
     es: finalEsEntry({
@@ -1404,6 +1584,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_BTN_01",
       text: "Reiniciar recorrido",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Restart tour",
+      "shortText": "Restart tour",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_CONFIRM_01: {
     es: finalEsEntry({
@@ -1412,6 +1602,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_CONFIRM_01",
       text: "¿Quieres reiniciar el recorrido completo? Volverás a comenzar desde el inicio.",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_CONFIRM_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Do you want to restart the entire tour? You will start again from the beginning.",
+      "shortText": "Confirm restart",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_CANCEL_BTN_01: {
     es: finalEsEntry({
@@ -1420,6 +1620,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_CANCEL_BTN_01",
       text: "Cancelar",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_CANCEL_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Cancel",
+      "shortText": "Cancel",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_CONFIRM_BTN_01: {
     es: finalEsEntry({
@@ -1428,64 +1638,144 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_CONFIRM_BTN_01",
       text: "Reiniciar recorrido",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_CONFIRM_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Restart tour",
+      "shortText": "Restart tour",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_CREDITS_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes:
         "Copy definitivo aprobado; sus dos líneas se separan con un salto DOM.",
       shortText: "Créditos",
       slotId: "FINAL_CREDITS_01",
-      text: "Desarrollado por Momotto S.A.S.\nA cargo del Ing. José David P. Z.",
+      text: "Desarrollado por Momotto S.A.S.",
     }),
+    en: {
+      "slotId": "FINAL_CREDITS_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Developed by Momotto S.A.S.",
+      "shortText": "Credits",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_SCENE_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Escena accesible final",
+      shortText: "Mirador accesible",
       slotId: "FINAL_ACCESSIBLE_SCENE_01",
-      text: "Mirador final del jardín con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
+      text: "Mirador de OKÚA con cinco accesos de revisión, Lía, regreso a la portada y reinicio del recorrido.",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_SCENE_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "OKÚA Lookout with five revisit links, Lía, a return to the home screen and a tour restart.",
+      "shortText": "Accessible Lookout",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_ACCESS_I_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Revisar Mundo I",
+      shortText: "Revisar Sala I",
       slotId: "FINAL_ACCESSIBLE_ACCESS_I_01",
-      text: "Revisar Mundo I: Raíz",
+      text: "Revisar Sala I · Raíz",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_ACCESS_I_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Revisit Room I · Root",
+      "shortText": "Revisit Room I",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_ACCESS_II_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Revisar Mundo II",
+      shortText: "Revisar Sala II",
       slotId: "FINAL_ACCESSIBLE_ACCESS_II_01",
-      text: "Revisar Mundo II: Pulso invisible",
+      text: "Revisar Sala II · Pulso invisible",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_ACCESS_II_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Revisit Room II · Invisible pulse",
+      "shortText": "Revisit Room II",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_ACCESS_III_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Revisar Mundo III",
+      shortText: "Revisar Sala III",
       slotId: "FINAL_ACCESSIBLE_ACCESS_III_01",
-      text: "Revisar Mundo III: Cuaderno de pruebas",
+      text: "Revisar Sala III · Cuaderno de práctica",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_ACCESS_III_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Revisit Room III · Practice notebook",
+      "shortText": "Revisit Room III",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_ACCESS_IV_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Revisar Mundo IV",
+      shortText: "Revisar Sala IV",
       slotId: "FINAL_ACCESSIBLE_ACCESS_IV_01",
-      text: "Revisar Mundo IV: Mesa de sistema",
+      text: "Revisar Sala IV · Sistema biosonoro",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_ACCESS_IV_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Revisit Room IV · Biosonic system",
+      "shortText": "Revisit Room IV",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_ACCESS_V_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
-      shortText: "Revisar Mundo V",
+      shortText: "Revisar Sala V",
       slotId: "FINAL_ACCESSIBLE_ACCESS_V_01",
-      text: "Revisar Mundo V: Mapa del presente",
+      text: "Revisar Sala V · OKÚA, arte sensorial",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_ACCESS_V_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Revisit Room V · OKÚA, sensory art",
+      "shortText": "Revisit Room V",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_BACK_HOME_01: {
     es: finalEsEntry({
@@ -1494,6 +1784,16 @@ export const editorialRegistry = {
       slotId: "FINAL_ACCESSIBLE_BACK_HOME_01",
       text: "Volver a la portada sin borrar el recorrido completado",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_BACK_HOME_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Back to home without clearing your completed tour",
+      "shortText": "Back without clearing",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_RESTART_01: {
     es: finalEsEntry({
@@ -1502,6 +1802,16 @@ export const editorialRegistry = {
       slotId: "FINAL_ACCESSIBLE_RESTART_01",
       text: "Reiniciar el recorrido completo después de confirmar",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_RESTART_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Restart tour from the beginning after confirmation",
+      "shortText": "Restart with confirmation",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RETURN_TO_MIRADOR_BTN_01: {
     es: finalEsEntry({
@@ -1512,16 +1822,36 @@ export const editorialRegistry = {
       slotId: "FINAL_RETURN_TO_MIRADOR_BTN_01",
       text: "Volver al Mirador",
     }),
+    en: {
+      "slotId": "FINAL_RETURN_TO_MIRADOR_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Back to the Lookout",
+      "shortText": "Back to the Lookout",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01: {
-    es: finalEsEntry({
+    es: integrationEsEntry({
       emitter: "interfaz",
       notes:
         "Copy aprobado y registrado; consumo pendiente de ticket funcional de revisita.",
       shortText: "Retorno accesible",
       slotId: "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
-      text: "Volver al Mirador final desde este mundo",
+      text: "Volver al Mirador desde esta sala",
     }),
+    en: {
+      "slotId": "FINAL_ACCESSIBLE_RETURN_TO_MIRADOR_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Back to the Lookout from this room",
+      "shortText": "Accessible return",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_BUSY_01: {
     es: finalEsEntry({
@@ -1532,6 +1862,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_BUSY_01",
       text: "Reiniciando recorrido…",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_BUSY_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "Restarting tour…",
+      "shortText": "Restarting",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_ERROR_01: {
     es: finalEsEntry({
@@ -1542,6 +1882,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_ERROR_01",
       text: "No pudimos reiniciar el recorrido. Tu progreso se conservó.",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_ERROR_01",
+      "locale": "en",
+      "emitter": "sistema",
+      "text": "We could not restart the tour. Your progress was preserved.",
+      "shortText": "Restart error",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
   FINAL_RESTART_RETRY_BTN_01: {
     es: finalEsEntry({
@@ -1552,6 +1902,16 @@ export const editorialRegistry = {
       slotId: "FINAL_RESTART_RETRY_BTN_01",
       text: "Reintentar",
     }),
+    en: {
+      "slotId": "FINAL_RESTART_RETRY_BTN_01",
+      "locale": "en",
+      "emitter": "interfaz",
+      "text": "Retry",
+      "shortText": "Retry",
+      "status": "REVIEW",
+      "source": "temporary",
+      "notes": "Traducción EN conciliada de ES para OBS03 D16; REVIEW. No es literal del escritor ni aprobación humana."
+    },
   },
 } as const satisfies EditorialRegistry;
 

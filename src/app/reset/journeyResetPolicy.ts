@@ -2,9 +2,12 @@ import { GVO_PROGRESS_STORAGE_KEY } from "../../domain/progress/progress.storage
 import { WORLD1_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world1Checkpoint";
 import { WORLD2_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world2Checkpoint";
 import { WORLD3_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world3Checkpoint";
+import { WORLD3_PRACTICE_STORAGE_KEY } from "../../domain/checkpoints/world3PracticeCheckpoint";
 import { WORLD4_CHECKPOINT_STORAGE_KEY } from "../../domain/checkpoints/world4Checkpoint";
+import { WORLD4_EXPLANATION_STORAGE_KEY } from "../../domain/checkpoints/world4ExplanationCheckpoint";
 import { COVER_INTRO_STORAGE_KEY } from "../../screens/Cover/coverIntroState";
 import { WORLD5_PROGRESS_STORAGE_KEY } from "../../screens/World5Root/world5Progress";
+import { WORLD5_QUIZ_STORAGE_KEY, WORLD5_ROUNDS_STORAGE_KEY, WORLD5_QUIZ_RECOVERY_KEY } from "../../screens/World5Root/world5Quiz";
 import { FINAL_REVIEW_CONTEXT_STORAGE_KEY } from "../review/finalReviewContext";
 
 export type JourneyResetBackend = "localStorage" | "sessionStorage";
@@ -24,6 +27,9 @@ export type JourneyResetPolicyEntry = Readonly<{
 }>;
 
 export const GVO_JOURNEY_RESET_ALLOWLIST = [
+  { backend: "localStorage", key: "gvo.journey.essential.v1", purpose: "global-progress" },
+  { backend: "localStorage", key: "gvo.station4.ordering.v1", purpose: "world-four-state" },
+  { backend: "localStorage", key: WORLD4_EXPLANATION_STORAGE_KEY, purpose: "world-four-state" },
   {
     backend: "localStorage",
     key: GVO_PROGRESS_STORAGE_KEY,
@@ -46,6 +52,11 @@ export const GVO_JOURNEY_RESET_ALLOWLIST = [
   },
   {
     backend: "localStorage",
+    key: WORLD3_PRACTICE_STORAGE_KEY,
+    purpose: "world-three-state",
+  },
+  {
+    backend: "localStorage",
     key: WORLD4_CHECKPOINT_STORAGE_KEY,
     purpose: "world-four-state",
   },
@@ -54,6 +65,13 @@ export const GVO_JOURNEY_RESET_ALLOWLIST = [
     key: WORLD5_PROGRESS_STORAGE_KEY,
     purpose: "world-five-state",
   },
+  {
+    backend: "localStorage",
+    key: WORLD5_QUIZ_STORAGE_KEY,
+    purpose: "world-five-state",
+  },
+  { backend: "localStorage", key: WORLD5_ROUNDS_STORAGE_KEY, purpose: "world-five-state" },
+  { backend: "localStorage", key: WORLD5_QUIZ_RECOVERY_KEY, purpose: "world-five-state" },
   {
     backend: "localStorage",
     key: COVER_INTRO_STORAGE_KEY,

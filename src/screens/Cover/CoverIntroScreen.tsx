@@ -1,807 +1,191 @@
 import "./CoverIntroScreen.css";
-
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import {
-  beginFinalReview,
-  clearFinalReviewContext,
-  resolveFinalCoverRevisitContext,
-} from "../../app/review/finalReviewContext";
-import {
-  coverToWorldOneTransitionRoute,
-  stationEntryRoutes,
-} from "../../app/routes";
-import { preloadJourneyRouteModule } from "../../app/routeModules";
-import { readProgress } from "../../domain/progress/progress.storage";
-import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
-import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
+import { readLanguagePreference, type GvoLanguage } from "../../app/preferences/languagePreference";
+import { useJourneyActivity } from "../../app/journey/JourneyActivation";
+import { closeEssentialRoom, confirmEssentialStep, markEssentialPresented, useEssentialFlow } from "../../app/journey/journeyEssential";
+import { beginFinalReview } from "../../app/review/finalReviewContext";
+import { stationEntryRoutes } from "../../app/routes";
 import { coverIntroAssets } from "./coverIntroAssets";
 import { coverPortalInteriorAssets } from "./coverPortalInteriorAssets";
-import { LiaHybridAvatar } from "./LiaHybridAvatar";
-import type { LiaRigExpression } from "./LiaHybridAvatar";
-import {
-  coverIntroDialogues,
-  coverIntroPortals,
-  coverIntroText,
-  coverIntroTransitionText,
-  lockedPortalMessages,
-} from "./coverIntroContent";
-import type {
-  CoverIntroDialoguePose,
-  LockedPortalId,
-} from "./coverIntroContent";
-import {
-  COVER_INTRO_INITIAL_STATE,
-  persistCoverIntroCompleted,
-  readCoverIntroCompleted,
-  resetCoverIntroCompleted,
-} from "./coverIntroState";
-import type { CoverIntroPhase, CoverIntroState } from "./coverIntroState";
-import { isCoverRevisitUnlocked } from "./coverRevisitPolicy";
+import { LiaJourneyMotion } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
+import { coverIntroCopyByLocale, coverIntroDialogues, coverIntroPortals } from "./coverIntroContent";
+import type { CoverIntroPhase } from "./coverIntroState";
 
-const liaPoseByState = {
-  idle: coverIntroAssets.liaIdle,
-  greeting: coverIntroAssets.liaGreeting,
-  explainCalm: coverIntroAssets.liaExplainCalm,
-  pointPortal1: coverIntroAssets.liaPointPortal1,
-  activatePortal1: coverIntroAssets.liaActivatePortal1,
-} satisfies Record<CoverIntroDialoguePose | "idle" | "activatePortal1", string>;
+export type CoverIntroScreenProps = {
+  locale?: GvoLanguage;
+  onPortalEnter?: () => void | Promise<void>;
+  onRevisitRoom?: (world: 1 | 2 | 3 | 4 | 5) => void;
+};
+const englishRooms = ["Root", "Invisible pulse", "Practice notebook", "Biosonic system", "OKÚA, sensory art"] as const;
 
-const PORTAL_ACTIVATION_TO_TRANSITION_MS = 920;
-const MAX_AUTOMATIC_ACTIVATION_RETRIES = 1;
-
-function createInitialCoverIntroState(): CoverIntroState {
-  const shouldResetIntro =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("resetIntro") === "1";
-
-  if (shouldResetIntro) {
-    resetCoverIntroCompleted();
-    return COVER_INTRO_INITIAL_STATE;
-  }
-
-  const introCompleted = readCoverIntroCompleted();
-
-  if (introCompleted) {
-    return {
-      ...COVER_INTRO_INITIAL_STATE,
-      phase: "portal_1_ready",
-      activeDialogueIndex: coverIntroDialogues.length - 1,
-      introCompleted: true,
-    };
-  }
-
-  return COVER_INTRO_INITIAL_STATE;
-}
-
-function isDialoguePhase(phase: CoverIntroPhase) {
-  return (
-    phase === "intro_dialogue_started" || phase === "intro_dialogue_active"
-  );
-}
-
-function getLiaPoseSource(
-  phase: CoverIntroPhase,
-  dialoguePose?: CoverIntroDialoguePose,
-) {
-  if (
-    phase === "portal_1_opening_placeholder" ||
-    phase === "transition_to_station_1_placeholder"
-  ) {
-    return liaPoseByState.activatePortal1;
-  }
-
-  if (phase === "portal_1_ready" || phase === "intro_dialogue_completed") {
-    return liaPoseByState.pointPortal1;
-  }
-
-  if (dialoguePose) {
-    return liaPoseByState[dialoguePose];
-  }
-
-  return liaPoseByState.idle;
-}
-
-function getLiaPoseName(
-  phase: CoverIntroPhase,
-  dialoguePose?: CoverIntroDialoguePose,
-) {
-  if (
-    phase === "portal_1_opening_placeholder" ||
-    phase === "transition_to_station_1_placeholder"
-  ) {
-    return "activatePortal1";
-  }
-
-  if (phase === "portal_1_ready" || phase === "intro_dialogue_completed") {
-    return "pointPortal1";
-  }
-
-  if (dialoguePose) {
-    return dialoguePose;
-  }
-
-  return "idle";
-}
-
-function getLiaRigExpression(
-  phase: CoverIntroPhase,
-  activeDialogueIndex: number,
-  hasBlockedPortalMessage: boolean,
-): LiaRigExpression | null {
-  if (phase === "portada_idle") {
-    return hasBlockedPortalMessage ? "attentive" : "neutral";
-  }
-
-  if (!isDialoguePhase(phase)) {
-    return null;
-  }
-
-  if (activeDialogueIndex === 0) {
-    return "happy";
-  }
-
-  if (activeDialogueIndex >= 1 && activeDialogueIndex <= 3) {
-    return "attentive";
-  }
-
-  return null;
-}
-
-export function CoverIntroScreen() {
+export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", onPortalEnter, onRevisitRoom }: CoverIntroScreenProps = {}) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [coverRevisitActive] = useState(() => {
-    const context = resolveFinalCoverRevisitContext(location.state);
-    const active = isCoverRevisitUnlocked(context, readProgress());
+  const { active, attemptId } = useJourneyActivity();
+  const flow = useEssentialFlow("cover");
+  const copy = coverIntroCopyByLocale[locale];
+  const [started, setStarted] = useState(() => flow.confirmedStepIds.length > 0 && !flow.closed);
+  const [opening, setOpening] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const savingRef = useRef(false);
+  const enteringRef = useRef(false);
+  const portalRef = useRef<HTMLButtonElement>(null);
+  const dialogueActionRef = useRef<HTMLButtonElement>(null);
+  const justClosedRef = useRef(false);
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  const coverRevisitActive = flow.readOnly && flow.exitReady;
+  const portalReady = flow.closed || coverRevisitActive;
+  const dialogueIndex = Math.max(0, coverIntroDialogues.findIndex((dialogue) => dialogue.stepId === flow.activeStepId));
+  const dialogueVisible = started && !portalReady;
+  const dialogue = dialogueVisible ? coverIntroDialogues[dialogueIndex] : null;
+  const lastDialogue = dialogueIndex === coverIntroDialogues.length - 1;
+  const phase: CoverIntroPhase = opening ? "portal_1_opening_placeholder"
+    : portalReady ? "portal_1_ready"
+    : dialogueVisible ? dialogueIndex === 0 ? "intro_dialogue_started" : "intro_dialogue_active" : "portada_idle";
+  const liaAction = portalReady ? "present" : dialogueVisible ? dialogueIndex === 0 ? "respond" : "present" : "attention";
 
-    if (context && !active) {
-      clearFinalReviewContext();
-    }
+  useEffect(() => {
+    if (flow.confirmedStepIds.length > 0 && !flow.closed) setStarted(true);
+  }, [flow.confirmedStepIds.length, flow.closed]);
 
-    return active;
-  });
-  const [coverState, setCoverState] = useState<CoverIntroState>(
-    createInitialCoverIntroState,
-  );
-  const [portalActivationDelayComplete, setPortalActivationDelayComplete] =
-    useState(false);
-  const [activationPreloadAttempt, setActivationPreloadAttempt] = useState(0);
-  const activationPreload = useAssetPreloader(
-    screenAssetBundles.coverIntroActivation,
-    {
-      timeoutMs: 9000,
-      retryKey: activationPreloadAttempt,
-    },
-  );
-  const coverCriticalPreload = useAssetPreloader(
-    screenAssetBundles.coverIntroCritical,
-    {
-      timeoutMs: 9000,
-    },
-  );
-  const transitionRootPreload = useAssetPreloader(
-    screenAssetBundles.transitionRootCritical,
-    {
-      timeoutMs: 9000,
-    },
-  );
-  const blockedMessageTimeoutRef = useRef<number | null>(null);
-  const transitionTimeoutRef = useRef<number | null>(null);
-  const portalHandoffStartedRef = useRef(false);
-  const portalNavigationDoneRef = useRef(false);
-  const pendingPortalOpenIntentRef = useRef(false);
-  const activationRetryInFlightRef = useRef(false);
-  const automaticActivationRetryCountRef = useRef(0);
-
-  const openPortalOnePlaceholder = useCallback(() => {
-    if (
-      portalHandoffStartedRef.current ||
-      coverState.phase !== "portal_1_ready"
-    ) {
-      return;
-    }
-
-    portalHandoffStartedRef.current = true;
-    portalNavigationDoneRef.current = false;
-    setPortalActivationDelayComplete(false);
-    setCoverState((current) => {
-      if (current.phase !== "portal_1_ready") {
-        return current;
-      }
-
-      return {
-        ...current,
-        phase: "portal_1_opening_placeholder",
-        blockedPortalMessage: null,
-        blockedPortalId: null,
-      };
+  useEffect(() => {
+    if (!active || !dialogue || flow.readOnly || flow.presentedStepIds.includes(dialogue.stepId)) return;
+    let current = true;
+    void markEssentialPresented({ screen: "cover", stepId: dialogue.stepId, contentRevision: flow.contentRevision, attemptId, mode: "standard" }).then((result) => {
+      if (current && !result.ok && activeRef.current) setError(copy.saveError);
     });
-  }, [coverState.phase]);
+    return () => { current = false; };
+  }, [active, attemptId, dialogue, flow.readOnly, flow.presentedStepIds, flow.contentRevision, copy.saveError]);
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-
-    if (url.searchParams.get("resetIntro") === "1") {
-      url.searchParams.delete("resetIntro");
-      window.history.replaceState(
-        window.history.state,
-        "",
-        `${url.pathname}${url.search}${url.hash}`,
-      );
-    }
-  }, []);
+    if (!active) return;
+    if (flow.closed && justClosedRef.current) {
+      justClosedRef.current = false;
+      portalRef.current?.focus({ preventScroll: true });
+    } else if (dialogueVisible) dialogueActionRef.current?.focus({ preventScroll: true });
+  }, [active, dialogueIndex, dialogueVisible, flow.closed]);
 
   useEffect(() => {
-    return () => {
-      if (blockedMessageTimeoutRef.current !== null) {
-        window.clearTimeout(blockedMessageTimeoutRef.current);
+    // Resetting the journey/presentation belongs to the shared root controller.
+    // Merely opening a URL must not clear legacy or current presentation evidence.
+    enteringRef.current = false;
+    setOpening(false);
+  }, [location.key]);
+
+  async function advanceDialogue() {
+    if (!active || !dialogue || flow.readOnly || savingRef.current) return;
+    savingRef.current = true;
+    setSaving(true); setError(null);
+    try {
+      if (!flow.presentedStepIds.includes(dialogue.stepId)) {
+        const presented = await markEssentialPresented({ screen: "cover", stepId: dialogue.stepId, contentRevision: flow.contentRevision, attemptId, mode: "standard" });
+        if (!presented.ok) { setError(copy.saveError); return; }
       }
-
-      if (transitionTimeoutRef.current !== null) {
-        window.clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (activationPreload.status === "loading") {
-      return;
-    }
-
-    activationRetryInFlightRef.current = false;
-
-    if (
-      (activationPreload.status === "error" ||
-        activationPreload.status === "timeout") &&
-      pendingPortalOpenIntentRef.current &&
-      automaticActivationRetryCountRef.current <
-        MAX_AUTOMATIC_ACTIVATION_RETRIES
-    ) {
-      automaticActivationRetryCountRef.current += 1;
-      activationRetryInFlightRef.current = true;
-      setActivationPreloadAttempt((current) => current + 1);
-      return;
-    }
-
-    if (
-      activationPreload.status !== "ready" ||
-      coverState.phase !== "portal_1_ready" ||
-      !pendingPortalOpenIntentRef.current
-    ) {
-      return;
-    }
-
-    pendingPortalOpenIntentRef.current = false;
-    openPortalOnePlaceholder();
-  }, [activationPreload.status, coverState.phase, openPortalOnePlaceholder]);
-
-  useEffect(() => {
-    if (coverState.phase !== "portal_1_opening_placeholder") {
-      setPortalActivationDelayComplete(false);
-      return;
-    }
-
-    setPortalActivationDelayComplete(false);
-    transitionTimeoutRef.current = window.setTimeout(() => {
-      setPortalActivationDelayComplete(true);
-      transitionTimeoutRef.current = null;
-    }, PORTAL_ACTIVATION_TO_TRANSITION_MS);
-
-    return () => {
-      if (transitionTimeoutRef.current !== null) {
-        window.clearTimeout(transitionTimeoutRef.current);
-        transitionTimeoutRef.current = null;
-      }
-    };
-  }, [coverState.phase]);
-
-  useEffect(() => {
-    if (
-      coverState.phase !== "portal_1_opening_placeholder" ||
-      !portalActivationDelayComplete ||
-      !transitionRootPreload.ready ||
-      portalNavigationDoneRef.current
-    ) {
-      return;
-    }
-
-    portalNavigationDoneRef.current = true;
-    navigate(coverToWorldOneTransitionRoute);
-  }, [
-    coverState.phase,
-    navigate,
-    portalActivationDelayComplete,
-    transitionRootPreload.ready,
-  ]);
-
-  const stageStyle = {
-    "--cover-background-image": `url(${coverIntroAssets.background})`,
-  } as CSSProperties;
-  const dialogueIsVisible = isDialoguePhase(coverState.phase);
-  const activeDialogue = dialogueIsVisible
-    ? coverIntroDialogues[coverState.activeDialogueIndex]
-    : null;
-  const activeDialogueStep = activeDialogue
-    ? `Paso ${coverState.activeDialogueIndex + 1} de ${coverIntroDialogues.length}`
-    : null;
-  const activeLiaPose = getLiaPoseSource(
-    coverState.phase,
-    activeDialogue?.liaPose,
-  );
-  const activeLiaPoseName = getLiaPoseName(
-    coverState.phase,
-    activeDialogue?.liaPose,
-  );
-  const liaRigExpression = getLiaRigExpression(
-    coverState.phase,
-    coverState.activeDialogueIndex,
-    Boolean(coverState.blockedPortalMessage),
-  );
-  const liaAvatarMode = liaRigExpression ? "rig-idle" : "pose";
-  const activeLiaStateName = liaRigExpression
-    ? `rig-${liaRigExpression}`
-    : activeLiaPoseName;
-  const portalOneReady =
-    coverState.phase === "portal_1_ready" ||
-    coverState.phase === "portal_1_opening_placeholder" ||
-    coverState.phase === "transition_to_station_1_placeholder";
-  const portalOneOpening =
-    coverState.phase === "portal_1_opening_placeholder" ||
-    coverState.phase === "transition_to_station_1_placeholder";
-  const portalStageClassNames = [
-    "cover-intro__portal-stage",
-    "cover-portal-stage",
-    "cover-activation-stage",
-    dialogueIsVisible ? "cover-portal-stage--dialogue-active" : "",
-    portalOneReady ? "cover-portal-stage--ready" : "",
-    portalOneOpening ? "cover-portal-stage--opening" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const ctaText = portalOneReady
-    ? coverIntroText.enterWorldOne
-    : coverIntroText.cta;
-  const ctaLabel = portalOneReady
-    ? coverIntroText.enterWorldOne
-    : coverIntroText.cta;
-
-  function startIntroDialogue() {
-    setCoverState((current) => {
-      if (
-        isDialoguePhase(current.phase) ||
-        current.phase === "portal_1_opening_placeholder" ||
-        current.phase === "transition_to_station_1_placeholder"
-      ) {
-        return current;
-      }
-
-      if (current.introCompleted) {
-        return {
-          ...current,
-          phase: "portal_1_ready",
-          blockedPortalMessage: null,
-          blockedPortalId: null,
-        };
-      }
-
-      return {
-        phase: "intro_dialogue_started",
-        activeDialogueIndex: 0,
-        blockedPortalMessage: null,
-        blockedPortalId: null,
-        introCompleted: false,
-      };
-    });
+      if (lastDialogue) justClosedRef.current = true;
+      const result = lastDialogue
+        ? await closeEssentialRoom({ screen: "cover", contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" })
+        : await confirmEssentialStep({ screen: "cover", stepId: dialogue.stepId, contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" });
+      if (!result.ok) { justClosedRef.current = false; setError(copy.saveError); }
+    } finally { savingRef.current = false; setSaving(false); }
   }
 
-  function advanceDialogue() {
-    setCoverState((current) => {
-      if (!isDialoguePhase(current.phase)) {
-        return current;
-      }
-
-      const isLastDialogue =
-        current.activeDialogueIndex >= coverIntroDialogues.length - 1;
-
-      if (isLastDialogue) {
-        persistCoverIntroCompleted();
-        return {
-          ...current,
-          phase: "portal_1_ready",
-          activeDialogueIndex: coverIntroDialogues.length - 1,
-          blockedPortalMessage: null,
-          blockedPortalId: null,
-          introCompleted: true,
-        };
-      }
-
-      return {
-        ...current,
-        phase: "intro_dialogue_active",
-        activeDialogueIndex: current.activeDialogueIndex + 1,
-        blockedPortalMessage: null,
-        blockedPortalId: null,
-      };
-    });
+  async function enterPortal() {
+    if (!active || !flow.exitReady || coverRevisitActive || enteringRef.current) return;
+    if (!onPortalEnter) { setError(copy.unavailable); return; }
+    enteringRef.current = true; setOpening(true); setError(null);
+    try { await onPortalEnter(); }
+    catch { enteringRef.current = false; setOpening(false); setError(copy.unavailable); }
   }
 
-  function requestPortalOneOpening() {
-    void preloadJourneyRouteModule("transition").catch(() => undefined);
-
-    if (activationPreload.status === "ready") {
-      pendingPortalOpenIntentRef.current = false;
-      openPortalOnePlaceholder();
-      return;
-    }
-
-    pendingPortalOpenIntentRef.current = true;
-
-    if (
-      (activationPreload.status === "error" ||
-        activationPreload.status === "timeout") &&
-      !activationRetryInFlightRef.current
-    ) {
-      activationRetryInFlightRef.current = true;
-      setActivationPreloadAttempt((current) => current + 1);
-    }
+  function revisit(world: 1 | 2 | 3 | 4 | 5) {
+    if (!active || !coverRevisitActive) return;
+    if (onRevisitRoom) onRevisitRoom(world);
+    else navigate(stationEntryRoutes[world], { state: beginFinalReview(world) });
   }
 
-  function handlePortalOneClick() {
-    if (coverState.phase === "portal_1_ready") {
-      requestPortalOneOpening();
-      return;
-    }
-
-    if (
-      coverState.phase === "portal_1_opening_placeholder" ||
-      coverState.phase === "transition_to_station_1_placeholder"
-    ) {
-      return;
-    }
-
-    startIntroDialogue();
-  }
-
-  function handleRevisitPortalClick(world: 1 | 2 | 3 | 4 | 5) {
-    const reviewState = beginFinalReview(world);
-    navigate(stationEntryRoutes[world], { state: reviewState });
-  }
-
-  function showBlockedPortalMessage(portalId: LockedPortalId) {
-    if (
-      isDialoguePhase(coverState.phase) ||
-      coverState.phase === "portal_1_opening_placeholder" ||
-      coverState.phase === "transition_to_station_1_placeholder"
-    ) {
-      return;
-    }
-
-    if (blockedMessageTimeoutRef.current !== null) {
-      window.clearTimeout(blockedMessageTimeoutRef.current);
-    }
-
-    setCoverState((current) => ({
-      ...current,
-      blockedPortalMessage: lockedPortalMessages[portalId],
-      blockedPortalId: portalId,
-    }));
-
-    blockedMessageTimeoutRef.current = window.setTimeout(() => {
-      setCoverState((current) => ({
-        ...current,
-        blockedPortalMessage: null,
-        blockedPortalId: null,
-      }));
-      blockedMessageTimeoutRef.current = null;
-    }, 1800);
-  }
-
-  function handleCtaClick() {
-    if (coverState.phase === "portal_1_ready") {
-      requestPortalOneOpening();
-      return;
-    }
-
-    if (
-      coverState.phase === "portal_1_opening_placeholder" ||
-      coverState.phase === "transition_to_station_1_placeholder"
-    ) {
-      return;
-    }
-
-    startIntroDialogue();
-  }
-
+  const stageStyle = { "--cover-background-image": `url(${coverIntroAssets.background})` } as CSSProperties;
   return (
-    <main
-      className={`cover-intro cover-intro--${coverState.phase}${coverCriticalPreload.ready ? "" : " cover-intro--preloading-critical"}`}
-      aria-labelledby="cover-intro-title"
-      style={stageStyle}
-      data-cover-phase={coverState.phase}
+    <main className={`cover-intro cover-intro--${phase}`} style={stageStyle} lang={locale}
+      aria-labelledby="cover-intro-title" data-cover-phase={phase}
       data-cover-revisit={coverRevisitActive ? "active" : "inactive"}
-      data-intro-completed={coverState.introCompleted ? "true" : "false"}
-      data-critical-assets-ready={coverCriticalPreload.ready ? "true" : "false"}
-      data-critical-assets-status={coverCriticalPreload.status}
-      data-activation-assets-ready={
-        activationPreload.status === "ready" ? "true" : "false"
-      }
-      data-activation-assets-status={activationPreload.status}
-      data-transition-preload-ready={
-        transitionRootPreload.ready ? "true" : "false"
-      }
-    >
-      {coverCriticalPreload.ready ? null : (
-        <p className="cover-intro__preload-status" role="status">
-          Preparando el recorrido
-        </p>
-      )}
+      data-intro-completed={flow.closed ? "true" : "false"} data-journey-active={active ? "true" : "false"}
+      data-essential-revision={flow.contentRevision} data-essential-exit-ready={flow.exitReady ? "true" : "false"}>
       <div className="cover-intro__scrim" aria-hidden="true" />
-      <div className="cover-intro__stage" data-cover-intro-version="002J-FIX">
+      <div className="cover-intro__stage" data-cover-intro-version="OBS03.2">
         <header className="cover-intro__header">
-          <p className="cover-intro__brand">{coverIntroText.logo}</p>
-          <p className="cover-intro__subtitle">{coverIntroText.subtitle}</p>
+          <img className="cover-intro__brand-logo" src={coverIntroAssets.brandLogo} alt="" aria-hidden="true"
+            width={116} height={142} data-runtime-asset={coverIntroAssets.brandLogo} draggable={false} />
+          <p className="cover-intro__brand-name">{copy.logo}</p>
+          <p className="cover-intro__brand-subtitle">{copy.subtitle}</p>
         </header>
-
-        <section className="cover-intro__scene" aria-label="Archivo Vivo OKÚA">
-          <div
-            className="cover-intro__lia-stage cover-lia-stage"
-            data-testid="cover-lia-stage"
-          >
-            <div
-              className="cover-intro__lia-wrap cover-lia-layer"
-              data-lia-state={activeLiaStateName}
-            >
-              {liaAvatarMode === "rig-idle" ? (
-                <LiaHybridAvatar
-                  key="lia-rig-idle"
-                  className="cover-intro__lia"
-                  mode="rig-idle"
-                  expression={liaRigExpression ?? "neutral"}
-                />
-              ) : (
-                <LiaHybridAvatar
-                  key={activeLiaPose}
-                  className="cover-intro__lia"
-                  mode="pose"
-                  poseName={activeLiaPoseName}
-                  poseSrc={activeLiaPose}
-                />
-              )}
+        <section className="cover-intro__scene" aria-label={copy.scene}>
+          <div className="cover-intro__lia-stage cover-lia-stage" data-testid="cover-lia-stage">
+            <div className="cover-intro__lia-wrap cover-lia-layer" data-lia-state={`rig-${liaAction}`} role="img" aria-label={copy.liaAlt}>
+              <LiaJourneyMotion className="cover-intro__lia" action={liaAction} active={active}
+                target={portalReady ? "portal-1" : dialogue?.stepId ?? "start-dialogue"} replayKey={dialogue?.stepId ?? phase} direction="left" />
             </div>
           </div>
-
-          {activeDialogue ? (
-            <section
-              className="cover-intro__dialogue cover-dialogue-dock cover-dialogue-panel"
-              role="dialog"
-              aria-live="polite"
-              aria-label="Diálogo de Lía"
-              data-dialogue-id={activeDialogue.id}
-              data-dialogue-step={activeDialogueStep}
-              data-testid="cover-dialogue-panel"
-            >
-              <div className="cover-intro__dialogue-meta">
-                <span className="cover-intro__dialogue-speaker">Lía</span>
-                <span
-                  className="cover-intro__dialogue-step"
-                  aria-label={activeDialogueStep ?? undefined}
-                >
-                  {activeDialogueStep}
-                </span>
-              </div>
-              <p className="cover-intro__dialogue-text">
-                {activeDialogue.text}
-              </p>
-              <button
-                type="button"
-                className="cover-intro__dialogue-button"
-                aria-label={
-                  coverState.activeDialogueIndex ===
-                  coverIntroDialogues.length - 1
-                    ? coverIntroText.dialogueFinish
-                    : "Siguiente diálogo de Lía"
-                }
-                onClick={advanceDialogue}
-              >
-                {coverState.activeDialogueIndex ===
-                coverIntroDialogues.length - 1
-                  ? coverIntroText.dialogueFinish
-                  : coverIntroText.dialogueNext}
+          {dialogue ? <section className="cover-intro__dialogue cover-dialogue-dock cover-dialogue-panel"
+            role="dialog" aria-live="polite" aria-label={copy.dialogueLabel} data-dialogue-id={dialogue.id}
+            data-dialogue-step={copy.step(dialogueIndex)} data-source-ids={dialogue.sourceIds.join(" ")} data-testid="cover-dialogue-panel">
+            <div className="cover-intro__dialogue-meta"><span className="cover-intro__dialogue-speaker">Lía</span>
+              <span className="cover-intro__dialogue-step">{copy.step(dialogueIndex)}</span></div>
+            <p className="cover-intro__dialogue-text">{locale === "en" ? dialogue.en : dialogue.text}</p>
+            <div className="cover-intro__dialogue-actions">
+              <button ref={dialogueActionRef} type="button" className="cover-intro__dialogue-button"
+                disabled={!active || saving} aria-label={error ? copy.retry : lastDialogue ? copy.dialogueFinish : copy.nextLabel}
+                onClick={() => void advanceDialogue()}>
+                {saving ? copy.saving : error ? copy.retry : lastDialogue ? copy.dialogueFinish : copy.dialogueNext}
               </button>
-            </section>
-          ) : null}
-
-          <div
-            className={portalStageClassNames}
-            aria-label="Portales del recorrido"
-            data-testid="cover-portal-stage"
-          >
-            <div className="cover-intro__portal-group cover-portal-group">
-              {portalOneOpening ? (
-                <div
-                  className="cover-intro__portal-activation-rig cover-activation-stage"
-                  data-testid="cover-portal-activation-rig"
-                  data-activation-stage="portal-i"
-                  aria-hidden="true"
-                >
-                  <img
-                    className="cover-intro__portal-activation-glow"
-                    src={coverIntroAssets.portal1Glow}
-                    alt=""
-                    data-runtime-asset={coverIntroAssets.portal1Glow}
-                  />
-                  <img
-                    className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--back"
-                    src={coverIntroAssets.portal1Frame}
-                    alt=""
-                    data-runtime-asset={coverIntroAssets.portal1Frame}
-                  />
-                  <img
-                    className="cover-intro__portal-activation-lia"
-                    src={coverIntroAssets.liaActivatePortal1}
-                    alt=""
-                    data-testid="cover-activation-lia"
-                    data-runtime-asset={coverIntroAssets.liaActivatePortal1}
-                  />
-                  <span
-                    className="cover-intro__portal-activation-contact"
-                    data-testid="cover-activation-contact-light"
-                  />
-                  <img
-                    className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--front"
-                    src={coverIntroAssets.portal1Frame}
-                    alt=""
-                    data-testid="cover-activation-portal-front"
-                    data-runtime-asset={coverIntroAssets.portal1Frame}
-                  />
-                </div>
-              ) : null}
-              {coverIntroPortals.map((portal, portalIndex) => {
-                const available =
-                  coverRevisitActive || portal.state === "available";
-                const portalInterior = coverPortalInteriorAssets[portalIndex];
-                const frameSrc =
-                  portal.id === "portal-1"
-                    ? coverIntroAssets.portal1Frame
-                    : coverIntroAssets.lockedFrame;
-                const portalClassNames = [
-                  "cover-intro__portal",
-                  `cover-intro__portal--${available ? "available" : "locked"}`,
-                  portal.id === "portal-1"
-                    ? "cover-intro__portal--primary"
-                    : "cover-intro__portal--locked-secondary",
-                  coverRevisitActive
-                    ? "cover-intro__portal--review-available"
-                    : "",
-                  portal.id === "portal-1" && portalOneReady
-                    ? "cover-intro__portal--ready"
-                    : "",
-                  portal.id === "portal-1" && portalOneOpening
-                    ? "cover-intro__portal--opening"
-                    : "",
-                  portal.id === coverState.blockedPortalId
-                    ? "cover-intro__portal--blocked-feedback"
-                    : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ");
-                const ariaLabel = coverRevisitActive
-                  ? portal.reviewAriaLabel
-                  : portal.id === "portal-1"
-                    ? portalOneReady
-                      ? "Estación I, Mundo Raíz, lista para abrir."
-                      : "Estación I, Mundo Raíz, disponible. Inicia la introducción de Lía."
-                    : portal.ariaLabel;
-
-                return (
-                  <button
-                    key={portal.id}
-                    type="button"
-                    className={portalClassNames}
-                    aria-label={ariaLabel}
-                    aria-disabled={available ? undefined : "true"}
-                    data-portal-id={portal.id}
-                    data-portal-state={
-                      coverRevisitActive
-                        ? "available"
-                        : portal.id === "portal-1" && portalOneReady
-                          ? "ready"
-                          : portal.state
-                    }
-                    disabled={
-                      !coverRevisitActive &&
-                      portal.id === "portal-1" &&
-                      portalOneOpening
-                    }
-                    onClick={
-                      coverRevisitActive
-                        ? () => handleRevisitPortalClick(portal.world)
-                        : portal.id === "portal-1"
-                          ? handlePortalOneClick
-                          : () => showBlockedPortalMessage(portal.id)
-                    }
-                  >
-                    <span
-                      className="cover-intro__portal-art"
-                      aria-hidden="true"
-                    >
-                      {portal.id === "portal-1" ? (
-                        <img
-                          className="cover-intro__portal-glow"
-                          src={coverIntroAssets.portal1Glow}
-                          alt=""
-                          data-runtime-asset={coverIntroAssets.portal1Glow}
-                        />
-                      ) : null}
-                      <img
-                        className="cover-intro__portal-interior"
-                        src={portalInterior.src}
-                        alt=""
-                        decoding="async"
-                        data-cover-portal-interior={portalInterior.id}
-                        data-portal-clip={
-                          portal.id === "portal-1" ? "primary-safe" : "base"
-                        }
-                        data-runtime-asset={portalInterior.src}
-                      />
-                      <img
-                        className="cover-intro__portal-frame"
-                        src={frameSrc}
-                        alt=""
-                        data-runtime-asset={frameSrc}
-                      />
-                    </span>
-                    <span
-                      className="cover-intro__portal-roman"
-                      aria-hidden="true"
-                    >
-                      {portal.roman}
-                    </span>
-                    {available ? null : (
-                      <img
-                        className="cover-intro__portal-lock"
-                        src={coverIntroAssets.lock}
-                        alt=""
-                        aria-hidden="true"
-                        data-runtime-asset={coverIntroAssets.lock}
-                      />
-                    )}
-                    <span className="cover-intro__portal-title">
-                      {portal.title}
-                    </span>
-                  </button>
-                );
+            </div>
+          </section> : null}
+          <div className={`cover-intro__portal-stage cover-portal-stage cover-activation-stage${portalReady ? " cover-portal-stage--ready" : ""}${opening ? " cover-portal-stage--opening" : ""}`}
+            aria-label={copy.portals} data-testid="cover-portal-stage">
+            <div className="cover-intro__portal-group cover-portals-group">
+              {opening ? <div className="cover-intro__portal-activation-rig" data-testid="cover-portal-activation-rig" aria-hidden="true">
+                <img className="cover-intro__portal-activation-glow" src={coverIntroAssets.portal1Glow} alt="" />
+                <img className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--back" src={coverIntroAssets.portal1Frame} alt="" />
+                <img className="cover-intro__portal-activation-lia" src={coverIntroAssets.liaActivatePortal1} alt="" data-testid="cover-activation-lia" />
+                <span className="cover-intro__portal-activation-contact" data-testid="cover-activation-contact-light" />
+                <img className="cover-intro__portal-activation-frame cover-intro__portal-activation-frame--front" src={coverIntroAssets.portal1Frame} alt="" data-testid="cover-activation-portal-front" />
+              </div> : null}
+              {coverIntroPortals.map((portal, index) => {
+                if (!coverRevisitActive && portal.world !== 1) return null;
+                const available = coverRevisitActive || portalReady;
+                const label = coverRevisitActive ? locale === "en" ? `Review Room ${portal.roman} · ${englishRooms[index]}` : portal.reviewAriaLabel
+                  : portalReady ? copy.portalReady : copy.portalLocked;
+                return <button key={portal.id} ref={portal.world === 1 ? portalRef : undefined} type="button"
+                  className={`cover-intro__portal cover-intro__portal--${available ? "available" : "locked"} ${portal.world === 1 ? "cover-intro__portal--primary" : "cover-intro__portal--locked-secondary"}${coverRevisitActive ? " cover-intro__portal--review-available" : ""}${portalReady && portal.world === 1 ? " cover-intro__portal--ready" : ""}`}
+                  aria-label={label} aria-disabled={!available || !active ? "true" : undefined}
+                  disabled={!available || !active || opening} data-portal-id={portal.id}
+                  data-portal-state={coverRevisitActive ? "available" : portalReady ? "ready" : "locked"}
+                  onClick={() => coverRevisitActive ? revisit(portal.world) : void enterPortal()}>
+                  <span className="cover-intro__portal-art" aria-hidden="true">
+                    {portal.world === 1 ? <img className="cover-intro__portal-glow" src={coverIntroAssets.portal1Glow} alt="" data-runtime-asset={coverIntroAssets.portal1Glow} /> : null}
+                    <img className="cover-intro__portal-interior" src={coverPortalInteriorAssets[index].src} alt="" decoding="async"
+                      data-cover-portal-interior={coverPortalInteriorAssets[index].id} data-portal-clip={portal.world === 1 ? "primary-safe" : "base"}
+                      data-runtime-asset={coverPortalInteriorAssets[index].src} />
+                    <img className="cover-intro__portal-frame" src={portal.world === 1 ? coverIntroAssets.portal1Frame : coverIntroAssets.lockedFrame}
+                      alt="" data-runtime-asset={portal.world === 1 ? coverIntroAssets.portal1Frame : coverIntroAssets.lockedFrame} />
+                  </span>
+                  <span className="cover-intro__portal-roman" aria-hidden="true">{portal.roman}</span>
+                  {!available ? <img className="cover-intro__portal-lock" src={coverIntroAssets.lock} alt="" aria-hidden="true" /> : null}
+                  <span className="cover-intro__portal-title">{locale === "en" ? `Room ${portal.roman} · ${englishRooms[index]}` : portal.title}</span>
+                </button>;
               })}
             </div>
           </div>
         </section>
-
         <footer className="cover-intro__footer">
-          {coverState.blockedPortalMessage ? (
-            <p className="cover-intro__blocked-message" role="status">
-              {coverState.blockedPortalMessage}
-            </p>
-          ) : null}
-          {coverState.phase === "portal_1_opening_placeholder" ? (
-            <p className="cover-intro__opening" role="status">
-              {coverIntroTransitionText.opening}
-            </p>
-          ) : null}
-          <h1 id="cover-intro-title" className="cover-intro__title">
-            {coverIntroText.archiveTitle}
-          </h1>
-          <button
-            type="button"
-            className="cover-intro__cta"
-            aria-label={ctaLabel}
-            onClick={handleCtaClick}
-            disabled={portalOneOpening}
-          >
-            {ctaText}
-          </button>
+          <h1 id="cover-intro-title" className="cover-intro__title">{copy.archiveTitle}</h1>
+          {!started && !portalReady ? <button type="button" className="cover-intro__cta" disabled={!active}
+            onClick={() => { if (active) { setError(null); setStarted(true); } }}>{copy.cta}</button> : null}
+          {portalReady && !coverRevisitActive && !opening ? <p className="cover-intro__portal-announcement" role="status">{copy.portalAnnouncement}</p> : null}
+          {opening ? <p className="cover-intro__opening" role="status">{copy.openingWorldOne}</p> : null}
+          {error ? <p className="cover-intro__blocked-message" role="alert">{error}</p> : null}
         </footer>
       </div>
     </main>

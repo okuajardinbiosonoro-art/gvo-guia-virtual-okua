@@ -1,0 +1,480 @@
+{
+  "round": "R2",
+  "status": "DOCUMENTARY_TECHNICAL_RESPONSE_PENDING_CHATGPT_RECONCILIATION",
+  "implementation_started": false,
+  "runtime_modified": false,
+  "tests_executed": false,
+  "browser_opened": false,
+  "assets_modified": false,
+  "dist_modified": false,
+  "decisions": [
+    {
+      "id": "D07",
+      "response": "AGREEMENT_WITH_ACTUAL_FIXTURES"
+    },
+    {
+      "id": "D10",
+      "response": "TECHNICALLY_FEASIBLE"
+    },
+    {
+      "id": "D11",
+      "response": "TECHNICALLY_FEASIBLE_90_ACTIVE_SECONDS"
+    },
+    {
+      "id": "D12",
+      "response": "TECHNICALLY_FEASIBLE_LITERAL_SOUND_MANUAL_CLOSE"
+    },
+    {
+      "id": "D13",
+      "response": "TECHNICALLY_FEASIBLE_NEW_PRESENTATION_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "D14",
+      "response": "TECHNICALLY_FEASIBLE_WITH_FIELD_MAPPING_CORRECTION"
+    },
+    {
+      "id": "D15",
+      "response": "TECHNICALLY_FEASIBLE_INDIVIDUAL_PRODUCTION_DEFAULT"
+    },
+    {
+      "id": "D16",
+      "response": "TECHNICALLY_FEASIBLE_ES_EN_BINDING_REQUIRED"
+    },
+    {
+      "id": "D20",
+      "response": "FEASIBLE_DESIGN_TARGETS_NOT_YET_MEASURED"
+    }
+  ],
+  "facts": [
+    {
+      "id": "R2-IV-LEGACY-NULL",
+      "fact": "Legitimate IV QR completion deletes its checkpoint unless resumeMode activity_skipped. Null alone proves neither omission nor game success.",
+      "source": "src/screens/World4Root/World4RootScreen.tsx:586; World4RootScreen.test.tsx:1329"
+    },
+    {
+      "id": "R2-IV-SYNTHETIC-COMPLETION",
+      "fact": "The current room derives a full visual state from global completedStations even when the raw IV checkpoint is partial. Migration must run before mounting.",
+      "source": "src/screens/World4Root/World4RootScreen.test.tsx:1426"
+    },
+    {
+      "id": "R2-V-FIELD-NAME",
+      "fact": "The current durable earned set is correctAnswers, not a field named earnedIDs. Its keys are plantas/sistema/espacio/visitante. Preserve by explicit question-source mapping.",
+      "source": "src/screens/World5Root/world5Quiz.ts:13"
+    },
+    {
+      "id": "R2-V-SKIP-AMBIGUITY",
+      "fact": "skip_remaining and four individual skip actions yield the same current payload. Existing fields have no presentedQuestionIDs or revision marker.",
+      "source": "src/screens/World5Root/world5Quiz.ts:119; world5Quiz.test.ts:43"
+    },
+    {
+      "id": "R2-V-ACTIVE-COPY",
+      "fact": "World5RootScreen consumes station5Questions directly for question/instruction/feedback/point. station5PlantsCopy/SystemCopy/SpaceCopy/VisitorCopy are not the current trivia source.",
+      "source": "src/screens/World5Root/World5RootScreen.tsx:150; station5Content.ts:104"
+    }
+  ],
+  "timer_design": {
+    "seconds": 90,
+    "old_40s_proposal": "SUPERSEDED_BY_R1",
+    "clock": "Accumulate performance.now deltas only while active; persist remainingActiveMs rather than a Date.now deadline.",
+    "persist": "On each swap, pause, pagehide/hidden and bounded checkpoint (proposed1s); reload resumes paused. No wall-clock catch-up.",
+    "race": "Before each action settle active elapsed. Timeout at<=0 wins even if a late swap would solve. Frozen assisted outcome cannot become visitor success.",
+    "storage_failure": "Pause clock and interaction; retain pending stable state, retry verified write; essential completion blocked until both local close and root essential acknowledgement succeed.",
+    "review": "Assisted outcomes require manual eight-step prefix confirmation then Cerrar; no timer auto-close. Genuine solve requires literal Sonido and manual close, with optional review.",
+    "invariants": [
+      "Permutation has exactly all8unique semantic IDs",
+      "Position ordinals fixed1–8; no correct ordinal in piece title/aria",
+      "Selection and keyboard focus differ; same swap action for touch/mouse/Enter/Space; Escape cancels",
+      "Assisted review uses target permutation and outcome assisted_timeout or assisted_requested",
+      "QR only after verified local closed plus shared essential readiness; game itself never grants a global QR receipt"
+    ]
+  },
+  "fixtures": [
+    {
+      "id": "IV_partial_raw",
+      "kind": "EXACT_SEED_FROM_UNIT_TEST",
+      "source": "src/screens/World4Root/World4RootScreen.test.tsx:1426",
+      "storage": {
+        "gvo.progress.v1": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "updatedAt": "2026-08-05T12:00:00.000Z"
+        },
+        "gvo.station4.v1": {
+          "highestSettledIndex": 2,
+          "resumeMode": "reading",
+          "schemaVersion": 1,
+          "updatedAt": "2026-08-05T12:01:00.000Z"
+        }
+      },
+      "expected_obs03": "legacy_unknown/pending essential; global bits preserved; no solved_by_visitor"
+    },
+    {
+      "id": "IV_chain_pending_seed",
+      "kind": "EXACT_SEED_FROM_UNIT_TEST",
+      "source": "src/screens/World4Root/World4RootScreen.test.tsx:1329",
+      "storage": {
+        "gvo.progress.v1": {
+          "schemaVersion": 1,
+          "completedStations": [
+            1,
+            2,
+            3
+          ],
+          "updatedAt": "2026-08-05T12:00:00.000Z"
+        },
+        "gvo.station4.v1": {
+          "highestSettledIndex": 7,
+          "resumeMode": "chain_pending",
+          "schemaVersion": 1,
+          "updatedAt": "2026-08-05T12:01:00.000Z"
+        }
+      },
+      "expected_obs03": "No new-game success inferred"
+    },
+    {
+      "id": "IV_after_legitimate_QR",
+      "kind": "ACTUAL_UNIT_ASSERTION_PROJECTION_NOT_USER_DATA",
+      "source": "src/screens/World4Root/World4RootScreen.test.tsx:1350; tests/e2e/gvo-debt-004-world1-world4-checkpoint-continuity.spec.ts",
+      "asserted_storage": {
+        "gvo.station4.v1": null,
+        "gvo.progress.v1.completedStations": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "unasserted_timestamp": "Not invented",
+      "expected_obs03": "Preserve acquired route credit; null does not prove omission. No new-game outcome exists."
+    },
+    {
+      "id": "IV_explicit_omission",
+      "kind": "ACTUAL_UNIT_ASSERTION_PROJECTION_NOT_USER_DATA",
+      "source": "src/screens/World4Root/World4RootScreen.test.tsx:211",
+      "asserted_storage": {
+        "gvo.station4.v1.highestSettledIndex": -1,
+        "gvo.station4.v1.resumeMode": "activity_skipped"
+      },
+      "expected_obs03": "legacy_pending; preserve raw; no new essence or success credited"
+    },
+    {
+      "id": "V_all_skipped",
+      "kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "source": "src/screens/World5Root/world5Quiz.test.ts:43; tests/e2e/world5-st5-020h.spec.ts",
+      "storage": {
+        "gvo.station5.quiz.v1": {
+          "schemaVersion": 1,
+          "answeredQuestions": [],
+          "correctAnswers": [],
+          "skippedQuestions": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ]
+        }
+      },
+      "provenance_limit": "Could come from skip_remaining or4individual skips. Not distinguishable.",
+      "expected_obs03": "Retain four historical omissions; OBS03 new presentation remains pending"
+    },
+    {
+      "id": "V_wrong_then_skipped",
+      "kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "source": "src/screens/World5Root/world5Quiz.test.ts:58",
+      "storage": {
+        "gvo.station5.quiz.v1": {
+          "schemaVersion": 1,
+          "answeredQuestions": [
+            "plantas"
+          ],
+          "correctAnswers": [],
+          "skippedQuestions": [
+            "plantas"
+          ]
+        }
+      },
+      "expected_obs03": "Preserve answered and skipped overlap; do not call unresponded; no point"
+    },
+    {
+      "id": "V_one_earned_three_skipped",
+      "kind": "SCHEMA_COMPLETE_PAYLOAD_FROM_TEST_ACTIONS_AND_EXPECTATIONS",
+      "source": "src/screens/World5Root/world5Quiz.test.ts:43",
+      "storage": {
+        "gvo.station5.quiz.v1": {
+          "schemaVersion": 1,
+          "answeredQuestions": [
+            "espacio"
+          ],
+          "correctAnswers": [
+            "espacio"
+          ],
+          "skippedQuestions": [
+            "plantas",
+            "sistema",
+            "visitante"
+          ]
+        }
+      },
+      "expected_obs03": "Preserve1point; new presentation for pending questions; no duplicate award"
+    },
+    {
+      "id": "V_old_area_progress",
+      "kind": "EXACT_LEGACY_UNIT_TEST_RAW",
+      "source": "src/screens/World5Root/World5RootScreen.test.tsx:229",
+      "storage": {
+        "gvo.station5.v1": {
+          "schemaVersion": 1,
+          "completedAreas": [
+            "plantas",
+            "sistema",
+            "espacio",
+            "visitante"
+          ]
+        }
+      },
+      "expected_obs03": "Area exploration gives no quiz points"
+    }
+  ],
+  "v_binding": {
+    "active_export": "station5Questions",
+    "historical_exports_not_to_restore": [
+      "station5PlantsCopy",
+      "station5SystemCopy",
+      "station5SpaceCopy",
+      "station5VisitorCopy"
+    ],
+    "earned_field": "correctAnswers",
+    "mapping": {
+      "plantas": "TXT_5_492e47aeb6b8",
+      "sistema": "TXT_5_9b70a607a49a",
+      "espacio": "TXT_5_3b6bbc87ed80",
+      "visitante": "TXT_5_bfb7f09e357a"
+    },
+    "new_evidence": "Current schema cannot store OBS03 presentation revision or four essential response/pass events. Add separate revisioned evidence with root essential owner or versioned local schema; retain old raw unchanged. Do not overwrite old skippedQuestions as if they were current presentations.",
+    "local_action_revision": "Remove skipRemaining/map early result. Question1→4 each presented then answered or passed; review available after presentation. Incorrect answer counts as response, awards0, and may advance without relabeling it as a deliberate skip.",
+    "feedback": "First award source sentence +Tienes1punto under functional Esta pregunta; existing award repeats first sentence +Punto ya obtenido; total appears once on final result.",
+    "language": "Current V questions and IV narrative are ES-only. D16 requires explicit faithful EN content bound to same IDs; no claim current language selector translates them."
+  },
+  "references": {
+    "resolved_local_backgrounds": [
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-PLANTAS",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_plants_environment_portrait_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1440,
+          1920
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 158160,
+        "sha256": "400279cbd5a569db261277d14a1730aa0f7b0a4410bf56c8683dc1ca62fc1612",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-PLANTAS",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_plants_environment_landscape_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 115856,
+        "sha256": "27fbb61f3c6817990f4c049db3879879226ac2a51291d4f93f1e11a6adb9cb26",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-SISTEMA",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_portrait_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1440,
+          1920
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 91210,
+        "sha256": "f9c5978400f3deb37e027cdbc9aeb0d6754e6fa04441be641f83561496326bcb",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-SISTEMA",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/system/world5_sub_system_environment_landscape_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 51930,
+        "sha256": "9af9fef48649cbfcd650513eb5f7662fedc584079800616f7e6c4ab652c231d3",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-ESPACIO",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_space_environment_portrait_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1440,
+          1920
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 109230,
+        "sha256": "2d5cf7921187a67a7aea092d7dcb84c9b4435620168187dbbb6e928a4d6f48b3",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-ESPACIO",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_space_environment_landscape_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 73372,
+        "sha256": "53d57b96d5bc0ed13694361892a11cb8568e7c4da61d95bee1a6a44ef0ee7bd8",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-VISITANTE",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_visitor_environment_portrait_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1440,
+          1920
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 166804,
+        "sha256": "0434d75215c7f93a0f5c1dc37aefdfaad9a0fb7dfa1fb1f7dc51d4fb627ce6e7",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      },
+      {
+        "asset_id": "OBS03-ASSET-V-ENV-VISITANTE",
+        "path": "public/assets/gvo/stations/world-5/present-map/runtime/world5_sub_visitor_environment_landscape_v01.webp",
+        "exists": true,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "format": "webp",
+        "alpha": false,
+        "bytes": 98454,
+        "sha256": "a7ec3eeb48e30003aa2e2d8817d2e7508621ebdc73648a4c632c69c6d017c3be",
+        "inspection": "File/header/hash only; no visual acceptance or regeneration decision"
+      }
+    ],
+    "missing_input_files": "Eight V background references absent from packet are present in operational repo; no replacement generation decided by metadata.",
+    "future_output_dependencies": [
+      {
+        "id": "OBS03-ASSET-V-PLANTAS-RIGHT",
+        "references": [
+          {
+            "asset_dependency": "OBS03-ASSET-V-PLANTAS-LEFT",
+            "role": "family_and_scale_reference",
+            "status": "future_output_required",
+            "note": "Use the actual downloaded technically selected left candidate in this same thread; its exact file path/hash is recorded after generation, never invented now."
+          }
+        ]
+      },
+      {
+        "id": "OBS03-ASSET-V-SISTEMA-RIGHT",
+        "references": [
+          {
+            "asset_dependency": "OBS03-ASSET-V-SISTEMA-LEFT",
+            "role": "family_and_scale_reference",
+            "status": "future_output_required",
+            "note": "Use the actual downloaded technically selected left candidate in this same thread; its exact file path/hash is recorded after generation, never invented now."
+          }
+        ]
+      },
+      {
+        "id": "OBS03-ASSET-V-ESPACIO-RIGHT",
+        "references": [
+          {
+            "asset_dependency": "OBS03-ASSET-V-ESPACIO-LEFT",
+            "role": "family_and_scale_reference",
+            "status": "future_output_required",
+            "note": "Use the actual downloaded technically selected left candidate in this same thread; its exact file path/hash is recorded after generation, never invented now."
+          }
+        ]
+      },
+      {
+        "id": "OBS03-ASSET-V-VISITANTE-RIGHT",
+        "references": [
+          {
+            "asset_dependency": "OBS03-ASSET-V-VISITANTE-LEFT",
+            "role": "family_and_scale_reference",
+            "status": "future_output_required",
+            "note": "Use the actual downloaded technically selected left candidate in this same thread; its exact file path/hash is recorded after generation, never invented now."
+          }
+        ]
+      }
+    ],
+    "iv_missing": "No additional mandatory bitmap input missing for eight IV prompts; previous objects are semantic context only, not physical hardware authority."
+  },
+  "asset_budget": {
+    "specifications": 31,
+    "required_new_individual_artworks": 16,
+    "iv_new_objects": 8,
+    "v_new_options": 8,
+    "preservation_records": 8,
+    "remaining_specs": "3contextual brands +1swipe hand +6conditional Lia +4conditional background cleanup +1conditional triangle =15;31specifications are not31generation calls.",
+    "new_static_max_px": 512,
+    "decoded_512_square_mib": 1,
+    "iv8_decoded_min_mib": 8,
+    "v_active_pair_decoded_min_mib": 2,
+    "iv_encoded_target_kib": 1280,
+    "iv_family_budget_kib": 1600,
+    "v_pair_encoded_target_kib": 360,
+    "v_pair_budget_kib": 500,
+    "scene_plus_pending_target_mib": 96,
+    "initial_target_transfer_mib": 5,
+    "notes": "Arithmetic RGBA lower bounds; no browser measurement. Decode active V pair only, not all eight choices by default; masters and production sheets outside runtime/precache."
+  },
+  "sheet_alternative": {
+    "status": "EVALUATED_NOT_RECOMMENDED_CURRENT_DEFAULT_INDIVIDUAL_R1",
+    "r1_conflict": "Existing prompts explicitly say one isolated artwork, not contact sheet. Right-choice references require earlier LEFT output; sheet batching must be explicitly reconciled rather than silently changing method.",
+    "proposal": "Keep pilot one IV object +one V pair and family review. After pilot, allow small fixed-cell production sheets only if every final object is a distinct downloadable derived artwork with its ownID/hash/alphaBounds/anchor/runtime/mirror. Prefer V pairs or2x2 IV sheets; no16object atlas loaded at runtime.",
+    "quality_floor": "At least1024x1024 of original cell area for a planned1024master; a4x2 sheet would need4096x2048. A2048x1024 sheet gives512cells, not eight1024masters; no upscaled file called original. If actual Images output is smaller or cells bleed, use individual artwork.",
+    "extraction": "Record actual master dimensions and fixed cell coordinates/gutters/order in a manifest; preserve original sheet, crop deterministically; no per-item repaint or synthetic missing detail. Transparent gutters and no cross-cell shadow; individual runtime<=512. Inspect each actual110–150CSSpx and selection states.",
+    "acceptance": "Requires ChatGPT plan/prompt adjustment; preserve specific references for each subject and matching LEFT/RIGHT. Reject fused art, lost margins, low-resolution electronics details or inconsistent light. Do not claim16generation calls if fewer sheets were used.",
+    "recommendation": "Keep individual originals and corrections per R1. No actual production limitation or quality-preserving necessity has been observed to justify sheets. Time savings alone are insufficient. The following analysis records constraints only and does not request a method change in R2."
+  },
+  "coordination": {
+    "root": [
+      "essential journey migration before mount",
+      "global progress/routes/pendingTransition/QR/reset/language read API",
+      "new keys allowlist/snapshot/rollback"
+    ],
+    "rooms_agent": [
+      "IV game/checkpoint and literal consumers then V ordered pair quiz/local persistence",
+      "focused unit/component/accessible keyboard QA after authorization"
+    ],
+    "boundary": "Need root-owned stable API to report local verified close and request essential readiness; no room writes global route receipts directly. Exact adapter names to be agreed in plan; do not invent private API now."
+  },
+  "remaining_conciliation": [
+    "Resolve earnedIDs wording to actual correctAnswers field and explicitTXT mapping",
+    "Choose whether new V presentation evidence is root essential record or a separate local revised quiz field, without reusing historical skips",
+    "Provide stable shared adapter contract before IV integration"
+  ],
+  "not_claimed": [
+    "implementation",
+    "usability validation for age8–70",
+    "physical camera/network readiness",
+    "visual approval",
+    "new assets already produced",
+    "new tests passing"
+  ]
+}
