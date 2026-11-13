@@ -5,7 +5,7 @@ import { relative, resolve } from "node:path";
 
 import { NON_DEPLOYABLE_PUBLIC_ARTIFACTS } from "../vite/exclude-nondeployable-public.mjs";
 
-const distRoot = resolve("dist");
+const distRoot = resolve(process.argv[2] ?? "dist");
 const publicRoot = resolve("public");
 
 const walk = async (directory) => {
@@ -104,9 +104,36 @@ const duplicatePrecacheUrls = precacheEntries.filter(
 const missingPrecacheFiles = uniquePrecacheEntries.filter(
   (url) => !distByUrl.has(url),
 );
+const approvedAudio = (await walk(resolve(publicRoot, "assets/gvo/audio")))
+  .map((file) => toPosixRelative(publicRoot, file))
+  .filter((url) => url.endsWith(".mp3"));
+const approvedVine = "assets/gvo/stations/final-root/photo/okua-photo-vine-v03.webp";
+const approvedAdditionalPrecache = new Set([...approvedAudio, approvedVine]);
 const unexpectedPrecacheEntries = uniquePrecacheEntries.filter(
-  (url) => classifyDeployedResource(url) !== "A_FIRST_ACCESS",
+  (url) =>
+    classifyDeployedResource(url) !== "A_FIRST_ACCESS" &&
+    !approvedAdditionalPrecache.has(url),
 );
+const historicalEntryAssets = [
+  "assets/runtime/loading-initial-pre-portada.png",
+  "assets/runtime/loading-initial/lia/lia_loading_16f.json",
+  "assets/runtime/loading-initial/lia/lia_loading_16f.png",
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v01.png",
+  "assets/runtime/loading-initial/plant/plant_growth_4f.json",
+  "assets/runtime/loading-initial/plant/plant_growth_4f.png",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v01.png",
+  ...["explain_calm", "greeting", "idle", "point_portal_1"].map(
+    (pose) => `assets/runtime/cover-intro/lia/poses/lia_pose_${pose}_v1.png`,
+  ),
+  ...(await walk(resolve(publicRoot, "assets/runtime/cover-intro/lia/reference")))
+    .map((file) => toPosixRelative(publicRoot, file)),
+  ...(await walk(resolve(publicRoot, "assets/runtime/cover-intro/lia/rig/idle_v1")))
+    .map((file) => toPosixRelative(publicRoot, file)),
+];
+const historicalPrecached = historicalEntryAssets.filter((url) =>
+  uniquePrecacheEntries.includes(url),
+);
+const missingHistoricalAssets = historicalEntryAssets.filter((url) => !distByUrl.has(url));
 const excludedSourceFiles = await collectExcludedSourceFiles();
 const leakedNonDeployablePaths = NON_DEPLOYABLE_PUBLIC_ARTIFACTS.filter(
   (relativePath) => existsSync(resolve(distRoot, relativePath)),
@@ -126,6 +153,14 @@ const requiredShellEntries = [
   "manifest.webmanifest",
   "registerSW.js",
 ];
+const requiredEntryVisuals = [
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.json",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.json",
+  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+  "assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+];
 const requiredRuntimeAssets = [
   "assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
   "assets/gvo/stations/world-2/pulse-invisible/runtime/background/world2_background_base_mobile_v01.webp",
@@ -142,16 +177,17 @@ const checks = {
   appBundlePrecached: uniquePrecacheEntries.some((url) =>
     /^assets\/index-[^/]+\.js$/.test(url),
   ),
-  criticalVisualsPrecached:
-    uniquePrecacheEntries.some((url) =>
-      url.startsWith("assets/runtime/loading-initial/"),
-    ) &&
-    uniquePrecacheEntries.some((url) =>
-      url.startsWith("assets/runtime/cover-intro/"),
-    ),
+  criticalVisualsPrecached: requiredEntryVisuals.every((url) =>
+    uniquePrecacheEntries.includes(url),
+  ),
   noDuplicatePrecacheUrls: duplicatePrecacheUrls.length === 0,
   noMissingPrecacheFiles: missingPrecacheFiles.length === 0,
-  onlyFirstAccessPrecached: unexpectedPrecacheEntries.length === 0,
+  onlyApprovedPrecache: unexpectedPrecacheEntries.length === 0,
+  approvedAudioAndVinePrecached:
+    approvedAudio.length === 14 &&
+    [...approvedAdditionalPrecache].every((url) => uniquePrecacheEntries.includes(url)),
+  historicalEntryAssetsOutsidePrecache: historicalPrecached.length === 0,
+  historicalEntryAssetsStillDeployed: missingHistoricalAssets.length === 0,
   precacheUnder25MiB:
     uniquePrecacheEntries.reduce(
       (sum, url) => sum + (distByUrl.get(url) ?? 0),
@@ -208,6 +244,8 @@ const result = {
     duplicateUrls: duplicatePrecacheUrls,
     missingFiles: missingPrecacheFiles,
     unexpectedEntries: unexpectedPrecacheEntries,
+    historicalEntries: historicalPrecached,
+    missingHistoricalAssets,
   },
   deployedCategories: categoryRows,
   nonDeployableSources: {

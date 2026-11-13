@@ -99,6 +99,12 @@ El build excluye bibliotecas documentales y espejos `current-used` del artefacto
 de deployment sin cambiar las rutas runtime. El service worker mantiene shell,
 manifest, fallback de navegación y limpieza de caches obsoletos.
 
+Desde 1.1.2, la instalación de Workbox prepara el shell y los recursos
+vigentes de Carga y Portada, incluidos los sprites v03 y la pose de
+activación del portal. Las ilustraciones históricas siguen en el servidor
+local y quedan fuera de esta descarga inicial. Los manifiestos que preparan
+las pantallas conservan sus recursos y sus tiempos.
+
 La transición prepara los recursos visuales de la sala y sus pistas en
 paralelo. El audio usa Web Audio después de un gesto del visitante. Las
 preferencias de volumen y silencio se guardan por separado y sobreviven al
@@ -123,6 +129,7 @@ como solución TLS pública ni se hornea una IP en QR canónicos.
 Decisiones relacionadas:
 
 - [ADR-0004 — PWA/cache](decisions/ADR-0004-pwa-precache-y-cache-runtime.md)
+- [ADR-0017 — Precarga de Workbox en 1.1.2](decisions/ADR-0017-precache-workbox-recursos-vigentes.md)
 - [ADR-0005 — Route chunking](decisions/ADR-0005-route-chunking-y-preload-controlado.md)
 - [ADR-0006 — Entrada e idioma](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md)
 - [ADR-0007 — HTTPS local y scanner](decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md)

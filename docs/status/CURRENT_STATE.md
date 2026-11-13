@@ -2,7 +2,15 @@
 
 Actualizado: 2026-11-13
 
-## GVO 1.1.1 · versión oficial del recorrido
+## GVO 1.1.2 · versión oficial del recorrido
+
+La precarga de instalación de Workbox baja de 72 a 44 archivos. La
+presentación de Carga conserva sus 12 segundos y el recorrido mantiene la
+preparación de recursos por pantalla. El equipo de campo tiene pendiente
+certificar el arranque simultáneo en 20 dispositivos y el recorrido físico.
+[Acta](../releases/GVO_1.1.2.md) · [Ticket](../tickets/GVO_PRECARGA_WORKBOX_20261113.md).
+
+## GVO 1.1.1 · versión anterior del recorrido
 
 La explicación, la mesa y el repaso de Sala IV usan seis piezas. La pieza
 «Microcontrolador» conserva el identificador interno para compatibilidad con

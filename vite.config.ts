@@ -72,7 +72,6 @@ export default defineConfig(({ command, mode }) => {
             "registerSW.js",
             "assets/index-*.{js,css}",
             "assets/pixelify-*.woff2",
-            "assets/runtime/loading-initial-pre-portada.png",
             "assets/runtime/loading-initial/**/*.{png,json}",
             "assets/runtime/cover-intro/**/*.{png,json}",
             "assets/gvo/audio/**/*.mp3",
@@ -80,6 +79,13 @@ export default defineConfig(({ command, mode }) => {
           ],
           globIgnores: [
             "assets/gvo/current-used/**/*",
+            // Historical entry art stays available in dist, outside the install download.
+            "assets/runtime/loading-initial/lia/lia_loading_16f.{png,json}",
+            "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v01.png",
+            "assets/runtime/loading-initial/plant/plant_growth_4f.{png,json}",
+            "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v01.png",
+            "assets/runtime/cover-intro/lia/{reference,rig/idle_v1}/**/*",
+            "assets/runtime/cover-intro/lia/poses/lia_pose_{explain_calm,greeting,idle,point_portal_1}_v1.png",
             "**/*.md",
             "**/.gitkeep",
           ],

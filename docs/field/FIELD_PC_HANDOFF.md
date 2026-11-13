@@ -4,7 +4,7 @@ Fecha: 2026-08-18
 Estado: `FIELD HANDOFF READY / DEPLOYMENT GATES PENDING`
 
 La versión de producto vigente se registra en el
-[acta de GVO 1.1.1](../releases/GVO_1.1.1.md). Esta guía conserva los
+[acta de GVO 1.1.2](../releases/GVO_1.1.2.md). Esta guía conserva los
 requisitos de red, TLS y validación física de la instalación.
 
 ## Orden de lectura
@@ -54,6 +54,7 @@ npm run lint
 npm test
 npx tsc -b --pretty false
 npm run build
+node tools/qa/gvo_debt_010_verify_pwa.mjs
 node tools/qa/gvo_field_handoff_docs_audit.mjs
 ```
 
@@ -140,6 +141,10 @@ Después de cerrar red, hostname y TLS, probar al menos:
 
 Registrar navegador, versión, URL, dispositivo y resultado. Automatización o
 emulación no sustituyen esta evidencia.
+
+Medir el arranque en frío con 20 dispositivos simultáneos en el Wi-Fi de
+visitantes. Registrar errores, tiempo hasta Portada y disponibilidad de la
+cámara, el audio y la Polaroid durante el recorrido.
 
 ### 5. QR de red e inicio
 

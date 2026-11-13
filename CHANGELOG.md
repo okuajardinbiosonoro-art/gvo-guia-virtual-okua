@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2 · 2026-11-13
+
+- Reduce la descarga inicial de Workbox al sacar 28 recursos históricos del
+  precache. El servidor local sigue sirviendo esos archivos.
+- Consulta el [acta de versión](docs/releases/GVO_1.1.2.md).
+
 ## 1.1.1 · 2026-11-13
 
 - Sala IV usa seis piezas y adapta el progreso válido de la versión de ocho.
