@@ -2,23 +2,24 @@
 
 Actualizado: 2026-11-13
 
-## GVO 1.1.3 · candidata de entrada para staging
+## GVO 1.1.3 · versión activa en MOMOTTO_PC
 
-La carga inicial conserva la secuencia de riego y la preparación de Inicio
-y Portada. El mínimo visible pasa a 6 segundos. Los tres WebP nuevos
-reproducen los píxeles RGBA de sus originales. La variante de movimiento
-reducido conserva su mínimo de 1,2 segundos. MOMOTTO_PC debe comparar el
-commit exacto con 1.1.2 bajo 20 clientes simulados antes de activar.
+MOMOTTO_PC activó `b598bb1377e0debea9885503e1135aab8c05fe9b` después de
+superar la prueba previa con 20 clientes simulados. La mediana hasta Portada
+bajó de 15,277 a 9,253 s a 10 Mb/s y de 17,759 a 11,095 s a 5 Mb/s.
+En el HTTPS de campo pasaron 20 de 20 clientes simulados a ambas velocidades.
+Se verificaron el DNS, TLS y los seis QR sin cambios en el MikroTik.
+Quedan pendientes cámara y Polaroid en móviles físicos y observación de
+la radio Wi-Fi con equipos reales.
 [Acta](../releases/GVO_1.1.3.md) · [Ticket](../tickets/GVO_ENTRADA_20261113.md).
 
-## GVO 1.1.2 · versión oficial del recorrido
+## GVO 1.1.2 · versión anterior del recorrido
 
-MOMOTTO_PC opera GVO 1.1.2 desde `d6c0e1d0fa37467240f31cf4412e845509be1097`.
+MOMOTTO_PC operó GVO 1.1.2 desde `d6c0e1d0fa37467240f31cf4412e845509be1097`.
 La precarga de instalación de Workbox baja de 72 a 44 archivos y la
 presentación de Carga conserva sus 12 segundos. Campo verificó la entrada
 `/qr/start` por HTTPS, el DNS del MikroTik y el kit de seis QR. La prueba
-autorizada de 20 clientes simulados pasó. Quedan pendientes la cámara y la
-Polaroid en móviles físicos y la observación de la radio con equipos reales.
+autorizada de 20 clientes simulados pasó.
 [Acta](../releases/GVO_1.1.2.md) · [Ticket](../tickets/GVO_PRECARGA_WORKBOX_20261113.md).
 
 ## GVO 1.1.1 · versión anterior del recorrido
@@ -29,7 +30,7 @@ el progreso. El marco de foto incorpora una enredadera de flores y sustituye
 el emblema dorado por «La naturaleza también canta». José David comprobó en su
 iPhone el recorrido, las seis piezas de Sala IV y la Polaroid con la enredadera
 definitiva. Aprobó la publicación en `main` con la frase provisional mientras el
-escritor prepara el texto final. Estos cambios se conservan en 1.1.2.
+escritor prepara el texto final. Estos cambios se conservan en 1.1.3.
 [Acta](../releases/GVO_1.1.1.md) · [Ticket](../tickets/GVO_SALA_IV_FOTO_20261113.md).
 
 ## GVO 1.1.0 · versión anterior del recorrido
