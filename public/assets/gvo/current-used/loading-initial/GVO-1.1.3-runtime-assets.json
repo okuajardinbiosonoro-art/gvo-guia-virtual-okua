@@ -1,0 +1,36 @@
+{
+  "version": "1.1.3",
+  "status": "TECHNICALLY_VERIFIED_FIELD_STAGING_PENDING",
+  "assets": [
+    {
+      "path": "lia/lia_loading_16f_okua_v03.webp",
+      "runtime": "public/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
+      "sourcePng": "public/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+      "consumer": "Hoja de 16 fotogramas de L\u00eda",
+      "format": "WebP lossless",
+      "dimensions": [
+        2560,
+        2560
+      ],
+      "bytes": 1494734,
+      "sha256": "3296a865d1078d4bfb57abe2abab1d613f844702c4e3ba67424af4f509c155ca",
+      "sourceSha256": "52134765666062bff91a42a7bc818ce23e805267d87939ab4a1052ac49f88625",
+      "decodedRgbaIdentical": true
+    },
+    {
+      "path": "plant/plant_growth_4f_okua_v03.webp",
+      "runtime": "public/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.webp",
+      "sourcePng": "public/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png",
+      "consumer": "Hoja de cuatro estados de la planta",
+      "format": "WebP lossless",
+      "dimensions": [
+        3072,
+        768
+      ],
+      "bytes": 265906,
+      "sha256": "8d30083183120a5ffbbc4023493b4bd3f79fe2eb2495866fcf3021da17c1990a",
+      "sourceSha256": "b1783ea36895c857329ce0d9932e03964b27bc643c089ab28cc53cc82f46e98f",
+      "decodedRgbaIdentical": true
+    }
+  ]
+}

@@ -3,14 +3,6 @@ import { readFile } from "node:fs/promises";
 
 const assets = [
   {
-    id: "entry-cover-background",
-    runtime:
-      "public/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
-    mirror:
-      "public/assets/gvo/current-used/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
-    sha256: "D1AB1AD83C48883CF725E6FCB9AA34778AF8660CE15277B6A58F3231098E13C8",
-  },
-  {
     id: "world-1-root",
     runtime:
       "public/assets/gvo/stations/final-root/access/final_access_world1_root_v01.webp",
@@ -55,6 +47,22 @@ const assets = [
 const digest = (buffer) =>
   createHash("sha256").update(buffer).digest("hex").toUpperCase();
 
+for (const screen of ["cover-intro", "loading-initial"]) {
+  const directory = `public/assets/gvo/current-used/${screen}`;
+  const registry = JSON.parse(await readFile(`${directory}/GVO-1.1.3-runtime-assets.json`, "utf8"));
+  for (const asset of registry.assets) {
+    assets.push({
+      id: asset.path,
+      runtime: asset.runtime,
+      mirror: `${directory}/${asset.path}`,
+      sha256: asset.sha256.toUpperCase(),
+    });
+    if (digest(await readFile(asset.sourcePng)) !== asset.sourceSha256.toUpperCase()) {
+      throw new Error(`${asset.path}: SHA-256 del PNG fuente inesperado`);
+    }
+  }
+}
+
 for (const asset of assets) {
   const runtime = await readFile(asset.runtime);
   const mirror = await readFile(asset.mirror);
@@ -83,18 +91,19 @@ if (runtimeManifest !== mirrorManifest) {
 }
 
 const parsedManifest = JSON.parse(runtimeManifest);
-const stationRepresentations = Object.values(
-  parsedManifest.assets?.stationRepresentations ?? {},
+const portalInteriors = Object.values(
+  parsedManifest.assets?.portalInteriors ?? {},
 );
 
 if (
   parsedManifest.rules?.portalInteriorsDeferred !== false ||
-  stationRepresentations.length !== 5 ||
-  parsedManifest.reuse?.binaryMutation !== false
+  portalInteriors.length !== 5 ||
+  parsedManifest.approvedPackage?.binaryMutation !== false ||
+  !assets.some((asset) => asset.runtime === `public${parsedManifest.assets?.background?.archiveAliveBase}`)
 ) {
-  throw new Error("cover-intro: contrato v2 incompleto");
+  throw new Error("cover-intro: contrato v3 incompleto");
 }
 
 console.log(
-  `GVO_DEBT_013 asset verification PASS: ${assets.length}/${assets.length} pares y manifest v2`,
+  `GVO_DEBT_013 asset verification PASS: ${assets.length}/${assets.length} pares y manifest v3`,
 );

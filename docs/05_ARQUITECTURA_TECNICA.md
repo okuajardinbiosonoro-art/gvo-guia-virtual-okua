@@ -103,7 +103,11 @@ Desde 1.1.2, la instalación de Workbox prepara el shell y los recursos
 vigentes de Carga y Portada, incluidos los sprites v03 y la pose de
 activación del portal. Las ilustraciones históricas siguen en el servidor
 local y quedan fuera de esta descarga inicial. Los manifiestos que preparan
-las pantallas conservan sus recursos y sus tiempos.
+las pantallas conservan sus recursos. En 1.1.3 el fondo de Portada y las
+dos hojas de Carga pasan a WebP sin pérdida. Sus tres PNG sustituidos se
+conservan como fuentes en Git. La presentación inicial dura al menos 6 s
+con animación o 1,2 s con movimiento reducido. El paso a Inicio depende
+también de la preparación del fondo y los recursos críticos de Portada.
 
 La transición prepara los recursos visuales de la sala y sus pistas en
 paralelo. El audio usa Web Audio después de un gesto del visitante. Las
@@ -130,6 +134,7 @@ Decisiones relacionadas:
 
 - [ADR-0004 — PWA/cache](decisions/ADR-0004-pwa-precache-y-cache-runtime.md)
 - [ADR-0017 — Precarga de Workbox en 1.1.2](decisions/ADR-0017-precache-workbox-recursos-vigentes.md)
+- [ADR-0018 — Duración y recursos de entrada en 1.1.3](decisions/ADR-0018-entrada-precargada.md)
 - [ADR-0005 — Route chunking](decisions/ADR-0005-route-chunking-y-preload-controlado.md)
 - [ADR-0006 — Entrada e idioma](decisions/ADR-0006-entrada-inicial-idioma-y-fullscreen.md)
 - [ADR-0007 — HTTPS local y scanner](decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md)

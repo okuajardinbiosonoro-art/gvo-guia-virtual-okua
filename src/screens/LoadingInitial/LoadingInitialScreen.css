@@ -1,6 +1,4 @@
 .loading-initial {
-  --loading-duration: 12000ms;
-  --loading-reduced-duration: 1200ms;
   --loading-text-lavender: #684594;
   --loading-subtitle: #7352a3;
   --loading-amber: #e7a75d;
@@ -206,7 +204,7 @@
   transform-origin: 25% 26%;
   animation: loading-water-frame-cycle var(--water-cycle-duration) steps(1, end)
     infinite;
-  animation-delay: calc(5360ms + var(--water-stream-delay));
+  animation-delay: calc(var(--loading-water-start) + var(--water-stream-delay));
 }
 
 .loading-initial__water-stream--a {

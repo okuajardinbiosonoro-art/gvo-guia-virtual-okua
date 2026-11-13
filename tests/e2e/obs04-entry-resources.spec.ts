@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { expect, test, type Page, type Route, type TestInfo } from "@playwright/test";
 
-const atlas = "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png";
+const atlas = "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp";
 const sourceFiles = ["src/app/journey/EntryPreparationHost.tsx", "src/app/journey/EntryPreparationHost.css", "src/app/journey/preparedImages.ts", "src/app/journey/journeyResources.ts", "src/app/journey/JourneyActivation.tsx", "src/screens/LoadingInitial/LoadingInitialScreen.tsx", "src/screens/LoadingInitial/LoadingInitialScreen.css", "src/screens/InitialExperience/InitialExperienceScreen.tsx", "src/screens/Cover/CoverIntroScreen.tsx", "src/screens/Cover/CoverIntroScreen.css", "tests/e2e/obs04-entry-resources.spec.ts"];
 const sha = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
 type Paint = { at: number; host: boolean; resource: string | null; presentation: string | null; loadingReady: boolean; rootOpacity: number; sceneOpacity: number; sceneVisibility: string | null; rootAnimation: string | null; haloAnimation: string | null; haloOpacity: number; liaTransform: string | null; liaBackgroundPosition: string | null; coverCount: number; activeCover: boolean; initialVisible: boolean; cardVisible: boolean; reduced: boolean; viewport: { width: number; height: number } };

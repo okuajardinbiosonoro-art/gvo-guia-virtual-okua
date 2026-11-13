@@ -7,24 +7,24 @@ import {
 import { LIA_FRAME_REGISTRATION } from "./liaFrameRegistration";
 
 describe("loadingInitialMotionTimeline", () => {
-  it("mantiene timeline natural V13 de 12000ms y mínimo estático reducido de 1200ms OBS04", () => {
-    expect(loadingInitialMotionTimeline.version).toBe("v13");
-    expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
+  it("mantiene timeline natural V14 de 6000ms y mínimo estático reducido de 1200ms OBS04", () => {
+    expect(loadingInitialMotionTimeline.version).toBe("v14");
+    expect(loadingInitialMotionTimeline.totalDurationMs).toBe(6000);
     expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1200);
     expect(loadingInitialMotionTimeline.phases.at(0)?.startMs).toBe(0);
-    expect(loadingInitialMotionTimeline.phases.at(-1)?.endMs).toBe(12000);
+    expect(loadingInitialMotionTimeline.phases.at(-1)?.endMs).toBe(6000);
   });
 
   it("retrasa el agua despues de la inclinacion y deja crecer planta despues de cada pulso", () => {
-    expect(WATER_DELAY_AFTER_TILT_MS).toBeGreaterThanOrEqual(120);
-    expect(WATER_DELAY_AFTER_TILT_MS).toBeLessThanOrEqual(180);
+    expect(WATER_DELAY_AFTER_TILT_MS).toBeGreaterThanOrEqual(60);
+    expect(WATER_DELAY_AFTER_TILT_MS).toBeLessThanOrEqual(90);
 
     for (const pulse of loadingInitialMotionTimeline.waterPulses) {
       expect(pulse.waterStartMs - pulse.gestureStartMs).toBeGreaterThanOrEqual(
-        120,
+        60,
       );
       expect(pulse.waterStartMs - pulse.gestureStartMs).toBeLessThanOrEqual(
-        180,
+        90,
       );
       expect(pulse.waterEndMs).toBeGreaterThan(pulse.waterStartMs);
       expect(pulse.plantSettlesAfterMs).toBeGreaterThan(pulse.waterEndMs);

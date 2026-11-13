@@ -4,6 +4,10 @@ Fecha: 2026-08-18
 Estado al 13 de noviembre de 2026: GVO 1.1.2 activa en MOMOTTO_PC.
 La validación física en móviles y la observación de la radio siguen pendientes.
 
+La [candidata 1.1.3](../releases/GVO_1.1.3.md) requiere una prueba en staging
+de su commit exacto con 20 clientes simulados antes de activar. El servicio
+de campo conserva 1.1.2 durante esa verificación.
+
 La versión de producto vigente se registra en el
 [acta de GVO 1.1.2](../releases/GVO_1.1.2.md). Esta guía conserva los
 requisitos de red, TLS y validación física de la instalación.

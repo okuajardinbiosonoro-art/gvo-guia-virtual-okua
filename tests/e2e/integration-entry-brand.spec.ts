@@ -57,8 +57,8 @@ test("OBS03 Carga consume las hojas registradas durante preparación real sin om
   });
   await page.goto("/carga", { waitUntil: "domcontentloaded" });
   await expect(page.locator("main.loading-initial[data-loading-preload-status='loading']")).toBeVisible();
-  await expect(page.locator('[data-runtime-asset="/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png"]')).toHaveCount(1);
-  await expect(page.locator('[data-runtime-asset="/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png"]')).toHaveCount(1);
+  await expect(page.locator('[data-runtime-asset="/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp"]')).toHaveCount(1);
+  await expect(page.locator('[data-runtime-asset="/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.webp"]')).toHaveCount(1);
   await expect(page.locator('[data-lia-frame-count="16"]')).toBeVisible();
   await expect(page.getByRole("heading", { name: "Bienvenido a OKÚA", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: /omitir|saltar/i })).toHaveCount(0);

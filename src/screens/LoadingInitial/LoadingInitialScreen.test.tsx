@@ -100,20 +100,20 @@ describe("LoadingInitialScreen", () => {
     }
   });
 
-  it("expone duraciones V13 de animacion normal y reduced motion", () => {
+  it("expone duraciones V14 de animacion normal y reduced motion", () => {
     render(<LoadingInitialScreen />);
 
     const stage = screen.getByTestId(
       "loading-initial-animated-scene",
     ).parentElement;
 
-    expect(TOTAL_DURATION_MS).toBeGreaterThanOrEqual(12000);
+    expect(TOTAL_DURATION_MS).toBe(6000);
     expect(REDUCED_MOTION_DURATION_MS).toBe(1200);
-    expect(loadingInitialTimeline.durationMs).toBe(12000);
+    expect(loadingInitialTimeline.durationMs).toBe(6000);
     expect(stage).toHaveAttribute("data-loading-layout-version", "v13");
-    expect(stage).toHaveAttribute("data-motion-timeline-version", "v13");
-    expect(stage).toHaveAttribute("data-duration-ms", "12000");
-    expect(stage).toHaveAttribute("data-progress-duration-ms", "12000");
+    expect(stage).toHaveAttribute("data-motion-timeline-version", "v14");
+    expect(stage).toHaveAttribute("data-duration-ms", "6000");
+    expect(stage).toHaveAttribute("data-progress-duration-ms", "6000");
     expect(stage).toHaveAttribute(
       "data-preload-contract",
       "root-owned-preparation",
@@ -254,8 +254,8 @@ describe("LoadingInitialScreen", () => {
       expect(frame.scale).toBeLessThanOrEqual(1.002);
       expect(Math.abs(frame.rotateDeg)).toBeLessThanOrEqual(0.28);
     }
-    expect(loadingInitialMotionTimeline.version).toBe("v13");
-    expect(loadingInitialMotionTimeline.totalDurationMs).toBe(12000);
+    expect(loadingInitialMotionTimeline.version).toBe("v14");
+    expect(loadingInitialMotionTimeline.totalDurationMs).toBe(6000);
     expect(loadingInitialMotionTimeline.reducedMotionDurationMs).toBe(1200);
     expect(
       loadingInitialMotionTimeline.phases.map((phase) => phase.id),

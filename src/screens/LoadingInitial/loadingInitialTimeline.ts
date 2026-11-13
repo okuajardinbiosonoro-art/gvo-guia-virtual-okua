@@ -6,8 +6,10 @@ interface LoadingInitialTimelineStep {
   endMs: number;
 }
 
-export const TOTAL_DURATION_MS = 12000;
+const originalDurationMs = 12000;
+export const TOTAL_DURATION_MS = 6000;
 export const REDUCED_MOTION_DURATION_MS = 1200;
+export const scaleLoadingTime = (ms: number) => ms * TOTAL_DURATION_MS / originalDurationMs;
 
 export const loadingInitialTimeline = {
   durationMs: TOTAL_DURATION_MS,
@@ -15,7 +17,7 @@ export const loadingInitialTimeline = {
   reducedMotionDurationMs: REDUCED_MOTION_DURATION_MS,
   maxDurationMs: 15000,
   maxDurationSeconds: 15,
-  steps: [
+  steps: ([
     { phase: "loading_initial_enter", startMs: 0, endMs: 900 },
     { phase: "lia_entry_idle", startMs: 900, endMs: 4200 },
     { phase: "lia_prepare_watering", startMs: 4200, endMs: 5200 },
@@ -23,5 +25,9 @@ export const loadingInitialTimeline = {
     { phase: "plant_growth", startMs: 6240, endMs: 8600 },
     { phase: "loading_complete", startMs: 8200, endMs: 10100 },
     { phase: "transition_to_intro", startMs: 10100, endMs: 12000 },
-  ] satisfies LoadingInitialTimelineStep[],
+  ] satisfies LoadingInitialTimelineStep[]).map(({ phase, startMs, endMs }) => ({
+    phase,
+    startMs: scaleLoadingTime(startMs),
+    endMs: scaleLoadingTime(endMs),
+  })),
 } as const;

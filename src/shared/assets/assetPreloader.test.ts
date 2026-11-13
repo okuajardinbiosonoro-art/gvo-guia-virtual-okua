@@ -227,12 +227,12 @@ describe("assetPreloader", () => {
         (asset) => asset.src,
       ),
     ).toContain(
-      "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+      "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
     );
     expect(
       screenAssetBundles.coverIntroCritical.assets.map((asset) => asset.src),
     ).toContain(
-      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
     );
     expect(
       screenAssetBundles.transitionRootCritical.assets.some((asset) =>

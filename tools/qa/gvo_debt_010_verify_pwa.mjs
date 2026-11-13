@@ -154,11 +154,11 @@ const requiredShellEntries = [
   "registerSW.js",
 ];
 const requiredEntryVisuals = [
-  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
   "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.json",
-  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.webp",
   "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.json",
-  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
   "assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
 ];
 const requiredRuntimeAssets = [

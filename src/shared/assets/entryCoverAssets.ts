@@ -1,7 +1,7 @@
 const finalAccessRuntimeBase = "/assets/gvo/stations/final-root/access";
 
 export const entryCoverBackdropAsset =
-  "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png";
+  "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp";
 
 export const entryCoverStationAssets = [
   {

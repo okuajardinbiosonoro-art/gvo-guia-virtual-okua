@@ -12,7 +12,7 @@ import {
   loadingInitialWaterStreams,
 } from "./loadingInitialScene";
 import { loadingInitialMotionTimeline } from "./loadingInitialMotionTimeline";
-import { loadingInitialTimeline } from "./loadingInitialTimeline";
+import { loadingInitialTimeline, scaleLoadingTime } from "./loadingInitialTimeline";
 import {
   LIA_FRAME_REGISTRATION,
   LIA_FRAME_REGISTRATION_ANCHOR,
@@ -30,8 +30,7 @@ const sceneAssetStyle = {
   "--loading-lia-sprite": `url("${loadingInitialAssets.lia.src}")`,
   "--loading-plant-sprite": `url("${loadingInitialAssets.plant.src}")`,
   "--loading-water-sprite": `url("${loadingInitialAssets.water.src}")`,
-  "--loading-duration": `${loadingInitialTimeline.durationMs}ms`,
-  "--loading-reduced-duration": `${loadingInitialTimeline.reducedMotionDurationMs}ms`,
+  "--loading-water-start": `${loadingInitialMotionTimeline.waterPulses[0].waterStartMs}ms`,
   ...liaFrameRegistrationCssVariables,
 } as CSSProperties;
 
@@ -65,6 +64,10 @@ export function LoadingInitialScreen({
     "--loading-real-fill": `${91.2 * progress}%`,
     "--loading-real-spark": `${3.6 + 91.2 * progress}%`,
   } as CSSProperties;
+  const timelineStyle = {
+    "--loading-duration": `${loadingInitialTimeline.durationMs}ms`,
+    "--loading-reduced-duration": `${loadingInitialTimeline.reducedMotionDurationMs}ms`,
+  } as CSSProperties;
 
   return (
     <>
@@ -87,6 +90,7 @@ export function LoadingInitialScreen({
         data-first-paint-contract="root-owned-preparation"
         data-loading-preload-status={preloadStatus}
         data-loading-preload-progress={Math.round(progress * 100).toString()}
+        style={timelineStyle}
       >
         <section
           className="loading-initial__stage"
@@ -156,12 +160,12 @@ export function LoadingInitialScreen({
                           data-runtime-asset={loadingInitialAssets.water.src}
                           style={
                             {
-                              "--water-stream-delay": `${stream.delayMs}ms`,
+                              "--water-stream-delay": `${scaleLoadingTime(stream.delayMs)}ms`,
                               "--water-offset-x": stream.offsetX,
                               "--water-offset-y": stream.offsetY,
                               "--water-rotate": `${stream.rotateDeg}deg`,
                               "--water-scale": stream.scale,
-                              "--water-cycle-duration": `${stream.cycleDurationMs}ms`,
+                              "--water-cycle-duration": `${scaleLoadingTime(stream.cycleDurationMs)}ms`,
                             } as CSSProperties
                           }
                         />
@@ -187,8 +191,8 @@ export function LoadingInitialScreen({
                     {
                       "--sparkle-x": slot.x,
                       "--sparkle-y": slot.y,
-                      "--sparkle-delay": `${slot.delayMs}ms`,
-                      "--sparkle-duration": `${slot.durationMs}ms`,
+                      "--sparkle-delay": `${scaleLoadingTime(slot.delayMs)}ms`,
+                      "--sparkle-duration": `${scaleLoadingTime(slot.durationMs)}ms`,
                     } as CSSProperties
                   }
                 />

@@ -8,7 +8,7 @@ import {
 describe("entryCoverAssets", () => {
   it("registra fondo local y cinco representaciones locales únicas", () => {
     expect(entryCoverBackdropAsset).toBe(
-      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
     );
     expect(entryCoverStationAssets).toHaveLength(5);
     expect(new Set(entryCoverStationAssets.map((asset) => asset.id)).size).toBe(

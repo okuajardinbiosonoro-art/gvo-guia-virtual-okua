@@ -1,5 +1,13 @@
 # Asset inventory
 
+## Recursos de entrada · GVO 1.1.3
+
+El [registro de Carga](../../public/assets/gvo/current-used/loading-initial/GVO-1.1.3-runtime-assets.json)
+y el [registro de Portada](../../public/assets/gvo/current-used/cover-intro/GVO-1.1.3-runtime-assets.json)
+describen los tres WebP sin pérdida y sus espejos. Los PNG originales
+permanecen en Git. La distribución sirve sus equivalentes WebP y Workbox
+los prepara en las mismas pantallas.
+
 ## Sonidos del recorrido · GVO 1.1
 
 El paquete «Sonidos para GVO.zip» entregó 14 MP3. Se sirven desde

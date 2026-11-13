@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.3 · 2026-11-13
+
+- Acorta la presentación de riego inicial de 12 a 6 segundos y conserva
+  los 1,2 segundos de la variante con movimiento reducido.
+- Usa WebP sin pérdida para el fondo de Portada y las hojas de Lía y de la
+  planta. Se mantiene la precarga que prepara Inicio y Portada.
+- Consulta el [acta de versión](docs/releases/GVO_1.1.3.md).
+
 ## 1.1.2 · 2026-11-13
 
 - Reduce la descarga inicial de Workbox al sacar 28 recursos históricos del

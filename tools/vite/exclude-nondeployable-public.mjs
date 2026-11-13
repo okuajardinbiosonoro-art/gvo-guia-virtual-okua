@@ -3,6 +3,10 @@ import { isAbsolute, relative, resolve } from "node:path";
 
 export const NON_DEPLOYABLE_PUBLIC_ARTIFACTS = [
   "assets/gvo/current-used",
+  // Lossless WebP replacements are served in GVO 1.1.3.
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.png",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.png",
+  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
   "assets/gvo/shared/lia/README_LIA_ASSETS.md",
   "assets/gvo/shared/lia/asset_manifest_lia_v1.json",
   "assets/gvo/shared/lia/approved",

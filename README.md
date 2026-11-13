@@ -14,9 +14,9 @@ Esta sección es un índice de navegación. La actualización documental no publ
 
 # GVO — Guía Virtual OKÚA
 
-La versión oficial del recorrido es **GVO 1.1.2**. Consulta el
-[acta de versión](docs/releases/GVO_1.1.2.md), el estado actual y las
-instrucciones de campo antes de preparar una instalación.
+La [candidata GVO 1.1.3](docs/releases/GVO_1.1.3.md) reduce la espera de
+entrada. La [versión activa en campo es GVO 1.1.2](docs/releases/GVO_1.1.2.md).
+Consulta el estado actual y el handoff antes de preparar una instalación.
 
 El editor local v4 ofrece guardado en PC, recuperación de borradores y edición
 de textos y estilos. El paquete independiente se conserva en el archivo de

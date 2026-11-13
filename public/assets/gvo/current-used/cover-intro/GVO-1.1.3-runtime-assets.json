@@ -1,0 +1,21 @@
+{
+  "version": "1.1.3",
+  "status": "TECHNICALLY_VERIFIED_FIELD_STAGING_PENDING",
+  "assets": [
+    {
+      "path": "background/cover_bg_archivo_vivo_base_v1.webp",
+      "runtime": "public/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
+      "sourcePng": "public/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+      "consumer": "Fondo de Inicio y Portada",
+      "format": "WebP lossless",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "bytes": 1486526,
+      "sha256": "876126925a230ad3f0b5b38006112ca58aca35064beb2c0debaa9ca86bec9788",
+      "sourceSha256": "d1ab1ad83c48883cf725e6fcb9aa34778af8660ce15277b6a58f3231098e13c8",
+      "decodedRgbaIdentical": true
+    }
+  ]
+}

@@ -2,6 +2,15 @@
 
 Actualizado: 2026-11-13
 
+## GVO 1.1.3 · candidata de entrada para staging
+
+La carga inicial conserva la secuencia de riego y la preparación de Inicio
+y Portada. El mínimo visible pasa a 6 segundos. Los tres WebP nuevos
+reproducen los píxeles RGBA de sus originales. La variante de movimiento
+reducido conserva su mínimo de 1,2 segundos. MOMOTTO_PC debe comparar el
+commit exacto con 1.1.2 bajo 20 clientes simulados antes de activar.
+[Acta](../releases/GVO_1.1.3.md) · [Ticket](../tickets/GVO_ENTRADA_20261113.md).
+
 ## GVO 1.1.2 · versión oficial del recorrido
 
 MOMOTTO_PC opera GVO 1.1.2 desde `d6c0e1d0fa37467240f31cf4412e845509be1097`.
@@ -20,7 +29,7 @@ el progreso. El marco de foto incorpora una enredadera de flores y sustituye
 el emblema dorado por «La naturaleza también canta». José David comprobó en su
 iPhone el recorrido, las seis piezas de Sala IV y la Polaroid con la enredadera
 definitiva. Aprobó la publicación en `main` con la frase provisional mientras el
-escritor prepara el texto final. El despliegue en campo queda pendiente.
+escritor prepara el texto final. Estos cambios se conservan en 1.1.2.
 [Acta](../releases/GVO_1.1.1.md) · [Ticket](../tickets/GVO_SALA_IV_FOTO_20261113.md).
 
 ## GVO 1.1.0 · versión anterior del recorrido

@@ -260,8 +260,8 @@ test("entry: complete natural minimum and prepared Cover handoff without a secon
     await page.screenshot({ path: info.outputPath("entry-03-cover-active.png"), fullPage: false, scale: "css" });
     journal = await page.evaluate(() => window.__obs04EntryObserver!.stop());
     const finalFacts = await facts(page);
-    await info.attach("OBS04-entry-minimum-and-handoff", { body: JSON.stringify({ qualification: "Fresh local storage, actual entry UI and compiled production resource requests; canvas laboratory camera preflight only. Passive rAF/DOM opacity journal, no clock/CSS/readiness/progress injection. Brand request is held only if it first occurs after entry gesture; prewarm requests before gesture pass untouched.", indexBefore, journal, lateRequests, finalFacts, nominalVisibleMinimumMs: 12000, frameObservationAllowanceMs: 100 }, null, 2), contentType: "application/json" });
-    expect.soft(journal.visibleLoadingMs, "Complete natural presentation must survive warm/fast resources").toBeGreaterThanOrEqual(11_900);
+    await info.attach("OBS04-entry-minimum-and-handoff", { body: JSON.stringify({ qualification: "Fresh local storage, actual entry UI and compiled production resource requests; canvas laboratory camera preflight only. Passive rAF/DOM opacity journal, no clock/CSS/readiness/progress injection. Brand request is held only if it first occurs after entry gesture; prewarm requests before gesture pass untouched.", indexBefore, journal, lateRequests, finalFacts, nominalVisibleMinimumMs: 6000, frameObservationAllowanceMs: 100 }, null, 2), contentType: "application/json" });
+    expect.soft(journal.visibleLoadingMs, "Complete natural presentation must survive warm/fast resources").toBeGreaterThanOrEqual(5_900);
     expect.soft(lateRequests, "Cover brand must already be prepared by initial load").toHaveLength(0);
     expect.soft(journal.samples.filter((sample) => sample.afterEnter && sample.preparationCardVisible), "No visible second loading card between initial UI and Cover").toEqual([]);
     expect(finalFacts.essential?.cover.confirmedStepIds ?? []).toEqual([]);

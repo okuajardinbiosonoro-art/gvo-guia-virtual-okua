@@ -15,7 +15,7 @@
   },
   "assets": {
     "background": {
-      "archiveAliveBase": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png"
+      "archiveAliveBase": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp"
     },
     "lia": {
       "reference": "/assets/runtime/cover-intro/lia/reference/lia_master_cover_reference_v1.png",

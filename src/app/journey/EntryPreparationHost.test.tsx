@@ -53,7 +53,7 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers(); Reflect.deleteProperty(document, "fonts"); Reflect.deleteProperty(document, "visibilityState"); });
 
 describe("OBS04 single entry host", () => {
-  it("prioritizes own resources, then mounts one inactive Cover and retains it through the 12s minimum, /inicio and Start", async () => {
+  it("prioritizes own resources, then mounts one inactive Cover and retains it through the 6s minimum, /inicio and Start", async () => {
     const own = deferred<PreloadSummary>(); preload.mockReturnValueOnce(own.promise);
     mount(); await flush();
     expect(preload.mock.calls[0][0]).toEqual(["/own.png"]);
@@ -64,7 +64,7 @@ describe("OBS04 single entry host", () => {
     expect((preload.mock.calls[1][1] as PreloadImagesOptions).deadlineAt).toBe((preload.mock.calls[0][1] as PreloadImagesOptions).deadlineAt);
     expect(screen.getByTestId("loading")).toHaveAttribute("data-started", "true");
     expect(coverActivity).not.toHaveBeenCalled();
-    await advance(11900); expect(screen.getByTestId("path")).toHaveTextContent(/^\/$/);
+    await advance(5900); expect(screen.getByTestId("path")).toHaveTextContent(/^\/$/);
     await advance(150); expect(screen.getByTestId("path")).toHaveTextContent("/inicio");
     expect(screen.queryByTestId("loading")).toBeNull();
     expect(screen.getByRole("button", { name: "Start" })).toBeEnabled();
@@ -105,7 +105,7 @@ describe("OBS04 single entry host", () => {
     mount("/inicio"); await flush(); await advance(100);
     expect(screen.getByTestId("loading")).toHaveAttribute("data-started", "true");
     expect(screen.queryByTestId("initial")).toBeNull();
-    await advance(11900);
+    await advance(5900);
     expect(screen.queryByTestId("initial")).toBeNull();
     await advance(200);
     expect(screen.getByRole("button", { name: "Start" })).toBeEnabled();

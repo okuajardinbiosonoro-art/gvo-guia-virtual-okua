@@ -16,12 +16,12 @@ test("carga inicial V13 conserva rutas, textos y ausencia de portada", async ({
   await expect(page.locator("[data-sparkle-slot]")).toHaveCount(10);
   await expect(page.locator("[data-water-stream]")).toHaveCount(3);
 
-  await page.waitForTimeout(12500);
+  await page.waitForURL("**/inicio");
   expect(page.url()).not.toContain("/portada");
   await expect(page.getByText("Portada / Intro")).toHaveCount(0);
 });
 
-test("la animacion normal expone duracion real de 12 segundos", async ({
+test("la animacion normal expone duracion real de 6 segundos", async ({
   page,
 }) => {
   await page.goto("/");
@@ -69,8 +69,8 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     const sceneStyles = getComputedStyle(scene);
 
     return {
-      progressDuration: getComputedStyle(progressFill).animationDuration,
-      progressSparkDuration: getComputedStyle(progressSpark).animationDuration,
+      liaDuration: getComputedStyle(liaTrack).animationDuration,
+      progressAnimation: getComputedStyle(progressFill).animationName,
       progressFamily: progressFrame.getAttribute("data-progress-family"),
       progressFillAsset: progressFillPicture?.getAttribute("data-asset-id"),
       progressTrackAsset: progressRail.getAttribute("data-asset-id"),
@@ -122,8 +122,8 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     };
   });
 
-  expect(durations.progressDuration).toBe("12s");
-  expect(durations.progressSparkDuration).toBe("12s");
+  expect(durations.liaDuration.split(", ")).toContain("6s");
+  expect(durations.progressAnimation).toBe("none");
   expect(durations.progressFamily).toBe("transition-root-assets");
   expect(durations.progressTrackAsset).toBe(
     "transition_root_progress_track_base",
@@ -132,13 +132,13 @@ test("la animacion normal expone duracion real de 12 segundos", async ({
     "transition_root_progress_fill_segment",
   );
   expect(durations.progressSparkAsset).toBe("transition_root_progress_spark");
-  expect(durations.stageDuration).toBe("12000");
+  expect(durations.stageDuration).toBe("6000");
   expect(durations.layoutVersion).toBe("v13");
-  expect(durations.motionTimelineVersion).toBe("v13");
+  expect(durations.motionTimelineVersion).toBe("v14");
   expect(durations.frameRegistration).toBe("v13");
   expect(durations.frameRegistrationAnchor).toBe("visor-collar");
   expect(durations.frameCount).toBe("16");
-  expect(durations.visualScale).toBe("0.9");
+  expect(Number(durations.visualScale)).toBe(0.9);
   expect(durations.titleFontFamily).toContain("Pixelify Sans");
   expect(durations.liaAnimationName).toContain("loading-lia-entry-path");
   expect(durations.liaRegistrationAnimationName).toContain(
@@ -195,7 +195,7 @@ test("reduced motion conserva timeline y evita riego multi-stream animado", asyn
 
   expect(reduced.progressAnimationName).toBe("none");
   expect(reduced.progressSparkAnimationName).toBe("none");
-  expect(reduced.reducedMotionDuration).toBe("12000");
+  expect(reduced.reducedMotionDuration).toBe("1200");
   expect(reduced.waterDisplay).toBe("none");
   expect(reduced.overflowHorizontal).toBe(false);
 });
