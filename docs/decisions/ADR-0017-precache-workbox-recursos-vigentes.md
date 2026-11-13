@@ -17,4 +17,5 @@ que se solicitan durante la visita.
 El beneficio medido es una reducción de tráfico. La animación inicial
 conserva sus 12 segundos. Una visita previa permite reutilizar recursos
 cacheados y las salas aún no visitadas pueden necesitar acceso al servidor
-local. La prueba con 20 visitantes simultáneos se realiza en campo.
+local. El [acta](../releases/GVO_1.1.2.md) registra la prueba de capacidad con
+20 clientes simulados autorizada por el responsable.

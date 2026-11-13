@@ -4,10 +4,12 @@ Actualizado: 2026-11-13
 
 ## GVO 1.1.2 · versión oficial del recorrido
 
-La precarga de instalación de Workbox baja de 72 a 44 archivos. La
-presentación de Carga conserva sus 12 segundos y el recorrido mantiene la
-preparación de recursos por pantalla. El equipo de campo tiene pendiente
-certificar el arranque simultáneo en 20 dispositivos y el recorrido físico.
+MOMOTTO_PC opera GVO 1.1.2 desde `d6c0e1d0fa37467240f31cf4412e845509be1097`.
+La precarga de instalación de Workbox baja de 72 a 44 archivos y la
+presentación de Carga conserva sus 12 segundos. Campo verificó la entrada
+`/qr/start` por HTTPS, el DNS del MikroTik y el kit de seis QR. La prueba
+autorizada de 20 clientes simulados pasó. Quedan pendientes la cámara y la
+Polaroid en móviles físicos y la observación de la radio con equipos reales.
 [Acta](../releases/GVO_1.1.2.md) · [Ticket](../tickets/GVO_PRECARGA_WORKBOX_20261113.md).
 
 ## GVO 1.1.1 · versión anterior del recorrido

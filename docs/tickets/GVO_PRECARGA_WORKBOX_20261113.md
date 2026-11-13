@@ -12,5 +12,6 @@ mejora. La base aprobada es `b7c8a7746868fa445b6948947d0842bb5273215d`.
   activa, el tiempo de presentación de 12 segundos y los controles de avance.
 - Medir entradas y bytes con Workbox. Validar activación del service worker,
   precache, actualización y uso de la caché después de una visita.
-- La certificación de MikroTik, HTTPS, dispositivos físicos y 20 visitantes
-  simultáneos corresponde al equipo de campo.
+- Campo verificó MikroTik y HTTPS y completó la prueba autorizada con
+  20 clientes simulados. La comprobación de cámara, Polaroid y radio con
+  dispositivos físicos queda pendiente. [Acta](../releases/GVO_1.1.2.md).

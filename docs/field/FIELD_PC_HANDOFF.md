@@ -1,7 +1,8 @@
 # GVO — Handoff canónico al PC de campo
 
 Fecha: 2026-08-18
-Estado: `FIELD HANDOFF READY / DEPLOYMENT GATES PENDING`
+Estado al 13 de noviembre de 2026: GVO 1.1.2 activa en MOMOTTO_PC.
+La validación física en móviles y la observación de la radio siguen pendientes.
 
 La versión de producto vigente se registra en el
 [acta de GVO 1.1.2](../releases/GVO_1.1.2.md). Esta guía conserva los
@@ -142,13 +143,13 @@ Después de cerrar red, hostname y TLS, probar al menos:
 Registrar navegador, versión, URL, dispositivo y resultado. Automatización o
 emulación no sustituyen esta evidencia.
 
-Medir el arranque en frío con 20 dispositivos simultáneos en el Wi-Fi de
-visitantes. Registrar errores, tiempo hasta Portada y disponibilidad de la
-cámara, el audio y la Polaroid durante el recorrido.
+La prueba autorizada de arranque concurrente se ejecutó con un Chromium de
+caché fría y 19 clientes HTTPS. El acta recoge tiempos y transferencia. Queda
+pendiente observar el comportamiento de la radio con equipos reales.
 
 ### 5. QR de red e inicio
 
-Siguen diferidos:
+En el handoff original quedaron diferidos:
 
 - QR Wi-Fi;
 - QR de red;
@@ -156,8 +157,10 @@ Siguen diferidos:
 - SSID/password;
 - URL absoluta de inicio.
 
-Sólo generarlos cuando MikroTik, FQDN y TLS estén cerrados. Los cuatro QR
-interestación existentes no se regeneran por un cambio de red.
+Para GVO 1.1.2, campo verificó el kit de seis códigos y doce imágenes tras
+comprobar DNS y HTTPS. En futuros cambios de red, usar los datos verificados
+para los QR de conexión y arranque. Los cuatro QR interestación conservan
+sus payloads relativos.
 
 ## Fullscreen en iPhone
 
