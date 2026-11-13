@@ -105,13 +105,13 @@ function logoInk(logo: HTMLImageElement) {
   return surface;
 }
 
-export async function makeFinalLiaPhoto(source: string | HTMLCanvasElement, poseAsset: string | undefined, pose: LiaPhotoPose, placement: PhotoPlacement, signal: AbortSignal) {
-  const [photo, lia, logo, emblem, engraving] = await Promise.all([
+export async function makeFinalLiaPhoto(source: string | HTMLCanvasElement, poseAsset: string | undefined, pose: LiaPhotoPose, placement: PhotoPlacement, locale: "es" | "en", signal: AbortSignal) {
+  const [photo, lia, logo, engraving, vine] = await Promise.all([
     typeof source === "string" ? loadPhotoImage(source) : source,
     poseAsset ? loadPhotoImage(poseAsset).catch(() => undefined) : undefined,
     loadPhotoImage(`${brandAssets}/okua-jardin-biosonoro-logo-v01.png`),
-    loadPhotoImage(`${brandAssets}/okua-emblem-material-v03.png`),
     loadPhotoImage(`${photoAssets}/okua-photo-engraving-v01.webp`),
+    loadPhotoImage(`${photoAssets}/okua-photo-vine-v03.webp`),
   ]);
   signal.throwIfAborted();
   const { surface, context: photoContext } = photoSurface(photo);
@@ -165,8 +165,21 @@ export async function makeFinalLiaPhoto(source: string | HTMLCanvasElement, pose
   context.fillStyle = "#996f5070";
   context.fillRect(50, 1101, 812, 2);
   context.drawImage(logoInk(logo), 59, 1131, 209, 209 * logo.naturalHeight / logo.naturalWidth);
-  const sealHeight = 105;
-  context.drawImage(emblem, 588, 1146, sealHeight * emblem.naturalWidth / emblem.naturalHeight, sealHeight);
+  context.font = 'italic 39px Georgia, "Times New Roman", serif';
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  const goldInk = context.createLinearGradient(0, 1150, 0, 1210);
+  goldInk.addColorStop(0, "#805225");
+  goldInk.addColorStop(0.48, "#99692e");
+  goldInk.addColorStop(1, "#65411f");
+  context.fillStyle = goldInk;
+  context.fillText(locale === "es" ? "La naturaleza también canta" : "Nature sings, too", 547, 1191, 475);
+
+  // Let the inner leaves overlap the photo margin. The stem ends behind the engraving.
+  const vineTop = 14;
+  const vineHeight = 1232 - vineTop;
+  const vineWidth = vineHeight * vine.naturalWidth / vine.naturalHeight;
+  context.drawImage(vine, print.width - vineWidth * 0.61, vineTop, vineWidth, vineHeight);
   const engravingWidth = 138;
   context.globalAlpha = 0.8;
   context.drawImage(engraving, 784, 1174, engravingWidth, engravingWidth * engraving.naturalHeight / engraving.naturalWidth);

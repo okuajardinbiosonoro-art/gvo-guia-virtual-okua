@@ -1,5 +1,6 @@
 import {
   WORLD4_ORDERING_TARGET,
+  WORLD4_ORDERING_LAST_INDEX,
   isWorld4OrderingSolved,
   type World4OrderingId,
   type World4OrderingState,
@@ -114,7 +115,7 @@ export function reduceWorld4Ordering(
   if (
     action.type === "next_review" &&
     next.phase === "review" &&
-    next.reviewIndex < 7
+    next.reviewIndex < WORLD4_ORDERING_LAST_INDEX
   )
     return {
       ...next,
@@ -127,7 +128,7 @@ export function reduceWorld4Ordering(
   if (
     action.type === "close" &&
     (next.phase === "success" ||
-      (next.phase === "review" && next.reviewIndex === 7))
+      (next.phase === "review" && next.reviewIndex === WORLD4_ORDERING_LAST_INDEX))
   )
     return {
       ...next,

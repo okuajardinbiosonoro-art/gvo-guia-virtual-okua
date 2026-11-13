@@ -12,6 +12,7 @@ import {
 import { getJourneyRuntimeContext } from "../../app/journey/journeyEssential";
 import {
   WORLD4_ORDERING_TARGET,
+  WORLD4_ORDERING_LAST_INDEX,
   freshWorld4OrderingState,
   readWorld4OrderingCheckpoint,
   removeWorld4OrderingCheckpoint,
@@ -452,7 +453,7 @@ export function World4OrderingGame({
     if (!mutable || (!presented && !state.closed)) return;
     const transaction = callbacks.current;
     setBusy(true);
-    if (state.phase === "review" && state.reviewIndex < 7) {
+    if (state.phase === "review" && state.reviewIndex < WORLD4_ORDERING_LAST_INDEX) {
       if (await transaction.onAdvance("review", state.reviewIndex)) {
         playJourneySound("interaction", { replace: true });
         send({ type: "next_review" });
@@ -503,7 +504,7 @@ export function World4OrderingGame({
     if (!(event.key in moves)) return;
     event.preventDefault();
     const target =
-      buttonRefs.current[Math.max(0, Math.min(7, index + moves[event.key]))];
+      buttonRefs.current[Math.max(0, Math.min(WORLD4_ORDERING_LAST_INDEX, index + moves[event.key]))];
     target?.focus({ preventScroll: true });
     target?.scrollIntoView?.({ block: "nearest", inline: "nearest" });
   }
@@ -620,8 +621,8 @@ export function World4OrderingGame({
             className="s4-ordering-stage"
             aria-label={
               locale === "es"
-                ? "Mesa de ocho posiciones"
-                : "Eight-position table"
+                ? "Mesa de seis posiciones"
+                : "Six-position table"
             }
           >
             <img
@@ -709,7 +710,7 @@ export function World4OrderingGame({
             <div className="s4-ordering-description">
               <p>
                 {state.phase === "review"
-                  ? `${copy.reviewCount} ${state.reviewIndex + 1}/8`
+                  ? `${copy.reviewCount} ${state.reviewIndex + 1}/${nodes.length}`
                   : ""}
               </p>
               <h2 ref={headingRef} tabIndex={-1}>
@@ -734,7 +735,7 @@ export function World4OrderingGame({
                 disabled={!mutable || !presented}
                 onClick={() => void advanceReview()}
               >
-                {state.phase === "review" && state.reviewIndex < 7
+                {state.phase === "review" && state.reviewIndex < WORLD4_ORDERING_LAST_INDEX
                   ? copy.next
                   : copy.close}
               </button>

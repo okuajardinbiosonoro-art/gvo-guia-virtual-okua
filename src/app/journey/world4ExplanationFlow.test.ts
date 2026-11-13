@@ -5,7 +5,7 @@ import { validateJourneyReceipt } from "./journeyReceipt";
 import { resolveJourneyAccess, essentialRecoveryRoute } from "./journeyAccess";
 import { interstationQrContracts } from "../qr/interstationQr";
 import { resetGvoJourney } from "../reset/resetGvoJourney";
-import { WORLD4_ORDERING_TARGET, WORLD4_ORDERING_STORAGE_KEY, freshWorld4OrderingState, type World4OrderingId } from "../../domain/checkpoints/world4OrderingCheckpoint";
+import { LEGACY_WORLD4_ORDERING_TARGET, WORLD4_ORDERING_TARGET, WORLD4_ORDERING_STORAGE_KEY, freshWorld4OrderingState, type World4OrderingId } from "../../domain/checkpoints/world4OrderingCheckpoint";
 import { WORLD4_EXPLANATION_STORAGE_KEY as key, WORLD4_EXPLANATION_REVISION as revision, freshWorld4ExplanationCheckpoint, readWorld4ExplanationCheckpoint, writeWorld4ExplanationCheckpoint, isWorld4ExplanationCheckpoint } from "../../domain/checkpoints/world4ExplanationCheckpoint";
 
 const input = (stepId: World4OrderingId = WORLD4_ORDERING_TARGET[0]) => ({ stepId, contentRevision: revision, attemptId: "iv" });
@@ -35,16 +35,35 @@ function solvedGame() {
 }
 beforeEach(() => { vi.restoreAllMocks(); localStorage.clear(); sessionStorage.clear(); journey.invalidateJourneyEssential(); activate(); });
 describe("OBS04 independent IV explanatory proof", () => {
-  it("requires eight ordered presentations and explicit confirmations without spending the game clock or other stores", async () => {
+  it("requires six ordered presentations and explicit confirmations without spending the game clock or other stores", async () => {
     fixture(); solvedGame();
     const oldGame = localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY), oldEssential = localStorage.getItem(journey.ESSENTIAL_STORAGE_KEY);
     expect(readWorld4ExplanationCheckpoint().status).toBe("empty"); expect(localStorage.getItem(key)).toBeNull();
     expect(await journey.confirmWorld4ExplanationStep(input())).toMatchObject({ ok: false, reason: "out_of_order" });
-    expect(await journey.markWorld4ExplanationPresented(input("midi"))).toMatchObject({ ok: false, reason: "out_of_order" });
+    expect(await journey.markWorld4ExplanationPresented(input("router"))).toMatchObject({ ok: false, reason: "out_of_order" });
     await completeTour();
-    expect(readWorld4ExplanationCheckpoint().checkpoint).toMatchObject({ complete: true, revision: 16, activeStepId: null });
+    expect(readWorld4ExplanationCheckpoint().checkpoint).toMatchObject({ complete: true, revision: 12, activeStepId: null });
     expect(localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(oldGame);
     expect(localStorage.getItem(journey.ESSENTIAL_STORAGE_KEY)).toBe(oldEssential);
+  });
+  it("resumes an eight-piece tour at Router after the removed steps", async () => {
+    fixture();
+    const raw = JSON.stringify({
+      ...freshWorld4ExplanationCheckpoint(), contentRevision: "OBS04-IV-1", revision: 8,
+      presentedStepIds: LEGACY_WORLD4_ORDERING_TARGET.slice(0, 5),
+      confirmedStepIds: LEGACY_WORLD4_ORDERING_TARGET.slice(0, 4), activeStepId: "wifi_udp",
+    });
+    localStorage.setItem(key, raw);
+    expect(readWorld4ExplanationCheckpoint()).toMatchObject({
+      status: "ok", raw, checkpoint: {
+        activeStepId: "router", confirmedStepIds: ["planta", "bionosificador", "esp32"], complete: false,
+      },
+    });
+    expect((await journey.markWorld4ExplanationPresented(input("router"))).ok).toBe(true);
+    expect((await journey.confirmWorld4ExplanationStep(input("router"))).ok).toBe(true);
+    expect(readWorld4ExplanationCheckpoint().checkpoint).toMatchObject({
+      contentRevision: revision, activeStepId: "sistema_central",
+    });
   });
   it.each(["inactive", "hidden", "attempt", "review", "revision"])("rejects %s callbacks without auxiliary writes", async (kind) => {
     fixture();

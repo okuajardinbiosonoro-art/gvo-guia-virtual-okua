@@ -73,6 +73,20 @@
       "sha256": "e26cb6ed48b42cd2b07e54fe37017f803adfa271c168e9ea7b60c7605a0e9a0b",
       "source": "ChatGPT Images · GVO print engraving, 2026-11-12",
       "source_sha256": "8d51f2865a967d2cf514ed861da26213ddb8bb2a468d6949fcd893c755eb806a"
+    },
+    {
+      "id": "FINAL-PHOTO-VINE-003",
+      "status": "HUMAN_APPROVED",
+      "consumer": "finalLiaPhotoPrint",
+      "purpose": "Enredadera de follaje tupido con flores inspiradas en curubas colombianas para el margen derecho del papel",
+      "runtime": "public/assets/gvo/stations/final-root/photo/okua-photo-vine-v03.webp",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/okua-photo-vine-v03.webp",
+      "dimensions": [199, 2025],
+      "format": "WEBP RGBA lossless",
+      "bytes": 447466,
+      "sha256": "30c0c62fc6502842ce3e39eadf99b134c2284f07102408c396c45c5408bad4a2",
+      "source": "ImageGen integrado, 2026-11-13; recorte de margen alfa y giro de 90 grados, sin reescalar",
+      "source_sha256": "889eda5173d8532b0fd8b3c43ea80a5fb4b02c9906ae182810aada4b6b905c10"
     }
   ],
   "reused_brand_assets": [
@@ -80,11 +94,6 @@
       "runtime": "public/assets/runtime/cover-intro/brand/okua-jardin-biosonoro-logo-v01.png",
       "sha256": "02a788962968ea2277211a362539bfd9efa0e21559f2191ccd0f8ab9b9a8269a",
       "mirror": "public/assets/gvo/current-used/cover-intro/brand/okua-jardin-biosonoro-logo-v01.png"
-    },
-    {
-      "runtime": "public/assets/runtime/cover-intro/brand/okua-emblem-material-v03.png",
-      "sha256": "476cf4dbef9cc320b5144f599982c692f22bac69dbb4d5eb32487486ad52b283",
-      "mirror": "public/assets/gvo/current-used/cover-intro/brand/okua-emblem-material-v03.png"
     }
   ]
 }

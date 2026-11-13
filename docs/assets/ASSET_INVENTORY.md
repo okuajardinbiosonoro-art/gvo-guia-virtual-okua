@@ -8,6 +8,16 @@ SHA-256 y disparadores. Los manifiestos están bajo
 `current-used/{shared,world-2-root,world-3-root,world-4-root,world-5-root}/audio/`.
 Los MP3 del runtime y los del registro conservan los bytes del diseñador.
 
+## Recursos aprobados de GVO 1.1.1
+
+La foto instantánea usa una enredadera floral WebP RGBA de 199 × 2025,
+con follaje tupido y flores inspiradas en curubas colombianas. Se renderiza con
+escala uniforme y una superposición leve sobre el margen derecho del retrato.
+Su procedencia, SHA-256, copia de runtime y espejo figuran en el
+[registro de la foto](../../public/assets/gvo/current-used/final-root/photo/manifest.json).
+La mesa de Sala IV reutiliza seis de sus objetos registrados. Los recursos
+de MIDI y Wi-Fi conservan su registro histórico.
+
 ## Revisión en iPhone · Sala V
 
 Los fondos limpios de Sistema v03 registrados en

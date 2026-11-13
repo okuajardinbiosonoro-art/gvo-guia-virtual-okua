@@ -85,7 +85,7 @@ beforeEach(() => {
   window.localStorage.clear();
   window.sessionStorage.clear();
   // Declared prerequisite fixture for the existing GAME regressions below.
-  // The new consumer suite exercises all eight explanation gestures from empty.
+  // The new consumer suite exercises all six explanation gestures from empty.
   window.localStorage.setItem(WORLD4_EXPLANATION_STORAGE_KEY, JSON.stringify({
     ...freshWorld4ExplanationCheckpoint(),
     revision: 16,
@@ -234,13 +234,13 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
       "orden_resuelto",
     );
   });
-  it("prepares8objects without presenting, writing, timer, focus or QR while inactive", async () => {
+  it("prepares six objects without presenting, writing, timer, focus or QR while inactive", async () => {
     const focus = vi.spyOn(HTMLElement.prototype, "focus");
     const interval = vi.spyOn(window, "setInterval");
     const timeout = vi.spyOn(window, "setTimeout");
     show({ active: false });
     await flush();
-    expect(document.querySelectorAll("[data-ordering-object]")).toHaveLength(8);
+    expect(document.querySelectorAll("[data-ordering-object]")).toHaveLength(6);
     expect(window.localStorage.getItem(ESSENTIAL_STORAGE_KEY)).toBeNull();
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBeNull();
     expect(screen.getByRole("button", { name: "Comenzar" })).toBeDisabled();
@@ -261,7 +261,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     show();
     await flush();
     await start();
-    for (let index = 0; index < 8; index += 1) {
+    for (let index = 0; index < WORLD4_ORDERING_TARGET.length; index += 1) {
       expect(piece(index)).toHaveAttribute(
         "aria-label",
         expect.stringContaining("Posición " + (index + 1) + ":"),
@@ -293,7 +293,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     expect(checkpoint().permutation[0]).toBe(before[1]);
     expect(checkpoint().permutation[1]).toBe(before[0]);
   });
-  it("help auto-orders but requires8manual confirmations and a verified close before QR", async () => {
+  it("help auto-orders but requires six manual confirmations and a verified close before QR", async () => {
     show();
     await flush();
     await help();
@@ -305,12 +305,12 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     expect(document.querySelector("main.s4-ordering")).not.toHaveAttribute("data-station4-ordering-solved");
     expect(readEssentialSnapshot()!.stations[4].outcome).toBeNull();
     expect(screen.queryByRole("button", { name: /Escanea/ })).toBeNull();
-    for (let index = 0; index < 7; index += 1) {
+    for (let index = 0; index < WORLD4_ORDERING_TARGET.length - 1; index += 1) {
       expect(checkpoint().reviewIndex).toBe(index);
       await click("Siguiente");
     }
     expect(
-      screen.getByText(getWorld4OrderingNodes("es")[7].text),
+      screen.getByText(getWorld4OrderingNodes("es")[5].text),
     ).toBeVisible();
     expect(readEssentialSnapshot()!.stations[4].closed).toBe(false);
     await click("Cerrar");
@@ -330,7 +330,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     await start();
     for (
       let index = 0;
-      index < 7 && checkpoint().phase === "playing";
+      index < WORLD4_ORDERING_TARGET.length - 1 && checkpoint().phase === "playing";
       index += 1
     ) {
       const order = checkpoint().permutation;
@@ -346,7 +346,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     });
     expect(screen.getByRole("heading", { name: "¡Felicidades!" })).toBeVisible();
     expect(document.querySelector("main.s4-ordering")).toHaveAttribute("data-station4-ordering-solved", "true");
-    expect(screen.queryByText(getWorld4OrderingNodes("es")[7].text)).toBeNull();
+    expect(screen.queryByText(getWorld4OrderingNodes("es")[5].text)).toBeNull();
     expect(screen.queryByText("Piezas intercambiadas.")).toBeNull();
     expect(screen.queryByRole("button", { name: /Escanea/ })).toBeNull();
     await click("Cerrar");
@@ -391,7 +391,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     show({ mode: "legacy_review_compatible", reviewReturnAllowed: true });
     await flush();
     const before = window.localStorage.getItem(ESSENTIAL_STORAGE_KEY);
-    fireEvent.click(piece(6));
+    fireEvent.click(piece(4));
     await flush();
     expect(
       screen.getByRole("heading", { name: "Sistema central" }),
@@ -427,10 +427,10 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
       screen.getByRole("heading", { name: "Room IV · Biosonic System" }),
     ).toBeVisible();
     expect(screen.queryByRole("button", { name: "Help me arrange them" })).toBeNull();
-    fireEvent.click(piece(7));
+    fireEvent.click(piece(5));
     await flush();
     expect(
-      screen.getByText(getWorld4OrderingNodes("en")[7].text),
+      screen.getByText(getWorld4OrderingNodes("en")[5].text),
     ).toBeVisible();
     await click("Start");
     expect(screen.getByRole("button", { name: "Help me arrange them" })).toBeVisible();

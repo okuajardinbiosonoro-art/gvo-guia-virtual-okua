@@ -243,7 +243,7 @@ async function mutateWorld4Explanation(input: World4ExplanationMutationInput, co
   const presentedStepIds = confirm ? [...current.presentedStepIds] : [...current.presentedStepIds, input.stepId];
   const confirmedStepIds = confirm ? [...current.confirmedStepIds, input.stepId] : [...current.confirmedStepIds];
   const result = writeWorld4ExplanationCheckpoint({ ...current, revision: current.revision + 1, presentedStepIds, confirmedStepIds,
-    activeStepId: WORLD4_ORDERING_TARGET[confirmedStepIds.length] ?? null, complete: confirmedStepIds.length === 8 }, read.raw,
+    activeStepId: WORLD4_ORDERING_TARGET[confirmedStepIds.length] ?? null, complete: confirmedStepIds.length === WORLD4_ORDERING_TARGET.length }, read.raw,
     () => isJourneySnapshotCurrent(token) && runtime.active && runtime.attemptId === input.attemptId && runtime.screen === 4 && runtime.mode === "normal" && runtime.authorized && document.visibilityState !== "hidden");
   emit();
   return result;
@@ -287,7 +287,7 @@ export async function recordEssentialOutcome(input: { screen: 4; contentRevision
   const denied = semanticGuard(input.screen, input.contentRevision, input.attemptId); if (denied) return denied;
   const local = readWorld4OrderingCheckpoint();
   if (local.status !== "ok" || !local.checkpoint.closed ||
-    (input.outcome === "solved" ? local.checkpoint.outcome !== "solved_by_visitor" : !["assisted_timeout", "assisted_requested"].includes(local.checkpoint.outcome ?? "") || local.checkpoint.confirmedReviewSteps.length !== 8)) return failure("out_of_order");
+    (input.outcome === "solved" ? local.checkpoint.outcome !== "solved_by_visitor" : !["assisted_timeout", "assisted_requested"].includes(local.checkpoint.outcome ?? "") || local.checkpoint.confirmedReviewSteps.length !== WORLD4_ORDERING_TARGET.length)) return failure("out_of_order");
   if (roomOf(verified!, 4).outcome === input.outcome) return { ok: true, snapshot: verified!, alreadyApplied: true };
   const next = cloneForWrite(); next.stations[4].outcome = input.outcome; return writeVerified(next);
 }

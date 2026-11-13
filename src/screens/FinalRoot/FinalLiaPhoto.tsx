@@ -123,7 +123,7 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
     if (!photo || cameraOpen) return;
     const source = photo instanceof File ? URL.createObjectURL(photo) : photo;
     const controller = new AbortController();
-    void makeFinalLiaPhoto(source, pose.asset, pose.kind, placement, controller.signal).then((file) => {
+    void makeFinalLiaPhoto(source, pose.asset, pose.kind, placement, locale, controller.signal).then((file) => {
       if (controller.signal.aborted) return;
       const url = URL.createObjectURL(file);
       if (outputUrlRef.current) URL.revokeObjectURL(outputUrlRef.current);
@@ -138,7 +138,7 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
       controller.abort();
       if (typeof source === "string") URL.revokeObjectURL(source);
     };
-  }, [photo, pose, placement, cameraOpen]);
+  }, [photo, pose, placement, cameraOpen, locale]);
 
   function selectPhoto(event: ChangeEvent<HTMLInputElement>) {
     const file = event.currentTarget.files?.[0];

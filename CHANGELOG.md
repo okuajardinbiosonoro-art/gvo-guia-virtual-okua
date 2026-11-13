@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1 · 2026-11-13
+
+- Sala IV usa seis piezas y adapta el progreso válido de la versión de ocho.
+- La Polaroid incluye una enredadera de curubas y la frase provisional
+  «La naturaleza también canta».
+- Consulta el [acta de versión](docs/releases/GVO_1.1.1.md).
+
 ## 1.1.0 · 2026-11-12
 
 - Foto con Lía en el Mirador con cámara frontal, dos poses, opción sin Lía

@@ -111,7 +111,7 @@ async function closePriorEssentials(through: 0 | 4) {
         { type: "help" },
       );
       state = game.reduceWorld4Ordering(state, { type: "settle_auto" });
-      for (let index = 0; index < 7; index++)
+      for (let index = 0; index < 5; index++)
         state = game.reduceWorld4Ordering(state, { type: "next_review" });
       state = game.reduceWorld4Ordering(state, { type: "close" });
       expect(checkpoint.writeWorld4OrderingCheckpoint(state).ok).toBe(true);

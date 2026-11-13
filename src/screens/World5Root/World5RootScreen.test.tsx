@@ -109,7 +109,7 @@ async function closePriorJourney() {
         type: "help",
       });
       state = reduceWorld4Ordering(state, { type: "settle_auto" });
-      for (let i = 0; i < 7; i++)
+      for (let i = 0; i < WORLD4_ORDERING_TARGET.length - 1; i++)
         state = reduceWorld4Ordering(state, { type: "next_review" });
       state = reduceWorld4Ordering(state, { type: "close" });
       expect(writeWorld4OrderingCheckpoint(state).ok).toBe(true);

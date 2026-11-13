@@ -4,7 +4,7 @@ Fecha: 2026-08-18
 Estado: `FIELD HANDOFF READY / DEPLOYMENT GATES PENDING`
 
 La versión de producto vigente se registra en el
-[acta de GVO 1.1.0](../releases/GVO_1.1.0.md). Esta guía conserva los
+[acta de GVO 1.1.1](../releases/GVO_1.1.1.md). Esta guía conserva los
 requisitos de red, TLS y validación física de la instalación.
 
 ## Orden de lectura
@@ -69,6 +69,8 @@ node tools/qa/gvo_field_handoff_docs_audit.mjs
 - Rechazo seguro de QR incorrectos.
 - Cuatro QR físicos interestación en `docs/assets/qr/interstation/`.
 - Mundo V → Mirador intacto.
+- Sala IV con seis piezas y lectura de guardados válidos de ocho piezas.
+- Polaroid con enredadera de curubas y frase provisional aprobada.
 
 No reabrir assets, narrativa, copy ni comportamiento aprobado sin un ticket
 humano explícito.
@@ -133,6 +135,7 @@ Después de cerrar red, hostname y TLS, probar al menos:
 - grant, deny, retry, apertura, decode y cierre de tracks;
 - `/qr/w2`→`/qr/w5`;
 - recorrido completo I→V→Mirador;
+- captura y guardado de la Polaroid en el Mirador desde el HTTPS de campo;
 - revisita sin reapertura de cámara.
 
 Registrar navegador, versión, URL, dispositivo y resultado. Automatización o

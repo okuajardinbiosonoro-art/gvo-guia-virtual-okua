@@ -1,5 +1,5 @@
 import { station4Nodes } from "./station4Content";
-import type { World4OrderingId } from "../../domain/checkpoints/world4OrderingCheckpoint";
+import { WORLD4_ORDERING_TARGET, type World4OrderingId } from "../../domain/checkpoints/world4OrderingCheckpoint";
 
 export type World4OrderingLocale = "es" | "en";
 const english: Record<World4OrderingId, { title: string; text: string }> = {
@@ -12,16 +12,8 @@ const english: Record<World4OrderingId, { title: string; text: string }> = {
     text: "Captures and prepares the plant's signal so the system can read it.",
   },
   esp32: {
-    title: "ESP32",
+    title: "Microcontroller",
     text: "Transforms the conditioned signal into digital data.",
-  },
-  midi: {
-    title: "MIDI",
-    text: "It translates the signal into a language that can be perceived as sound or light.",
-  },
-  wifi_udp: {
-    title: "Wi-Fi/UDP",
-    text: "Carries data within the local network, without relying on the internet.",
   },
   router: {
     title: "Router",
@@ -29,7 +21,7 @@ const english: Record<World4OrderingId, { title: string; text: string }> = {
   },
   sistema_central: {
     title: "Central system",
-    text: "Reinterprets MIDI to create a pleasant, relaxing sound experience.",
+    text: "Reinterprets the data to create a pleasant, relaxing sound experience.",
   },
   sonido: {
     title: "Sound",
@@ -37,10 +29,16 @@ const english: Record<World4OrderingId, { title: string; text: string }> = {
   },
 };
 export function getWorld4OrderingNodes(locale: World4OrderingLocale) {
-  return station4Nodes.map((node) => ({
-    ...node,
-    ...(locale === "en" ? english[node.id] : {}),
-  }));
+  return WORLD4_ORDERING_TARGET.map((id, index) => {
+    const original = station4Nodes.find((node) => node.id === id)!;
+    const order = index + 1;
+    const node = locale === "en" ? english[id] : {
+      title: id === "esp32" ? "Microcontrolador" : original.title,
+      text: id === "sistema_central" ? "Reinterpreta los datos para conseguir una experiencia sonora placentera y relajante." : original.text,
+    };
+    const step = locale === "en" ? `Step ${order} of ${WORLD4_ORDERING_TARGET.length}` : `Paso ${order} de ${WORLD4_ORDERING_TARGET.length}`;
+    return { ...original, id, ...node, order, accessibleLabel: `${step}. ${node.title}.` };
+  });
 }
 export const world4OrderingCopy = {
   es: {
@@ -58,7 +56,7 @@ export const world4OrderingCopy = {
     resume: "Retomar",
     next: "Siguiente",
     close: "Cerrar",
-    review: "Repasar los ocho pasos",
+    review: "Repasar los seis pasos",
     position: "Posición",
     selected: "Seleccionada",
     retry: "Reintentar guardado",
@@ -68,9 +66,9 @@ export const world4OrderingCopy = {
       "No pudimos verificar el guardado. Tu acción se conserva aquí; reintenta para continuar.",
     recoverError:
       "No pudimos recuperar este juego. Los datos originales se conservan.",
-    assetsPending: "Preparando los ocho elementos de la mesa…",
+    assetsPending: "Preparando las seis piezas de la mesa…",
     assetsError:
-      "Falta cargar una imagen de la mesa. El juego empezará cuando estén listos los ocho elementos.",
+      "Falta cargar una imagen de la mesa. El juego empezará cuando estén listas las seis piezas.",
     ready:
       "Dispones de 90 segundos activos. Puedes pausar o pedir ayuda cuando quieras.",
     playing: "Toca la pieza que quieres mover.",
@@ -81,7 +79,7 @@ export const world4OrderingCopy = {
     solved: "¡Felicidades!",
     conclusion: "Como puedes ver, OKÚA es un sistema complejo que nos permite descubrir el pulso oculto en la sinfonía de la vida.",
     complete: "Has llegado al final de esta sala.",
-    readonly: "Puedes explorar los ocho elementos del sistema.",
+    readonly: "Puedes explorar los seis elementos del sistema.",
     timer: "Tiempo disponible",
     swapped: "Piezas intercambiadas.",
     reviewCount: "Repaso",
@@ -101,7 +99,7 @@ export const world4OrderingCopy = {
     resume: "Resume",
     next: "Next",
     close: "Close",
-    review: "Review the eight steps",
+    review: "Review the six steps",
     position: "Position",
     selected: "Selected",
     retry: "Retry save",
@@ -111,9 +109,9 @@ export const world4OrderingCopy = {
       "We could not verify the save. Your action is kept here; retry to continue.",
     recoverError:
       "We could not recover this game. The original data is preserved.",
-    assetsPending: "Preparing the eight table elements…",
+    assetsPending: "Preparing the six table pieces…",
     assetsError:
-      "A table image has not loaded. The game will start when all eight elements are ready.",
+      "A table image has not loaded. The game will start when all six pieces are ready.",
     ready:
       "You have 90 active seconds. You may pause or ask for help at any time.",
     playing: "Select the piece you want to move.",
@@ -124,7 +122,7 @@ export const world4OrderingCopy = {
     solved: "Congratulations!",
     conclusion: "As you can see, OKÚA is a complex system that lets us discover the hidden pulse in the symphony of life.",
     complete: "You have reached the end of this room.",
-    readonly: "You can explore the eight system elements.",
+    readonly: "You can explore the six system elements.",
     timer: "Time remaining",
     swapped: "Pieces swapped.",
     reviewCount: "Review",
@@ -135,8 +133,6 @@ const objectNames = {
   planta: "plant",
   bionosificador: "bionosifier",
   esp32: "esp32",
-  midi: "midi",
-  wifi_udp: "wifi_udp",
   router: "router",
   sistema_central: "central_system",
   sonido: "sound",

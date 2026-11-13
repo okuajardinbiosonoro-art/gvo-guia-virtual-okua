@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   freshWorld4OrderingState,
   isWorld4OrderingState,
+  LEGACY_WORLD4_ORDERING_TARGET,
   readWorld4OrderingCheckpoint,
   restoreWorld4OrderingState,
   writeWorld4OrderingCheckpoint,
@@ -36,7 +37,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
     });
     expect(started.remainingActiveMs).toBe(90_000);
     expect(started.permutation).not.toEqual(WORLD4_ORDERING_TARGET);
-    expect(new Set(started.permutation).size).toBe(8);
+    expect(new Set(started.permutation).size).toBe(6);
     expect(
       reduce(started, { type: "start", random: () => 0 }).permutation,
     ).toEqual(started.permutation);
@@ -93,7 +94,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
       88_000,
     );
   });
-  it("requested assistance never grants success and requires all8manual review advances", () => {
+  it("requested assistance never grants success and requires all six manual review advances", () => {
     let state = reduce(freshWorld4OrderingState(), { type: "help" });
     state = reduce(state, { type: "settle_auto" });
     expect(state).toMatchObject({
@@ -102,7 +103,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
       closed: false,
     });
     expect(reduce(state, { type: "close" }).closed).toBe(false);
-    for (let index = 0; index < 7; index += 1) {
+    for (let index = 0; index < WORLD4_ORDERING_TARGET.length - 1; index += 1) {
       expect(state.reviewIndex).toBe(index);
       state = reduce(state, { type: "next_review" });
       expect(state.confirmedReviewSteps).toHaveLength(index + 1);
@@ -114,7 +115,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
     expect(state.outcome).toBe("assisted_requested");
     expect(isWorld4OrderingState(state)).toBe(true);
   });
-  it("true success may close manually without mandatory eight-step review", () => {
+  it("true success may close manually without mandatory six-step review", () => {
     const selected = reduce(nearlySolved(), {
       type: "select",
       id: "bionosificador",
@@ -163,6 +164,24 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
       writeWorld4OrderingCheckpoint(freshWorld4OrderingState(), silent).ok,
     ).toBe(false);
   });
+  it("adapts a saved eight-piece board without granting success or spending time", () => {
+    const storage = memory();
+    const permutation = [...LEGACY_WORLD4_ORDERING_TARGET];
+    [permutation[3], permutation[4]] = [permutation[4], permutation[3]];
+    const raw = JSON.stringify({
+      ...freshWorld4OrderingState(), contractRevision: "OBS03.2",
+      phase: "paused", remainingActiveMs: 31_000, permutation, selectedObjectId: "midi",
+    });
+    storage.setItem(WORLD4_ORDERING_STORAGE_KEY, raw);
+    const read = readWorld4OrderingCheckpoint(storage);
+    expect(read.checkpoint).toMatchObject({
+      phase: "paused", remainingActiveMs: 31_000, selectedObjectId: null, outcome: null,
+    });
+    expect(read.checkpoint?.permutation).toHaveLength(6);
+    expect(read.checkpoint?.permutation).not.toEqual(WORLD4_ORDERING_TARGET);
+    expect(storage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(raw);
+    expect(writeWorld4OrderingCheckpoint(read.checkpoint!, storage).ok).toBe(true);
+  });
   it("rejects invented assisted closure and repeated/missing pieces", () => {
     const state = freshWorld4OrderingState();
     expect(
@@ -174,14 +193,14 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
       }),
     ).toBe(false);
     expect(
-      isWorld4OrderingState({ ...state, permutation: Array(8).fill("planta") }),
+      isWorld4OrderingState({ ...state, permutation: Array(WORLD4_ORDERING_TARGET.length).fill("planta") }),
     ).toBe(false);
     expect(
       isWorld4OrderingState({
         ...state,
         phase: "review",
         outcome: "assisted_requested",
-        reviewIndex: 7,
+        reviewIndex: WORLD4_ORDERING_TARGET.length - 1,
         confirmedReviewSteps: [],
       }),
     ).toBe(false);

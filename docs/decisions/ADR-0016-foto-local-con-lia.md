@@ -53,3 +53,14 @@ reducido desactiva ambas.
 José David aprobó la selfie tras probarla en su iPhone. Allí comprobó que
 Instagram aparecía en el selector de compartir. La apertura directa del
 editor de Historias con el JPG cargado queda fuera de esta implementación.
+
+## Marco aprobado en GVO 1.1.1
+
+La revisión del papel conserva el logotipo y el ornamento de esquina. Una
+enredadera floral pixel art sube por el borde derecho y algunas hojas se
+superponen levemente al margen del retrato. El emblema dorado da paso a la frase
+provisional «La naturaleza también canta» («Nature sings, too» en inglés).
+La frase se dibuja en cursiva sobre el JPEG. La vista previa muestra ese
+mismo archivo. José David aprobó la foto en iPhone y autorizó la frase
+provisional hasta recibir el texto final del escritor. El
+[acta de versión](../releases/GVO_1.1.1.md) registra el cierre.

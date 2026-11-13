@@ -75,7 +75,7 @@
   inset: 12% 4% 13%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   column-gap: clamp(12px, 6vw, 56px);
   row-gap: 6px;
   list-style: none;

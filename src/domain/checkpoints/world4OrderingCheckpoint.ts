@@ -2,9 +2,9 @@ import type { ProgressStorage } from "../progress/progress.types";
 import { createVersionedCheckpointStore } from "./checkpointStore";
 
 export const WORLD4_ORDERING_STORAGE_KEY = "gvo.station4.ordering.v1";
-export const WORLD4_ORDERING_REVISION = "OBS03.2";
+export const WORLD4_ORDERING_REVISION = "GVO-IV-6";
 export const WORLD4_ORDERING_DURATION_MS = 90_000;
-export const WORLD4_ORDERING_TARGET = [
+export const LEGACY_WORLD4_ORDERING_TARGET = [
   "planta",
   "bionosificador",
   "esp32",
@@ -14,7 +14,14 @@ export const WORLD4_ORDERING_TARGET = [
   "sistema_central",
   "sonido",
 ] as const;
+export const WORLD4_ORDERING_TARGET = LEGACY_WORLD4_ORDERING_TARGET.filter(
+  (id) => id !== "midi" && id !== "wifi_udp",
+);
+export const WORLD4_ORDERING_LAST_INDEX = WORLD4_ORDERING_TARGET.length - 1;
 export type World4OrderingId = (typeof WORLD4_ORDERING_TARGET)[number];
+export function isWorld4OrderingId(id: unknown): id is World4OrderingId {
+  return WORLD4_ORDERING_TARGET.some((item) => item === id);
+}
 export type World4OrderingOutcome =
   | "solved_by_visitor"
   | "assisted_timeout"
@@ -59,7 +66,7 @@ export function isWorld4OrderingSolved(
   permutation: readonly World4OrderingId[],
 ) {
   return (
-    permutation.length === 8 &&
+    permutation.length === WORLD4_ORDERING_TARGET.length &&
     WORLD4_ORDERING_TARGET.every((id, index) => permutation[index] === id)
   );
 }
@@ -67,8 +74,20 @@ export function isWorld4OrderingSolved(
 export function isWorld4OrderingState(
   value: unknown,
 ): value is World4OrderingState {
+  return matchesOrderingContract(value, WORLD4_ORDERING_REVISION, WORLD4_ORDERING_TARGET);
+}
+
+type LegacyOrderingState = Omit<World4OrderingState, "contractRevision" | "permutation" | "selectedObjectId" | "confirmedReviewSteps"> & {
+  contractRevision: "OBS03.2";
+  permutation: readonly (typeof LEGACY_WORLD4_ORDERING_TARGET)[number][];
+  selectedObjectId: (typeof LEGACY_WORLD4_ORDERING_TARGET)[number] | null;
+  confirmedReviewSteps: readonly (typeof LEGACY_WORLD4_ORDERING_TARGET)[number][];
+};
+
+function matchesOrderingContract(value: unknown, revision: string, target: readonly string[]) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
-  const state = value as World4OrderingState;
+  const state = value as World4OrderingState | LegacyOrderingState;
+  const count = target.length;
   if (
     Object.keys(state).sort().join() !==
     Object.keys(freshWorld4OrderingState()).sort().join()
@@ -76,7 +95,7 @@ export function isWorld4OrderingState(
     return false;
   if (
     state.schemaVersion !== 1 ||
-    state.contractRevision !== WORLD4_ORDERING_REVISION ||
+    state.contractRevision !== revision ||
     ![
       "introduction",
       "playing",
@@ -87,23 +106,23 @@ export function isWorld4OrderingState(
       "closed",
     ].includes(state.phase) ||
     !Array.isArray(state.permutation) ||
-    state.permutation.length !== 8 ||
-    new Set(state.permutation).size !== 8 ||
-    !WORLD4_ORDERING_TARGET.every((id) => state.permutation.includes(id)) ||
+    state.permutation.length !== count ||
+    new Set(state.permutation).size !== count ||
+    !target.every((id) => state.permutation.some((piece) => piece === id)) ||
     !(
       state.selectedObjectId === null ||
-      WORLD4_ORDERING_TARGET.includes(state.selectedObjectId)
+      target.includes(state.selectedObjectId)
     ) ||
     !Number.isFinite(state.remainingActiveMs) ||
     state.remainingActiveMs < 0 ||
     state.remainingActiveMs > WORLD4_ORDERING_DURATION_MS ||
     !Number.isInteger(state.reviewIndex) ||
     state.reviewIndex < 0 ||
-    state.reviewIndex > 7 ||
+    state.reviewIndex >= count ||
     !Array.isArray(state.confirmedReviewSteps) ||
-    state.confirmedReviewSteps.length > 8 ||
+    state.confirmedReviewSteps.length > count ||
     !state.confirmedReviewSteps.every(
-      (id, index) => id === WORLD4_ORDERING_TARGET[index],
+      (id, index) => id === target[index],
     ) ||
     ![
       null,
@@ -122,7 +141,7 @@ export function isWorld4OrderingState(
     );
   if (
     !state.outcome ||
-    !isWorld4OrderingSolved(state.permutation) ||
+    !target.every((id, index) => state.permutation[index] === id) ||
     state.selectedObjectId !== null
   )
     return false;
@@ -147,28 +166,54 @@ export function isWorld4OrderingState(
   if (
     state.closed &&
     state.outcome !== "solved_by_visitor" &&
-    (state.confirmedReviewSteps.length !== 8 || state.reviewIndex !== 7)
+    (state.confirmedReviewSteps.length !== count || state.reviewIndex !== count - 1)
   )
     return false;
   return state.confirmedReviewSteps.length <= state.reviewIndex + 1;
 }
 
-const sameState = (left: World4OrderingState, right: World4OrderingState) =>
+type StoredOrderingState = World4OrderingState | LegacyOrderingState;
+const sameState = (left: StoredOrderingState, right: StoredOrderingState) =>
   JSON.stringify(left) === JSON.stringify(right);
-const store = createVersionedCheckpointStore<World4OrderingState>({
+const store = createVersionedCheckpointStore<StoredOrderingState>({
   key: WORLD4_ORDERING_STORAGE_KEY,
   schemaVersion: 1,
-  isCheckpoint: isWorld4OrderingState,
+  isCheckpoint: (value): value is StoredOrderingState =>
+    isWorld4OrderingState(value) || matchesOrderingContract(value, "OBS03.2", LEGACY_WORLD4_ORDERING_TARGET),
   matches: sameState,
   sameStableState: sameState,
 });
-export const readWorld4OrderingCheckpoint = store.read;
+function adaptOrderingState(state: StoredOrderingState): World4OrderingState {
+  if (state.contractRevision === WORLD4_ORDERING_REVISION) return state;
+  const permutation = state.permutation.filter(isWorld4OrderingId);
+  const confirmedReviewSteps = state.confirmedReviewSteps.filter(isWorld4OrderingId);
+  // A puzzle still in progress needs a real move even if the removed pieces
+  // were the only ones out of place.
+  const reseed = (state.phase === "playing" || state.phase === "paused") && isWorld4OrderingSolved(permutation);
+  if (reseed) permutation.push(permutation.shift()!);
+  return {
+    ...state,
+    contractRevision: WORLD4_ORDERING_REVISION,
+    permutation,
+    confirmedReviewSteps,
+    selectedObjectId: !reseed && isWorld4OrderingId(state.selectedObjectId) ? state.selectedObjectId : null,
+    reviewIndex: state.phase === "review" || state.closed
+      ? Math.min(confirmedReviewSteps.length, WORLD4_ORDERING_LAST_INDEX)
+      : 0,
+  };
+}
+
+export function readWorld4OrderingCheckpoint(storage?: ProgressStorage | null) {
+  const result = store.read(storage);
+  return result.status === "ok" ? { ...result, checkpoint: adaptOrderingState(result.checkpoint) } : result;
+}
 export const removeWorld4OrderingCheckpoint = store.remove;
 export function writeWorld4OrderingCheckpoint(
   state: World4OrderingState,
   storage?: ProgressStorage | null,
 ) {
-  return store.write(state, storage);
+  const result = store.write(state, storage);
+  return result.ok ? { ...result, checkpoint: adaptOrderingState(result.checkpoint) } : result;
 }
 
 /** A reload never spends hidden/wall-clock time or replays an interrupted auto-order. */

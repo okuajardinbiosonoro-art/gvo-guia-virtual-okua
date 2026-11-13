@@ -76,6 +76,7 @@ export default defineConfig(({ command, mode }) => {
             "assets/runtime/loading-initial/**/*.{png,json}",
             "assets/runtime/cover-intro/**/*.{png,json}",
             "assets/gvo/audio/**/*.mp3",
+            "assets/gvo/stations/final-root/photo/okua-photo-vine-v03.webp",
           ],
           globIgnores: [
             "assets/gvo/current-used/**/*",

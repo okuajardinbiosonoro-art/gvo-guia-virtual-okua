@@ -1,55 +1,36 @@
 import { expect, test, type Page } from "@playwright/test";
 
-// Independent expected content, including the four active writer paragraph
-// bindings. No runtime reducer/writer/DEV hook is imported by this test.
+// Independent visitor copy expectations. The test drives the visible controls.
 const steps = [
   {
     id: "planta",
     title: "Planta",
-    text: "Todo inicia en la planta viva; ella entrega una señal que puede ser mediada, convertida en sonido musical o impulso lumínico.",
-    sourceId: "TXT_4_3f6d20215ee7",
+    text: "Todo inicia en la planta; ella entrega una señal que puede ser convertida en sonido o impulso lumínico.",
   },
   {
     id: "bionosificador",
     title: "Bionosificador",
-    text: "Capta y prepara la señal de la planta para que el sistema pueda leerla con estabilidad.",
-    sourceId: null,
+    text: "Capta y prepara la señal de la planta para que el sistema pueda leerla.",
   },
   {
     id: "esp32",
-    title: "ESP32",
-    text: "Interpreta la señal acondicionada y prepara eventos digitales.",
-    sourceId: null,
-  },
-  {
-    id: "midi",
-    title: "MIDI",
-    text: "Organiza la información como eventos. Es una forma de traducción donde se da voz a la planta.",
-    sourceId: "TXT_4_a3d9fd46bf00",
-  },
-  {
-    id: "wifi_udp",
-    title: "Wi-Fi/UDP",
-    text: "Transporta los eventos dentro de la red local, sin depender de internet.",
-    sourceId: null,
+    title: "Microcontrolador",
+    text: "Transforma la señal acondicionada en datos digitales.",
   },
   {
     id: "router",
     title: "Router",
     text: "Organiza la comunicación local para que los datos lleguen al sistema central.",
-    sourceId: null,
   },
   {
     id: "sistema_central",
     title: "Sistema central",
-    text: "Recibe, organiza y reinterpreta los eventos, bajo la dirección artística de Momotto, para conseguir una experiencia placentera y relajante.",
-    sourceId: "TXT_4_cafef2a7ae18",
+    text: "Reinterpreta los datos para conseguir una experiencia sonora placentera y relajante.",
   },
   {
     id: "sonido",
     title: "Sonido",
-    text: "Aparece al final de la cadena, y es el resultado de la mediación entre la señal viva de la planta y el diseño sonoro perceptible por nuestros oídos.",
-    sourceId: "TXT_4_ef71a332fb80",
+    text: "Es el resultado de la mediación entre la señal viva de la planta y el diseño sonoro perceptible por nuestros oídos.",
   },
 ] as const;
 const canonicalOrder = steps.map((step) => step.id);
@@ -130,7 +111,7 @@ async function snapshot(page: Page) {
   }));
 }
 
-test("OBS03 IV manual success · real swaps, writer review8 and verified close from declared prior-access fixture", async ({
+test("Sala IV · six-piece manual success, optional review and verified close", async ({
   page,
 }, info) => {
   test.setTimeout(120_000);
@@ -149,15 +130,20 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
     id: string;
     title: string;
     text: string;
-    sourceId: string | null;
   }> = [];
   let phase = "preparation";
   let solvedBeforeReview: Awaited<ReturnType<typeof snapshot>> | null = null;
   let baseline: Awaited<ReturnType<typeof snapshot>> | null = null;
   try {
     await page.goto("/estacion/4");
+    const tour = page.locator('.gvo-prepared-tree[data-journey-active="true"] [data-station4-explanation-step]');
+    for (const [index, step] of steps.entries()) {
+      await expect(tour.getByRole("heading", {name: step.title, exact: true})).toBeVisible();
+      await expect(tour.getByText(`Paso ${index + 1}/6`, {exact: true})).toBeVisible();
+      await tour.getByRole("button", {name: index === 5 ? "Continuar al juego" : "Siguiente", exact: true}).click();
+    }
     const room = page.locator(
-      '.gvo-prepared-tree[data-journey-active="true"] main.s4-ordering',
+      '.gvo-prepared-tree[data-journey-active="true"] main[data-station4-ordering-phase]',
     );
     await expect(room).toBeVisible({ timeout: 25_000 });
     await expect(room).toHaveAttribute(
@@ -169,7 +155,7 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
       objects.evaluateAll((nodes) =>
         nodes.map((node) => node.getAttribute("data-ordering-object")!),
       );
-    await expect(objects).toHaveCount(8);
+    await expect(objects).toHaveCount(6);
     const start = room.getByRole("button", { name: "Comenzar", exact: true });
     await expect(start).toBeEnabled();
     await expect(
@@ -239,9 +225,8 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
       "data-station4-outcome",
       "solved_by_visitor",
     );
-    await expect(
-      room.getByText(steps[7].text, { exact: true }).first(),
-    ).toBeVisible();
+    await expect(room).toHaveAttribute("data-station4-ordering-solved", "true");
+    await expect(objects).toHaveCount(6);
     await expect(
       room.getByRole("button", { name: "Cerrar", exact: true }),
     ).toBeEnabled();
@@ -261,9 +246,9 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
     });
 
     // The direct Close was available. Choose the existing optional review to
-    // verify all eight displayed paragraphs without reclassifying this as help.
+    // verify all six displayed paragraphs without reclassifying this as help.
     await room
-      .getByRole("button", { name: "Repasar los ocho pasos", exact: true })
+      .getByRole("button", { name: "Repasar los seis pasos", exact: true })
       .click();
     await expect(room).toHaveAttribute(
       "data-station4-ordering-phase",
@@ -272,7 +257,7 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
     for (const [index, step] of steps.entries()) {
       phase = `manual_review_${index + 1}`;
       await expect(
-        room.getByText(`Repaso ${index + 1}/8`, { exact: true }),
+        room.getByText(`Repaso ${index + 1}/6`, { exact: true }),
       ).toBeVisible();
       const title = room.locator(".s4-ordering-description h2");
       await expect(title).toHaveText(step.title);
@@ -293,7 +278,6 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
         id: step.id,
         title: await title.innerText(),
         text: await room.getByText(step.text, { exact: true }).innerText(),
-        sourceId: step.sourceId,
       });
       if (index < steps.length - 1)
         await room
@@ -301,7 +285,7 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
           .click();
     }
     await page.screenshot({
-      path: info.outputPath("IV-manual-02-eighth-review-before-close.png"),
+      path: info.outputPath("IV-manual-02-sixth-review-before-close.png"),
     });
     phase = "manual_close";
     await room.getByRole("button", { name: "Cerrar", exact: true }).click();
@@ -325,7 +309,7 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
     expect(end.essential.stations[5].confirmedStepIds).toEqual([]);
     expect(end.legacyPracticeRaw).toBe(baseline.legacyPracticeRaw);
     expect(pageErrors).toEqual([]);
-    expect(reviewed).toHaveLength(8);
+    expect(reviewed).toHaveLength(6);
     await expect(page).toHaveURL(/\/estacion\/4$/);
     await page.screenshot({
       path: info.outputPath("IV-manual-03-reviewed-close-QR.png"),
@@ -337,7 +321,7 @@ test("OBS03 IV manual success · real swaps, writer review8 and verified close f
       body: JSON.stringify(
         {
           qualification:
-            "Synthetic prior-access fixture only; this IV permutation is solved through real native UI swaps, then optional review8/manual close. No prior rooms earned here, no physical understanding/camera validation, no QR scan or global IV credit.",
+            "Synthetic prior-access fixture. This IV permutation is solved through native UI swaps, followed by a six-step review and manual close.",
           writerBindingQualification:
             "Expected writer source IDs are contract provenance; the visible DOM paragraphs are compared exactly, without claiming sourceId metadata is exposed in the DOM.",
           phase,

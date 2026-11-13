@@ -40,10 +40,10 @@ function show(value = context) {
 function explanation() { return readWorld4ExplanationCheckpoint().checkpoint; }
 async function completeTour(locale: "es" | "en" = "es", startIndex = 0) {
   const nodes = getWorld4OrderingNodes(locale);
-  for (let index = startIndex; index < 8; index += 1) {
+  for (let index = startIndex; index < WORLD4_ORDERING_TARGET.length; index += 1) {
     expect(screen.getByText(nodes[index].text)).toBeVisible();
     expect(document.querySelector("[data-station4-explanation-step]")).toHaveAttribute("data-station4-explanation-step", nodes[index].id);
-    await click(index === 7 ? locale === "es" ? "Continuar al juego" : "Continue to the game" : locale === "es" ? "Siguiente" : "Next");
+    await click(index === WORLD4_ORDERING_TARGET.length - 1 ? locale === "es" ? "Continuar al juego" : "Continue to the game" : locale === "es" ? "Siguiente" : "Next");
   }
 }
 beforeEach(() => {
@@ -60,9 +60,9 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe("OBS04 IV — explanation before the separate ordering game", () => {
-  it("requires eight explicit advances over authentic text before any game clock or QR", async () => {
+  it("requires six explicit advances over authentic text before any game clock or QR", async () => {
     show(); await flush();
-    expect(document.querySelectorAll("[data-explanation-object]")).toHaveLength(8);
+    expect(document.querySelectorAll("[data-explanation-object]")).toHaveLength(6);
     expect(explanation()).toMatchObject({ presentedStepIds: ["planta"], confirmedStepIds: [], complete: false });
     fireEvent.click(screen.getByRole("button", { name: "Paso 1: Planta" }));
     act(() => vi.advanceTimersByTime(120_000)); await flush();
@@ -90,20 +90,20 @@ describe("OBS04 IV — explanation before the separate ordering game", () => {
     }));
     const priorGame = JSON.stringify({
       ...freshWorld4OrderingState(), phase: "paused", remainingActiveMs: 64_250,
-      permutation: [...WORLD4_ORDERING_TARGET.slice(1), "planta"], selectedObjectId: "midi",
+      permutation: [...WORLD4_ORDERING_TARGET.slice(1), "planta"], selectedObjectId: "router",
     });
     window.localStorage.setItem(WORLD4_ORDERING_STORAGE_KEY, priorGame);
     show(); await flush();
-    expect(screen.getByRole("heading", { name: "ESP32" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Microcontrolador" })).toBeVisible();
     act(() => vi.advanceTimersByTime(120_000)); await flush();
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(priorGame);
     await completeTour("es", 2);
     expect(screen.getByRole("button", { name: "Retomar" })).toBeVisible();
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(priorGame);
-    expect(readWorld4OrderingCheckpoint()).toMatchObject({ checkpoint: { remainingActiveMs: 64_250, selectedObjectId: "midi" } });
+    expect(readWorld4OrderingCheckpoint()).toMatchObject({ checkpoint: { remainingActiveMs: 64_250, selectedObjectId: "router" } });
   });
 
-  it("does not reinterpret an old solved game as the eight explanatory confirmations", async () => {
+  it("does not reinterpret an old solved game as the six explanatory confirmations", async () => {
     const oldGame = JSON.stringify({ ...freshWorld4OrderingState(), phase: "closed", outcome: "solved_by_visitor", closed: true });
     window.localStorage.setItem(WORLD4_ORDERING_STORAGE_KEY, oldGame);
     show(); await flush();
@@ -127,7 +127,7 @@ describe("OBS04 IV — explanation before the separate ordering game", () => {
     }
     const oldGame = JSON.stringify({
       ...freshWorld4OrderingState(), phase: "closed", outcome, closed: true,
-      ...(outcome === "assisted_requested" ? { reviewIndex: 7, confirmedReviewSteps: [...WORLD4_ORDERING_TARGET] } : {}),
+      ...(outcome === "assisted_requested" ? { reviewIndex: WORLD4_ORDERING_TARGET.length - 1, confirmedReviewSteps: [...WORLD4_ORDERING_TARGET] } : {}),
     }, null, 2);
     window.localStorage.setItem(WORLD4_ORDERING_STORAGE_KEY, oldGame);
     const initialConfirmed = [...facade.readEssentialSnapshot()!.stations[4].confirmedStepIds];
@@ -238,10 +238,10 @@ describe("OBS04 IV — explanation before the separate ordering game", () => {
     expect(document.querySelector("[data-station4-ordering-phase]")).not.toBeNull();
     const before = { ...window.localStorage };
     await click("Recorrer la explicación");
-    fireEvent.click(screen.getByRole("button", { name: "Paso 7: Sistema central" })); await flush();
-    expect(screen.getByText(getWorld4OrderingNodes("es")[6].text)).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "Paso 5: Sistema central" })); await flush();
+    expect(screen.getByText(getWorld4OrderingNodes("es")[4].text)).toBeVisible();
     await click("Siguiente");
-    expect(screen.getByText(getWorld4OrderingNodes("es")[7].text)).toBeVisible();
+    expect(screen.getByText(getWorld4OrderingNodes("es")[5].text)).toBeVisible();
     await click("Volver a la mesa");
     expect(document.querySelector("[data-station4-ordering-phase]")).not.toBeNull();
     expect({ ...window.localStorage }).toEqual(before);

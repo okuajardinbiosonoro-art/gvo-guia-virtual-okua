@@ -7,7 +7,7 @@ import {
   refreshWorld4ExplanationFlow,
   type useWorld4ExplanationFlow,
 } from "../../app/journey/journeyEssential";
-import { WORLD4_ORDERING_TARGET } from "../../domain/checkpoints/world4OrderingCheckpoint";
+import { WORLD4_ORDERING_LAST_INDEX, WORLD4_ORDERING_TARGET } from "../../domain/checkpoints/world4OrderingCheckpoint";
 import { World4LiaGuide } from "./World4LiaGuide";
 import { station4Lia } from "./station4Content";
 import {
@@ -150,7 +150,7 @@ export function World4ExplanationTour({
     if (!enabled || !presented || !isCurrent(attemptId)) return;
     playJourneySound("interaction", { replace: true });
     if (readOnly) {
-      if (index === 7) onReturn?.();
+      if (index === WORLD4_ORDERING_LAST_INDEX) onReturn?.();
       else {
         focusAfterAdvance.current = trigger;
         setPreviewIndex(index + 1);
@@ -170,7 +170,7 @@ export function World4ExplanationTour({
     setSaveError(!result.ok);
     setBusy(false);
     if (result.ok) {
-      if (index < 7) {
+      if (index < WORLD4_ORDERING_LAST_INDEX) {
         // The verified store may render the next step before this promise resumes.
         // Focus only while the visitor still owns the advance control (or native blur).
         if (document.activeElement === trigger || document.activeElement === document.body)
@@ -191,7 +191,7 @@ export function World4ExplanationTour({
       <div className="s4-ordering-layout s4-explanation-layout">
         <article className="s4-ordering-panel s4-explanation-panel" aria-busy={busy}>
           {index === 0 ? <p>{readOnly ? world4OrderingCopy[locale].readonly : text.introduction}</p> : null}
-          <p className="s4-explanation-progress">{text.step} {index + 1}/8</p>
+          <p className="s4-explanation-progress">{text.step} {index + 1}/{nodes.length}</p>
           <div className="s4-explanation-description">
             <h2 ref={headingRef} tabIndex={-1}>{node.title}</h2>
             <p data-station4-explanation-text={node.id}>{node.text}</p>
@@ -201,9 +201,9 @@ export function World4ExplanationTour({
             disabled={!enabled || !presented}
             onClick={(event) => void advance(event.currentTarget)}
           >
-            {index < 7 ? text.next : readOnly ? text.back : text.game}
+            {index < WORLD4_ORDERING_LAST_INDEX ? text.next : readOnly ? text.back : text.game}
           </button>
-          {readOnly && index < 7 ? (
+          {readOnly && index < WORLD4_ORDERING_LAST_INDEX ? (
             <button className="s4-ordering-text-action" type="button" disabled={!active || !visible} onClick={onReturn}>{text.back}</button>
           ) : null}
           {blocked || saveError ? (
@@ -226,7 +226,7 @@ export function World4ExplanationTour({
             </div>
           ) : null}
         </article>
-        <section className="s4-ordering-stage s4-explanation-stage" aria-label={locale === "es" ? "Recorrido de los ocho componentes" : "Eight-component tour"}>
+        <section className="s4-ordering-stage s4-explanation-stage" aria-label={locale === "es" ? "Recorrido de los seis componentes" : "Six-component tour"}>
           <img key={`table-${assetAttempt}`} className="s4-ordering-table" src={world4RuntimeAssets.environment.portraitTable} alt="" onError={() => setAssetError(true)} />
           <ol className="s4-ordering-grid">
             {nodes.map((item, position) => (

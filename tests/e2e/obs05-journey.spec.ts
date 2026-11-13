@@ -431,12 +431,12 @@ test.describe("OBS05 production journey · earned through UI", () => {
       await click(page, roots[3], "Volver al índice");
       expect((await snapshot(page)).legacyPracticeRaw).toBeNull(); await scanNext(page, 3, evidence, info);
 
-      for (const [index, id] of ['planta','bionosificador','esp32','midi','wifi_udp','router','sistema_central','sonido'].entries()) {
+      for (const [index, id] of ['planta','bionosificador','esp32','router','sistema_central','sonido'].entries()) {
         await expect(page.locator('[data-station4-explanation-step]')).toHaveAttribute('data-station4-explanation-step', id);
         await expect(page.locator('[data-interstation-qr-action="open"]')).toHaveCount(0);
         expect((await snapshot(page)).ordering).toBeNull();
         await capture(page, info, `04-tour-${index + 1}-${id}`);
-        await click(page, roots[4], index < 7 ? 'Siguiente' : 'Continuar al juego');
+        await click(page, roots[4], index < 5 ? 'Siguiente' : 'Continuar al juego');
       }
       await expect(page.locator('[data-station4-explanation-step]')).toHaveCount(0);
       const beginOrdering = page.locator(roots[4]).getByRole('button', {name:'Comenzar',exact:true});
@@ -445,16 +445,16 @@ test.describe("OBS05 production journey · earned through UI", () => {
       await expect(page.getByText("Dispones de 90 segundos activos. Puedes pausar o pedir ayuda cuando quieras.", { exact: true })).toBeVisible();
       await expect(beginOrdering).toHaveAccessibleDescription(/Toca la pieza.*Toca otra pieza.*90 segundos/);
       await expect(page.locator(".s4-ordering-clock")).toHaveCount(0);
-      await capture(page, info, "04-eight-objects");
-      await expect(page.locator(`${roots[4]} [data-ordering-object]`)).toHaveCount(8);
+      await capture(page, info, "04-six-objects");
+      await expect(page.locator(`${roots[4]} [data-ordering-object]`)).toHaveCount(6);
       await expect(page.locator(roots[4]).getByRole("button", { name: "Ayúdame a ordenar", exact: true })).toHaveCount(0);
       await click(page, roots[4], "Comenzar");
       await click(page, roots[4], "Ayúdame a ordenar");
       await expect(page.locator(roots[4])).toHaveAttribute("data-station4-ordering-phase", "review");
-      for (let i = 0; i < 8; i++) {
-        await expect(page.locator(roots[4]).getByText(`Repaso ${i + 1}/8`, { exact: true })).toBeVisible();
+      for (let i = 0; i < 6; i++) {
+        await expect(page.locator(roots[4]).getByText(`Repaso ${i + 1}/6`, { exact: true })).toBeVisible();
         await expect(page.locator('[data-interstation-qr-action="open"]')).toHaveCount(0);
-        if (i < 7) await click(page, roots[4], "Siguiente");
+        if (i < 5) await click(page, roots[4], "Siguiente");
       }
       await click(page, roots[4], "Cerrar");
       expect((await snapshot(page)).essential?.stations[4].outcome).toBe("assisted_review_completed"); await scanNext(page, 4, evidence, info);
@@ -487,6 +487,7 @@ test.describe("OBS05 production journey · earned through UI", () => {
         await click(page, roots[5], "Siguiente");
       }
       await expect(page.locator(roots[5])).toHaveAttribute("data-station5-area", "resultado");
+      await ready(page, roots[5]);
       await expect(page.locator(roots[5])).toHaveAttribute("data-prize-eligible", "false");
       await expect(page.locator(roots[5]).getByText(PRIZE_INVITATION_ES, { exact: true })).toHaveCount(0);
       const roundZeroResult = await snapshot(page), roundZero = roundZeroResult.rounds!.rounds[0];
@@ -537,6 +538,7 @@ test.describe("OBS05 production journey · earned through UI", () => {
         await click(page, roots[5], "Siguiente");
       }
       await expect(page.locator(roots[5])).toHaveAttribute("data-station5-area", "resultado");
+      await ready(page, roots[5]);
       await expect(page.locator(roots[5])).toHaveAttribute("data-prize-eligible", "true");
       await expect(page.locator(roots[5]).getByText(PRIZE_INVITATION_ES, { exact: true })).toBeVisible();
       await expect(page.locator(roots[5]).getByRole("button", { name: WHOLE_ROUND_RETRY_LABEL_ES, exact: true })).toHaveCount(0);

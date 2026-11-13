@@ -87,7 +87,7 @@ export function World4RootScreen() {
   ) {
     if (stage === "introduction") return present("introduccion_mesa");
     if (stage === "objects") {
-      // The single Start/help gesture confirms the already-visible eight objects;
+      // The single Start/help gesture confirms the already-visible pieces;
       // their presentation itself never records a visitor advance.
       if (!(await present("presentacion_8"))) return false;
       return confirm("presentacion_8");
@@ -110,7 +110,7 @@ export function World4RootScreen() {
       return false;
     // Recovery of a genuinely closed local game is acknowledged only by this
     // explicit Close gesture, after its outcome has been verified above. The
-    // auxiliary eight-text tour has its own facts; no game data stands in for it.
+    // auxiliary explanatory tour has its own facts; no game data stands in for it.
     for (const stepId of ["introduccion_mesa", "presentacion_8"]) {
       if (essential.confirmedStepIds.includes(stepId)) continue;
       if (!(await present(stepId, outcome !== "solved_by_visitor"))) return false;

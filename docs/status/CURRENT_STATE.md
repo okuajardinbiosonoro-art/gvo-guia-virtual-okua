@@ -1,8 +1,19 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-11-12
+Actualizado: 2026-11-13
 
-## GVO 1.1.0 · versión oficial del recorrido
+## GVO 1.1.1 · versión oficial del recorrido
+
+La explicación, la mesa y el repaso de Sala IV usan seis piezas. La pieza
+«Microcontrolador» conserva el identificador interno para compatibilidad con
+el progreso. El marco de foto incorpora una enredadera de flores y sustituye
+el emblema dorado por «La naturaleza también canta». José David comprobó en su
+iPhone el recorrido, las seis piezas de Sala IV y la Polaroid con la enredadera
+definitiva. Aprobó la publicación en `main` con la frase provisional mientras el
+escritor prepara el texto final. El despliegue en campo queda pendiente.
+[Acta](../releases/GVO_1.1.1.md) · [Ticket](../tickets/GVO_SALA_IV_FOTO_20261113.md).
+
+## GVO 1.1.0 · versión anterior del recorrido
 
 José David completó el recorrido de 1.1 en su iPhone, confirmó el nivel de
 sonido y comprobó que el cuaderno de Sala III abre al primer toque. Autorizó el
