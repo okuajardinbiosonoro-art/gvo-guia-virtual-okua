@@ -14,8 +14,9 @@ Esta sección es un índice de navegación. La actualización documental no publ
 
 # GVO — Guía Virtual OKÚA
 
-La [candidata GVO 1.1.3](docs/releases/GVO_1.1.3.md) reduce la espera de
-entrada. La [versión activa en campo es GVO 1.1.2](docs/releases/GVO_1.1.2.md).
+La [versión activa en MOMOTTO_PC es GVO 1.1.3](docs/releases/GVO_1.1.3.md),
+según el acta del 13 de noviembre de 2026. La candidata editorial del 22 y
+23 de noviembre continúa en revisión local, sin publicación ni despliegue.
 Consulta el estado actual y el handoff antes de preparar una instalación.
 
 El editor local v4 ofrece guardado en PC, recuperación de borradores y edición
