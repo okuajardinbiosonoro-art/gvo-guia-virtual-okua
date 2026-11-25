@@ -762,3 +762,9 @@
     padding: 0.6rem 1.2rem;
   }
 }
+
+.final-root-actions .final-root-action-panel--home {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 12rem);
+}

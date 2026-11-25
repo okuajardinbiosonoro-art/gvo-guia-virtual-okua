@@ -1,6 +1,7 @@
 import { transitionRootAssetUrlsById } from "../../assets/transition-world/root/transition-root-assets";
 import { screenAssetBundles } from "../../shared/assets/screenAssetBundles";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
+import { getFinalLiaPhotoImages } from "../../screens/FinalRoot/finalLiaPhotoFrames";
 import { getWorld3CriticalAssetSources } from "../../screens/World3Root/world3RuntimeAssets";
 import { world4RuntimeAssets } from "../../screens/World4Root/world4RuntimeAssets";
 import { world4OrderingObjectAssets } from "../../screens/World4Root/world4OrderingContent";
@@ -47,7 +48,10 @@ export function getJourneyResourceManifest({ route, locale, orientation, restore
       ...Object.values(world5OptionAssets).flatMap((choices) => Object.values(choices)),
     ];
   }
-  else if (screen === "final") images = paths(finalRootAssets).filter((path) => !path.includes(orientation === "portrait" ? "landscape" : "portrait"));
+  else if (screen === "final") images = [
+    ...paths(finalRootAssets).filter((path) => !path.includes(orientation === "portrait" ? "landscape" : "portrait")),
+    ...getFinalLiaPhotoImages(),
+  ];
   else images = screenAssetBundles.loadingInitialCritical.assets.map((a) => a.src);
   // Asset identity follows the rendered quiz view, not its score revision.
   // Saving an answer must not deactivate its own still-visible question.

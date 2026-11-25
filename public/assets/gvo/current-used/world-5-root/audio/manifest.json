@@ -1,5 +1,5 @@
 {
-  "status": "HUMAN_APPROVED",
+  "status": "CANDIDATA_EDITORIAL_20261122",
   "source": "Sonidos para GVO.zip",
   "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
   "assets": [
@@ -39,6 +39,48 @@
       ],
       "format": {
         "duration": "2.011400"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-5-root/round-incomplete.mp3",
+      "mirror": "public/assets/gvo/current-used/world-5-root/audio/round-incomplete.mp3",
+      "file": "Trivia errada Sala 5.mp3",
+      "source": "Envío GVO V4 actualizado.zip",
+      "zip_sha256": "5a8965e19663da7554f0140169afca33efe3fa71270615c48f8f1393f78710a8",
+      "trigger": "Resultado de la ronda con menos de cuatro aciertos",
+      "bytes": 70007,
+      "sha256": "ec85b13dce5b367d0e65846f2ba34828edf891a3b86038dfaa132d69e90a2b85",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "1.750175"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-5-root/round-solved.mp3",
+      "mirror": "public/assets/gvo/current-used/world-5-root/audio/round-solved.mp3",
+      "file": "Trivia resuelta Sala 5.mp3",
+      "source": "Envío GVO V4 actualizado.zip",
+      "zip_sha256": "5a8965e19663da7554f0140169afca33efe3fa71270615c48f8f1393f78710a8",
+      "trigger": "Resultado de la ronda con cuatro aciertos",
+      "bytes": 159868,
+      "sha256": "411dfec0235add1dceb1e20cd3ca142e893aecacfc9dc18dfa4a8941d24b3c8e",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "3.996700"
       }
     }
   ]

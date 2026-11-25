@@ -1,3 +1,4 @@
+import { gestureHintAssets } from "../../components/GestureHint/gestureHintAssets";
 import { getWorld3LiaClipSources } from "./world3LiaClips";
 
 const world3RuntimeBase = "/assets/gvo/stations/world-3/notebook-pixel/runtime";
@@ -53,7 +54,7 @@ export const world3RuntimeAssets = {
 
 /** Active notebook resources only; v02 folio and old mark sheets are historical. */
 export function getWorld3CriticalAssetSources(page: "planta" | "prototipo" | "senal" | null) {
-  const common = [world3RuntimeAssets.environment.ambientTexture, world3RuntimeAssets.notebook.openBase, world3RuntimeAssets.notebook.turnPage];
+  const common = [gestureHintAssets["swipe-vertical"], world3RuntimeAssets.environment.ambientTexture, world3RuntimeAssets.notebook.openBase, world3RuntimeAssets.notebook.turnPage];
   if (page === null) return [...common, ...Object.values(world3RuntimeAssets.practice), ...getWorld3LiaClipSources("index")];
   const { pausa, descanso, musica, respirar, escuchar, escribir, fotografia } = world3RuntimeAssets.illustrations;
   const illustrations = page === "planta" ? [pausa, descanso, musica] : page === "prototipo" ? [respirar, escuchar, escribir, fotografia] : [];

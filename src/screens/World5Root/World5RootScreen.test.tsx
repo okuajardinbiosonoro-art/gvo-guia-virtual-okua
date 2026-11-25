@@ -294,7 +294,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     const introduction = screen.getByText(/Coloca a prueba tu aprendizaje/).parentElement;
     expect(introduction).toHaveTextContent("El premio sorpresa requiere cuatro aciertos en una misma ronda.");
     expect(screen.queryByText(/llévate un/)).toBeNull();
-    expect(screen.queryByText("Reclama tu premio sorpresa en la taquilla.")).toBeNull();
+    expect(screen.queryByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeNull();
   });
   it("locks a wrong answer for its round and recovers its disabled focus to the same feedback once", async () => {
     show(); await flush();
@@ -431,7 +431,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     ).toBeVisible();
     // OBS05 supersedes the historical unconditional invitation; the writer raw
     // and the old compiled RED remain preserved as separate authority cuts.
-    expect(screen.queryByText("Reclama tu premio sorpresa en la taquilla.")).toBeNull();
+    expect(screen.queryByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeNull();
     expect(screen.getByText("Este resultado no reúne los cuatro aciertos necesarios para el premio.")).toBeVisible();
     expect(document.querySelector(".s5-quiz-scene--result .s5-quiz-lia")).toHaveAttribute("data-lia-action", "attention");
     expect(readEssentialSnapshot()!.stations[5]).toMatchObject({
@@ -504,7 +504,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     expect(
       screen.getByText("Has finalizado esta ronda. Tienes 4 de 4 aciertos."),
     ).toBeVisible();
-    expect(screen.getByText("Reclama tu premio sorpresa en la taquilla.")).toBeVisible();
+    expect(screen.getByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeVisible();
     expect(document.querySelector("[data-station5-celebration]")).toHaveAttribute("aria-hidden", "true");
     const hero = document.querySelector(".s5-quiz-scene--result .s5-quiz-lia")!;
     expect(hero).toHaveAttribute("data-lia-action", "respond");
@@ -533,7 +533,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     const finished = readWorld5Rounds();
     expect(finished.complete).toBe(true);
     expect(readEssentialSnapshot()!.stations[5].activeStepId).toBe("visitante");
-    expect(screen.queryByText("Reclama tu premio sorpresa en la taquilla.")).toBeNull();
+    expect(screen.queryByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeNull();
     expect(screen.getByRole("heading", { name: station5Questions.visitante.title })).toBeVisible();
     spy.mockRestore(); mounted.unmount(); mounted = show(); await flush();
     expect(screen.getByRole("heading", { name: station5Questions.visitante.title })).toBeVisible();
@@ -541,7 +541,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     await click("Siguiente");
     expect(readWorld5Rounds().raw).toBe(finished.raw);
     expect(readWorld5Rounds().round!.completionReceipt).toBe(finished.round!.completionReceipt);
-    expect(screen.getByText("Reclama tu premio sorpresa en la taquilla.")).toBeVisible();
+    expect(screen.getByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeVisible();
     mounted.unmount();
   });
   it("keeps an unknown committed answer recoverable through a new verified activation using the same action", async () => {
@@ -593,7 +593,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     expect(readWorld5Quiz().quiz.correctAnswers).toHaveLength(4);
     expect(readWorld5Rounds().quiz.correctAnswers).toEqual([]);
     expect(localStorage.getItem(WORLD5_ROUNDS_STORAGE_KEY)).toBeNull();
-    expect(screen.queryByText("Reclama tu premio sorpresa en la taquilla.")).toBeNull();
+    expect(screen.queryByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeNull();
     await click("No estoy de acuerdo");
     expect(readWorld5Rounds().score).toBe(0);
     expect(localStorage.getItem(WORLD5_QUIZ_STORAGE_KEY)).toBe(legacyRaw);
@@ -606,7 +606,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
     }
     expect(readWorld5Rounds().quiz.correctAnswers).toHaveLength(3);
     expect(screen.getByText("Has finalizado esta ronda. Tienes 3 de 4 aciertos.")).toBeVisible();
-    expect(screen.queryByText("Reclama tu premio sorpresa en la taquilla.")).toBeNull();
+    expect(screen.queryByText("Toma una captura de esta pantalla y reclama tu premio sorpresa en la taquilla.")).toBeNull();
     expect(document.querySelector(".s5-quiz-scene--result .s5-quiz-lia")).toHaveAttribute("data-lia-action", "attention");
     expect(screen.getByRole("button", { name: "Ir al Mirador" })).toBeEnabled();
     expect(readEssentialSnapshot()!.stations[5].closed).toBe(false);

@@ -1,0 +1,9 @@
+{
+  "family": "VT323",
+  "source": "https://raw.githubusercontent.com/google/fonts/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/vt323/",
+  "status": "CANDIDATA_EDITORIAL_20261122",
+  "consumer": "src/styles/tokens.css",
+  "runtime": "/assets/gvo/type/VT323-Regular.ttf",
+  "sha256": "cf4de751ada78ceac033dbe16a687742939995b77bc2a052ae17a4957958594d",
+  "license": "OFL.txt"
+}

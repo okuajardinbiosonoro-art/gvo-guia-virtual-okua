@@ -12,8 +12,14 @@
 .s4-ordering > header {
   max-width: 1100px;
   margin: 0 auto 1rem;
-  padding-inline: 48px;
+  padding-inline: 106px;
   text-align: center;
+}
+@media (max-width: 32em) {
+  .s4-ordering > header {
+    padding-inline: 0.5rem;
+    padding-block-start: max(0px, calc(64px + env(safe-area-inset-top, 0px) - 1.25rem));
+  }
 }
 .s4-ordering h1 {
   font: 700 var(--gvo-room-title-size)/var(--gvo-room-title-line) var(--gvo-font-heading);
@@ -359,3 +365,24 @@
     transition: none;
   }
 }
+
+.s4-ordering-preparation.s4-ordering-preparation--sticky {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.s4-ordering-clock { width: 100%; }
+.s4-ordering-preparation--sticky .s4-ordering-text-action { justify-self: start; }
+
+.s4-ordering[data-station4-exit-ready="true"] .s4-ordering-layout {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+.s4-ordering[data-station4-exit-ready="true"] :is(.s4-ordering-play-column, .s4-ordering-panel) {
+  width: min(100%, 560px);
+}
+.s4-ordering[data-station4-exit-ready="true"] .s4-ordering-panel { text-align: center; }
+.s4-ordering-panel .interstation-qr-gate--scene:not(.interstation-qr-gate--open) {
+  display: grid;
+  justify-items: center;
+}
+.s4-ordering-panel .gvo-journey-exit { justify-content: center; text-align: center; }

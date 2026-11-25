@@ -32,7 +32,8 @@ describe("Sala III · OBS04 literal folios and existing essential chapters", () 
     expect(Array.from(container.querySelectorAll(".s3-practice-index .s3-practice-number")).map((node) => node.textContent)).toEqual(["01", "02", "03"]);
     expect(screen.getByRole("button", { name: /Página 2 de 3/ })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Página 3 de 3/ })).toBeDisabled();
-    expect(container.querySelector('[data-record-state="current"][aria-current="page"]')).toHaveAttribute("data-station3-record", "planta");
+    expect(container.querySelector('[data-record-state="current"][aria-current="step"]')).toHaveAttribute("data-station3-record", "planta");
+    expect(screen.getByRole("button", { name: /Página 1 de 3/ })).toHaveTextContent("Abrir capítulo");
     expect(container.querySelector('[data-station3-record="prototipo"]')).toHaveAttribute("data-record-state", "locked");
     expect(screen.queryByRole("heading", { name: "conectar" })).toBeNull();
     expect(container.querySelector(".s3-practice-kicker")).toBeNull();
@@ -59,7 +60,7 @@ describe("Sala III · OBS04 literal folios and existing essential chapters", () 
     expect(screen.getByRole("button", { name: /Página 2 de 3/ })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Página 3 de 3/ })).toBeDisabled();
     expect(container.querySelector('[data-station3-record="planta"]')).toHaveAttribute("data-record-state", "completed");
-    expect(container.querySelector('[data-station3-record="prototipo"]')).toHaveAttribute("aria-current", "page");
+    expect(container.querySelector('[data-station3-record="prototipo"]')).toHaveAttribute("aria-current", "step");
     await openIntro(); expect(room().confirmedStepIds).toEqual(["INTRO"]);
     await confirmChapter(); expect(room().confirmedStepIds).toEqual(["INTRO"]);
   });
@@ -145,13 +146,48 @@ describe("Sala III · OBS04 literal folios and existing essential chapters", () 
     expect(screen.getByRole("button", { name: "Next →" })).toBeVisible();
     expect(screen.queryByText(/Ha llegado el momento de conectar/)).toBeNull();
   });
+  it.each([false, true])("keeps the preparation image set stable and shows the reading cue only on an active overflowing leaf (active=%s)", async (active) => {
+    const { container } = renderJourneyRoom(<World3RootScreen />, 3, { active });
+    await settleRoom();
+    const reader = container.querySelector<HTMLElement>(".s3-practice-scroll")!;
+    const paper = reader.parentElement!;
+    const content = reader.firstElementChild!;
+    const measured = { paper: 240, content: 360, viewport: 190 };
+    reader.style.padding = "0px";
+    Object.defineProperty(paper, "clientHeight", { configurable: true, get: () => measured.paper });
+    Object.defineProperties(reader, {
+      clientHeight: { configurable: true, get: () => measured.viewport },
+      scrollHeight: { configurable: true, get: () => measured.content },
+    });
+    vi.spyOn(content, "getBoundingClientRect").mockImplementation(() => ({ height: measured.content }) as DOMRect);
+    fireEvent(window, new Event("resize"));
+    if (!active) {
+      expect(container.querySelector(".s3-practice-scroll-cue img")).toBeNull();
+      return;
+    }
+    const cue = screen.getByRole("button", { name: /Desliza hacia arriba/ });
+    expect(cue).toHaveAttribute("aria-controls", reader.id);
+    reader.scrollTop = 10;
+    fireEvent.scroll(reader);
+    expect(cue).toHaveAttribute("aria-hidden", "false");
+    reader.scrollTop = measured.content - measured.viewport;
+    fireEvent.scroll(reader);
+    expect(cue).toHaveAttribute("aria-hidden", "true");
+    reader.scrollTop = 0;
+    fireEvent.scroll(reader);
+    expect(cue).toHaveAttribute("aria-hidden", "false");
+    measured.paper = measured.content + 20;
+    fireEvent(window, new Event("resize"));
+    expect(cue).not.toBeInTheDocument();
+  });
   it("registers the measured original and paper rectangles without consuming the rejected folio", () => {
     const { alpha, contentPaper, turnPaper } = world3NotebookGeometry;
     expect(alpha).toEqual({ left: 317, top: 13, width: 892, height: 989 });
     for (const rect of [contentPaper, turnPaper]) { expect(rect.left).toBeGreaterThanOrEqual(alpha.left); expect(rect.left + rect.width).toBeLessThanOrEqual(alpha.left + alpha.width); expect(rect.top + rect.height).toBeLessThanOrEqual(alpha.top + alpha.height); }
     expect(contentPaper.left).toBeGreaterThan(447);
     expect(contentPaper.height).toBeGreaterThan(750);
-    expect(world3RegisteredRectangle(contentPaper).left).toBe(`${163 / 892 * 100}%`);
+    expect(contentPaper.left + contentPaper.width / 2).toBe(alpha.left + alpha.width / 2);
+    expect(world3RegisteredRectangle(contentPaper).left).toBe(`${137 / 892 * 100}%`);
     expect(world3PageTurnGeometryContract.transformOrigin).toBe("0% 50%");
     expect([null, "planta", "prototipo", "senal"].flatMap((page) => getWorld3CriticalAssetSources(page as "planta" | "prototipo" | "senal" | null))).not.toContain(world3RuntimeAssets.notebook.folio);
   });

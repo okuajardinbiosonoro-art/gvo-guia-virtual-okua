@@ -1,0 +1,33 @@
+{
+  "screen": "final-root",
+  "feature": "polaroid-seasonal-frames",
+  "status": "HUMAN_APPROVED",
+  "assets": [
+    {
+      "id": "FINAL-PHOTO-CHRISTMAS-001",
+      "runtime": "public/assets/gvo/stations/final-root/photo/frames/okua-photo-christmas-v01.webp",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/frames/okua-photo-christmas-v01.webp",
+      "consumer": "finalLiaPhotoPrint",
+      "purpose": "Guirnalda navideña del margen derecho del retrato",
+      "format": "WebP RGBA lossless",
+      "dimensions": [523, 1536],
+      "bytes": 733666,
+      "sha256": "f785da2fc00cff6723dabb4276245e6d8b1c949a82ef30641ef8ab277f72fca4",
+      "source": "ImageGen integrado, 2026-11-16. Recorte del margen alfa y conversión sin reescalar.",
+      "source_sha256": "96f01f2130138c7477dfc729a8c9f3955a4ffc96e35e9076a950a37b26e39bde"
+    },
+    {
+      "id": "FINAL-PHOTO-CINZEL-001",
+      "runtime": "public/assets/gvo/stations/final-root/photo/type/Cinzel.ttf",
+      "mirror": "public/assets/gvo/current-used/final-root/photo/type/Cinzel.ttf",
+      "consumer": "finalLiaPhotoPrint",
+      "purpose": "Tipografía de la inscripción dorada en ambos JPEG",
+      "format": "TTF variable, original sin cambios",
+      "bytes": 125468,
+      "sha256": "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34",
+      "source": "https://github.com/google/fonts/tree/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/cinzel",
+      "license": "OFL-1.1",
+      "license_file": "../type/OFL-Cinzel.txt"
+    }
+  ]
+}

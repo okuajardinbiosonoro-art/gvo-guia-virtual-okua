@@ -211,8 +211,8 @@ for (const cut of cuts) for (const locale of ["es", "en"] as const) {
       if (cut.text200) expect(parseFloat((evidence.htmlFont as { actual: string }).actual)).toBeCloseTo(parseFloat(baselineFont) * 2, 1);
       const initial = await geometry(root); evidence.index = initial;
       expect(initial.original.renderedRatio).toBeCloseTo(initial.original.originalRatio, 3);
-      expect(initial.registration.left).toBeCloseTo(163 / 892, 3); expect(initial.registration.top).toBeCloseTo(143 / 989, 3);
-      expect(initial.registration.width).toBeCloseTo(650 / 892, 3); expect(initial.registration.height).toBeCloseTo(772 / 989, 3);
+      expect(initial.registration.left).toBeCloseTo(137 / 892, 3); expect(initial.registration.top).toBeCloseTo(143 / 989, 3);
+      expect(initial.registration.width).toBeCloseTo(618 / 892, 3); expect(initial.registration.height).toBeCloseTo(772 / 989, 3);
       expect(initial.index.map((record) => record.number)).toEqual(["01", "02", "03"]);
       expect(initial.index.map((record) => record.state)).toEqual(["current", "locked", "locked"]);
       for (const row of initial.index) { expect(row.numberWhiteSpace).toBe("nowrap"); if (row.separator) expect(row.separator.x).toBeGreaterThanOrEqual(row.numberRect.right + 1); }

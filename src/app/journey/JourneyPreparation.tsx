@@ -16,9 +16,10 @@ import { validateJourneyReceipt } from "./journeyReceipt";
 import { capturePreparedImage, isPreparedImageCurrent, waitForPreparedImages } from "./preparedImages";
 import { EntryPreparationHost } from "./EntryPreparationHost";
 import { prepareJourneyAudio } from "../audio/journeySound";
+import { journeyPreparationBudgetMs } from "./preparationTiming";
 
 const configs = [introToStationOneTransition, worldOneToWorldTwoTransition, worldTwoToWorldThreeTransition, worldThreeToWorldFourTransition, worldFourToWorldFiveTransition, worldFiveToFinalTransition];
-type Attempt = { id: string; navigationKey: string; contextKey: string; deadlineAt: number; controller: AbortController; transactionId: string | null; mutationToken: JourneyMutationToken };
+type Attempt = { id: string; navigationKey: string; contextKey: string; deadlineAt: number; budgetMs: number; controller: AbortController; transactionId: string | null; mutationToken: JourneyMutationToken };
 type PreparationState = { status: "loading" | "ready" | "error" | "timeout"; progress: number; detail?: string };
 class PreparedTreeBoundary extends Component<{ children: ReactNode; resetKey: string; onError: () => void }, { failed: boolean; key: string }> {
   state = { failed: false, key: this.props.resetKey };
@@ -56,6 +57,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
   const pathname = location.pathname === "/" ? "/" : location.pathname.replace(/\/+$/, "");
   const rootRef = useRef<HTMLDivElement>(null), attemptRef = useRef<Attempt | null>(null);
   const deliveredAttempt = useRef<string | null>(null);
+  const suspendedAttempt = useRef<string | null>(null);
   const [retry, setRetry] = useState(0), retries = useRef(0);
   const [generation, setGeneration] = useState(0);
   const [attemptId, setAttemptId] = useState<string | null>(null);
@@ -74,7 +76,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
   const transitionRoute = pathname.startsWith("/transition/");
   const displayReceipt = snapshot && validateJourneyReceipt(receipt, snapshot, coherentProgressPrefixLength()) && (transitionRoute || applicableReceipt) ? receipt : null;
   const transitionConfig = displayReceipt ? configs.find((c) => c.toRoute === displayReceipt.to) : null;
-  const visualKey = displayReceipt ? `${displayReceipt.transactionId}:${retry}` : "none";
+  const visualKey = displayReceipt ? `${displayReceipt.transactionId}:${retry}:${generation}` : "none";
   const shellReady = shellReadyKey === visualKey;
   // Freeze the normalized restored state for this preparation. Visible room advances use their local critical-resource boundary.
   const quizView = useMemo(() => access.screen === 5 ? getWorld5ResourceView(pathname) : undefined, [access.screen, location.key, pathname, generation]);
@@ -84,6 +86,13 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
   const statefulRoute = access.screen !== null || pathname === "/inicio";
   const active = documentVisible && (!statefulRoute || (state.status === "ready" && revealedKey === routeKey && access.authorized));
   const context = useMemo(() => ({ ...access, active, attemptId }), [access.screen, access.authorized, access.mode, access.reviewReturnAllowed, active, generation, attemptId]);
+  const suspendPreparation = useCallback(() => {
+    const attempt = attemptRef.current;
+    if (!attempt || attempt.controller.signal.aborted || deliveredAttempt.current === attempt.id) return;
+    suspendedAttempt.current = attempt.id;
+    attempt.controller.abort();
+    setRevealedKey(null);
+  }, []);
   useLayoutEffect(() => {
     const attempt = attemptRef.current;
     if (!statefulRoute || !active || !attempt || deliveredAttempt.current === attempt.id) return;
@@ -98,7 +107,21 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
   }, [active, context, statefulRoute]);
 
   useEffect(() => {
-    const visibility = () => setDocumentVisible(document.visibilityState !== "hidden");
+    const visibility = () => {
+      const visible = document.visibilityState !== "hidden";
+      setDocumentVisible(visible);
+      if (!visible) {
+        suspendPreparation();
+        return;
+      }
+      const attempt = attemptRef.current;
+      if (!attempt || suspendedAttempt.current !== attempt.id) return;
+      suspendedAttempt.current = null;
+      // The visitor already scanned a valid code. Only preparation restarts.
+      const budget = budgetRef.current;
+      if (budget) budget.deadlineAt = performance.now() + attempt.budgetMs;
+      setGeneration((value) => value + 1);
+    };
     document.addEventListener("visibilitychange", visibility);
     const resize = () => setOrientation(window.innerWidth >= window.innerHeight ? "landscape" : "portrait");
     window.addEventListener("resize", resize);
@@ -113,7 +136,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
     window.addEventListener("gvo:journey-reset", external);
     window.addEventListener("gvo:journey-reset-start", resetStarted);
     return () => { document.removeEventListener("visibilitychange", visibility); window.removeEventListener("resize", resize); window.removeEventListener("storage", external); window.removeEventListener("gvo:journey-reset", external); window.removeEventListener("gvo:journey-reset-start", resetStarted); unsubscribe(); };
-  }, []);
+  }, [suspendPreparation]);
 
   useLayoutEffect(() => {
     if (!statefulRoute) { setState({ status: "ready", progress: 1 }); return; }
@@ -126,18 +149,30 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
     previous?.controller.abort();
     // A context change shares the original attempt deadline; explicit retry gets a fresh budget.
     const navigation = transactionId ?? location.key;
+    const budget = journeyPreparationBudgetMs(Boolean(applicableReceipt?.canonicalPayload));
     if (adaptingDeliveredTree || !budgetRef.current || budgetRef.current.navigation !== navigation) {
       retries.current = 0;
-      budgetRef.current = { navigation, retry, deadlineAt: adaptingDeliveredTree ? performance.now() + 15000 : transactionId ? receiptStartedAt(transactionId) + 15000 : pathname === "/inicio" ? readEntryPreparationDeadline() ?? performance.now() + 15000 : performance.now() + 15000 };
-    } else if (budgetRef.current.retry !== retry) budgetRef.current = { navigation, retry, deadlineAt: performance.now() + 15000 };
+      const startedAt = transactionId && !adaptingDeliveredTree ? receiptStartedAt(transactionId) : performance.now();
+      const deadlineAt = pathname === "/inicio" && !adaptingDeliveredTree ? readEntryPreparationDeadline() ?? startedAt + budget : startedAt + budget;
+      budgetRef.current = { navigation, retry, deadlineAt };
+    } else if (budgetRef.current.retry !== retry) budgetRef.current = { navigation, retry, deadlineAt: performance.now() + budget };
     const deadlineAt = budgetRef.current.deadlineAt;
-    const attempt: Attempt = { id: crypto.randomUUID(), navigationKey: location.key, contextKey: manifest.contextKey, deadlineAt, controller: new AbortController(), transactionId, mutationToken: captureJourneyMutationToken() };
+    const attempt: Attempt = { id: crypto.randomUUID(), navigationKey: location.key, contextKey: manifest.contextKey, deadlineAt, budgetMs: budget, controller: new AbortController(), transactionId, mutationToken: captureJourneyMutationToken() };
     attemptRef.current = attempt;
     setAttemptId(attempt.id);
     setRevealedKey(null); setState({ status: "loading", progress: 0 });
+    if (document.visibilityState === "hidden") {
+      suspendPreparation();
+      return;
+    }
     const isCurrent = () => attemptRef.current === attempt && !attempt.controller.signal.aborted && routeKeyRef.current === routeKey && isJourneyMutationTokenCurrent(attempt.mutationToken);
-    const fail = (detail: string) => { if (isCurrent()) setState({ status: performance.now() >= deadlineAt ? "timeout" : "error", progress: 0, detail }); };
-    const timer = window.setTimeout(() => { if (isCurrent()) { setState({ status: "timeout", progress: 0, detail: "deadline" }); attempt.controller.abort(); } }, Math.max(0, deadlineAt - performance.now()));
+    const fail = (detail: string) => {
+      if (!isCurrent()) return;
+      setState({ status: performance.now() >= deadlineAt ? "timeout" : "error", progress: 0, detail });
+      attempt.controller.abort();
+    };
+    let pendingWork = "module_or_font";
+    const timer = window.setTimeout(() => { if (isCurrent()) { setState({ status: "timeout", progress: 0, detail: `deadline_${pendingWork}` }); attempt.controller.abort(); } }, Math.max(0, deadlineAt - performance.now()));
     let layoutResolver: ((okay: boolean) => void) | null = null;
     currentLayoutReporter = (input) => { if (isCurrent() && input.attemptId === attempt.id && input.contextKey === attempt.contextKey && input.criticalRoot === rootRef.current) layoutResolver?.(input.layoutResult); };
     void (async () => {
@@ -150,22 +185,24 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
         // Local fontsource registers language-specific subsets. Load only the
         // current copy's glyphs, but do not discard a failed required face.
         const sample = locale === "es" ? "Guía Virtual OKÚA · Relación, percepción, mediación. ¿Señal?" : "OKÚA Virtual Guide · Listening and living signals.";
-        const fontFamilies = Array.from(document.fonts).filter((font) => font.family.replaceAll('"', "").includes("Pixelify Sans"));
-        await Promise.all([moduleId ? preloadJourneyRouteModule(moduleId) : Promise.resolve(), document.fonts.load('400 16px "Pixelify Sans Variable"', sample), document.fonts.load('700 16px "Pixelify Sans Variable"', sample), document.fonts.ready]);
-        if (!fontFamilies.length || !document.fonts.check('400 16px "Pixelify Sans Variable"', sample) || fontFamilies.some((font) => font.status === "error")) throw new Error("font_not_loaded");
+        const fontFamilies = Array.from(document.fonts).filter((font) => font.family.replaceAll('"', "").includes("VT323"));
+        await Promise.all([moduleId ? preloadJourneyRouteModule(moduleId) : Promise.resolve(), document.fonts.load('400 16px "VT323"', sample), document.fonts.load('700 16px "VT323"', sample), document.fonts.ready]);
+        if (!fontFamilies.length || !document.fonts.check('400 16px "VT323"', sample) || fontFamilies.some((font) => font.status === "error")) throw new Error("font_not_loaded");
         if (!isCurrent()) return;
         const ownSources = applicableReceipt ? getTransitionResourceSources() : [];
         const targetSources = manifest.images.filter((src) => !ownSources.includes(src));
         const total = ownSources.length + targetSources.length;
         let ownLoaded = 0;
         if (ownSources.length) {
-          const own = await preloadImages(ownSources, { signal: attempt.controller.signal, deadlineAt, timeoutMs: 8000, concurrency: 2, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: p.loaded / total }); } });
+          pendingWork = "transition_assets";
+          const own = await preloadImages(ownSources, { signal: attempt.controller.signal, deadlineAt, timeoutMs: budget > 15_000 ? 25_000 : 8000, reuseVerified: true, concurrency: 2, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: p.loaded / total }); } });
           if (!isCurrent()) return;
           if (own.status !== "ready") { fail("transition_" + own.status); return; }
-          ownLoaded = own.loaded; setShellReadyKey(transactionId + ":" + retry);
+          ownLoaded = own.loaded; setShellReadyKey(visualKey);
         }
-        if (applicableReceipt && !ownSources.length) setShellReadyKey(transactionId + ":" + retry);
-        const imageOptions = { signal: attempt.controller.signal, deadlineAt, timeoutMs: 10000, concurrency: 3, reuseVerified: retry === 0 };
+        if (applicableReceipt && !ownSources.length) setShellReadyKey(visualKey);
+        const imageOptions = { signal: attempt.controller.signal, deadlineAt, timeoutMs: budget > 15_000 ? 25_000 : 10000, concurrency: 3, reuseVerified: true };
+        pendingWork = "room_assets";
         const images = await preloadImages(targetSources, { ...imageOptions, onProgress: (p) => { if (isCurrent()) setState({ status: "loading", progress: (ownLoaded + p.loaded) / total }); } });
         if (!isCurrent()) return;
         if (images.status !== "ready") {
@@ -178,6 +215,7 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
         // First mount only after critical resource proof. From this point through
         // activation the target has one type/key/position and remains the same tree.
         setMountedNavigationKey(location.key);
+        pendingWork = "mounted_layout";
         const layout = await new Promise<boolean>((resolve) => {
           layoutResolver = resolve;
           const measure = async () => {
@@ -207,12 +245,14 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
         if (!layout || performance.now() >= deadlineAt) { fail("layout"); return; }
         const config = applicableReceipt ? configs.find((item) => item.toRoute === applicableReceipt.to) : null;
         if (config && transactionId) {
-          const ceremonyKey = transactionId + ":" + retry;
+          pendingWork = "transition_animation";
+          const ceremonyKey = visualKey;
           if (ceremonyDone.current !== ceremonyKey) await new Promise<void>((resolve) => {
             ceremonyWaiter.current = { key: ceremonyKey, resolve };
             attempt.controller.signal.addEventListener("abort", () => resolve(), { once: true });
           });
         }
+        pendingWork = "audio";
         await audioReady;
         if (!isCurrent()) return;
         const mayStartWrite = () => isCurrent() && !isJourneyResetInProgress() && document.visibilityState !== "hidden" && isJourneySnapshotCurrent(attempt.mutationToken) && performance.now() < deadlineAt;
@@ -267,12 +307,18 @@ function PreparedRouteController({ children }: { children: ReactNode }) {
   const config = transitionConfig;
   const renderError = useCallback(() => { if (attemptRef.current?.id !== attemptId) return; attemptRef.current.controller.abort(); setJourneyRuntimeContext({ ...getJourneyRuntimeContext(), active: false }); setState({ status: "error", progress: 0, detail: "render_error" }); }, [attemptId]);
   const permitActivation = useCallback(() => !statefulRoute || Boolean(attemptRef.current && !attemptRef.current.controller.signal.aborted && isJourneySnapshotCurrent(attemptRef.current.mutationToken) && document.visibilityState !== "hidden" && (deliveredAttempt.current === attemptRef.current.id || performance.now() < attemptRef.current.deadlineAt)), [statefulRoute]);
-  const rejectActivation = useCallback(() => { attemptRef.current?.controller.abort(); setRevealedKey(null); setState({ status: "timeout", progress: 0, detail: "activation_deadline" }); }, []);
+  const rejectActivation = useCallback(() => {
+    if (document.visibilityState === "hidden") {
+      suspendPreparation();
+      return;
+    }
+    attemptRef.current?.controller.abort(); setRevealedKey(null); setState({ status: "timeout", progress: 0, detail: "activation_deadline" });
+  }, [suspendPreparation]);
   return <JourneyActivationProvider context={context} canActivate={permitActivation} onActivationRejected={rejectActivation}>
     <div ref={rootRef} className="gvo-prepared-tree" data-journey-active={active} aria-hidden={statefulRoute && !active ? true : undefined} inert={statefulRoute && !active ? true : undefined}><PreparedTreeBoundary resetKey={`${location.key}:${retry}`} onError={renderError}>{!statefulRoute || mountedNavigationKey === location.key ? children : null}</PreparedTreeBoundary></div>
-    {(statefulRoute && !active || transitionRoute && Boolean(config)) ? <div className="gvo-preparation-curtain" role="status" aria-live="polite">
+    {(statefulRoute && !active || transitionRoute && Boolean(config)) ? <div className="gvo-preparation-curtain" role="status" aria-live="polite" data-preparation-status={state.status} data-preparation-detail={state.detail}>
       {config ? <TransitionWorld key={visualKey} config={config} variant="runtime" attemptId={visualKey} locale={locale} shellAssetsReady={shellReady}
-        deadlineAt={displayReceipt ? attemptRef.current?.transactionId === displayReceipt.transactionId ? attemptRef.current.deadlineAt : receiptStartedAt(displayReceipt.transactionId) + 15000 : undefined}
+        deadlineAt={displayReceipt ? attemptRef.current?.transactionId === displayReceipt.transactionId ? attemptRef.current.deadlineAt : receiptStartedAt(displayReceipt.transactionId) + journeyPreparationBudgetMs(Boolean(displayReceipt.canonicalPayload)) : undefined}
         onComplete={() => { ceremonyDone.current = visualKey; if (ceremonyWaiter.current?.key === visualKey) ceremonyWaiter.current.resolve(); }}
         onVisualError={() => { const attempt = attemptRef.current; if (attempt && displayReceipt && attempt.transactionId === displayReceipt.transactionId && !attempt.controller.signal.aborted) { attempt.controller.abort(); setState((previous) => ({ status: performance.now() >= attempt.deadlineAt ? "timeout" : "error", progress: previous.progress, detail: "transition_visual" })); } }}
         preloadStatus={transitionRoute ? "loading" : state.status} preloadProgress={state.progress} onRetry={retryPreparation} onBack={back} canRetry={retries.current < 2} /> : <section className="gvo-preparation-card"><p>{state.status === "loading" ? locale === "en" ? "Preparing your room…" : "Preparando tu sala…" : locale === "en" ? "This room could not be prepared." : "No fue posible preparar esta sala."}</p><progress value={state.progress} max={1} />{state.status !== "loading" ? <div>{retries.current < 2 ? <button onClick={retryPreparation}>{locale === "en" ? "Retry" : "Reintentar"}</button> : null}<button onClick={back}>{locale === "en" ? "Back" : "Volver"}</button></div> : null}</section>}

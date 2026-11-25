@@ -40,5 +40,8 @@ export function routeModuleForDestination(
 }
 
 export function preloadJourneyRouteModule(moduleId: JourneyRouteModuleId) {
-  return journeyRouteModuleLoaders[moduleId]();
+  const route = journeyRouteModuleLoaders[moduleId]();
+  if (moduleId !== "final") return route;
+  const photo = import("../screens/FinalRoot/FinalLiaPhoto").then(({ prepareFinalLiaPhoto }) => prepareFinalLiaPhoto());
+  return Promise.all([route, photo]).then(([module]) => module);
 }

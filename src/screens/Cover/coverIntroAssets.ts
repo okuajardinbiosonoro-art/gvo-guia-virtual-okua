@@ -11,7 +11,7 @@ export const coverIntroAssets = {
   liaPointPortal1:
     "/assets/runtime/cover-intro/lia/poses/lia_pose_point_portal_1_v1.png",
   liaActivatePortal1:
-    "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+    "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1_movil_v1.webp",
   liaRigShadow:
     "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_shadow_soft_v1.png",
   liaRigBody:
@@ -45,10 +45,10 @@ export const coverIntroAssets = {
   liaRigEyesAttentive:
     "/assets/runtime/cover-intro/lia/rig/idle_v1/lia_rig_eyes_crescent_attentive_v1.png",
   portal1Frame:
-    "/assets/runtime/cover-intro/portals/portal_1/frame/portal_1_frame_enabled_v1.png",
+    "/assets/runtime/cover-intro/portals/portal_1/frame/portal_1_frame_enabled_v1_movil_v1.webp",
   portal1Glow:
-    "/assets/runtime/cover-intro/portals/portal_1/glow/portal_1_glow_enabled_v1.png",
+    "/assets/runtime/cover-intro/portals/portal_1/glow/portal_1_glow_enabled_v1_movil_v1.webp",
   lockedFrame:
-    "/assets/runtime/cover-intro/portals/shared/frame/portal_locked_frame_base_v1.png",
-  lock: "/assets/runtime/cover-intro/locks/lock_soft_gold_v1.png",
+    "/assets/runtime/cover-intro/portals/shared/frame/portal_locked_frame_base_v1_movil_v1.webp",
+  lock: "/assets/runtime/cover-intro/locks/lock_soft_gold_v1_movil_v1.webp",
 } as const;

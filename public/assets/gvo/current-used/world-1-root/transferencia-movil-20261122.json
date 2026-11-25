@@ -1,0 +1,146 @@
+[
+  {
+    "original": "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 2127097,
+    "bytes": 206772,
+    "sha256": "f9a19ae70ba2670fa2b2d2567c034cbd96c5fdd0158286205a7358af1073a6fe",
+    "compositePSNR": 39.77,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "e22e5d7e7ecbeaa03b820fc94e70b7f31903f666e6fd29cae20ac5c4f198526e",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_background_base_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/light/world1_root_ambient_light_kit_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/light/world1_root_ambient_light_kit_approved_v1_movil_v1.webp",
+    "width": 1122,
+    "height": 1402,
+    "originalBytes": 599221,
+    "bytes": 169200,
+    "sha256": "306e59a50edbac9ebb6349401566ba584aa76b1a1fdea3545e00f825887917fc",
+    "compositePSNR": 56.28,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "1e8b23df108c38ef2ce432665faeff4cdb119aebac4e6d42981e4ccce21cd8d2",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_ambient_light_kit_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1_movil_v1.webp",
+    "width": 798,
+    "height": 987,
+    "originalBytes": 815569,
+    "bytes": 62686,
+    "sha256": "b2b1b0466a9e23f4af0478ff980b7274e56ad1c7b281d4a181357005cce3a43f",
+    "compositePSNR": 42.07,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "dca068c4bf01daa907b98eab6a64c7810c4b87e479b10cbb133cda5492c6d10a",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_young_plant_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/roots/world1_root_roots_base_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/roots/world1_root_roots_base_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 552968,
+    "bytes": 188310,
+    "sha256": "386a7afefbe546a9bf1246b786f80ca865a931574b416a16e752fccd0fce86af",
+    "compositePSNR": 43.62,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "fb47e049d43ce1fa0354ff9133e4f873b1095117496768b30168c9aa07e0f662",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_roots_base_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/nodes/world1_root_node_state_kit_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/nodes/world1_root_node_state_kit_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 416169,
+    "bytes": 86942,
+    "sha256": "342ca2667443e6f3b2e70ac17e3b0c09568c39bfa4d2c554774de9492d4fc0e1",
+    "compositePSNR": 43.32,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "7685d15ad22ee87419201579610e70cecf4971d52793c27895bb16ea4380410c",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_node_state_kit_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 1300686,
+    "bytes": 421574,
+    "sha256": "f16a2abf29bb341f4b4698fe1c73703f7dafff89e428cc77aa356ec22d42bfcb",
+    "compositePSNR": 44.55,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "6bed4c693f03a292ecb223fbf29c9ee1340f12f9ed13f4fdbff57ff7b7a31da4",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_active_relation_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 1318687,
+    "bytes": 419916,
+    "sha256": "3e1c4ec8043f81a9a444da0cfde1c5a40ab17162b1a98b0f2ee6173f0d0774c1",
+    "compositePSNR": 44.78,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "352d492f6b0d9e08c38e1beaacddad6bdd42e84f8715e2e9c9dc1b327e1e0f57",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_active_perception_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+    "src": "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 1448327,
+    "bytes": 513794,
+    "sha256": "d545761421981a32f675de2884294dc9f16875c37976666c16aa99c81d13dabc",
+    "compositePSNR": 41.51,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "519f3ac2a0a45626fb8dd44ae4d15214001397978650b7816825d79b2d428420",
+    "consumers": [
+      "World1RootScreen"
+    ],
+    "visualRole": "world1_root_active_mediation_approved_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  }
+]

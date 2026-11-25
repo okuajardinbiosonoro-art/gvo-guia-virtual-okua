@@ -4,7 +4,8 @@
   min-width: 0;
   min-height: 100svh;
   overflow: visible;
-  padding: var(--s3-title-origin-top) max(0.5rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-bottom));
+  padding: var(--s3-title-origin-top) max(0.5rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.6rem;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -12,7 +13,7 @@
   justify-items: center;
 }
 .s3-practice-screen .s3-title {
-  --s3-title-edge: max(56px, calc(max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)) + 56px));
+  --s3-title-edge: calc(106px + max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)));
   box-sizing: border-box;
   width: 100%;
   padding-inline: 0;
@@ -32,7 +33,7 @@
 }
 /* The fixed utility control keeps its upper row when enlarged text or a narrow
    center track needs a full-width heading. No viewport/font mutation is used. */
-@container s3-title (width < calc(112px + 16em)) {
+@container s3-title (width < calc(212px + 16em)) {
   .s3-practice-screen .s3-title h1 {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -58,8 +59,8 @@
   left: -35.53811659%; top: -1.31445905%;
   image-rendering: pixelated;
 }
-.s3-practice-paper { position: absolute; z-index: 2; display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: visible; overflow-wrap: break-word; }
-.s3-practice-scroll { flex: 1 1 auto; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #715276 #e8d7b5; padding: 0.2rem 0.35rem 0.35rem 0.15rem; }
+.s3-practice-paper { position: absolute; z-index: 2; display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: visible; overflow-wrap: break-word; container: s3-leaf / inline-size; }
+.s3-practice-scroll { flex: 1 1 auto; min-height: 0; min-width: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: #715276 #e8d7b5; padding: 0.2rem 0.2rem 0.35rem; }
 .s3-practice-scroll:focus-visible { outline: 2px solid #644272; outline-offset: 2px; }
 .s3-practice-paper h2 { margin: 0.15rem 0 0.2rem; font: 700 1.375rem/1.15 var(--gvo-font-heading); color: #362a26; }
 .s3-practice-paper h3 { margin: 0.15rem 0 0; font-size: 1rem; font-weight: 500; line-height: 1.35; color: #493529; }
@@ -90,8 +91,53 @@
 .s3-practice-instructions p { margin: 0; }
 .s3-practice-paper .s3-practice-invitation { font-size: max(1rem, 16px); margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid #b4a080; }
 .s3-practice-paper-actions { position: relative; width: min(100%, 650px); min-width: 0; margin: 0.25rem auto 0; padding: 0; color: #ead9b0; }
-.s3-practice-scroll-cue { display: block; font-size: 1rem; line-height: 1.4; text-align: center; color: #ead9b0; }
-.s3-practice-scroll-anchor { position: absolute; right: 14%; top: -1rem; width: 1px; height: 1px; pointer-events: none; }
+.s3-practice-scroll-cue {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  width: 100%;
+  min-height: 48px;
+  padding: .15rem;
+  border: 0;
+  border-top: 1px solid #936d49;
+  background: transparent;
+  color: #513546;
+  font: 600 1rem/1.15 var(--gvo-font-ui);
+  text-align: start;
+}
+.s3-practice-scroll-cue[aria-hidden="true"] { visibility: hidden; }
+.s3-practice-scroll-short { display: none; }
+/* Relative to the reader's text size: keep space for several lines of prose
+   even with a 320px viewport and 200% type. */
+@container s3-leaf (width < 10rem) {
+  .s3-practice-scroll-full { display: none; }
+  .s3-practice-scroll-short { display: inline; }
+}
+.s3-practice-scroll-cue img {
+  flex: 0 0 auto;
+  width: clamp(50px, 13vw, 58px);
+  height: auto;
+  image-rendering: pixelated;
+  /* Keep the visible fingers prominent despite the WebP’s transparent margin. */
+  scale: 1.32;
+  rotate: -15deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s3-practice-scroll-cue:not([aria-hidden="true"]) img { animation: s3-read-up 1.5s ease-in-out 2; }
+}
+@media (orientation: landscape) and (max-height: 550px) {
+  .s3-practice-scroll-cue {
+    order: -1;
+    border-top: 0;
+    border-bottom: 1px solid #936d49;
+  }
+}
+@keyframes s3-read-up {
+  25% { translate: 0 3px; }
+  65% { translate: 0 -5px; }
+}
 .s3-practice-page-nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.2rem 0.5rem; margin: 0; }
 .s3-practice-page-nav button { min-width: 48px; min-height: 48px; max-width: 100%; padding: 0.45rem 0.25rem; font-size: max(1rem, 16px); line-height: 1.35; text-align: center; border: 0; border-bottom: 2px solid #bda2cf; border-radius: 0; background: transparent; color: #f2e3c1; overflow-wrap: anywhere; }
 .s3-practice-page-nav .s3-practice-index-tab { position: static; text-align: left; border: 0; }
@@ -116,7 +162,8 @@
 .s3-practice-motif-button[data-motif-selected="true"][data-motif-kind="prototipo"] .s3-practice-motif-response { border-color: #79558a; border-radius: 50%; animation: s3-practice-listening-ring 1300ms ease-out 2; }
 .s3-practice-motif-button[data-motif-selected="true"][data-motif-kind="senal"] .s3-practice-motif { animation: s3-practice-care-selection 700ms ease-out both; }
 .s3-practice-footer { position: relative; z-index: 2; width: min(100%, 650px); color: #ead9b0; }
-.s3-practice-room-exit { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 0.5rem 0.9rem; padding: 0.5rem 0.4rem; }
+.s3-practice-room-exit { display: grid; justify-items: center; gap: 0.5rem; padding: 0.5rem 0.4rem; text-align: center; }
+.s3-practice-room-exit .gvo-journey-exit { justify-content: center; text-align: center; }
 .s3-practice-room-exit p { color: #ead9b0; font-size: 1rem; line-height: 1.5; max-width: 38ch; margin: 0; }
 .s3-practice-footer [role="alert"] { padding: 0.8rem; border: 1px solid #ab91bb; background: #21192f; }
 .s3-practice-footer [role="alert"] p { color: #f1e1fa; font-size: 1rem; line-height: 1.5; }
@@ -269,4 +316,19 @@
 
 @keyframes s3-index-guide-drift {
   50% { translate: 0 -5px; }
+}
+
+.s3-practice-guide-dialogue .s3-practice-invitation {
+  margin-block-start: .45em;
+  color: #fff0bc;
+}
+.s3-practice-index button[data-open-next] .s3-practice-index-state {
+  width: fit-content;
+  color: #502f53;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+}
+.s3-practice-index button[data-open-next] .s3-practice-index-state::after {
+  content: " ›" / "";
 }

@@ -81,6 +81,11 @@
 }
 
 .s5-gallery-marquee { padding: 0.7rem clamp(0.5rem, 2vw, 1rem) 0.55rem; }
+@media (max-width: 32em) {
+  .gvo-immersive-shell:has(> .gvo-immersive-shell__dock) .s5-gallery-journey {
+    margin-block-start: max(var(--s5-block-clearance), calc(64px + env(safe-area-inset-top, 0px)));
+  }
+}
 
 .s5-quiz-header {
   display: grid;
@@ -525,4 +530,38 @@
     radial-gradient(ellipse at 50% 12%, #fff7df 0%, transparent 68%),
     linear-gradient(164deg, #f0d9a9, #e3c691 57%, #f3e4c3 78%, #ead3a5);
   box-shadow: inset 0 1px 0 #fff8e9, inset 0 -4px #ab8952, 0 6px 14px #3e2d224f;
+}
+
+.s5-quiz-confetti > span {
+  border-radius: 2px 70% 2px 55%;
+  background: linear-gradient(125deg, #fff0b8, #dfa550 52%, #b67635);
+  box-shadow: 0 1px 1px #56353b55;
+}
+.s5-quiz-confetti > span:nth-child(3n + 2) {
+  background: linear-gradient(125deg, #ffc3b9, #cf7188 60%, #965074);
+}
+.s5-quiz-confetti > span:nth-child(3n) {
+  border-radius: 50% 1px;
+  background: linear-gradient(125deg, #cfe6ae, #68a69a 62%, #478079);
+}
+.s5-quiz-confetti > span:nth-child(4n + 1)::after {
+  content: "";
+  position: absolute;
+  top: 1em;
+  left: .45em;
+  width: .45em;
+  height: 1.3em;
+  border: 2px solid #d19b53;
+  border-width: 0 2px;
+  border-radius: 50%;
+  transform: rotate(-24deg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s5-quiz-confetti > span { animation: s5-petal-fall 1.6s ease-out both; }
+  .s5-quiz-confetti > span:nth-child(3n) { animation-delay: .16s; }
+}
+@keyframes s5-petal-fall {
+  from { opacity: 0; transform: translate(-.7em,-2em) rotate(-65deg); }
+  30% { opacity: 1; }
+  to { transform: translate(0,0) rotate(0); }
 }

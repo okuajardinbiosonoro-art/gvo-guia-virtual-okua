@@ -319,7 +319,6 @@ test.describe("OBS05 production journey · earned through UI", () => {
     let phase = "normal_journey";
     const roundEvidence: unknown[] = [];
     let endEarned: Awaited<ReturnType<typeof snapshot>> | null = null;
-    let postReset: Awaited<ReturnType<typeof snapshot>> | null = null;
     page.on("request", (request) => { if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== new URL(baseURL!).origin) external.push(request.url()); });
     page.on("response", (response) => { if (response.status() >= 400) httpErrors.push({ url: response.url(), status: response.status() }); });
     page.on("pageerror", (error) => pageErrors.push(error.message));
@@ -340,7 +339,11 @@ test.describe("OBS05 production journey · earned through UI", () => {
       await page.locator('[data-language-option="es"]').click();
       await page.locator('[data-initial-experience-action="start"]').click();
       await expect(page).toHaveURL(/\/portada$/); await ready(page, roots.cover);
+      await expect(page.locator("[data-portal-id]")).toHaveCount(0);
+      await capture(page, info, "00-cover-before-dialogue");
       await click(page, roots.cover, "Empieza aquí");
+      await expect(page.locator("[data-portal-id]")).toHaveCount(0);
+      await capture(page, info, "00-cover-dialogue");
       for (let i = 0; i < 3; i++) await click(page, roots.cover, "Siguiente diálogo de Lía");
       await click(page, roots.cover, "¡Adelante!"); await capture(page, info, "00-cover-essential-closed");
       await click(page, roots.cover, "Sala I · Raíz, lista para abrir.");
@@ -359,10 +362,21 @@ test.describe("OBS05 production journey · earned through UI", () => {
 
       await capture(page, info, "02-pulse-initial");
       await click(page, roots[2], "Abrir Punto de lectura"); await click(page, roots[2], "Continuar");
-      await click(page, roots[2], "Expandir señal medida"); await click(page, roots[2], "Continuar");
-      for (const label of ["Mostrar paso 1: Contacto", "Mostrar paso 2: Señal tomada", "Mostrar paso 3: Datos al sistema"]) await click(page, roots[2], label);
+      await click(page, roots[2], "Expandir señal medida");
+      await expect(page.locator(".world2-wave-key li")).toHaveCount(3);
+      const reading = page.locator(roots[2]).locator(".world2-dialogue");
+      if (await reading.evaluate(card => card.getBoundingClientRect().height <= (visualViewport?.height ?? innerHeight))) {
+        await expect(reading.getByRole("button", { name: "Continuar", exact: true })).toBeInViewport({ ratio: 1 });
+      }
+      await capture(page, info, "02-wave-features");
+      await click(page, roots[2], "Continuar");
+      for (const [index, label] of ["Mostrar paso 1: Contacto", "Mostrar paso 2: Señal tomada", "Mostrar paso 3: Datos al sistema"].entries()) {
+        await expect(page.locator("[data-capture-guide]")).toHaveAttribute("data-capture-guide", ["contact", "signal", "system"][index]);
+        await click(page, roots[2], label);
+        if (index === 0) await capture(page, info, "02-capture-next-step");
+      }
       await click(page, roots[2], "Continuar"); // Capture confirmed after actual three microactions.
-      await click(page, roots[2], "Ver filtrado");
+      await click(page, roots[2], "Escuchar filtro");
       const filterScan = page.locator('[data-world2-conditioning-mask="horizontal-window"]');
       await expect(filterScan).toHaveCSS("animation-name", "world2-filter-sweep");
       await expect(filterScan).toHaveCSS("animation-duration", "3.3s");
@@ -389,8 +403,13 @@ test.describe("OBS05 production journey · earned through UI", () => {
       }), { timeout: 2400, intervals: [80] }).toBe(true);
       await page.screenshot({ path: info.outputPath("02-filter-center-highlight.png"), scale: "css" });
       await click(page, roots[2], "Continuar"); // Conditioning.
+      await expect(page.locator("[data-world2-mapping-step]")).toHaveAttribute("data-world2-mapping-step", "1");
       for (let relation = 1; relation <= 3; relation++) {
         await page.locator(roots[2]).getByRole("button", { name: new RegExp(`^Revisar relación ${relation} de 3:`) }).click();
+        await page.locator(".world2-mapping-sequence__output-icon").evaluate(async (icon) => {
+          await Promise.all(icon.getAnimations().map((animation) => animation.finished));
+        });
+        await capture(page, info, `02-mapping-${relation}`);
       }
       await armMusicJournal(page);
       await click(page, roots[2], "Continuar"); // Mapping: all three relationships have been presented.
@@ -425,7 +444,7 @@ test.describe("OBS05 production journey · earned through UI", () => {
       await click(page, roots[3], "Volver al índice");
       await page.locator('[data-station3-record="senal"]').click();
       await expect(page.locator(`${roots[3]} [data-station3-page="senal"]`).getByRole("heading", { name: "BENEFICIOS", exact: true })).toBeVisible();
-      await expect(page.locator('[data-editorial-origin="gvo-practice-benefits"] dt')).toHaveText(["Atención plena", "Escucha profunda"]);
+      await expect(page.locator('[data-editorial-origin="gvo-practice-benefits"] dt')).toHaveText(["Calma", "Atención plena y escucha profunda", "Concentración"]);
       await expect(page.locator('[data-station3-page-turn]')).toHaveCount(0);
       await capture(page, info, "03-benefits-leaf");
       await click(page, roots[3], "Volver al índice");
@@ -442,8 +461,8 @@ test.describe("OBS05 production journey · earned through UI", () => {
       const beginOrdering = page.locator(roots[4]).getByRole('button', {name:'Comenzar',exact:true});
       await expect(beginOrdering).toBeEnabled();
       await expect(page.getByText("Ordena los elementos en la mesa. Toca una pieza y después otra para intercambiarlas.", { exact: true })).toBeVisible();
-      await expect(page.getByText("Dispones de 90 segundos activos. Puedes pausar o pedir ayuda cuando quieras.", { exact: true })).toBeVisible();
-      await expect(beginOrdering).toHaveAccessibleDescription(/Toca la pieza.*Toca otra pieza.*90 segundos/);
+      await expect(page.getByText("Dispones de 60 segundos activos. Puedes pausar o pedir ayuda cuando quieras.", { exact: true })).toBeVisible();
+      await expect(beginOrdering).toHaveAccessibleDescription(/Toca una pieza y después otra.*60 segundos/);
       await expect(page.locator(".s4-ordering-clock")).toHaveCount(0);
       await capture(page, info, "04-six-objects");
       await expect(page.locator(`${roots[4]} [data-ordering-object]`)).toHaveCount(6);
@@ -618,38 +637,22 @@ test.describe("OBS05 production journey · earned through UI", () => {
       expect(earnedFacts(returned)).toEqual(earnedFacts(endEarned));
       reviewEvidence.push({ phase, state: returned, earnedFactsUnchanged: true });
 
-      phase = "reset_confirmation";
+      phase = "return_home";
       const preservedPreferences = await preferences(page);
-      expect(preservedPreferences.local["gvo.language.v1"]).toBe("es");
-      await page.locator(`${roots.final} [data-final-action="open_restart_confirmation"]`).click();
-      await expect(page.locator('[data-final-reset-state="confirm"]')).toBeVisible();
+      await expect(page.locator('[data-final-action="open_restart_confirmation"]')).toHaveCount(0);
+      await page.locator('[data-final-action="safe_navigation_portada"]').click();
+      await expect(page).toHaveURL(/\/portada$/);
+      await ready(page, roots.cover);
       expect(earnedFacts(await snapshot(page))).toEqual(earnedFacts(endEarned));
-      await capture(page, info, "09-reset-explicit-confirmation");
-      phase = "reset_transaction";
-      await page.locator('[data-final-action="confirm_restart_transaction"]').click();
-      await expect(page).toHaveURL(/\/portada$/); await ready(page, roots.cover);
-      phase = "post_reset_validation";
-      await expect(page.locator(roots.cover)).toHaveAttribute("data-cover-phase", "portada_idle");
-      postReset = await snapshot(page);
-      expect(postReset.progress).toBeNull(); expect(postReset.essential).toBeNull();
-      expect(postReset.explanation).toBeNull(); expect(postReset.quiz).toBeNull(); expect(postReset.ordering).toBeNull(); expect(postReset.legacyPracticeRaw).toBeNull();
-      expect(postReset.rounds).toBeNull(); expect(postReset.roundsRaw).toBeNull(); expect(postReset.quizRaw).toBeNull(); expect(postReset.quizRecoveryRaw).toBeNull();
-      expect(postReset.resetRecords).toHaveLength(15);
-      expect(new Set(postReset.resetRecords.map(record => `${record.backend}:${record.key}`)).size).toBe(15);
-      expect(postReset.resetRecords.every(record => record.raw === null)).toBe(true);
-      expect(await page.evaluate(() => sessionStorage.getItem("gvo.final.reviewContext.v1"))).toBeNull();
       expect(await preferences(page)).toEqual(preservedPreferences);
-      await expect(page.locator("html")).toHaveAttribute("lang", "es");
-      await expect(page.locator(roots.cover).getByRole("button", { name: "Empieza aquí", exact: true })).toBeEnabled();
-      await capture(page, info, "10-post-reset-fresh-cover-preserved-language");
-      phase = "post_reset_complete";
-      await info.attach("OBS05-earned-review-return-reset", { body: JSON.stringify({ qualification: "Real UI extension after the independently preserved earned journey: one optional review QR, readonly transport/return and explicit confirmed reset. No seeded state, runtime API calls or DEV decode hook", endEarned, normalCameraRecords: normalCameras, reviewCameraRecords: reviewCameras, reviewEvidence, preservedPreferences, postReset, preferenceCoverage: "Only preferences actually created by this fresh UI journey are compared; absent optional preferences are not claimed as exercised" }, null, 2), contentType: "application/json" });
+      await capture(page, info, "09-return-home-progress-preserved");
+      phase = "complete";
       expect(external).toEqual([]); expect(httpErrors).toEqual([]); expect(pageErrors).toEqual([]);
     } finally {
       const transitionJournal = await page.evaluate(() => window.__obs05TransitionSamples ?? []);
       const music = await page.evaluate(() => { const journal = window.__obs05MusicJournal; journal?.stop(); return journal ? { startedAt: journal.startedAt, samples: journal.samples } : null; });
       const indexAfter = createHash("sha256").update(await (await page.request.get("/")).body()).digest("hex");
-      await info.attach("OBS05-production-journey-evidence", { body: JSON.stringify({ qualification: "Real UI journey, lab canvas camera, real ZXing decoder; not physical camera or paced reading validation", extensionQualification: "Review/reset assertions run only after the earned normal journey passes; finalSnapshot may intentionally be post-reset and is never substituted for endEarned", indexBefore, indexAfter, external, httpErrors, pageErrors, normalScans: evidence, roundEvidence, endEarned, reviewEvidence, postReset, music, transitionJournal, finalSnapshot: { phase, state: await snapshot(page) } }, null, 2), contentType: "application/json" });
+      await info.attach("OBS05-production-journey-evidence", { body: JSON.stringify({ qualification: "Real UI journey, lab canvas camera, real ZXing decoder; not physical camera or paced reading validation", extensionQualification: "Completed revisits and return to Portada preserve the earned normal journey", indexBefore, indexAfter, external, httpErrors, pageErrors, normalScans: evidence, roundEvidence, endEarned, reviewEvidence, music, transitionJournal, finalSnapshot: { phase, state: await snapshot(page) } }, null, 2), contentType: "application/json" });
       expect(indexAfter).toBe(indexBefore);
     }
   });

@@ -1,6 +1,6 @@
 import { playJourneySound, stopJourneySound } from "../../app/audio/journeySound";
 import "./World2RootScreen.css";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { readLanguagePreference } from "../../app/preferences/languagePreference";
 import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
@@ -15,6 +15,7 @@ import type { ScreenAssetBundle } from "../../shared/assets/screenAssetBundles";
 import { World2CaptureTimeline } from "./World2CaptureTimeline";
 import { World2LiaActor } from "./World2LiaActor";
 import { World2MappingPanel } from "./World2MappingPanel";
+import { revealRoomTarget, World2Orientation } from "./World2Orientation";
 import { World2MediatedResultPanel } from "./World2MediatedResultPanel";
 import { world2LiaLayerProfiles, world2LiaReadyProfile } from "./world2LiaLayerProfiles";
 import { getWorld2CriticalAssetSources, world2RuntimeAssets } from "./world2RuntimeAssets";
@@ -168,8 +169,11 @@ export function World2RootScreen() {
   const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
   const activeRef = useRef(activity.active); activeRef.current = activity.active;
   const rootRef = useRef<HTMLElement>(null);
+  const requestedLayerNavigation = useRef(false);
+  const requestedReading = useRef(false);
   const filterLabelRef = useRef<HTMLSpanElement>(null);
   const plantContactHotspotRef = useRef<HTMLButtonElement>(null);
+  const plantContactId = useId();
   const signalRevealControlRef = useRef<HTMLButtonElement>(null);
   const [selection, setSelection] = useState<World2LayerId | null>(null);
   const activeLayerId = selection ?? layerByStep[flow.activeStepId ?? "musica"] ?? "planta_viva";
@@ -181,7 +185,7 @@ export function World2RootScreen() {
   const [filterDemo, setFilterDemo] = useState<"idle" | "running" | "complete">("idle");
   const [mappingPresented, setMappingPresented] = useState(false);
   const [sonicConvergenceComplete, setSonicConvergenceComplete] = useState(false);
-  const [resultRequested, setResultRequested] = useState(false);
+  const [mappingResultRequested, setMappingResultRequested] = useState(false);
   const [presentationMode, setPresentationMode] = useState<"standard" | "assisted">("standard");
   const [failure, setFailure] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -247,6 +251,49 @@ export function World2RootScreen() {
     resultado_mediado: sonicConvergenceComplete || flow.closed,
   };
   const essentialVisualReady = visualReadyByLayer[activeLayerId];
+  const [sceneSelector, sceneLabel] = {
+    planta_viva: ["[data-plant-contact-hotspot]", en ? "Find the reading point" : "Busca el punto de lectura"],
+    senal: ["[data-world2-signal-reveal-control]", en ? "Find the measured wave" : "Busca la onda medida"],
+    captura: ['[data-world2-capture-control][data-next="true"]', en ? "Find the next capture step" : "Busca el siguiente paso de captura"],
+    acondicionamiento: [".world2-scene-listen", en ? "Find the filter" : "Busca el filtro"],
+    mapeo: ['[data-mapping-progress-step][data-active="true"]', en ? "Find the relationships" : "Busca las relaciones"],
+    resultado_mediado: [".world2-sonic-convergence__core", en ? "Find the listening point" : "Busca el punto de escucha"],
+  }[activeLayerId];
+  const orientationActive = activity.active && visible && resourcesReady && !failure;
+  const openedWave = readout === "signal" && essentialVisualReady;
+  useEffect(() => {
+    if (!openedWave) return;
+    const card = rootRef.current?.querySelector<HTMLElement>('.world2-dialogue[data-world2-dialogue-layer="senal"]');
+    const advanceButton = card?.querySelector<HTMLButtonElement>(".world2-reading-advance");
+    if (!card || !advanceButton) return;
+    const viewport = window.visualViewport;
+    const height = viewport?.height ?? window.innerHeight;
+    const bottom = (viewport?.offsetTop ?? 0) + height;
+    // On short phones reveal only the missing end of a reading that fits.
+    // Longer readings stay at their beginning and follow normal page scroll.
+    if (card.getBoundingClientRect().height <= height && advanceButton.getBoundingClientRect().bottom > bottom) {
+      advanceButton.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+    }
+  }, [openedWave]);
+  // Only an explicit layer change reframes the scene. A completed animation
+  // or saved checkpoint must never interrupt someone reading.
+  useEffect(() => {
+    if (!requestedLayerNavigation.current || !orientationActive) return;
+    requestedLayerNavigation.current = false;
+    const target = rootRef.current?.querySelector<HTMLElement>(
+      isReadyToContinue ? ".world2-scene-exit button" : sceneSelector,
+    );
+    if (target) revealRoomTarget(target);
+  }, [activeLayerId, isReadyToContinue, orientationActive, sceneSelector]);
+  useEffect(() => {
+    if (!requestedReading.current || !orientationActive) return;
+    const target = rootRef.current?.querySelector<HTMLElement>(
+      activeLayerId === "captura" ? ".world2-scene-readout p" : "[data-mapping-result]",
+    );
+    if (!target) return;
+    requestedReading.current = false;
+    revealRoomTarget(target);
+  }, [activeLayerId, captureDemo, mappingPresented, orientationActive]);
   const presentable = activity.active && visible && resourcesReady && essentialVisualReady;
 
   async function drainWrites() {
@@ -280,7 +327,8 @@ export function World2RootScreen() {
     if (attemptRef.current !== attemptId) return;
     if (!activity.active || saving || failure || !canUseUiStep(2, stepByLayer[layer])) { setSoftMessage(cleanMessages.locked); return; }
     playJourneySound("interaction");
-    setSelection(layer); setReadout(null); setSoftMessage(null); setResultRequested(false); setPresentationMode("standard");
+    requestedLayerNavigation.current = layer !== activeLayerId || isReadyToContinue;
+    setSelection(layer); setReadout(null); setSoftMessage(null); setMappingResultRequested(false); setPresentationMode("standard");
     setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false);
   }
   function getLayerStatus(layer: World2LayerId): LayerStatus { return !canUseUiStep(2, stepByLayer[layer]) ? "locked" : layer === activeLayerId ? "active" : flow.confirmedStepIds.includes(stepByLayer[layer]) ? "completed" : "next"; }
@@ -292,13 +340,20 @@ export function World2RootScreen() {
   function completeSonicConvergence(mode: "standard" | "assisted") { if (attemptRef.current !== attemptId) return; setPresentationMode(mode); setSonicConvergenceComplete(true); }
   async function advance() {
     if (attemptRef.current !== attemptId || !presentable || !advanceAssetsReady || saving) return;
+    requestedLayerNavigation.current = true;
     if (flow.readOnly || flow.confirmedStepIds.includes(stepByLayer[activeLayerId])) { setSelection(null); return; }
     await perform(activeLayerId === "resultado_mediado" ? () => closeEssentialRoom({ screen: 2, contentRevision: flow.contentRevision, attemptId, cause: "visitor_close" }) : () => confirmEssentialStep({ screen: 2, stepId: stepByLayer[activeLayerId], contentRevision: flow.contentRevision, attemptId, cause: "visitor_advance" }), () => {
       if (activeLayerId === "resultado_mediado") playJourneySound("roomComplete");
-      setSelection(null); setReadout(null); setSoftMessage(null); setPresentationMode("standard"); setResultRequested(false); setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false);
+      setSelection(null); setReadout(null); setSoftMessage(null); setPresentationMode("standard"); setMappingResultRequested(false); setCaptureDemo(false); setFilterDemo("idle"); setMappingPresented(false); setSonicConvergenceComplete(false);
     });
   }
-  function showResult() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; setPresentationMode("assisted"); if (activeLayerId === "captura") { setCaptureDemo(true); setCaptureTimelineStepId("system"); } else setResultRequested(true); }
+  function showResult() {
+    if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return;
+    requestedReading.current = true;
+    setPresentationMode("assisted");
+    if (activeLayerId === "captura") { setCaptureDemo(true); setCaptureTimelineStepId("system"); }
+    else setMappingResultRequested(true);
+  }
   function retryAction() { if (retry.current) void retry.current(); else { invalidateJourneyEssential(); setRetryRevision((r) => r + 1); } }
   useEffect(() => {
     if (activeLayerId !== "acondicionamiento" || isReadyToContinue || !activity.active) stopJourneySound("conditioning");
@@ -308,7 +363,7 @@ export function World2RootScreen() {
     pendingActions.current = []; lock.current = false; failedWrite.current = false; retry.current = null; requestKey.current = "";
     setSaving(false); setFailure(false); setSelection(null); setReadout(null); setSoftMessage(null);
     setCaptureIntent(null); setCaptureTimelineStepId("contact"); setCaptureDemo(false); setFilterDemo("idle");
-    setMappingPresented(false); setSonicConvergenceComplete(false); setResultRequested(false); setPresentationMode("standard");
+    setMappingPresented(false); setSonicConvergenceComplete(false); setMappingResultRequested(false); setPresentationMode("standard");
   }, [attemptId]);
   useEffect(() => {
     const update = () => setVisualViewportHeight(Math.round(window.visualViewport?.height ?? window.innerHeight));
@@ -447,6 +502,7 @@ export function World2RootScreen() {
           aria-hidden={sceneHasSemanticComponent ? undefined : true}
           data-world2-zone="scene"
           data-world2-scene-layer={activeLayer.id}
+          data-capture-guide={activeLayer.id === "captura" ? content.capture.find((step) => !captureVisitedStepIds.has(step.id))?.id ?? captureTimelineStepId : undefined}
           data-active-layer={activeLayer.order}
           data-active-layer-id={activeLayer.id}
           data-world2-focus-profile={activeLayer.id}
@@ -498,6 +554,7 @@ export function World2RootScreen() {
               {activeLayer.id === "planta_viva" && !isReadyToContinue ? (
                 <>
                   <button
+                    id={plantContactId}
                     ref={plantContactHotspotRef}
                     className="world2-plant-contact-hotspot"
                     type="button"
@@ -733,7 +790,7 @@ export function World2RootScreen() {
                   firstRunComplete={mappingFirstRunComplete}
                   active={activity.active && resourcesReady}
                   locale={locale}
-                  showResultRequested={resultRequested}
+                  showResultRequested={mappingResultRequested}
                   onPresented={(mode) => { if (attemptRef.current !== attemptId) return; setMappingPresented(true); setPresentationMode(mode); }}
                   interactionBlocked={checkpointInputBlocked}
                   onFirstRunComplete={completeMappingFirstRun}
@@ -745,14 +802,14 @@ export function World2RootScreen() {
                   complete={sonicConvergenceComplete || flow.closed}
                   active={activity.active && resourcesReady}
                   locale={locale}
-                  showResultRequested={resultRequested}
                   onComplete={completeSonicConvergence}
                 />
               ) : null}
-              {activeCallouts.length > 0 ? (
-                <div className="world2-layer-callouts" aria-hidden="true">
+              {activeCallouts.length > 0 && plantContactReadoutState === "idle" && !isReadyToContinue ? (
+                <div className="world2-layer-callouts">
                   {activeCallouts.map((callout) => (
-                    <span
+                    <label
+                      htmlFor={plantContactId}
                       className={`world2-layer-callout world2-layer-callout--${callout.anchor} world2-micro-label world2-micro-label--bright world2-micro-label--asset-anchored world2-micro-label--subtle-motion`}
                       data-world2-callout={callout.anchor}
                       data-world2-label-anchor={`plant-${callout.anchor}`}
@@ -761,23 +818,36 @@ export function World2RootScreen() {
                       <span className="world2-micro-label__text">
                         {callout.label}
                       </span>
-                    </span>
+                    </label>
                   ))}
                 </div>
               ) : null}
               <World2LiaActor profile={activeLiaProfile} active={activity.active && visible && resourcesReady} action={readout || captureIntent || filterDemo === "complete" || sonicConvergenceComplete ? "respond" : essentialVisualReady ? "present" : "attention"} replayKey={`${activeLayerId}:${readout}:${captureTimelineStepId}:${filterDemo}:${mappingPresented}:${sonicConvergenceComplete}`} />
             </div>
           </div>
-          {sceneReadout ? (
-            <div className="world2-scene-readout" role="status">
-              <p data-editorial-origin={sceneReadout.origin} data-world2-capture-readout={activeLayerId === "captura" ? captureTimelineStepId : undefined}>{sceneReadout.text}</p>
-              {activeLayerId === "captura" && captureTimelineStepId === "signal" ? (
-                <ul className="world2-capture-traits" aria-label={en ? "Signal features" : "Rasgos de la señal"}>
-                  {(en ? ["Amplitude", "Variation", "Range"] : ["Amplitud", "Variación", "Rango"]).map((trait) => <li key={trait}>{trait}</li>)}
-                </ul>
-              ) : null}
-            </div>
-          ) : null}
+                {showConditioningCinema ? <button className="world2-reading-assist world2-scene-listen" type="button"
+                  disabled={checkpointInputBlocked || !visible || !resourcesReady || filterDemo === "running"}
+                  onClick={() => {
+                    const label = filterLabelRef.current;
+                    if (label) {
+                      const bounds = label.getBoundingClientRect();
+                      const viewportTop = window.visualViewport?.offsetTop ?? 0;
+                      const viewportBottom = viewportTop + (window.visualViewport?.height ?? window.innerHeight);
+                      if (bounds.top < viewportTop + 12 || bounds.bottom > viewportBottom - 12) {
+                        label.scrollIntoView?.({ block: "center", inline: "nearest", behavior: "instant" });
+                      }
+                    }
+                    setFilterDemo("running");
+                    playJourneySound("conditioning");
+                  }}>{en ? "Listen to the filter" : "Escuchar filtro"}</button> : null}
+          <World2Orientation
+            root={rootRef}
+            active={orientationActive && essentialVisualReady && !isReadyToContinue}
+            target={activeLayerId === "planta_viva" ? ".world2-dialogue__copy" : ".world2-dialogue__title"}
+            label={activeLayerId === "planta_viva"
+              ? (en ? "Read what the plant reveals" : "Lee lo que revela la planta")
+              : (en ? "Read the result" : "Leer el resultado")}
+          />
         </section>
 
         <article
@@ -824,7 +894,7 @@ export function World2RootScreen() {
                     : `${ui.layer} ${activeLayer.order} ${ui.of} ${world2LayerCount}`}
                 </p>
                 <p
-                  className="world2-dialogue__title"
+                  className="world2-dialogue__title" tabIndex={-1}
                   data-world2-text-sweep={activeLayer.id}
                   key={`world2-title-${world2State}-${activeDialogue}`}
                 >
@@ -834,7 +904,24 @@ export function World2RootScreen() {
                       ? ui.heading
                       : (expandedReadout?.title ?? activeCopy.title)}
                 </p>
-                {activeDialogue ? <p
+                {sceneReadout ? (
+                  <div className="world2-scene-readout">
+                    <p className="world2-dialogue__copy" tabIndex={-1} data-editorial-origin={sceneReadout.origin} data-world2-capture-readout={activeLayerId === "captura" ? captureTimelineStepId : undefined}>{sceneReadout.text}</p>
+                      {activeLayerId === "senal" && (
+                        <ul className="world2-wave-key" aria-label={en ? "Reading the wave" : "Lectura de la onda"}>
+                          <li>{en ? "Amplitude of each pulse" : "Amplitud de cada pulso"}</li>
+                          <li>{en ? "Variation over time" : "Variación en el tiempo"}</li>
+                          <li>{en ? "Range from low to high" : "Rango entre mínimo y máximo"}</li>
+                        </ul>
+                      )}
+                    {activeLayerId === "captura" && captureTimelineStepId === "signal" ? (
+                      <ul className="world2-capture-traits" aria-label={en ? "Signal features" : "Rasgos de la señal"}>
+                        {(en ? ["Amplitude", "Variation", "Range"] : ["Amplitud", "Variación", "Rango"]).map((trait) => <li key={trait}>{trait}</li>)}
+                      </ul>
+                    ) : null}
+                  </div>
+                ) : null}
+                {activeDialogue ? <p tabIndex={-1}
                   className="world2-dialogue__copy"
                   data-world2-slot-id={
                     failure || !flow.storageVerified
@@ -864,152 +951,133 @@ export function World2RootScreen() {
                   {activeDialogue}
                 </p> : null}
 
+
               </div>
               {!isReadyToContinue && activeHint && (!essentialVisualReady || activeLayerId === "resultado_mediado") ? (
                 <p className="world2-dialogue__hint">{activeHint}</p>
               ) : null}
               <div className="world2-dialogue__actions">
-                {!isReadyToContinue && activeLayerId === "resultado_mediado" && sonicConvergenceComplete ? (
-                  <button className="world2-reading-assist" type="button" disabled={!activity.active || !resourcesReady}
-                    onClick={() => playJourneySound("mediatedMusic")}>
-                    {en ? "Listen to mediated music" : "Escuchar música mediada"}
-                  </button>
-                ) : null}
-                {showConditioningCinema ? <button className="world2-reading-assist" type="button"
-                  disabled={checkpointInputBlocked || !visible || !resourcesReady || filterDemo === "running"}
-                  onClick={() => {
-                    const label = filterLabelRef.current;
-                    if (label) {
-                      const bounds = label.getBoundingClientRect();
-                      const viewportTop = window.visualViewport?.offsetTop ?? 0;
-                      const viewportBottom = viewportTop + (window.visualViewport?.height ?? window.innerHeight);
-                      if (bounds.top < viewportTop + 12 || bounds.bottom > viewportBottom - 12) {
-                        label.scrollIntoView?.({ block: "center", inline: "nearest", behavior: "instant" });
-                      }
-                    }
-                    setFilterDemo("running");
-                    playJourneySound("conditioning");
-                  }}>{en ? "View filtering" : "Ver filtrado"}</button> : null}
+                <World2Orientation root={rootRef} active={orientationActive && !essentialVisualReady && !isReadyToContinue}
+                  target={sceneSelector} label={sceneLabel} />
                 {failure || !flow.storageVerified || [initialPreload.status, nextPreload.status].some((status) => status === "error" || status === "timeout") ? <button className="world2-action world2-action--continue" type="button" onClick={retryAction}>{ui.retry}</button>
-                : !isReadyToContinue && !essentialVisualReady ? activeLayerId === "captura" ? <button className="world2-reading-assist" type="button" onClick={showResult} disabled={!activity.active || !resourcesReady || saving}>{ui.assist}</button> : null
+                : !isReadyToContinue && !essentialVisualReady ? (activeLayerId === "captura" || activeLayerId === "mapeo") ? <button className="world2-reading-assist" type="button" onClick={showResult} disabled={!activity.active || !resourcesReady || saving}>{ui.assist}</button> : null
                 : !isReadyToContinue ? <button className="world2-reading-advance" type="button" disabled={!presentable || !advanceAssetsReady || saving || (!flow.readOnly && !flow.presentedStepIds.includes(stepByLayer[activeLayerId]))} onClick={() => { void advance(); }}>{activeLayerId === "resultado_mediado" ? ui.close : ui.advance}</button> : null}
                 {flow.exitReady && activity.active ? <div className="world2-scene-exit"><InterstationQrGate originWorld={2} ready={flow.exitReady && resourcesReady && !failure && !saving} presentation="scene" persistCompletion={() => attemptRef.current === attemptId && isEssentialExitReady(2)} onCompleted={() => { if (attemptRef.current === attemptId && activeRef.current) navigate(worldTwoToWorldThreeTransitionRoute); }} /></div> : null}
               </div>
             </div>
           </div>
         </article>
-
-        <nav
-          className="world2-layer-nav world2-layer-nav--stable"
-          aria-label={en ? "Room II layers" : "Capas de Sala II"}
-          data-world2-zone="nav"
-          data-world2-nav-mode="stable-visible-row"
-        >
-          <div className="world2-layer-nav__items" id="world2-layer-nav-items">
-            {world2LayerDefinitions.map((layer, index) => {
-              const status = getLayerStatus(layer.id);
-              const isLocked = status === "locked";
-              const copy = layerCopy[layer.id];
-              const connectorSrc = layer.order < highestUnlockedLayerOrder ? world2RuntimeAssets.layerConnector : world2RuntimeAssets.layerNavConnectorInactive;
-              return (
-                <div className="world2-layer-nav__item" key={layer.id}>
-                  <button
-                    className={`world2-layer-button world2-layer-button--${status}`}
-                    data-world2-layer={layer.id}
-                    data-layer-id={layer.order}
-                    data-layer-state={status}
-                    data-layer-locked={isLocked}
-                    type="button"
-                    aria-pressed={status === "active"}
-                    aria-disabled={
-                      isLocked || checkpointInputBlocked
-                    }
-                    aria-label={`${ui.layer} ${layer.order} ${ui.of} ${world2LayerCount}. ${copy.accessibleLabel}. ${getStatusLabel(status)}.`}
-                    aria-describedby={`world2-accessible-${layer.id}`}
-                    onClick={() => selectLayer(layer.id)}
-                  >
+      </section>
+      <nav
+        className="world2-layer-nav world2-layer-nav--stable"
+        aria-label={en ? "Room II layers" : "Capas de Sala II"}
+        data-world2-zone="nav"
+        data-world2-nav-mode="stable-visible-row"
+      >
+        <div className="world2-layer-nav__items" id="world2-layer-nav-items">
+          {world2LayerDefinitions.map((layer, index) => {
+            const status = getLayerStatus(layer.id);
+            const isLocked = status === "locked";
+            const copy = layerCopy[layer.id];
+            const connectorSrc = layer.order < highestUnlockedLayerOrder ? world2RuntimeAssets.layerConnector : world2RuntimeAssets.layerNavConnectorInactive;
+            return (
+              <div className="world2-layer-nav__item" key={layer.id}>
+                <button
+                  className={`world2-layer-button world2-layer-button--${status}`}
+                  data-world2-layer={layer.id}
+                  data-layer-id={layer.order}
+                  data-layer-state={status}
+                  data-layer-locked={isLocked}
+                  type="button"
+                  aria-pressed={status === "active"}
+                  aria-disabled={
+                    isLocked || checkpointInputBlocked
+                  }
+                  aria-label={`${ui.layer} ${layer.order} ${ui.of} ${world2LayerCount}. ${copy.accessibleLabel}. ${getStatusLabel(status)}.`}
+                  aria-describedby={`world2-accessible-${layer.id}`}
+                  onClick={() => selectLayer(layer.id)}
+                >
+                  <img
+                    className="world2-layer-button__token world2-layer-button__token--base"
+                    src={world2RuntimeAssets.layerNavTokenBase}
+                    alt=""
+                    aria-hidden="true"
+                    data-runtime-asset={world2RuntimeAssets.layerNavTokenBase}
+                    loading="lazy"
+                  />
+                  {status === "active" ? (
                     <img
-                      className="world2-layer-button__token world2-layer-button__token--base"
-                      src={world2RuntimeAssets.layerNavTokenBase}
+                      className="world2-layer-button__token world2-layer-button__token--active"
+                      src={world2RuntimeAssets.layerNavTokenActive}
                       alt=""
                       aria-hidden="true"
-                      data-runtime-asset={world2RuntimeAssets.layerNavTokenBase}
-                      loading="lazy"
-                    />
-                    {status === "active" ? (
-                      <img
-                        className="world2-layer-button__token world2-layer-button__token--active"
-                        src={world2RuntimeAssets.layerNavTokenActive}
-                        alt=""
-                        aria-hidden="true"
-                        data-runtime-asset={
-                          world2RuntimeAssets.layerNavTokenActive
-                        }
-                        loading="lazy"
-                      />
-                    ) : null}
-                    <span
-                      className="world2-layer-button__glyph"
-                      aria-hidden="true"
-                      data-runtime-asset={world2RuntimeAssets.layerGlyphAtlas}
-                      style={getLayerGlyphStyle(index)}
-                    />
-                    <span className="world2-layer-button__order">
-                      {layer.order}
-                    </span>
-                    <span className="world2-layer-button__label">
-                      {copy.navLabel}
-                    </span>
-                    {isLocked ? (
-                      <span
-                        className="world2-layer-button__state-badge world2-layer-button__state-badge--locked"
-                        aria-hidden="true"
-                      >
-                        -
-                      </span>
-                    ) : null}
-                    {status === "completed" ? (
-                      <span
-                        className="world2-layer-button__state-badge world2-layer-button__state-badge--complete"
-                        aria-hidden="true"
-                      >
-                        ✓
-                      </span>
-                    ) : null}
-                    {status === "next" ? (
-                      <span
-                        className="world2-layer-button__state-badge world2-layer-button__state-badge--next"
-                        aria-hidden="true"
-                      >
-                        &gt;
-                      </span>
-                    ) : null}
-
-                    <span
-                      className="world2-root-sr-only"
-                      id={`world2-accessible-${layer.id}`}
-                      data-world2-slot-id={layer.accessibleSlot}
-                      data-editorial-status="TEMP"
-                    >
-                      {`${copy.title}: ${copy.dialogue}`}
-                    </span>
-                  </button>
-                  {index < world2LayerCount - 1 ? (
-                    <img
-                      className="world2-layer-nav__connector"
-                      src={connectorSrc}
-                      alt=""
-                      aria-hidden="true"
-                      data-runtime-asset={connectorSrc}
+                      data-runtime-asset={
+                        world2RuntimeAssets.layerNavTokenActive
+                      }
                       loading="lazy"
                     />
                   ) : null}
-                </div>
-              );
-            })}
-          </div>
-        </nav>
-      </section>
+                  <span
+                    className="world2-layer-button__glyph"
+                    aria-hidden="true"
+                    data-runtime-asset={world2RuntimeAssets.layerGlyphAtlas}
+                    style={getLayerGlyphStyle(index)}
+                  />
+                  <span className="world2-layer-button__order">
+                    {layer.order}
+                  </span>
+                  <span className="world2-layer-button__label">
+                    {copy.navLabel}
+                  </span>
+                  {isLocked ? (
+                    <span
+                      className="world2-layer-button__state-badge world2-layer-button__state-badge--locked"
+                      aria-hidden="true"
+                    >
+                      -
+                    </span>
+                  ) : null}
+                  {status === "completed" ? (
+                    <span
+                      className="world2-layer-button__state-badge world2-layer-button__state-badge--complete"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                  ) : null}
+                  {status === "next" ? (
+                    <span
+                      className="world2-layer-button__state-badge world2-layer-button__state-badge--next"
+                      aria-hidden="true"
+                    >
+                      &gt;
+                    </span>
+                  ) : null}
+
+                  <span
+                    className="world2-root-sr-only"
+                    id={`world2-accessible-${layer.id}`}
+                    data-world2-slot-id={layer.accessibleSlot}
+                    data-editorial-status="TEMP"
+                  >
+                    {`${copy.title}: ${copy.dialogue}`}
+                  </span>
+                </button>
+                {index < world2LayerCount - 1 ? (
+                  <img
+                    className="world2-layer-nav__connector"
+                    src={connectorSrc}
+                    alt=""
+                    aria-hidden="true"
+                    data-runtime-asset={connectorSrc}
+                    loading="lazy"
+                  />
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      </nav>
     </main>
   );
 }

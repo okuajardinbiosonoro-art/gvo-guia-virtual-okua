@@ -376,11 +376,12 @@
   .world2-capture-timeline {
     position: relative;
     inset: auto;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
   }
 
   .world2-capture-timeline__swipe-zone {
-    min-height: clamp(11rem, 38svh, 24rem);
+    min-height: clamp(155px, min(55vw, 30svh), 275px);
   }
 
   .world2-capture-timeline__readout {

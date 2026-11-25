@@ -29,6 +29,7 @@ describe("Sala I · OBS03 essential flow", () => {
     expect(screen.queryByText("QR 1")).toBeNull();
     await advance("Cerrar"); expect(room().closed).toBe(true);
     expect(screen.getByText("QR 1")).toBeVisible();
+    expect(screen.getByText("QR 1").closest(".world1-reading-actions")).not.toBeNull();
     expect(localStorage.getItem("gvo.progress.v1")).toBeNull();
   });
   it("opening a root cannot skip the current unconfirmed block", async () => {

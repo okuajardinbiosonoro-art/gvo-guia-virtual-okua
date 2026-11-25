@@ -50,6 +50,8 @@ export function World2CaptureTimeline({
   );
   const currentStep = captureTimelineSteps[currentStepIndex];
 
+  const nextStep = captureTimelineSteps.find((step) => !visitedStepIds.has(step.id));
+
   function selectStepAtIndex(index: number) {
     if (!active) return;
     const boundedIndex = Math.max(
@@ -193,6 +195,7 @@ export function World2CaptureTimeline({
             className="world2-capture-timeline__step-control"
             type="button"
             data-world2-capture-control={step.id}
+            data-next={step.id === nextStep?.id && !completed}
             data-world2-capture-interaction={
               step.id === "system" ? "datos-al-sistema" : undefined
             }

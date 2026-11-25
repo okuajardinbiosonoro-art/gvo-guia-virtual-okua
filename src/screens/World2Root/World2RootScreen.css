@@ -6383,23 +6383,21 @@
     grid-template-areas:
       "header"
       "scene"
-      "dialogue"
-      "nav";
-    grid-template-rows: auto auto auto auto;
+      "dialogue";
+    grid-template-rows: auto auto auto;
     grid-template-columns: minmax(0, 1fr);
+    align-content: start;
     height: auto;
-    min-height: calc(
-      min(100dvh, var(--world2-visual-vh, 100svh)) -
-        var(--gvo-final-review-clearance-top, 0px)
-    );
+    min-height: 0;
     padding: clamp(0.5rem, 2vw, 0.78rem);
-    gap: clamp(0.5rem, 1.6vw, 0.8rem);
+    padding-block-end: 0;
+    gap: .5rem;
     overflow: visible;
   }
 
   .world2-scene-zone {
     width: 100%;
-    min-height: 36rem;
+    min-height: 0;
     border-radius: 0.9rem;
   }
 
@@ -6412,23 +6410,11 @@
     transform: none;
   }
 
-  [data-world2-scene-layer="captura"] {
-    min-height: 40rem;
-  }
-
-  [data-world2-scene-layer="mapeo"] {
-    min-height: 36rem;
-  }
-
-  [data-world2-scene-layer="resultado_mediado"] {
-    min-height: 28rem;
-  }
-
   .world2-dialogue,
   .world2-dialogue[data-world2-closure-layout="centered-balanced"] {
-    align-self: auto;
+    align-self: start;
     width: min(100%, 43rem);
-    min-height: 16rem;
+    min-height: 0;
   }
 
   .world2-dialogue__content {
@@ -6524,11 +6510,11 @@
 
 @media (max-width: 420px) {
   .world2-mapping-sequence__relation {
-    grid-template-rows: auto 2rem auto 2rem auto;
+    grid-template-rows: auto 1rem auto 1rem auto;
     grid-template-columns: minmax(0, 1fr);
-    align-content: space-evenly;
+    align-content: center;
     justify-items: center;
-    gap: 0.45rem;
+    gap: 0.3rem;
   }
 
   .world2-mapping-sequence__source,
@@ -6547,7 +6533,7 @@
   .world2-mapping-sequence__flow {
     justify-self: center;
     width: 1px;
-    height: 2rem;
+    height: 1rem;
     background: linear-gradient(
       180deg,
       rgb(167 237 240 / 14%),
@@ -6854,28 +6840,25 @@
 
   .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
     .world2-stage {
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto;
     height: auto;
-    min-height: calc(
-      min(100dvh, var(--world2-visual-vh, 100svh)) -
-        var(--gvo-final-review-clearance-top, 0px)
-    );
+    min-height: 0;
     overflow: visible;
   }
 
   .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
     .world2-scene-zone {
-    min-height: 36rem;
+    min-height: 0;
   }
 
   .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
     [data-world2-scene-layer="captura"] {
-    min-height: 40rem;
+    min-height: 0;
   }
 
   .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
     [data-world2-scene-layer="resultado_mediado"] {
-    min-height: 28rem;
+    min-height: 0;
   }
 
   .final-review-mode-layout[data-final-review-active="true"][data-final-review-world="2"]
@@ -6894,7 +6877,7 @@
     inset: auto;
     display: grid;
     min-height: inherit;
-    padding: 1.25rem 0.75rem;
+    padding: .5rem .75rem;
     box-sizing: border-box;
   }
 
@@ -7106,18 +7089,15 @@
 }
 
 @media (max-width: 899px), (max-height: 700px) {
-  .world2-root-screen [data-world2-scene-layer="captura"]:has(> .world2-scene-readout) {
-    min-height: 0;
-  }
-
-  .world2-root-screen [data-world2-scene-layer="captura"]:has(> .world2-scene-readout) .world2-scene-field {
+  .world2-root-screen :is([data-world2-scene-layer="captura"], [data-world2-scene-layer="mapeo"]) .world2-scene-field {
+    height: auto;
     min-height: 0;
   }
 
   .world2-root-screen [data-world2-scene-layer="captura"] .world2-semantic-focus {
     position: relative;
     inset: auto;
-    padding: clamp(.5rem, 3vw, 1rem);
+    padding: .5rem .65rem 0;
   }
 
   .world2-root-screen [data-world2-scene-layer="captura"] .world2-lia-field[data-lia-placement] {
@@ -7125,4 +7105,179 @@
     bottom: auto;
     height: clamp(90px, 24vw, 140px);
   }
+}
+
+.world2-root-screen .world2-scene-listen {
+  position: relative;
+  z-index: 8;
+  display: block;
+  margin: .35rem auto .75rem;
+  min-height: 44px;
+}
+.world2-dialogue__actions:has(.world2-reading-advance) { justify-content: center; }
+.world2-wave-key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .25em 1em;
+  list-style: none;
+  margin: .6em auto 0;
+  padding: .45em 0 0;
+  border-block-start: 1px solid rgb(167 237 240 / 32%);
+  font: inherit;
+  line-height: 1.35;
+  color: var(--world2-cyan);
+}
+.world2-root-screen [data-world2-scene-layer="senal"] .world2-lia-field[data-lia-placement] {
+  top: auto; right: 3%; bottom: 2%; height: 32%; width: 23%;
+}
+.world2-root-screen [data-world2-scene-layer="acondicionamiento"] .world2-lia-field[data-lia-placement] {
+  right: 12%; bottom: 1%; top: auto; height: 45%; width: 29%;
+}
+.world2-root-screen [data-world2-scene-layer="captura"] .world2-lia-field[data-lia-placement] {
+  right: var(--capture-guide-right, 68%); width: 19%; pointer-events: none;
+}
+[data-capture-guide="signal"] { --capture-guide-right: 40%; }
+[data-capture-guide="system"] { --capture-guide-right: 7%; }
+.world2-root-screen :is([data-mapping-progress-step], [data-world2-capture-control])[data-next="true"] {
+  outline: 2px solid #f5d890;
+  outline-offset: -2px;
+  box-shadow: 0 0 .5rem #eec47866;
+}
+.world2-root-screen [data-next="true"]::after {
+  content: "▾"; position: absolute; inset: auto .2rem 100% auto; color: #ffe6ab;
+}
+.world2-root-screen .world2-mapping-sequence__output-icon { --world2-mapping-parameter-size: clamp(2.65rem, 10vw, 4rem); }
+.world2-root-screen .world2-mapping-sequence__output strong { font-size: clamp(1.05rem, 4vw, 1.35rem); }
+.world2-root-screen .world2-mapping-sequence__microcopy { margin-block-start: .7rem; font-size: max(1rem, 1em); }
+.world2-root-screen .world2-mapping-sequence__core { cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  .world2-root-screen .world2-lia-field[data-lia-placement] { transition: none; }
+}
+
+.world2-scene-zone:has(> .world2-scene-listen) {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+.world2-root-screen .world2-scene-zone:has(> .world2-scene-listen) .world2-scene-field {
+  height: auto;
+  min-height: clamp(12rem, 42svh, 28rem);
+}
+
+.world2-orientation-line {
+  display: none;
+}
+.world2-layer-callouts label[for] {
+  pointer-events: auto;
+  cursor: pointer;
+  min-block-size: 44px;
+}
+@media (max-width: 899px), (max-height: 700px) {
+  .world2-orientation-line {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    min-block-size: 44px;
+    text-align: center;
+  }
+  .world2-orientation-line button {
+    max-inline-size: 100%;
+    padding: .35em .65em;
+    min-block-size: 44px;
+    color: #fff0c6;
+    background: #17131f;
+    border: 0;
+    border-radius: .35rem;
+    font: 500 1rem/1.25 var(--gvo-font-body);
+    text-decoration: underline;
+    text-underline-offset: .18em;
+    cursor: pointer;
+  }
+  .world2-orientation-line button:focus-visible { outline: 2px solid currentColor; }
+  .world2-root-screen .world2-scene-zone:has(> .world2-orientation-line) {
+    display: flex;
+    flex-direction: column;
+  }
+  /* These illustrations use absolutely positioned layers. Give the artwork
+     an explicit canvas; the reading and the optional index size to content. */
+  .world2-root-screen :is([data-world2-scene-layer="planta_viva"], [data-world2-scene-layer="senal"]) .world2-scene-field {
+    height: clamp(226px, min(40svh, 83vw), 365px);
+    min-height: 0;
+  }
+  .world2-root-screen .world2-scene-zone[data-world2-scene-layer="acondicionamiento"] .world2-scene-field {
+    height: clamp(182px, min(34svh, 64vw), 300px);
+    min-height: 10rem;
+  }
+  .world2-root-screen [data-world2-scene-layer="resultado_mediado"] .world2-scene-field {
+    height: clamp(250px, min(43svh, 90vw), 408px);
+    min-height: 17rem;
+  }
+  .world2-root-screen .world2-dialogue,
+  .world2-root-screen .world2-dialogue[data-world2-closure-layout] {
+    min-height: 0;
+  }
+  .world2-dialogue .world2-dialogue__safe {
+    grid-template-rows: none;
+    align-content: start;
+  }
+  .world2-orientation-line:empty,
+  .world2-dialogue__actions:not(:has(button)) {
+    display: none;
+  }
+}
+
+/* The main scene and its reading form the first surface. The optional layer
+   index follows in document flow and never receives focus on advancement. */
+.world2-root-screen:has(> .world2-layer-nav) {
+  display: block;
+  height: auto;
+  overflow: visible;
+}
+.world2-root-screen > .world2-layer-nav {
+  container-type: inline-size;
+  position: relative;
+  inset: auto;
+  margin: 0 auto;
+  width: min(100%, 52rem);
+  min-height: 0;
+  padding: .45rem .35rem max(.5rem, env(safe-area-inset-bottom));
+}
+.world2-root-screen > .world2-layer-nav .world2-layer-nav__items {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .2rem;
+  min-height: 0;
+}
+.world2-root-screen > .world2-layer-nav .world2-layer-button {
+  min-width: 0;
+  min-height: 44px;
+  height: auto;
+  padding: .35rem .14rem;
+}
+.world2-root-screen > .world2-layer-nav .world2-layer-button__label {
+  font-size: .8125rem;
+  line-height: 1.2;
+}
+@container (max-width: 23rem) {
+  .world2-root-screen > .world2-layer-nav .world2-layer-nav__items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container (max-width: 15rem) {
+  .world2-root-screen > .world2-layer-nav .world2-layer-nav__items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.world2-dialogue .world2-scene-readout {
+  position: static;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }

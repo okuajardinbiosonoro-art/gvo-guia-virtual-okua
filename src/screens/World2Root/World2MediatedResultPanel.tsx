@@ -11,7 +11,6 @@ type World2MediatedResultPanelProps = {
   complete: boolean;
   active?: boolean;
   locale?: "es" | "en";
-  showResultRequested?: boolean;
   onComplete: (mode: "standard" | "assisted") => void;
 };
 
@@ -35,7 +34,6 @@ export function World2MediatedResultPanel({
   complete,
   active = true,
   locale = "es",
-  showResultRequested = false,
   onComplete,
 }: World2MediatedResultPanelProps) {
   const [stage, setStage] = useState<SonicConvergenceStage>(
@@ -67,14 +65,6 @@ export function World2MediatedResultPanel({
   useEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
-
-  useEffect(() => {
-    if (active && showResultRequested) {
-      completionMode.current = "assisted";
-      setStage("resolved");
-      setSequenceFinished(true);
-    }
-  }, [active, showResultRequested]);
 
   useEffect(() => {
     if (!active || !visible) return;
@@ -148,8 +138,8 @@ export function World2MediatedResultPanel({
         <button
           className="world2-sonic-convergence__core"
           type="button"
-          aria-label={en ? "Show result" : "Ver resultado"}
-          disabled={!active || stage === "resolved"}
+          aria-label={en ? "Listen to the result" : "Escuchar resultado"}
+          disabled={!active}
           aria-pressed={sequenceFinished}
           onClick={() => {
             musicStarted.current = true;
@@ -163,7 +153,7 @@ export function World2MediatedResultPanel({
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
-          {!sequenceFinished && stage !== "resolved" ? <span className="world2-sonic-convergence__prompt">{en ? "Show result" : "Ver resultado"}</span> : null}
+          <span className="world2-sonic-convergence__prompt">{en ? "Listen to the result" : "Escuchar resultado"}</span>
         </button>
         <svg
           className="world2-sonic-convergence__wave"

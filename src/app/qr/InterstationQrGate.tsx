@@ -97,16 +97,16 @@ const cameraStatusCopy: Record<CameraStatus, { es: string; en: string }> = {
     en: "Camera permission granted.",
   },
   "camera-denied": {
-    es: "Permiso de cámara denegado.",
-    en: "Camera permission denied.",
+    es: "Permite la cámara para este sitio en los ajustes del navegador y vuelve a intentarlo.",
+    en: "Allow camera access for this site in your browser settings, then try again.",
   },
   "camera-not-found": {
     es: "No se encontró cámara.",
     en: "No camera found.",
   },
   "camera-in-use": {
-    es: "La cámara está siendo usada por otra aplicación.",
-    en: "The camera is in use by another application.",
+    es: "Cierra la otra aplicación que usa la cámara y vuelve a intentarlo.",
+    en: "Close the other app using the camera, then try again.",
   },
   "camera-blocked-insecure-context": {
     es: "La cámara está bloqueada porque esta dirección no es un origen seguro.",

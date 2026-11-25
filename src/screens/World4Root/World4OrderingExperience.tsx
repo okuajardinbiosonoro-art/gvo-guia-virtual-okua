@@ -543,6 +543,7 @@ export function World4OrderingGame({
       data-station4-ordering-solved={showSolvedBoard ? "true" : undefined}
       data-station4-outcome={state.outcome ?? "none"}
       data-station4-ordering-closed={state.closed}
+      data-station4-exit-ready={closureVerified}
       data-journey-active={active}
     >
       <header>
@@ -559,19 +560,8 @@ export function World4OrderingGame({
               {state.phase === "introduction" && !readOnly ? (
                 <>
                   <p data-editorial-source-id="TXT_4_70469f939a19">{copy.invitation}</p>
-                  <p>{copy.introduction}</p>
+                  <p id={howToSwapId}>{copy.introduction}</p>
                   <p id={timeNoticeId}>{copy.ready}</p>
-                  <div className="s4-ordering-how-to" id={howToSwapId}>
-                    <h2>{copy.swapHeading}</h2>
-                    <div className="s4-ordering-swap-example" aria-hidden="true">
-                      <span data-example-piece="a" /><span data-example-piece="b" />
-                      <span className="s4-ordering-swap-arrow">→</span>
-                      <span data-example-piece="b" /><span data-example-piece="a" />
-                    </div>
-                    <ol>
-                      {copy.swapSteps.map((step) => <li key={step}>{step}</li>)}
-                    </ol>
-                  </div>
                   <button
                     ref={startButtonRef}
                     type="button"

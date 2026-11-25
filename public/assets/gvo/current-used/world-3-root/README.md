@@ -1,3 +1,13 @@
+## Indicación de lectura de la hoja · candidata del 25 de noviembre
+
+El cuaderno muestra la mano de deslizamiento cuando queda texto más abajo.
+El consumidor es `World3RootScreen.tsx` y la precarga corresponde a
+`getWorld3CriticalAssetSources`. Se reutiliza el
+[WebP compartido de 256 × 256](../shared/gesture-hints/gvo_gesture_hand_swipe_v03.webp)
+del runtime `assets/gvo/shared/gesture-hints/runtime/gvo_gesture_hand_swipe_v03.webp`,
+SHA-256 `8c3668ac88fa584a2dd07a0250cd2b52858b7cbe9233d45e14c9b37303679df9`.
+La revisión humana de su posición en la hoja está pendiente.
+
 # Assets utilizados — Mundo III / Estación III
 
 ## Consumidor OBS05 — ajuste local de título e índice

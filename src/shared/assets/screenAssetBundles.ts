@@ -84,12 +84,12 @@ export const screenAssetBundles = {
       "Primer frame estable de Portada / Intro sin cargar todas las poses secundarias.",
     assets: [
       image("cover_authentic_brand_logo", coverIntroAssets.brandLogo, 12),
-      image("cover_background", coverIntroAssets.background, 2994),
+      image("cover_background", coverIntroAssets.background, 203),
       ...currentRigAssets,
       image("cover_portal_1_frame", coverIntroAssets.portal1Frame),
-      image("cover_portal_1_glow", coverIntroAssets.portal1Glow, 440),
+      image("cover_portal_1_glow", coverIntroAssets.portal1Glow, 97),
       image("cover_locked_frame", coverIntroAssets.lockedFrame),
-      image("cover_lock", coverIntroAssets.lock, 430),
+      image("cover_lock", coverIntroAssets.lock, 50),
       ...coverPortalInteriorAssets.map((asset) => image(asset.id, asset.src)),
     ],
   },
@@ -102,7 +102,7 @@ export const screenAssetBundles = {
       image(
         "cover_lia_activate_portal_1",
         coverIntroAssets.liaActivatePortal1,
-        676,
+        66,
       ),
     ],
   },
@@ -164,9 +164,9 @@ export const screenAssetBundles = {
     route: "/estacion/1",
     description: "Composicion inicial visible de Mundo I: Raiz.",
     assets: [
-      image("world1_background", world1RootAssets.background, 2077),
+      image("world1_background", world1RootAssets.background, 202),
       image("world1_ambient_light", world1RootAssets.ambientLight),
-      image("world1_plant", world1RootAssets.plant, 797),
+      image("world1_plant", world1RootAssets.plant, 62),
       image("world1_roots_base", world1RootAssets.rootsBase),
       image("world1_node_kit", world1RootAssets.nodeKit),
       ...currentRigAssets,
@@ -178,7 +178,7 @@ export const screenAssetBundles = {
     route: "/estacion/1#relation",
     description: "Assets del estado RELACION.",
     assets: [
-      image("world1_active_relation", world1RootAssets.activeRelation, 1270),
+      image("world1_active_relation", world1RootAssets.activeRelation, 412),
     ],
   },
   world1RootPerception: {
@@ -189,7 +189,7 @@ export const screenAssetBundles = {
       image(
         "world1_active_perception",
         world1RootAssets.activePerception,
-        1288,
+        411,
       ),
     ],
   },
@@ -198,7 +198,7 @@ export const screenAssetBundles = {
     route: "/estacion/1#mediation",
     description: "Assets del estado MEDIACION.",
     assets: [
-      image("world1_active_mediation", world1RootAssets.activeMediation, 1414),
+      image("world1_active_mediation", world1RootAssets.activeMediation, 502),
     ],
   },
   world1RootReady: {

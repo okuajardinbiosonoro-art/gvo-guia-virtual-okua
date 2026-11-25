@@ -71,11 +71,11 @@ export default defineConfig(({ command, mode }) => {
             "index.html",
             "registerSW.js",
             "assets/index-*.{js,css}",
-            "assets/pixelify-*.woff2",
+            "assets/gvo/type/VT323-Regular.ttf",
             "assets/runtime/loading-initial/**/*.{png,json}",
-            "assets/runtime/loading-initial/{lia,plant}/*_okua_v03.webp",
+            "assets/runtime/loading-initial/{lia,plant}/*_okua_v03_movil_v1.webp",
             "assets/runtime/cover-intro/**/*.{png,json}",
-            "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
+            "assets/runtime/cover-intro/**/*_movil_v1.webp",
             "assets/gvo/audio/**/*.mp3",
             "assets/gvo/stations/final-root/photo/okua-photo-vine-v03.webp",
           ],
@@ -88,6 +88,9 @@ export default defineConfig(({ command, mode }) => {
             "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v01.png",
             "assets/runtime/loading-initial/{lia,plant}/*_okua_v03.png",
             "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.png",
+            "assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+            "assets/runtime/cover-intro/locks/lock_soft_gold_v1.png",
+            "assets/runtime/cover-intro/portals/**/{portal_1_frame_enabled_v1,portal_1_glow_enabled_v1,portal_locked_frame_base_v1}.png",
             "assets/runtime/cover-intro/lia/{reference,rig/idle_v1}/**/*",
             "assets/runtime/cover-intro/lia/poses/lia_pose_{explain_calm,greeting,idle,point_portal_1}_v1.png",
             "**/*.md",
@@ -117,6 +120,7 @@ export default defineConfig(({ command, mode }) => {
                 url.origin === self.location.origin &&
                 url.pathname.startsWith("/assets/") &&
                 (/\.(?:css|js|json|png|svg|webp|woff2)$/.test(url.pathname) ||
+                  url.pathname === "/assets/gvo/stations/final-root/photo/type/Cinzel.ttf" ||
                   url.pathname === "/assets/gvo/stations/final-root/photo/tracking/facefinder.bin"),
               handler: "StaleWhileRevalidate",
               options: {

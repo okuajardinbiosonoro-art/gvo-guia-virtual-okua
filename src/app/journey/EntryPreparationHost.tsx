@@ -5,12 +5,13 @@ import { CoverIntroScreen } from "../../screens/Cover";
 import { LoadingInitialScreen } from "../../screens/LoadingInitial";
 import { REDUCED_MOTION_DURATION_MS, TOTAL_DURATION_MS } from "../../screens/LoadingInitial/loadingInitialTimeline";
 import { InitialExperienceScreen } from "../../screens/InitialExperience";
+import { journeyPreparationBudgetMs } from "./preparationTiming";
 import { preloadImages } from "../../shared/assets/assetPreloader";
 import { readLanguagePreference } from "../preferences/languagePreference";
 import { stationEntryRoutes } from "../routes";
 import { beginFinalReview, FINAL_REVIEW_CONTEXT_STORAGE_KEY } from "../review/finalReviewContext";
 import { JourneyActivationProvider, JourneyActivityScope, useJourneyActivity } from "./JourneyActivation";
-import { acceptJourneyIntent } from "./journeyIntent";
+import { acceptJourneyIntent, resumePendingQrFromCover } from "./journeyIntent";
 import { resolveJourneyAccess } from "./journeyAccess";
 import { getEntryResourceManifest } from "./journeyResources";
 import { captureJourneyMutationToken, coherentProgressPrefixLength, getJourneyRuntimeContext, isJourneyMutationTokenCurrent, readEssentialSnapshot } from "./journeyEssential";
@@ -30,6 +31,11 @@ class CoverBoundary extends Component<{ children: ReactNode; reset: number; onEr
 function EntryCoverConsumer() {
   const navigate = useNavigate(), activity = useJourneyActivity();
   return <CoverIntroScreen onPortalEnter={() => {
+    const pendingDestination = resumePendingQrFromCover(activity.attemptId);
+    if (pendingDestination) {
+      navigate(pendingDestination);
+      return;
+    }
     if (!acceptJourneyIntent({ from: "cover", to: "/estacion/1", kind: "portal", attemptId: activity.attemptId })) throw Error("intent_unverified");
     navigate("/transition/intro-to-station-1");
   }} onRevisitRoom={(world) => {
@@ -40,8 +46,8 @@ function EntryCoverConsumer() {
 }
 const fontSample = "Guía Virtual OKÚA · Relación, percepción, mediación. ¿Señal? Listening and living signals.";
 async function entryFonts() {
-  await Promise.all([document.fonts.load('400 16px "Pixelify Sans Variable"', fontSample), document.fonts.load('700 16px "Pixelify Sans Variable"', fontSample), document.fonts.ready]);
-  if (!document.fonts.check('400 16px "Pixelify Sans Variable"', fontSample) || !document.fonts.check('700 16px "Pixelify Sans Variable"', fontSample) || Array.from(document.fonts).some((f) => f.family.includes("Pixelify") && f.status === "error")) throw Error("entry_font_unverified");
+  await Promise.all([document.fonts.load('400 16px "VT323"', fontSample), document.fonts.load('700 16px "VT323"', fontSample), document.fonts.ready]);
+  if (!document.fonts.check('400 16px "VT323"', fontSample) || !document.fonts.check('700 16px "VT323"', fontSample) || Array.from(document.fonts).some((f) => f.family.includes("VT323") && f.status === "error")) throw Error("entry_font_unverified");
 }
 function coverFingerprint(root: HTMLElement) {
   const selectors = "main,header,footer,.cover-intro__scene,h1,h2,p,button";
@@ -92,16 +98,17 @@ export function EntryPreparationHost() {
     return () => { document.removeEventListener("visibilitychange", syncVisible); window.removeEventListener("resize", resize); media.removeEventListener("change", preference); window.removeEventListener("gvo:journey-reset-start", invalidate); window.removeEventListener("storage", storage); document.fonts.removeEventListener("loadingdone", fontsChanged); document.fonts.removeEventListener("loadingerror", fontsChanged); };
   }, [invalidate]);
   useEffect(() => {
-    const a: EntryAttempt = { id: crypto.randomUUID(), controller: new AbortController(), deadlineAt: performance.now() + 15000, token: captureJourneyMutationToken() };
+    const budget = journeyPreparationBudgetMs();
+    const a: EntryAttempt = { id: crypto.randomUUID(), controller: new AbortController(), deadlineAt: performance.now() + budget, token: captureJourneyMutationToken() };
     attempt.current = a; resourcesVerified.current = false; decodedReady.current = false; ownVerified.current = false; proof.current = null;
     setOwnReady(false); setProofError(false); setChecking(false); setResource({ status: "loading", progress: 0 });
     const fail = (status: "error" | "timeout") => { if (!current(a)) return; setResource((s) => ({ ...s, status })); a.controller.abort(); };
-    const timer = window.setTimeout(() => { if (!resourcesVerified.current) fail("timeout"); }, 15000); resourceTimer.current = timer;
+    const timer = window.setTimeout(() => { if (!resourcesVerified.current) fail("timeout"); }, budget); resourceTimer.current = timer;
     void (async () => {
       try {
         const fonts = entryFonts().then(() => true, () => false);
         const audio = prepareJourneyAudio("/portada", a.controller.signal, a.deadlineAt);
-        const own = await preloadImages(inventory.own, { signal: a.controller.signal, deadlineAt: a.deadlineAt, timeoutMs: 15000, concurrency: 2,
+        const own = await preloadImages(inventory.own, { signal: a.controller.signal, deadlineAt: a.deadlineAt, timeoutMs: budget, reuseVerified: true, concurrency: 2,
           onProgress: (p) => { if (current(a)) setResource({ status: "loading", progress: p.loaded / inventory.all.length }); } });
         if (!current(a)) return;
         if (own.status !== "ready") { fail(own.status === "timeout" ? "timeout" : "error"); return; }
@@ -109,7 +116,7 @@ export function EntryPreparationHost() {
         if (!current(a)) return;
         ownVerified.current = true; setOwnReady(true);
         const rest = inventory.all.filter((src) => !inventory.own.includes(src));
-        const remainder = await preloadImages(rest, { signal: a.controller.signal, deadlineAt: a.deadlineAt, timeoutMs: 15000, concurrency: 2,
+        const remainder = await preloadImages(rest, { signal: a.controller.signal, deadlineAt: a.deadlineAt, timeoutMs: budget, reuseVerified: true, concurrency: budget > 15_000 ? 4 : 2,
           onProgress: (p) => { if (current(a)) setResource({ status: "loading", progress: (own.loaded + p.loaded) / inventory.all.length }); } });
         if (!current(a)) return;
         if (remainder.status !== "ready" || performance.now() >= a.deadlineAt) { fail(remainder.status === "error" ? "error" : "timeout"); return; }
@@ -134,7 +141,7 @@ export function EntryPreparationHost() {
     const live = () => ownerCurrent() && !controller.signal.aborted && performance.now() < bound;
     const abort = () => controller.abort(); a.controller.signal.addEventListener("abort", abort, { once: true });
     try {
-      if (!document.fonts.check('400 16px "Pixelify Sans Variable"', fontSample) || !document.fonts.check('700 16px "Pixelify Sans Variable"', fontSample) || root.querySelector("[data-entry-cover-render-error]")) throw Error("cover_font_or_render");
+      if (!document.fonts.check('400 16px "VT323"', fontSample) || !document.fonts.check('700 16px "VT323"', fontSample) || root.querySelector("[data-entry-cover-render-error]")) throw Error("cover_font_or_render");
       const images = Array.from(root.querySelectorAll<HTMLImageElement>("img")).filter((img) => img.getBoundingClientRect().width > 0 && getComputedStyle(img).display !== "none").map(capturePreparedImage);
       const urls = new Set(inventory.all.map((src) => new URL(src, document.baseURI).href));
       if (!images.every((x) => urls.has(x.currentSrc))) throw Error("cover_source_not_in_verified_inventory");
@@ -182,7 +189,7 @@ export function EntryPreparationHost() {
   }, [started, presentationDone, wantsPresentation, visible, reduced, resource.status]);
   const liveProof = () => {
     const p = proof.current;
-    return Boolean(p && p.root === coverRoot.current && p.root.isConnected && p.main === p.root.querySelector("main") && p.key === contextKeyRef.current && p.resourceKey === inventory.key && p.fingerprint === coverFingerprint(p.root) && document.fonts.check('400 16px "Pixelify Sans Variable"', fontSample) && document.fonts.check('700 16px "Pixelify Sans Variable"', fontSample) && p.images.every((x) => isPreparedImageCurrent(x) && x.image.complete && x.image.naturalWidth > 0 && x.image.naturalHeight > 0));
+    return Boolean(p && p.root === coverRoot.current && p.root.isConnected && p.main === p.root.querySelector("main") && p.key === contextKeyRef.current && p.resourceKey === inventory.key && p.fingerprint === coverFingerprint(p.root) && document.fonts.check('400 16px "VT323"', fontSample) && document.fonts.check('700 16px "VT323"', fontSample) && p.images.every((x) => isPreparedImageCurrent(x) && x.image.complete && x.image.naturalWidth > 0 && x.image.naturalHeight > 0));
   };
   const deliveredProof = delivered.current && isCoverPath && proof.current?.root === coverRoot.current && proof.current?.key === contextKey && resourcesVerified.current;
   const coverReady = resource.status === "ready" && !checking && !proofError && (deliveredProof || liveProof());

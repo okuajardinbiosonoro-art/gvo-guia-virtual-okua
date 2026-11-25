@@ -12,6 +12,8 @@ const tracks = {
   gameSwap: "world-4-root/game-swap.mp3",
   gameSolved: "world-4-root/game-solved.mp3",
   gameTimeout: "world-4-root/game-timeout.mp3",
+  roundSolved: "world-5-root/round-solved.mp3",
+  roundIncomplete: "world-5-root/round-incomplete.mp3",
   correct: "world-5-root/correct.mp3",
   incorrect: "world-5-root/incorrect.mp3",
 } as const;
@@ -27,7 +29,7 @@ const roomSounds: Record<string, readonly JourneySound[]> = {
   "/estacion/2": ["conditioning", "intensity", "rhythm", "pitch", "mediatedMusic"],
   "/estacion/3": ["pageTurn"],
   "/estacion/4": ["gameStart", "gameSwap", "gameSolved", "gameTimeout"],
-  "/estacion/5": ["correct", "incorrect"],
+  "/estacion/5": ["correct", "incorrect", "roundSolved", "roundIncomplete"],
 };
 const listeners = new Set<() => void>();
 const buffers = new Map<JourneySound, Promise<AudioBuffer>>();
@@ -148,7 +150,7 @@ export function stopJourneySound(sound?: JourneySound) {
 }
 
 export function stopJourneySoundOnNavigation() {
-  if (playing?.sound !== "roomComplete" && playing?.sound !== "interaction") stopJourneySound();
+  if (playing && !["roomComplete", "interaction", "roundSolved", "roundIncomplete"].includes(playing.sound)) stopJourneySound();
 }
 
 export function toggleJourneySound() {

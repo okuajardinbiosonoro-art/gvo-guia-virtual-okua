@@ -1,5 +1,5 @@
 {
-  "status": "HUMAN_APPROVED",
+  "status": "CANDIDATA_EDITORIAL_20261122",
   "source": "Sonidos para GVO.zip",
   "zip_sha256": "0c212f7d616e18fa20f36ec0b554fea9cfd61bddf8673d0b4c2d79d88278ddf1",
   "assets": [
@@ -23,25 +23,6 @@
       }
     },
     {
-      "runtime": "public/assets/gvo/audio/world-2-root/intensity.mp3",
-      "mirror": "public/assets/gvo/current-used/world-2-root/audio/intensity.mp3",
-      "trigger": "Mapeo de amplitud a intensidad",
-      "file": "rango intensidad Sala 2.mp3",
-      "bytes": 120162,
-      "sha256": "6c2b33b6884f13297f6f2c634d41cbb07e5fcd807030ca622113b5446454f7a7",
-      "programs": [],
-      "streams": [
-        {
-          "codec_name": "mp3",
-          "sample_rate": "44100",
-          "channels": 2
-        }
-      ],
-      "format": {
-        "duration": "3.004050"
-      }
-    },
-    {
       "runtime": "public/assets/gvo/audio/world-2-root/rhythm.mp3",
       "mirror": "public/assets/gvo/current-used/world-2-root/audio/rhythm.mp3",
       "trigger": "Mapeo de variación a ritmo",
@@ -61,25 +42,6 @@
       }
     },
     {
-      "runtime": "public/assets/gvo/audio/world-2-root/pitch.mp3",
-      "mirror": "public/assets/gvo/current-used/world-2-root/audio/pitch.mp3",
-      "trigger": "Mapeo de rango a altura",
-      "file": "rango altura Sala 2.mp3",
-      "bytes": 30301,
-      "sha256": "061ab8b65389db353b076b9c717c79b2bd7f7f10a57993f1013cb7e1303d29b2",
-      "programs": [],
-      "streams": [
-        {
-          "codec_name": "mp3",
-          "sample_rate": "44100",
-          "channels": 2
-        }
-      ],
-      "format": {
-        "duration": "0.757525"
-      }
-    },
-    {
       "runtime": "public/assets/gvo/audio/world-2-root/mediated-music.mp3",
       "mirror": "public/assets/gvo/current-used/world-2-root/audio/mediated-music.mp3",
       "trigger": "Resultado de Música y repetición con Escuchar",
@@ -96,6 +58,48 @@
       ],
       "format": {
         "duration": "10.893025"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-2-root/pitch.mp3",
+      "mirror": "public/assets/gvo/current-used/world-2-root/audio/pitch.mp3",
+      "file": "rango altura Sala 2 New.mp3",
+      "source": "Envío GVO V4 actualizado.zip",
+      "zip_sha256": "5a8965e19663da7554f0140169afca33efe3fa71270615c48f8f1393f78710a8",
+      "trigger": "Mapeo de rango a altura",
+      "bytes": 80456,
+      "sha256": "2ea8dd7243a56901a1525866024ca3a3b88a0d3d86bebeb46c6411824311e1fe",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "2.011400"
+      }
+    },
+    {
+      "runtime": "public/assets/gvo/audio/world-2-root/intensity.mp3",
+      "mirror": "public/assets/gvo/current-used/world-2-root/audio/intensity.mp3",
+      "file": "rango intensidad Sala 2 New.mp3",
+      "source": "Envío GVO V4 actualizado.zip",
+      "zip_sha256": "5a8965e19663da7554f0140169afca33efe3fa71270615c48f8f1393f78710a8",
+      "trigger": "Mapeo de amplitud a intensidad",
+      "bytes": 200619,
+      "sha256": "19e2102e4b431741d3a3afaa8435710b19ae7358cf067e8e55cba42eb96aa986",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "5.015475"
       }
     }
   ]

@@ -30,12 +30,12 @@ function nearlySolved(): World4OrderingState {
   return { ...freshWorld4OrderingState(), phase: "playing", permutation };
 }
 describe("IV ordering — active time, truthful outcome and durable review", () => {
-  it("starts90active seconds and shuffles once without changing piece identities", () => {
+  it("starts with 60 active seconds and shuffles once without changing piece identities", () => {
     const started = reduce(freshWorld4OrderingState(), {
       type: "start",
       random: () => 0.999,
     });
-    expect(started.remainingActiveMs).toBe(90_000);
+    expect(started.remainingActiveMs).toBe(60_000);
     expect(started.permutation).not.toEqual(WORLD4_ORDERING_TARGET);
     expect(new Set(started.permutation).size).toBe(6);
     expect(
@@ -54,7 +54,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
     expect(solved).toMatchObject({
       phase: "success",
       outcome: "solved_by_visitor",
-      remainingActiveMs: 89_800,
+      remainingActiveMs: 59_800,
       selectedObjectId: null,
     });
     expect(solved.permutation).toEqual(WORLD4_ORDERING_TARGET);
@@ -81,17 +81,17 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
       id: "bionosificador",
     });
     const paused = reduce(selected, { type: "pause" }, 1200);
-    expect(paused.remainingActiveMs).toBe(88_800);
+    expect(paused.remainingActiveMs).toBe(58_800);
     expect(paused.selectedObjectId).toBe("bionosificador");
     expect(paused.permutation).toEqual(selected.permutation);
     expect(reduce(paused, { type: "tick" }, 600_000).remainingActiveMs).toBe(
-      88_800,
+      58_800,
     );
     const resumed = reduce(paused, { type: "resume" }, 600_000);
     expect(resumed.selectedObjectId).toBe("bionosificador");
     expect(resumed.permutation).toEqual(selected.permutation);
     expect(reduce(resumed, { type: "tick" }, 800).remainingActiveMs).toBe(
-      88_000,
+      58_000,
     );
   });
   it("requested assistance never grants success and requires all six manual review advances", () => {
@@ -138,7 +138,7 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
     if (read.status !== "ok") throw new Error("checkpoint missing");
     expect(restoreWorld4OrderingState(read.checkpoint)).toMatchObject({
       phase: "paused",
-      remainingActiveMs: 88_800,
+      remainingActiveMs: 58_800,
     });
     const automatic = reduce(playing, { type: "help" });
     expect(restoreWorld4OrderingState(automatic)).toMatchObject({
@@ -181,6 +181,14 @@ describe("IV ordering — active time, truthful outcome and durable review", () 
     expect(read.checkpoint?.permutation).not.toEqual(WORLD4_ORDERING_TARGET);
     expect(storage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(raw);
     expect(writeWorld4OrderingCheckpoint(read.checkpoint!, storage).ok).toBe(true);
+  });
+  it("recovers the six-piece 90-second edition without discarding its board", () => {
+    const storage = memory();
+    const previous = { ...nearlySolved(), contractRevision: "GVO-IV-6", phase: "paused", remainingActiveMs: 82_000 };
+    storage.setItem(WORLD4_ORDERING_STORAGE_KEY, JSON.stringify(previous));
+    expect(readWorld4OrderingCheckpoint(storage).checkpoint).toMatchObject({
+      phase: "paused", permutation: previous.permutation, remainingActiveMs: 60_000,
+    });
   });
   it("rejects invented assisted closure and repeated/missing pieces", () => {
     const state = freshWorld4OrderingState();

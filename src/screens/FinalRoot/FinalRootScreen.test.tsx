@@ -5,11 +5,10 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { StrictMode, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { JourneyResetResult } from "../../app/reset/resetGvoJourney";
 import { JourneyActivationProvider } from "../../app/journey/JourneyActivation";
 import {
   FINAL_OPERATIONAL_SLOT_COUNT,
@@ -20,7 +19,7 @@ import {
 import { applyDocumentLanguage, writeLanguagePreference } from "../../app/preferences/languagePreference";
 import { finalRootAssets } from "../../shared/assets/finalRootAssets";
 import finalRootCss from "./FinalRootScreen.css?raw";
-import { FinalRootScreen, type FinalRootScreenProps } from "./FinalRootScreen";
+import { FinalRootScreen } from "./FinalRootScreen";
 
 function LocationProbe() {
   const location = useLocation();
@@ -35,10 +34,10 @@ function ActiveFinalFixture({ children }: { children: ReactNode }) {
   return <JourneyActivationProvider context={activeFinalContext}>{children}</JourneyActivationProvider>;
 }
 
-function renderFinalRootScreen(props: FinalRootScreenProps = {}) {
+function renderFinalRootScreen() {
   return render(
     <MemoryRouter initialEntries={["/final"]}>
-      <FinalRootScreen {...props} />
+      <FinalRootScreen />
       <LocationProbe />
     </MemoryRouter>,
     { wrapper: ActiveFinalFixture },
@@ -337,312 +336,13 @@ describe("FinalRootScreen", () => {
     expect(container.querySelector(".final-root-primary-action")).toBeNull();
   });
 
-  it("preserva volver a Portada y ejecuta el reinicio allowlist real", async () => {
-    const { container, rerender } = renderFinalRootScreen();
-
-    expect(container.querySelector("[data-review-mode]")).toHaveAttribute(
-      "data-review-mode",
-      "final_review_context_single_activation",
-    );
-    expect(container.querySelector("[data-restart-mode]")).toHaveAttribute(
-      "data-restart-mode",
-      "allowlist_snapshot_rollback",
-    );
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    expect(container.querySelector("[data-final-state]")).toHaveAttribute(
-      "data-final-state",
-      "final_restart_confirm",
-    );
-    expect(
-      screen.getByText(finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text),
-    ).toBeInTheDocument();
-    expect(container.querySelector("[data-panel-asset]")).toBeInTheDocument();
-    expect(
-      Array.from(container.querySelectorAll("[data-panel-asset]"), (element) =>
-        element.getAttribute("data-panel-asset"),
-      ),
-    ).toContain(finalRootAssets.ui.restartDialogBackplate);
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text,
-      }),
-    );
-    expect(container.querySelector("[data-final-state]")).toHaveAttribute(
-      "data-final-state",
-      "final_restart",
-    );
-    expect(
-      screen.queryByText(finalEditorialSlots.FINAL_RESTART_CONFIRM_01.text),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    ).toHaveFocus();
-
-    window.localStorage.setItem("gvo.progress.v1", "progress");
-    window.localStorage.setItem("gvo.station5.v1", "world-five");
-    window.localStorage.setItem("gvo.coverIntro.introCompleted.v1", "true");
-    window.localStorage.setItem("preference.theme", "dark");
-    window.sessionStorage.setItem("gvo.final.reviewContext.v1", "review");
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    await act(async () => {
-      fireEvent.click(
-        screen.getByRole("button", {
-          name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-        }),
-      );
-      await Promise.resolve();
-    });
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/portada",
-    );
-    expect(window.localStorage.getItem("gvo.progress.v1")).toBeNull();
-    expect(window.localStorage.getItem("gvo.station5.v1")).toBeNull();
-    expect(
-      window.localStorage.getItem("gvo.coverIntro.introCompleted.v1"),
-    ).toBeNull();
-    expect(window.localStorage.getItem("preference.theme")).toBe("dark");
-    expect(
-      window.sessionStorage.getItem("gvo.final.reviewContext.v1"),
-    ).toBeNull();
-
-    rerender(
-      <MemoryRouter initialEntries={["/final"]}>
-        <FinalRootScreen />
-        <LocationProbe />
-      </MemoryRouter>,
-    );
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_BACK_HOME_01.text,
-      }),
-    );
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/portada",
-    );
-    expect(
-      JSON.parse(
-        window.sessionStorage.getItem("gvo.final.reviewContext.v1") ?? "null",
-      ),
-    ).toMatchObject({
-      mode: "final-cover-revisit",
-      origin: "/final",
-      version: 1,
-    });
-  });
-
-  it("expone busy accesible, deshabilita controles y bloquea doble ejecución", async () => {
-    let resolveReset: (value: JourneyResetResult) => void = () => undefined;
-    const resetJourney = vi.fn(
-      () =>
-        new Promise<JourneyResetResult>((resolve) => {
-          resolveReset = resolve;
-        }),
-    );
-    const { container } = renderFinalRootScreen({ resetJourney });
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    const confirm = screen.getByRole("button", {
-      name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-    });
-    fireEvent.click(confirm);
-    fireEvent.click(confirm);
-
-    expect(resetJourney).toHaveBeenCalledTimes(1);
-    expect(container.querySelector("[data-final-reset-state]")).toHaveAttribute(
-      "data-final-reset-state",
-      "busy",
-    );
-    expect(container.querySelector("[aria-busy='true']")).toBeInTheDocument();
-    expect(
-      screen.getByText(finalEditorialSlots.FINAL_RESTART_BUSY_01.text),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text,
-      }),
-    ).toBeDisabled();
-    expect(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-      }),
-    ).toBeDisabled();
-
-    await act(async () => {
-      resolveReset({
-        deleted: [],
-        durationMs: 1,
-        ok: true,
-        snapshotCount: 4,
-        verifiedInitialState: true,
-      });
-      await Promise.resolve();
-    });
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/portada",
-    );
-  });
-
-  it("muestra copy de conservación sólo con rollback verificado y reintenta con snapshot nuevo", async () => {
-    const consoleError = vi
-      .spyOn(console, "error")
-      .mockImplementation(() => undefined);
-    const resetJourney = vi
-      .fn()
-      .mockResolvedValueOnce({
-        copySafe: true,
-        durationMs: 2,
-        errorCode: "delete_failed",
-        failedStage: "delete",
-        ok: false,
-        rollbackAttempted: true,
-        rollbackVerified: true,
-        snapshotCount: 4,
-        snapshotCreated: true,
-      })
-      .mockResolvedValueOnce({
-        deleted: [],
-        durationMs: 1,
-        ok: true,
-        snapshotCount: 4,
-        verifiedInitialState: true,
-      });
-    const { container } = renderFinalRootScreen({ resetJourney });
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    await act(async () => {
-      fireEvent.click(
-        screen.getByRole("button", {
-          name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-        }),
-      );
-      await Promise.resolve();
-    });
-
-    expect(
-      screen.getByText(finalEditorialSlots.FINAL_RESTART_ERROR_01.text),
-    ).toBeInTheDocument();
-    const retry = screen.getByRole("button", {
-      name: finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.text,
-    });
-    expect(retry).toHaveFocus();
-    expect(
-      container.querySelector("[data-final-reset-copy-gap]"),
-    ).toHaveAttribute("data-final-reset-copy-gap", "none");
-
-    await act(async () => {
-      fireEvent.click(retry);
-      await Promise.resolve();
-    });
-    expect(resetJourney).toHaveBeenCalledTimes(2);
-    expect(screen.getByTestId("current-location")).toHaveTextContent(
-      "/portada",
-    );
-    expect(consoleError).toHaveBeenCalledTimes(1);
-  });
-
-  it("no muestra copy engañoso cuando rollback no queda verificado", async () => {
-    vi.spyOn(console, "error").mockImplementation(() => undefined);
-    const resetJourney = vi.fn().mockResolvedValue({
-      copySafe: false,
-      durationMs: 2,
-      errorCode: "rollback_failed",
-      failedStage: "rollback",
-      ok: false,
-      rollbackAttempted: true,
-      rollbackVerified: false,
-      snapshotCount: 4,
-      snapshotCreated: true,
-    });
-    const { container } = renderFinalRootScreen({ resetJourney });
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    await act(async () => {
-      fireEvent.click(
-        screen.getByRole("button", {
-          name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-        }),
-      );
-      await Promise.resolve();
-    });
-
-    expect(
-      screen.queryByText(finalEditorialSlots.FINAL_RESTART_ERROR_01.text),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByText(finalEditorialSlots.FINAL_RESTART_RETRY_BTN_01.text),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector("[data-final-reset-copy-gap]"),
-    ).toHaveAttribute(
-      "data-final-reset-copy-gap",
-      "GVO_FINAL_021O_ROLLBACK_COPY_GAP",
-    );
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/final");
-  });
-
-  it("sale de busy correctamente bajo React StrictMode", async () => {
-    const resetJourney = vi.fn().mockResolvedValue({
-      copySafe: true,
-      durationMs: 2,
-      errorCode: "delete_failed",
-      failedStage: "delete",
-      ok: false,
-      rollbackAttempted: true,
-      rollbackVerified: true,
-      snapshotCount: 4,
-      snapshotCreated: true,
-    });
-    vi.spyOn(console, "error").mockImplementation(() => undefined);
-    render(
-      <StrictMode>
-        <MemoryRouter initialEntries={["/final"]}>
-          <FinalRootScreen resetJourney={resetJourney} />
-          <LocationProbe />
-        </MemoryRouter>
-      </StrictMode>,
-      { wrapper: ActiveFinalFixture },
-    );
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    await act(async () => {
-      fireEvent.click(
-        screen.getByRole("button", {
-          name: finalEditorialSlots.FINAL_RESTART_CONFIRM_BTN_01.text,
-        }),
-      );
-      await Promise.resolve();
-    });
-
-    expect(
-      screen.getByText(finalEditorialSlots.FINAL_RESTART_ERROR_01.text),
-    ).toBeInTheDocument();
+  it("vuelve a Portada y conserva la visita sin ofrecer un reinicio en Mirador", () => {
+    renderFinalRootScreen();
+    window.localStorage.setItem("gvo.test.progress", "complete");
+    expect(screen.queryByRole("button", {name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text})).toBeNull();
+    fireEvent.click(screen.getByRole("button", {name: finalEditorialSlots.FINAL_ACCESSIBLE_BACK_HOME_01.text}));
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/portada");
+    expect(window.localStorage.getItem("gvo.test.progress")).toBe("complete");
   });
 
   it("no repite greeting por restart, resize, orientación o rerender", () => {
@@ -653,16 +353,6 @@ describe("FinalRootScreen", () => {
     expect(lia).toHaveAttribute("data-lia-motion-phase", "greeting");
     expect(lia).toHaveAttribute("data-lia-motion-frame", "2");
 
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text,
-      }),
-    );
     act(() => {
       window.dispatchEvent(new Event("resize"));
       window.dispatchEvent(new Event("orientationchange"));
@@ -682,11 +372,6 @@ describe("FinalRootScreen", () => {
     expect(lia).toHaveAttribute("data-lia-motion-phase", "idle");
     expect(lia).toHaveAttribute("data-lia-motion-frame", "1");
 
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text,
-      }),
-    );
     expect(lia).toHaveAttribute("data-lia-motion-phase", "idle");
     expect(lia).toHaveAttribute("data-lia-greeting-play-count", "1");
   });
@@ -742,7 +427,7 @@ describe("FinalRootScreen", () => {
     }
     expect(container.querySelector("[data-final-access-confirm-templates]")).toHaveAttribute("aria-hidden", "true");
     expect(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_BACK_HOME_01.text })).toHaveTextContent("Back to home");
-    expect(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_RESTART_01.text })).toHaveTextContent("Restart tour");
+    expect(screen.queryByRole("button", { name: en.FINAL_ACCESSIBLE_RESTART_01.text })).toBeNull();
     const routes = Array.from(container.querySelectorAll("a[data-final-access-id]"), (link) => link.getAttribute("href"));
     writeLanguagePreference("es");
     applyDocumentLanguage();
@@ -760,31 +445,6 @@ describe("FinalRootScreen", () => {
     act(() => vi.advanceTimersByTime(640));
     expect(lia).toHaveAttribute("data-lia-motion-phase", "greeting");
     expect(lia).toHaveAttribute("data-lia-motion-frame", "1");
-    fireEvent.click(screen.getByRole("button", { name: finalEditorialSlots.FINAL_ACCESSIBLE_RESTART_01.text }));
-    expect(screen.getByRole("button", { name: finalEditorialSlots.FINAL_RESTART_CANCEL_BTN_01.text })).not.toHaveFocus();
-  });
-
-  it.each([true, false])("localiza busy/error/retry EN y conserva la condición copySafe=%s", async (copySafe) => {
-    vi.spyOn(console, "error").mockImplementation(() => undefined);
-    writeLanguagePreference("en");
-    const en = getFinalEditorialSlots("en");
-    let finish!: (result: JourneyResetResult) => void;
-    const resetJourney = vi.fn().mockImplementationOnce(() => new Promise<JourneyResetResult>((resolve) => { finish = resolve; })).mockResolvedValueOnce({ deleted: [], durationMs: 1, ok: true, snapshotCount: 0, verifiedInitialState: true });
-    const { container } = renderFinalRootScreen({ resetJourney });
-    fireEvent.click(screen.getByRole("button", { name: en.FINAL_ACCESSIBLE_RESTART_01.text }));
-    expect(screen.getByLabelText(en.FINAL_RESTART_CONFIRM_01.text)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: en.FINAL_RESTART_CONFIRM_BTN_01.text }));
-    expect(screen.getByText(en.FINAL_RESTART_BUSY_01.text)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Cancel" })).toBeDisabled();
-    await act(async () => { finish({ copySafe, durationMs: 1, errorCode: "rollback_failed", failedStage: "rollback", ok: false, rollbackAttempted: true, rollbackVerified: copySafe, snapshotCount: 1, snapshotCreated: true }); await Promise.resolve(); });
-    expect(container.querySelector('[data-final-slot-id="FINAL_RESTART_ERROR_01"]') !== null).toBe(copySafe);
-    if (copySafe) expect(screen.getByRole("status")).toHaveTextContent(en.FINAL_RESTART_ERROR_01.text);
-    else expect(container).not.toHaveTextContent("Your progress was preserved");
-    const retry = screen.getByRole("button", { name: "Retry" });
-    expect(retry).toHaveAttribute("data-editorial-status", "REVIEW");
-    await act(async () => { fireEvent.click(retry); await Promise.resolve(); });
-    expect(resetJourney).toHaveBeenCalledTimes(2);
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/portada");
+    expect(container.querySelector("[data-final-restart-open]")).toBeNull();
   });
 });

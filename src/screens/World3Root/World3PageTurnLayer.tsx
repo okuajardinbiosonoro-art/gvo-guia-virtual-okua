@@ -9,7 +9,8 @@ export const world3NotebookGeometry = {
   turnPaper: { left: 447, top: 65, width: 711, height: 860 },
   // Inset from the ring binding and below the real top-right clip. Navigation
   // lives outside this rectangle; the original image still scales uniformly.
-  contentPaper: { left: 480, top: 156, width: 650, height: 772 },
+  // Center the reading column on the visible notebook while clearing the rings.
+  contentPaper: { left: 454, top: 156, width: 618, height: 772 },
 } as const;
 
 export function world3RegisteredRectangle(rect: { left: number; top: number; width: number; height: number }): CSSProperties {

@@ -1,0 +1,116 @@
+[
+  {
+    "original": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
+    "src": "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 1486526,
+    "bytes": 207706,
+    "sha256": "a0b42e18280c029c38e716ad03d098ecff8b7d92893be1083c32206a36126429",
+    "compositePSNR": 41.27,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "876126925a230ad3f0b5b38006112ca58aca35064beb2c0debaa9ca86bec9788",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "cover_bg_archivo_vivo_base_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+    "src": "/assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 691835,
+    "bytes": 67020,
+    "sha256": "241300651e784ed0f2d83b67c2e6924a6753e2ced7d7ae77a59c7f37639f7d3e",
+    "compositePSNR": 47.52,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "540b20575f2812088484045e1aaebc2c44e076489b5a6158e9906847f43727b4",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "lia_pose_activate_portal_1_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/cover-intro/portals/portal_1/glow/portal_1_glow_enabled_v1.png",
+    "src": "/assets/runtime/cover-intro/portals/portal_1/glow/portal_1_glow_enabled_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 448298,
+    "bytes": 98998,
+    "sha256": "b47e45d209d25b94880fafbf1985a90b246587c5dc462472737439864a64e305",
+    "compositePSNR": 48.95,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "6fe773e9f2f0af44ba21bed4159a71812904474daf084c848f7568503b6575d8",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "portal_1_glow_enabled_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/cover-intro/portals/portal_1/frame/portal_1_frame_enabled_v1.png",
+    "src": "/assets/runtime/cover-intro/portals/portal_1/frame/portal_1_frame_enabled_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 347648,
+    "bytes": 68092,
+    "sha256": "5829836c8651d0c0db9321b36c0aa2f0041ef734f45af0accf4174e19637810e",
+    "compositePSNR": 49.95,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "b35d8dad04f2c92915714a1e979095c726841af79f5ce639317dc8317fe1e2d2",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "portal_1_frame_enabled_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/cover-intro/portals/shared/frame/portal_locked_frame_base_v1.png",
+    "src": "/assets/runtime/cover-intro/portals/shared/frame/portal_locked_frame_base_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 302611,
+    "bytes": 51602,
+    "sha256": "8b010cfda2acccd607d4c7ead209a5cfaec8fef495800b1b612d05abff862573",
+    "compositePSNR": 53.03,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "6d4706a520b1e5130cde314ee27081ef03f6acf54a2ca0c14aba8aa1e40765aa",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "portal_locked_frame_base_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/cover-intro/locks/lock_soft_gold_v1.png",
+    "src": "/assets/runtime/cover-intro/locks/lock_soft_gold_v1_movil_v1.webp",
+    "width": 941,
+    "height": 1672,
+    "originalBytes": 437093,
+    "bytes": 50880,
+    "sha256": "2900571c2865fefd763de42bafe0198616b310438bd0dcea67a0bb960e9ce997",
+    "compositePSNR": 45.67,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "f1137ca67103cb15a247c587901789d497c4626f8602f443ee502b8ae9c1de85",
+    "consumers": [
+      "CoverIntroScreen",
+      "InitialExperienceScreen"
+    ],
+    "visualRole": "lock_soft_gold_v1",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  }
+]

@@ -222,7 +222,7 @@ export function World5RootScreen() {
       if (result.ok) {
         setSaveError(false);
         const next = WORLD5_QUIZ_AREA_ORDER[WORLD5_QUIZ_AREA_ORDER.indexOf(area) + 1];
-        playJourneySound("interaction", { replace: true });
+        playJourneySound(next ? "interaction" : rounds.current.eligible ? "roundSolved" : "roundIncomplete", { replace: true });
         navigate(next ? "/estacion/5/" + next : worldFiveEntryRoute, { replace: true });
       } else fail("advance");
     } finally { lock.current = false; setBusy(false); }

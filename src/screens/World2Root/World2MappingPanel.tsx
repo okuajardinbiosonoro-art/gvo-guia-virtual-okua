@@ -79,15 +79,12 @@ export function World2MappingPanel({
   onPresented,
   onFirstRunComplete,
 }: World2MappingPanelProps) {
-  const [activeStepIndex, setActiveStepIndex] = useState(
-    firstRunComplete ? mappingRelations.length - 1 : 0,
-  );
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [autoplayFinished, setAutoplayFinished] = useState(firstRunComplete);
   const [animationRevision, setAnimationRevision] = useState(0);
   const onFirstRunCompleteRef = useRef(onFirstRunComplete);
   const reviewEnabled = true;
-  const manualSelectionRef = useRef(false);
-  const manualSteps = useRef(new Set<number>());
+  const manualSteps = useRef(new Set<number>([0]));
   const [manualReview, setManualReview] = useState(false);
   const [assisted, setAssisted] = useState(false);
   const [visible, setVisible] = useState(() => document.visibilityState !== "hidden");
@@ -129,8 +126,6 @@ export function World2MappingPanel({
   useEffect(() => {
     if (!active || !visible) return;
     if (firstRunComplete) {
-      if (!manualSelectionRef.current)
-        setActiveStepIndex(mappingRelations.length - 1);
       setAutoplayFinished(true);
       return;
     }
@@ -139,8 +134,6 @@ export function World2MappingPanel({
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches &&
       !autoplayFinished
     ) {
-      setActiveStepIndex(mappingRelations.length - 1);
-      setAutoplayFinished(true);
       return;
     }
 
@@ -180,8 +173,8 @@ export function World2MappingPanel({
 
   function reviewStep(index: number) {
     if (interactionBlocked || !active) return;
-    manualSelectionRef.current = true;
     setManualReview(true);
+    manualSteps.current.add(activeStepIndex);
     manualSteps.current.add(index);
     setActiveStepIndex(index);
     setAnimationRevision((currentRevision) => currentRevision + 1);
@@ -230,6 +223,7 @@ export function World2MappingPanel({
               type="button"
               aria-label={en ? `Review relationship ${index + 1} of 3: ${["amplitude to intensity", "variation to rhythm", "range to pitch"][index]}` : `Revisar relación ${index + 1} de 3: ${relation.featureLabel} a ${relation.output}`}
               aria-pressed={index === activeStepIndex}
+              data-next={index === activeStepIndex + 1}
               data-active={index === activeStepIndex}
               data-mapping-progress-step={index + 1}
               disabled={interactionBlocked || !active}
@@ -283,21 +277,13 @@ export function World2MappingPanel({
           <span />
         </span>
 
-        <button
-          className="world2-mapping-sequence__core"
-          data-mapping-zone="interpretation"
-          type="button"
-          disabled={!active || interactionBlocked}
-          aria-label={translate("Ver resultado", "Show result")}
-          onClick={() => { setAssisted(true); setActiveStepIndex(2); setAutoplayFinished(true); }}
-        >
+        <div className="world2-mapping-sequence__core" data-mapping-zone="interpretation">
           <span
             className="world2-mapping-sequence__core-ring"
             aria-hidden="true"
           />
-          <small>{translate("VER RESULTADO", "SHOW RESULT")}</small>
           <strong>{translate("MAPEO", "MAPPING")}</strong>
-        </button>
+        </div>
 
         <span
           className="world2-mapping-sequence__flow world2-mapping-sequence__flow--output"
@@ -327,7 +313,7 @@ export function World2MappingPanel({
         <strong>{en ? ["Amplitude → Intensity", "Variation → Rhythm", "Range → Pitch"][activeStepIndex] : `${activeRelation.featureLabel[0]}${activeRelation.featureLabel.slice(1).toLowerCase()} → ${activeRelation.output[0].toUpperCase()}${activeRelation.output.slice(1)}`}</strong>
         <span>{en ? ["More strength, more intensity.", "Change organises rhythm.", "Range guides pitch."][activeStepIndex] : activeRelation.microcopy}</span>
       </p>
-      {autoplayFinished && (assisted || !manualReview) ? <p className="world2-mapping-result" data-mapping-result="all-correspondences">
+      {autoplayFinished && (assisted || !manualReview) ? <p tabIndex={-1} className="world2-mapping-result" data-mapping-result="all-correspondences">
         {translate("Amplitud → Intensidad · Variación → Ritmo · Rango → Altura", "Amplitude → Intensity · Variation → Rhythm · Range → Pitch")}
       </p> : null}
     </div>

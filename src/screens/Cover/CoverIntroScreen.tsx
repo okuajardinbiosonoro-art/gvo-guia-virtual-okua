@@ -144,7 +144,7 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
               </button>
             </div>
           </section> : null}
-          <div className={`cover-intro__portal-stage cover-portal-stage cover-activation-stage${portalReady ? " cover-portal-stage--ready" : ""}${opening ? " cover-portal-stage--opening" : ""}`}
+          {portalReady && <div className={`cover-intro__portal-stage cover-portal-stage cover-activation-stage${portalReady ? " cover-portal-stage--ready" : ""}${opening ? " cover-portal-stage--opening" : ""}`}
             aria-label={copy.portals} data-testid="cover-portal-stage">
             <div className="cover-intro__portal-group cover-portals-group">
               {opening ? <div className="cover-intro__portal-activation-rig" data-testid="cover-portal-activation-rig" aria-hidden="true">
@@ -179,10 +179,10 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
                 </button>;
               })}
             </div>
-          </div>
+          </div>}
         </section>
         <footer className="cover-intro__footer">
-          <h1 id="cover-intro-title" className="cover-intro__title">{copy.archiveTitle}</h1>
+          <h1 id="cover-intro-title" className="cover-intro__title">{portalReady && !coverRevisitActive ? (locale === "en" ? "Room I" : "Sala I") : copy.archiveTitle}</h1>
           {!started && !portalReady ? <button type="button" className="cover-intro__cta" disabled={!active}
             onClick={() => { if (active) { playJourneySound("interaction"); setError(null); setStarted(true); } }}>{copy.cta}</button> : null}
           {portalReady && !coverRevisitActive && !opening ? <p className="cover-intro__portal-announcement" role="status">{copy.portalAnnouncement}</p> : null}

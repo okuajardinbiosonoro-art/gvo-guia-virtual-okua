@@ -98,7 +98,7 @@ beforeEach(() => {
   essential.setJourneyRuntimeContext({ active: false, attemptId: null, screen: null, mode: "normal", authorized: false, reviewReturnAllowed: false });
   mounted = 0; unmounted = 0; semanticEvents = []; throwOnRender = false; destinationImageSource = null; destinationImageSources = []; onDestinationLayout = null; failMountedDestination = null;
   resize(390, 844);
-  const face: { family: string; status: string; load: () => Promise<unknown> } = { family: "Pixelify Sans Variable", status: "loaded", load: () => Promise.resolve() };
+  const face: { family: string; status: string; load: () => Promise<unknown> } = { family: "VT323", status: "loaded", load: () => Promise.resolve() };
   face.load = () => Promise.resolve(face);
   Object.defineProperty(document, "fonts", { configurable: true, value: {
     ready: Promise.resolve(), load: vi.fn(() => Promise.resolve([face])), check: () => true,
@@ -187,6 +187,35 @@ describe("JourneyPreparation independent lifecycle regression", () => {
     expect(screen.getByRole("button", { name: "Volver" })).toBeEnabled();
     expect(screen.queryByTestId("real-destination")).toBeNull();
     expect(semanticEvents).toEqual([]);
+  });
+
+  it("resumes an accepted QR after the browser stays hidden beyond the preparation deadline", async () => {
+    const receipt = seedPending();
+    const commit = vi.spyOn(progressStorage, "markStationCompleted");
+    const firstLoad = deferred<PreloadSummary>();
+    images.mockReturnValueOnce(firstLoad.promise);
+    let visibility: DocumentVisibilityState = "visible";
+    vi.spyOn(document, "visibilityState", "get").mockImplementation(() => visibility);
+    const show = (value: DocumentVisibilityState) => {
+      visibility = value;
+      act(() => document.dispatchEvent(new Event("visibilitychange")));
+    };
+
+    mount("/estacion/2"); await flush();
+    await advance(500);
+    show("hidden");
+    await advance(60_000);
+    expect(essential.readEssentialSnapshot()?.pendingTransition).toEqual(receipt);
+    expect(commit).not.toHaveBeenCalled();
+
+    show("visible");
+    await flush();
+    await act(async () => firstLoad.resolve(ready));
+    await advance(2600);
+    expect(screen.getByTestId("real-destination")).toHaveAttribute("data-active", "true");
+    expect(commit).toHaveBeenCalledTimes(1);
+    expect(progressStorage.readProgress().progress?.completedStations).toEqual([1]);
+    expect(screen.queryByRole("button", { name: "Reintentar" })).toBeNull();
   });
 
   it("orientation keeps the absolute budget even after a manual retry; retry alone renews it", async () => {
@@ -285,15 +314,15 @@ describe("JourneyPreparation independent lifecycle regression", () => {
     seedPending();
     const commit = vi.spyOn(progressStorage, "markStationCompleted");
     const original = essential.persistJourneyReceipt;
-    let clock = 14999;
+    let clock = 44999;
     mount("/estacion/2"); await flush(); await advance(100);
     vi.spyOn(performance, "now").mockImplementation(() => clock);
     vi.spyOn(essential, "persistJourneyReceipt").mockImplementation((receipt, token) => {
       const result = original(receipt, token);
-      if (receipt?.phase === "commit_verification_pending" && scenario === "phase exceeds deadline") clock = 15001;
+      if (receipt?.phase === "commit_verification_pending" && scenario === "phase exceeds deadline") clock = 45001;
       return result;
     });
-    if (scenario === "nominal returns expired") clock = 15001;
+    if (scenario === "nominal returns expired") clock = 45001;
     await advance(2500);
     expect(commit).not.toHaveBeenCalled();
     expect(progressStorage.readProgress().progress?.completedStations).toEqual([]);
@@ -307,10 +336,10 @@ describe("JourneyPreparation independent lifecycle regression", () => {
     vi.stubGlobal("matchMedia", () => ({ matches: false }));
     seedPending();
     const original = progressStorage.markStationCompleted;
-    let clock = 14999;
+    let clock = 44999;
     const commit = vi.spyOn(progressStorage, "markStationCompleted").mockImplementation((id) => {
-      expect(performance.now()).toBeLessThan(15000);
-      const result = original(id); clock = 15001; return result;
+      expect(performance.now()).toBeLessThan(45000);
+      const result = original(id); clock = 45001; return result;
     });
     mount("/estacion/2"); await flush(); await advance(100);
     vi.spyOn(performance, "now").mockImplementation(() => clock);
@@ -393,11 +422,11 @@ describe("JourneyPreparation independent lifecycle regression", () => {
     vi.stubGlobal("matchMedia", () => ({ matches: false }));
     seedPending();
     const commit = vi.spyOn(progressStorage, "markStationCompleted");
-    let clock = 14999, delayed = false;
+    let clock = 44999, delayed = false;
     onDestinationLayout = (element) => {
       // React runs child layout effects before the activity provider's layout
       // gate. Model time spent committing the first candidate reveal.
-      if (element.closest(".gvo-prepared-tree")?.getAttribute("data-journey-active") === "true") { clock = 15001; delayed = true; }
+      if (element.closest(".gvo-prepared-tree")?.getAttribute("data-journey-active") === "true") { clock = 45001; delayed = true; }
     };
     mount("/estacion/2"); await flush(); await advance(100);
     vi.spyOn(performance, "now").mockImplementation(() => clock);
@@ -498,11 +527,11 @@ describe("R4 absolute deadline identity", () => {
     const loading = deferred<PreloadSummary>(); images.mockReturnValue(loading.promise);
     // Time spent in routing/module/transition work belongs to the new receipt,
     // not a fresh window beginning when the destination controller is reached.
-    await clock.tick(12_000);
+    await clock.tick(42_000);
     await act(async () => { await router.navigate("/estacion/2"); }); await flush();
     const destinationOptions = images.mock.calls.at(-1)![1] as PreloadImagesOptions;
     expect(originOptions.signal?.aborted).toBe(true);
-    expect(destinationOptions.deadlineAt).toBe(acceptedAt + 15_000);
+    expect(destinationOptions.deadlineAt).toBe(acceptedAt + 45_000);
     expect(destinationOptions.deadlineAt! - clock.now()).toBe(3000);
     await clock.tick(3000);
     expect(destinationOptions.signal?.aborted).toBe(true);
@@ -525,9 +554,9 @@ describe("R4 absolute deadline identity", () => {
     expect(screen.getByTestId("real-destination")).toHaveAttribute("data-active", "true");
     const { receipt, acceptedAt } = await acceptFromDeliveredOrigin();
     const targetBefore = structuredClone(essential.readEssentialSnapshot()!.stations[2]), eventsBefore = semanticEvents.length;
-    await clock.tick(15_001);
+    await clock.tick(45_001);
     await act(async () => { await router.navigate("/estacion/2"); }); await flush(); await clock.tick(100);
-    for (const call of images.mock.calls.slice(1)) expect((call[1] as PreloadImagesOptions).deadlineAt).toBe(acceptedAt + 15_000);
+    for (const call of images.mock.calls.slice(1)) expect((call[1] as PreloadImagesOptions).deadlineAt).toBe(acceptedAt + 45_000);
     expect(commit).not.toHaveBeenCalled();
     expect(progressStorage.readProgress().progress?.completedStations).toEqual([]);
     expect(essential.readEssentialSnapshot()?.pendingTransition).toMatchObject({ transactionId: receipt.transactionId, phase: "pending" });
@@ -556,7 +585,7 @@ describe("R4 absolute deadline identity", () => {
     const destinationBefore = structuredClone(essential.readEssentialSnapshot()!.stations[2]);
     const progressBefore = localStorage.getItem("gvo.progress.v1"), mountsBefore = mounted, unmountsBefore = unmounted;
     const originalDeadline = (images.mock.calls.at(-1)![1] as PreloadImagesOptions).deadlineAt;
-    await clock.tick(20_000);
+    await clock.tick(50_000);
     act(() => resize(844, 390)); await flush();
     const adaptation = images.mock.calls.at(-1)![1] as PreloadImagesOptions;
     expect(adaptation.deadlineAt).toBe(clock.now() + 15_000);
@@ -629,8 +658,8 @@ describe("R4 mounted-image decode queue", () => {
     const targetBefore = structuredClone(essential.readEssentialSnapshot()!.stations[2]);
     mount("/estacion/2"); await flush(); now = 64; await advance(64);
     const options = images.mock.calls[0][1] as PreloadImagesOptions;
-    expect(queue.calls()).toBe(2); expect(options.deadlineAt).toBe(15_000);
-    now = 15_000; await advance(14_936);
+    expect(queue.calls()).toBe(2); expect(options.deadlineAt).toBe(45_000);
+    now = 45_000; await advance(44_936);
     expect(options.signal?.aborted).toBe(true);
     expect(screen.getByRole("button", { name: "Reintentar" })).toBeEnabled();
     expect(queue.calls()).toBe(2);

@@ -28,10 +28,10 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
 describe("Portada OBS03.2", () => {
-  it("conserva Portal I visible bloqueado y un solo iniciador, sin omisión", () => {
+  it("presenta un solo iniciador y reserva Portal I para el cierre", () => {
     const { container } = mount();
-    expect(screen.getByRole("button", { name: /Termina la presentación/ })).toBeDisabled();
-    expect(container.querySelectorAll("[data-portal-id]")).toHaveLength(1);
+    expect(screen.queryByRole("button", { name: /Termina la presentación/ })).toBeNull();
+    expect(container.querySelectorAll("[data-portal-id]")).toHaveLength(0);
     expect(screen.getByRole("button", { name: coverIntroText.cta })).toBeEnabled();
     expect(screen.queryByRole("button", { name: /omitir|sin presentación/i })).toBeNull();
     expect(screen.queryByRole("dialog")).toBeNull();
@@ -41,7 +41,7 @@ describe("Portada OBS03.2", () => {
   it("un flag antiguo de presentación no habilita Portal I ni se reinterpreta como OBS03", () => {
     window.localStorage.setItem(COVER_INTRO_STORAGE_KEY, "true");
     mount();
-    expect(screen.getByRole("button", { name: /Termina la presentación/ })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: /Termina la presentación/ })).toBeNull();
     expect(readEssentialSnapshot()?.cover.closed).toBe(false);
     expect(window.localStorage.getItem(COVER_INTRO_STORAGE_KEY)).toBe("true");
   });
@@ -51,6 +51,7 @@ describe("Portada OBS03.2", () => {
     mount({ onPortalEnter: enter });
     await advanceAll();
     expect(enter).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "Sala I" })).toBeVisible();
     const portal = screen.getByRole("button", { name: "Sala I · Raíz, lista para abrir." });
     expect(portal).toBeEnabled();
     expect(portal).toHaveFocus();
@@ -76,7 +77,7 @@ describe("Portada OBS03.2", () => {
     const fail = vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new DOMException("Blocked", "QuotaExceededError"); });
     await act(async () => fireEvent.click(screen.getByRole("button", { name: "Empieza aquí" })));
     expect(screen.getByRole("alert")).toHaveTextContent("No fue posible guardar");
-    expect(container.querySelector('[data-portal-id="portal-1"]')).toBeDisabled();
+    expect(container.querySelector('[data-portal-id="portal-1"]')).toBeNull();
     expect(readEssentialSnapshot()?.cover.closed).toBe(false);
     fail.mockRestore();
     await act(async () => fireEvent.click(screen.getByRole("button", { name: "Reintentar guardado" })));
@@ -103,7 +104,7 @@ describe("Portada OBS03.2", () => {
   it("EN se resuelve al renderizar, incluidos diálogo, portal y ayudas", async () => {
     mount({ locale: "en" });
     expect(screen.getByRole("heading", { name: "Interactive Exhibition" })).toBeVisible();
-    expect(screen.getByRole("button", { name: /Complete the introduction/ })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: /Complete the introduction/ })).toBeNull();
     await act(async () => fireEvent.click(screen.getByRole("button", { name: "Start here" })));
     expect(screen.getByText(coverIntroDialogues[0].en)).toBeVisible();
     expect(screen.getByRole("button", { name: "Lía’s next dialogue" })).toBeEnabled();

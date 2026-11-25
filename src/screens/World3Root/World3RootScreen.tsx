@@ -8,7 +8,7 @@ import { useJourneyActivity } from "../../app/journey/JourneyActivation";
 import { canUseUiStep, closeEssentialRoom, confirmEssentialStep, invalidateJourneyEssential, isEssentialExitReady, markEssentialPresented, useEssentialFlow, type EssentialWriteResult } from "../../app/journey/journeyEssential";
 import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldThreeToWorldFourTransitionRoute } from "../../app/routes";
-import { GestureHint } from "../../components/GestureHint/GestureHint";
+import { gestureHintAssets } from "../../components/GestureHint/gestureHintAssets";
 import type { Station3RecordId } from "../../domain/checkpoints/world3Checkpoint";
 import type { ScreenAssetBundle } from "../../shared/assets/screenAssetBundles";
 import { useAssetPreloader } from "../../shared/assets/useAssetPreloader";
@@ -59,9 +59,9 @@ export function World3RootScreen() {
   const screenRef = useRef<HTMLElement>(null);
   const turnWindow = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
-  const scrollAnchor = useRef<HTMLSpanElement>(null);
+  const readingHintRef = useRef<HTMLButtonElement>(null);
   const [needsScroll, setNeedsScroll] = useState(false);
-  const [hintDismissed, setHintDismissed] = useState(false);
+  const [moreBelow, setMoreBelow] = useState(false);
   const [saving, setSaving] = useState(false);
   const [failure, setFailure] = useState(false);
   const savingRef = useRef(false);
@@ -69,6 +69,7 @@ export function World3RootScreen() {
   const requestKey = useRef("");
   const titleRef = useRef<HTMLHeadingElement>(null);
   const roomTitleRef = useRef<HTMLHeadingElement>(null);
+  const returningToIndex = useRef(false);
   const exitLock = useRef(false);
   const presentable = activity.active && visible && resources.ready && !turn && !!step;
   const confirmedPage = !!step && flow.confirmedStepIds.includes(step);
@@ -76,6 +77,8 @@ export function World3RootScreen() {
   const canTurnFolio = presentable && flow.storageVerified && !saving && !failure;
   const canAdvance = canTurnFolio && (!lastFolio || flow.readOnly || confirmedPage || presentedPage);
   const indexCurrent = pageByStep[flow.activeStepId ?? ""] ?? lastOpened;
+  const nextChapter = flow.closed ? undefined : content.records.find(record =>
+    canUseUiStep(3, stepByPage[record.id]) && !flow.confirmedStepIds.includes(stepByPage[record.id]));
 
   function recordState(id: Station3RecordId) {
     if (!canUseUiStep(3, stepByPage[id])) return "locked";
@@ -113,7 +116,8 @@ export function World3RootScreen() {
     screenRef.current?.scrollIntoView?.({ block: "start", inline: "nearest", behavior: "instant" });
   }
   function showIndex() {
-    alignNewPage(); setRequestedPage(null); setSelection(null); setFolioIndex(0); setSelectedMotif(null); setMotifEvent(0); setHintDismissed(false); animatePage("close");
+    returningToIndex.current = true;
+    alignNewPage(); setRequestedPage(null); setSelection(null); setFolioIndex(0); setSelectedMotif(null); setMotifEvent(0); animatePage("close");
     roomTitleRef.current?.focus({ preventScroll: true });
   }
   function index() {
@@ -122,13 +126,13 @@ export function World3RootScreen() {
   }
   function previousFolio() {
     if (attemptRef.current !== attemptId || !canTurnFolio || folioIndex === 0) return;
-    alignNewPage(); setFolioIndex((value) => value - 1); setSelectedMotif(null); setMotifEvent(0); setHintDismissed(false); animatePage("close");
+    alignNewPage(); setFolioIndex((value) => value - 1); setSelectedMotif(null); setMotifEvent(0); animatePage("close");
   }
   async function advance() {
     if (attemptRef.current !== attemptId || !active || !step || !canAdvance) return;
     // Local leaves never write presentation, confirmation, practice or progress.
     if (!lastFolio) {
-      alignNewPage(); setFolioIndex((value) => value + 1); setSelectedMotif(null); setMotifEvent(0); setHintDismissed(false); animatePage("open");
+      alignNewPage(); setFolioIndex((value) => value + 1); setSelectedMotif(null); setMotifEvent(0); animatePage("open");
       return;
     }
     if (flow.readOnly || confirmedPage) { showIndex(); return; }
@@ -142,13 +146,13 @@ export function World3RootScreen() {
     else invalidateJourneyEssential();
   }
   useEffect(() => {
-    savingRef.current = false; retry.current = null; requestKey.current = ""; exitLock.current = false;
+    savingRef.current = false; retry.current = null; requestKey.current = ""; exitLock.current = false; returningToIndex.current = false;
     setSaving(false); setFailure(false); setSelection(null); setRequestedPage(null); setTurn(null);
-    setFolioIndex(0); setLastOpened(null); setSelectedMotif(null); setMotifEvent(0); setHintDismissed(false);
+    setFolioIndex(0); setLastOpened(null); setSelectedMotif(null); setMotifEvent(0);
   }, [attemptId]);
   useEffect(() => {
     if (!requestedPage || requestedPage.attemptId !== attemptId || !requestedResources.ready || !activity.active || !visible || saving || failure || !canUseUiStep(3, stepByPage[requestedPage.id])) return;
-    alignNewPage(); setSelection(requestedPage.id); setLastOpened(requestedPage.id); setFolioIndex(0); setRequestedPage(null); setSelectedMotif(null); setMotifEvent(0); setHintDismissed(false); animatePage("open");
+    alignNewPage(); setSelection(requestedPage.id); setLastOpened(requestedPage.id); setFolioIndex(0); setRequestedPage(null); setSelectedMotif(null); setMotifEvent(0); animatePage("open");
   }, [attemptId, requestedPage, requestedResources.ready, activity.active, visible, saving, failure]);
   useEffect(() => {
     const change = () => setVisible(document.visibilityState !== "hidden");
@@ -173,16 +177,44 @@ export function World3RootScreen() {
     titleRef.current?.focus({ preventScroll: true });
   }, [active, folioIndex, locale, activity.active, visible, resources.ready, turn]);
   useEffect(() => {
+    if (!returningToIndex.current || active || turn || saving || !activity.active || !resources.ready || !visible) return;
+    const target = screenRef.current?.querySelector<HTMLButtonElement>(
+      flow.exitReady ? '[data-interstation-qr-action="open"]' : '[data-open-next="true"]',
+    );
+    if (!target || target.disabled) return;
+    returningToIndex.current = false;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+  }, [active, turn, saving, activity.active, resources.ready, visible, flow.exitReady, nextChapter]);
+  useEffect(() => {
     const viewport = viewportRef.current;
-    if (!viewport) return;
+    const paper = viewport?.parentElement;
+    const contents = viewport?.firstElementChild;
+    if (!viewport || !paper || !contents) return;
     viewport.scrollTop = 0;
-    const measure = () => setNeedsScroll(viewport.scrollHeight > viewport.clientHeight + 2);
+    const measure = () => {
+      const style = getComputedStyle(viewport);
+      // Compare the text against the FULL leaf. Reserving a bookmark for an
+      // overflowing leaf must never make a short leaf appear to need one.
+      const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+      const overflowsLeaf = contents.getBoundingClientRect().height + padding > paper.clientHeight + 2;
+      const more = overflowsLeaf && viewport.scrollHeight - viewport.clientHeight - viewport.scrollTop > 2;
+      if (!more && document.activeElement === readingHintRef.current) viewport.focus({ preventScroll: true });
+      setNeedsScroll(overflowsLeaf);
+      setMoreBelow(more);
+    };
     measure();
     const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(measure);
     observer?.observe(viewport);
-    if (viewport.firstElementChild) observer?.observe(viewport.firstElementChild);
+    observer?.observe(paper);
+    observer?.observe(contents);
+    viewport.addEventListener("scroll", measure, { passive: true });
     window.addEventListener("resize", measure);
-    return () => { observer?.disconnect(); window.removeEventListener("resize", measure); };
+    return () => {
+      observer?.disconnect();
+      viewport.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+    };
   }, [active, folioIndex, locale, resources.ready, turn]);
   useEffect(() => {
     const key = attemptId + ":" + step;
@@ -203,11 +235,16 @@ export function World3RootScreen() {
     <header className="s3-title"><h1 id="station3-title" ref={roomTitleRef} tabIndex={-1}>{content.heading}</h1></header>
     <div className="s3-practice-layout" data-lia-destination={active ?? "index"}>
       <div className="s3-practice-guide" aria-hidden="true"><World3LiaActor active={activity.active && visible} motionEnabled={!turn && resources.ready && (selectedMotif !== null || motifEvent === 0)} action={selectedMotif ? "respond" : page ? "present" : "attention"} target={active ?? "index"} replayKey={`${active}:${folioIndex}:${motifEvent}`} reducedMotion={reducedMotion} motionMode="clips" /></div>
-      {!active && !flow.closed ? <aside className="s3-practice-guide-dialogue" aria-label={locale === "en" ? "Lía’s dialogue" : "Diálogo de Lía"} data-editorial-source-id="TXT_3_514ab0f6e29f" data-editorial-origin="word-p066"><strong>Lía</strong><p>{content.indexDialogue}</p></aside> : null}
+      {!active && !flow.closed ? <aside className="s3-practice-guide-dialogue" aria-label={locale === "en" ? "Lía’s dialogue" : "Diálogo de Lía"}>
+        <strong>Lía</strong><p data-editorial-source-id="TXT_3_514ab0f6e29f" data-editorial-origin="word-p066">{content.indexDialogue}</p>
+        {nextChapter && <p className="s3-practice-invitation">{locale === "en"
+          ? `Open “${nextChapter.label}” in the notebook.`
+          : `Abre «${nextChapter.label}» en el cuaderno.`}</p>}
+      </aside> : null}
       <section className="s3-practice-notebook" aria-label={locale === "en" ? "Practice notebook" : "Cuaderno de práctica"} data-notebook-material="original-proportional">
         <div className="s3-practice-base-clip" aria-hidden="true"><img className="s3-practice-base" src={world3RuntimeAssets.notebook.openBase} alt="" draggable="false" /></div>
         <div className="s3-practice-paper" style={paperStyle} aria-busy={!!turn}>
-          <div className="s3-practice-scroll" ref={viewportRef} tabIndex={needsScroll && activity.active ? 0 : -1} aria-label={locale === "en" ? "Notebook content" : "Contenido del cuaderno"} onScroll={() => setHintDismissed(true)}>
+          <div id="station3-reading-area" className="s3-practice-scroll" ref={viewportRef} role="region" tabIndex={needsScroll && activity.active ? 0 : -1} aria-label={locale === "en" ? "Notebook content" : "Contenido del cuaderno"}>
             {page && active && folio ? <article data-station3-page={active} data-station3-folio-source={folio.sourceId} data-motif-presenting={presentable && motifEvent === 0} key={`${active}:${folioIndex}`}>
               <header className="s3-practice-page-heading"><div><p className="s3-practice-number">{page.registro}</p><h2 ref={titleRef} tabIndex={-1} aria-describedby="station3-folio-position">{page.label}</h2><h3>{page.indexCopy}</h3></div>
                 <button type="button" className="s3-practice-motif-button" data-motif-selected={selectedMotif === active} data-motif-kind={active} aria-label={`${content.ui.selectIllustration}: ${page.label}`} aria-pressed={selectedMotif === active} disabled={!canTurnFolio} onClick={() => { setSelectedMotif((value) => value === active ? null : active); setMotifEvent((value) => value + 1); }}><img key={motifEvent} className="s3-practice-motif s3-practice-motif--page" src={world3RuntimeAssets.practice[active]} alt="" draggable="false" /><span className="s3-practice-motif-response" aria-hidden="true" /></button>
@@ -235,18 +272,35 @@ export function World3RootScreen() {
             </article> : <div data-station3-page="index">
               <ol className="s3-practice-index">{content.records.map((record) => {
                 const state = recordState(record.id), completed = flow.confirmedStepIds.includes(stepByPage[record.id]);
-                const stateLabel = state === "current" ? content.ui.current : state === "completed" ? content.ui.confirmed : state === "locked" ? content.ui.locked : content.ui.available;
-                return <li key={record.id}><button type="button" data-station3-record={record.id} data-record-state={state} data-record-confirmed={completed} aria-current={state === "current" ? "page" : undefined} aria-describedby={`station3-index-state-${record.id}`} disabled={!activity.active || saving || failure || !!turn || !resources.ready || state === "locked"} onClick={() => open(record.id)} aria-label={record.accessibleLabel}><span className="s3-practice-number">{String(record.order).padStart(2, "0")}</span><img className="s3-practice-motif s3-practice-motif--index" src={world3RuntimeAssets.practice[record.id]} alt="" draggable="false" /><span className="s3-practice-index-copy"><strong>{record.label}</strong><span>{record.indexCopy}</span><span id={`station3-index-state-${record.id}`} className="s3-practice-index-state">{completed ? `✓ ${content.ui.confirmed}` : stateLabel}</span></span></button></li>;
+                const stateLabel = requestedPage?.id === record.id ? content.ui.opening
+                  : state === "locked" ? content.ui.locked : content.ui.openChapter;
+                return <li key={record.id}><button type="button" data-station3-record={record.id} data-record-state={state} data-open-next={nextChapter?.id === record.id || undefined} data-record-confirmed={completed} aria-current={nextChapter?.id === record.id ? "step" : undefined} aria-describedby={`station3-index-state-${record.id}`} disabled={!activity.active || saving || failure || !!turn || !resources.ready || state === "locked"} onClick={() => open(record.id)} aria-label={record.accessibleLabel}><span className="s3-practice-number">{String(record.order).padStart(2, "0")}</span><img className="s3-practice-motif s3-practice-motif--index" src={world3RuntimeAssets.practice[record.id]} alt="" draggable="false" /><span className="s3-practice-index-copy"><strong>{record.label}</strong><span>{record.indexCopy}</span><span id={`station3-index-state-${record.id}`} className="s3-practice-index-state">{completed ? `✓ ${content.ui.confirmed}` : stateLabel}</span></span></button></li>;
               })}</ol>
             </div>}
           </div>
+          {/* Layout-dependent guidance belongs to the active reader. The staged image set stays stable through preparation. */}
+          {activity.active && needsScroll ? (
+            <button
+              type="button"
+              ref={readingHintRef}
+              className="s3-practice-scroll-cue"
+              aria-label={content.ui.scroll}
+              aria-controls="station3-reading-area"
+              aria-hidden={!moreBelow || !visible || !!turn}
+              onClick={() => {
+                const viewport = viewportRef.current;
+                if (viewport) viewport.scrollBy({ top: viewport.clientHeight * 0.75, behavior: reducedMotion ? "instant" : "smooth" });
+              }}
+            >
+              <img src={gestureHintAssets["swipe-vertical"]} alt="" width="56" height="56" draggable="false" />
+              <span className="s3-practice-scroll-full">{content.ui.scroll}</span>
+              <span className="s3-practice-scroll-short">{locale === "en" ? "Read more" : "Leer más"}</span>
+            </button>
+          ) : null}
         </div>
         <div className="s3-practice-turn-window" style={turnStyle} ref={turnWindow}>{turn ? <World3PageTurnLayer key={turn.key} direction={turn.direction} reducedMotion={reducedMotion} width={turn.width} height={turn.height} asset={world3RuntimeAssets.notebook.turnPage} /> : null}</div>
       </section>
       <div className="s3-practice-paper-actions" data-station3-navigation="outside-original-paper">
-        {needsScroll && !hintDismissed ? <span className="s3-practice-scroll-cue">{content.ui.scroll}</span> : null}
-        <span ref={scrollAnchor} className="s3-practice-scroll-anchor" aria-hidden="true" />
-        <GestureHint variant="swipe-vertical" direction="up" active={activity.active && visible && !turn && needsScroll && !hintDismissed} completed={hintDismissed} targetLabel={content.ui.scroll} anchorRef={scrollAnchor} />
         {page ? <>
           <p id="station3-folio-position" className="s3-practice-folio-position" role="status">{page.label} · {content.ui.folio} {folioIndex + 1} {content.ui.of} {page.folios.length}</p>
           <nav className="s3-practice-page-nav" aria-label={locale === "en" ? "Notebook pages" : "Páginas del cuaderno"}>

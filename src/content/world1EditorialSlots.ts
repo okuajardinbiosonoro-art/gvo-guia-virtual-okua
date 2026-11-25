@@ -86,7 +86,7 @@ const world1EnglishSegments: Record<string, readonly string[]> = {
   TXT_1_8dca94bf5283: [
     "The earth, light, water, air and those who approach to care for it are part of the same relationship.",
     "Before sonifying a signal, we need to recognise that web of connections.",
-    "At OKÚA, listening begins when we stop seeing the plant as an isolated thing and begin to see it as a being of living relationships.",
+    "In OKÚA, listening begins when we stop seeing the plant as an isolated thing and begin to see it as a being of living relationships.",
   ],
   TXT_1_8baa6441ea68: [
     "To perceive is to sharpen our attention to notice what is hidden from view.",
@@ -95,7 +95,7 @@ const world1EnglishSegments: Record<string, readonly string[]> = {
   ],
   TXT_1_08d39e75680b: [
     "The plant's pulse is inaudible; it needs mediation so that the human ear can perceive that hidden music in the rhythm of life.",
-    "At Okúa, we developed a system that translates those bioelectrical pulses into digital signals, which can control lights and virtual musical instruments live.",
+    "In Okúa, we developed a system that translates those bioelectrical pulses into digital signals, which can control lights and virtual musical instruments live.",
     "So that you can see and hear the invisible.",
   ],
 };
@@ -130,7 +130,7 @@ export function getWorld1Editorial(locale: World1Locale) {
   set("W1_INTRO_EYEBROW_01", en ? "Room I · Root" : "Sala I · Raíz");
   set("W1_INTRO_TITLE_01", en ? "Before listening, we must learn to observe:" : "Antes de escuchar, debemos aprender a observar:");
   set("W1_RELATION_EYEBROW_01", en ? "RELATIONSHIP" : "RELACIÓN");
-  set("W1_RELATION_TITLE_01", en ? "The plant is not isolated: it lives in relationship with everything that sustains it." : "La planta no está aislada: vive en relación con todo lo que la sostiene.");
+  set("W1_RELATION_TITLE_01", en ? "A plant is not isolated: it lives in relationship with everything that sustains it." : "La planta no está aislada: vive en relación con todo lo que la sostiene.");
   set("W1_PERCEPTION_EYEBROW_01", en ? "PERCEPTION" : "PERCEPCIÓN");
   set("W1_PERCEPTION_TITLE_01", en ? "A plant may seem motionless, but its pulse never stops." : "Una planta puede parecer inmóvil, pero su pulso nunca se detiene.");
   set("W1_MEDIATION_EYEBROW_01", en ? "MEDIATION" : "MEDIACIÓN");

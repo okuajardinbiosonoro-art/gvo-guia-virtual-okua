@@ -1417,6 +1417,11 @@
 .world1-root-node__label[data-world1-title-revealed="false"] {
   visibility: hidden;
 }
+@media (max-width: 340px) {
+  .world1-room-heading {
+    top: calc(64px + env(safe-area-inset-top, 0px));
+  }
+}
 .world1-root-narrative[data-world1-reading-visible="false"] {
   visibility: hidden;
 }
@@ -1444,7 +1449,8 @@
 .world1-scene-exit {
   position: relative;
   z-index: 9;
-  width: min(88%, 32rem);
+  width: 100%;
+  text-align: center;
   min-width: 0;
   color: #fff1d2;
 }
@@ -1453,13 +1459,7 @@
   justify-items: center;
   width: 100%;
 }
-.world1-root-screen:has(> .world1-scene-exit) {
-  grid-template-columns: minmax(0, 1fr);
-  align-content: center;
-  gap: max(1rem, 2svh);
-  padding-block-end: max(16px, env(safe-area-inset-bottom));
-}
-.world1-root-screen:has(> .world1-scene-exit) .world1-root-stage-frame {
+.world1-root-screen[data-world1-exit-ready="true"] .world1-root-stage-frame {
   --world1-stage-frame-scale: 1;
 }
 .world1-reading-more {
@@ -1554,14 +1554,14 @@
   line-height: 1.45;
 }
 @media (orientation: portrait) {
-  .world1-root-screen:is([data-world1-root-state="intro"], [data-world1-root-state="ready_to_continue"])
+  .world1-root-screen[data-world1-root-state]
     .world1-root-narrative {
     top: 58%;
     bottom: 5%;
     max-height: none;
     transform: translateX(-50%);
   }
-  .world1-root-screen:is([data-world1-root-state="intro"], [data-world1-root-state="ready_to_continue"])
+  .world1-root-screen[data-world1-root-state]
     .world1-root-narrative__viewport {
     height: 100%;
     max-height: none;
@@ -1636,6 +1636,37 @@
   padding: 0.55rem clamp(0.55rem, 3vw, 1rem);
   -webkit-mask-image: none;
   mask-image: none;
+}
+
+.world1-scene-exit .gvo-journey-exit {
+  max-inline-size: 100%;
+}
+
+/* The final reading and its real scanner share one action area. Let long
+   translations and enlarged type extend the page below the illustration. */
+@media (orientation: portrait), (min-height: 551px) {
+  .world1-root-screen[data-world1-exit-ready="true"] .world1-root-stage-frame {
+    display: flow-root;
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+  .world1-root-screen[data-world1-exit-ready="true"] .world1-root-stage-coordinate-layer {
+    inset-block-end: auto;
+    height: auto;
+    aspect-ratio: 941 / 1672;
+  }
+  .world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative {
+    position: relative;
+    inset: auto;
+    transform: none;
+    max-height: none;
+    margin: 103% auto 1rem;
+  }
+  .world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__viewport {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 .world1-root-screen[data-world1-exit-ready="true"] .world1-root-narrative__track {

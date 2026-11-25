@@ -2,9 +2,10 @@ import { interstationQrContracts } from "../qr/interstationQr";
 import { captureJourneyMutationToken, coherentProgressPrefixLength, getJourneyRuntimeContext, isEssentialExitReady, isJourneyResetInProgress, isJourneySnapshotCurrent, persistJourneyReceipt, readEssentialSnapshot, type EssentialScreen, type JourneyReceipt } from "./journeyEssential";
 import { captureValidatedJourneyReviewContext, resolveJourneyAccess } from "./journeyAccess";
 import { navigationStateForReceipt, validateJourneyReceipt, type JourneyReviewContext } from "./journeyReceipt";
+import { journeyPreparationBudgetMs } from "./preparationTiming";
 const transactionStarts = new Map<string, number>();
 let entryDeadline: number | null = null;
-export function startEntryPreparation() { entryDeadline = performance.now() + 15000; return entryDeadline; }
+export function startEntryPreparation() { entryDeadline = performance.now() + journeyPreparationBudgetMs(); return entryDeadline; }
 export function readEntryPreparationDeadline() { return entryDeadline; }
 export function finishEntryPreparation() { entryDeadline = null; }
 export function receiptStartedAt(id: string) { if (!transactionStarts.has(id)) transactionStarts.set(id, performance.now()); return transactionStarts.get(id)!; }
@@ -15,6 +16,18 @@ export function pendingJourneyNavigationState() {
   return snapshot && validateJourneyReceipt(receipt, snapshot, coherentProgressPrefixLength()) ? navigationStateForReceipt(receipt) : undefined;
 }
 
+/** Reopening Portada can resume a scan that the route already accepted. */
+export function resumePendingQrFromCover(attemptId: string | null) {
+  const context = getJourneyRuntimeContext();
+  if (!attemptId || context.attemptId !== attemptId || !context.active || !context.authorized ||
+    context.screen !== "cover" || context.mode !== "normal" || document.visibilityState === "hidden" || isJourneyResetInProgress()) return null;
+  const snapshot = readEssentialSnapshot(), pending = snapshot?.pendingTransition;
+  if (!snapshot || !pending?.canonicalPayload || pending.acceptedAuthorizationKind !== "normal" ||
+    !validateJourneyReceipt(pending, snapshot, coherentProgressPrefixLength())) return null;
+  transactionStarts.set(pending.transactionId, performance.now());
+  return pending.to;
+}
+
 function persistIntent(receipt: JourneyReceipt, token: ReturnType<typeof captureJourneyMutationToken>) {
   const snapshot = readEssentialSnapshot();
   if (!snapshot || !validateJourneyReceipt(receipt, snapshot, coherentProgressPrefixLength())) return false;
@@ -22,7 +35,9 @@ function persistIntent(receipt: JourneyReceipt, token: ReturnType<typeof capture
   const pending = snapshot.pendingTransition;
   if (pending) {
     const acquiredQrResume = pending.kind === "qr" && receipt.kind === "legacy_resume" && pending.acceptedAuthorizationKind === "normal" && receipt.acceptedAuthorizationKind === "normal";
-    return validateJourneyReceipt(pending, snapshot, coherentProgressPrefixLength()) && pending.from === receipt.from && pending.to === receipt.to && (pending.kind === receipt.kind || acquiredQrResume);
+    const sameJourney = validateJourneyReceipt(pending, snapshot, coherentProgressPrefixLength()) && pending.from === receipt.from && pending.to === receipt.to && (pending.kind === receipt.kind || acquiredQrResume);
+    if (sameJourney) transactionStarts.set(pending.transactionId, performance.now());
+    return sameJourney;
   }
   if (!persistJourneyReceipt(receipt, token).ok) return false;
   transactionStarts.set(receipt.transactionId, performance.now());

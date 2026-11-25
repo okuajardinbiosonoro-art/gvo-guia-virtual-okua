@@ -77,7 +77,7 @@ describe("OBS04 IV — explanation before the separate ordering game", () => {
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBeNull();
     expect(screen.queryByRole("button", { name: /Escanea/ })).toBeNull();
     await click("Comenzar");
-    expect(readWorld4OrderingCheckpoint()).toMatchObject({ status: "ok", checkpoint: { phase: "playing", remainingActiveMs: 90_000, closed: false } });
+    expect(readWorld4OrderingCheckpoint()).toMatchObject({ status: "ok", checkpoint: { phase: "playing", remainingActiveMs: 60_000, closed: false } });
     expect(window.localStorage.getItem("gvo.progress.v1")).toBeNull();
   });
 
@@ -89,18 +89,18 @@ describe("OBS04 IV — explanation before the separate ordering game", () => {
       confirmedStepIds: WORLD4_ORDERING_TARGET.slice(0, 2), activeStepId: "esp32",
     }));
     const priorGame = JSON.stringify({
-      ...freshWorld4OrderingState(), phase: "paused", remainingActiveMs: 64_250,
+      ...freshWorld4OrderingState(), phase: "paused", remainingActiveMs: 54_250,
       permutation: [...WORLD4_ORDERING_TARGET.slice(1), "planta"], selectedObjectId: "router",
     });
     window.localStorage.setItem(WORLD4_ORDERING_STORAGE_KEY, priorGame);
     show(); await flush();
-    expect(screen.getByRole("heading", { name: "Microcontrolador" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Micro - controlador" })).toBeVisible();
     act(() => vi.advanceTimersByTime(120_000)); await flush();
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(priorGame);
     await completeTour("es", 2);
     expect(screen.getByRole("button", { name: "Retomar" })).toBeVisible();
     expect(window.localStorage.getItem(WORLD4_ORDERING_STORAGE_KEY)).toBe(priorGame);
-    expect(readWorld4OrderingCheckpoint()).toMatchObject({ checkpoint: { remainingActiveMs: 64_250, selectedObjectId: "router" } });
+    expect(readWorld4OrderingCheckpoint()).toMatchObject({ checkpoint: { remainingActiveMs: 54_250, selectedObjectId: "router" } });
   });
 
   it("does not reinterpret an old solved game as the six explanatory confirmations", async () => {

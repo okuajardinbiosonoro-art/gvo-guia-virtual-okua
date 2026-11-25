@@ -84,7 +84,7 @@ export function getStation3Content(locale: World3Locale) {
     },
     TXT_3_f4d4d818e31e: {
       sourceId: "TXT_3_f4d4d818e31e",
-      text: en ? "Accept the experience as a unique concert the plants give you, and let the sound carry you." : "Acepta la experiencia como un concierto único que te regalan las plantas y déjate llevar por el sonido.",
+      text: en ? "Accept the experience as a unique concert plants give you, and let yourself get carried away by the sound." : "Acepta la experiencia como un concierto único que te regalan las plantas y déjate llevar por el sonido.",
       illustration: art.musica,
     },
     TXT_3_1e4564d904af: {
@@ -122,15 +122,18 @@ export function getStation3Content(locale: World3Locale) {
     ? "It is time to connect your energy with the energy of Nature. Connecting involves a ritual, a willingness. Follow these simple steps and give your body and mind five minutes of rest."
     : "Ha llegado el momento de conectar tu energía con la energía de la Naturaleza. Conectar conlleva un ritual, una disposición. Sigue estos sencillos pasos y regala a tu cuerpo y mente cinco minutos de descanso.";
   const practiceBenefits = en ? [
-    { title: "Mindfulness", text: "Unhurried observation reveals shapes, textures and small changes that often go unnoticed." },
-    { title: "Deep listening", text: "The sounds of the garden become more distinct. Their rhythms, silences and nuances reveal how they relate to one another." },
+    { title: "Calm", text: "A few minutes of slow, comfortable breathing can help you feel calmer. Practising mindfulness regularly may also ease feelings of stress and anxiety." },
+    { title: "Mindfulness and deep listening", text: "Listening closely helps you notice the rhythms, silences and small changes in the Garden." },
+    { title: "Concentration", text: "Regular mindfulness practice may help you concentrate and keep information in mind while you use it." },
   ] : [
-    { title: "Atención plena", text: "La observación pausada permite descubrir formas, texturas y pequeños cambios que suelen pasar inadvertidos." },
-    { title: "Escucha profunda", text: "Los sonidos del Jardín se distinguen mejor. Sus ritmos, silencios y matices revelan cómo se relacionan entre sí." },
+    { title: "Calma", text: "Unos minutos de respiración pausada pueden ayudarte a sentir calma. Practicar la atención plena con regularidad también puede aliviar el estrés y la ansiedad." },
+    { title: "Atención plena y escucha profunda", text: "La escucha atenta te permite distinguir los ritmos, los silencios y los pequeños cambios del Jardín." },
+    { title: "Concentración", text: "La práctica habitual de la atención plena puede ayudarte a concentrarte y a recordar lo que necesitas mientras haces algo." },
   ];
   return { records, groups, practiceBenefits, heading: (en ? "Room III · " : "Sala III · ") + t("TXT_3_b17de4dff672"), connect: t("TXT_3_74471ccd389d"), introduction: t("TXT_3_514ab0f6e29f"), indexDialogue, closing: t("TXT_3_ff711cf372d1"), completed: t("TXT_3_b991b344a871"), ui: {
     index: en ? "Index" : "Índice", returnIndex: en ? "Back to index" : "Volver al índice",
-    scroll: en ? "Scroll to read more" : "Desliza para seguir leyendo", retry: en ? "Try again" : "Reintentar", saveError: en ? "We could not verify your progress. Try again before continuing." : "No pudimos verificar el guardado. Reintenta antes de continuar.",
+    openChapter: en ? "Open chapter" : "Abrir capítulo", opening: en ? "Opening…" : "Abriendo…",
+    scroll: en ? "Swipe up or tap to read more" : "Desliza hacia arriba o toca para leer más", retry: en ? "Try again" : "Reintentar", saveError: en ? "We could not verify your progress. Try again before continuing." : "No pudimos verificar el guardado. Reintenta antes de continuar.",
     qr: en ? "Scan the QR code in the next room to continue." : "Escanea el QR de la siguiente sala para continuar.", selected: en ? "Selected" : "Seleccionado", selectIllustration: en ? "Explore illustration" : "Explorar ilustración", continue: en ? "Continue" : "Continuar",
     folio: en ? "Leaf" : "Hoja", of: en ? "of" : "de", nextFolio: en ? "Next" : "Siguiente", previousFolio: en ? "Previous" : "Anterior",
     available: en ? "Available" : "Disponible", current: en ? "Current page" : "Página actual", confirmed: en ? "Confirmed" : "Confirmada", locked: en ? "Previous page first" : "Primero la anterior",

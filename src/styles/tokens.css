@@ -1,7 +1,14 @@
+@font-face {
+  font-family: "VT323";
+  src: url("/assets/gvo/type/VT323-Regular.ttf") format("truetype");
+  font-display: swap;
+  size-adjust: 119%;
+}
+
 :root {
   color-scheme: light;
   --gvo-font-display:
-    "Pixelify Sans Variable", "Pixelify Sans", system-ui, sans-serif;
+    "VT323", system-ui, sans-serif;
   --gvo-font-heading: var(--gvo-font-display);
   --gvo-font-ui: var(--gvo-font-display);
   --gvo-font-microcopy: var(--gvo-font-display);

@@ -13,7 +13,7 @@ describe("Music · active presentation and assistance", () => {
   it("shows the requested result before acknowledging assisted presentation", () => {
     vi.useFakeTimers(); const complete = vi.fn();
     render(<World2MediatedResultPanel complete={false} onComplete={complete} />);
-    fireEvent.click(screen.getByRole("button", { name: "Ver resultado" }));
+    fireEvent.click(screen.getByRole("button", { name: "Escuchar resultado" }));
     expect(screen.getByText("Los parámetros se integran y dan forma al sonido.")).toBeVisible(); expect(complete).not.toHaveBeenCalled();
     act(() => vi.advanceTimersByTime(50)); expect(complete).toHaveBeenCalledWith("assisted");
   });

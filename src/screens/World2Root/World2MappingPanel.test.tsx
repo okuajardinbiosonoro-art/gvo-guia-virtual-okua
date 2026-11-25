@@ -181,7 +181,7 @@ describe("World2MappingPanel 016U", () => {
     const panel = screen.getByRole("group");
 
     expect(panel).toHaveAttribute("data-world2-mapping-first-run", "complete");
-    expect(panel).toHaveAttribute("data-world2-mapping-step", "3");
+    expect(panel).toHaveAttribute("data-world2-mapping-step", "1");
     screen
       .getAllByRole("button")
       .forEach((button) => expect(button).toBeEnabled());
@@ -200,8 +200,8 @@ describe("World2MappingPanel · OBS03 truthful presentation", () => {
   });
   it("marks assistance only after its complete result has rendered and never calls manual completion", () => {
     vi.useFakeTimers(); const manual = vi.fn(), presented = vi.fn();
-    render(<World2MappingPanel cleanSignalAsset="/signal.png" firstRunComplete={false} onFirstRunComplete={manual} onPresented={presented} />);
-    act(() => screen.getByRole("button", { name: "Ver resultado" }).click());
+    const { rerender } = render(<World2MappingPanel cleanSignalAsset="/signal.png" firstRunComplete={false} onFirstRunComplete={manual} onPresented={presented} />);
+    rerender(<World2MappingPanel cleanSignalAsset="/signal.png" firstRunComplete={false} showResultRequested onFirstRunComplete={manual} onPresented={presented} />);
     expect(screen.getByText("Amplitud → Intensidad · Variación → Ritmo · Rango → Altura")).toBeVisible();
     expect(presented).not.toHaveBeenCalled(); act(() => vi.advanceTimersByTime(50));
     expect(presented).toHaveBeenCalledWith("assisted"); expect(manual).not.toHaveBeenCalled();
@@ -216,6 +216,7 @@ describe("World2MappingPanel · OBS03 truthful presentation", () => {
   it("localises the mapping interaction instead of changing only document language", () => {
     render(<World2MappingPanel locale="en" cleanSignalAsset="/signal.png" firstRunComplete={false} onFirstRunComplete={vi.fn()} />);
     expect(screen.getByText("AMPLITUDE")).toBeVisible(); expect(screen.getByText("INTENSITY")).toBeVisible();
-    expect(screen.getByRole("button", { name: "Show result" })).toBeVisible();
+    expect(screen.getByText("MAPPING")).toBeVisible();
+    expect(screen.getByText("MAPPING").closest("button")).toBeNull();
   });
 });

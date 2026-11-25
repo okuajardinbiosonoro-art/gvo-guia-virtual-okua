@@ -106,6 +106,15 @@ const conceptMotionOffset: Record<World1Concept, number> = {
 const world1SwipeHintMaxWidth = 480;
 const world1SwipeHintMaxHeight = 844;
 
+function keepScannerInView(button: HTMLElement) {
+  const rect = button.getBoundingClientRect();
+  const top = window.visualViewport?.offsetTop ?? 0;
+  const bottom = top + (window.visualViewport?.height ?? window.innerHeight);
+  if (rect.bottom > bottom || rect.top < top) {
+    button.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+  }
+}
+
 function setStillMotionVariables(root: HTMLElement) {
   root.style.setProperty("--world1-js-energy-opacity", "0.48");
   root.style.setProperty("--world1-js-glow-opacity", "0.62");
@@ -276,6 +285,7 @@ export function World1RootScreen() {
   const savingRef = useRef(false);
   const retryActionRef = useRef<null | (() => Promise<void>)>(null);
   const presentedRequestRef = useRef("");
+  const scannerPresentedFor = useRef<string | null>(null);
   const [narrativeNeedsScroll, setNarrativeNeedsScroll] = useState(false);
   const [isSmallMobileHeight, setIsSmallMobileHeight] = useState(false);
   const [dismissedNarrativeHints, setDismissedNarrativeHints] = useState<ReadonlySet<World1Concept>>(() => new Set());
@@ -399,6 +409,17 @@ export function World1RootScreen() {
 
   const copy = world1ConceptCopy[activeConcept];
   const isReadyToContinue = activeConcept === "ready_to_continue";
+  useEffect(() => {
+    if (!attemptId || !isReadyToContinue || !activity.active || !flow.exitReady || !resourcesReady || saving || checkpointSaveFailed) return;
+    if (scannerPresentedFor.current === attemptId) return;
+    const frame = window.requestAnimationFrame(() => {
+      const button = motionRootRef.current?.querySelector<HTMLElement>(".world1-scene-exit button");
+      if (!button) return;
+      scannerPresentedFor.current = attemptId;
+      keepScannerInView(button);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [attemptId, isReadyToContinue, activity.active, flow.exitReady, resourcesReady, saving, checkpointSaveFailed, motionRootRef]);
   const shouldRenderNarrativeHint =
     !isReadyToContinue && isSmallMobileHeight && narrativeNeedsScroll;
   const narrativeHintDismissed = dismissedNarrativeHints.has(activeConcept);
@@ -900,12 +921,22 @@ export function World1RootScreen() {
                 <span>{activeConcept === "mediation" ? ui.close : ui.advance}</span>
               </button>
             ) : null}
+              {flow.exitReady && activity.active ? (
+                <div className="world1-scene-exit" onFocusCapture={(event) => keepScannerInView(event.target)}>
+                  <InterstationQrGate
+                    originWorld={1}
+                    ready={resourcesReady && !saving && !checkpointSaveFailed}
+                    presentation="scene"
+                    persistCompletion={() => attemptRef.current === attemptId && isEssentialExitReady(1)}
+                    onCompleted={() => {
+                      if (attemptRef.current === attemptId && activeRef.current) navigate(worldOneToWorldTwoTransitionRoute);
+                    }}
+                  />
+                </div>
+              ) : null}
             </div>
           </div>
       </World1RootStageFrame>
-      {flow.exitReady && activity.active ? <div className="world1-scene-exit">
-        <InterstationQrGate originWorld={1} ready={flow.exitReady && resourcesReady && !saving && !checkpointSaveFailed} presentation="scene" persistCompletion={() => attemptRef.current === attemptId && isEssentialExitReady(1)} onCompleted={() => { if (attemptRef.current === attemptId && activeRef.current) navigate(worldOneToWorldTwoTransitionRoute); }} />
-      </div> : null}
     </main>
   );
 }

@@ -144,6 +144,8 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
   const navigate = useNavigate();
   const { active } = useJourneyActivity();
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const startRef = useRef<HTMLButtonElement>(null);
+  const [startBelow, setStartBelow] = useState(false);
   const mountedRef = useRef(true);
   const cameraRequestRef = useRef(0);
   const activeRef = useRef(active);
@@ -172,6 +174,17 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
 
   useEffect(() => {
     if (active) applyDocumentLanguage(language);
+  }, [active, language]);
+
+  useEffect(() => {
+    const button = startRef.current;
+    if (!active || !language || !button || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => {
+      const bottom = entry.rootBounds?.bottom ?? window.innerHeight;
+      setStartBelow(entry.boundingClientRect.bottom > bottom + 1);
+    }, { threshold: [0, 1] });
+    observer.observe(button);
+    return () => observer.disconnect();
   }, [active, language]);
 
   useEffect(() => {
@@ -362,10 +375,6 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
           <h1 id="initial-experience-title" ref={headingRef} tabIndex={-1}>
             {localizedCopy?.title ?? neutralCopy.title}
           </h1>
-          <p id="initial-experience-description">
-            {localizedCopy?.description ?? neutralCopy.description}
-          </p>
-
           <fieldset className="initial-experience__languages" disabled={!active}>
             <legend>
               {localizedCopy?.languageLegend ?? neutralCopy.languageLegend}
@@ -373,12 +382,12 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
             <div className="initial-experience__language-options">
               <button
                 type="button"
-                lang="es"
+                lang={language === "en" ? "en" : "es"}
                 aria-pressed={language === "es"}
                 data-language-option="es"
                 onClick={() => selectLanguage("es")}
               >
-                Español
+                {language === "en" ? "Spanish" : "Español"}
               </button>
               <button
                 type="button"
@@ -391,6 +400,10 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
               </button>
             </div>
           </fieldset>
+
+          <p id="initial-experience-description">
+            {localizedCopy?.description ?? neutralCopy.description}
+          </p>
 
           <label className="initial-experience__volume">
             <span>{language === "es" ? "Volumen" : language === "en" ? "Volume" : "Volumen / Volume"}</span>
@@ -407,6 +420,9 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
               {persistenceState === "saved"
                 ? copy[language].languageSaved
                 : copy[language].languageMemoryOnly}
+              {startBelow && cameraStatus === "camera-supported" && (
+                <span aria-hidden="true">{language === "en" ? " Scroll down to Start journey." : " Baja hasta Iniciar recorrido."}</span>
+              )}
             </p>
           ) : null}
 
@@ -461,6 +477,7 @@ export function InitialExperienceScreen({ onEnterCover, onLocaleChange, preparat
           {localizedCopy && (preparationError || preparationStatus === "error") ? <div role="alert"><p>{localizedCopy.preparationError}</p>{onRetryPreparation && canRetryPreparation ? <button type="button" className="initial-experience__preparation-retry" onClick={() => { setPreparationError(false); onRetryPreparation(); }}>{language === "en" ? "Retry preparation" : "Reintentar preparación"}</button> : null}</div> : null}
 
           <button
+            ref={startRef}
             type="button"
             className="initial-experience__start"
             data-initial-experience-action="start"

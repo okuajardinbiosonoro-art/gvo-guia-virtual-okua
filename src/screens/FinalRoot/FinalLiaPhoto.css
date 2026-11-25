@@ -282,6 +282,14 @@
   box-shadow: inset 0 0 0 1px #f8cf94;
 }
 
+.final-lia-photo__frames {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.final-lia-photo__frames label {
+  padding: 6px;
+}
+
 .final-lia-photo__poses input {
   position: absolute;
   width: 1px;

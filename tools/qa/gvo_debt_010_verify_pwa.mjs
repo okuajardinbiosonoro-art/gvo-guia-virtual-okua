@@ -52,7 +52,7 @@ const classifyDeployedResource = (url) => {
   if (
     ["index.html", "manifest.webmanifest", "registerSW.js"].includes(url) ||
     /^assets\/index-[^/]+\.(?:js|css)$/.test(url) ||
-    /^assets\/pixelify-[^/]+\.woff2$/.test(url) ||
+    url === "assets/gvo/type/VT323-Regular.ttf" ||
     url === "assets/runtime/gvo-icon.svg" ||
     url === "assets/runtime/loading-initial-pre-portada.png" ||
     url.startsWith("assets/runtime/loading-initial/") ||
@@ -154,15 +154,15 @@ const requiredShellEntries = [
   "registerSW.js",
 ];
 const requiredEntryVisuals = [
-  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
+  "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03_movil_v1.webp",
   "assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.json",
-  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.webp",
+  "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03_movil_v1.webp",
   "assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.json",
-  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
-  "assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1.png",
+  "assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1_movil_v1.webp",
+  "assets/runtime/cover-intro/lia/poses/lia_pose_activate_portal_1_v1_movil_v1.webp",
 ];
 const requiredRuntimeAssets = [
-  "assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+  "assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1_movil_v1.webp",
   "assets/gvo/stations/world-2/pulse-invisible/runtime/background/world2_background_base_mobile_v01.webp",
   "assets/gvo/stations/world-3/notebook-pixel/runtime/environment/world3_ambient_texture_v01.webp",
   "assets/gvo/stations/world-4/system-table/runtime/environment/world4_environment_base_v01.webp",
@@ -184,7 +184,7 @@ const checks = {
   noMissingPrecacheFiles: missingPrecacheFiles.length === 0,
   onlyApprovedPrecache: unexpectedPrecacheEntries.length === 0,
   approvedAudioAndVinePrecached:
-    approvedAudio.length === 14 &&
+    approvedAudio.length === 16 &&
     [...approvedAdditionalPrecache].every((url) => uniquePrecacheEntries.includes(url)),
   historicalEntryAssetsOutsidePrecache: historicalPrecached.length === 0,
   historicalEntryAssetsStillDeployed: missingHistoricalAssets.length === 0,

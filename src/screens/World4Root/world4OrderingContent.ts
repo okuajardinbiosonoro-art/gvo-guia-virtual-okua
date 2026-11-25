@@ -33,7 +33,7 @@ export function getWorld4OrderingNodes(locale: World4OrderingLocale) {
     const original = station4Nodes.find((node) => node.id === id)!;
     const order = index + 1;
     const node = locale === "en" ? english[id] : {
-      title: id === "esp32" ? "Microcontrolador" : original.title,
+      title: id === "esp32" ? "Micro - controlador" : original.title,
       text: id === "sistema_central" ? "Reinterpreta los datos para conseguir una experiencia sonora placentera y relajante." : original.text,
     };
     const step = locale === "en" ? `Step ${order} of ${WORLD4_ORDERING_TARGET.length}` : `Paso ${order} de ${WORLD4_ORDERING_TARGET.length}`;
@@ -70,7 +70,7 @@ export const world4OrderingCopy = {
     assetsError:
       "Falta cargar una imagen de la mesa. El juego empezará cuando estén listas las seis piezas.",
     ready:
-      "Dispones de 90 segundos activos. Puedes pausar o pedir ayuda cuando quieras.",
+      "Dispones de 60 segundos activos. Puedes pausar o pedir ayuda cuando quieras.",
     playing: "Toca la pieza que quieres mover.",
     awaitingSwap: "Toca otra pieza para intercambiarla con la seleccionada.",
     paused: "Juego en pausa. El tiempo no avanza.",
@@ -113,7 +113,7 @@ export const world4OrderingCopy = {
     assetsError:
       "A table image has not loaded. The game will start when all six pieces are ready.",
     ready:
-      "You have 90 active seconds. You may pause or ask for help at any time.",
+      "You have 60 active seconds. You may pause or ask for help at any time.",
     playing: "Select the piece you want to move.",
     awaitingSwap: "Select another piece to swap it with the highlighted one.",
     paused: "Game paused. Time is not running.",

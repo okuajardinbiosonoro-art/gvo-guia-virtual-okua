@@ -40,11 +40,15 @@ describe("Sala II · OBS03 ordered presentation", () => {
     expect(room().assistedPresentedStepIds).toContain("captura");
     expect(room().interactionEvidence.map(fact => fact.id)).toEqual(["plant_contact_readout_seen", "signal_measured_wave_seen"]);
     await advance();
-    await openReadout("Ver filtrado");
+    await openReadout("Escuchar filtro");
     await settleRoom(3400);
     await advance();
     await showResult(); expect(room().assistedPresentedStepIds).toContain("mapeo"); await advance();
-    await showResult(); expect(room().assistedPresentedStepIds).toContain("musica");
+    expect(screen.getByRole("button", { name: "Escuchar resultado" })).toHaveAttribute("aria-pressed", "false");
+    expect(room().presentedStepIds).not.toContain("musica");
+    await openReadout("Escuchar resultado");
+    await settleRoom();
+    expect(room().assistedPresentedStepIds).toContain("musica");
     expect(screen.queryByText("QR 2")).toBeNull(); expect(room().closed).toBe(false);
     fireEvent.click(screen.getByRole("button", { name: "Cerrar Música" })); await settleRoom();
     expect(room().closed).toBe(true); expect(screen.getByText("QR 2")).toBeVisible();
@@ -119,7 +123,7 @@ describe("Sala II · OBS03 ordered presentation", () => {
     const {container} = renderJourneyRoom(<World2RootScreen />, 2);
     await settleRoom();
     expect(screen.queryByRole("button", { name: "Continuar" })).toBeNull();
-    await openReadout("Ver filtrado");
+    await openReadout("Escuchar filtro");
     expect(container.querySelector('[data-world2-filter-demo="running"]')).toBeInTheDocument();
     Object.defineProperty(document, "visibilityState", { configurable: true, value: "hidden" });
     fireEvent(document, new Event("visibilitychange"));
@@ -127,7 +131,7 @@ describe("Sala II · OBS03 ordered presentation", () => {
     expect(room().presentedStepIds).not.toContain("acondicionamiento");
     Object.defineProperty(document, "visibilityState", { configurable: true, value: "visible" });
     fireEvent(document, new Event("visibilitychange"));
-    await openReadout("Ver filtrado");
+    await openReadout("Escuchar filtro");
     await settleRoom(500);
     expect(container.querySelector('[data-world2-filter-demo="running"]')).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Continuar" })).toBeNull();
@@ -156,6 +160,31 @@ describe("Sala II · OBS03 ordered presentation", () => {
     await openReadout("Open reading point");
     expect(screen.getByRole("button", { name: "Continue" })).toBeVisible();
     expect(screen.queryByText(getWorld2Content("es").layers.planta_viva.dialogue)).toBeNull();
+  });
+  it("guides a clipped control, accepts its visible label, and retires the reading hint on arrival", async () => {
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+    let top = viewportHeight - 18;
+    const original = HTMLElement.prototype.getBoundingClientRect;
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
+      if (this.hasAttribute("data-plant-contact-hotspot")) return new DOMRect(10, -15, 50, 50);
+      if (this.classList.contains("world2-dialogue__copy")) return new DOMRect(10, top, 270, 140);
+      return original.call(this);
+    });
+    renderJourneyRoom(<World2RootScreen />, 2);
+    await settleRoom();
+    expect(screen.getByRole("button", { name: "Busca el punto de lectura" })).toHaveAttribute("data-world2-orientation", "up");
+    fireEvent.click(screen.getByText("Toca aquí"));
+    await settleRoom();
+    expect(screen.queryByText("Toca aquí")).toBeNull();
+    const cue = screen.getByRole("button", { name: "Lee lo que revela la planta" });
+    expect(cue).toHaveAttribute("data-world2-orientation", "down");
+    fireEvent.click(cue);
+    expect(document.activeElement).toHaveClass("world2-dialogue__copy");
+    top = 80;
+    fireEvent.scroll(window);
+    await settleRoom();
+    expect(screen.queryByRole("button", { name: "Lee lo que revela la planta" })).toBeNull();
+    expect(room().confirmedStepIds).toEqual([]);
   });
   it("keeps both historical keep literals out of replacement text", () => {
     const entry = world2Obs03Sources.find((source) => source.id === "TXT_2_cd264feb015e")!;

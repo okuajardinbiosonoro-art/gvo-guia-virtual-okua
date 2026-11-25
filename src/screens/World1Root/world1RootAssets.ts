@@ -1,20 +1,20 @@
 export const world1RootAssets = {
   background:
-    "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1_movil_v1.webp",
   ambientLight:
-    "/assets/gvo/stations/world-1-root/light/world1_root_ambient_light_kit_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/light/world1_root_ambient_light_kit_approved_v1_movil_v1.webp",
   plant:
-    "/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/plant/world1_root_young_plant_approved_v1_movil_v1.webp",
   rootsBase:
-    "/assets/gvo/stations/world-1-root/roots/world1_root_roots_base_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/roots/world1_root_roots_base_approved_v1_movil_v1.webp",
   activeRelation:
-    "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/roots/world1_root_active_relation_approved_v1_movil_v1.webp",
   activePerception:
-    "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/roots/world1_root_active_perception_approved_v1_movil_v1.webp",
   activeMediation:
-    "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/roots/world1_root_active_mediation_approved_v1_movil_v1.webp",
   nodeKit:
-    "/assets/gvo/stations/world-1-root/nodes/world1_root_node_state_kit_approved_v1.png",
+    "/assets/gvo/stations/world-1-root/nodes/world1_root_node_state_kit_approved_v1_movil_v1.webp",
   exitPath:
     "/assets/gvo/stations/world-1-root/exit-path/world1_root_exit_path_approved_v1.png",
   liaIdle:

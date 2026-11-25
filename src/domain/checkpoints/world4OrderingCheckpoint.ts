@@ -2,8 +2,8 @@ import type { ProgressStorage } from "../progress/progress.types";
 import { createVersionedCheckpointStore } from "./checkpointStore";
 
 export const WORLD4_ORDERING_STORAGE_KEY = "gvo.station4.ordering.v1";
-export const WORLD4_ORDERING_REVISION = "GVO-IV-6";
-export const WORLD4_ORDERING_DURATION_MS = 90_000;
+export const WORLD4_ORDERING_REVISION = "GVO-IV-6-60s";
+export const WORLD4_ORDERING_DURATION_MS = 60_000;
 export const LEGACY_WORLD4_ORDERING_TARGET = [
   "planta",
   "bionosificador",
@@ -78,7 +78,7 @@ export function isWorld4OrderingState(
 }
 
 type LegacyOrderingState = Omit<World4OrderingState, "contractRevision" | "permutation" | "selectedObjectId" | "confirmedReviewSteps"> & {
-  contractRevision: "OBS03.2";
+  contractRevision: "OBS03.2" | "GVO-IV-6";
   permutation: readonly (typeof LEGACY_WORLD4_ORDERING_TARGET)[number][];
   selectedObjectId: (typeof LEGACY_WORLD4_ORDERING_TARGET)[number] | null;
   confirmedReviewSteps: readonly (typeof LEGACY_WORLD4_ORDERING_TARGET)[number][];
@@ -115,7 +115,7 @@ function matchesOrderingContract(value: unknown, revision: string, target: reado
     ) ||
     !Number.isFinite(state.remainingActiveMs) ||
     state.remainingActiveMs < 0 ||
-    state.remainingActiveMs > WORLD4_ORDERING_DURATION_MS ||
+    state.remainingActiveMs > (revision === WORLD4_ORDERING_REVISION ? WORLD4_ORDERING_DURATION_MS : 90_000) ||
     !Number.isInteger(state.reviewIndex) ||
     state.reviewIndex < 0 ||
     state.reviewIndex >= count ||
@@ -179,12 +179,16 @@ const store = createVersionedCheckpointStore<StoredOrderingState>({
   key: WORLD4_ORDERING_STORAGE_KEY,
   schemaVersion: 1,
   isCheckpoint: (value): value is StoredOrderingState =>
-    isWorld4OrderingState(value) || matchesOrderingContract(value, "OBS03.2", LEGACY_WORLD4_ORDERING_TARGET),
+    isWorld4OrderingState(value) || matchesOrderingContract(value, "GVO-IV-6", WORLD4_ORDERING_TARGET) || matchesOrderingContract(value, "OBS03.2", LEGACY_WORLD4_ORDERING_TARGET),
   matches: sameState,
   sameStableState: sameState,
 });
 function adaptOrderingState(state: StoredOrderingState): World4OrderingState {
   if (state.contractRevision === WORLD4_ORDERING_REVISION) return state;
+  const remainingActiveMs = Math.min(WORLD4_ORDERING_DURATION_MS, state.remainingActiveMs);
+  if (state.contractRevision === "GVO-IV-6") {
+    return { ...state, contractRevision: WORLD4_ORDERING_REVISION, remainingActiveMs } as World4OrderingState;
+  }
   const permutation = state.permutation.filter(isWorld4OrderingId);
   const confirmedReviewSteps = state.confirmedReviewSteps.filter(isWorld4OrderingId);
   // A puzzle still in progress needs a real move even if the removed pieces
@@ -195,6 +199,7 @@ function adaptOrderingState(state: StoredOrderingState): World4OrderingState {
     ...state,
     contractRevision: WORLD4_ORDERING_REVISION,
     permutation,
+    remainingActiveMs,
     confirmedReviewSteps,
     selectedObjectId: !reseed && isWorld4OrderingId(state.selectedObjectId) ? state.selectedObjectId : null,
     reviewIndex: state.phase === "review" || state.closed

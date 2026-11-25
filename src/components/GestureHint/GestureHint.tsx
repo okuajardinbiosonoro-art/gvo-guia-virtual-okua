@@ -191,6 +191,7 @@ export function GestureHint({
     };
 
     measure();
+    window.addEventListener("scroll", scheduleMeasure, { capture: true, passive: true });
     window.addEventListener("resize", scheduleMeasure);
     window.visualViewport?.addEventListener("resize", scheduleMeasure);
     window.visualViewport?.addEventListener("scroll", scheduleMeasure);
@@ -218,6 +219,7 @@ export function GestureHint({
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", scheduleMeasure, true);
       window.removeEventListener("resize", scheduleMeasure);
       window.visualViewport?.removeEventListener("resize", scheduleMeasure);
       window.visualViewport?.removeEventListener("scroll", scheduleMeasure);

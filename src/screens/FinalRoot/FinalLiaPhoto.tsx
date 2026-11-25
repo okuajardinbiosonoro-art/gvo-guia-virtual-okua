@@ -1,17 +1,20 @@
 import "./FinalLiaPhoto.css";
 
 import { useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent, type MouseEvent } from "react";
-import { makeFinalLiaPhoto } from "./finalLiaPhotoPrint";
+import { loadInscriptionFont, makeFinalLiaPhoto } from "./finalLiaPhotoPrint";
+import { availablePhotoFrames, finalLiaPhotoAssets, type PhotoFrame } from "./finalLiaPhotoFrames";
 import { defaultPhotoPlacement, photoPlacementAt, type PhotoPlacement } from "./finalLiaPhotoLayout";
 import { useFinalLiaCamera } from "./useFinalLiaCamera";
 import { FinalLiaLivePreview } from "./FinalLiaLivePreview";
 import { getLocalFaceDetector } from "./liaFaceDetector";
 
-const photoAssetBase = "/assets/gvo/stations/final-root/photo";
+export function prepareFinalLiaPhoto() {
+  return Promise.all([loadInscriptionFont(), getLocalFaceDetector()]);
+}
 
 const poses = [
-  { kind: "shoulder", asset: `${photoAssetBase}/lia-photo-shoulder-v03.webp`, es: "Al hombro", en: "By your shoulder" },
-  { kind: "peek", asset: `${photoAssetBase}/lia-photo-peek-v03.webp`, es: "Se asoma arriba", en: "Peeking from above" },
+  { kind: "shoulder", asset: finalLiaPhotoAssets.shoulder, es: "Al hombro", en: "By your shoulder" },
+  { kind: "peek", asset: finalLiaPhotoAssets.peek, es: "Se asoma arriba", en: "Peeking from above" },
   { kind: "shoulder", asset: undefined, es: "Sin Lía", en: "Without Lía" },
 ] as const;
 
@@ -19,7 +22,7 @@ type Pose = (typeof poses)[number];
 type Locale = "es" | "en";
 type PhotoSource = File | HTMLCanvasElement;
 type PhotoOutput = { url: string; file: File };
-type PhotoResult = { source: PhotoSource; pose: Pose; placement: PhotoPlacement; output: PhotoOutput | "error" };
+type PhotoResult = { source: PhotoSource; pose: Pose; placement: PhotoPlacement; frame: PhotoFrame; output: PhotoOutput | "error" };
 
 const copy = {
   es: {
@@ -37,6 +40,7 @@ const copy = {
     unavailableCamera: "La cámara no está disponible. Intenta de nuevo o elige una foto.",
     library: "Elegir foto",
     pose: "Personaliza tu foto",
+    frame: "Marco",
     play: "Toca a Lía",
     preview: "Vista previa de tu foto con Lía",
     previewPlain: "Vista previa de tu Polaroid",
@@ -63,6 +67,7 @@ const copy = {
     unavailableCamera: "The camera is unavailable. Try again or choose a photo.",
     library: "Choose photo",
     pose: "Make it yours",
+    frame: "Frame",
     play: "Tap Lía",
     preview: "Preview of your photo with Lía",
     previewPlain: "Preview of your instant photo",
@@ -96,13 +101,15 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
   const cameraOpen = camera.state.phase === "opening" || camera.state.phase === "live";
   const [photo, setPhoto] = useState<PhotoSource>();
   const [pose, setPose] = useState<Pose>(poses[0]);
+  const [frames] = useState(() => availablePhotoFrames());
+  const [frame, setFrame] = useState(frames[0]);
   const [customPlacement, setCustomPlacement] = useState<PhotoPlacement>();
   const [posePlay, setPosePlay] = useState(0);
   const [result, setResult] = useState<PhotoResult>();
   const [shareState, setShareState] = useState<"idle" | "busy" | "error">("idle");
   const placement = customPlacement ?? defaultPhotoPlacement[pose.kind];
   const preview = result?.source === photo && result?.output !== "error" ? result?.output : undefined;
-  const current = result?.source === photo && result?.pose === pose && result.placement === placement ? result.output : undefined;
+  const current = result?.source === photo && result?.pose === pose && result.placement === placement && result.frame === frame ? result.output : undefined;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -123,14 +130,14 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
     if (!photo || cameraOpen) return;
     const source = photo instanceof File ? URL.createObjectURL(photo) : photo;
     const controller = new AbortController();
-    void makeFinalLiaPhoto(source, pose.asset, pose.kind, placement, locale, controller.signal).then((file) => {
+    void makeFinalLiaPhoto(source, pose.asset, pose.kind, placement, locale, frame, controller.signal).then((file) => {
       if (controller.signal.aborted) return;
       const url = URL.createObjectURL(file);
       if (outputUrlRef.current) URL.revokeObjectURL(outputUrlRef.current);
       outputUrlRef.current = url;
-      setResult({ source: photo, pose, placement, output: { url, file } });
+      setResult({ source: photo, pose, placement, frame, output: { url, file } });
     }, () => {
-      if (!controller.signal.aborted) setResult({ source: photo, pose, placement, output: "error" });
+      if (!controller.signal.aborted) setResult({ source: photo, pose, placement, frame, output: "error" });
     }).finally(() => {
       if (typeof source === "string") URL.revokeObjectURL(source);
     });
@@ -138,7 +145,7 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
       controller.abort();
       if (typeof source === "string") URL.revokeObjectURL(source);
     };
-  }, [photo, pose, placement, cameraOpen, locale]);
+  }, [photo, pose, placement, cameraOpen, locale, frame]);
 
   function selectPhoto(event: ChangeEvent<HTMLInputElement>) {
     const file = event.currentTarget.files?.[0];
@@ -254,6 +261,20 @@ export default function FinalLiaPhoto({ locale, onClose }: { locale: Locale; onC
               </label>
             ))}
           </fieldset>
+          {photo && !cameraOpen && frames.length > 1 && (
+            <fieldset className="final-lia-photo__poses final-lia-photo__frames" disabled={shareState === "busy"}>
+              <legend>{labels.frame}</legend>
+              {frames.map((option) => (
+                <label key={option.id}>
+                  <input type="radio" name="final-lia-photo-frame" checked={frame === option} onChange={() => {
+                    setShareState("idle");
+                    setFrame(option);
+                  }} />
+                  <span>{option.label[locale]}</span>
+                </label>
+              ))}
+            </fieldset>
+          )}
           <div role="status" className="final-lia-photo__status">
             {cameraOpen && !camera.ready ? labels.openingCamera : camera.state.phase === "error" ? (
               camera.state.reason === "camera-denied" ? labels.deniedCamera : labels.unavailableCamera

@@ -1,0 +1,38 @@
+[
+  {
+    "original": "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
+    "src": "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03_movil_v1.webp",
+    "width": 2560,
+    "height": 2560,
+    "originalBytes": 1494734,
+    "bytes": 558640,
+    "sha256": "ee595a64c1b8796653cce9bee1e53ca8ba441bec07f65521fe85fba5a91fd9a7",
+    "compositePSNR": 43.65,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "3296a865d1078d4bfb57abe2abab1d613f844702c4e3ba67424af4f509c155ca",
+    "consumers": [
+      "LoadingInitialScreen"
+    ],
+    "visualRole": "lia_loading_16f_okua_v03",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  },
+  {
+    "original": "/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.webp",
+    "src": "/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03_movil_v1.webp",
+    "width": 3072,
+    "height": 768,
+    "originalBytes": 265906,
+    "bytes": 88410,
+    "sha256": "f975296c10ba9ad814159aab5ba90bb8f695bc29ff22ec848562df1ddfdd3bee",
+    "compositePSNR": 47.35,
+    "alphaIdentico": true,
+    "format": "WebP",
+    "sourceSha256": "8d30083183120a5ffbbc4023493b4bd3f79fe2eb2495866fcf3021da17c1990a",
+    "consumers": [
+      "LoadingInitialScreen"
+    ],
+    "visualRole": "plant_growth_4f_okua_v03",
+    "review": "Composición aprobada, codificación para prueba móvil pendiente de revisión humana."
+  }
+]

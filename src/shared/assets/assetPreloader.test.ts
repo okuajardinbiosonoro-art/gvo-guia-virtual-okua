@@ -227,12 +227,12 @@ describe("assetPreloader", () => {
         (asset) => asset.src,
       ),
     ).toContain(
-      "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.webp",
+      "/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03_movil_v1.webp",
     );
     expect(
       screenAssetBundles.coverIntroCritical.assets.map((asset) => asset.src),
     ).toContain(
-      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1.webp",
+      "/assets/runtime/cover-intro/background/cover_bg_archivo_vivo_base_v1_movil_v1.webp",
     );
     expect(
       screenAssetBundles.transitionRootCritical.assets.some((asset) =>
@@ -242,7 +242,7 @@ describe("assetPreloader", () => {
     expect(
       screenAssetBundles.world1RootInitial.assets.map((asset) => asset.src),
     ).toContain(
-      "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1.png",
+      "/assets/gvo/stations/world-1-root/background/world1_root_background_base_approved_v1_movil_v1.webp",
     );
   });
 });

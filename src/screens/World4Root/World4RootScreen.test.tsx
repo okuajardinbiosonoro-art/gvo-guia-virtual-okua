@@ -417,7 +417,7 @@ describe("Sala IV OBS03 — actual game, essential closure and activity", () => 
     spy.mockRestore();
     await click("Reintentar guardado");
     expect(checkpoint().phase).toBe("playing");
-    expect(checkpoint().remainingActiveMs).toBe(90_000);
+    expect(checkpoint().remainingActiveMs).toBe(60_000);
   });
   it("resolves faithful English content in render", async () => {
     window.localStorage.setItem("gvo.language.v1", "en");
