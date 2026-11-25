@@ -1,3 +1,4 @@
+import { journeyStorage } from "../progress/replayStorage";
 import type { ProgressStorage } from "../progress/progress.types";
 import { LEGACY_WORLD4_ORDERING_TARGET, WORLD4_ORDERING_TARGET, isWorld4OrderingId, readWorld4OrderingCheckpoint, type World4OrderingId } from "./world4OrderingCheckpoint";
 
@@ -39,7 +40,7 @@ function matchesExplanationContract(value: unknown, revision: string, target: re
     state.complete === (confirmed.length === target.length);
 }
 function browserStorage(): ProgressStorage | null {
-  try { return typeof window === "undefined" ? null : window.localStorage; } catch { return null; }
+  return journeyStorage();
 }
 export function readWorld4ExplanationCheckpoint(storage: ProgressStorage | null = browserStorage()): World4ExplanationRead {
   const checkpoint = freshWorld4ExplanationCheckpoint();

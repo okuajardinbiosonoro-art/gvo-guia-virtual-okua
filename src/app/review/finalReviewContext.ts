@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
 
 export const FINAL_REVIEW_CONTEXT_STORAGE_KEY = "gvo.final.reviewContext.v1";
@@ -37,7 +38,7 @@ function getDefaultSessionStorage(): ProgressStorage | null {
     return null;
   }
 
-  return window.sessionStorage;
+  return journeyStorage("session");
 }
 
 function isFinalReviewWorld(value: unknown): value is FinalReviewWorld {

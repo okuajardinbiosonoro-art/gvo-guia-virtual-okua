@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
 import type { Station5AreaId } from "./station5Content";
 
@@ -30,7 +31,7 @@ function getDefaultStorage(): ProgressStorage | null {
   if (typeof window === "undefined") {
     return null;
   }
-  return window.localStorage;
+  return journeyStorage();
 }
 
 export function normalizeWorld5Progress(value: unknown): World5Progress {

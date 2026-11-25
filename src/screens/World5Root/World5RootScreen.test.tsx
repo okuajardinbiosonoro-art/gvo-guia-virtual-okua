@@ -576,7 +576,7 @@ describe("Sala V OBS03 — ordered writer questions and two real alternatives", 
   it("starts only one retry on a double gesture and preserves the essential journey", async () => {
     await closePriorJourney(); show(); await flush(); await allAnswers(false);
     const before = localStorage.getItem(ESSENTIAL_STORAGE_KEY);
-    const retry = screen.getByRole("button", { name: "Reintentar cuestionario completo" });
+    const retry = screen.getByRole("button", { name: "Volver a intentar" });
     act(() => { fireEvent.click(retry); fireEvent.click(retry); }); await flush();
     expect(readWorld5Rounds().roundNumber).toBe(2);
     expect(readWorld5Rounds().ledger!.rounds).toHaveLength(2);

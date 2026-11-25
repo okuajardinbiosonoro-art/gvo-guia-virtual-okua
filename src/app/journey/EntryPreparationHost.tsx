@@ -1,3 +1,4 @@
+import { startRoomReplay } from "../review/startRoomReplay";
 import "./EntryPreparationHost.css";
 import { Component, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -8,8 +9,7 @@ import { InitialExperienceScreen } from "../../screens/InitialExperience";
 import { journeyPreparationBudgetMs } from "./preparationTiming";
 import { preloadImages } from "../../shared/assets/assetPreloader";
 import { readLanguagePreference } from "../preferences/languagePreference";
-import { stationEntryRoutes } from "../routes";
-import { beginFinalReview, FINAL_REVIEW_CONTEXT_STORAGE_KEY } from "../review/finalReviewContext";
+import { FINAL_REVIEW_CONTEXT_STORAGE_KEY } from "../review/finalReviewContext";
 import { JourneyActivationProvider, JourneyActivityScope, useJourneyActivity } from "./JourneyActivation";
 import { acceptJourneyIntent, resumePendingQrFromCover } from "./journeyIntent";
 import { resolveJourneyAccess } from "./journeyAccess";
@@ -41,7 +41,7 @@ function EntryCoverConsumer() {
   }} onRevisitRoom={(world) => {
     if (!activity.attemptId || getJourneyRuntimeContext().attemptId !== activity.attemptId || !getJourneyRuntimeContext().active) return;
     if (!readEssentialSnapshot()?.finalReached && coherentProgressPrefixLength() !== 5) return;
-    navigate(stationEntryRoutes[world], { state: beginFinalReview(world) });
+    if (!startRoomReplay(world)) throw Error("replay_unavailable");
   }} />;
 }
 const fontSample = "Guía Virtual OKÚA · Relación, percepción, mediación. ¿Señal? Listening and living signals.";

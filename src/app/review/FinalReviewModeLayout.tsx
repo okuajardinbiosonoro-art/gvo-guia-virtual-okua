@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import "./FinalReviewModeLayout.css";
 
 import type { CSSProperties, ReactNode } from "react";
@@ -111,11 +112,11 @@ function hasVisibleWorld2Capture(dock: HTMLElement): boolean {
 }
 
 function defaultSessionStorage(): ProgressStorage | null {
-  return typeof window === "undefined" ? null : window.sessionStorage;
+  return typeof window === "undefined" ? null : journeyStorage("session");
 }
 
 function defaultProgressStorage(): ProgressStorage | null {
-  return typeof window === "undefined" ? null : window.localStorage;
+  return typeof window === "undefined" ? null : journeyStorage();
 }
 
 function resolveAuthorizedFinalReviewContext(

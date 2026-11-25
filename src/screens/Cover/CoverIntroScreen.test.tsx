@@ -117,7 +117,7 @@ describe("Portada OBS03.2", () => {
     const before = JSON.stringify(readEssentialSnapshot());
     for (const [index, room] of ["Raíz", "Pulso invisible", "Cuaderno de práctica", "Sistema biosonoro", "OKÚA, arte sensorial"].entries()) {
       const roman = ["I", "II", "III", "IV", "V"][index];
-      fireEvent.click(screen.getByRole("button", { name: `Revisar Sala ${roman} · ${room}` }));
+      fireEvent.click(screen.getByRole("button", { name: `Volver a Sala ${roman} · ${room}` }));
     }
     expect(revisit.mock.calls.map((call) => call[0])).toEqual([1, 2, 3, 4, 5]);
     expect(JSON.stringify(readEssentialSnapshot())).toBe(before);

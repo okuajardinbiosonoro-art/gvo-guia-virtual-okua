@@ -938,10 +938,6 @@
   min-width: 0;
   padding: 0.9rem 0.2rem 2.4rem;
   text-align: center;
-  text-shadow:
-    0 2px 0 rgb(5 3 2 / 88%),
-    0 0 10px rgb(9 6 4 / 88%),
-    0 0 18px rgb(255 224 156 / 26%);
 }
 
 .world1-root-narrative__eyebrow,
@@ -965,19 +961,18 @@
   max-width: min(100%, 24rem);
   color: #fff7dd;
   font-family: var(--gvo-font-heading);
-  font-size: clamp(0.9rem, 3.3vw, 1.14rem);
-  font-weight: var(--gvo-font-weight-bold);
-  line-height: 1.15;
+  font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.35;
 }
 
 .world1-root-narrative__body {
   justify-self: center;
   max-width: min(100%, 32rem);
-  color: rgb(255 249 234 / 94%);
-  font-family: var(--gvo-font-ui);
-  font-size: clamp(0.72rem, 2.45vw, 0.86rem);
-  font-weight: var(--gvo-font-weight-semibold);
-  line-height: 1.24;
+  color: #fff3db;
+  font: 400 max(1rem, var(--gvo-text-body-size, 1rem))/1.5 var(--gvo-font-body);
+  font-synthesis: none;
   overflow-wrap: break-word;
 }
 
@@ -1113,15 +1108,6 @@
   .world1-root-narrative__viewport {
     height: clamp(10.2rem, 22svh, 13rem);
     padding-inline: 0.72rem;
-  }
-
-  .world1-root-narrative h2 {
-    font-size: clamp(0.78rem, 3.35vw, 0.98rem);
-  }
-
-  .world1-root-narrative__body {
-    font-size: clamp(0.66rem, 2.75vw, 0.78rem);
-    line-height: 1.2;
   }
 
   .world1-root-continue {

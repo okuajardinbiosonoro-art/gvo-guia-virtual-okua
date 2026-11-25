@@ -1,12 +1,11 @@
+import { startRoomReplay } from "../../app/review/startRoomReplay";
 import { playJourneySound } from "../../app/audio/journeySound";
 import "./CoverIntroScreen.css";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { readLanguagePreference, type GvoLanguage } from "../../app/preferences/languagePreference";
 import { useJourneyActivity } from "../../app/journey/JourneyActivation";
 import { closeEssentialRoom, confirmEssentialStep, markEssentialPresented, useEssentialFlow } from "../../app/journey/journeyEssential";
-import { beginFinalReview } from "../../app/review/finalReviewContext";
-import { stationEntryRoutes } from "../../app/routes";
 import { coverIntroAssets } from "./coverIntroAssets";
 import { coverPortalInteriorAssets } from "./coverPortalInteriorAssets";
 import { LiaJourneyMotion } from "../../components/LiaJourneyMotion/LiaJourneyMotion";
@@ -21,7 +20,6 @@ export type CoverIntroScreenProps = {
 const englishRooms = ["Root", "Invisible pulse", "Practice notebook", "Biosonic system", "OKÚA, sensory art"] as const;
 
 export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", onPortalEnter, onRevisitRoom }: CoverIntroScreenProps = {}) {
-  const navigate = useNavigate();
   const location = useLocation();
   const { active, attemptId } = useJourneyActivity();
   const flow = useEssentialFlow("cover");
@@ -104,8 +102,10 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
 
   function revisit(world: 1 | 2 | 3 | 4 | 5) {
     if (!active || !coverRevisitActive) return;
-    if (onRevisitRoom) onRevisitRoom(world);
-    else navigate(stationEntryRoutes[world], { state: beginFinalReview(world) });
+    try {
+      if (onRevisitRoom) onRevisitRoom(world);
+      else if (!startRoomReplay(world)) setError(copy.unavailable);
+    } catch { setError(copy.unavailable); }
   }
 
   const stageStyle = { "--cover-background-image": `url(${coverIntroAssets.background})` } as CSSProperties;
@@ -157,7 +157,7 @@ export function CoverIntroScreen({ locale = readLanguagePreference() ?? "es", on
               {coverIntroPortals.map((portal, index) => {
                 if (!coverRevisitActive && portal.world !== 1) return null;
                 const available = coverRevisitActive || portalReady;
-                const label = coverRevisitActive ? locale === "en" ? `Review Room ${portal.roman} · ${englishRooms[index]}` : portal.reviewAriaLabel
+                const label = coverRevisitActive ? locale === "en" ? `Replay Room ${portal.roman} · ${englishRooms[index]}` : portal.replayAriaLabel
                   : portalReady ? copy.portalReady : copy.portalLocked;
                 return <button key={portal.id} ref={portal.world === 1 ? portalRef : undefined} type="button"
                   className={`cover-intro__portal cover-intro__portal--${available ? "available" : "locked"} ${portal.world === 1 ? "cover-intro__portal--primary" : "cover-intro__portal--locked-secondary"}${coverRevisitActive ? " cover-intro__portal--review-available" : ""}${portalReady && portal.world === 1 ? " cover-intro__portal--ready" : ""}`}

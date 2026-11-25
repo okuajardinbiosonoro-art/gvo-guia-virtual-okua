@@ -93,7 +93,7 @@ export const coverIntroPortals = [
     title: ROOM_HEADINGS[1],
     state: "available",
     ariaLabel: `${ROOM_HEADINGS[1]}, disponible.`,
-    reviewAriaLabel: `Revisar Sala I · ${ROOM_NAMES[1]}`,
+    replayAriaLabel: `Volver a Sala I · ${ROOM_NAMES[1]}`,
   },
   {
     id: "portal-2",
@@ -102,7 +102,7 @@ export const coverIntroPortals = [
     title: ROOM_HEADINGS[2],
     state: "locked",
     ariaLabel: `${ROOM_HEADINGS[2]}, disponible al revisar el recorrido.`,
-    reviewAriaLabel: `Revisar Sala II · ${ROOM_NAMES[2]}`,
+    replayAriaLabel: `Volver a Sala II · ${ROOM_NAMES[2]}`,
   },
   {
     id: "portal-3",
@@ -111,7 +111,7 @@ export const coverIntroPortals = [
     title: ROOM_HEADINGS[3],
     state: "locked",
     ariaLabel: `${ROOM_HEADINGS[3]}, disponible al revisar el recorrido.`,
-    reviewAriaLabel: `Revisar Sala III · ${ROOM_NAMES[3]}`,
+    replayAriaLabel: `Volver a Sala III · ${ROOM_NAMES[3]}`,
   },
   {
     id: "portal-4",
@@ -120,7 +120,7 @@ export const coverIntroPortals = [
     title: ROOM_HEADINGS[4],
     state: "locked",
     ariaLabel: `${ROOM_HEADINGS[4]}, disponible al revisar el recorrido.`,
-    reviewAriaLabel: `Revisar Sala IV · ${ROOM_NAMES[4]}`,
+    replayAriaLabel: `Volver a Sala IV · ${ROOM_NAMES[4]}`,
   },
   {
     id: "portal-5",
@@ -129,7 +129,7 @@ export const coverIntroPortals = [
     title: ROOM_HEADINGS[5],
     state: "locked",
     ariaLabel: `${ROOM_HEADINGS[5]}, disponible al revisar el recorrido.`,
-    reviewAriaLabel: `Revisar Sala V · ${ROOM_NAMES[5]}`,
+    replayAriaLabel: `Volver a Sala V · ${ROOM_NAMES[5]}`,
   },
 ] as const;
 

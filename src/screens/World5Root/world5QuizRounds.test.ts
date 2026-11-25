@@ -57,15 +57,15 @@ describe("Sala V OBS05 — four complete, independently scored rounds", () => {
     expect(hasWorld5ParticipationProof("sistema", m.storage)).toBe(true);
     expect(readWorld5Rounds(m.storage).score).toBe(0);
   });
-  it("rejects future questions, early finish/retry, and a fifth round after three whole retries", () => {
+  it("rejects future questions, early finish/retry, and a third round after one whole retry", () => {
     const m = memory();
     for (const action of [{ kind: "answer", area: "visitante", side: "agreement" }, { kind: "finish_round" }, { kind: "begin_retry" }] as const) expect(m.commit(m.command(action)).ok).toBe(false);
     expect(m.values.size).toBe(0);
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 2; index++) {
       const result = m.round(index % 4);
       expect(result.roundNumber).toBe(index + 1);
       const before = result.raw;
-      if (index < 3) {
+      if (index < 1) {
         expect(m.commit(m.command({ kind: "begin_retry" })).ok).toBe(true);
         expect(readWorld5Rounds(m.storage)).toMatchObject({ roundNumber: index + 2, score: 0, complete: false });
       } else {
@@ -73,9 +73,9 @@ describe("Sala V OBS05 — four complete, independently scored rounds", () => {
         expect(readWorld5Rounds(m.storage).raw).toBe(before);
       }
     }
-    expect(readWorld5Rounds(m.storage).ledger?.seenActionIds).toHaveLength(23);
+    expect(readWorld5Rounds(m.storage).ledger?.seenActionIds).toHaveLength(11);
   });
-  it.each([1, 2, 3, 4])("allows a verified win in round %i and prevents any further retry", winningRound => {
+  it.each([1, 2])("allows a verified win in round %i and prevents any further retry", winningRound => {
     const m = memory();
     for (let n = 1; n < winningRound; n++) { m.round(0); expect(m.commit(m.command({ kind: "begin_retry" })).ok).toBe(true); }
     expect(m.round(4)).toMatchObject({ eligible: true, roundNumber: winningRound, canRetry: false });

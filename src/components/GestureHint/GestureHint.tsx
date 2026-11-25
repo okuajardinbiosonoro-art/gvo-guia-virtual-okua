@@ -154,11 +154,10 @@ export function GestureHint({
     }
 
     const timer = window.setTimeout(() => setVisible(true), delayMs);
-    const finishTimer = variant === "tap" ? null : window.setTimeout(() => setVisible(false), delayMs + 2200);
-    return () => { window.clearTimeout(timer); if (finishTimer !== null) window.clearTimeout(finishTimer); };
+    return () => window.clearTimeout(timer);
   }, [active, completed, delayMs, direction, variant]);
 
-  const state = completed ? "completed" : visible ? "visible" : "waiting";
+  const state = completed ? "completed" : active && visible ? "visible" : "waiting";
 
   useLayoutEffect(() => {
     const target = anchorRef?.current;

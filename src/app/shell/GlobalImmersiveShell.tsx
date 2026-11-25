@@ -2,6 +2,9 @@ import "./GlobalImmersiveShell.css";
 
 import { useEffect, useSyncExternalStore, type MouseEvent } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { inReplayVisit, replayStartRoom } from "../../domain/progress/replayStorage";
+import { canOpenFinal, readProgress } from "../../domain/progress/progress.storage";
+import { beginFinalCoverRevisit } from "../review/finalReviewContext";
 
 import {
   getFullscreenCapability,
@@ -49,6 +52,13 @@ export function GlobalImmersiveShell() {
   const location = useLocation();
   const locale = readLanguagePreference() ?? "es";
   const authorized = isImmersiveShellAuthorizedPath(location.pathname);
+  const replay = inReplayVisit();
+  const canReplay = !replay || (replayStartRoom() !== null && canOpenFinal(readProgress(window.localStorage)));
+  const leaveReplay = replay && (!canReplay || location.pathname === finalEntryRoute || location.pathname === coverIntroRoute);
+  useEffect(() => {
+    if (!leaveReplay) return;
+    window.location.replace(canReplay ? finalEntryRoute : "/inicio");
+  }, [canReplay, leaveReplay]);
   const fullscreenAvailableOnPlatform =
     getFullscreenCapability() !== "unavailable-on-platform";
   const muted = useSyncExternalStore(subscribeToJourneySound, isJourneySoundMuted);
@@ -78,6 +88,7 @@ export function GlobalImmersiveShell() {
     if ((authorized || normalizePathname(location.pathname) === "/inicio") && event.nativeEvent.isTrusted) unlockJourneySound();
   }
 
+  if (leaveReplay) return null;
   return (
     <div
       className="gvo-immersive-shell"
@@ -85,6 +96,12 @@ export function GlobalImmersiveShell() {
       onClickCapture={activateSound}
     >
       <JourneyPreparation><Outlet /></JourneyPreparation>
+      {replay && authorized && (
+        <button className="gvo-replay-portals" type="button" onClick={() => {
+          beginFinalCoverRevisit(window.sessionStorage);
+          window.location.assign(coverIntroRoute);
+        }}>{locale === "en" ? "Portals" : "Portales"}</button>
+      )}
       {authorized ? (
         <div
           aria-label={locale === "en" ? "Display controls" : "Control de visualización"}

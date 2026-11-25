@@ -444,7 +444,11 @@ test.describe("OBS05 production journey · earned through UI", () => {
       await click(page, roots[3], "Volver al índice");
       await page.locator('[data-station3-record="senal"]').click();
       await expect(page.locator(`${roots[3]} [data-station3-page="senal"]`).getByRole("heading", { name: "BENEFICIOS", exact: true })).toBeVisible();
-      await expect(page.locator('[data-editorial-origin="gvo-practice-benefits"] dt')).toHaveText(["Calma", "Atención plena y escucha profunda", "Concentración"]);
+      await expect(page.locator('[data-editorial-origin="gvo-practice-benefits"] li')).toHaveText([
+        "Regulación del sistema nervioso central, reducción del estrés y la ansiedad",
+        "Entrenamiento de la atención plena y la escucha profunda.",
+        "Como práctica diaria puede reducir el riesgo de accidentes cardiovasculares, fortalecer los pulmones, mejorar la concentración y la memoria.",
+      ]);
       await expect(page.locator('[data-station3-page-turn]')).toHaveCount(0);
       await capture(page, info, "03-benefits-leaf");
       await click(page, roots[3], "Volver al índice");

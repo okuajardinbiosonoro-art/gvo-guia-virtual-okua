@@ -250,7 +250,11 @@ export function World3RootScreen() {
                 <button type="button" className="s3-practice-motif-button" data-motif-selected={selectedMotif === active} data-motif-kind={active} aria-label={`${content.ui.selectIllustration}: ${page.label}`} aria-pressed={selectedMotif === active} disabled={!canTurnFolio} onClick={() => { setSelectedMotif((value) => value === active ? null : active); setMotifEvent((value) => value + 1); }}><img key={motifEvent} className="s3-practice-motif s3-practice-motif--page" src={world3RuntimeAssets.practice[active]} alt="" draggable="false" /><span className="s3-practice-motif-response" aria-hidden="true" /></button>
               </header>
               <div className="s3-practice-instructions" data-editorial-source-id={folio.sourceId} data-editorial-operation={locale === "es" ? "writer-literal-explicit-errata" : "translation-en"}>
-                {folio.steps ? (
+                {folio.benefits ? (
+                  <ol className="s3-practice-benefits" data-editorial-origin="gvo-practice-benefits">
+                    {folio.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+                  </ol>
+                ) : folio.steps ? (
                   <ol className="s3-practice-steps" start={folioIndex * 2 + 1}>
                     {folio.steps.map((item) => <li key={item.text}><p>{item.text}</p>
                       {item.illustration ? <img className="s3-practice-illustration" src={item.illustration} data-runtime-asset={item.illustration} alt="" width="320" height="256" draggable="false" /> : null}
@@ -259,16 +263,6 @@ export function World3RootScreen() {
                 ) : <p>{folio.text}</p>}
                 {folio.illustration ? <img className="s3-practice-illustration" src={folio.illustration} data-runtime-asset={folio.illustration} alt="" width="320" height="256" draggable="false" /> : null}
               </div>
-              {active === "senal" ? (
-                <dl className="s3-practice-benefits" data-editorial-origin="gvo-practice-benefits">
-                  {content.practiceBenefits.map(({ title, text }) => (
-                    <div key={title}>
-                      <dt>{title}</dt>
-                      <dd>{text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : null}
             </article> : <div data-station3-page="index">
               <ol className="s3-practice-index">{content.records.map((record) => {
                 const state = recordState(record.id), completed = flow.confirmedStepIds.includes(stepByPage[record.id]);

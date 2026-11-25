@@ -1,3 +1,4 @@
+import { inReplayVisit } from "../../domain/progress/replayStorage";
 import { playJourneySound } from "../../app/audio/journeySound";
 import "./World5QuizExperience.css";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
@@ -335,11 +336,10 @@ export function World5RootScreen() {
         <div className="s5-gallery-marquee">
         <header className="s5-quiz-header">
           <h1 id="station5-title">{copy.room} · {copy.title}</h1>
-          {!essential.readOnly || roundRead.ledger ? <p className="s5-quiz-round">{copy.round(roundRead.roundNumber)}</p> : null}
           {view === "plantas" ? (
             <div className="s5-quiz-introduction">
               <p>{copy.introduction} {copy.guidance}</p>
-              <p>{copy.prizeCondition}</p>
+              {!inReplayVisit() && <p>{copy.prizeCondition}</p>}
             </div>
           ) : null}
           {showLegacyHistory ? <p className="s5-quiz-legacy">{copy.legacyHistory(roundRead.legacyQuiz.correctAnswers.length)}</p> : null}
@@ -483,8 +483,7 @@ export function World5RootScreen() {
                     ? legacyOnly ? copy.legacyOutcome(roundRead.legacyQuiz.correctAnswers.length) : copy.noRound
                     : copy.outcome(roundRead.score)}
                 </p>
-                <p>{prizeEligible ? copy.prize : historicalWin ? copy.readonlyPrize : essential.readOnly && legacyOnly ? copy.legacyNoPrize : copy.noPrize}</p>
-                {roundRead.complete && !roundRead.eligible && roundRead.roundNumber === 4 ? <p>{copy.exhausted}</p> : null}
+                <p>{prizeEligible ? inReplayVisit() ? copy.practiceWin : copy.prize : historicalWin ? copy.readonlyPrize : essential.readOnly && legacyOnly ? copy.legacyNoPrize : copy.noPrize}</p>
                 {!essential.readOnly ? (
                   <div className="s5-quiz-result-actions">
                   {roundRead.canRetry ? (

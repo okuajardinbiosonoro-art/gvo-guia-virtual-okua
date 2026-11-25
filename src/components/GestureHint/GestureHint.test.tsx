@@ -97,16 +97,17 @@ describe("GestureHint", () => {
     target.remove();
   });
 
-  it("stops the new swipe after two introductory cycles without intercepting touch", () => {
-    const { container } = render(<GestureHint active variant="swipe-vertical" targetLabel="Desliza" />);
+  it.each(["swipe-vertical", "swipe-horizontal", "tap"] as const)("keeps %s visible until the target action succeeds", (variant) => {
+    const props = { variant, targetLabel: "Objetivo" };
+    const { container, rerender } = render(<GestureHint active {...props} />);
     const hint = container.querySelector("[data-gvo-gesture-hint]");
     act(() => vi.advanceTimersByTime(2800));
     expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
     expect(hint).toHaveAttribute("aria-hidden", "true");
-    act(() => vi.advanceTimersByTime(2200));
-    expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
-    act(() => vi.advanceTimersByTime(10000));
-    expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
+    act(() => vi.advanceTimersByTime(60_000));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
+    rerender(<GestureHint active completed {...props} />);
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "completed");
   });
 
   it.each([

@@ -1,3 +1,4 @@
+import { journeyStorage } from "./replayStorage";
 import { stationIds, type StationId } from "../../data/stations";
 import type {
   GvoProgress,
@@ -19,15 +20,7 @@ export const emptyProgress: GvoProgress = {
 };
 
 function getDefaultStorage(): ProgressStorage | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
+  return journeyStorage();
 }
 
 function isStationId(value: unknown): value is StationId {

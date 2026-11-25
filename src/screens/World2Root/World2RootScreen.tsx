@@ -1,7 +1,7 @@
 import { playJourneySound, stopJourneySound } from "../../app/audio/journeySound";
 import "./World2RootScreen.css";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { readLanguagePreference } from "../../app/preferences/languagePreference";
 import { InterstationQrGate } from "../../app/qr/InterstationQrGate";
 import { worldTwoToWorldThreeTransitionRoute } from "../../app/routes";
@@ -154,6 +154,8 @@ function getLayerGlyphStyle(index: number): LayerGlyphStyle { return { "--world2
 
 export function World2RootScreen() {
   const navigate = useNavigate();
+  const navigationKey = useLocation().key;
+  const lastNavigation = useRef(navigationKey);
   const locale = readLanguagePreference() ?? "es";
   const en = locale === "en";
   const content = getWorld2Content(locale);
@@ -180,6 +182,7 @@ export function World2RootScreen() {
   const activeLayer = world2LayerDefinitions.find((layer) => layer.id === activeLayerId)!;
   const [readout, setReadout] = useState<"plant" | "signal" | null>(null);
   const [captureTimelineStepId, setCaptureTimelineStepId] = useState<CaptureTimelineStepId>("contact");
+  const [hasLeftCaptureContact, setHasLeftCaptureContact] = useState(false);
   const [captureIntent, setCaptureIntent] = useState<CaptureTimelineStepId | null>(null);
   const [captureDemo, setCaptureDemo] = useState(false);
   const [filterDemo, setFilterDemo] = useState<"idle" | "running" | "complete">("idle");
@@ -201,7 +204,7 @@ export function World2RootScreen() {
   const captureVisitedStepIds = new Set(facts.filter((fact) => fact.kind === "capture_step").map((fact) => fact.id as CaptureTimelineStepId));
   const mappingFirstRunComplete = facts.some((fact) => fact.kind === "mapping_first_run");
   const captureTimelineCompleted = captureVisitedStepIds.size === 3;
-  const captureTimelineInteracted = captureVisitedStepIds.size > 0;
+  const captureTimelineInteracted = hasLeftCaptureContact || captureVisitedStepIds.has("signal") || captureVisitedStepIds.has("system");
   const plantContactReadoutState = readout === "plant" ? "expanded" : "idle";
   const signalRevealState = readout === "signal" ? "expanded" : "idle";
   const visitedLayerIds = new Set(flow.presentedStepIds.map((step) => layerByStep[step]));
@@ -335,7 +338,13 @@ export function World2RootScreen() {
   function getStatusLabel(status: LayerStatus) { return en ? { locked: "locked", active: "active", completed: "confirmed", next: "available" }[status] : { locked: "bloqueada", active: "activa", completed: "confirmada", next: "disponible" }[status]; }
   function expandPlantContactReadout() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; playJourneySound("interaction"); setReadout("plant"); }
   function expandSignalReveal() { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady) return; playJourneySound("interaction"); setReadout("signal"); }
-  function selectCaptureTimelineStep(step: CaptureTimelineStepId) { if (attemptRef.current !== attemptId || !activity.active || !resourcesReady || lock.current) return; playJourneySound("interaction"); setCaptureTimelineStepId(step); setCaptureIntent(step); }
+  function selectCaptureTimelineStep(step: CaptureTimelineStepId) {
+    if (attemptRef.current !== attemptId || !activity.active || !resourcesReady || lock.current) return;
+    playJourneySound("interaction");
+    if (step !== "contact") setHasLeftCaptureContact(true);
+    setCaptureTimelineStepId(step);
+    setCaptureIntent(step);
+  }
   function completeMappingFirstRun() { if (attemptRef.current === attemptId) void record("mapping_first_run", "mapping_first_run"); }
   function completeSonicConvergence(mode: "standard" | "assisted") { if (attemptRef.current !== attemptId) return; setPresentationMode(mode); setSonicConvergenceComplete(true); }
   async function advance() {
@@ -361,10 +370,15 @@ export function World2RootScreen() {
   }, [activeLayerId, isReadyToContinue, activity.active]);
   useEffect(() => {
     pendingActions.current = []; lock.current = false; failedWrite.current = false; retry.current = null; requestKey.current = "";
-    setSaving(false); setFailure(false); setSelection(null); setReadout(null); setSoftMessage(null);
-    setCaptureIntent(null); setCaptureTimelineStepId("contact"); setCaptureDemo(false); setFilterDemo("idle");
+    const sameVisit = lastNavigation.current === navigationKey;
+    lastNavigation.current = navigationKey;
+    // Rotating the device prepares the same room again. Keep its open waveform.
+    setSelection(layer => sameVisit && layer === "senal" ? layer : null);
+    setReadout(open => sameVisit && open === "signal" ? open : null);
+    setSaving(false); setFailure(false); setSoftMessage(null);
+    setCaptureIntent(null); setCaptureTimelineStepId("contact"); setHasLeftCaptureContact(false); setCaptureDemo(false); setFilterDemo("idle");
     setMappingPresented(false); setSonicConvergenceComplete(false); setMappingResultRequested(false); setPresentationMode("standard");
-  }, [attemptId]);
+  }, [attemptId, navigationKey]);
   useEffect(() => {
     const update = () => setVisualViewportHeight(Math.round(window.visualViewport?.height ?? window.innerHeight));
     update(); window.addEventListener("resize", update); window.visualViewport?.addEventListener("resize", update);
@@ -413,6 +427,15 @@ export function World2RootScreen() {
     const first = window.requestAnimationFrame(() => { second = window.requestAnimationFrame(() => { if (activeRef.current) void record("required_interaction", id); }); });
     return () => { window.cancelAnimationFrame(first); window.cancelAnimationFrame(second); };
   }, [attemptId, activity.active, visible, resourcesReady, flow.readOnly, readout, completedRequiredInteractionList]);
+  const liaActor = (
+    <World2LiaActor
+      profile={activeLiaProfile}
+      active={activity.active && visible && resourcesReady}
+      action={readout || captureIntent || filterDemo === "complete" || sonicConvergenceComplete ? "respond" : essentialVisualReady ? "present" : "attention"}
+      replayKey={`${activeLayerId}:${readout}:${captureTimelineStepId}:${filterDemo}:${mappingPresented}:${sonicConvergenceComplete}`}
+    />
+  );
+
   return (
     <main
       ref={rootRef}
@@ -652,7 +675,42 @@ export function World2RootScreen() {
                       data-world2-signal-scan="moving-alpha-mask"
                       loading="lazy"
                     />
+                    {signalRevealState === "expanded" && (
+                      <svg className="world2-wave-marks" viewBox="0 0 640 360" fill="none" aria-hidden="true">
+                        {/* Same frame and aspect-fit as the illustrated signal underneath. */}
+                        <g className="world2-wave-amplitude">
+                          <path className="wave-ink" d="M250 187h23l5-3m-25-24 4-3h19" />
+                          <path d="M254 187h17l4-2m-19-26 3-2h14" />
+                          <path className="wave-filament" d="M263 182v-20" />
+                        </g>
+                        <g className="world2-wave-variation">
+                          <path className="wave-filament" d="M154 187h12q3-1 5-7l3 12 4-9 3 15 5-29" />
+                          {[ [154,187], [175,185], [186,169] ].map(([x,y]) => (
+                            <g key={x} transform={`translate(${x} ${y})`}>
+                              <path className="wave-seed" d="M-5 0q1-5 8-5 1 7-5 8z" />
+                              <path d="m-3 1 4-3" />
+                            </g>
+                          ))}
+                        </g>
+                        <g className="world2-wave-range">
+                          <path className="wave-filament" d="M325 138h15q5 0 5 6v73q0 6-5 6h-24" />
+                          {[ [325,138], [316,223] ].map(([x,y]) => (
+                            <g key={y} transform={`translate(${x} ${y})`}>
+                              <path className="wave-seed" d="M-6 0q2-5 6-6 4 1 6 6-2 5-6 6-4-1-6-6z" />
+                              <circle r="2" fill="currentColor" stroke="none" />
+                            </g>
+                          ))}
+                        </g>
+                      </svg>
+                    )}
                   </div>
+                  {signalRevealState === "expanded" && (
+                    <ul className="world2-wave-key" aria-label={en ? "Reading the wave" : "Lectura de la onda"}>
+                      <li aria-label={en ? "Amplitude from baseline to peak" : "Amplitud desde la línea de base hasta el pico"}><i className="wave-key-amplitude" />{en ? "Amplitude" : "Amplitud"}</li>
+                      <li aria-label={en ? "Variation between two moments" : "Variación entre dos instantes"}><i className="wave-key-variation" />{en ? "Variation" : "Variación"}</li>
+                      <li aria-label={en ? "Range from minimum to maximum" : "Rango entre mínimo y máximo"}><i className="wave-key-range" />{en ? "Range" : "Rango"}</li>
+                    </ul>
+                  )}
                   <button
                     ref={signalRevealControlRef}
                     className="world2-signal-cinema__label world2-micro-label world2-micro-label--bright world2-micro-label--asset-anchored world2-micro-label--subtle-motion"
@@ -684,6 +742,7 @@ export function World2RootScreen() {
                 </div>
               ) : showAcquisitionCinema ? (
                 <World2CaptureTimeline
+                  guide={liaActor}
                   asset={world2RuntimeAssets.captureAcquisitionChain}
                   readoutPlacement="dialogue"
                   completed={captureTimelineCompleted}
@@ -822,7 +881,7 @@ export function World2RootScreen() {
                   ))}
                 </div>
               ) : null}
-              <World2LiaActor profile={activeLiaProfile} active={activity.active && visible && resourcesReady} action={readout || captureIntent || filterDemo === "complete" || sonicConvergenceComplete ? "respond" : essentialVisualReady ? "present" : "attention"} replayKey={`${activeLayerId}:${readout}:${captureTimelineStepId}:${filterDemo}:${mappingPresented}:${sonicConvergenceComplete}`} />
+              {!showAcquisitionCinema && liaActor}
             </div>
           </div>
                 {showConditioningCinema ? <button className="world2-reading-assist world2-scene-listen" type="button"
@@ -907,13 +966,6 @@ export function World2RootScreen() {
                 {sceneReadout ? (
                   <div className="world2-scene-readout">
                     <p className="world2-dialogue__copy" tabIndex={-1} data-editorial-origin={sceneReadout.origin} data-world2-capture-readout={activeLayerId === "captura" ? captureTimelineStepId : undefined}>{sceneReadout.text}</p>
-                      {activeLayerId === "senal" && (
-                        <ul className="world2-wave-key" aria-label={en ? "Reading the wave" : "Lectura de la onda"}>
-                          <li>{en ? "Amplitude of each pulse" : "Amplitud de cada pulso"}</li>
-                          <li>{en ? "Variation over time" : "Variación en el tiempo"}</li>
-                          <li>{en ? "Range from low to high" : "Rango entre mínimo y máximo"}</li>
-                        </ul>
-                      )}
                     {activeLayerId === "captura" && captureTimelineStepId === "signal" ? (
                       <ul className="world2-capture-traits" aria-label={en ? "Signal features" : "Rasgos de la señal"}>
                         {(en ? ["Amplitude", "Variation", "Range"] : ["Amplitud", "Variación", "Rango"]).map((trait) => <li key={trait}>{trait}</li>)}

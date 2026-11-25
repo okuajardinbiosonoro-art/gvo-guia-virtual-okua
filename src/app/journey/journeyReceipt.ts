@@ -1,4 +1,5 @@
 import { interstationQrContracts } from "../qr/interstationQr";
+import { replayStartRoom } from "../../domain/progress/replayStorage";
 import { parseFinalCoverRevisitContext, parseFinalReviewContext, type FinalCoverRevisitContext, type FinalReviewContext, type FinalReviewNavigationState, type FinalCoverRevisitNavigationState } from "../review/finalReviewContext";
 import type { EssentialAccessMode, EssentialScreen, JourneyReceipt, VerifiedEssentialSnapshot } from "./journeyEssential";
 import { hasLegacyContradiction } from "./journeyLegacyEvidence";
@@ -49,7 +50,10 @@ export function validateJourneyReceipt(value: unknown, snapshot: VerifiedEssenti
     return true;
   }
   if (receipt.acceptedAuthorizationKind !== "normal" || receipt.reviewContext !== undefined) return false;
-  const sourceClosed = snapshot.cover.closed && (origin === "cover" || Array.from({ length: origin }, (_, index) => snapshot.stations[(index + 1) as Exclude<EssentialScreen, "cover">].closed).every(Boolean));
+  const replayFrom = replayStartRoom();
+  const firstRequired = replayFrom ?? 1;
+  const sourceClosed = (snapshot.cover.closed || replayFrom !== null) && (origin === "cover" ||
+    (origin >= firstRequired && Array.from({ length: origin - firstRequired + 1 }, (_, index) => snapshot.stations[(index + firstRequired) as Exclude<EssentialScreen, "cover">].closed).every(Boolean)));
   if (!sourceClosed) return false;
   if (receipt.kind === "portal") return origin === "cover" && receipt.to === "/estacion/1" && receipt.canonicalPayload === undefined;
   if (policy === "live" && origin === 4 && prefix < 4 && !hasWorld4NewAdvanceProof(snapshot.stations[4].outcome)) return false;

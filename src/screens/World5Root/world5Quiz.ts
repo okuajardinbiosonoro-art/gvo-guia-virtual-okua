@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
 import type { Station5AreaId } from "./station5Content";
 
@@ -29,11 +30,7 @@ export const emptyWorld5Quiz = (): World5Quiz => ({
   skippedQuestions: [],
 });
 function defaultStorage(): ProgressStorage | null {
-  try {
-    return typeof window === "undefined" ? null : window.localStorage;
-  } catch {
-    return null;
-  }
+  return journeyStorage();
 }
 function isArea(value: unknown): value is Station5AreaId {
   return (
@@ -254,7 +251,7 @@ export function readWorld5Rounds(storage = defaultStorage()): World5RoundsRead {
   const quiz = roundProjection(round), score = quiz.correctAnswers.length;
   const complete = status === "ok" && round?.status === "complete";
   const eligible = complete && score === 4;
-  return { status, raw, ledger, round, quiz, legacyQuiz, roundNumber: (round?.roundIndex ?? 0) + 1, score, complete, eligible, canRetry: Boolean(complete && !eligible && ledger!.rounds.length < 4) };
+  return { status, raw, ledger, round, quiz, legacyQuiz, roundNumber: (round?.roundIndex ?? 0) + 1, score, complete, eligible, canRetry: Boolean(complete && !eligible && ledger!.rounds.length < 2) };
 }
 /** First essential confirmations require an actual outcome, never a route or score. */
 export function hasWorld5ParticipationProof(area: Station5AreaId, storage = defaultStorage()): boolean {

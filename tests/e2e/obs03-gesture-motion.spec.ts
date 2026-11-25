@@ -101,7 +101,7 @@ async function sampleReadOnly(page: Page, hintSelector: string, anchorSelector: 
 
 test.describe("OBS03 gesture motion · real I and II consumers, declared fixtures", () => {
   for (const consumer of ["I-up", "II-left"] as const) for (const reducedMotion of [false, true]) {
-    test(`${consumer} 320×568 · ${reducedMotion ? "reduced static" : "two natural swipe cycles"}`, async ({ page }, info) => {
+    test(`${consumer} 320×568 · ${reducedMotion ? "reduced static" : "persistent swipe guidance"}`, async ({ page }, info) => {
       test.setTimeout(45_000); await page.setViewportSize({ width: 320, height: 568 }); await page.emulateMedia({ reducedMotion: reducedMotion ? "reduce" : "no-preference" });
       const pageErrors: string[] = []; page.on("pageerror", (error) => pageErrors.push(error.message));
       const { station, hint: selector, anchor } = await prepareConsumer(page, info, consumer), hint = page.locator(selector);
@@ -117,14 +117,13 @@ test.describe("OBS03 gesture motion · real I and II consumers, declared fixture
         await page.screenshot({ path: info.outputPath(`${consumer}-${reducedMotion ? "reduced" : "motion"}-viewport-320x568.png`), fullPage: false, scale: "css" });
       } catch (error) { captureError = error; }
       const observation = await sampling, after = await semanticState(page, station);
-      await info.attach("gesture-motion-readonly-samples", { body: JSON.stringify({ qualification: "Synthetic declared fixture, real consumer and elapsed browser time. No fake clock, CSS injection, earned reading/practice or physical camera/usability claim. Screenshot CSS viewport320×568, no scaling overlay.", consumer, reducedMotion, sourceFingertip: [315, 152, 1024], expectedCycleMs: 1100, expectedVisibleWindowMs: 2200, before, after, pageErrors, ...observation }, null, 2), contentType: "application/json" });
+      await info.attach("gesture-motion-readonly-samples", { body: JSON.stringify({ qualification: "Synthetic declared fixture, real consumer and elapsed browser time. No fake clock, CSS injection, earned reading/practice or physical camera/usability claim. Screenshot CSS viewport320×568, no scaling overlay.", consumer, reducedMotion, sourceFingertip: [315, 152, 1024], expectedCycleMs: 1100, expectedVisibility: "until action", before, after, pageErrors, ...observation }, null, 2), contentType: "application/json" });
       if (captureError) throw captureError;
       const visible = observation.samples.filter((sample) => sample.state === "visible"), first = visible[0], last = visible.at(-1);
       expect(visible.length).toBeGreaterThan(10); expect(last).toBeDefined();
-      const hiddenAfter = observation.samples.find((sample) => sample.ms > last!.ms && sample.state === "waiting"); expect(hiddenAfter).toBeDefined();
-      const visibleWindowMs = hiddenAfter!.ms - first.ms;
-      expect(visibleWindowMs).toBeGreaterThanOrEqual(2000); expect(visibleWindowMs).toBeLessThanOrEqual(2500);
-      expect(observation.samples.at(-1)?.state).toBe("waiting"); expect(observation.samples.at(-1)?.opacity).toBeLessThan(0.01);
+      expect(last!.ms - first.ms).toBeGreaterThan(2600);
+      expect(observation.samples.filter((sample) => sample.ms >= first.ms).every((sample) => sample.state === "visible")).toBe(true);
+      expect(last!.opacity).toBeGreaterThan(0.5);
       for (const sample of visible) {
         expect(sample.pointerEvents).toBe("none"); expect(sample.naturalSize).toEqual([256, 256]); expect(String(sample.asset)).toContain(handV03);
         expect(sample.tipTrailDistance).toBeLessThan(1); expect(sample.sourceTipDistance).toBeLessThan(1); expect(sample.staticAnchorDistance).toBeLessThan(1);
@@ -136,11 +135,10 @@ test.describe("OBS03 gesture motion · real I and II consumers, declared fixture
       } else {
         expect(visible.every((sample) => sample.durationMs === 1100)).toBe(true);
         const animationTimes = visible.map((sample) => sample.animationMs ?? 0);
-        expect(Math.max(...animationTimes)).toBeGreaterThan(1900); expect(Math.max(...animationTimes)).toBeLessThan(2400);
-        expect(new Set(animationTimes.map((ms) => Math.floor(ms / 1100)))).toEqual(new Set([0, 1]));
+        expect(Math.max(...animationTimes) - Math.min(...animationTimes)).toBeGreaterThan(2200);
         const axis = consumer === "I-up" ? "y" : "x"; const positions = visible.map((sample) => sample.tip![axis]); expect(Math.max(...positions) - Math.min(...positions)).toBeGreaterThan(8);
       }
-      // Hint appearance/timeout is not a reading action or a completion event.
+      // Watching the guide leaves the visitor's progress untouched.
       expect(after.room.confirmedStepIds).toEqual(before.room.confirmedStepIds); expect(after.room.closed).toBe(false); expect(after.room.interactionEvidence).toEqual(before.room.interactionEvidence); expect(after.globalRaw).toBe(before.globalRaw); expect(after.legacyII).toBe(before.legacyII); expect(after.practiceIII).toBe(before.practiceIII); expect(pageErrors).toEqual([]);
     });
   }

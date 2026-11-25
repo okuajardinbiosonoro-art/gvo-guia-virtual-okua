@@ -107,11 +107,6 @@
   overflow-wrap: anywhere;
 }
 
-.s5-quiz-round {
-  font: 700 1rem/1.35 var(--gvo-font-ui);
-  color: #49543c;
-}
-
 .s5-quiz-introduction {
   display: grid;
   gap: 0.25rem;

@@ -1,3 +1,4 @@
+import { journeyStorage } from "../progress/replayStorage";
 import type { ProgressStorage } from "../progress/progress.types";
 
 export type CheckpointReadStatus =
@@ -49,15 +50,7 @@ type VersionedCheckpointStoreConfig<T extends VersionedCheckpoint> = Readonly<{
 }>;
 
 function defaultStorage(): ProgressStorage | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
+  return journeyStorage();
 }
 
 function readFailureReason<T>(

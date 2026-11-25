@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import type { ProgressStorage } from "../../domain/progress/progress.types";
 import { beginJourneyReset, finishJourneyReset } from "../journey/journeyEssential";
 import {
@@ -56,8 +57,8 @@ function defaultStorageBackends(): JourneyResetStorageBackends {
   }
 
   return {
-    localStorage: window.localStorage,
-    sessionStorage: window.sessionStorage,
+    localStorage: journeyStorage(),
+    sessionStorage: journeyStorage("session"),
   };
 }
 

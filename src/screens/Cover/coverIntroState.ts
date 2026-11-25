@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 export type CoverIntroPhase =
   | "portada_idle"
   | "intro_dialogue_started"
@@ -26,11 +27,7 @@ export const COVER_INTRO_INITIAL_STATE: CoverIntroState = {
 };
 
 function getLocalStorage() {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  return window.localStorage;
+  return journeyStorage();
 }
 
 export function readCoverIntroCompleted(): boolean {

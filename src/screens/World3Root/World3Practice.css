@@ -69,16 +69,15 @@
   display: grid;
   gap: 0.8rem;
   margin: 0.85rem 0 0;
+  padding-inline-start: 1.55em;
   color: #362a26;
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.5;
 }
-.s3-practice-benefits > div {
-  padding-block-start: 0.6rem;
-  border-block-start: 1px solid #a68a64;
+.s3-practice-benefits li {
+  padding-inline-start: 0.15em;
 }
-.s3-practice-benefits dt { font-weight: 700; }
-.s3-practice-benefits dd { margin: 0.2rem 0 0; }
+.s3-practice-benefits li::marker { color: #573b31; font-weight: 700; }
 .s3-practice-intro { margin: 0.4rem 0; }
 .s3-practice-number { display: inline-block; white-space: nowrap; word-break: normal; overflow-wrap: normal; color: #573b31 !important; font-size: 1rem !important; line-height: 1.5; margin: 0; }
 .s3-practice-index { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
@@ -125,7 +124,7 @@
   rotate: -15deg;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .s3-practice-scroll-cue:not([aria-hidden="true"]) img { animation: s3-read-up 1.5s ease-in-out 2; }
+  .s3-practice-scroll-cue:not([aria-hidden="true"]) img { animation: s3-read-up 1.5s ease-in-out infinite; }
 }
 @media (orientation: landscape) and (max-height: 550px) {
   .s3-practice-scroll-cue {

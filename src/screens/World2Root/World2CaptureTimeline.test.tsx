@@ -20,17 +20,15 @@ function CaptureTimelineHarness() {
   const [visitedStepIds, setVisitedStepIds] = useState<
     ReadonlySet<CaptureTimelineStepId>
   >(() => new Set<CaptureTimelineStepId>(["contact"]));
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   return (
     <World2CaptureTimeline
       asset="/capture-chain.png"
       completed={visitedStepIds.size === captureTimelineSteps.length}
       currentStepId={currentStepId}
-      hasInteracted={hasInteracted}
+      hasInteracted={visitedStepIds.has("signal") || visitedStepIds.has("system")}
       onSelectStep={(stepId) => {
         setCurrentStepId(stepId);
-        setHasInteracted(true);
         setVisitedStepIds((current) => new Set(current).add(stepId));
       }}
       visitedStepIds={visitedStepIds}
@@ -86,6 +84,14 @@ describe("World2CaptureTimeline", () => {
 
     expect(hint).toHaveAttribute("data-gvo-gesture-state", "waiting");
     act(() => vi.advanceTimersByTime(2800));
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
+
+    for (const [dx, dy] of [[0, 0], [-12, 3], [80, 1], [3, 70]]) {
+      fireEvent.pointerDown(zone, {button: 0, pointerId: 1, isPrimary: true, clientX: 150, clientY: 100});
+      fireEvent.pointerUp(zone, {pointerId: 1, clientX: 150 + dx, clientY: 100 + dy});
+    }
+    act(() => vi.advanceTimersByTime(15_000));
+    expect(timeline).toHaveAttribute("data-world2-capture-step", "contact");
     expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
 
     fireEvent.pointerDown(zone, {

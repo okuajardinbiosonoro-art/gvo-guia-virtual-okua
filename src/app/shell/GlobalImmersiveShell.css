@@ -61,3 +61,17 @@
     transition: none;
   }
 }
+.gvo-replay-portals {
+  position: fixed;
+  z-index: 30;
+  inset-block-start: calc(env(safe-area-inset-top, 0px) + .75rem);
+  inset-inline-start: calc(env(safe-area-inset-left, 0px) + .75rem);
+  min-height: 44px;
+  padding: .4em .8em;
+  border: 1px solid #d8b779;
+  border-radius: .65rem;
+  background: #302331;
+  color: #fff3d7;
+  font: inherit;
+  cursor: pointer;
+}

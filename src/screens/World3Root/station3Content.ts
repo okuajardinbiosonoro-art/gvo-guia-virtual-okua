@@ -34,6 +34,7 @@ type Station3Folio = {
   text: string;
   illustration?: string;
   steps?: readonly { text: string; illustration?: string }[];
+  benefits?: readonly string[];
 };
 
 export type Station3RecordContent = {
@@ -103,7 +104,19 @@ export function getStation3Content(locale: World3Locale) {
         { text: en ? "If you wish, take a photo, share it and tag us in your story. @okuajardinsonoro" : "Si quieres, toma una foto, compártela y etiquétanos en tu historia. @okuajardinsonoro", illustration: art.fotografia },
       ],
     },
-    TXT_3_30f92d565590: { sourceId: "TXT_3_30f92d565590", text: t("TXT_3_30f92d565590") },
+    TXT_3_30f92d565590: {
+      sourceId: "TXT_3_30f92d565590",
+      text: t("TXT_3_30f92d565590"),
+      // Nuevos Comentarios sobre GVO V4, apartado «Beneficios», puntos 1–3.
+      // El punto 2 ya tiene traducción en la entrega inglesa del 22 de noviembre.
+      benefits: [
+        en ? "Regulation of the central nervous system, reduction of stress and anxiety"
+          : "Regulación del sistema nervioso central, reducción del estrés y la ansiedad",
+        t("TXT_3_30f92d565590"),
+        en ? "As a daily practice, it may reduce the risk of cardiovascular events, strengthen the lungs, and improve concentration and memory."
+          : "Como práctica diaria puede reducir el riesgo de accidentes cardiovasculares, fortalecer los pulmones, mejorar la concentración y la memoria.",
+      ],
+    },
   };
   const groups = [
     { id: "planta" as const, label: t("TXT_3_835c5985f329"), subtitle: t("TXT_3_8ab07739da9e"), ids: ["TXT_3_ea0217fac7f6", "TXT_3_d1384cb3c055", "TXT_3_f4d4d818e31e"] },
@@ -121,16 +134,7 @@ export function getStation3Content(locale: World3Locale) {
   const indexDialogue = en
     ? "It is time to connect your energy with the energy of Nature. Connecting involves a ritual, a willingness. Follow these simple steps and give your body and mind five minutes of rest."
     : "Ha llegado el momento de conectar tu energía con la energía de la Naturaleza. Conectar conlleva un ritual, una disposición. Sigue estos sencillos pasos y regala a tu cuerpo y mente cinco minutos de descanso.";
-  const practiceBenefits = en ? [
-    { title: "Calm", text: "A few minutes of slow, comfortable breathing can help you feel calmer. Practising mindfulness regularly may also ease feelings of stress and anxiety." },
-    { title: "Mindfulness and deep listening", text: "Listening closely helps you notice the rhythms, silences and small changes in the Garden." },
-    { title: "Concentration", text: "Regular mindfulness practice may help you concentrate and keep information in mind while you use it." },
-  ] : [
-    { title: "Calma", text: "Unos minutos de respiración pausada pueden ayudarte a sentir calma. Practicar la atención plena con regularidad también puede aliviar el estrés y la ansiedad." },
-    { title: "Atención plena y escucha profunda", text: "La escucha atenta te permite distinguir los ritmos, los silencios y los pequeños cambios del Jardín." },
-    { title: "Concentración", text: "La práctica habitual de la atención plena puede ayudarte a concentrarte y a recordar lo que necesitas mientras haces algo." },
-  ];
-  return { records, groups, practiceBenefits, heading: (en ? "Room III · " : "Sala III · ") + t("TXT_3_b17de4dff672"), connect: t("TXT_3_74471ccd389d"), introduction: t("TXT_3_514ab0f6e29f"), indexDialogue, closing: t("TXT_3_ff711cf372d1"), completed: t("TXT_3_b991b344a871"), ui: {
+  return { records, groups, heading: (en ? "Room III · " : "Sala III · ") + t("TXT_3_b17de4dff672"), connect: t("TXT_3_74471ccd389d"), introduction: t("TXT_3_514ab0f6e29f"), indexDialogue, closing: t("TXT_3_ff711cf372d1"), completed: t("TXT_3_b991b344a871"), ui: {
     index: en ? "Index" : "Índice", returnIndex: en ? "Back to index" : "Volver al índice",
     openChapter: en ? "Open chapter" : "Abrir capítulo", opening: en ? "Opening…" : "Abriendo…",
     scroll: en ? "Swipe up or tap to read more" : "Desliza hacia arriba o toca para leer más", retry: en ? "Try again" : "Reintentar", saveError: en ? "We could not verify your progress. Try again before continuing." : "No pudimos verificar el guardado. Reintenta antes de continuar.",

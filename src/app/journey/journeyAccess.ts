@@ -1,3 +1,4 @@
+import { journeyStorage, replayStartRoom } from "../../domain/progress/replayStorage";
 import { FINAL_REVIEW_CONTEXT_STORAGE_KEY } from "../review/finalReviewContext";
 import { coherentProgressPrefixLength, readEssentialSnapshot, type EssentialScreen, type ValidatedJourneyContext } from "./journeyEssential";
 import { hasCurrentFinalRight, navigationStateForReceipt, parseJourneyReviewContext, reviewAuthority, reviewContextMatchesRoute, validateJourneyReceipt } from "./journeyReceipt";
@@ -11,7 +12,7 @@ export function screenForRoute(route: string): EssentialScreen | "final" | null 
   return Number(match[1]) as 1 | 2 | 3 | 4 | 5;
 }
 function rawSessionContext(): unknown {
-  try { const raw = window.sessionStorage.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY); return raw ? JSON.parse(raw) : null; } catch { return null; }
+  try { const raw = journeyStorage("session")?.getItem(FINAL_REVIEW_CONTEXT_STORAGE_KEY); return raw ? JSON.parse(raw) : null; } catch { return null; }
 }
 export function captureValidatedJourneyReviewContext(route: string, navigationState: unknown) {
   route = route === "/" ? route : route.replace(/\/+$/, "");
@@ -31,8 +32,11 @@ export function resolveJourneyAccess(route: string, navigationState: unknown): V
   const pendingAccess = Boolean(snapshot && validateJourneyReceipt(receipt, snapshot, prefix, route));
   const transported = pendingAccess && receipt?.kind === "review_navigation" ? navigationStateForReceipt(receipt) : undefined;
   const review = captureValidatedJourneyReviewContext(route, transported ?? navigationState);
-  const mode = review && snapshot ? reviewAuthority(snapshot, prefix)! : "normal";
-  const authorized = screen === null || mode !== "normal" ||
+  const mode = review && snapshot ? reviewAuthority(snapshot, prefix) ?? "normal" : "normal";
+  const replayEntry = replayStartRoom();
+  const replayAccess = typeof screen === "number" && replayEntry !== null &&
+    screen >= replayEntry && screen <= prefix + 1;
+  const authorized = screen === null || mode !== "normal" || replayAccess ||
     (screen === "cover") ||
     (screen === "final" ? finalRight || pendingAccess : typeof screen === "number" ?
       Boolean(snapshot?.cover.closed && Array.from({ length: screen - 1 }, (_, index) => snapshot.stations[(index + 1) as 1 | 2 | 3 | 4].closed).every(Boolean) && (screen === 1 || prefix >= screen - 1 || pendingAccess)) : false);

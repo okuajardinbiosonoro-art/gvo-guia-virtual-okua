@@ -1,6 +1,6 @@
 import "./World2CaptureTimeline.css";
 
-import { useRef, type PointerEvent as ReactPointerEvent } from "react";
+import { useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 
 import { GestureHint } from "../../components/GestureHint/GestureHint";
 import type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Checkpoint";
@@ -11,6 +11,7 @@ export type { CaptureTimelineStepId } from "../../domain/checkpoints/world2Check
 export const captureTimelineSteps = getWorld2Content("es").capture;
 
 type World2CaptureTimelineProps = {
+  guide?: ReactNode;
   asset: string;
   completed: boolean;
   currentStepId: CaptureTimelineStepId;
@@ -31,6 +32,7 @@ type PointerStart = {
 const minimumSwipeDistance = 38;
 
 export function World2CaptureTimeline({
+  guide,
   asset,
   completed,
   currentStepId,
@@ -58,6 +60,7 @@ export function World2CaptureTimeline({
       0,
       Math.min(captureTimelineSteps.length - 1, index),
     );
+    if (boundedIndex === currentStepIndex) return;
     onSelectStep(captureTimelineSteps[boundedIndex].id);
   }
 
@@ -152,6 +155,7 @@ export function World2CaptureTimeline({
           draggable={false}
         />
         <span className="world2-capture-timeline__focus" aria-hidden="true" />
+        {guide}
         <span
           className="world2-capture-timeline__step-label"
           data-world2-capture-label={currentStep.id}

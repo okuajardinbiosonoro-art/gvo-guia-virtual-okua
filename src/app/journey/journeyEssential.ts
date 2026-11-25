@@ -1,3 +1,4 @@
+import { journeyStorage } from "../../domain/progress/replayStorage";
 import { useSyncExternalStore } from "react";
 import { readProgress } from "../../domain/progress/progress.storage";
 import { WORLD2_REQUIRED_INTERACTION_ORDER } from "../../domain/checkpoints/world2Checkpoint";
@@ -100,6 +101,8 @@ let resetSerial = 0;
 let storeVersion = 0;
 const emptyRoom = (screen: EssentialScreen): EssentialRoom => ({ contentRevision: ESSENTIAL_CONTENT_REVISION, presentedStepIds: [], confirmedStepIds: [], assistedPresentedStepIds: [], activeStepId: essentialSteps[screen][0], interactionEvidence: [], outcome: null, closed: false });
 
+export { emptyRoom as createEmptyJourneyRoom };
+
 export function coherentProgressPrefixLength(): number {
   const result = readProgress();
   const ids = result.progress?.completedStations ?? [];
@@ -139,7 +142,7 @@ export function parseEssentialSnapshot(raw: string): VerifiedEssentialSnapshot |
   } catch { return null; }
 }
 function emit() { storeVersion++; for (const listener of listeners) listener(); }
-function storage() { try { return window.localStorage; } catch { return null; } }
+function storage() { return journeyStorage(); }
 export function initializeJourneyEssential(): VerifiedEssentialSnapshot | null {
   if (initialized) return verified;
   initialized = true;

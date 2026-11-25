@@ -13,9 +13,9 @@ export function prepareFinalLiaPhoto() {
 }
 
 const poses = [
-  { kind: "shoulder", asset: finalLiaPhotoAssets.shoulder, es: "Al hombro", en: "By your shoulder" },
-  { kind: "peek", asset: finalLiaPhotoAssets.peek, es: "Se asoma arriba", en: "Peeking from above" },
-  { kind: "shoulder", asset: undefined, es: "Sin Lía", en: "Without Lía" },
+  { kind: "shoulder", asset: finalLiaPhotoAssets.shoulder, es: "Abajo", en: "Bottom" },
+  { kind: "peek", asset: finalLiaPhotoAssets.peek, es: "Arriba", en: "Top" },
+  { kind: "shoulder", asset: undefined, es: "Sin Lía", en: "No Lía" },
 ] as const;
 
 type Pose = (typeof poses)[number];

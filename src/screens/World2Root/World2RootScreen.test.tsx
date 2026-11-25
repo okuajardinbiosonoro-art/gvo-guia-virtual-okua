@@ -23,6 +23,17 @@ async function startCapture() {
 }
 
 describe("Sala II · OBS03 ordered presentation", () => {
+  it("mantiene la mano en Contacto y la retira al llegar a Señal tomada", async () => {
+    await startCapture();
+    const hint = document.querySelector(".world2-gesture-hint--capture-swipe");
+    await openReadout("Mostrar paso 1: Contacto");
+    await settleRoom(15_000);
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "visible");
+    await openReadout("Mostrar paso 2: Señal tomada");
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "completed");
+    await openReadout("Mostrar paso 1: Contacto");
+    expect(hint).toHaveAttribute("data-gvo-gesture-state", "completed");
+  });
   it("presents Plant without enabling QR or writing the legacy checkpoint", async () => {
     renderJourneyRoom(<World2RootScreen />, 2); await settleRoom();
     expect(room().presentedStepIds).toEqual([]); expect(room().confirmedStepIds).toEqual([]);

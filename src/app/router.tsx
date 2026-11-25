@@ -1,3 +1,4 @@
+import { inReplayVisit, replayBase } from "../domain/progress/replayStorage";
 import {
   lazy,
   Suspense,
@@ -430,4 +431,4 @@ export const router = createBrowserRouter([
     element: <GlobalImmersiveShell />,
     children: journeyRoutes,
   },
-]);
+], { basename: inReplayVisit() ? replayBase : "/" });
