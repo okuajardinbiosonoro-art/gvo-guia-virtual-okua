@@ -60,8 +60,8 @@ export function externalResourceScanContent(file, content) {
   if (normalized === "public/assets/gvo/current-used/final-root/photo/tracking/manifest.json") {
     JSON.parse(content);
     return content
-      .replace(/^  "picojs_source": "https:\/\/github\.com\/nenadmarkus\/picojs",$/m, "")
-      .replace(/^  "cascade_source": "https:\/\/github\.com\/nenadmarkus\/pico\/tree\/7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8\/rnt\/cascades",$/m, "");
+      .replace(/^ {2}"picojs_source": "https:\/\/github\.com\/nenadmarkus\/picojs",$/m, "")
+      .replace(/^ {2}"cascade_source": "https:\/\/github\.com\/nenadmarkus\/pico\/tree\/7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8\/rnt\/cascades",$/m, "");
   }
   const legacyGenerated = normalized === "public/assets/gvo/current-used/world-3-root/integration-2026-10-23.json";
   const allowedThread = legacyGenerated ? documentaryImagesThread : documentaryThreadManifests.get(normalized);
