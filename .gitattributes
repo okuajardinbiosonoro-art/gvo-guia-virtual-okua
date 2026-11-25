@@ -6,3 +6,16 @@ public/assets/gvo/stations/final-root/photo/tracking/LICENSE.txt -text
 public/assets/gvo/stations/final-root/photo/tracking/pico.module.js -text -whitespace
 public/assets/gvo/current-used/final-root/photo/tracking/LICENSE.txt -text
 public/assets/gvo/current-used/final-root/photo/tracking/pico.module.js -text -whitespace
+
+# Preserve the reviewed mobile build on Windows checkouts.
+src/screens/TransitionWorld/TransitionWorld.module.css text eol=lf
+public/assets/gvo/stations/final-root/manifest.json text eol=lf
+public/assets/gvo/stations/final-root/photo/type/OFL-Cinzel.txt text eol=lf
+public/assets/gvo/stations/world-1-root/manifests/world1_root_asset_manifest_v1.json text eol=lf
+public/assets/gvo/stations/world-5/present-map/runtime/manifest.json text eol=lf
+public/assets/gvo/type/OFL.txt text eol=lf
+public/assets/runtime/cover-intro/manifest.json text eol=lf
+public/assets/runtime/gvo-icon.svg text eol=lf
+public/assets/runtime/loading-initial/lia/lia_loading_16f_okua_v03.json text eol=lf
+public/assets/runtime/loading-initial/plant/plant_growth_4f_okua_v03.json text eol=lf
+public/qa/fullscreen/index.html text eol=lf
