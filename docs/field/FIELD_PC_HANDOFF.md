@@ -10,6 +10,8 @@ por el HTTPS de campo. Siguen pendientes cámara y Polaroid en móviles
 físicos y la observación de la radio Wi-Fi con equipos reales. Esta guía
 conserva los requisitos de red, TLS y validación física de la instalación.
 
+El 25 de noviembre José David aprobó GVO 1.2.0 para segunda lectura del escritor. La actualización de GitHub corresponde a desarrollo. Para cualquier operación en sitio se consultará el commit de la versión autorizada y su acta de activación. [Acta de GVO 1.2.0](../releases/GVO_1.2.0.md).
+
 ## Orden de lectura
 
 1. [`README.md`](../../README.md)
@@ -123,6 +125,15 @@ No inventar dominio, no usar `.local` como solución de TLS pública y no hornea
 IP en los QR canónicos.
 
 ### 3. TLS confiable sin instalación en visitantes
+
+Para el siguiente paso a campo, la entrada desde la Wi-Fi del Jardín debe abrir
+GVO directamente en el hostname del sitio, con HTTPS de confianza y los recursos
+servidos por el PC de campo. José David observó un aviso de desconfianza del
+proveedor durante la revisión por Pinggy. Los túneles temporales de desarrollo
+añaden un trayecto por Internet y quedan excluidos del recorrido del visitante.
+Al recibir una candidata autorizada, comprobar desde un móvil con perfil nuevo
+que la primera página es GVO, que la cámara queda disponible y que las salas
+cargan desde la red del sitio. Registrar los tiempos en esa red.
 
 El navegador debe abrir el FQDN final por HTTPS sin advertencia y reconocerlo
 como secure context usando la confianza normal del sistema. La CA generada por

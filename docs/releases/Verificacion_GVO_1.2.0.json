@@ -1,0 +1,42 @@
+{
+  "edicion": "1.2.0",
+  "fecha": "2026-11-25",
+  "aprobacion": "José David aprobó la edición para segunda lectura del escritor.",
+  "commitProducto": "b0da5945634dac5fc8c96c146fdc18cd48d30ce8",
+  "indiceSHA256": "5d23d3a9c0b9e2ef8850d9002efc6dd58f5546f1467cbd6297249d92c2cd20ac",
+  "archivosCompiladosIguales": 395,
+  "pruebasUnitariasDelCheckout": 505,
+  "auditoriaDeRecursosLocales": "aprobada",
+  "recorridoDeLaCandidata": {
+    "idiomas": [
+      "es",
+      "en"
+    ],
+    "llegada": "Mirador",
+    "codigosPorVisita": 4,
+    "camaraDelEnsayoAutomatizado": "simulada"
+  },
+  "editor": {
+    "archivo": "GVO_1.2.0_Editor_Local_v4_2026-11-25.zip",
+    "zipSHA256": "a4c1cdf22f3187e1c48b43e4f2a85cd681c370b1b143fccf20f93e470238fd76",
+    "bytes": 161853305,
+    "archivosVerificados": 425,
+    "pistasLocalesDecodificadas": 16,
+    "marcosProbados": [
+      "Navidad",
+      "Jardín"
+    ],
+    "inicioSinPropuestas": true,
+    "guardadoRecargaYExportacion": true,
+    "propuestasTestigoRecuperadasEnCopiaLimpia": 3,
+    "idiomasRecuperados": [
+      "es",
+      "en"
+    ]
+  },
+  "pendientes": [
+    "Respuesta del escritor",
+    "Medición con visitantes nuevos"
+  ],
+  "versionActivaDocumentadaEnCampo": "1.1.3"
+}

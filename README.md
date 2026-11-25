@@ -1,214 +1,55 @@
-<!-- CONTINUIDAD_DOCUMENTAL_20261107 -->
-### Documentación verificada · 7 de noviembre de 2026
+# GVO · Guía Virtual OKÚA
 
-La herramienta editorial local v4 y la candidata OBS05 conservan su revisión humana pendiente. Su validación local no publica el runtime del visitante ni certifica campo.
+GVO acompaña la visita al Jardín Biosonoro de OKÚA. Lía guía al visitante desde el primer encuentro con una planta hasta la escucha de una composición. Cada sala propone una forma distinta de mirar, tocar o escuchar. La guía se abre en el navegador del teléfono, en español o en inglés. El jardín sirve las imágenes, las tipografías y el sonido desde su propia red.
 
-Base de código conservada al publicar esta revisión: `79a31106a6286367db83b4075926862eaed7b716`.
-Los informes IEEE editables y sus PDF están en la biblioteca privada del responsable; el acceso requiere su cuenta autorizada.
+**Edición 1.2.0 · 25 de noviembre de 2026.** José David aprobó esta versión para entregar al escritor. Siguen abiertas la devolución editorial y la observación de primeras visitas autónomas. La última instalación documentada en campo corresponde a 1.1.3. [Acta de la edición](docs/releases/GVO_1.2.0.md) · [Estado de campo](docs/releases/GVO_1.1.3.md)
 
-- [P10: informe, fuente LaTeX y trazabilidad](https://github.com/okuajardinbiosonoro/okua-memoria-tecnica/tree/main/proyectos/P10)
-- [P12: informe, fuente LaTeX y trazabilidad](https://github.com/okuajardinbiosonoro/okua-memoria-tecnica/tree/main/proyectos/P12)
+> **Derechos y permisos.** Para reutilizar el código o los materiales propios de GVO, solicita autorización previa al proyecto OKÚA. Esto incluye la marca, Lía, los textos, las ilustraciones y los materiales sonoros. Las dependencias y tipografías de terceros conservan sus respectivas licencias. Puedes iniciar la solicitud indicando el material y el uso previsto. [Condiciones de uso](LICENSE.md) · [Solicitar permiso a OKÚA](https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua/issues/new)
 
-Esta sección es un índice de navegación. La actualización documental no publica cambios de producto pendientes, no reanuda trabajos pausados ni modifica aprobaciones. El contenido anterior se conserva debajo como antecedente fechado.
-<!-- /CONTINUIDAD_DOCUMENTAL_20261107 -->
+## La visita
 
-# GVO — Guía Virtual OKÚA
+En la entrada, Lía riega una planta mientras se prepara la Portada. El visitante elige idioma y volumen, conoce a Lía y abre el primer portal. Al terminar cada una de las primeras cuatro salas, escanea el QR físico de la siguiente desde la propia guía. El progreso se conserva en el navegador para poder detenerse y retomar el recorrido.
 
-La [versión activa en MOMOTTO_PC es GVO 1.1.3](docs/releases/GVO_1.1.3.md),
-según el acta del 13 de noviembre de 2026. La candidata editorial del 22 y
-23 de noviembre continúa en revisión local, sin publicación ni despliegue.
-Consulta el estado actual y el handoff antes de preparar una instalación.
-
-El editor local v4 ofrece guardado en PC, recuperación de borradores y edición
-de textos y estilos. El paquete independiente se conserva en el archivo de
-desarrollo. [Ticket del editor](docs/tickets/GVO_EDITORIAL_20261029_V4.md).
-
-La revisión histórica OBS05, del 24 de octubre de 2026, atendió el feedback del
-responsable sobre título e índice de III y cohesión visual, premio y reintentos
-de V. La base humana revisada es OBS04 build06, aislada en
-`.tool-reports/obs04/build06/candidate`; su cierre bilateral quedó listo para
-revisión con límites declarados. OBS05 tiene metodología y contrato de rondas
-R1/R2 conciliados con el mismo ChatGPT contextual. La candidata ejecutable está
-en `.tool-reports/obs05/build02/candidate`:719 pruebas/69 archivos, TypeScript,
-lint, Vite/PWA y64 casos compilados PASS. R3 fue recibido y conciliado:
-`READY_WITH_DECLARED_LIMITS`,18 criterios y cero bloqueantes nuevos. Está lista
-para la revisión del responsable humano único; publicación y despliegue siguen
-pendientes en aquella revisión. El [estado actual](docs/status/CURRENT_STATE.md)
-registra las revisiones posteriores y las versiones aprobadas.
-
-El recorrido del visitante se comprueba con la hoja externa de cuatro QR y
-los controles normales de la aplicación.
-
-La base conserva [ADR-0012](docs/decisions/ADR-0012-obs04-entry-and-explanatory-tour.md);
-el contrato funcional nuevo de V está documentado en
-[ADR-0013](docs/decisions/ADR-0013-obs05-whole-quiz-rounds.md): una ronda inicial y
-hasta tres reintentos completos, premio sólo4/4 en una misma ronda y conservación
-de los créditos del recorrido.
-La aprobación final corresponde al responsable humano único.
-
-GVO es una aplicación web local, mobile-first que acompaña el
-recorrido físico de OKÚA. Funciona en el navegador del visitante dentro de una
-red de sitio y mantiene todos los recursos runtime en el propio despliegue.
-
-## Contrato del visitante
-
-```text
-QR → navegador → experiencia
-INSTALACIONES EN EL DISPOSITIVO = 0
-```
-
-El visitante no instala app, PWA, CA, certificado, extensión ni scanner
-externo. El runtime no depende de Internet, CDN, APIs, fuentes o imágenes
-remotas. El recorrido incorpora los 14 sonidos entregados por el diseñador,
-con ajuste de volumen en la entrada y un interruptor de sonido en la guía.
-Consulta las [reglas vigentes](docs/01_REGLAS_NO_NEGOCIABLES.md).
-
-## Recorrido vigente
-
-```text
-Carga
-→ /inicio: idioma, volumen y preflight de cámara
-→ Portada
-→ Mundo I
-→ scanner /qr/w2
-→ Mundo II
-→ scanner /qr/w3
-→ Mundo III
-→ scanner /qr/w4
-→ Mundo IV
-→ scanner /qr/w5
-→ Mundo V
-→ Mirador
-```
-
-El avance entre Mundos I–V ocurre exclusivamente al escanear el QR físico de
-la siguiente estación dentro de GVO. Un payload incorrecto no concede progreso
-ni navega. Mundo V → Mirador permite revisar el resultado y continuar mediante
-una acción explícita, sin cierre automático.
-
-## Estado actual
-
-- Rama operativa única: `main`.
-- Fase actual: `OBS05 — LISTA PARA REVISIÓN HUMANA CON LÍMITES DECLARADOS`.
-- GVO_DEBT_001→015: implementados, reconciliados y publicados.
-- Scanner QR interno y cámara: aprobados con deuda de despliegue físico.
-- Entorno de desarrollo: HTTPS local reproducible con CA de laboratorio.
-- Campo: pendientes MikroTik, hostname/DNS estable, TLS confiable sin instalar
-  nada al visitante, certificación física de cámara y QR de red/inicio.
-
-La fuente de verdad viva es
-[`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md). El traspaso al
-PC de campo está en
-[`docs/field/FIELD_PC_HANDOFF.md`](docs/field/FIELD_PC_HANDOFF.md).
-
-## QR físicos interestación
-
-Los archivos imprimibles y su manifest están en
-[`docs/assets/qr/interstation/`](docs/assets/qr/interstation/README.md):
-
-| Archivo base | Payload exacto |
+| Etapa | Qué encuentra el visitante |
 | --- | --- |
-| `gvo_qr_world1_to_world2_v01` | `/qr/w2` |
-| `gvo_qr_world2_to_world3_v01` | `/qr/w3` |
-| `gvo_qr_world3_to_world4_v01` | `/qr/w4` |
-| `gvo_qr_world4_to_world5_v01` | `/qr/w5` |
+| I · Raíz | Explora una planta a través de la relación, la percepción y la mediación. Aquí aprende a utilizar el primer QR. |
+| II · Pulso invisible | Sigue la señal desde la planta hasta la música. Puede ver la onda, recorrer la captura de datos y escuchar cómo cambian las relaciones de mapeo. |
+| III · Cuaderno de práctica | Abre la introducción, sigue la práctica paso a paso y consulta sus beneficios en las hojas del cuaderno. |
+| IV · Sistema biosonoro | Conoce las seis piezas del sistema y pone a prueba su comprensión al ordenarlas sobre la mesa. |
+| V · OKÚA, arte sensorial | Responde cuatro preguntas. Cuatro aciertos en una ronda dan acceso al premio y hay hasta tres reintentos completos. |
+| Mirador | Revisa las salas y puede llevarse una foto con Lía. La foto se compone en el dispositivo y admite el marco Jardín o, durante la temporada, Navidad. |
 
-Cada base existe como PNG y SVG. No contienen IP, hostname, SSID, contraseña ni
-URL absoluta. Los QR de red y `/qr/start` no se generan hasta cerrar la red,
-el hostname y el TLS de campo.
+<p>
+  <img src="docs/releases/imagenes-1.2.0/captura.png" width="230" alt="Sala II. Una planta conectada al electrodo y los tres pasos de captura." />
+  <img src="docs/releases/imagenes-1.2.0/cuaderno.png" width="230" alt="Sala III. Lía presenta el cuaderno y su primer capítulo disponible." />
+</p>
 
-## Instalación desde un clone limpio
+## Para el escritor
 
-Requisitos: Git, Node.js compatible con el proyecto y npm.
+La edición para Windows incorpora el recorrido en ambos idiomas, los 16 audios locales y el editor v4. Extrae el ZIP completo, abre `INICIAR_GVO.cmd` y elige una escena e idioma. **Guardar en PC** conserva las propuestas. **Exportar todo (.ZIP)** genera el archivo que se devuelve al equipo. [Guía de la revisión](docs/releases/GVO_1.2.0.md#revisión-del-escritor)
+
+## Para desarrollo autorizado
+
+En una copia del repositorio, con Git, Node.js 22.14 o compatible y npm:
 
 ```powershell
-git clone https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua.git
-cd gvo-guia-virtual-okua
-git checkout main
 npm ci
-```
-
-Para actualizar una copia limpia de campo:
-
-```powershell
-git fetch origin
-git checkout main
-git pull --ff-only origin main
-npm ci
-```
-
-## Comandos reales
-
-```powershell
 npm run dev
-npm run build
-npm run preview
-npm run lint
-npm test
-npm run test:watch
-npm run test:e2e
-npm run test:e2e:evidence
-npm run check
-npm run status
-npm run audit:assets
-npm run assets:normalize:loading
-npm run assets:validate:loading
-npm run validate:cover-intro-assets
-npm run validate:transition-root-assets
 ```
 
-`npm run dev` genera o reutiliza certificados locales y sirve Vite por HTTPS
-en las IPv4 activas del PC. Esa CA es `LAB / DEVELOPMENT QA ONLY`; no es una
-solución de despliegue para visitantes.
-
-## Validación
-
-Gate técnico completo para cambios de runtime:
+Abre la dirección que indique Vite. El certificado que genera el entorno de desarrollo es para el laboratorio. Para validar los cambios y generar la aplicación estática:
 
 ```powershell
-npm run audit:assets
 npm run lint
 npm test
-npx tsc -b --pretty false
 npm run build
-npm run test:e2e
 ```
 
-Validaciones focales de la publicación QR:
+El directorio `dist/` contiene la compilación. Para operar en el jardín, consulta el procedimiento de campo y su versión activa antes de actualizar un equipo. [Handoff de campo](docs/field/FIELD_PC_HANDOFF.md)
 
-```powershell
-node tools/qa/gvo_debt_015_verify_interstation_qr.mjs
-node tools/qa/gvo_debt_013c_verify_cover_portal_interiors.mjs
-node tools/qa/gvo_debt_014_verify_global_experience.mjs
-node tools/qa/gvo_field_handoff_docs_audit.mjs
-```
+## Documentación
 
-## Documentación canónica
-
-Orden recomendado:
-
-1. [`AGENTS.md`](AGENTS.md)
-2. [`docs/field/FIELD_PC_HANDOFF.md`](docs/field/FIELD_PC_HANDOFF.md)
-3. [`docs/status/CURRENT_STATE.md`](docs/status/CURRENT_STATE.md)
-4. [`docs/01_REGLAS_NO_NEGOCIABLES.md`](docs/01_REGLAS_NO_NEGOCIABLES.md)
-5. [`docs/05_ARQUITECTURA_TECNICA.md`](docs/05_ARQUITECTURA_TECNICA.md)
-6. [`docs/02_FLUJO_QR_Y_ESTACIONES.md`](docs/02_FLUJO_QR_Y_ESTACIONES.md)
-7. [`docs/ROADMAP.md`](docs/ROADMAP.md)
-
-El índice corto vive en [`docs/README.md`](docs/README.md). Los documentos
-`FOR_REVIEW` son evidencia histórica; las actas `HUMAN_APPROVED/PUBLISHED` y
-`CURRENT_STATE.md` tienen autoridad posterior.
-
-## Política de ramas y publicación
-
-`main` es la única rama operativa. No se crean Pull Requests. Un ticket que
-autorice publicación se valida, se commitea y se empuja directamente a `main`.
-No se abre otra rama salvo instrucción explícita de un ticket humano.
-
-## Lía M3 — preview de desarrollo
-
-Ver [integración](docs/lia/EXTRACTIVE_PREVIEW.md) y ADR-0008. Pantalla dedicada desde el Mirador, flag desactivado por defecto, SAFE_EXTRACTIVE sin modelos. Copy/aceptación humana final pendientes. No modifica el estado de deployment/campo ni autoriza M4.
-
-## LIA-M4 foundation
-
-See [M4 status](docs/status/LIA_M4_FOUNDATION.md). The existing Lía flag remains off by default; the optional target laboratory is development-only.
+- [Estado del proyecto](docs/status/CURRENT_STATE.md) y [registro de la edición 1.2.0](docs/releases/GVO_1.2.0.md).
+- [Arquitectura](docs/05_ARQUITECTURA_TECNICA.md), [reglas de producto](docs/01_REGLAS_NO_NEGOCIABLES.md) y [política de recursos visuales](docs/process/POLITICA_ASSETS_UTILIZADOS_RUNTIME.md).
+- [Flujo entre estaciones](docs/02_FLUJO_QR_Y_ESTACIONES.md) y [cuatro QR imprimibles](docs/assets/qr/interstation/README.md).
+- [Índice de documentación](docs/README.md) y [criterios de la revisión editorial](docs/tickets/GVO_EDITORIAL_20261122.md).

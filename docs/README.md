@@ -1,6 +1,10 @@
 # Índice documental canónico
 
-## Onboarding
+## Edición vigente de desarrollo
+
+[GVO 1.2.0 y revisión del escritor](releases/GVO_1.2.0.md) · [Estado de la instalación 1.1.3](releases/GVO_1.1.3.md).
+
+## Orientación
 
 - [Handoff del PC de campo](field/FIELD_PC_HANDOFF.md)
 - [Estado actual](status/CURRENT_STATE.md)

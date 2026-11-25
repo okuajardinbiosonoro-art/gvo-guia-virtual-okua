@@ -1,6 +1,25 @@
 # Estado actual del proyecto
 
-Actualizado: 2026-11-13
+Actualizado el 25 de noviembre de 2026.
+
+## GVO 1.2.0 · Edición aprobada para el escritor
+
+José David aprobó en el teléfono el recorrido revisado y autorizó el cierre en GitHub el 25 de noviembre de 2026. La entrega al escritor utiliza el editor v4, español e inglés, 16 pistas y ambos marcos. El dictamen editorial y la medición de autonomía con visitantes nuevos siguen abiertos. Campo tiene su propio registro de instalación. [Acta de GVO 1.2.0](../releases/GVO_1.2.0.md).
+
+### Pruebas que precedieron a la aprobación
+
+La revisión local incorpora las dos exportaciones del editor, las referencias del escritor y cuatro archivos del diseñador de sonido. Incluye los marcos Jardín y Navidad. El cotejo de desarrollo del 25 de noviembre verificó 19 filas de los paquetes y contrastó 20 figuras del documento con 18 criterios. Los cuatro MP3 coinciden con los originales y responden en ambos idiomas. El ticket detalla las adaptaciones editoriales y el resultado de las pruebas.
+
+La candidata de primera visita reúne el lector de Sala I con el cierre de la lectura, señala el siguiente destino de Sala II y guía dentro de las hojas largas de Sala III. El cuaderno y las salidas de III y IV se centraron. Queda pendiente medir con visitantes nuevos la llegada autónoma al Mirador. El aviso del proveedor del túnel está documentado en el handoff de campo. La candidata continúa en el PC de desarrollo.
+
+En la revisión posterior de primera visita, las seis capas de Sala II se consultan manualmente debajo de la escena. La onda conserva su ilustración y explica sus propiedades junto a «Continuar». En III, Lía invita a abrir el capítulo disponible y el índice indica la acción en la propia fila. El lector QR explica cómo recuperar el permiso de cámara. Se comprobaron dos visitas desde cero, una por idioma, hasta el Mirador y se documentaron 17 decisiones del visitante. El objetivo de autonomía se medirá con primeras visitas reales. [Evidencias y criterios](../tickets/GVO_EDITORIAL_20261122.md#reconocer-dónde-tocar-en-la-primera-visita).
+
+La última observación del responsable se concentra en la altura de Sala II. La nueva composición móvil acopla la interacción, la lectura, el avance y el índice inferior a su contenido. En Captura, la explicación sigue a los tres controles. Al abrir Onda medida, un teléfono bajo muestra el botón con el desplazamiento mínimo cuando la lectura completa cabe en su ventana. El responsable aprobó este ajuste tras probarlo en su teléfono. [Comparación de Sala II](../tickets/GVO_EDITORIAL_20261122.md#composición-móvil-de-sala-ii).
+
+Tras el aviso de reintentos en el iPhone, se reprodujo el bloqueo al abrir Raíz con caché vacía. La corrección reduce el peso de 16 imágenes, reutiliza las descargas verificadas y ajusta el límite finito de preparación a la velocidad observada. En el enlace HTTPS de desarrollo, la prueba de navegador llegó desde la selección de idioma hasta el Mirador con cuatro lecturas QR simuladas. En aquel corte quedaba pendiente la prueba física; la aceptación del recorrido se registró el 25 de noviembre.
+
+La revisión del 23 de noviembre reprodujo otro bloqueo entre Salas I y II. El QR dejaba un registro válido y la preparación fallaba después de volver a Portada. La candidata aligera 15 imágenes de Sala II y reanuda una transición interrumpida al volver el navegador al primer plano. Si el QR ya se aceptó, conserva la lectura y el avance. El bloqueo corresponde a la etapa de pruebas anterior a la aceptación de esta edición.
+[Ticket de la candidata](../tickets/GVO_EDITORIAL_20261122.md).
 
 ## GVO 1.1.3 · versión activa en MOMOTTO_PC
 

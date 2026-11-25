@@ -1,5 +1,11 @@
 # Asset inventory
 
+## Revisión bilingüe del 22 de noviembre de 2026
+
+GVO sirve VT323 Regular localmente. Su registro incluye la licencia OFL y la huella del archivo. El diseñador reemplazó intensidad y altura en Mapeo de Sala II y entregó los sonidos para los finales de ronda en Sala V. Tanto el acierto individual como el resultado de la ronda tienen su propio disparador. Hay 16 pistas locales.
+
+[Tipografía](../../public/assets/gvo/current-used/shared/type/manifest.json) · [Sala II](../../public/assets/gvo/current-used/world-2-root/audio/manifest.json) · [Sala V](../../public/assets/gvo/current-used/world-5-root/audio/manifest.json).
+
 ## Recursos de entrada · GVO 1.1.3
 
 El [registro de Carga](../../public/assets/gvo/current-used/loading-initial/GVO-1.1.3-runtime-assets.json)
@@ -235,6 +241,11 @@ Los assets fuente de Estación II viven en
 revisados viven en `public/assets/gvo/current-used/world-2-root/`. El registro
 ejecutable es `src/screens/World2Root/world2RuntimeAssets.ts` y la propiedad
 semántica está en `world2SemanticAssetManifest.ts`.
+
+La candidata del 23 de noviembre usa 15 versiones WebP en la precarga de Sala II.
+Su peso conjunto pasa de 10.258.805 a 3.289.360 bytes. Cada par conserva dimensiones
+y transparencia. El [registro de transferencia](../../public/assets/gvo/current-used/world-2-root/transferencia-movil-20261123.json)
+lista las rutas, los hashes y el consumidor. Los PNG maestros quedan en el repositorio.
 
 Grupos de Estación II:
 

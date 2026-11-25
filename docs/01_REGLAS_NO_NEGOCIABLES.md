@@ -20,6 +20,8 @@ el alcance de aquellas versiones.
 
 El diseñador de sonido produce y entrega los archivos finales y su ubicación
 en la experiencia. José David confirmó que los 14 MP3 recibidos constituyen la
-entrega completa. El inventario registra sus nombres, salas y disparadores.
+primera entrega completa. El 22 de noviembre el diseñador sustituyó intensidad
+y altura en la Sala II y añadió dos finales de ronda para la Sala V.
+El inventario actual registra 16 pistas, sus salas y sus disparadores.
 Los archivos se sirven en la red local. La reproducción no requiere permiso
 de micrófono.

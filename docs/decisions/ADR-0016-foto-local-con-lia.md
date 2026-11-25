@@ -2,6 +2,24 @@
 
 Estado: aprobada para [GVO 1.1.0](../releases/GVO_1.1.0.md).
 
+## Marcos de temporada · aprobados el 16 de noviembre de 2026
+
+El estudio consulta un catálogo local de marcos según la fecha civil de
+`America/Bogota`. Cada temporada define sus fechas, colores y recursos. La
+primera temporada activa aparece por defecto y puede cambiarse a Jardín
+después de capturar o importar. Fuera de temporada, Jardín es la única opción.
+La vista previa, la descarga y la opción de compartir usan el mismo JPEG.
+
+El [ticket de la candidata](../tickets/GVO_POLAROID_TEMPORADA_20261116.md)
+registra la ventana navideña y la frase aprobada por el escritor.
+La preparación del Mirador carga el módulo de foto, la tipografía y las
+imágenes de los marcos disponibles. El service worker guarda los recursos
+en la caché local del recorrido.
+El [inventario del marco y la tipografía](../../public/assets/gvo/current-used/final-root/photo/frames/manifest.json)
+identifica sus archivos locales, procedencia y licencia.
+
+## Diseño aprobado para GVO 1.1.0
+
 El visitante puede crear un recuerdo al llegar al Mirador. El botón se presenta
 junto a las acciones existentes. «Tomar foto» abre un encuadre con Lía y la
 cámara dentro de GVO. «Elegir foto» importa una imagen existente. El visitante
