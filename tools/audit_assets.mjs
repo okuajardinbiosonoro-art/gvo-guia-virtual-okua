@@ -15,6 +15,7 @@ const binaryAssetExtensions = new Set([
   ".ogg",
   ".opus",
   ".png",
+  ".ttf",
   ".wav",
   ".webp",
   ".woff",
@@ -46,6 +47,21 @@ documentaryThreadManifests.set(
 
 export function externalResourceScanContent(file, content) {
   const normalized = file.replaceAll("\\", "/");
+  // Local fonts carry the OFL text and upstream attribution, which are
+  // documentary references. Other URLs in these files must still be audited.
+  if (/^public\/assets\/gvo\/(?:current-used\/shared\/type|type)\/OFL\.txt$/.test(normalized)
+    || /^public\/assets\/gvo\/(?:current-used|stations)\/final-root\/photo\/type\/OFL-Cinzel\.txt$/.test(normalized)) {
+    return content.replace("http://scripts.sil.org/OFL", "[OFL]")
+      .replace("https://github.com/NDISCOVER/Cinzel", "[Cinzel authors]");
+  }
+  const fontSources = {
+    "public/assets/gvo/current-used/shared/type/manifest.json": "https://raw.githubusercontent.com/google/fonts/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/vt323/",
+    "public/assets/gvo/current-used/final-root/photo/frames/manifest.json": "https://github.com/google/fonts/tree/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/cinzel",
+  };
+  if (Object.hasOwn(fontSources, normalized)) {
+    JSON.parse(content);
+    return content.replace(`"source": "${fontSources[normalized]}"`, '"source": "[licensed font source]"');
+  }
   if (normalized === "src/shared/assets/assetPreloader.ts") {
     // Exact SSR-only URL-parser base, never a fetch URL. Preserve all other
     // occurrences and any changed conditional for the ordinary URL audit.
