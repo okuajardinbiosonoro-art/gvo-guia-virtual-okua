@@ -1,16 +1,9 @@
 # GVO — Handoff canónico al PC de campo
 
 Fecha: 2026-08-18
-Estado al 13 de noviembre de 2026: GVO 1.1.3 activa en MOMOTTO_PC desde
-`b598bb1377e0debea9885503e1135aab8c05fe9b`.
+**Estado al 26 de noviembre de 2026.** GVO 1.2.0 R2 está activa en MOMOTTO_PC. El acta de campo registra la instalación, las comprobaciones de los QR de entrada y el alcance de la prueba de veinte clientes. [Acta vigente](../releases/GVO_1.2.0_R2_CAMPO.md).
 
-El [acta de GVO 1.1.3](../releases/GVO_1.1.3.md) registra la prueba previa
-de 20 clientes simulados sobre el commit exacto y la verificación posterior
-por el HTTPS de campo. Siguen pendientes cámara y Polaroid en móviles
-físicos y la observación de la radio Wi-Fi con equipos reales. Esta guía
-conserva los requisitos de red, TLS y validación física de la instalación.
-
-El 25 de noviembre José David aprobó la revisión editorial 1.2.0 R2 para gerencia y escritor. La instalación documentada continúa en 1.1.3. Un cambio de versión en sitio requiere su propia instrucción y acta. [Acta editorial R2](../releases/GVO_1.2.0_R2.md).
+La [instalación de 1.1.3](../releases/GVO_1.1.3.md) conserva los datos del corte anterior. La [acta editorial R2](../releases/GVO_1.2.0_R2.md) identifica el producto que dio origen al despliegue.
 
 ## Orden de lectura
 

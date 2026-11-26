@@ -19,7 +19,7 @@ PWA, CA, certificado, extensión ni scanner externo.
 Carga → /inicio → idioma + preflight de cámara → Portada → Mundo I
 ```
 
-La ruta de entrada es `/qr/start`. El registro de campo identifica los seis QR verificados en la instalación 1.1.3. Los cuatro códigos de sala conservan sus identificadores en R2.
+La ruta de entrada es `/qr/start`. El [acta de campo de R2](releases/GVO_1.2.0_R2_CAMPO.md) identifica el cotejo entre el QR Wi-Fi, el de inicio y los carteles para imprenta. Los cuatro códigos de sala conservan sus identificadores.
 
 ## Avance interestación
 

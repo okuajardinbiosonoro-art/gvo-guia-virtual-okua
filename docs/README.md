@@ -1,8 +1,8 @@
 # Índice documental canónico
 
-## Edición vigente de desarrollo
+## Edición vigente
 
-[Revisión conjunta de gerencia y escritor · 1.2.0 R2](releases/GVO_1.2.0_R2.md) · [Campo · 1.1.3](releases/GVO_1.1.3.md).
+[Instalación en el jardín y QR de entrada · 1.2.0 R2](releases/GVO_1.2.0_R2_CAMPO.md) · [Acta editorial R2](releases/GVO_1.2.0_R2.md) · [Instalación anterior · 1.1.3](releases/GVO_1.1.3.md).
 
 ## Orientación
 

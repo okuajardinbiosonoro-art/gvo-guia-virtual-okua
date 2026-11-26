@@ -2,7 +2,7 @@
 
 GVO acompaña la visita al Jardín Biosonoro de OKÚA. Lía guía al visitante desde el primer encuentro con una planta hasta la escucha de una composición. Cada sala propone una forma distinta de mirar, tocar o escuchar. La guía se abre en el navegador del teléfono, en español o en inglés. El jardín sirve las imágenes, las tipografías y el sonido desde su propia red.
 
-**Edición para revisar · GVO 1.2.0 R2, 25 de noviembre de 2026.** José David aprobó las correcciones de gerencia para una nueva lectura conjunta con el escritor. El paquete se identifica como **R2** para distinguirlo de la entrega de la mañana. La instalación documentada en el jardín sigue en 1.1.3. [Qué cambió y cómo revisar](docs/releases/GVO_1.2.0_R2.md) · [Estado de campo](docs/releases/GVO_1.1.3.md)
+**GVO 1.2.0 R2 en el jardín · 26 de noviembre de 2026.** José David aprobó la edición final y autorizó su instalación en MOMOTTO_PC. El visitante se conecta al Wi-Fi del jardín con el primer QR y abre la guía por HTTPS con el segundo. [Instalación, carteles y pruebas de campo](docs/releases/GVO_1.2.0_R2_CAMPO.md) · [Cambios de la edición](docs/releases/GVO_1.2.0_R2.md)
 
 > **Derechos y permisos.** Para reutilizar el código o los materiales propios de GVO, solicita autorización previa al proyecto OKÚA. Esto incluye la marca, Lía, los textos, las ilustraciones y los materiales sonoros. Las dependencias y tipografías de terceros conservan sus respectivas licencias. Puedes iniciar la solicitud indicando el material y el uso previsto. [Condiciones de uso](LICENSE.md) · [Solicitar permiso a OKÚA](https://github.com/okuajardinbiosonoro-art/gvo-guia-virtual-okua/issues/new)
 
