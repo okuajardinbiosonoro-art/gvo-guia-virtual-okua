@@ -2,7 +2,7 @@
 
 ## Edición vigente de desarrollo
 
-[GVO 1.2.0 y revisión del escritor](releases/GVO_1.2.0.md) · [Estado de la instalación 1.1.3](releases/GVO_1.1.3.md).
+[Revisión conjunta de gerencia y escritor · 1.2.0 R2](releases/GVO_1.2.0_R2.md) · [Campo · 1.1.3](releases/GVO_1.1.3.md).
 
 ## Orientación
 
@@ -36,3 +36,22 @@
 
 Los documentos históricos permanecen disponibles para auditoría, pero no son
 parte del orden de lectura necesario para operar el PC de campo.
+
+## Cómo interpretar el árbol
+
+| Ubicación | Qué representa | Uso |
+| --- | --- | --- |
+| Raíz, reglas de producto, arquitectura y flujo QR | Contrato técnico y orientación | Comenzar por esta página y el estado vigente. |
+| `releases/` | Actas fechadas y verificaciones | R2 es la copia para enviar. La primera 1.2.0 se conserva como antecedente. |
+| `field/` | Operación en el jardín | Comprobar versión instalada y evidencia del equipo de campo. |
+| `decisions/` y `process/` | Decisiones y políticas | Revisar la decisión específica y su fecha. |
+| `tickets/`, `status/`, `qa/`, `testing/` y `evidence/` | Requisitos, cortes técnicos y pruebas fechadas | La palabra «pendiente» en un ticket antiguo describe ese corte. |
+| `narrative/`, `source_specs/` y `handoffs/` | Entregas de autor, contratos y transferencias | Consultar procedencia. La visita y el catálogo se generan para cada entrega editorial. |
+| `assets/`, `asset-briefs/`, `visual/`, `screens/`, `worlds/`, `fable/` y `lia/` | Material por pantalla y estudios visuales | Consultar el inventario runtime para identificar lo integrado. |
+| `gvo/`, `maintenance/`, `retrospectives/` y `security/` | Contexto técnico, revisiones y mantenimiento | Leer según fecha y finalidad. |
+
+El repositorio público contiene el producto y su documentación. Obsidian y el repositorio documental institucional enlazan el cierre por P10. Drive conserva un expediente por corte. La carpeta **GVO 1.2.0 R2 · Revisión de gerencia y escritor** contiene la documentación de esta entrega. Las compilaciones de ensayo, devoluciones y fuentes originales tienen valor de trazabilidad y se conservan por separado del material para enviar.
+
+## Proyectos relacionados
+
+P10 es la guía de visitantes. P09 conserva la beta visual. P11 reúne pruebas en el laboratorio Fable5. P12 conserva el espacio narrativo, el Atlas y las entregas originales. P13 corresponde al editor local de Windows. En la biblioteca institucional y en Drive se conservan los expedientes de cada uno. Para revisar la visita, la entrega que corresponde enviar es el ZIP R2 de P10 con el editor v4 de P13.

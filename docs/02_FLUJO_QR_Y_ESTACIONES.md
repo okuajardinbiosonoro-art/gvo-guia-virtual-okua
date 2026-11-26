@@ -1,6 +1,6 @@
 # Flujo QR y estaciones
 
-Actualizado: 2026-08-18
+Actualizado el 25 de noviembre de 2026.
 
 ## Contrato del visitante
 
@@ -19,9 +19,7 @@ PWA, CA, certificado, extensión ni scanner externo.
 Carga → /inicio → idioma + preflight de cámara → Portada → Mundo I
 ```
 
-La ruta lógica `/qr/start` existe, pero su QR físico aún no se genera. También
-siguen diferidos el QR Wi-Fi y cualquier QR de red. Sólo se crearán después de
-cerrar MikroTik, hostname y TLS de campo.
+La ruta de entrada es `/qr/start`. El registro de campo identifica los seis QR verificados en la instalación 1.1.3. Los cuatro códigos de sala conservan sus identificadores en R2.
 
 ## Avance interestación
 
@@ -62,23 +60,10 @@ gvo_qr_world4_to_world5_v01.* → /qr/w5
 Cada QR existe en PNG y SVG, usa blanco/negro opaco, ECC H y margen de cuatro
 módulos. No contiene IP, hostname ni URL absoluta.
 
-## Revisita y cierre
+## Mirador y regreso
 
-La revisita autorizada desde Mirador omite el gate QR, no abre cámara y no
-reescribe progreso. El return dock vuelve a `/final`. Mundo V completa su 4/4,
-verifica progreso global y navega por la transición W5→Final sin scanner
-adicional.
+Después de completar la trivia se abre la transición al Mirador. Los cuatro aciertos otorgan el premio. El pedestal de cada sala permite consultar lo visitado. Al regresar a Portada, cada portal abre una repetición interactiva que conserva el progreso de la visita original. [Decisión sobre la repetición](decisions/ADR-0019-repeticion-desde-portada.md).
 
 ## Despliegue de campo
 
-Los QR interestación son independientes de la red porque contienen tokens
-relativos. El QR de inicio futuro sí depende de una dirección estable y sólo se
-genera después de cerrar:
-
-1. red MikroTik;
-2. hostname/FQDN controlado por OKÚA;
-3. TLS confiable sin instalación en visitantes;
-4. certificación física de cámara.
-
-La CA local de `npm run dev` es sólo laboratorio. No es parte del contrato del
-visitante ni se distribuye como solución final.
+Los tokens interestación son independientes de la red y de la edición. El acceso inicial corresponde al dominio y TLS del sitio. [Configuración y pruebas registradas](field/FIELD_PC_HANDOFF.md).

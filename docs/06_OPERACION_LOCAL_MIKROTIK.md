@@ -1,15 +1,5 @@
-# Operación local MikroTik
+# Operación en la red del jardín
 
-GVO debe ejecutarse dentro de la red local gestionada por MikroTik. La red de visitantes no debe depender de Internet para abrir ni navegar la guía.
+El visitante se conecta a la red del jardín y abre el origen HTTPS servido por el equipo de campo. El responsable de campo verifica el DNS y la confianza TLS del teléfono. Los cuatro QR interestación contienen identificadores relativos estables. El QR de acceso y las instrucciones para unirse a la red pertenecen al sitio físico.
 
-## Principios
-
-- Servir la app desde una máquina local accesible por la red.
-- Usar `npm run dev` o un build servido localmente durante pruebas.
-- Exponer el servidor con host `0.0.0.0` para permitir acceso desde otros dispositivos de la LAN.
-- Generar QR físicos con URLs locales verificadas en la red activa.
-- No usar URLs públicas ni servicios externos como parte del runtime.
-
-## Validación mínima en sitio
-
-Antes de imprimir o fijar QR, abrir manualmente la URL local desde un celular conectado a la red MikroTik. La URL que funciona manualmente debe ser la misma codificada en el QR.
+La última instalación documentada corresponde a GVO 1.1.3. El acta registra el commit, el índice servido, las pruebas con 20 clientes simulados y los seis QR verificados. La revisión editorial R2 corre en desarrollo. Para preparar otra instalación, consultar [el handoff de campo](field/FIELD_PC_HANDOFF.md), [el acta de campo](releases/GVO_1.1.3.md) y [los cuatro códigos interestación](assets/qr/interstation/README.md).

@@ -64,7 +64,7 @@ Los dos pares suman 2.014.716 bytes; los originales v01 permanecen históricos.
 La comprobación de archivo no acredita composición en escena ni aprobación del
 responsable humano único.
 
-El [informe de recursos y movimiento](../../../../docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.md)
+El informe de recursos y movimiento (expediente local, `OBS03_ASSETS_MOTION_AUDIT.md`)
 explica alcance, hashes, calibración aritmética de la mano, registro del cuaderno
 y deudas. Este addendum no acredita navegador, dispositivos físicos ni aprobación
 del responsable humano único.
@@ -229,4 +229,4 @@ Los contactos4maceta/12regadera fueron inspeccionados, sin sustituir QA de
 animación/tamaño real en escena ni revisión/aprobación del responsable humano
 único. v01 y sus registros anteriores permanecen como historial fuera de los
 consumidores actuales de marca. Detalle y fallos conservados en
-[entry-transitions/brand-v03](../../../../docs/narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/entry-transitions/brand-v03/README.md).
+entry-transitions/brand-v03 (expediente local, `README.md`).

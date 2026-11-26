@@ -78,5 +78,5 @@ durante esta validación. Publicación, red, TLS/DNS y despliegue siguen fuera d
 incremento.
 
 Fuentes: [observaciones e intercambios OBS03](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/),
-[contrato y disposición R3](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/entry-transitions/R3_DISPOSITION.md),
-[procedencia editorial R4](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/entry-transitions/R4_EDITORIAL_CONSOLIDATION.md).
+contrato y disposición R3 (expediente local, `R3_DISPOSITION.md`),
+procedencia editorial R4 (expediente local, `R4_EDITORIAL_CONSOLIDATION.md`).

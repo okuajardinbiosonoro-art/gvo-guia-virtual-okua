@@ -1,8 +1,10 @@
 # GVO — Narrative Workspace
 
+**Revisión vigente.** El escritor y gerencia reciben [GVO 1.2.0 R2](../releases/GVO_1.2.0_R2.md) con el editor local v4. Los slots TEMP, matrices y ejemplos de esta carpeta conservan las decisiones de sus entregas originales. El catálogo de R2 parte de la visita visible en español e inglés.
+
 Este directorio organiza los insumos narrativos y visuales para que el escritor pueda producir diálogos, textos ambientales, textos de espera, microcopy y mensajes de cierre sin depender de conocimiento técnico de programación.
 
-## Estado runtime vigente
+## Corte narrativo histórico · 017K-R1
 
 - El copy visible definitivo de la transición Mundo II → Mundo III es `Abriendo Mundo III` / `Preparando el Cuaderno Pixel de Pruebas…`.
 - Estación III consume `src/screens/World3Root/station3Content.ts` y está cerrada por aprobación humana.
@@ -31,7 +33,7 @@ docs/narrative/
   source_txt/
 ```
 
-## Uso recomendado
+## Procedimiento utilizado en aquel corte
 
 Las matrices CSV/XLSX son un inventario editorial heredado. En el cierre 017K-R1 se consolidaron allí los dos slots W2→W3 como `FINAL / human_approved` y se marcaron los 23 slots `W3_*` como `LEGACY / no consumido por runtime`. No deben usarse para sustituir el copy aprobado de transición ni `station3Content.ts`.
 
@@ -42,7 +44,7 @@ Para slots todavía abiertos en otros mundos:
 3. Trabajar únicamente IDs cuyo estado de revisión siga pendiente y cuyo frente tenga ticket activo.
 4. Validar con `04_CHECKLIST_ENTREGA_ESCRITOR.md` sin sobrescribir entradas `FINAL` o `LEGACY`.
 
-## Entrega para escritor
+## Primera entrega histórica para escritor
 
 La carpeta `entrega_escritor_gvo_v1/` contiene el paquete documental listo para compartir con el escritor: dossier visual, guía de diligenciamiento, checklist, matriz de trabajo y copias de las 9 referencias visuales.
 

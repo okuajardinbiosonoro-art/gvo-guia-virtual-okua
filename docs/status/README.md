@@ -1,5 +1,7 @@
 # Estados y evidencia de GVO
 
+[Estado vigente](CURRENT_STATE.md) · [Historial hasta la primera 1.2.0](HISTORIAL_HASTA_1.2.0.md) · [Revisión R2 de gerencia y escritor](../releases/GVO_1.2.0_R2.md).
+
 ## Autoridad documental
 
 1. [`CURRENT_STATE.md`](CURRENT_STATE.md) es la fuente de verdad viva.

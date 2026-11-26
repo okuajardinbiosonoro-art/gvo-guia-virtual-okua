@@ -1,5 +1,7 @@
 # GVO 1.2.0 · Edición aprobada para segunda lectura
 
+**Corte anterior del 25 de noviembre.** Para la revisión conjunta posterior consultar [GVO 1.2.0 R2](GVO_1.2.0_R2.md).
+
 **25 de noviembre de 2026.** Tras probar la última composición de Sala II, José David aprobó el recorrido y autorizó su registro en `main` y la entrega al escritor. El commit de integración del producto es `b0da5945634dac5fc8c96c146fdc18cd48d30ce8`. El índice de la aplicación aprobada tiene SHA-256 `5d23d3a9c0b9e2ef8850d9002efc6dd58f5546f1467cbd6297249d92c2cd20ac`.
 
 ## Qué contiene

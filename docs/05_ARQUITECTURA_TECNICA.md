@@ -1,6 +1,6 @@
 # Arquitectura técnica
 
-Actualizado: 2026-11-12
+Actualizado el 25 de noviembre de 2026.
 
 GVO usa Vite, React, TypeScript y React Router. Es una aplicación web
 local-first y mobile-first. Todos los recursos runtime requeridos se
@@ -140,3 +140,5 @@ Decisiones relacionadas:
 - [ADR-0007 — HTTPS local y scanner](decisions/ADR-0007-https-local-dinamico-y-scanner-qr-interno.md)
 - [ADR-0015 — Sonidos del recorrido](decisions/ADR-0015-sonidos-del-recorrido.md)
 - [ADR-0016 — Foto local con Lía](decisions/ADR-0016-foto-local-con-lia.md)
+
+- [ADR-0019 — Progreso aislado de las repeticiones desde los portales](decisions/ADR-0019-repeticion-desde-portada.md)

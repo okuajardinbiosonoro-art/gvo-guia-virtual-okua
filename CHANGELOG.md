@@ -1,5 +1,9 @@
 # Changelog
 
+## 25 de noviembre de 2026 · 1.2.0 R2
+
+Correcciones aprobadas de Portada, Salas I, II, III y V, foto y regreso al hall. Nueva entrega del mismo editor local para gerencia y escritor. [Matriz y verificación](docs/releases/GVO_1.2.0_R2.md).
+
 ## 1.1.3 · 2026-11-13
 
 - Acorta la presentación de riego inicial de 12 a 6 segundos y conserva

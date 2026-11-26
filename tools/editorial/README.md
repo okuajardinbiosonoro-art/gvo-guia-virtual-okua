@@ -1,5 +1,7 @@
 # GVO Editorial Excel Validator
 
+Para revisar la aplicación se distribuye el editor local **v4 para Windows**. La entrega actual está identificada en [GVO 1.2.0 R2](../../docs/releases/GVO_1.2.0_R2.md). La herramienta Excel descrita a continuación sirve para consultar los contratos históricos.
+
 ## Proposito
 
 `validate_editorial_excel.py` valida un archivo `.xlsx` editorial local contra el inventario actual de slots editoriales de GVO.

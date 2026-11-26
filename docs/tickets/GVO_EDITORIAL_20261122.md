@@ -1,5 +1,7 @@
 # Revisión editorial bilingüe del 22 de noviembre
 
+**Contexto de lectura.** La implementación y entrega vigentes se identifican en [el registro de la revisión actual](../releases/GVO_1.2.0_R2.md). Las fechas, compilaciones y verificaciones que siguen corresponden al corte histórico indicado.
+
 José David solicita integrar las dos exportaciones del editor local v4, las veinte referencias visuales y la entrega de audio del diseñador. La base es la candidata con Jardín y Navidad aprobada el 16 de noviembre. La revisión comprende Portada, Salas I–V y Mirador.
 
 Los contratos ES y EN modifican únicamente su idioma. Se adapta el diseño a la geometría de cada dispositivo. La guía y las reglas de avance, las seis piezas, el premio por 4/4, la foto y el volumen siguen vigentes. La revisión técnica y el retorno al chat de GVO preceden a la revisión humana de la candidata local.

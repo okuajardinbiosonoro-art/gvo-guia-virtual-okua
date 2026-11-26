@@ -63,7 +63,7 @@ pendiente y no se añaden bitmaps en este cierre.
 ## Addendum OBS03.2 + R3 — recursos actuales, revisión pendiente
 
 Estado: `AGENT_STATIC_ASSET_CHECK_PASS / SCENE_QA_PENDING / HUMAN_PENDING`.
-El [inventario verificable OBS03](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.json)
+El inventario verificable OBS03 (expediente local, `OBS03_ASSETS_MOTION_AUDIT.json`)
 registra rutas runtime/espejo, formato, dimensiones, bytes, SHA-256, consumidores
 y límites del corte. Cada grupo presente fue contrastado con su espejo y todos
 los pares coinciden. Los capítulos previos se conservan como historial.
@@ -120,7 +120,7 @@ de 0,005 puntos porcentuales del lienzo; falta comprobar la alineación visible.
 Las listas efectivas corrigen dos omisiones/divergencias: Portada precarga su
 bitmap de activación mientras sigue montándolo, e I deja de depender de cinco
 poses antiguas que ya no muestra. Dos archivos de pruebas, cinco casos PASS,
-validan esas listas. El [informe OBS03](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/assets-motion/OBS03_ASSETS_MOTION_AUDIT.md)
+validan esas listas. El informe OBS03 (expediente local, `OBS03_ASSETS_MOTION_AUDIT.md`)
 documenta las deudas de Lía pixel III, registro del giro, pruebas visuales
 responsive y producción restante. No se ejecutó navegador en esta auditoría.
 
@@ -134,7 +134,7 @@ exacto del símbolo, en derivados de las hojas originales. Las 4 celdas de plant
 y las 12 de Lía con regadera conservan todos los píxeles RGBA fuera de las placas
 enumeradas; las cuatro celdas iniciales de Lía no cambian. Se conservan las grillas,
 los cinco pétalos y el registro de animación. Los tres pares runtime/mirror,
-dimensiones, hashes y coordenadas están en [el registro de entrada](../narrative/integracion_autonoma_2026-10-23/entry-brand-assets.json).
+dimensiones, hashes y coordenadas están en el registro de entrada (expediente local, `entry-brand-assets.json`).
 La composición es candidata para revisión humana.
 
 Sala III reutiliza siete originales (ambiente, `turnPage` y cinco poses), añade
@@ -427,7 +427,7 @@ La aprobación humana histórica de otros assets no se extiende a estos archivos
 
 Procedencia, originales preservados fuera de runtime, derivaciones, alpha, hashes
 y pares completos están en [el manifiesto de acabado](../narrative/integracion_autonoma_2026-10-23/revision-acabado/assets-manifest.json).
-Se produjeron en [el único hilo de ChatGPT Images](gvo-provenance:images).
+Se produjeron en el hilo de ChatGPT Images del proyecto.
 Runtime consume las rutas canónicas y current-used conserva sus mirrors byte-idénticos.
 
 | ID | Runtime | Espejo de revisión | Formato / dimensiones / bytes | SHA-256 de ambos | Consumidor |
@@ -449,7 +449,7 @@ mientras openBase permanece como original histórico.
 Fichas por consumidor: public/assets/gvo/current-used/world-3-root/README.md,
 world-4-root/README.md, world-5-root/README.md y shared/navigation/README.md.
 La evidencia de navegador suplementaria de IV/V está en
-[el registro de revisión](../narrative/integracion_autonoma_2026-10-23/revision-acabado/evidence-4-5/runtime-qa.json);
+el registro de revisión (expediente local, `runtime-qa.json`);
 no sustituye el recorrido principal limpio ni certifica cámara física o aprobación humana.
 
 ## Addendum de marca OBS03 v03 — corte posterior de ensamblaje
@@ -466,6 +466,6 @@ historial las descripciones v01 anteriores y no altera los registros de III.
 Fuentes originales/piloto conservadas en `production/brand-pixel-pilot-originals/`
 bajo `assets-source/editorial-2026-10-23/observaciones-03/`; generador reproducible
 `tools/assets/derive_obs03_brand_assets.mjs`. Tres pares runtime/espejo coinciden.
-El [registro de este corte](../narrative/integracion_autonoma_2026-10-23/revision-observaciones-03/entry-transitions/brand-v03/README.md)
+El registro de este corte (expediente local, `README.md`)
 incluye hashes, superficies por fotograma, correcciones visuales de método y
 límites de evidencia. No se contó build, E2E ni aprobación humana en ese corte.

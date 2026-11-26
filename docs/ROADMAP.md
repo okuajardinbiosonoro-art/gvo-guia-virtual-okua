@@ -1,5 +1,7 @@
 # Roadmap de GVO
 
+**Contexto de lectura.** La implementación y entrega vigentes se identifican en [el registro de la revisión actual](status/CURRENT_STATE.md). Las fechas, compilaciones y verificaciones que siguen corresponden al corte histórico indicado.
+
 Actualizado: 2026-08-18
 
 ## Fases completadas

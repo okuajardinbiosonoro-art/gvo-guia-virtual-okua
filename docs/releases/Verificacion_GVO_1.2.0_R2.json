@@ -1,0 +1,67 @@
+{
+  "edicion": "1.2.0 R2",
+  "fecha": "2026-11-25",
+  "aprobacion": "Aprobada por José David para revisión conjunta de gerencia y escritor.",
+  "campoDocumentado": "1.1.3",
+  "producto": "aaa181e64824f3415f91426dd82ad5496b629eb5",
+  "indiceAprobadoSHA256": "9c92f51d79fcd9aabc2ecad4d60c18a89a3a4474fcd872d7922ca400d35a980d",
+  "indiceDelEditorSHA256": "32edb49b602558d16a046b43e22ca6a0b2fa9f578e09581982517060ec5a87ce",
+  "catalogoSHA256": "4b3a0e05f7127b6c83d33e6f56f677b8f88642f41b953296351cec9965f17f2d",
+  "archivo": "GVO_1.2.0_R2_Editor_v4_Gerencia_y_Escritor.zip",
+  "bytes": 160531299,
+  "zipSHA256": "da9e80e3c73aa2fcdd114ac6d5643ed026d193ed6e440a8279a8034a47811233",
+  "entradasVerificadas": 423,
+  "archivosBase": 391,
+  "correcciones": [
+    "P01",
+    "P02",
+    "II01",
+    "II02",
+    "II08",
+    "II03",
+    "II04",
+    "II05",
+    "II06",
+    "III01",
+    "II07",
+    "P03",
+    "F01",
+    "P04",
+    "R01",
+    "V01",
+    "I01"
+  ],
+  "QA": {
+    "pruebasUnitarias": 419,
+    "recorridosDesdeCeroConCuatroQRSimulados": [
+      "es",
+      "en"
+    ],
+    "atajosEditoriales": {
+      "es": 42,
+      "en": 42
+    },
+    "catalogoTextosComprobados": 662,
+    "heredados": 0,
+    "propuestasIniciales": 0,
+    "audiosMP3LocalesDecodificados": 16,
+    "bytesDeAudioIgualesAlProducto": true,
+    "marcos": [
+      "Navidad",
+      "Jardín"
+    ],
+    "accesosExternosDurantePruebaEditor": [],
+    "retornoRestaurado": {
+      "cambios": 3,
+      "idiomas": [
+        "es",
+        "en"
+      ]
+    }
+  },
+  "pendientes": [
+    "Conformidad de gerencia y escritor",
+    "Observación con visitantes nuevos",
+    "Decisión independiente sobre despliegue"
+  ]
+}

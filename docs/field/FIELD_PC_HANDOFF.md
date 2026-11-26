@@ -10,7 +10,7 @@ por el HTTPS de campo. Siguen pendientes cámara y Polaroid en móviles
 físicos y la observación de la radio Wi-Fi con equipos reales. Esta guía
 conserva los requisitos de red, TLS y validación física de la instalación.
 
-El 25 de noviembre José David aprobó GVO 1.2.0 para segunda lectura del escritor. La actualización de GitHub corresponde a desarrollo. Para cualquier operación en sitio se consultará el commit de la versión autorizada y su acta de activación. [Acta de GVO 1.2.0](../releases/GVO_1.2.0.md).
+El 25 de noviembre José David aprobó la revisión editorial 1.2.0 R2 para gerencia y escritor. La instalación documentada continúa en 1.1.3. Un cambio de versión en sitio requiere su propia instrucción y acta. [Acta editorial R2](../releases/GVO_1.2.0_R2.md).
 
 ## Orden de lectura
 
@@ -63,7 +63,7 @@ node tools/qa/gvo_debt_010_verify_pwa.mjs
 node tools/qa/gvo_field_handoff_docs_audit.mjs
 ```
 
-## Qué ya está cerrado
+## Funciones presentes en la instalación 1.1.3
 
 - Carga, selección de idioma, Portada y recorrido Mundos I–V.
 - Mirador, revisita y reset real.
@@ -76,7 +76,7 @@ node tools/qa/gvo_field_handoff_docs_audit.mjs
 - Cuatro QR físicos interestación en `docs/assets/qr/interstation/`.
 - Mundo V → Mirador intacto.
 - Sala IV con seis piezas y lectura de guardados válidos de ocho piezas.
-- Polaroid con enredadera de curubas y frase provisional aprobada.
+- Foto con enredadera de curubas y la frase provisional del corte 1.1.3. R2 incorpora los dos marcos y la frase del escritor «En conexión con la naturaleza».
 
 No reabrir assets, narrativa, copy ni comportamiento aprobado sin un ticket
 humano explícito.

@@ -12,7 +12,7 @@ No se usa la cámara nativa como bypass del recorrido normal y no se ejecutan UR
 
 `/inicio` solicita cámara trasera después del gesto `Iniciar recorrido`; nunca solicita micrófono. El gate final de Mundo I–IV abre el mismo servicio de cámara y decoder local. Todos los tracks terminan al completar, cerrar, ocultar, desmontar o fallar fatalmente.
 
-En una revisita autorizada desde Mirador no se monta el gate y no se solicita cámara.
+En una consulta desde los pedestales se omite el escáner. La opción de foto del Mirador abre la cámara frontal con un gesto del visitante y ofrece una captura local. Ese permiso es independiente del lector QR. [Foto con Lía](decisions/ADR-0016-foto-local-con-lia.md).
 
 ## Origen seguro local de laboratorio
 
