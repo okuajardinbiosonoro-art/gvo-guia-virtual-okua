@@ -41,7 +41,7 @@ extensión o scanner externo al visitante.
 | `/estacion/1`…`/estacion/5` | Mundos I–V protegidos por progreso |
 | `/transition/*` | Transiciones pasivas y automáticas |
 | `/final` | Mirador, foto con Lía, revisita y reinicio |
-| `/qr/start` | Entrada lógica al inicio; QR físico aún no generado |
+| `/qr/start` | Entrada al recorrido desde el QR de inicio verificado en campo en 1.1.3 |
 | `/qr/w2`…`/qr/w5` | Entradas QR tipadas y payloads del scanner interno |
 
 Las rutas `/dev/*` son herramientas locales y no forman parte del recorrido del
